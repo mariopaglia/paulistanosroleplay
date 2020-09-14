@@ -1,0 +1,378 @@
+<html>
+  <head>
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="  crossorigin="anonymous"></script>
+    <link href="ui.css" rel="stylesheet" type="text/css" />
+  </head>
+  <body>
+    <div class="actionmenu" style="display: none;">
+      <div class="container">
+        <div class="containerInline">
+            <section class="left">
+                <div class="centerDiv">
+                    <img class="category_arma" category="all" src="images/lojinha.png">
+                </div>
+                <div class="sectionItem item-category category_arma" category="utilidades"> 
+                    <p>Utilidades</p>
+                </div>
+                <div class="sectionItem item-category category_arma" category="bebidas">
+                    <p>Bebidas</p>
+                </div>
+                <div class="sectionItem item-category category_arma" category="ferramentas">
+                    <p>Comidas</p>
+                </div>
+            </section>
+
+            <section class="right">
+                <div class="sectionContent">
+                    <!--UTILIDADES-->
+                    <div class="sectionItem arma-item" category="utilidades">
+                        <p>Isca x10</p>
+
+                        <div class="imgIcon">
+                            <img src="images/isca.png">
+                        </div>
+                        <div class="overlayItem">  
+                          <button data-action="utilidades-comprar-isca" class="menuoption">Comprar</button>
+                        </div>
+
+                        <p class="priceItem">R$500</p>
+					</div>
+					
+                    <div class="sectionItem arma-item" category="utilidades">
+                        <p>Garrafa Vazia x5</p>
+
+                        <div class="imgIcon">
+                            <img src="images/garrafadeleite.png">
+                        </div>
+                        <div class="overlayItem">  
+                          <button data-action="utilidades-comprar-garrafa" class="menuoption">Comprar</button>
+                        </div>
+
+                        <p class="priceItem">R$15</p>
+                    </div>
+                    
+                    <div class="sectionItem arma-item" category="utilidades">
+                        <p>Bandagem x3</p>
+
+                        <div class="imgIcon">
+                            <img src="images/bandagem.png">
+                        </div>
+                        <div class="overlayItem">  
+                          <button data-action="utilidades-comprar-bandagem" class="menuoption">Comprar</button>
+                        </div>
+
+                        <p class="priceItem">R$3000</p>
+                    </div>
+
+                     <div class="sectionItem arma-item" category="utilidades">
+                        <p>Militec x1</p>
+
+                        <div class="imgIcon">
+                            <img src="images/militec.png">
+                        </div>
+                        <div class="overlayItem">  
+                          <button data-action="utilidades-comprar-militec" class="menuoption">Comprar</button>
+                        </div>
+
+                        <p class="priceItem">R$2500</p>
+                    </div>
+
+                     <div class="sectionItem arma-item" category="utilidades">
+                        <p>Kit de reparo x1</p>
+
+                        <div class="imgIcon">
+                            <img src="images/reparos.png">
+                        </div>
+                        <div class="overlayItem">  
+                          <button data-action="utilidades-comprar-reparos" class="menuoption">Comprar</button>
+                        </div>
+
+                        <p class="priceItem">R$2500</p>
+                    </div>
+
+
+                     <div class="sectionItem arma-item" category="utilidades">
+                        <p>Ferramentas x1</p>
+
+                        <div class="imgIcon">
+                            <img src="images/ferramenta.png">
+                        </div>
+                        <div class="overlayItem">  
+                          <button data-action="utilidades-comprar-ferramenta" class="menuoption">Comprar</button>
+                        </div>
+
+                        <p class="priceItem">R$20</p>
+                    </div>
+
+                     <div class="sectionItem arma-item" category="utilidades">
+                        <p>Mochila x1</p>
+
+                        <div class="imgIcon">
+                            <img src="images/mochila.png">
+                        </div>
+                        <div class="overlayItem">  
+                          <button data-action="utilidades-comprar-mochila" class="menuoption">Comprar</button>
+                        </div>
+
+                        <p class="priceItem">R$10000</p>
+                    </div>
+                    
+                     <div class="sectionItem arma-item" category="utilidades">
+                        <p>Alianca x1</p>
+
+                        <div class="imgIcon">
+                            <img src="images/alianca.png">
+                        </div>
+                        <div class="overlayItem">  
+                          <button data-action="utilidades-comprar-alianca" class="menuoption">Comprar</button>
+                        </div>
+
+                        <p class="priceItem">R$300</p>
+                    </div>
+
+                    <div class="sectionItem arma-item" category="utilidades">
+                        <p>Roupa x1</p>
+
+                        <div class="imgIcon">
+                            <img src="images/roupas.png">
+                        </div>
+                        <div class="overlayItem">  
+                          <button data-action="utilidades-comprar-roupas" class="menuoption">Comprar</button>
+                        </div>
+
+                        <p class="priceItem">R$300</p>
+                    </div>
+                   
+                <!--BEBIDAS-->
+                    <div class="sectionItem arma-item" category="bebidas">
+                        <p>Cerveja x1</p>
+
+                        <div class="imgIcon">
+                            <img src="images/cerveja.png">
+                        </div>
+                        <div class="overlayItem">  
+                          <button data-action="bebidas-comprar-cerveja" class="menuoption">Comprar</button>
+                        </div>
+
+                        <p class="priceItem">R$18</p>
+                    </div>
+                    
+                    <div class="sectionItem arma-item" category="bebidas">
+                        <p>Tequila x1</p>
+
+                        <div class="imgIcon">
+                            <img src="images/tequila.png">
+                        </div>
+                        <div class="overlayItem">  
+                          <button data-action="bebidas-comprar-tequila" class="menuoption">Comprar</button>
+                        </div>
+
+                        <p class="priceItem">R$30</p>
+                    </div>
+
+                    <div class="sectionItem arma-item" category="bebidas">
+                        <p>Vodka x1</p>
+
+                        <div class="imgIcon">
+                            <img src="images/vodka.png">
+                        </div>
+                        <div class="overlayItem">  
+                          <button data-action="bebidas-comprar-vodka" class="menuoption">Comprar</button>
+                        </div>
+
+                        <p class="priceItem">R$48</p>
+                    </div>
+
+                    <div class="sectionItem arma-item" category="bebidas">
+                        <p>Whisky x1</p>
+
+                        <div class="imgIcon">
+                            <img src="images/whisky.png">
+                        </div>
+                        <div class="overlayItem">  
+                          <button data-action="bebidas-comprar-whisky" class="menuoption">Comprar</button>
+                        </div>
+
+                        <p class="priceItem">R$60</p>
+                    </div>
+
+                    <div class="sectionItem arma-item" category="bebidas">
+                        <p>Conhaque x1</p>
+
+                        <div class="imgIcon">
+                            <img src="images/conhaque.png">
+                        </div>
+                        <div class="overlayItem">  
+                          <button data-action="bebidas-comprar-conhaque" class="menuoption">Comprar</button>
+                        </div>
+
+                        <p class="priceItem">R$72</p>
+                    </div>
+
+                    <div class="sectionItem arma-item" category="bebidas">
+                        <p>Absinto x1</p>
+
+                        <div class="imgIcon">
+                            <img src="images/absinto.png">
+                        </div>
+                        <div class="overlayItem">  
+                          <button data-action="bebidas-comprar-absinto" class="menuoption">Comprar</button>
+                        </div>
+
+                        <p class="priceItem">R$90</p>
+                    </div>
+
+                    <div class="sectionItem arma-item" category="bebidas">
+                        <p>Energetico x1</p>
+
+                        <div class="imgIcon">
+                            <img src="images/energetico.png">
+                        </div>
+                        <div class="overlayItem">  
+                          <button data-action="bebidas-comprar-energetico" class="menuoption">Comprar</button>
+                        </div>
+
+                        <p class="priceItem">R$150</p>
+                    </div>
+
+                     <div class="sectionItem arma-item" category="bebidas">
+                        <p>Água x1</p>
+
+                        <div class="imgIcon">
+                            <img src="images/agua.png">
+                        </div>
+                        <div class="overlayItem">  
+                          <button data-action="bebidas-comprar-agua" class="menuoption">Comprar</button>
+                        </div>
+
+                        <p class="priceItem">R$80</p>
+                    </div>
+
+                     <div class="sectionItem arma-item" category="bebidas">
+                        <p>Limonada x1</p>
+
+                        <div class="imgIcon">
+                            <img src="images/limonada.png">
+                        </div>
+                        <div class="overlayItem">  
+                          <button data-action="bebidas-comprar-limonada" class="menuoption">Comprar</button>
+                        </div>
+
+                        <p class="priceItem">R$60</p>
+                    </div>
+
+                     <div class="sectionItem arma-item" category="bebidas">
+                        <p>Refrigerante x1</p>
+
+                        <div class="imgIcon">
+                            <img src="images/refrigerante.png">
+                        </div>
+                        <div class="overlayItem">  
+                          <button data-action="bebidas-comprar-refrigerante" class="menuoption">Comprar</button>
+                        </div>
+
+                        <p class="priceItem">R$40</p>
+                    </div>
+
+                     <div class="sectionItem arma-item" category="bebidas">
+                        <p>Café x1</p>
+
+                        <div class="imgIcon">
+                            <img src="images/cafe.png">
+                        </div>
+                        <div class="overlayItem">  
+                          <button data-action="bebidas-comprar-cafe" class="menuoption">Comprar</button>
+                        </div>
+
+                        <p class="priceItem">R$25</p>
+                    </div>
+
+
+                    <!--COMIDAS-->
+                    <div class="sectionItem arma-item" category="ferramentas">
+                        <p>Chocolate x1</p>
+
+                        <div class="imgIcon">
+                            <img src="images/chocolate.png">
+                        </div>
+                        <div class="overlayItem">  
+                          <button data-action="comidas-comprar-chocolate" class="menuoption">Comprar</button>
+                        </div>
+
+                        <p class="priceItem">R$30</p>
+                    </div>
+
+                    <div class="sectionItem arma-item" category="ferramentas">
+                        <p>Salgadinho x1</p>
+
+                        <div class="imgIcon">
+                            <img src="images/salgadinho.png">
+                        </div>
+                        <div class="overlayItem">  
+                          <button data-action="comidas-comprar-salgadinho" class="menuoption">Comprar</button>
+                        </div>
+
+                        <p class="priceItem">R$50</p>
+                    </div>
+
+                    <div class="sectionItem arma-item" category="ferramentas">
+                        <p>Rosquinha x1</p>
+
+                        <div class="imgIcon">
+                            <img src="images/rosquinha.png">
+                        </div>
+                        <div class="overlayItem">  
+                          <button data-action="comidas-comprar-rosquinha" class="menuoption">Comprar</button>
+                        </div>
+
+                        <p class="priceItem">R$70</p>
+                    </div>
+
+                    <div class="sectionItem arma-item" category="ferramentas">
+                        <p>Pizza x1</p>
+
+                        <div class="imgIcon">
+                            <img src="images/pizza.png">
+                        </div>
+                        <div class="overlayItem">  
+                          <button data-action="comidas-comprar-pizza" class="menuoption">Comprar</button>
+                        </div>
+
+                        <p class="priceItem">R$120</p>
+                    </div>
+
+                      <div class="sectionItem arma-item" category="ferramentas">
+                        <p>Pão x1</p>
+
+                        <div class="imgIcon">
+                            <img src="images/pao.png">
+                        </div>
+                        <div class="overlayItem">  
+                          <button data-action="comidas-comprar-pao" class="menuoption">Comprar</button>
+                        </div>
+
+                        <p class="priceItem">R$90</p>
+                    </div>
+
+                      <div class="sectionItem arma-item" category="ferramentas">
+                        <p>Sanduiche x1</p>
+
+                        <div class="imgIcon">
+                            <img src="images/sanduiche.png">
+                        </div>
+                        <div class="overlayItem">  
+                          <button data-action="comidas-comprar-sanduiche" class="menuoption">Comprar</button>
+                        </div>
+
+                        <p class="priceItem">R$100</p>
+                    </div>
+                    
+
+                </div>
+            </section>
+        </div>
+    </div>
+    </div>
+    <script src="ui.js" type="text/javascript"></script>
+  </body>
+</html>

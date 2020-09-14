@@ -1,0 +1,132 @@
+div { 
+	border: 0; 
+	outline: 0; 
+	vertical-align: baseline; 
+	background: transparent; 
+	margin: 0; 
+	padding: 0;
+}
+:focus { 
+	outline: 0;
+}
+::selection { 
+	background: transparent;
+}
+@import url('https://fonts.googleapis.com/css?family=Anton&display=swap');
+
+#actionmenu {
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%,-50%);
+	display: none;
+	position: fixed;
+}
+
+#actionmenu button {
+	-webkit-appearance: none;
+	background: -webkit-gradient(-35deg, #3c3cce 0%, #1a0a75 91%, #4f4fe6 100%);
+	background: linear-gradient(-35deg, #3c3cce 0%, #1a0a75 91%, #4f4fe6 100%);
+	background-size: 300%;
+	border: none;
+	border-radius: 0.5rem;
+	box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+	background-color: transparent;
+	-webkit-box-reflect: below 0px -webkit-gradient(linear, left top, left bottom, from(transparent), color-stop(50%, transparent), to(rgba(255,255,255,0.3)));
+	color: #fff;
+	cursor: pointer;
+	display: block;
+	text-transform: uppercase;
+	font-family: 'Anton', sans-serif;
+	font-size: 0.9em;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+	height: 3.5rem;
+	letter-spacing: 0.2em;
+	margin-top: 10px;
+	outline: none;
+	-webkit-tap-highlight-color: transparent;
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+	width: 16rem;
+}
+
+i{
+	font-size: 20px;
+	position: fixed;
+	left: 10px;
+
+
+}
+
+#actionmenu button:hover {
+	animation-name: gradient;
+	-webkit-animation-name: gradient;
+	animation-duration: 2s;
+	-webkit-animation-duration: s;
+	animation-iteration-count: 1;
+	-webkit-animation-iteration-count: 1;
+	animation-fill-mode: forwards;
+	-webkit-animation-fill-mode: forwards;
+}
+
+@keyframes gradient {
+	0% {
+	  background-position: 0% 50%;
+	}
+	75% {
+	  background-position: 100%;
+	}
+  }
+
+  
+l {
+	width: 75%;
+	text-align: left;
+	position: relative;
+	left: 10px;
+	float: left;
+}
+
+r {
+	color: rgba(255, 255, 255, 0.6);
+	width: 25%;
+	position: relative;
+	right: 15px;
+	text-align: right;
+	float: left;
+}
+
+#actionmenu span{
+	display: block;
+	position: relative;
+	transition:0.3s ease-in-out all;
+	transform-origin:50% 0;
+  transform-style:preserve-3d;
+	color: white;
+  width: 100%;
+
+}
+#actionmenu span:after{
+	display: block;
+	content: attr(data-title);
+	position: absolute;
+	left: 0;
+	top: 0;
+	transition:0.3s ease-in-out all;
+	transform-origin:50% 0;
+	transform:translate3d(0px,105%,0px) rotateX(-90deg);
+	color: white;
+ 	width: 100%;
+}
+
+#um1:hover span{
+	transform:translate3d(0px,0px,-30px) rotateX(90deg);
+}
+#um2:hover span{
+	transform:translate3d(0px,0px,-30px) rotateX(90deg);
+}
+#um3:hover span{
+	transform:translate3d(0px,0px,-30px) rotateX(90deg);
+}

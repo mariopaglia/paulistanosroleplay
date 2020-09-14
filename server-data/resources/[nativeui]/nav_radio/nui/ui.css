@@ -1,0 +1,105 @@
+div { border: 0; outline: 0; vertical-align: baseline; background: transparent; margin: 0; padding: 0; }
+:focus { outline: 0; }
+::selection { background: transparent; }
+
+#actionmenu {
+	top: 50%;
+	left: 50%;
+	display: none;
+	position: fixed;
+  transform: translate(-50%,-50%);
+  border: 2px solid rgb(0, 0, 0, 0.5);
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+  border-top-left-radius: 25px;
+  border-top-right-radius: 25px;
+  padding: 10px;
+  text-align: center;
+  background-color: rgba(50, 50, 50, 0.5);
+}
+#actionmenu h1 {
+  margin: 10px;
+  font-size: 18pt;
+  font-family: sans-serif;
+  font-weight: 400;
+  background-color: rgba(0, 0, 0, 0.5);
+  color: white;
+  border-radius: 10px;
+}
+
+#actionmenu button {
+	background: rgba(20,20,20,0.95);
+	width: 150px;
+	height: 30px;
+	border: 0;
+	color: #fff;
+	display: block;
+	font-weight: 700;
+	margin-top: 4px;
+	text-align: center;
+	letter-spacing: 0.5px;
+	text-shadow: 1px 1px #000;
+  border: 1px solid rgba(0,0,0,0.4);
+}
+
+.rightmenu button {
+  border-radius: 5px;
+	border-bottom-right-radius: 20px;
+	border-top-left-radius: 20px;
+}
+
+.leftmenu button {
+  border-radius: 5px;
+	border-top-right-radius: 20px;
+	border-bottom-left-radius: 20px;
+}
+
+#actionmenu button.disconnect {
+  border-radius: 5px;
+  display: inline-block;
+	background: rgba(255,0,0,0.6);
+  width: calc(70% - 9px);
+  border: 1px solid black;
+}
+
+#actionmenu button.disconnect:hover {
+  background: rgba(255,0,0,1.0);
+}
+
+#actionmenu button.close {
+  border-radius: 5px;
+  display: inline-block;
+  background: rgba(100,100,100,0.6);
+  margin-left: 5px;
+  width: 30%;
+  border: 1px solid black;
+}
+
+#actionmenu button.close:hover {
+  background: rgba(100,100,100,1.0);
+}
+
+#actionmenu button:hover {
+	background: rgba(255,69,0,0.8);
+}
+
+.menus {
+  display: flex;
+}
+
+.menus .rightmenu, .menus .leftmenu {
+  padding: 2px;
+}
+
+l {
+	width: 75%;
+	text-align: left;
+	float: left;
+}
+
+r {
+	color: rgba(255,255,255,0.5);
+	width: 25%;
+	text-align: right;
+	float: left;
+}

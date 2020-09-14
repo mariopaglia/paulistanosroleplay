@@ -1,6 +1,6 @@
 window.addEventListener('message', (event) => {
 	let data = event.data
-	if(data.type == 'open') {
+	if (data.type == 'open') {
 		const nome = data.nome + ' ' + data.sobrenome;
 		const emprego = data.emprego;
 		const cargo = data.cargo;
@@ -17,25 +17,25 @@ window.addEventListener('message', (event) => {
 
 		$('.name p').text(nome);
 		$('.name h6 span').text(emprego);
-		if(cargo) {
+		if (cargo) {
 			$('.cargo p span').text(cargo);
 		} else {
 			$('.cargo').hide();
 		}
-		$('.carteira p').text('$'+carteira);
-		$('.coins p').text('$'+paypal);
+		$('.carteira p').text('R$' + carteira);
+		$('.coins p').text('R$' + paypal);
 		$('.vip p').text(vip);
 		$('.identidade p').text(id);
 		$('.documento p').text(documento);
 		$('.idade p').text(idade);
-		$('.banco p').text('$'+banco);
-		$('.multas p').text('$'+multas);
-		$('.telefone p').text(telefone);		
-		
+		$('.banco p').text('R$' + banco);
+		$('.multas p').text('R$' + multas);
+		$('.telefone p').text(telefone);
+
 		$('#roxId').fadeIn('fast');
 	}
-	
-	if(data.type == 'close') {
+
+	if (data.type == 'close') {
 		$('#roxId').fadeOut('slow');
 	}
 });

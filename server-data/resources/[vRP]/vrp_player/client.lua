@@ -288,7 +288,7 @@ end)
 local cancelando = false
 RegisterNetEvent('cancelando')
 AddEventHandler('cancelando',function(status)
-	cancelando = status
+    cancelando = status
 end)
 
 Citizen.CreateThread(function()
@@ -296,25 +296,29 @@ Citizen.CreateThread(function()
 		Citizen.Wait(1)
 		if cancelando then
 			BlockWeaponWheelThisFrame()
-			DisableControlAction(0,288,true)
-			DisableControlAction(0,289,true)
-			DisableControlAction(0,170,true)
-			DisableControlAction(0,166,true)
-			DisableControlAction(0,187,true)
-			DisableControlAction(0,189,true)
-			DisableControlAction(0,190,true)
-			DisableControlAction(0,188,true)
+			DisableControlAction(0,29,true)
+			DisableControlAction(0,38,true)
+			DisableControlAction(0,47,true)
+			DisableControlAction(0,56,true)
 			DisableControlAction(0,57,true)
 			DisableControlAction(0,73,true)
+			DisableControlAction(0,137,true)
+			DisableControlAction(0,166,true)
 			DisableControlAction(0,167,true)
-			DisableControlAction(0,311,true)
-			DisableControlAction(0,344,true)
-			DisableControlAction(0,29,true)
+			DisableControlAction(0,169,true)
+			DisableControlAction(0,170,true)
 			DisableControlAction(0,182,true)
+			DisableControlAction(0,187,true)
+			DisableControlAction(0,188,true)
+			DisableControlAction(0,189,true)
+			DisableControlAction(0,190,true)
+			DisableControlAction(0,243,true)
 			DisableControlAction(0,245,true)
 			DisableControlAction(0,257,true)
-			DisableControlAction(0,47,true)
-			DisableControlAction(0,38,true)
+			DisableControlAction(0,288,true)
+			DisableControlAction(0,289,true)
+			DisableControlAction(0,311,true)
+			DisableControlAction(0,344,true)			
 		end
 	end
 end)
@@ -341,7 +345,7 @@ end)]]
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- ABRIR PORTA-MALAS DO VEICULO
 -----------------------------------------------------------------------------------------------------------------------------------------
-RegisterCommand("trunk",function(source,args)
+RegisterCommand("malas",function(source,args)
 	local vehicle = vRP.getNearestVehicle(7)
 	if IsEntityAVehicle(vehicle) then
 		TriggerServerEvent("trytrunk",VehToNet(vehicle))
@@ -367,7 +371,7 @@ end)
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- ABRIR CAPO DO VEICULO
 -----------------------------------------------------------------------------------------------------------------------------------------
-RegisterCommand("hood",function(source,args)
+RegisterCommand("capo",function(source,args)
 	local vehicle = vRP.getNearestVehicle(7)
 	if IsEntityAVehicle(vehicle) then
 		TriggerServerEvent("tryhood",VehToNet(vehicle))
@@ -394,7 +398,7 @@ end)
 -- ABRE E FECHA OS VIDROS
 -----------------------------------------------------------------------------------------------------------------------------------------
 local vidros = false
-RegisterCommand("wins",function(source,args)
+RegisterCommand("vidros",function(source,args)
 	local vehicle = vRP.getNearestVehicle(7)
 	if IsEntityAVehicle(vehicle) then
 		TriggerServerEvent("trywins",VehToNet(vehicle))
@@ -427,7 +431,7 @@ end)
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- ABRIR PORTAS DO VEICULO
 -----------------------------------------------------------------------------------------------------------------------------------------
-RegisterCommand("doors",function(source,args)
+RegisterCommand("portas",function(source,args)
 	local vehicle = vRP.getNearestVehicle(7)
 	if IsEntityAVehicle(vehicle) then
 		TriggerServerEvent("trydoors",VehToNet(vehicle),args[1])
@@ -656,16 +660,16 @@ end)
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- /ME
 -----------------------------------------------------------------------------------------------------------------------------------------
-RegisterNetEvent('chatME')
-AddEventHandler('chatME',function(id,name,message)
-	local myId = PlayerId()
-	local pid = GetPlayerFromServerId(id)
-	if pid == myId then
-		TriggerEvent('chatMessage',"",{},"* "..name.." "..message)
-	elseif GetDistanceBetweenCoords(GetEntityCoords(GetPlayerPed(myId)),GetEntityCoords(GetPlayerPed(pid))) < 3.999 then
-		TriggerEvent('chatMessage',"",{},"* "..name.." "..message)
-	end
-end)
+-- RegisterNetEvent('chatME')
+-- AddEventHandler('chatME',function(id,name,message)
+-- 	local myId = PlayerId()
+-- 	local pid = GetPlayerFromServerId(id)
+-- 	if pid == myId then
+-- 		TriggerEvent('chatMessage',"",{},"* "..name.." "..message)
+-- 	elseif GetDistanceBetweenCoords(GetEntityCoords(GetPlayerPed(myId)),GetEntityCoords(GetPlayerPed(pid))) < 3.999 then
+-- 		TriggerEvent('chatMessage',"",{},"* "..name.." "..message)
+-- 	end
+-- end)
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- /TOW
 -----------------------------------------------------------------------------------------------------------------------------------------
@@ -1015,3 +1019,5 @@ Citizen.CreateThread(function()
 		end
 	end
 end)
+
+

@@ -1,7 +1,7 @@
 local TaxiGuiAtivo = true -- ATIVA/DESATIVA o GUI(Padrão: true)
-local Custobandeira = 0.25 --(1.00 = R$60 por minuto) Custo por minuto
-local custoporKm = 3.0 -- Custo por Km
-local CustoBase = 4.50 -- Custo Inicial
+local Custobandeira = 0.00 --(1.00 = R$60 por minuto) Custo por minuto
+local custoporKm = 500.00 -- Custo por Km
+local CustoBase = 500.00 -- Custo Inicial
 
 DecorRegister("bandeiras", 1)
 DecorRegister("kilometros", 1)

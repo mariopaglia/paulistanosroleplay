@@ -37,7 +37,7 @@ function func.checkRobbery(id,x,y,z,head)
 	local user_id = vRP.getUserId(source)
 	local policia = vRP.getUsersByPermission("policia.permissao")
 	if user_id then
-		if #policia < 3 then
+		if #policia < 0 then
 			TriggerClientEvent("Notify",source,"importante","Número insuficiente de policiais no momento.")
 		elseif (os.time()-timers) <= 1800 then
 			TriggerClientEvent("Notify",source,"importante","Os caixas estão vazios, aguarde <b>"..vRP.format(parseInt((1800-(os.time()-timers)))).." segundos</b> até que os civis depositem dinheiro.")
@@ -56,7 +56,7 @@ function func.checkRobbery(id,x,y,z,head)
 					async(function()
 						TriggerClientEvent('blip:criar:caixaeletronico',player,x,y,z)
 						vRPclient.playSound(player,"Oneshot_Final","MP_MISSION_COUNTDOWN_SOUNDSET")
-						TriggerClientEvent('chatMessage',player,"911",{65,130,255},"O roubo começou no ^1Caixa Eletrônico^0, dirija-se até o local e intercepte os assaltantes.")
+						TriggerClientEvent('chatMessage',player,"190",{65,130,255},"O roubo começou no ^1Caixa Eletrônico^0, dirija-se até o local e intercepte os assaltantes.")
 					end)
 				end
 			end
@@ -68,7 +68,7 @@ function func.checkRobbery(id,x,y,z,head)
 						if player then
 							async(function()
 								TriggerClientEvent('blip:remover:caixaeletronico',player)
-								TriggerClientEvent('chatMessage',player,"911",{65,130,255},"O roubo terminou, os assaltantes estão correndo antes que vocês cheguem.")
+								TriggerClientEvent('chatMessage',player,"190",{65,130,255},"O roubo terminou, os assaltantes estão correndo antes que vocês cheguem.")
 							end)
 						end
 					end

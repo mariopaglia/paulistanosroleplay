@@ -175,8 +175,8 @@ function func.Identidade(user_id)
         local cargo = func.getUserGroupByType(nuser_id, "cargo")
         if cargo ~= "" then groupv = cargo end
 
-        if groupv == "Mafia" or groupv == "Motoclub" or groupv == "Ballas" or
-            groupv == "Vagos" or groupv == "Groove" or groupv == "Desmanche" then groupv = "" end
+        if groupv == "P.C.C" or groupv == "Motoclub" or groupv == "PCC" or
+            groupv == "CV" or groupv == "TCP" or groupv == "CN" or groupv == "Bratva" or groupv == "Vanilla" then groupv = "" end
 
         if identity then
             return identity, vRP.format(parseInt(mymultas)), groupv

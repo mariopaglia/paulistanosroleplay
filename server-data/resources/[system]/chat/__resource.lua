@@ -1,19 +1,15 @@
-resource_manifest_version '44febabe-d386-4d18-afbe-5e627f4af937'
-
-dependency 'vrp'
-
 description 'chat management stuff'
 
 ui_page 'html/index.html'
 
-client_scripts { 
-	'@vrp/lib/utils.lua',
-	'cl_chat.lua'
-}
+client_script{
+  "@vrp/lib/utils.lua",
+  "cl_chat.lua"
+} 
 
-server_scripts {
-	'@vrp/lib/utils.lua',
-	'sv_chat.lua'
+server_scripts{ 
+  "@vrp/lib/utils.lua",
+  "sv_chat.lua",
 }
 
 files {
@@ -33,5 +29,5 @@ files {
     'html/vendor/fonts/LatoLight2.woff2',
     'html/vendor/fonts/LatoLight.woff2',
     'html/vendor/fonts/LatoBold.woff2',
-    'html/vendor/fonts/LatoBold2.woff2'
-}
+    'html/vendor/fonts/LatoBold2.woff2',
+  }

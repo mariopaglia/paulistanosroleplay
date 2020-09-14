@@ -122,7 +122,7 @@ end)
 -----------------------------------------------------------------------------------------------------------------------------------------
 Citizen.CreateThread(function()
 	while true do
-		Citizen.Wait(1000)
+		Citizen.Wait(2000) -- Ajuste de tempo da animação (Ex: 30 segundos = 3000)
 		if andamento then
 			segundos = segundos - 1
 			if segundos <= 0 then
@@ -146,3 +146,30 @@ function drawTxt(text,font,x,y,scale,r,g,b,a)
 	AddTextComponentString(text)
 	DrawText(x,y)
 end
+
+-----------------------------------------------------------------------------------------------------------------------------------------
+-- MARCAÇÃO
+-----------------------------------------------------------------------------------------------------------------------------------------
+local blip = nil
+RegisterNetEvent('blip:criar:registradora')
+AddEventHandler('blip:criar:registradora',function(x,y,z)
+	if not DoesBlipExist(blip) then
+		blip = AddBlipForCoord(x,y,z)
+		SetBlipScale(blip,0.5)
+		SetBlipSprite(blip,1)
+		SetBlipColour(blip,59)
+		BeginTextCommandSetBlipName("STRING")
+		AddTextComponentString("Roubo: Registradora")
+		EndTextCommandSetBlipName(blip)
+		SetBlipAsShortRange(blip,false)
+		SetBlipRoute(blip,true)
+	end
+end)
+
+RegisterNetEvent('blip:remover:registradora')
+AddEventHandler('blip:remover:registradora',function()
+	if DoesBlipExist(blip) then
+		RemoveBlip(blip)
+		blip = nil
+	end
+end)

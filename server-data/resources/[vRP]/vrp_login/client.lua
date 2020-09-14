@@ -32,7 +32,7 @@ RegisterNUICallback("ButtonClick",function(data,cb)
 	elseif data == "aeroporto" then
 		vRP.teleport(-1036.45,-2737.80,13.77)
 	elseif data == "concessionaria" then
-		vRP.teleport(-1095.7867431641,-1709.9973144531,4.3731069564819)
+		vRP.teleport(-57.070320129395,-1094.5155029297,26.422353744507)
 	end
 	ToggleActionMenu()
 	TriggerEvent("ToogleBackCharacter")

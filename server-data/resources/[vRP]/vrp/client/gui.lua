@@ -220,22 +220,19 @@ Citizen.CreateThread(function()
         	end
 		end]]
 
-		-- PUTO (F5)
-		if IsControlJustPressed(0,166) then
-			if not IsPedInAnyVehicle(ped) and GetEntityHealth(ped) > 101 and not menu_state.opened and not menu_celular then
-				tvRP.playAnim(true,{{"misscarsteal4@actor","actor_berating_loop"}},false)
-        	end
-		end
+		-- -- PUTO (F5)
+		-- if IsControlJustPressed(0,166) then
+		-- 	if not IsPedInAnyVehicle(ped) and GetEntityHealth(ped) > 101 and not menu_state.opened and not menu_celular then
+		-- 		tvRP.playAnim(true,{{"misscarsteal4@actor","actor_berating_loop"}},false)
+        -- 	end
+		-- end
 
 		-- PARA TODAS AS ANIMAÇÕES (F6)
 		if IsControlJustPressed(0,167) then
-			if cooldown < 1 then
-				cooldown = 20
-				if GetEntityHealth(ped) > 101 then
-					if not menu_state.opened then
-						tvRP.DeletarObjeto()
-						ClearPedTasks(ped)
-					end
+			if GetEntityHealth(ped) > 100 then
+				if not menu_state.opened then
+					tvRP.DeletarObjeto()
+					ClearPedTasks(ped)
 				end
 			end
 		end

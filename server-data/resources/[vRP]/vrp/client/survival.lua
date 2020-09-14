@@ -108,11 +108,11 @@ Citizen.CreateThread(function()
 			if timedeath > 0 then
 				local ped = PlayerPedId()
 				local x,y,z = table.unpack(GetEntityCoords(ped))
-				DrawText3D(x,y,z, "VOCE TEM ~r~"..timedeath.."~w~ SEGUNDOS DE VIDA.")
+				DrawText3D(x,y,z, "VOCE TEM ~r~"..timedeath.."~w~ ML DE SANGUE")
 			else
 				local ped = PlayerPedId()
 				local x,y,z = table.unpack(GetEntityCoords(ped))
-				DrawText3D(x,y,z, "PRESSIONE ~g~[E]~w~ PARA VOLTAR AO HOSPITAL.")
+				DrawText3D(x,y,z, "PRESSIONE ~g~[E]~w~ PARA VOLTAR AO HOSPITAL")
 			end
 			SetPedToRagdoll(PlayerPedId(),1000,1000,0,0,0,0)
 			BlockWeaponWheelThisFrame()

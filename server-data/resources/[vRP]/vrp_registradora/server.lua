@@ -30,9 +30,9 @@ function func.checkRobbery(id,x,y,z,head)
 	local user_id = vRP.getUserId(source)
 	if user_id then
 		local policia = vRP.getUsersByPermission("policia.permissao")
-		if #policia >= 3 then
+		if #policia >= 0 then
 			if timers[id] == 0 or not timers[id] then
-				timers[id] = 600
+				timers[id] = 900
 				TriggerClientEvent('iniciandoregistradora',source,head,x,y,z)
 				vRPclient._playAnim(source,false,{{"oddjobs@shop_robbery@rob_till","loop"}},true)
 				local random = math.random(100)
@@ -42,16 +42,16 @@ function func.checkRobbery(id,x,y,z,head)
 						local player = vRP.getUserSource(parseInt(w))
 						if player then
 							async(function()
-								local ids = idgens:gen()
-								blips[ids] = vRPclient.addBlip(player,x,y,z,1,59,"Roubo em andamento",0.5,true)
-								TriggerClientEvent('chatMessage',player,"911",{65,130,255},"O roubo começou na ^1Caixa Registradora^0, dirija-se até o local e intercepte o assaltante.")
-								SetTimeout(20000,function() vRPclient.removeBlip(player,blips[ids]) idgens:free(ids) end)
+								TriggerClientEvent('blip:criar:registradora',player,x,y,z)
+								vRPclient.playSound(player,"Oneshot_Final","MP_MISSION_COUNTDOWN_SOUNDSET")
+								TriggerClientEvent('chatMessage',player,"190",{65,130,255},"O roubo começou na ^1Caixa Registradora^0, dirija-se até o local e intercepte o assaltante.")
+								SetTimeout(20000,function() TriggerClientEvent('blip:remover:registradora',player) end)
 							end)
 						end
 					end
 				end
 				SetTimeout(10000,function()
-					vRP.giveInventoryItem(user_id,"dinheirosujo",math.random(800,1200))
+					vRP.giveInventoryItem(user_id,"dinheirosujo",math.random(12000,30000)) -- Ajuste do pagamento em dinheiro sujo
 				end)
 			else
 				TriggerClientEvent("Notify",source,"importante","A registradora está vazia, aguarde <b>"..timers[id].." segundos</b> até que tenha dinheiro novamente.")

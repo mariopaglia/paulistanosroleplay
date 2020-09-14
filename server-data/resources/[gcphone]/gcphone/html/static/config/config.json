@@ -1,5 +1,5 @@
 {
-	"reseau": "Is Beck PHONE",
+	"reseau": "Paulistanos 4G",
 	"warningMessageCount": 250,
 	"themeColor": "#f5414d",
 	"colors": [
@@ -39,7 +39,7 @@
 		"Customizado": "URL"
 	},
 	"background_default": {
-		"label": "Is BeckLândia",
+		"label": "PaulistanosRP",
 		"value": "background.png"
 	},
 	"coque": {
@@ -51,46 +51,47 @@
 	},
 	"defaultContacts": [],
 	"apps": [{
-		"name": "Twitter",
-		"pt_BR__name": "Twitter",
-		"icons": "/html/static/img/icons_app/twitter.png",
-		"routeName": "twitter.splash",
-		"inHomePage": true
-	},
-	{
-		"name": "Mobilphone",
-		"pt_BR__name": "Telefone",
-		"icons": "/html/static/img/icons_app/call.png",
-		"routeName": "appels",
-		"inHomePage": true
-	},
-	{
-		"name": "Messages",
-		"pt_BR__name": "Whatsapp",
-		"icons": "/html/static/img/icons_app/sms.png",
-		"routeName": "messages",
-		"inHomePage": true,
-		"puceRef": "nbMessagesUnread"
-	},
-	{
-		"name": "Contacts",
-		"pt_BR__name": "Contatos",
-		"icons": "/html/static/img/icons_app/contacts.png",
-		"routeName": "contacts",
-		"inHomePage": true
-	},
-	{
-		"name": "Settings",
-		"pt_BR__name": "Config",
-		"icons": "/html/static/img/icons_app/settings.png",
-		"routeName": "parametre"
-	},
-	{
-		"name": "Dark Chat",
-		"pt_BR__name": "Deep Web",
-		"icons": "/html/static/img/icons_app/tchat.png",
-		"routeName": "tchat"
-	}],
+			"name": "Twitter",
+			"pt_BR__name": "Twitter",
+			"icons": "/html/static/img/icons_app/twitter.png",
+			"routeName": "twitter.splash",
+			"inHomePage": true
+		},
+		{
+			"name": "Mobilphone",
+			"pt_BR__name": "Telefone",
+			"icons": "/html/static/img/icons_app/call.png",
+			"routeName": "appels",
+			"inHomePage": true
+		},
+		{
+			"name": "Messages",
+			"pt_BR__name": "Whatsapp",
+			"icons": "/html/static/img/icons_app/sms.png",
+			"routeName": "messages",
+			"inHomePage": true,
+			"puceRef": "nbMessagesUnread"
+		},
+		{
+			"name": "Contacts",
+			"pt_BR__name": "Contatos",
+			"icons": "/html/static/img/icons_app/contacts.png",
+			"routeName": "contacts",
+			"inHomePage": true
+		},
+		{
+			"name": "Settings",
+			"pt_BR__name": "Config",
+			"icons": "/html/static/img/icons_app/settings.png",
+			"routeName": "parametre"
+		},
+		{
+			"name": "Dark Chat",
+			"pt_BR__name": "Deep Web",
+			"icons": "/html/static/img/icons_app/tchat.png",
+			"routeName": "tchat"
+		}
+	],
 	"language": {
 		"pt_BR": {
 			"NAME": "Português",
@@ -186,13 +187,13 @@
 			"APP_TWITTER_NOTIF_NEW_PASSWORD_LENGTH_ERROR": "Senha muito curta.",
 			"TIMEAGO": [
 				"agora",
-				["%s segundo atrás","%s segundos atrás"],
-				["%s minuto atrás","%s minutos atrás"],
-				["%s hora atrás","%s horas atrás"],
-				["%s dia atrás","%s dias atrás"],
-				["%s semana atrás","%s semanas atrás"],
-				["%s mês atrás","%s meses atrás"],
-				["%s ano atrás","%s anos atrás"]
+				["%s segundo atrás", "%s segundos atrás"],
+				["%s minuto atrás", "%s minutos atrás"],
+				["%s hora atrás", "%s horas atrás"],
+				["%s dia atrás", "%s dias atrás"],
+				["%s semana atrás", "%s semanas atrás"],
+				["%s mês atrás", "%s meses atrás"],
+				["%s ano atrás", "%s anos atrás"]
 			]
 		}
 	}

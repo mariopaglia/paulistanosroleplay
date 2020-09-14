@@ -493,7 +493,7 @@ local workgarage = {
 		"motosamu"
 	},
 	["ParamedicoH"] = {
-		"samumav",
+		"polmav",
 		"seasparrow"
 	},
 	["Mecanico"] = {

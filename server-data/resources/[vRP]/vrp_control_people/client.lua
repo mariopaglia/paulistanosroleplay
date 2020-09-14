@@ -13,7 +13,7 @@ open = false
 isPolice = true
 
 local listaCarros = {
-    "spin18rp", "paliopmrp1", "spacerp", "trailgarra1", "trailcivileie", "cruzeprf2", "l200prf", "trailprf"
+    "spin18rp", "paliopmrp1", "trailnovarota", "spacerp", "trailgarra1", "trailcivileie", "cruzeprf2", "l200prf", "trailprf"
 }
 
 local listaPcs = {

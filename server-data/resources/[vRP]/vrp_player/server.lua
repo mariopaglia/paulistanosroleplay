@@ -900,7 +900,7 @@ RegisterCommand('chamar',function(source,args,rawCommand)
 			players = vRP.getUsersByPermission("mecanico.permissao")
 		elseif args[1] == "taxi" then
 			players = vRP.getUsersByPermission("taxista.permissao")
-		elseif args[1] == "god" then
+		elseif args[1] == "adm" then
 			players = vRP.getUsersByPermission("admin.permissao")
 		elseif args[1] == "advogado" then
 			players = vRP.getUsersByPermission("advogado.permissao")
@@ -965,7 +965,9 @@ RegisterCommand('p',function(source,args,rawCommand)
 					async(function()
 						local id = idgens:gen()
 						policia[id] = vRPclient.addBlip(player,x,y,z,153,84,"Localização de "..identity.name.." "..identity.firstname,0.5)
-						TriggerClientEvent('chatMessage',player,"911",{65,130,255},"Localização recebida de ^1"..identity.name.." "..identity.firstname.."^0.")
+						vRPclient.playSound(player,"Oneshot_Final","MP_MISSION_COUNTDOWN_SOUNDSET")
+						TriggerClientEvent("Notify",source,"sucesso","Localização enviada com sucesso.")
+						TriggerClientEvent('chatMessage',player,"190",{65,130,255},"Localização recebida de ^1"..identity.name.." "..identity.firstname.."^0.")
 						TriggerClientEvent('InteractSound_CL:PlayOnOne',player,'beep',0.7)
 						SetTimeout(60000,function() vRPclient.removeBlip(player,policia[id]) idgens:free(id) end)
 					end)
@@ -1488,14 +1490,14 @@ end)
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- ME
 -----------------------------------------------------------------------------------------------------------------------------------------
-RegisterCommand('me',function(source,args,rawCommand)
-	if args[1] then
-		local user_id = vRP.getUserId(source)
-		local identity = vRP.getUserIdentity(user_id)
-		TriggerClientEvent('chatME',-1,source,identity.name,rawCommand:sub(3))
-		vRP.logs("savedata/me.txt","[ID]: "..user_id.." / [MENSAGEM]: "..rawCommand:sub(3))
-	end
-end)
+-- RegisterCommand('me',function(source,args,rawCommand)
+-- 	if args[1] then
+-- 		local user_id = vRP.getUserId(source)
+-- 		local identity = vRP.getUserIdentity(user_id)
+-- 		TriggerClientEvent('chatME',-1,source,identity.name,rawCommand:sub(3))
+-- 		vRP.logs("savedata/me.txt","[ID]: "..user_id.." / [MENSAGEM]: "..rawCommand:sub(3))
+-- 	end
+-- end)
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- CARTAS
 -----------------------------------------------------------------------------------------------------------------------------------------

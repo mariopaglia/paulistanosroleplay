@@ -23,9 +23,9 @@ local locais = {
 
 	{ id = 13 , nome = "Loja de Departamento" , segundos = 100 , cops = 3 , recompensa = math.random(70000,140000) },
 	{ id = 14 , nome = "Loja de Departamento" , segundos = 80 , cops = 3 , recompensa = math.random(70000,140000) },
-	{ id = 15 , nome = "Loja de Departamento" , segundos = 80 , cops = 3 , recompensa = math.random(70000,140000) },
+	{ id = 15 , nome = "Loja de Departamento" , segundos = 80 , cops = 1 , recompensa = math.random(70000,140000) },
 	{ id = 16 , nome = "Loja de Departamento" , segundos = 80 , cops = 3 , recompensa = math.random(70000,140000) },
-	{ id = 17 , nome = "Loja de Departamento" , segundos = 90 , cops = 3 , recompensa = math.random(70000,140000) },
+	{ id = 17 , nome = "Loja de Departamento" , segundos = 80 , cops = 3 , recompensa = math.random(70000,140000) },
 	{ id = 18 , nome = "Loja de Departamento" , segundos = 100 , cops = 3 , recompensa = math.random(70000,140000) },
 	{ id = 19 , nome = "Loja de Departamento" , segundos = 120 , cops = 3 , recompensa = math.random(70000,140000) },
 	{ id = 20 , nome = "Loja de Departamento" , segundos = 170 , cops = 3 , recompensa = math.random(70000,140000) },
@@ -60,6 +60,7 @@ function rob.IniciandoRoubo(id,x,y,z,head)
 						async(function()
 							TriggerClientEvent('criarblip',player,x,y,z)
 							vRPclient.playSound(player,"HUD_MINI_GAME_SOUNDSET","CHECKPOINT_AHEAD")
+							vRPclient.playSound(player,"Oneshot_Final","MP_MISSION_COUNTDOWN_SOUNDSET")
 							TriggerClientEvent('chatMessage',player,"190",{65,130,255},"O roubo começou no(a) ^1"..item.nome.."^0, dirija-se até o local e intercepte os assaltantes.")
 						end)
 					end

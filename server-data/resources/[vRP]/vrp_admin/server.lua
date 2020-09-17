@@ -134,10 +134,27 @@ RegisterCommand('god',function(source,args,rawCommand)
 			end
 		else
 			vRPclient.killGod(source)
-			vRPclient.setHealth(source,400)
-			vRPclient.setArmour(source,100)
+			vRPclient.setHealth(source,400) -- Vida
+			-- vRPclient.setArmour(source,100) -- Colete
 		end
 	end
+end)
+-----------------------------------------------------------------------------------------------------------------------------------------
+-- GOD ALL
+-----------------------------------------------------------------------------------------------------------------------------------------
+RegisterCommand('godall',function(source,args,rawCommand)
+    local user_id = vRP.getUserId(source)
+    if vRP.hasPermission(user_id,"admin.permissao") then
+    	local users = vRP.getUsers()
+        for k,v in pairs(users) do
+            local id = vRP.getUserSource(parseInt(k))
+            if id then
+            	vRPclient.killGod(id)
+				vRPclient.setHealth(id,400)
+				print(id)
+            end
+        end
+    end
 end)
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- ESTOQUE

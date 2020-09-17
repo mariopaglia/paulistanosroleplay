@@ -8,9 +8,9 @@ emP = Tunnel.getInterface("entrega_maconha")
 local blips = false
 local servico = false
 local selecionado = 0
-local CoordenadaX = 2044.58
-local CoordenadaY = -148.99
-local CoordenadaZ = 267.12
+local CoordenadaX = 446.12
+local CoordenadaY = -1235.64
+local CoordenadaZ = 29.96
 local processo = false
 local segundos = 0
 -----------------------------------------------------------------------------------------------------------------------------------------
@@ -53,8 +53,8 @@ Citizen.CreateThread(function()
 			if distance <= 3 then
 				DrawMarker(21,CoordenadaX,CoordenadaY,CoordenadaZ-0.6,0,0,0,0.0,0,0,0.5,0.5,0.4,255,0,0,50,0,0,0,1)
 				if distance <= 1.2 then
-					drawTxt("PRESSIONE  ~r~E~w~  PARA INICIAR AS ENTREGAS",4,0.5,0.93,0.50,255,255,255,180)
-					if IsControlJustPressed(0,38) and emP.checkPermission() then
+					drawTxt("PRESSIONE  ~r~E~w~  PARA INICIAR AS ENTREGAS DE ~g~MACONHA~w~",4,0.5,0.93,0.50,255,255,255,180)
+					if IsControlJustPressed(0,38)then
 						servico = true
 						selecionado = math.random(20)
 						CriandoBlip(locs,selecionado)
@@ -81,7 +81,7 @@ Citizen.CreateThread(function()
 				DrawMarker(21,locs[selecionado].x,locs[selecionado].y,locs[selecionado].z-0.6,0,0,0,0.0,0,0,0.5,0.5,0.4,255,0,0,50,0,0,0,1)
 				if distance <= 1.2 then
 					drawTxt("PRESSIONE  ~r~E~w~  PARA ENTREGAR AS DROGAS",4,0.5,0.93,0.50,255,255,255,180)
-					if IsControlJustPressed(0,38) and emP.checkPermission() and emP.checkItens() and not IsPedInAnyVehicle(ped) then
+					if IsControlJustPressed(0,38) and emP.checkItens() and not IsPedInAnyVehicle(ped) then
 						droga = CreateObject(GetHashKey("prop_weed_block_01"),locs[selecionado].x,locs[selecionado].y,locs[selecionado].z-1,true,true,true)
 						if emP.checkPayment() then
 							local random = math.random(100)

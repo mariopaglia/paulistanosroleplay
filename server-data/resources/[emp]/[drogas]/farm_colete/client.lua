@@ -2,8 +2,10 @@ local tempoEmSegundos = 40
 local tempoEmSegundos2 = 25
 
 local KevlarPalet = {
-	{-1109.8768310547,4948.9194335938,218.64979553223},
-	{-1108.7319335938,4952.212890625,218.64979553223},
+	-- {-1109.8768310547,4948.9194335938,218.64979553223},
+	-- {-1108.7319335938,4952.212890625,218.64979553223},
+	{716.13458251953,-962.43823242188,30.395322799683},
+	{718.83740234375,-962.48162841797,30.395397186279},
 }
 
 local alreadyCut2 = {}
@@ -75,7 +77,7 @@ AddEventHandler("farm_colete:getKevlarOnPalet", function(tree2)
 	end
 	TaskStartScenarioInPlace(GetPlayerPed(-1), "PROP_HUMAN_PARKING_METER", 0, true)
 	FreezeEntityPosition(GetPlayerPed(-1),true)
-    Citizen.Wait(3000)
+    Citizen.Wait(tempoEmSegundos2*1000)
     FreezeEntityPosition(GetPlayerPed(-1),false)
     ClearPedTasksImmediately(GetPlayerPed(-1))
     TriggerServerEvent('farm_colete:getKevlarItem')

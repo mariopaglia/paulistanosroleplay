@@ -7,40 +7,37 @@ vRP = Proxy.getInterface("vRP")
 -----------------------------------------------------------------------------------------------------------------------------------------
 local segundos = 0
 local roubando = false
+local CoordenadaX = 985.76
+local CoordenadaY = -138.16
+local CoordenadaZ = 73.09
 -----------------------------------------------------------------------------------------------------------------------------------------
--- LOCAIS
------------------------------------------------------------------------------------------------------------------------------------------
-local locais = {
-	{ ['x'] = 1261.5, ['y'] = -2565.61, ['z'] = 42.75, ['perm'] = "motoclub.permissao" },
-	{ ['x'] = 1548.73, ['y'] = 3517.11, ['z'] = 36.10, ['perm'] = "motoclub.permissao" },
-	{ ['x'] = 2340.87, ['y'] = 3050.18, ['z'] = 48.16, ['perm'] = "motoclub.permissao" }
-}
------------------------------------------------------------------------------------------------------------------------------------------
--- DESMANCHE
+-- GERANDO ENTREGA
 -----------------------------------------------------------------------------------------------------------------------------------------
 Citizen.CreateThread(function()
 	while true do
-		Citizen.Wait(5)
+		Citizen.Wait(1)
 		if not roubando then
-			for _,v in pairs(locais) do
-				local ped = PlayerPedId()
-				local x,y,z = table.unpack(v)
-				local distance = GetDistanceBetweenCoords(GetEntityCoords(ped),v.x,v.y,v.z)
-				if distance <= 50 and GetPedInVehicleSeat(GetVehiclePedIsUsing(ped),-1) == ped then
-					DrawMarker(23,v.x,v.y,v.z-0.96,0,0,0,0,0,0,5.0,5.0,0.5,255,0,0,50,0,0,0,0)
-					if distance <= 3.1 and IsControlJustPressed(0,38) then
-						if emP.checkVehicle() and emP.checkPermission(v.perm) then
-							roubando = true
-							segundos = 60
-							FreezeEntityPosition(GetVehiclePedIsUsing(ped),true)
+			local ped = PlayerPedId()
+			local vehicle = GetVehiclePedIsUsing(ped)
+			local distance = GetDistanceBetweenCoords(GetEntityCoords(ped),CoordenadaX,CoordenadaY,CoordenadaZ,true)
+			if distance <= 50 then
+				DrawMarker(23,CoordenadaX,CoordenadaY,CoordenadaZ-0.96,0,0,0,0,0,0,5.0,5.0,0.5,211,176,72,20,0,0,0,0)
+				if distance <= 3.1 and IsControlJustPressed(0,38) and GetPedInVehicleSeat(vehicle,-1) == ped and emP.checkPermission() then
+					if emP.checkVehicle() then
+						roubando = true
+						segundos = 30
+						FreezeEntityPosition(vehicle,true)
 
-							repeat
-								Citizen.Wait(10)
-							until segundos == 0
+						repeat
+							Citizen.Wait(10)
+						until segundos == 0
 
-							TriggerServerEvent("desmancheVehicles")
-							roubando = false
+						local mPlaca,mName,mPrice,mBanido,mNet,mVeh = vRP.ModelName2()
+						if IsEntityAVehicle(mVeh) then
+							TriggerServerEvent("vrp_adv_garages_id",mNet,GetVehicleEngineHealth(mVeh),GetVehicleBodyHealth(mVeh),GetVehicleFuelLevel(mVeh))
+							emP.removeVehicles(mPlaca,mName,mPrice,mNet)
 						end
+						roubando = false
 					end
 				end
 			end
@@ -52,11 +49,11 @@ end)
 -----------------------------------------------------------------------------------------------------------------------------------------
 Citizen.CreateThread(function()
 	while true do
-		Citizen.Wait(5)
+		Citizen.Wait(1)
 		if roubando then
 			if segundos > 0 then
 				DisableControlAction(0,75)
-				drawTxt("AGUARDE ~g~"..segundos.." SEGUNDOS~w~, ESTAMOS DESATIVANDO O ~y~RASTREADOR ~w~DO VEÍCULO",4,0.5,0.93,0.50,255,255,255,180)
+				drawTxt("AGUARDE ~y~"..segundos.." SEGUNDOS~w~, ESTAMOS DESATIVANDO O ~g~RASTREADOR ~w~DO VEÍCULO",4,0.5,0.93,0.50,255,255,255,180)
 			end
 		end
 	end

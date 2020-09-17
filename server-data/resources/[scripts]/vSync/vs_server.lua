@@ -1,11 +1,11 @@
 ------------------ change this -------------------
 
 admins = {
-    'steam:11000013671fe94',
+    'steam:110000115bc0c5b',
 }
 
 -- Set this to false if you don't want the weather to change automatically every 10 minutes.
-DynamicWeather = true
+DynamicWeather = false
 
 --------------------------------------------------
 debugprint = false -- don't touch this unless you know what you're doing or you're being asked by Vespura to turn this on.

@@ -114,7 +114,7 @@ AddEventHandler("iniciandoregistradora",function(head,x,y,z)
 	andamento = true
 	SetEntityHeading(PlayerPedId(),head)
 	SetEntityCoords(PlayerPedId(),x,y,z-1,false,false,false,false)
-	SetCurrentPedWeapon(PlayerPedId(),GetHashKey("WEAPON_UNARMED"),true)
+	-- SetCurrentPedWeapon(PlayerPedId(),GetHashKey("WEAPON_UNARMED"),true)
 	TriggerEvent('cancelando',true)
 end)
 -----------------------------------------------------------------------------------------------------------------------------------------

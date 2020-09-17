@@ -66,7 +66,7 @@ AddEventHandler("iniciandocaixaeletronico",function(x,y,z,secs,head)
 	SetEntityHeading(PlayerPedId(),head)
 	SetEntityCoords(PlayerPedId(),x,y,z-1,false,false,false,false)
 	SetPedComponentVariation(PlayerPedId(),5,45,0,2)
-	SetCurrentPedWeapon(PlayerPedId(),GetHashKey("WEAPON_UNARMED"),true)
+	-- SetCurrentPedWeapon(PlayerPedId(),GetHashKey("WEAPON_UNARMED"),true)
 	TriggerEvent('cancelando',true)
 end)
 -----------------------------------------------------------------------------------------------------------------------------------------

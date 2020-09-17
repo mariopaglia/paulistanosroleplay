@@ -67,7 +67,7 @@ function emP.checkPayment()
 
 	if user_id then
 		if vRP.tryGetInventoryItem(user_id,"metanfetamina",quantidade[source]) then
-			vRP.giveInventoryItem(user_id,"dinheirosujo", (parseInt(100) + bonus) * quantidade[source])
+			vRP.giveInventoryItem(user_id,"dinheirosujo", (parseInt(0) + bonus) * quantidade[source])
 		end
 		quantidade[source] = nil
 		return true

@@ -1,4 +1,4 @@
-local discord_webhook = ""
+local discordwebhook = "https://discordapp.com/api/webhooks/756009434710409388/D6FFuDiqhkjGcscrCve30W9_5fzbdf2O7NNvW73FJjS4361c7S2P7AGyMcHtfuDLjCAD"
 local discord_webhook1 = ""
 local discord_webhook2 = ""
 local discord_webhook3 = ""
@@ -10,6 +10,12 @@ local Tools = module("vrp","lib/Tools")
 vRP = Proxy.getInterface("vRP")
 vRPclient = Tunnel.getInterface("vRP")
 local idgens = Tools.newIDGenerator()
+
+function SendWebhookMessage(webhook,message)
+	if webhook ~= nil and webhook ~= "" then
+		PerformHttpRequest(webhook, function(err, text, headers) end, 'POST', json.encode({content = message}), { ['Content-Type'] = 'application/json' })
+	end
+end
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- ITEMLIST
 -----------------------------------------------------------------------------------------------------------------------------------------
@@ -201,7 +207,8 @@ RegisterCommand('item',function(source,args,rawCommand)
 	if vRP.hasPermission(user_id,"admin.permissao") then
 		if args[1] and args[2] and itemlist[args[1]] ~= nil then
 			vRP.giveInventoryItem(user_id,args[1],parseInt(args[2]))
-			TriggerEvent('logs:ToDiscord', discord_webhook , "ABUSER", "```ADM "..user_id.." pegou o item: "..args[1].." Quantidade: "..args[2].."```", "https://www.tumarcafacil.com/wp-content/uploads/2017/06/RegistroDeMarca-01-1.png", false, false)
+			SendWebhookMessage(discordwebhook, "```prolog\n[====SPAW DE ITEM (/ITEM)====]\n[ADM ID]: "..user_id.."\n[PEGOU O ITEM]: '"..args[1].."'\n[QUANTIDADE]: "..args[2].."```")
+			-- TriggerEvent('logs:ToDiscord', discordwebhook , "ABUSER", "```ADM "..user_id.." pegou o item: "..args[1].." Quantidade: "..args[2].."```", "https://www.tumarcafacil.com/wp-content/uploads/2017/06/RegistroDeMarca-01-1.png", false, false)
 		end
 	end
 end)
@@ -687,8 +694,9 @@ RegisterCommand('enviar',function(source,args,rawCommand)
 						vRPclient._playAnim(source,true,{{"mp_common","givetake1_a"}},false)
 						TriggerClientEvent("Notify",source,"sucesso","Enviou <b>"..parseInt(args[2]).."x "..v.nome.."</b>.")
 						TriggerClientEvent("Notify",nplayer,"sucesso","Recebeu <b>"..parseInt(args[2]).."x "..v.nome.."</b>.")
+						SendWebhookMessage(discordwebhook, "```Player "..user_id.." enviou(por comando) o item: "..k.. " para o ID "..nuser_id.." [QTD]: "..args[2].."```")
 						vRP.logs("savedata/enviar.txt","[ID]: "..user_id.." / [NID]: "..nuser_id.." / [ITEM]: "..k)
-						TriggerEvent('logs:ToDiscord', discord_webhook3 , "ENVIAR", "```Player "..user_id.." enviou(por comando) o item: "..k.. " para o ID "..nuser_id.." [QTD]: "..args[2].."```", "https://www.tumarcafacil.com/wp-content/uploads/2017/06/RegistroDeMarca-01-1.png", false, false)
+						-- TriggerEvent('logs:ToDiscord', discord_webhook , "ENVIAR", "```Player "..user_id.." enviou(por comando) o item: "..k.. " para o ID "..nuser_id.." [QTD]: "..args[2].."```", "https://www.tumarcafacil.com/wp-content/uploads/2017/06/RegistroDeMarca-01-1.png", false, false)
 					end
 				end
 			end
@@ -700,7 +708,8 @@ RegisterCommand('enviar',function(source,args,rawCommand)
 			TriggerClientEvent("Notify",source,"sucesso","Enviou <b>$"..vRP.format(parseInt(args[1])).." dólares</b>.")
 			TriggerClientEvent("Notify",nplayer,"sucesso","Recebeu <b>$"..vRP.format(parseInt(args[1])).." dólares</b>.")
 			vRP.logs("savedata/enviar.txt","[ID]: "..user_id.." / [NID]: "..nuser_id.." / [VALOR]: "..parseInt(args[1]))
-			TriggerEvent('logs:ToDiscord', discord_webhook3 , "ENVIAR", "```Player "..user_id.." enviou dinheiro para o ID "..nuser_id.." [R$]: "..args[1].."```", "https://www.tumarcafacil.com/wp-content/uploads/2017/06/RegistroDeMarca-01-1.png", false, false)
+			SendWebhookMessage(discordwebhook, "```prolog\n[====ENVIO DE DINHEIRO====]\n[DE]: "..user_id.."\n[PARA]: "..nuser_id.."\n[VALOR]: R$ "..args[1].."```")
+			-- TriggerEvent('logs:ToDiscord', discordwebhook , "ENVIAR", "```Player "..user_id.." enviou dinheiro para o ID "..nuser_id.." [R$]: "..args[1].."```", "https://www.tumarcafacil.com/wp-content/uploads/2017/06/RegistroDeMarca-01-1.png", false, false)
 		else
 			TriggerClientEvent("Notify",source,"negado","Não tem a quantia que deseja enviar.")
 		end
@@ -711,28 +720,40 @@ end)
 -----------------------------------------------------------------------------------------------------------------------------------------
 RegisterCommand('garmas',function(source,args,rawCommand)
 	local user_id = vRP.getUserId(source)
-	if user_id then
-		local weapons = vRPclient.replaceWeapons(source,{})
-		for k,v in pairs(weapons) do
-			vRP.giveInventoryItem(user_id,"wbody|"..k,1)
-			if v.ammo > 0 then
-				vRP.giveInventoryItem(user_id,"wammo|"..k,v.ammo)
+	if not vRP.hasPermission(user_id,"policia.permissao") then
+		if user_id then
+			local weapons = vRPclient.replaceWeapons(source,{})
+			for k,v in pairs(weapons) do
+				vRP.giveInventoryItem(user_id,"wbody|"..k,1)
+				if v.ammo > 0 then
+					vRP.giveInventoryItem(user_id,"wammo|"..k,v.ammo)
+				end
 			end
+			TriggerClientEvent("Notify",source,"sucesso","Guardou seu armamento na mochila.")
 		end
-		TriggerClientEvent("Notify",source,"sucesso","Guardou seu armamento na mochila.")
 	end
 end)
------------------------------------------------------------------------------------------------------------------------------------------
--- CLONEPLATE
------------------------------------------------------------------------------------------------------------------------------------------
-RegisterCommand('cloneplate',function(source,args,rawCommand)
+
+RegisterCommand('limpar',function(source,args,rawCommand)
 	local user_id = vRP.getUserId(source)
-	if user_id then
-		if vRPclient.isInVehicle(source) and vRP.tryGetInventoryItem(user_id,"placa",1) then
-			TriggerClientEvent("cloneplates",source)
-		end
+	if vRP.hasPermission(user_id,"policia.permissao") then
+		RemoveAllPedWeapons(user_id,true)
+		TriggerClientEvent("Notify",source,"sucesso","Suas armas foram guardadas.")
 	end
 end)
+
+
+-- -----------------------------------------------------------------------------------------------------------------------------------------
+-- -- CLONEPLATE
+-- -----------------------------------------------------------------------------------------------------------------------------------------
+-- RegisterCommand('cloneplate',function(source,args,rawCommand)
+-- 	local user_id = vRP.getUserId(source)
+-- 	if user_id then
+-- 		if vRPclient.isInVehicle(source) and vRP.tryGetInventoryItem(user_id,"placa",1) then
+-- 			TriggerClientEvent("cloneplates",source)
+-- 		end
+-- 	end
+-- end)
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- ROUBAR
 -----------------------------------------------------------------------------------------------------------------------------------------
@@ -793,7 +814,8 @@ RegisterCommand('roubar',function(source,args,rawCommand)
 						vRPclient._stopAnim(source,false)
 						TriggerClientEvent('cancelando',source,false)
 						TriggerClientEvent("Notify",source,"importante","Roubo concluido com sucesso.")
-						TriggerEvent('logs:ToDiscord', discord_webhook1 , "ROUBO", "```Player "..user_id.." roubou o ID: "..nuser_id.."```", "https://www.tumarcafacil.com/wp-content/uploads/2017/06/RegistroDeMarca-01-1.png", false, false)
+						SendWebhookMessage(discordwebhook, "```Player "..user_id.." roubou o ID: "..nuser_id.."```")
+						-- TriggerEvent('logs:ToDiscord', discord_webhook1 , "ROUBO", "```Player "..user_id.." roubou o ID: "..nuser_id.."```", "https://www.tumarcafacil.com/wp-content/uploads/2017/06/RegistroDeMarca-01-1.png", false, false)
 					end)
 				else
 					local ndata = vRP.getUserDataTable(nuser_id)
@@ -916,7 +938,7 @@ RegisterCommand('chamar',function(source,args,rawCommand)
 
 		local identitys = vRP.getUserIdentity(user_id)
 		TriggerClientEvent("Notify",source,"sucesso","Chamado enviado com sucesso.")
-		TriggerEvent('logs:ToDiscord', discord_webhook2 , "CHAMADO", "```Player: "..user_id.." \nFez um chamado para: "..args[1].."\nMensagem: "..descricao.."```", "https://www.tumarcafacil.com/wp-content/uploads/2017/06/RegistroDeMarca-01-1.png", false, false)
+		SendWebhookMessage(discordwebhook, "```prolog\n[====CHAMADOS====]\n[ID]: "..user_id.." \n[CHAMADO PARA]: "..args[1].."\n[MENSAGEM]: '"..descricao.."'```")
 		for l,w in pairs(players) do
 			local player = vRP.getUserSource(parseInt(w))
 			local nuser_id = vRP.getUserId(player)
@@ -964,52 +986,15 @@ RegisterCommand('p',function(source,args,rawCommand)
 				if player and player ~= uplayer then
 					async(function()
 						local id = idgens:gen()
-						policia[id] = vRPclient.addBlip(player,x,y,z,153,84,"Localização de "..identity.name.." "..identity.firstname,0.5)
-						vRPclient.playSound(player,"Oneshot_Final","MP_MISSION_COUNTDOWN_SOUNDSET")
-						TriggerClientEvent("Notify",source,"sucesso","Localização enviada com sucesso.")
-						TriggerClientEvent('chatMessage',player,"190",{65,130,255},"Localização recebida de ^1"..identity.name.." "..identity.firstname.."^0.")
-						TriggerClientEvent('InteractSound_CL:PlayOnOne',player,'beep',0.7)
+						policia[id] = vRPclient.addBlip(player,x,y,z,161,3,"Localização de "..identity.name.." "..identity.firstname,0.5,false)
+						TriggerClientEvent("Notify",player,"importante","Localização recebida de <b>"..identity.name.." "..identity.firstname.."</b>.")
+						vRPclient._playSound(player,"Out_Of_Bounds_Timer","DLC_HEISTS_GENERAL_FRONTEND_SOUNDS")
 						SetTimeout(60000,function() vRPclient.removeBlip(player,policia[id]) idgens:free(id) end)
 					end)
 				end
 			end
-		end
-	end
-end)
-RegisterServerEvent('offred:qthPolice')
-AddEventHandler('offred:qthPolice', function()
-	local source = source
-	local user_id = vRP.getUserId(source)
-	local uplayer = vRP.getUserSource(user_id)
-	local identity = vRP.getUserIdentity(user_id)
-	local x,y,z = vRPclient.getPosition(source)
-	if vRP.hasPermission(user_id,"policia.permissao") then
-		local typemessage = "info"
-		local messagedesc = "Enviou sua localização para a central"
-		vRPclient.setDiv(source, "local","body {font-family: 'Source Sans Pro', 'Helvetica Neue', Arial, sans-serif;color: #34495e;-webkit-font-smoothing: antialiased;line-height: 1.6em;}p {margin: 0;}.notice {margin: 1em;background: #F9F9F9;padding: 1em 1em 1em 2em;border-left: 4px solid #DDD;box-shadow: 0 1px 1px rgba(0, 0, 0, 0.125);bottom: 7%;right: 1%;line-height: 22px;position: absolute;max-width: 500px;-webkit-border-radius: 5px; -webkit-animation: fadein 2s; -moz-animation: fadein 2s; -ms-animation: fadein 2s; -o-animation: fadein 2s; animation: fadein 2s;}.notice:before {position: absolute;top: 50%;margin-top: -17px;left: -17px;background-color: #DDD;color: #FFF;width: 30px;height: 30px;text-align: center;line-height: 30px;font-weight: bold;font-family: Georgia;text-shadow: 1px 1px rgba(0, 0, 0, 0.5);}.info {border-color: #0074D9;}.info:before {content: \"i\";background-color: #0074D9;}.sucesso {border-color: #2ECC40;}.sucesso:before {content: \"√\";background-color: #2ECC40;}.importante {border-color: #FFDC00;}.importante:before {content: \"!\";background-color: #FFDC00;}.error {border-color: #FF4136;}.error:before {content: \"X\";background-color: #FF4136;}@keyframes fadein {from { opacity: 0; }to   { opacity: 1; }}@-moz-keyframes fadein {from { opacity: 0; }to   { opacity: 1; }}@-webkit-keyframes fadein {from { opacity: 0; }to   { opacity: 1; }}@-ms-keyframes fadein {from { opacity: 0; }to   { opacity: 1; }}@-o-keyframes fadein {from { opacity: 0; }to   { opacity: 1; }}","<div class=\"notice "..typemessage.."\"><p>"..messagedesc.."</p></div>")
-		SetTimeout(5000,function()
-			vRPclient.removeDiv(source,"local")
-		end)
-		local soldado = vRP.getUsersByPermission("policia.permissao")
-		for l,w in pairs(soldado) do
-			local player = vRP.getUserSource(parseInt(w))
-			if player and player ~= uplayer then
-				async(function()
-					local id = idgens:gen()
-					policia[id] = vRPclient.addBlip(player,x,y,z,153,84,"Localização de "..identity.name.." "..identity.firstname,0.5)
-					TriggerClientEvent('criarblipp',player,x,y,z, "Localização de "..identity.name.." "..identity.firstname)
-					local typemessage = "info"
-					local messagedesc = "Localização recebida de "..identity.name.." "..identity.firstname..""
-					TriggerClientEvent('chatMessage',player,"COPOM",{65,130,255},"Localização recebida de ^1"..identity.name.." "..identity.firstname.."^0.")
-					SetTimeout(60000,function() vRPclient.removeBlip(player,policia[id]) idgens:free(id) end)
-					vRPclient.setDiv(player, "local","body {font-family: 'Source Sans Pro', 'Helvetica Neue', Arial, sans-serif;color: #34495e;-webkit-font-smoothing: antialiased;line-height: 1.6em;}p {margin: 0;}.notice {margin: 1em;background: #F9F9F9;padding: 1em 1em 1em 2em;border-left: 4px solid #DDD;box-shadow: 0 1px 1px rgba(0, 0, 0, 0.125);bottom: 7%;right: 1%;line-height: 22px;position: absolute;max-width: 500px;-webkit-border-radius: 5px; -webkit-animation: fadein 2s; -moz-animation: fadein 2s; -ms-animation: fadein 2s; -o-animation: fadein 2s; animation: fadein 2s;}.notice:before {position: absolute;top: 50%;margin-top: -17px;left: -17px;background-color: #DDD;color: #FFF;width: 30px;height: 30px;text-align: center;line-height: 30px;font-weight: bold;font-family: Georgia;text-shadow: 1px 1px rgba(0, 0, 0, 0.5);}.info {border-color: #0074D9;}.info:before {content: \"i\";background-color: #0074D9;}.sucesso {border-color: #2ECC40;}.sucesso:before {content: \"√\";background-color: #2ECC40;}.importante {border-color: #FFDC00;}.importante:before {content: \"!\";background-color: #FFDC00;}.error {border-color: #FF4136;}.error:before {content: \"X\";background-color: #FF4136;}@keyframes fadein {from { opacity: 0; }to   { opacity: 1; }}@-moz-keyframes fadein {from { opacity: 0; }to   { opacity: 1; }}@-webkit-keyframes fadein {from { opacity: 0; }to   { opacity: 1; }}@-ms-keyframes fadein {from { opacity: 0; }to   { opacity: 1; }}@-o-keyframes fadein {from { opacity: 0; }to   { opacity: 1; }}","<div class=\"notice "..typemessage.."\"><p>"..messagedesc.."</p></div>")
-					SetTimeout(5000,function()
-						vRPclient.removeDiv(player,"local")
-					end)
-					TriggerClientEvent('InteractSound_CL:PlayOnOne',player,'beep',0.7)
-					SetTimeout(30000,function() TriggerClientEvent('removerblipp',-1) end)
-				end)
-			end
+			TriggerClientEvent("Notify",source,"sucesso","Localização enviada com sucesso.")
+			vRPclient.playSound(source,"Event_Message_Purple","GTAO_FM_Events_Soundset")
 		end
 	end
 end)

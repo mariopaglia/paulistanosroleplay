@@ -9,7 +9,7 @@ function emP.checkPermission()
 	local source = source
 	local user_id = vRP.getUserId(source)
 	if user_id then
-		return (vRP.hasPermission(user_id,"furios.permissao") or vRP.hasPermission(user_id,"vendedor.permissao"))
+		return (vRP.hasPermission(user_id,"mecanico.permissao") or vRP.hasPermission(user_id,"lidermecanico.permissao"))
 	end
 end
 

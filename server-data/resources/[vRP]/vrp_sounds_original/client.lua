@@ -21,4 +21,4 @@ AddEventHandler('vrp_sound:fixed',function(playerid,x2,y2,z2,maxdistance,sound,v
 	if distance <= maxdistance then
 		SendNUIMessage({ transactionType = 'playSound', transactionFile = sound, transactionVolume = volume })
 	end
-end) 
+end)

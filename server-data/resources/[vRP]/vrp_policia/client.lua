@@ -128,14 +128,14 @@ local blips = {}
 RegisterNetEvent('notificacao')
 AddEventHandler('notificacao',function(x,y,z,user_id)
 	local distance = GetDistanceBetweenCoords(x,y,z,-186.1,-893.5,29.3,true)
-	if distance <= 2100 then
+	if distance <= 210000 then
 		if not DoesBlipExist(blips[user_id]) then
 			PlaySoundFrontend(-1,"Enter_1st","GTAO_FM_Events_Soundset",false)
-			TriggerEvent('chatMessage',"911",{65,130,255},"Disparos de arma de fogo aconteceram, verifique o ocorrido.")
+			TriggerEvent('chatMessage',"190",{65,130,255},"Disparos de arma de fogo aconteceram, verifique o ocorrido.")
 			blips[user_id] = AddBlipForCoord(x,y,z)
 			SetBlipScale(blips[user_id],0.5)
-			SetBlipSprite(blips[user_id],153)
-			SetBlipColour(blips[user_id],84)
+			SetBlipSprite(blips[user_id],10)
+			SetBlipColour(blips[user_id],1)
 			BeginTextCommandSetBlipName("STRING")
 			AddTextComponentString("Disparos de arma de fogo")
 			EndTextCommandSetBlipName(blips[user_id])

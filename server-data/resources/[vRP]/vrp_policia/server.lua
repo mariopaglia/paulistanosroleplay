@@ -5,9 +5,11 @@ vRPclient = Tunnel.getInterface("vRP")
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- WEBHOOK
 -----------------------------------------------------------------------------------------------------------------------------------------
-local webhookpolicia = ""
+local webhookpolicia = "https://discordapp.com/api/webhooks/756009434710409388/D6FFuDiqhkjGcscrCve30W9_5fzbdf2O7NNvW73FJjS4361c7S2P7AGyMcHtfuDLjCAD"
 local webhookparamedico = ""
 local webhookmecanico = ""
+
+local prender = "https://discordapp.com/api/webhooks/756009434710409388/D6FFuDiqhkjGcscrCve30W9_5fzbdf2O7NNvW73FJjS4361c7S2P7AGyMcHtfuDLjCAD"
 
 function SendWebhookMessage(webhook,message)
 	if webhook ~= nil and webhook ~= "" then
@@ -23,32 +25,38 @@ RegisterCommand('arsenal',function(source,args,rawCommand)
 		TriggerClientEvent('arsenal',source)
 	end
 end)
+
+RegisterCommand('testando',function(source,args,rawCommand)	
+	TriggerClientEvent("vrp_sound:source",source,'coins',1)
+    TriggerClientEvent("Notify",source,"importante","Obrigado por colaborar com a cidade, seu salario de <b> dólares</b> foi depositado.")
+end)
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- PLACA
 -----------------------------------------------------------------------------------------------------------------------------------------
 RegisterCommand('placa',function(source,args,rawCommand)
 	local user_id = vRP.getUserId(source)
-	if vRP.hasPermission(user_id,"policia.permissao") then
+	if vRP.hasPermission(user_id,"admin.permissao") or vRP.hasPermission(user_id,"policia.permissao") or vRP.hasPermission(user_id,"desmanche.permissao") then
 		if args[1] then
 			local user_id = vRP.getUserByRegistration(args[1])
 			if user_id then
 				local identity = vRP.getUserIdentity(user_id)
 				if identity then
 					vRPclient.playSound(source,"Event_Message_Purple","GTAO_FM_Events_Soundset")
-					TriggerClientEvent('chatMessage',source,"190",{65,130,255},"^1Passaporte: ^0"..identity.user_id.."   ^2|   ^1Placa: ^0"..identity.registration.."   ^2|   ^1Proprietário: ^0"..identity.name.." "..identity.firstname.."   ^2|   ^1Idade: ^0"..identity.age.." anos   ^2|   ^1Telefone: ^0"..identity.phone)
+					TriggerClientEvent('chatMessage',source,"911",{64,64,255},"^1Passaporte: ^0"..identity.user_id.."   ^2|   ^1Placa: ^0"..identity.registration.."   ^2|   ^1Proprietário: ^0"..identity.name.." "..identity.firstname.."   ^2|   ^1Idade: ^0"..identity.age.." anos   ^2|   ^1Telefone: ^0"..identity.phone)
 				end
 			else
 				TriggerClientEvent("Notify",source,"importante","Placa inválida ou veículo de americano.")
 			end
 		else
-			local mPlaca,mName,mNet,mPrice,mBanido,mLock,mModel,mStreet = vRPclient.ModelName(source,7)
-			local placa_user = vRP.getUserByRegistration(mPlaca)
-			if mPlaca then
+			local vehicle,vnetid,placa,vname,lock,banned = vRPclient.vehList(source,7)
+			local placa_user = vRP.getUserByRegistration(placa)
+			if placa then
 				if placa_user then
 					local identity = vRP.getUserIdentity(placa_user)
 					if identity then
+						local vehicleName = vRP.vehicleName(vname)
 						vRPclient.playSound(source,"Event_Message_Purple","GTAO_FM_Events_Soundset")
-						TriggerClientEvent('chatMessage',source,"190",{65,130,255},"^1Passaporte: ^0"..identity.user_id.."   ^2|   ^1Placa: ^0"..identity.registration.."   ^2|   ^1Proprietário: ^0"..identity.name.." "..identity.firstname.."   ^2|   ^1Idade: ^0"..identity.age.." anos   ^2|   ^1Telefone: ^0"..identity.phone)
+						TriggerClientEvent('chatMessage',source,"190",{64,64,255},"^1Passaporte: ^0"..identity.user_id.."   ^2|   ^1Placa: ^0"..identity.registration.."   ^2|   ^1Placa: ^0"..identity.registration.."   ^2|   ^1Proprietário: ^0"..identity.name.." "..identity.firstname.."   ^2|   ^1Modelo: ^0"..vehicleName.."   ^2|   ^1Idade: ^0"..identity.age.." anos   ^2|   ^1Telefone: ^0"..identity.phone)
 					end
 				else
 					TriggerClientEvent("Notify",source,"importante","Placa inválida ou veículo de americano.")
@@ -148,13 +156,13 @@ RegisterCommand('toogle',function(source,args,rawCommand)
 		TriggerEvent('eblips:remove',source)
 		vRP.addUserGroup(user_id,"PMESP5")
 		TriggerClientEvent("Notify",source,"sucesso","Você entrou em serviço.")
-		SendWebhookMessage(webhookpolicia,"```prolog\n[POLICIAL]: "..user_id.." "..identity.name.." "..identity.firstname.." \n[===========SAIU DE SERVICO==========] "..os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S").." \r```")
+		SendWebhookMessage(webhookpolicia,"```prolog\n[POLICIAL]: "..user_id.." "..identity.name.." "..identity.firstname.." \n[===========ENTROU DE SERVICO==========] "..os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S").." \r```")
 		TriggerClientEvent('desligarRadios',source)
 	elseif vRP.hasPermission(user_id,"tooglepmesp.tenente") then
 		TriggerEvent('eblips:add',{ name = "Policial", src = source, color = 61 })
 		vRP.addUserGroup(user_id,"PaisanaPMESP5")
 		TriggerClientEvent("Notify",source,"sucesso","Você saiu de serviço.")
-		SendWebhookMessage(webhookpolicia,"```prolog\n[POLICIAL]: "..user_id.." "..identity.name.." "..identity.firstname.." \n[==========ENTROU EM SERVICO=========] "..os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S").." \r```")
+		SendWebhookMessage(webhookpolicia,"```prolog\n[POLICIAL]: "..user_id.." "..identity.name.." "..identity.firstname.." \n[==========SAIU EM SERVICO=========] "..os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S").." \r```")
 
 	elseif vRP.hasPermission(user_id,"tooglesp.coronel") then -- CORONEL
 		TriggerEvent('eblips:remove',source)
@@ -461,6 +469,7 @@ RegisterCommand('detido',function(source,args,rawCommand)
 		end
 	end
 end)
+
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- PRENDER
 -----------------------------------------------------------------------------------------------------------------------------------------
@@ -470,8 +479,21 @@ RegisterCommand('prender',function(source,args,rawCommand)
 		local player = vRP.getUserSource(parseInt(args[1]))
 		vRP.setUData(parseInt(args[1]),"vRP:prisao",json.encode(parseInt(args[2])))
 		vRPclient.setHandcuffed(player,false)
+		local crimes = vRP.prompt(source,"Crimes:","")
+		if crimes == "" then
+			return
+		end
 		TriggerClientEvent('prisioneiro',player,true)
+		vRPclient._playSound(source,"Hack_Success","DLC_HEIST_BIOLAB_PREP_HACKING_SOUNDS")
+		TriggerClientEvent("vrp_sound:source",player,'jaildoor',1)
 		vRPclient.teleport(player,1680.1,2513.0,45.5)
+
+		local oficialid = vRP.getUserIdentity(user_id)
+		local identity = vRP.getUserIdentity(parseInt(args[1]))
+		local nplayer = vRP.getUserSource(parseInt(args[1]))
+		SendWebhookMessage(webhookpolicia,"```prolog\n[OFICIAL]: "..user_id.." "..oficialid.name.." "..oficialid.firstname.." \n[==============PRENDEU==============] \n[PASSAPORTE]: "..(args[1]).." "..identity.name.." "..identity.firstname.." \n[TEMPO]: "..vRP.format(parseInt(args[2])).." Meses \n[CRIMES]: "..crimes.." "..os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S").." \r```")
+
+		TriggerClientEvent("Notify",player,"importante","Você foi preso pelo(s) seguinte(s) crime(s): "..crimes..".")
 		prison_lock(parseInt(args[1]))
 	end
 end)
@@ -962,5 +984,43 @@ AddEventHandler("diminuirpena",function()
 		TriggerClientEvent("Notify",source,"importante","Sua pena foi reduzida em <b>2 meses</b>, continue o trabalho.")
 	else
 		TriggerClientEvent("Notify",source,"importante","Atingiu o limite da redução de pena, não precisa mais trabalhar.")
+	end
+end)
+-----------------------------------------------------------------------------------------------------------------------------------------
+-- BUG
+-----------------------------------------------------------------------------------------------------------------------------------------
+
+RegisterCommand('bug',function(source,rawCommand)
+	local user_id = vRP.getUserId(source)		
+		vRPclient._setCustomization(source,vRPclient.getCustomization(source))
+		vRP.removeCloak(source)			
+end)
+-----------------------------------------------------------------------------------------------------------------------------------------
+-- P
+-----------------------------------------------------------------------------------------------------------------------------------------
+local policia = {}
+RegisterCommand('p',function(source,args,rawCommand)
+	local user_id = vRP.getUserId(source)
+	local uplayer = vRP.getUserSource(user_id)
+	local identity = vRP.getUserIdentity(user_id)
+	local x,y,z = vRPclient.getPosition(source)
+	if vRPclient.getHealth(source) > 100 then
+		if vRP.hasPermission(user_id,"policia.permissao") then
+			local soldado = vRP.getUsersByPermission("policia.permissao")
+			for l,w in pairs(soldado) do
+				local player = vRP.getUserSource(parseInt(w))
+				if player and player ~= uplayer then
+					async(function()
+						local id = idgens:gen()
+						policia[id] = vRPclient.addBlip(player,x,y,z,153,84,"Localização de "..identity.name.." "..identity.firstname,0.5,false)
+						TriggerClientEvent("Notify",player,"importante","Localização recebida de <b>"..identity.name.." "..identity.firstname.."</b>.")
+						vRPclient._playSound(player,"Out_Of_Bounds_Timer","DLC_HEISTS_GENERAL_FRONTEND_SOUNDS")
+						SetTimeout(60000,function() vRPclient.removeBlip(player,policia[id]) idgens:free(id) end)
+					end)
+				end
+			end
+			TriggerClientEvent("Notify",source,"sucesso","Localização enviada com sucesso.")
+			vRPclient.playSound(source,"Event_Message_Purple","GTAO_FM_Events_Soundset")
+		end
 	end
 end)

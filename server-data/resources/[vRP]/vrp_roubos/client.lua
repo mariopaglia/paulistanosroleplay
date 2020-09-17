@@ -77,7 +77,7 @@ AddEventHandler("iniciarroubo",function(secs,head)
 	andamento = true
 	SetEntityHeading(GetPlayerPed(-1),head)
 	SetPedComponentVariation(GetPlayerPed(-1),5,45,0,2)
-	SetCurrentPedWeapon(GetPlayerPed(-1),GetHashKey("WEAPON_UNARMED"),true)
+	-- SetCurrentPedWeapon(GetPlayerPed(-1),GetHashKey("WEAPON_UNARMED"),true)
 end)
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- CANCELAR ROUBO

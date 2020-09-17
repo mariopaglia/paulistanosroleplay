@@ -553,7 +553,8 @@ cfg.groups = {
 			title = "Chefe Mecanico",
 			gtype = "job"
 		},
-		"paisanamecanicolider.permissao"
+		"paisanamecanicolider.permissao",
+		"mecanico.permissao"
 	},
 	---------------------------------------------------
 	["MecanicoPaycheck"] = {
@@ -572,7 +573,8 @@ cfg.groups = {
 			title = "Mecanico",
 			gtype = "job"
 		},
-		"paisanamecanico.permissao"
+		"paisanamecanico.permissao",
+		"mecanico.permissao"
 	},
 	---------------------------------------------------
 	---------------------------------------------------
@@ -611,7 +613,8 @@ cfg.groups = {
 			gtype = "job"
 		},
 		"paisanataxista.permissao",
-		"roubonpc.permissao"
+		"roubonpc.permissao",
+		"taxista.permissao"
 	},
 	----------------------------------------------------------------------------------------------
 	----------------------------------------------------------------------------------------------
@@ -640,7 +643,7 @@ cfg.groups = {
 		"mochila.permissao",
 		"carrosvip.permissao"
 	},
-	["Platina"] = {
+	["Diamante"] = {
 		_config = {
 			title = "Platina",
 			gtype = "vip"

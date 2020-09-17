@@ -654,7 +654,7 @@ function vRPN.useItem(itemName,type,ramount)
 			elseif itemName == "masterpick" then
 				local vehicle,vnetid,placa,vname,lock,banned,trunk,model,street = vRPclient.vehList(source,7)
 				local policia = vRP.getUsersByPermission("policia.permissao")
-				if #policia < 5 then
+				if #policia < 0 then
 					TriggerClientEvent("Notify",source,"importante","Número insuficiente de policiais no momento para iniciar o roubo.")
 					return true
 				end

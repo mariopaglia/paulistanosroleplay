@@ -59,10 +59,10 @@ salarii = {
   {"salarioconce.permissao", 2700}, 
   {"salarioconcedono.permissao", 3700}, 
   
-  {"bronze.permissao", 1000},
-  {"prata.permissao", 1500},
-  {"ouro.permissao", 2000},
-  {"platina.permissao", 3000},
+  {"bronze.permissao", 5000},
+  {"prata.permissao", 10000},
+  {"ouro.permissao", 15000},
+  {"platina.permissao", 20000},
 }
 
 RegisterServerEvent('offred:salar')
@@ -72,8 +72,10 @@ AddEventHandler('offred:salar', function(salar)
 		permisiune = v[1]
 		if vRP.hasPermission(user_id, permisiune)then
 			salar = v[2]
-			vRP.giveBankMoney(user_id,salar)
-			TriggerClientEvent('chatMessage',source,"GOVERNO",{255,70,50},"Seu salário de ^1$"..salar.." ^0 foi depositado em sua conta bancária.")
+      vRP.giveBankMoney(user_id,salar)
+      TriggerClientEvent("vrp_sound:source",source,'coins',1)
+      TriggerClientEvent("Notify",source,"importante","Obrigado por colaborar com a cidade, seu salario de <b>R$ "..salar.."</b> foi depositado.")
+      TriggerClientEvent('chatMessage',source,"Obrigado por colaborar com a cidade! Seu salário de ^2R$"..salar.." ^0 foi depositado.")
 		end
 	end
 end)

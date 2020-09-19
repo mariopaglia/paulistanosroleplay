@@ -11,6 +11,7 @@ local selecionado = 0
 local CoordenadaX = -77.33
 local CoordenadaY = 1000.96
 local CoordenadaZ = 230.60
+local selecionado = 0
 local processo = false
 local segundos = 0
 -----------------------------------------------------------------------------------------------------------------------------------------
@@ -48,7 +49,7 @@ Citizen.CreateThread(function()
 					drawTxt("PRESSIONE  ~r~E~w~  PARA INCIAR A COLETA",4,0.5,0.93,0.50,255,255,255,180)
 					if IsControlJustPressed(0,38) and emP.checkPermission() then
 						servico = true
-						selecionado = math.random(12)
+						selecionado = 1
 						CriandoBlip(locs,selecionado)
 						TriggerEvent("Notify","sucesso","Você entrou em serviço.")
 					end
@@ -81,13 +82,10 @@ Citizen.CreateThread(function()
 							processo = true
 							segundos = 10
 							vRP._playAnim(false,{{"anim@heists@ornate_bank@grab_cash_heels","grab"}},true)
-							while true do
-								if backentrega == selecionado then
-									selecionado = math.random(12)
-								else
-									break
-								end
-								Citizen.Wait(1)
+							if selecionado == 52 then
+								selecionado = 1
+							else
+								selecionado = selecionado + 1
 							end
 							CriandoBlip(locs,selecionado)
 						end

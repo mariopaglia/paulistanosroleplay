@@ -29,6 +29,17 @@ function emP.checkPermission2(perm,grupo)
 	end
 end
 
+--[[function emP.checkgroup()
+	local source = source
+	local user_id = vRP.getUserId(source)
+	local policia = vRP.getUsersByPermission("policia.permissao")
+	if user_id and policia then
+		return true
+	else
+		TriggerClientEvent("Notify",source,"negado","Você não tem permissão.",8000)
+		return false
+	end
+end]]
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- CHECKRADIO
 -----------------------------------------------------------------------------------------------------------------------------------------

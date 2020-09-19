@@ -1,19 +1,41 @@
-------------------------CREDITS------------------------
---------- Script made by H3cker | DevHUB#7723 -------
---      Script made for StreamForce Romania RP       --
---          Site: https://devstudios.store           --
---        Forum: http://forum.devstudios.store       --
---   Copyright 2019 ©DevStudios. All rights served   --
--------------------------------------------------------
-local Proxy = module("vrp", "lib/Proxy")
-local Tunnel = module("vrp", "lib/Tunnel")
+local logs = "https://discordapp.com/api/webhooks/756009434710409388/D6FFuDiqhkjGcscrCve30W9_5fzbdf2O7NNvW73FJjS4361c7S2P7AGyMcHtfuDLjCAD"
+local communityname = "Paulistanos Roleplay"
+local communtiylogo = "https://i.imgur.com/lSLWJ65.png"
 
-vRP = Proxy.getInterface("vRP")
+AddEventHandler('playerConnecting', function()
+local name = GetPlayerName(source)
+local ip = GetPlayerEndpoint(source)
+local ping = GetPlayerPing(source)
+local connect = {
+        {
+            ["color"] = "65280",
+            ["title"] = "Conectado no servidor",
+            ["description"] = "Player: **"..name.."**\nIP: **"..ip.."**",
+	        ["footer"] = {
+                ["text"] = communityname,
+                ["icon_url"] = communtiylogo,
+            },
+        }
+    }
 
-RegisterServerEvent('vRP:Discord')
-AddEventHandler('vRP:Discord', function()
-    local user_id = vRP.getUserId({source})
-    local faction = vRP.getUserGroupByType({user_id,"job"})
-    local name = vRP.getPlayerName({source})
-	TriggerClientEvent('vRP:Discord-rich', source, user_id, faction, name)
+PerformHttpRequest(logs, function(err, text, headers) end, 'POST', json.encode({username = "ENTROU", embeds = connect}), { ['Content-Type'] = 'application/json' })
+end)
+
+AddEventHandler('playerDropped', function(reason)
+local name = GetPlayerName(source)
+local ip = GetPlayerEndpoint(source)
+local ping = GetPlayerPing(source)
+local disconnect = {
+        {
+            ["color"] = "16711680",
+            ["title"] = "Desconectado do servidor",
+            ["description"] = "Player: **"..name.."** \nReason: **"..reason.."**\nIP: **"..ip.."**",
+	        ["footer"] = {
+                ["text"] = communityname,
+                ["icon_url"] = communtiylogo,
+            },
+        }
+    }
+
+    PerformHttpRequest(logs, function(err, text, headers) end, 'POST', json.encode({username = "SAIU", embeds = disconnect}), { ['Content-Type'] = 'application/json' })
 end)

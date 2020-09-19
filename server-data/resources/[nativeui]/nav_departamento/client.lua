@@ -173,8 +173,9 @@ Citizen.CreateThread(function()
 		for _,mark in pairs(marcacoes) do
 			local x,y,z = table.unpack(mark)
 			local distance = GetDistanceBetweenCoords(GetEntityCoords(PlayerPedId()),x,y,z,true)
-			if distance <= 4.0 then
-				DrawMarker(21,x,y,z-0.6,0,0,0,0.0,0,0,0.5,0.5,0.4,0,0,255,50,0,0,0,1)
+			if distance <= 1.0 then
+				-- DrawMarker(21,x,y,z-0.6,0,0,0,0.0,0,0,0.5,0.5,0.4,0,0,255,50,0,0,0,1)
+				DrawMarker(25,x,y,z-0.95,0,0,0,0.0,0,0,1.0,1.0,0.4,0,0,0,200,0,0,0,1)
 				if IsControlJustPressed(0,38) then
 					ToggleActionMenu()
 				end

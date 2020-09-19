@@ -30,6 +30,7 @@ function emP.checkPayment()
 	local user_id = vRP.getUserId(source)
 	if user_id then
 		if vRP.getInventoryWeight(user_id)+vRP.getItemWeight("pecadearma")*quantidade[source] <= vRP.getInventoryMaxWeight(user_id) then
+		TriggerEvent("Notify","sucesso","Você recebeu "..quantidade[source].." peças de arma.")
 		vRP.giveInventoryItem(user_id,"pecadearma",quantidade[source])
 		quantidade[source] = nil
 		return true

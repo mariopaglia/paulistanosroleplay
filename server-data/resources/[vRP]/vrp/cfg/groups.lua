@@ -478,6 +478,8 @@ cfg.groups = {
 	---------------------------------------------------
 	["Enfermeiro"] = {
 		_config = {
+			title = "Enfermeiro SAMU",
+			gtype = "job"
 		},
 		"paramedico.permissao",
 		"portahospital.permissao",
@@ -489,15 +491,16 @@ cfg.groups = {
 	},
 	["PaisanaEnfermeiro"] = {
 		_config = {
-			title = "Enfermeiro SAMU",
+			title = "SAMU Paisana",
 			gtype = "job"
 		},
-			"tooglesm.enfermeiro",
-			"portahospital.permissao"
+			"tooglesm.enfermeiro"
 	},
 	---------------------------------------------------
 	["Paramedico"] = {
 		_config = {
+			title = "Paramédico SAMU",
+			gtype = "job"
 		},
 		"paramedico.permissao",
 		"reviver.permissao",
@@ -509,15 +512,16 @@ cfg.groups = {
 	},
 	["PaisanaParamedico"] = {
 		_config = {
-			title = "Paramédico SAMU",
+			title = "SAMU Paisana",
 			gtype = "job"
 		},
-		"tooglesm.paramedico",
-		"portahospital.permissao"
+		"tooglesm.paramedico"
 	},
 	---------------------------------------------------
-	["Diretor"] = {
+	["DiretorSAMU"] = {
 		_config = {
+			title = "Diretor Geral SAMU",
+			gtype = "job"
 		},
 		"paramedico.permissao",
 		"roubonpc.permissao",
@@ -529,7 +533,7 @@ cfg.groups = {
 	},
 	["PaisanaDiretor"] = {
 		_config = {
-			title = "Diretor Geral SAMU",
+			title = "SAMU Paisana",
 			gtype = "job"
 		},
 		"tooglesm.diretor",

@@ -18,9 +18,9 @@ local dealerOpen = false
 -- DEALERS
 -----------------------------------------------------------------------------------------------------------------------------------------
 local dealers = {
-	{ ['x'] = -1165.89, ['y'] = -1723.67, ['z'] = 11.8 },
-	{ ['x'] = -1173.57, ['y'] = -1728.99, ['z'] = 11.8 },
-	{ ['x'] = -30.03, ['y'] = -1104.67, ['z'] = 26.42 },
+	-- { ['x'] = -1165.89, ['y'] = -1723.67, ['z'] = 11.8 },
+	-- { ['x'] = -1173.57, ['y'] = -1728.99, ['z'] = 11.8 },
+	{ ['x'] = -42.13, ['y'] = -1097.71, ['z'] = 26.42 },
 }
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- OPEN DEALER
@@ -33,9 +33,9 @@ Citizen.CreateThread(function()
 			local x,y,z = table.unpack(GetEntityCoords(ped))
 			for k,v in pairs(dealers) do
 				local distance = Vdist(x,y,z,v.x,v.y,v.z)
-				if distance <= 10.5 then
-					DrawMarker(21,v.x,v.y,v.z-0.6,0,0,0,0.0,0,0,0.5,0.5,0.4,255,0,0,50,0,0,0,1)
-					if distance <= 1.5 and IsControlJustPressed(0,38) then
+				if distance <= 20.0 then
+					DrawMarker(27,v.x,v.y,v.z-0.95,0,0,0,0.0,0,0,5.0,5.0,0.4,255,0,0,80,0,0,0,1)
+					if distance <= 3.0 and IsControlJustPressed(0,38) then
 						SetNuiFocus(true,true)
 						SendNUIMessage({ action = "showMenu" })
 						dealerOpen = true

@@ -48,11 +48,11 @@ Citizen.CreateThread(function()
                 table.insert(players,i)
             end
         end
-		SetDiscordAppId(717077876607942697)
+		SetDiscordAppId(748524310939041803)
 		SetDiscordRichPresenceAsset('logodiscord')
         SetRichPresence("Jogadores Conectados: "..#players)
 
-        SetDiscordRichPresenceAssetText('discord.gg/dUup9kS')
+        SetDiscordRichPresenceAssetText('discord.gg/F3Jp5J2')
 	end
 end)
 -----------------------------------------------------------------------------------------------------------------------------------------
@@ -184,7 +184,7 @@ end)
 -- PEDS
 -------------------------------------------------
 Citizen.CreateThread(function()
-	AddTextEntry("FE_THDR_GTAO","Realidade Paulista")
+	AddTextEntry("FE_THDR_GTAO","Paulistanos Roleplay")
 	while true do
 		Citizen.Wait(0)
 		N_0xf4f2c0d4ee209e20()

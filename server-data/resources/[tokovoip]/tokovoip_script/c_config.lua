@@ -34,8 +34,7 @@ TokoVoipConfig = {
 		TSChannelSupport = "", -- TeamSpeak support channel name displayed on blocking screen
 		TSDownload = "", -- Download link displayed on blocking screen
 		TSChannelWhitelist = { -- Black screen will not be displayed when users are in those TS channels
-			"Support 1",
-			"Support 2",
+			"Suporte",
 		},
 
 		-- The following is purely TS client settings, to match tastes
@@ -45,7 +44,7 @@ TokoVoipConfig = {
 		remote_click_off = true, -- Is remote click off sound active
 		enableStereoAudio = true, -- If set to true, positional audio will be stereo (you can hear people more on the left or the right around you)
 
-		localName = "LAST", -- If set, this name will be used as the user's teamspeak display name
+		localName = "Identidade Protegida", -- If set, this name will be used as the user's teamspeak display name
 		localNamePrefix = "[" .. GetPlayerServerId(PlayerId()) .. "] ", -- If set, this prefix will be added to the user's teamspeak display name
 	}
 };

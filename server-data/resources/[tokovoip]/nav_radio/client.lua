@@ -37,17 +37,17 @@ RegisterNUICallback("ButtonClick",function(data,cb)
 	if data == "policia1" then
 		if emP.checkPermission2("policia.permissao","Policia1") then
 			outServers()
-			exports.tokovoip_script:addPlayerToRadio(1018)
+			exports.tokovoip_script:addPlayerToRadio(190)
 		end
 	elseif data == "policia2" then
 		if emP.checkPermission2("policia.permissao","Policia2") then
 			outServers()
-			exports.tokovoip_script:addPlayerToRadio(1019)
+			exports.tokovoip_script:addPlayerToRadio(189)
 		end
 	elseif data == "policia3" then
 		if emP.checkPermission2("policia.permissao","Policia3") then
 			outServers()
-			exports.tokovoip_script:addPlayerToRadio(1020)
+			exports.tokovoip_script:addPlayerToRadio(188)
 		end
 	elseif data == "sheriff" then
 		if emP.checkPermission2("policia.permissao","Sheriff") then
@@ -57,7 +57,7 @@ RegisterNUICallback("ButtonClick",function(data,cb)
 	elseif data == "paramedico" then
 		if emP.checkPermission2("paramedico.permissao","Paramédicos") then
 			outServers()
-			exports.tokovoip_script:addPlayerToRadio(1022)
+			exports.tokovoip_script:addPlayerToRadio(192)
 		end
 	elseif data == "mecanico" then
 		if emP.checkPermission2("mecanico.permissao","Mecânicos") then
@@ -130,19 +130,25 @@ RegisterCommand("radio",function(source,args)
 	end
 end)
 
+local blacklist = {
+  [188] = true,
+  [189] = true,
+  [190] = true,
+  [192] = true
+}
+
 RegisterCommand("radiof",function(source,args)
-	if args[1] then
-		if parseInt(args[1]) < 1017 then
-        	if emP.checkRadio() then
-				if emP.checkPermission() then
-                	outServers()
-                	exports.tokovoip_script:addPlayerToRadio(parseInt(args[1]))
-					TriggerEvent("Notify","sucesso","Você entrou na Frequência <b>"..args[1].."</b> do rádio.",8000)
-				end
-			end
-		else
-			TriggerEvent("Notify","negado","Você não tem permissão.")
-		end
+    if args[1] then
+        local radio = parseInt(args[1])
+        if radio < 1017 and not blacklist[radio] then
+            if emP.checkRadio() then
+                outServers()
+                    exports.tokovoip_script:addPlayerToRadio(radio)
+                    TriggerEvent("Notify","sucesso","Você entrou na Frequência <b>"..radio.."</b> do rádio.",8000)
+            end
+        else
+            TriggerEvent("Notify","negado","Você não tem permissão.")
+        end
     end
 end)
 

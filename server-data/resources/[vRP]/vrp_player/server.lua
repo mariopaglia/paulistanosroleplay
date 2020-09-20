@@ -20,6 +20,7 @@ end
 -- ITEMLIST
 -----------------------------------------------------------------------------------------------------------------------------------------
 local itemlist = {
+	["radio"] = { index = "radio", nome = "Radio" },
 	["ferramenta"] = { index = "ferramenta", nome = "Ferramenta" },
 	["encomenda"] = { index = "encomenda", nome = "Encomenda" },
 	["sacodelixo"] = { index = "sacodelixo", nome = "Saco de Lixo" },

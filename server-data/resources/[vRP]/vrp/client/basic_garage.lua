@@ -314,6 +314,7 @@ local vehList = {
 	{ ['name'] = "hilux2016", ['hash'] = 1547680982, ['banned'] = false },
 	{ ['name'] = "jetta", ['hash'] = 701696699, ['banned'] = false },
 	{ ['name'] = "palio97", ['hash'] = -1961924436, ['banned'] = false },
+	{ ['name'] = "trailnovarota", ['hash'] = 625427826, ['banned'] = false },
 	{ ['name'] = "passat", ['hash'] = -1773424714, ['banned'] = false },
 	{ ['name'] = "s10", ['hash'] = -110704625, ['banned'] = false },
 	{ ['name'] = "saveirog6", ['hash'] = -1718750914, ['banned'] = false },

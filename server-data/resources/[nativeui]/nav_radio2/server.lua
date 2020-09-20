@@ -35,7 +35,7 @@ end
 function emP.checkRadio()
 	local source = source
 	local user_id = vRP.getUserId(source)
-	if vRP.getInventoryItemAmount(user_id,"radio") >= 0 then
+	if vRP.getInventoryItemAmount(user_id,"radio") >= 1 then
 		return true
 	else
 		TriggerClientEvent("Notify",source,"importante","Você precisa comprar o <b>Rádio</b> em uma <b>Loja de Departamento</b>.",8000)

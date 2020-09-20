@@ -113,6 +113,7 @@ cfg.items = {
 	["vibradorroubado"] = { "Vibrador Roubado",0.2 },
 	["perfumeroubado"] = { "Perfume Roubado",0.2 },
 	["maquiagemroubada"] = { "Maquiagem Roubada",0.2 },
+	["radio"] = { "Radio",1.0 },
 	
 	-- Farm de Metanfetamina
 	["acucar"] = { "Açucar",0.8 },

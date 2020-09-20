@@ -56,7 +56,7 @@ AddEventHandler('cloneplates',function()
     local clonada = GetVehicleNumberPlateText(vehicle)
     if IsEntityAVehicle(vehicle) then
         PlateIndex = GetVehicleNumberPlateText(vehicle)
-        SetVehicleNumberPlateText(vehicle,"CLONADA")
+        SetVehicleNumberPlateText(vehicle,"CLONADO")
         FreezeEntityPosition(vehicle,false)
         if clonada == CLONADA then 
             SetVehicleNumberPlateText(vehicle,PlateIndex)

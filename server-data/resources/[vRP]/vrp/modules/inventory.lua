@@ -186,6 +186,11 @@ local itemlist = {
 	["salgadinho"] = { index = "salgadinho", nome = "Salgadinho", type = "usar" },
 	["sanduiche"] = { index = "sanduiche", nome = "Sanduiche", type = "usar" },
 
+	-- Farm de Armas
+
+	["placademetal"] = { index = "placademetal", nome = "Placa de Metal", type = "usar" },
+	["mola"] = { index = "mola", nome = "Mola", type = "usar" },
+
 	["pirulito"] = { index = "pirulito", nome = "Pirulito", type = "usar" },
 	["buque"] = { index = "buque", nome = "Buquê de Flores", type = "usar" },
 	["wbody|WEAPON_DAGGER"] = { index = "adaga", nome = "Adaga", type = "equipar" },

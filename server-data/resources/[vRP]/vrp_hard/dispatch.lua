@@ -29,12 +29,12 @@ end)
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- TREM NO MAPA
 -----------------------------------------------------------------------------------------------------------------------------------------
-Citizen.CreateThread(function()
-	SwitchTrainTrack(0, true)
-	SwitchTrainTrack(3, true)
-	N_0x21973bbf8d17edfa(0, 120000)
-	SetRandomTrains(true)
-  end)
+-- Citizen.CreateThread(function()
+-- 	SwitchTrainTrack(0, true)
+-- 	SwitchTrainTrack(3, true)
+-- 	N_0x21973bbf8d17edfa(0, 120000)
+-- 	SetRandomTrains(true)
+--   end)
 
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- STATUS DO DISCORD
@@ -48,7 +48,7 @@ Citizen.CreateThread(function()
                 table.insert(players,i)
             end
         end
-		SetDiscordAppId(748524310939041803)
+		SetDiscordAppId(756846972077342781)
 		SetDiscordRichPresenceAsset('logodiscord')
         SetRichPresence("Jogadores Conectados: "..#players)
 
@@ -164,7 +164,8 @@ local pedlist = {
 	{ ['x'] = 428.42, ['y'] = 6477.27, ['z'] = 28.78, ['h'] = 134.37, ['hash'] = 0xFCFA9E1E, ['hash2'] = "A_C_Cow" },
 	{ ['x'] = 1151.77, ['y'] = -3248.77, ['z'] = 5.90, ['h'] = 181.03, ['hash'] = 0x6C9B2849, ['hash2'] = "a_m_m_hillbilly_01" },
 	{ ['x'] = 1152.27, ['y'] = -3248.77, ['z'] = 5.90, ['h'] = 181.03, ['hash'] = 0x349F33E1, ['hash2'] = "a_c_retriever" },
-	{ ['x'] = 1151.26, ['y'] = -3248.77, ['z'] = 5.90, ['h'] = 181.03, ['hash'] = 0x9563221D, ['hash2'] = "a_c_rottweiler" }
+	{ ['x'] = 1151.26, ['y'] = -3248.77, ['z'] = 5.90, ['h'] = 181.03, ['hash'] = 0x9563221D, ['hash2'] = "a_c_rottweiler" },
+	{ ['x'] = 1122.94, ['y'] = -1304.64, ['z'] = 5.90, ['h'] = 34.71, ['hash'] = 0x9563221D, ['hash2'] = "a_c_rottweiler" }
 }
 
 Citizen.CreateThread(function()

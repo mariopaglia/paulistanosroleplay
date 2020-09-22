@@ -114,6 +114,11 @@ cfg.items = {
 	["perfumeroubado"] = { "Perfume Roubado",0.2 },
 	["maquiagemroubada"] = { "Maquiagem Roubada",0.2 },
 	["radio"] = { "Radio",1.0 },
+
+	-- Farm de Armas
+
+	["placademetal"] = { "Placa de Metal",1.0 },
+	["mola"] = { "Mola",0.5 },
 	
 	-- Farm de Metanfetamina
 	["acucar"] = { "Açucar",0.8 },

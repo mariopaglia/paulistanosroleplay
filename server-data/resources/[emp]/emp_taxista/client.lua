@@ -14,14 +14,14 @@ local passageiro = nil
 local lastpassageiro = nil
 local checkped = true
 local timers = 0
-local payment = 10
+local payment = 1
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- VARIAVEIS DO TAXIMETRO
 -----------------------------------------------------------------------------------------------------------------------------------------
 local TaxiGuiAtivo = true -- Ativa o GUIzin (Default: true)
 local Custobandeira = 0.0 --(1.00 = R$60 por minuto) Custo por minuto
-local custoporKm = 500.0 -- Custo por Km
-local CustoBase = 500.0 -- Custo Inicial
+local custoporKm = 300.0 -- Custo por Km
+local CustoBase = 300.0 -- Custo Inicial
 
 DecorRegister("bandeiras", 1)
 DecorRegister("kilometros", 1)
@@ -136,7 +136,7 @@ Citizen.CreateThread(function()
 			if distance <= 50.0 and IsVehicleModel(vehicle,GetHashKey("taxi")) then
 				DrawMarker(21,locs[selecionado].x,locs[selecionado].y,locs[selecionado].z+0.20,0,0,0,0,180.0,130.0,2.0,2.0,1.0,255,0,0,50,1,0,0,1)
 				if distance <= 2.5 then
-					if IsControlJustPressed(0,38) and emP.checkPermission() and (GetEntityHeading(ped) >= locs[selecionado].h-20.0 and GetEntityHeading(ped) <= locs[selecionado].h+20.0) then
+					if IsControlJustPressed(0,38) and emP.checkPermission() then
 						RemoveBlip(blips)
 						FreezeEntityPosition(vehicle,true)
 						if DoesEntityExist(passageiro) then
@@ -157,7 +157,7 @@ Citizen.CreateThread(function()
 							SetEntityInvincible(passageiro,true)
 							TaskEnterVehicle(passageiro,vehicle,-1,2,1.0,1,0)
 							checkped = false
-							payment = 10
+							payment = 1
 							lastpassageiro = passageiro
 						else
 							passageiro = nil
@@ -221,7 +221,7 @@ end)
 -- REMOVENPCS
 -----------------------------------------------------------------------------------------------------------------------------------------
 function removePeds()
-	SetTimeout(20000,function()
+	SetTimeout(10,function()
 		if emservico and lastpassageiro and passageiro == nil then
 			TriggerServerEvent("trydeleteped",PedToNet(lastpassageiro))
 		end
@@ -289,7 +289,7 @@ Citizen.CreateThread(function()
       else
         DecorSetFloat(veh, "bandeiras", _bandeira + Custobandeira)
       end
-      DecorSetFloat(veh, "kilometros", _kilometros + round(GetEntitySpeed(veh) * 0.000621371, 5))
+      DecorSetFloat(veh, "kilometros", _kilometros + round(GetEntitySpeed(veh) * 0.0009999997, 5))
       TriggerEvent('taxi:updatebandeira', veh)
     end
     if NoTaxi() and not GetPedInVehicleSeat(veh, -1) == ped then

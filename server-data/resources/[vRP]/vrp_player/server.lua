@@ -107,6 +107,11 @@ local itemlist = {
 	["cloridratococa"] = { index = "cloridrato", nome = "Cloridratococa" },
 	["pastadecoca"] = { index = "pastadecoca", nome = "Pasta de Cocaina" },
 
+	-- Farm de Armas
+
+	["placademetal"] = { index = "placademetal", nome = "Placa de Metal" },
+	["mola"] = { index = "mola", nome = "Mola" },
+
 	["placa"] = { index = "placa", nome = "Placa" },
 	["rebite"] = { index = "rebite", nome = "Rebite" },
 	["carbono"] = { index = "carbono", nome = "Carbono" },
@@ -716,6 +721,35 @@ RegisterCommand('enviar',function(source,args,rawCommand)
 		end
 	end
 end)
+-----------------------------------------------------------------------------------------------------------------------------------------
+-- COBRAR
+-----------------------------------------------------------------------------------------------------------------------------------------
+RegisterCommand('cobrar',function(source,args,rawCommand)
+        local user_id = vRP.getUserId(source)
+        local consulta = vRPclient.getNearestPlayer(source,2)
+        local nuser_id = vRP.getUserId(consulta)
+        local resultado = json.decode(consulta) or 0
+        local banco = vRP.getBankMoney(nuser_id)
+        local identity =  vRP.getUserIdentity(user_id)
+        local identityu = vRP.getUserIdentity(nuser_id)
+        if vRP.request(consulta,"Deseja pagar <b>$"..vRP.format(parseInt(args[1])).."</b> Reais para <b>"..identity.name.." "..identity.firstname.."</b>?",30) then    
+            if banco >= parseInt(args[1]) then
+                vRP.setBankMoney(nuser_id,parseInt(banco-args[1]))
+                vRP.giveBankMoney(user_id,parseInt(args[1]))
+                TriggerClientEvent("Notify",source,"sucesso","Recebeu <b>$"..vRP.format(parseInt(args[1])).." Reais</b> de <b>"..identityu.name.. " "..identityu.firstname.."</b>.")
+				SendWebhookMessage(webhookcobrar,"```prolog\n[ID]: "..user_id.." "..identity.name.." "..identity.firstname.." \n[COBROU]: $"..vRP.format(parseInt(args[3])).." \n[DO ID]: "..parseInt(args[2]).." "..identityu.name.." "..identityu.firstname.." "..os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S").." \r```")
+                local player = vRP.getUserSource(parseInt(args[2]))
+                if player == nil then
+                    return
+                else
+                    local identity = vRP.getUserIdentity(user_id)
+                    TriggerClientEvent("Notify",player,"importante","<b>"..identity.name.." "..identity.firstname.."</b> transferiu <b>$"..vRP.format(parseInt(args[1])).." Reais</b> para sua conta.")
+                end
+            else
+                TriggerClientEvent("Notify",source,"negado","Dinheiro insuficiente.")
+            end
+        end
+    end)
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- GARMAS
 -----------------------------------------------------------------------------------------------------------------------------------------

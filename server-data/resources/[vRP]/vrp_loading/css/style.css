@@ -1,10 +1,10 @@
-@import url('https://fonts.googleapis.com/css?family=Oswald');
+@import url("https://fonts.googleapis.com/css?family=Oswald");
 
 body,
 td,
 th {
   /* background: #161922; */
-  background-image: url('https://i.imgur.com/Izl7Qs8.jpeg');
+  background-image: url("background.jpg");
   background-repeat: no-repeat;
   background-attachment: fixed;
   background-position: center;
@@ -129,11 +129,10 @@ tr {
   width: 100%;
   height: 100%;
 
-  z-index: -999
+  z-index: -999;
 }
 
 .loader1 {
-
   width: 500px;
   height: 50px;
   line-height: 50px;
@@ -142,12 +141,12 @@ tr {
   top: 7%;
   left: 48.5%;
   transform: translate(-50%, -50%);
-  font-family: 'Oswald', sans-serif;
+  font-family: "Oswald", sans-serif;
   text-shadow: -1px 2px 8px rgba(28, 110, 164, 0.58);
   font-size: 18px;
   text-transform: uppercase;
   font-weight: 200;
-  color: #ffFFFF;
+  color: #ffffff;
   letter-spacing: 0.2em;
 }
 
@@ -164,12 +163,12 @@ tr {
   top: 90%;
   left: 50%;
   transform: translate(-50%, -50%);
-  font-family: 'Oswald', sans-serif;
+  font-family: "Oswald", sans-serif;
   text-shadow: -1px 2px 8px rgba(28, 110, 164, 0.58);
   font-size: 18px;
   text-transform: uppercase;
   font-weight: 200;
-  color: #ffFFFF;
+  color: #ffffff;
   letter-spacing: 0.2em;
 }
 
@@ -183,12 +182,12 @@ tr {
 
   left: 49.5%;
   transform: translate(-50%, -50%);
-  font-family: 'Oswald', sans-serif;
+  font-family: "Oswald", sans-serif;
   text-shadow: -1px 2px 8px rgba(28, 110, 164, 0.58);
   font-size: 18px;
   text-transform: uppercase;
   font-weight: 200;
-  color: #ffFFFF;
+  color: #ffffff;
   letter-spacing: 0.2em;
 }
 
@@ -200,7 +199,7 @@ tr {
   height: 15px;
   background: #ffffff;
   position: absolute;
-  animation: load .9s infinite alternate ease-in-out;
+  animation: load 0.9s infinite alternate ease-in-out;
 }
 
 .loader::before {
@@ -230,7 +229,6 @@ tr {
   }
 }
 
-
 .music-info {
   width: 15%;
   border-radius: 20px;
@@ -238,7 +236,7 @@ tr {
   padding: 12px;
   background-color: rgba(0, 0, 0, 0.5);
   color: white;
-  font-family: 'Oswald', sans-serif;
+  font-family: "Oswald", sans-serif;
   float: right;
   letter-spacing: 0.1em;
   font-weight: 10;

@@ -731,21 +731,23 @@ RegisterCommand('cobrar',function(source,args,rawCommand)
         local resultado = json.decode(consulta) or 0
         local banco = vRP.getBankMoney(nuser_id)
         local identity =  vRP.getUserIdentity(user_id)
-        local identityu = vRP.getUserIdentity(nuser_id)
+		local identityu = vRP.getUserIdentity(nuser_id)
         if vRP.request(consulta,"Deseja pagar <b>$"..vRP.format(parseInt(args[1])).."</b> Reais para <b>"..identity.name.." "..identity.firstname.."</b>?",30) then    
             if banco >= parseInt(args[1]) then
                 vRP.setBankMoney(nuser_id,parseInt(banco-args[1]))
                 vRP.giveBankMoney(user_id,parseInt(args[1]))
                 TriggerClientEvent("Notify",source,"sucesso","Recebeu <b>$"..vRP.format(parseInt(args[1])).." Reais</b> de <b>"..identityu.name.. " "..identityu.firstname.."</b>.")
-				SendWebhookMessage(webhookcobrar,"```prolog\n[ID]: "..user_id.." "..identity.name.." "..identity.firstname.." \n[COBROU]: $"..vRP.format(parseInt(args[3])).." \n[DO ID]: "..parseInt(args[2]).." "..identityu.name.." "..identityu.firstname.." "..os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S").." \r```")
+                TriggerClientEvent("Notify",consulta,"sucesso","Enviou <b>$"..vRP.format(parseInt(args[1])).." Reais</b> para "..identity.name.." "..identity.firstname.."")
+				SendWebhookMessage(discordwebhook,"```prolog\n[ID]: "..user_id.." "..identity.name.." "..identity.firstname.." \n[COBROU]: R$"..vRP.format(parseInt(args[3])).." \n[DO ID]: "..parseInt(args[2]).." "..identityu.name.." "..identityu.firstname.." "..os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S").." \r```")
                 local player = vRP.getUserSource(parseInt(args[2]))
                 if player == nil then
                     return
                 else
                     local identity = vRP.getUserIdentity(user_id)
-                    TriggerClientEvent("Notify",player,"importante","<b>"..identity.name.." "..identity.firstname.."</b> transferiu <b>$"..vRP.format(parseInt(args[1])).." Reais</b> para sua conta.")
+                    TriggerClientEvent("Notify",consulta,"importante","<b>"..identity.name.." "..identity.firstname.."</b> transferiu <b>$"..vRP.format(parseInt(args[1])).." Reais</b> para sua conta.")
                 end
-            else
+			else
+				TriggerClientEvent("Notify",consulta,"negado","Dinheiro insuficiente")
                 TriggerClientEvent("Notify",source,"negado","Dinheiro insuficiente.")
             end
         end

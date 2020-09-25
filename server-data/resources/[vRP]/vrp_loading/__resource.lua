@@ -3,8 +3,6 @@ files {
     'index.js',
 	'parado.ogg',
 	'logo.png',
-	'Loading.ogg',
-	'doremi.ogg',
     'css/style.css',
     'css/background.jpg'
 }

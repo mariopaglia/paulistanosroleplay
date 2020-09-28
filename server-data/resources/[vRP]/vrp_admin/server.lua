@@ -151,6 +151,7 @@ RegisterCommand('godall',function(source,args,rawCommand)
             if id then
             	vRPclient.killGod(id)
 				vRPclient.setHealth(id,400)
+				vRPclient.setArmour(source,100)
 				print(id)
             end
         end

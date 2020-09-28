@@ -109,16 +109,21 @@ local itemlist = {
 
 	-- Farm de Armas
 
-	["placademetal"] = { index = "placademetal", nome = "Placa de Metal" },
+	["blocodemetal"] = { index = "blocodemetal", nome = "Bloco de Metal" },
 	["mola"] = { index = "mola", nome = "Mola" },
+	["capsula"] = { index = "capsula", nome = "Cápsula" },
+	["polvora"] = { index = "polvora", nome = "Pólvora" },
+	["corpodeak"] = { index = "corpodeak", nome = "Corpo de AK-47" },
+	["corpodefamas"] = { index = "corpodefamas", nome = "Corpo de Famas" },
+	["corpodefiveseven"] = { index = "corpodefiveseven", nome = "Corpo de Five Seven" },
+	["corpodeimitar"] = { index = "corpodeimitar", nome = "Corpo de Imitar" },
+	["corpodemagnum"] = { index = "corpodemagnum", nome = "Corpo de Magnum" },
 
 	["placa"] = { index = "placa", nome = "Placa" },
 	["rebite"] = { index = "rebite", nome = "Rebite" },
 	["carbono"] = { index = "carbono", nome = "Carbono" },
 	["ferro"] = { index = "ferro", nome = "Ferro" },
 	["aco"] = { index = "aco", nome = "Aço" },
-	["capsula"] = { index = "capsula", nome = "Cápsula" },
-	["polvora"] = { index = "polvora", nome = "Pólvora" },
 	["orgao"] = { index = "orgao", nome = "Órgão" },
 	["furadeira"] = { index = "furadeira", nome = "Furadeira" },
 	["bombaadesiva"] = { index = "bombaadesiva", nome = "Bomba Adesiva" },

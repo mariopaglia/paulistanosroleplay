@@ -30,5 +30,10 @@ files {
 	'nui/imags/magnum.png',
 	'nui/imags/glock19.png',
 	'nui/imags/mola.png',
+	'nui/imags/corpodeak.png',
+	'nui/imags/corpodefamas.png',
+	'nui/imags/corpodefiveseven.png',
+	'nui/imags/corpodeimitar.png',
+	'nui/imags/corpodemagnum.png',
 	'nui/imags/placa-metal.png'
 }

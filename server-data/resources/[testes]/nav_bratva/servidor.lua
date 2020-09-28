@@ -3,7 +3,7 @@ local Proxy = module("vrp","lib/Proxy")
 vRP = Proxy.getInterface("vRP")
 
 Perm = {}
-Tunnel.bindInterface("nav_part_guns_two",Perm)
+Tunnel.bindInterface("nav_parts_guns",Perm)
 -----------------------------------------------------------------------------------------------------------------------------------------
 --[ ARRAY ]------------------------------------------------------------------------------------------------------------------------------
 -----------------------------------------------------------------------------------------------------------------------------------------
@@ -11,12 +11,7 @@ local valores = {
 	{ item = "mola", quantidade = 1, compra = 30 },
 	{ item = "polvora", quantidade = 1, compra = 30 },
 	{ item = "capsula", quantidade = 1, compra = 30 },
-	{ item = "blocodemetal", quantidade = 1, compra = 30 },
-	{ item = "corpodeak", quantidade = 1, compra = 30 },
-	{ item = "corpodefiveseven", quantidade = 1, compra = 30 },
-	{ item = "corpodeimitar", quantidade = 1, compra = 30 },
-	{ item = "corpodefamas", quantidade = 1, compra = 30 },
-	{ item = "corpodemagnum", quantidade = 1, compra = 30 },
+	{ item = "placademetal", quantidade = 1, compra = 30 },
 }
 -----------------------------------------------------------------------------------------------------------------------------------------
 --[ COMPRAR ]----------------------------------------------------------------------------------------------------------------------------

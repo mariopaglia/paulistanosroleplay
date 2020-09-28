@@ -94,8 +94,6 @@ local itemlist = {
 	["adubo"] = { index = "adubo", nome = "Adubo", type = "usar" },
 	["colete"] = { index = "colete", nome = "Colete Balístico", type = "usar" },
 	["fertilizante"] = { index = "fertilizante", nome = "Fertilizante", type = "usar" },
-	["capsula"] = { index = "capsula", nome = "Cápsula", type = "usar" },
-	["polvora"] = { index = "polvora", nome = "Pólvora", type = "usar" },
 	["carbono"] = { index = "carbono", nome = "Carbono", type = "usar" },
 	["bombaadesiva"] = { index = "c4", nome = "Bomba Adesiva", type = "usar" },
 	["orgao"] = { index = "orgao", nome = "Órgão", type = "usar" },
@@ -188,8 +186,15 @@ local itemlist = {
 
 	-- Farm de Armas
 
-	["placademetal"] = { index = "placademetal", nome = "Placa de Metal", type = "usar" },
+	["blocodemetal"] = { index = "blocodemetal", nome = "Bloco de Metal", type = "usar" },
 	["mola"] = { index = "mola", nome = "Mola", type = "usar" },
+	["capsula"] = { index = "capsula", nome = "Cápsula", type = "usar" },
+	["polvora"] = { index = "polvora", nome = "Pólvora", type = "usar" },
+	["corpodeak"] = { index = "corpodeak", nome = "Corpo de AK-47", type = "usar" },
+	["corpodefamas"] = { index = "corpodefamas", nome = "Corpo de Famas", type = "usar" },
+	["corpodefiveseven"] = { index = "corpodefiveseven", nome = "Corpo de Five Seven", type = "usar" },
+	["corpodeimitar"] = { index = "corpodeimitar", nome = "Corpo de Imitar", type = "usar" },
+	["corpodemagnum"] = { index = "corpodemagnum", nome = "Corpo de Magnum", type = "usar" },
 
 	["pirulito"] = { index = "pirulito", nome = "Pirulito", type = "usar" },
 	["buque"] = { index = "buque", nome = "Buquê de Flores", type = "usar" },

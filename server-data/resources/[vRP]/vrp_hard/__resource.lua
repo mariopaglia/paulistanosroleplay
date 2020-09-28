@@ -4,7 +4,7 @@ client_scripts {
 	"radar.lua",
 	"helicam.lua",
 	"dispatch.lua",
---	"teleports.lua",
+	"teleports.lua",
 	"realisticvehicle.lua",
 	-- "showeapons.lua",
 	"doors.js"

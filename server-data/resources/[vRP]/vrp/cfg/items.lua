@@ -92,8 +92,6 @@ cfg.items = {
 	["maconha"] = { "Maconha",0.8 },
 	["placa"] = { "Placa",0.8 },
 	["rebite"] = { "Rebite",0.8 },
-	["capsula"] = { "Cápsula",0.03 },
-	["polvora"] = { "Pólvora",0.03 },
 	["carbono"] = { "Carbono",0.0038 },
 	["ferro"] = { "Ferro",0.0038 },
 	["aco"] = { "Aço",0.0015 },
@@ -117,8 +115,15 @@ cfg.items = {
 
 	-- Farm de Armas
 
-	["placademetal"] = { "Placa de Metal",1.0 },
+	["blocodemetal"] = { "Bloco de Metal",1.0 },
 	["mola"] = { "Mola",0.5 },
+	["capsula"] = { "Cápsula",0.2 },
+	["polvora"] = { "Pólvora",0.5 },
+	["corpodeak"] = { "Corpo de AK-47",0.5 },
+	["corpodefamas"] = { "Corpo de Famas",0.5 },
+	["corpodefiveseven"] = { "Corpo de Five Seven",0.5 },
+	["corpodeimitar"] = { "Corpo de Imitar",0.5 },
+	["corpodemagnum"] = { "Corpo de Magnum",0.5 },
 	
 	-- Farm de Metanfetamina
 	["acucar"] = { "Açucar",0.8 },

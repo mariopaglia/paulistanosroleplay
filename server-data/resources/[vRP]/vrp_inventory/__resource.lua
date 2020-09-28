@@ -283,7 +283,12 @@ files {
 	"nui/images/aneldecompromisso.png",
 	"nui/images/colardeperolas.png",
 	"nui/images/pulseiradeouro.png",
-	"nui/images/placademetal.png",
+	"nui/images/blocodemetal.png",
 	"nui/images/mola.png",
+	"nui/images/corpodeak.png",
+	"nui/images/corpodefamas.png",
+	"nui/images/corpodefiveseven.png",
+	"nui/images/corpodeimitar.png",
+	"nui/images/corpodemagnum.png",
 	"nui/GothamPro-Black.woff"
 }

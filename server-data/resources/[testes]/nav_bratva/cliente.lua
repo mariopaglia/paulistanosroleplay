@@ -2,7 +2,7 @@ local Tunnel = module("vrp","lib/Tunnel")
 local Proxy = module("vrp","lib/Proxy")
 vRP = Proxy.getInterface("vRP")
 
-Perm = Tunnel.getInterface("nav_part_guns_two")
+Perm = Tunnel.getInterface("nav_parts_guns")
 
 -----------------------------------------------------------------------------------------------------------------------------------------
 --[ Menu ]------------------------------------------------------------------------------------------------------------------------------
@@ -28,28 +28,12 @@ end
 RegisterNUICallback("ButtonClick",function(data,cb)
 	if data == "comprar-molas" then
 		TriggerServerEvent("departamento-comprar","mola")
-
+    elseif data == "comprar-polvora" then
+		TriggerServerEvent("departamento-comprar","polvora")
 	elseif data == "comprar-capsula" then
 		TriggerServerEvent("departamento-comprar","capsula")
-
 	elseif data == "comprar-mplaca" then
-		TriggerServerEvent("departamento-comprar","blocodemetal")
-
-	elseif data == "comprar-corpodeak" then
-		TriggerServerEvent("departamento-comprar","corpodeak")
-
-	elseif data == "comprar-corpodefiveseven" then
-		TriggerServerEvent("departamento-comprar","corpodefiveseven")
-
-	elseif data == "comprar-corpodefamas" then
-		TriggerServerEvent("departamento-comprar","corpodefamas")
-
-	elseif data == "comprar-corpodeimitar" then
-		TriggerServerEvent("departamento-comprar","corpodeimitar")
-
-	elseif data == "comprar-corpodemagnum" then
-		TriggerServerEvent("departamento-comprar","corpodemagnum")
-
+		TriggerServerEvent("departamento-comprar","placademetal")
 	elseif data == "fechar" then
 		ToggleActionMenu()
 	

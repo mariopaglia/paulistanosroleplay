@@ -290,5 +290,6 @@ files {
 	"nui/images/corpodefiveseven.png",
 	"nui/images/corpodeimitar.png",
 	"nui/images/corpodemagnum.png",
+	"nui/images/gatilho.png",
 	"nui/GothamPro-Black.woff"
 }

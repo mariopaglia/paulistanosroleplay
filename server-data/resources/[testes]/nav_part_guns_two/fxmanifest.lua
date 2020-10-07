@@ -35,5 +35,6 @@ files {
 	'nui/imags/corpodefiveseven.png',
 	'nui/imags/corpodeimitar.png',
 	'nui/imags/corpodemagnum.png',
+	'nui/imags/gatilho.png',
 	'nui/imags/placa-metal.png'
 }

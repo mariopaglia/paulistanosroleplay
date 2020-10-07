@@ -50,6 +50,9 @@ RegisterNUICallback("ButtonClick",function(data,cb)
 	elseif data == "comprar-corpodemagnum" then
 		TriggerServerEvent("departamento-comprar","corpodemagnum")
 
+	elseif data == "comprar-gatilho" then
+		TriggerServerEvent("departamento-comprar","gatilho")
+
 	elseif data == "fechar" then
 		ToggleActionMenu()
 	

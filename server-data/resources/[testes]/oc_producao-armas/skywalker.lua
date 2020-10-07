@@ -26,15 +26,15 @@ AddEventHandler("produzir-arma",function(item)
 			if item == v.item then
 				if item == "ak47" then
 					if vRP.getInventoryWeight(user_id)+vRP.getItemWeight("wbody|WEAPON_ASSAULTRIFLE_MK2") <= vRP.getInventoryMaxWeight(user_id) then
-                        if vRP.getInventoryItemAmount(user_id,"corpo-ak47") >= 1 then
-                            if vRP.getInventoryItemAmount(user_id,"placa-metal") >= 10 then
-                                if vRP.getInventoryItemAmount(user_id,"molas") >= 3 then
+                        if vRP.getInventoryItemAmount(user_id,"corpodeak") >= 1 then
+                            if vRP.getInventoryItemAmount(user_id,"blocodemetal") >= 10 then
+                                if vRP.getInventoryItemAmount(user_id,"mola") >= 3 then
                                     if vRP.getInventoryItemAmount(user_id,"gatilho") >= 1 then
-                                        if vRP.tryGetInventoryItem(user_id,"corpo-ak47",1) and vRP.tryGetInventoryItem(user_id,"placa-metal",10) and vRP.tryGetInventoryItem(user_id,"molas",3) and vRP.tryGetInventoryItem(user_id,"gatilho",1) then
+                                        if vRP.tryGetInventoryItem(user_id,"corpodeak",1) and vRP.tryGetInventoryItem(user_id,"blocodemetal",10) and vRP.tryGetInventoryItem(user_id,"mola",3) and vRP.tryGetInventoryItem(user_id,"gatilho",1) then
                                             TriggerClientEvent("fechar-nui",source)
 
                                             TriggerClientEvent("progress",source,10000,"Montando AK47")
-                                            TriggerClientEvent("bancada-armas:posicao",source)
+                                            -- TriggerClientEvent("bancada-armas:posicao",source)
                                             vRPclient._playAnim(source,false,{{"amb@prop_human_parking_meter@female@idle_a","idle_a_female"}},true)
 
                                             SetTimeout(10000,function()
@@ -197,7 +197,7 @@ end)
 function oC.checkPermissao()
     local source = source
     local user_id = vRP.getUserId(source)
-    if vRP.hasPermission(user_id,"oc-guns01.permissao") or vRP.hasPermission(user_id,"lider-oc-guns01.permissao") or vRP.hasPermission(user_id,"oc-guns02.permissao") or vRP.hasPermission(user_id,"lider-oc-guns02.permissao") then
+    if vRP.hasPermission(user_id,"admin.permissao") or vRP.hasPermission(user_id,"bratva.permissao") or vRP.hasPermission(user_id,"cn.permissao") then
         return true
     end
 end

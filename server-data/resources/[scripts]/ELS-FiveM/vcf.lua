@@ -1,5 +1,6 @@
 vcf_files = {
 	"paliopmrp1.xml",
+	"ambulance.xml",
 	"spacerp.xml",
 	"trailnovarota.xml",
 	"spin18rp.xml",

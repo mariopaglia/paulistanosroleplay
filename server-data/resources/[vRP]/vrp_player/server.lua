@@ -185,6 +185,8 @@ local itemlist = {
 	["wammo|WEAPON_MACHINEPISTOL"] = { index = "m-tec9", nome = "Munição de Tec-9" },
 	["wbody|WEAPON_CARBINERIFLE"] = { index = "imbel", nome = "Imbel IA2" },
 	["wbody|WEAPON_ASSAULTRIFLE"] = { index = "ak103", nome = "AK-103" },
+	["wbody|WEAPON_ASSAULTRIFLE_MK2"] = { index = "ak47", nome = "AK-47" },
+	["wbody|WEAPON_BULLPUPRIFLE_MK2"] = { index = "famas", nome = "FAMAS" },
 	["wbody|WEAPON_GUSENBERG"] = { index = "thompson", nome = "Thompson" },
 	["wammo|WEAPON_PISTOL"] = { index = "m-m1911", nome = "Munição de M1911" },
 	["wammo|WEAPON_PISTOL_MK2"] = { index = "m-fiveseven", nome = "Munição de FN Five Seven" },
@@ -206,6 +208,8 @@ local itemlist = {
 	["wammo|WEAPON_PUMPSHOTGUN_MK2"] = { index = "m-remington", nome = "Munição de Remington 870" },
 	["wammo|WEAPON_CARBINERIFLE"] = { index = "m-imbel", nome = "Munição de Imbel" },
 	["wammo|WEAPON_ASSAULTRIFLE"] = { index = "m-ak103", nome = "Munição de AK-103" },
+	["wammo|WEAPON_ASSAULTRIFLE_MK2"] = { index = "m-ak47", nome = "Munição de AK-47" },
+	["wammo|WEAPON_BULLPUPRIFLE_MK2"] = { index = "m-famas", nome = "Munição de FAMAS" },
 	["wammo|WEAPON_GUSENBERG"] = { index = "m-thompson", nome = "Munição de Thompson" },
 	["wammo|WEAPON_PETROLCAN"] = { index = "combustivel", nome = "Combustível" },
 	["wbody|WEAPON_PETROLCAN"] = { index = "gasolina", nome = "Galão de Gasolina" }

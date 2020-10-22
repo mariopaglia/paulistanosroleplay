@@ -274,8 +274,8 @@ RegisterNUICallback('cDoneSave',function(data,cb)
 		SetPedPropIndex(PlayerPedId(),7,-1,0,2)
 	end
 
-	SetEntityCoordsNoOffset(PlayerPedId(),-1015.25,-2752.30,0.80,true,true,true)
-	SetEntityHeading(PlayerPedId(),f(143.22))
+	SetEntityCoordsNoOffset(PlayerPedId(),-1038.71,-2736.25,13.77,true,true,true)
+	SetEntityHeading(PlayerPedId(),f(323.22))
 	continuousFadeOutNetwork = false
 
 	for id = 0,255 do

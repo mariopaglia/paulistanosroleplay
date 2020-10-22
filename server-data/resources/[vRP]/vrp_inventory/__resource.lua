@@ -18,6 +18,7 @@ files {
 	"nui/style.css",
 	"nui/images/laranja.png",
 	"nui/images/ak74.png",
+	"nui/images/ak47.png",
 	"nui/images/furadeira.png",
 	"nui/images/metanfetamina.png",
 	"nui/images/anfetamina.png",

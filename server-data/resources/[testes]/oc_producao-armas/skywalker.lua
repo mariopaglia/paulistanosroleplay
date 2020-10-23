@@ -27,10 +27,10 @@ AddEventHandler("produzir-arma",function(item)
 				if item == "ak47" then
 					if vRP.getInventoryWeight(user_id)+vRP.getItemWeight("wbody|WEAPON_ASSAULTRIFLE_MK2") <= vRP.getInventoryMaxWeight(user_id) then
                         if vRP.getInventoryItemAmount(user_id,"corpodeak") >= 1 then
-                            if vRP.getInventoryItemAmount(user_id,"blocodemetal") >= 10 then
-                                if vRP.getInventoryItemAmount(user_id,"mola") >= 3 then
+                            if vRP.getInventoryItemAmount(user_id,"placademetal") >= 160 then
+                                if vRP.getInventoryItemAmount(user_id,"mola") >= 10 then
                                     if vRP.getInventoryItemAmount(user_id,"gatilho") >= 1 then
-                                        if vRP.tryGetInventoryItem(user_id,"corpodeak",1) and vRP.tryGetInventoryItem(user_id,"blocodemetal",10) and vRP.tryGetInventoryItem(user_id,"mola",3) and vRP.tryGetInventoryItem(user_id,"gatilho",1) then
+                                        if vRP.tryGetInventoryItem(user_id,"corpodeak",1) and vRP.tryGetInventoryItem(user_id,"placademetal",160) and vRP.tryGetInventoryItem(user_id,"mola",10) and vRP.tryGetInventoryItem(user_id,"gatilho",1) then
                                             TriggerClientEvent("fechar-nui",source)
 
                                             TriggerClientEvent("progress",source,10000,"Montando AK47")
@@ -47,10 +47,10 @@ AddEventHandler("produzir-arma",function(item)
                                         TriggerClientEvent("Notify",source,"negado","Você não tem <b>gatilho</b> na mochila.")
                                     end
                                 else
-                                    TriggerClientEvent("Notify",source,"negado","Você precisa de <b>3x pacotes de mola</b>.")
+                                    TriggerClientEvent("Notify",source,"negado","Você precisa de <b>10x Molas</b>.")
                                 end
                             else
-                                TriggerClientEvent("Notify",source,"negado","Você precisa de <b>10x placas de metal</b>.")
+                                TriggerClientEvent("Notify",source,"negado","Você precisa de <b>160x placas de metal</b>.")
                             end
                         else
                             TriggerClientEvent("Notify",source,"negado","Você não tem <b>corpo de AK-47</b> na mochila.")

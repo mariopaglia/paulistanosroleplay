@@ -11,7 +11,7 @@ local valores = {
 	{ item = "mola", quantidade = 1, compra = 30 },
 	{ item = "polvora", quantidade = 1, compra = 30 },
 	{ item = "capsula", quantidade = 1, compra = 30 },
-	{ item = "blocodemetal", quantidade = 1, compra = 30 },
+	{ item = "placademetal", quantidade = 1, compra = 30 },
 	{ item = "corpodeak", quantidade = 1, compra = 30 },
 	{ item = "corpodefiveseven", quantidade = 1, compra = 30 },
 	{ item = "corpodeimitar", quantidade = 1, compra = 30 },

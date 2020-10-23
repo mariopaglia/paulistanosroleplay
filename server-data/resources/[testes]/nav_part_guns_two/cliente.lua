@@ -33,7 +33,7 @@ RegisterNUICallback("ButtonClick",function(data,cb)
 		TriggerServerEvent("departamento-comprar","capsula")
 
 	elseif data == "comprar-mplaca" then
-		TriggerServerEvent("departamento-comprar","blocodemetal")
+		TriggerServerEvent("departamento-comprar","placademetal")
 
 	elseif data == "comprar-corpodeak" then
 		TriggerServerEvent("departamento-comprar","corpodeak")

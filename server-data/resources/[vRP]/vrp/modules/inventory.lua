@@ -186,7 +186,7 @@ local itemlist = {
 
 	-- Farm de Armas
 
-	["blocodemetal"] = { index = "blocodemetal", nome = "Bloco de Metal", type = "usar" },
+	["placademetal"] = { index = "placademetal", nome = "Placa de Metal", type = "usar" },
 	["mola"] = { index = "mola", nome = "Mola", type = "usar" },
 	["capsula"] = { index = "capsula", nome = "Cápsula", type = "usar" },
 	["polvora"] = { index = "polvora", nome = "Pólvora", type = "usar" },
@@ -243,6 +243,10 @@ local itemlist = {
 	["wbody|WEAPON_MACHINEPISTOL"] = { index = "tec9", nome = "Tec-9", type = "equipar" },
 	["wbody|WEAPON_COMPACTRIFLE"] = { index = "aks", nome = "AKS", type = "equipar" },
 	["wbody|WEAPON_CARBINERIFLE_MK2"] = { index = "mpx", nome = "MPX", type = "equipar" },
+	["wbody|WEAPON_BULLPUPRIFLE_MK2"] = { index = "famas", nome = "FAMAS", type = "equipar" },
+	["wbody|WEAPON_SPECIALCARBINE_MK2"] = { index = "g36c", nome = "G36C", type = "equipar" },
+	["wammo|WEAPON_SPECIALCARBINE_MK2"] = { index = "m-g36c", nome = "M.G36C", type = "recarregar" },
+	["wammo|WEAPON_BULLPUPRIFLE_MK2"] = { index = "m-famas", nome = "M.FAMAS", type = "recarregar" },
 	["wammo|WEAPON_PISTOL"] = { index = "m-m1911", nome = "M.M1911", type = "recarregar" },
 	["wammo|WEAPON_PISTOL_MK2"] = { index = "m-fiveseven", nome = "M.FN Five Seven", type = "recarregar" },
 	["wammo|WEAPON_COMBATPISTOL"] = { index = "m-glock", nome = "M.Glock 19", type = "recarregar" },

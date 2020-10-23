@@ -115,8 +115,8 @@ cfg.items = {
 
 	-- Farm de Armas
 
-	["blocodemetal"] = { "Bloco de Metal",1.0 },
-	["mola"] = { "Mola",0.5 },
+	["placademetal"] = { "Placa de Metal",0.5 },
+	["mola"] = { "Mola",0.2 },
 	["capsula"] = { "Cápsula",0.2 },
 	["polvora"] = { "Pólvora",0.5 },
 	["corpodeak"] = { "Corpo de AK-47",0.5 },

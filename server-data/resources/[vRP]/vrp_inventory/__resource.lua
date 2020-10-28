@@ -183,6 +183,7 @@ files {
 	"nui/images/mochila.png",
 	"nui/images/maconha.png",
 	"nui/images/placa.png",
+	"nui/images/placademetal.png",
 	"nui/images/rebite.png",
 	"nui/images/adubo.png",
 	"nui/images/fertilizante.png",
@@ -291,6 +292,7 @@ files {
 	"nui/images/corpodefiveseven.png",
 	"nui/images/corpodeimitar.png",
 	"nui/images/corpodemagnum.png",
+	"nui/images/corpodeuzi.png",
 	"nui/images/gatilho.png",
 	"nui/GothamPro-Black.woff"
 }

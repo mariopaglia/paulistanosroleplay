@@ -32,9 +32,6 @@ RegisterNUICallback("ButtonClick",function(data,cb)
 	elseif data == "comprar-capsula" then
 		TriggerServerEvent("departamento-comprar","capsula")
 
-	elseif data == "comprar-mplaca" then
-		TriggerServerEvent("departamento-comprar","placademetal")
-
 	elseif data == "comprar-corpodeak" then
 		TriggerServerEvent("departamento-comprar","corpodeak")
 
@@ -49,6 +46,9 @@ RegisterNUICallback("ButtonClick",function(data,cb)
 
 	elseif data == "comprar-corpodemagnum" then
 		TriggerServerEvent("departamento-comprar","corpodemagnum")
+
+	elseif data == "comprar-corpodeuzi" then
+		TriggerServerEvent("departamento-comprar","corpodeuzi")
 
 	elseif data == "comprar-gatilho" then
 		TriggerServerEvent("departamento-comprar","gatilho")

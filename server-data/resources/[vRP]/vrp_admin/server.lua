@@ -135,7 +135,7 @@ RegisterCommand('god',function(source,args,rawCommand)
 		else
 			vRPclient.killGod(source)
 			vRPclient.setHealth(source,400) -- Vida
-			-- vRPclient.setArmour(source,100) -- Colete
+			vRPclient.setArmour(source,100) -- Colete
 		end
 	end
 end)

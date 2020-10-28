@@ -11,12 +11,12 @@ local valores = {
 	{ item = "mola", quantidade = 1, compra = 30 },
 	{ item = "polvora", quantidade = 1, compra = 30 },
 	{ item = "capsula", quantidade = 1, compra = 30 },
-	{ item = "placademetal", quantidade = 1, compra = 30 },
 	{ item = "corpodeak", quantidade = 1, compra = 30 },
 	{ item = "corpodefiveseven", quantidade = 1, compra = 30 },
 	{ item = "corpodeimitar", quantidade = 1, compra = 30 },
 	{ item = "corpodefamas", quantidade = 1, compra = 30 },
 	{ item = "corpodemagnum", quantidade = 1, compra = 30 },
+	{ item = "corpodeuzi", quantidade = 1, compra = 30 },
 	{ item = "gatilho", quantidade = 1, compra = 30 },
 }
 -----------------------------------------------------------------------------------------------------------------------------------------
@@ -32,7 +32,7 @@ AddEventHandler("departamento-comprar",function(item)
 				if vRP.getInventoryWeight(user_id)+vRP.getItemWeight(v.item)*v.quantidade <= vRP.getInventoryMaxWeight(user_id) then
 					if vRP.tryPayment(user_id,parseInt(v.compra)) then
 						vRP.giveInventoryItem(user_id,v.item,parseInt(v.quantidade))
-						TriggerClientEvent("Notify",source,"sucesso","Comprou <b>"..parseInt(v.quantidade).."x "..vRP.itemNameList(v.item).."</b> por <b>$"..vRP.format(parseInt(v.compra)).." dólares</b>.")
+						TriggerClientEvent("Notify",source,"sucesso","Comprou <b>"..parseInt(v.quantidade).."x "..vRP.itemNameList(v.item).."</b> por <b>R$"..vRP.format(parseInt(v.compra)).." reais</b>.")
 					else
 						TriggerClientEvent("Notify",source,"negado","Dinheiro insuficiente.")
 					end

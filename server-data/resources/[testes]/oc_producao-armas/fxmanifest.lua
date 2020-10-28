@@ -27,6 +27,7 @@ files {
 	'nui/imagens/uzi.png',
 	'nui/imagens/magnum44.png',
 	'nui/imagens/glock.png',
+	'nui/imagens/fiveseven.png',
 
 	'nui/imagens/corpo-ak47.png',
 	'nui/imagens/corpo-aks.png',

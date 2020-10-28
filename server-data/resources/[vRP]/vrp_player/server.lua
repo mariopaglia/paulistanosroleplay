@@ -118,6 +118,7 @@ local itemlist = {
 	["corpodefiveseven"] = { index = "corpodefiveseven", nome = "Corpo de Five Seven" },
 	["corpodeimitar"] = { index = "corpodeimitar", nome = "Corpo de Imitar" },
 	["corpodemagnum"] = { index = "corpodemagnum", nome = "Corpo de Magnum" },
+	["corpodeuzi"] = { index = "corpodeuzi", nome = "Corpo de UZI" },
 	["gatilho"] = { index = "gatilho", nome = "Gatilho" },
 
 	["placa"] = { index = "placa", nome = "Placa" },

@@ -1,6 +1,7 @@
 local Tunnel = module("vrp","lib/Tunnel")
 local Proxy = module("vrp","lib/Proxy")
 vRP = Proxy.getInterface("vRP")
+vRPclient = Tunnel.getInterface("vRP")
 emP = Tunnel.getInterface("farm_bratva")
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- VARIAVEIS 
@@ -18,18 +19,17 @@ local segundos = 0
 -- RESIDENCIAS
 -----------------------------------------------------------------------------------------------------------------------------------------
 local locs = {
-	[1] = { ['x'] = -2304.90, ['y'] = 3427.14, ['z'] = 31.03 }, 
-	[2] = { ['x'] = 471.15, ['y'] = 3552.83, ['z'] = 33.23 }, 
-	[3] = { ['x'] = 1591.66,['y'] = 3582.91, ['z'] = 35.41 }, 
-	[4] = { ['x'] = 1319.96, ['y'] = 4311.11, ['z'] = 38.09 },
-	[5] = { ['x'] = 1929.80, ['y'] = 4634.95, ['z'] = 40.46 }, 
-	[6] = { ['x'] = 1741.18, ['y'] = 6419.69, ['z'] = 35.04 }, 
-	[7] = { ['x'] = -769.06, ['y'] = 5597.52, ['z'] = 33.67 }, 
-	[8] = { ['x'] = 255.60, ['y'] = 3111.31, ['z'] = 42.59 }, 
-	[9] = { ['x'] = 2863.97, ['y'] = 1509.51, ['z'] = 24.56 }, 
-	[10] = { ['x'] = 2551.46, ['y'] = 348.71, ['z'] = 108.62 }, 
-	[11] = { ['x'] = 2508.81, ['y'] = -321.34, ['z'] = 92.99 }, 
-	[12] = { ['x'] = 1153.54, ['y'] = -1301.60, ['z'] = 34.80 }
+	[1] = { ['x'] = 1687.70, ['y'] = 3755.69, ['z'] = 34.56 }, 
+	[2] = { ['x'] = -342.49, ['y'] = 6097.68, ['z'] = 31.31 }, 
+	[3] = { ['x'] = -1127.73,['y'] = 2707.98, ['z'] = 18.80 }, 
+	[4] = { ['x'] = -3179.29, ['y'] = 1093.23, ['z'] = 20.84 },
+	[5] = { ['x'] = -1298.44, ['y'] = -393.04, ['z'] = 36.70 }, 
+	[6] = { ['x'] = -655.96, ['y'] = -941.24, ['z'] = 22.25 }, 
+	[7] = { ['x'] = -6.52, ['y'] = -1107.20, ['z'] = 29.00 }, 
+	[8] = { ['x'] = 798.10, ['y'] = -2136.10, ['z'] = 29.51 }, 
+	[9] = { ['x'] = 835.25, ['y'] = -1036.80, ['z'] = 27.64 }, 
+	[10] = { ['x'] = 2558.87, ['y'] = 288.69, ['z'] = 108.60 }, 
+	[11] = { ['x'] = 245.07, ['y'] = -41.35, ['z'] = 69.89 }
 }
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- TRABALHAR
@@ -73,7 +73,7 @@ Citizen.CreateThread(function()
 			if distance <= 3 then
 				DrawMarker(21,locs[selecionado].x,locs[selecionado].y,locs[selecionado].z-0.6,0,0,0,0.0,0,0,0.5,0.5,0.4,255,0,0,50,0,0,0,1)
 				if distance <= 1.2 then
-					drawTxt("PRESSIONE  ~r~E~w~  PARA COLETAR AS PEÇAS DE ARMAS",4,0.5,0.93,0.50,255,255,255,180)
+					drawTxt("PRESSIONE  ~r~E~w~  PARA COLETAR AS ~g~PLACAS DE METAL~w~",4,0.5,0.93,0.50,255,255,255,180)
 					if IsControlJustPressed(0,38) and emP.checkPermission() and not IsPedInAnyVehicle(ped) then
 						if emP.checkPayment() then
 							TriggerEvent('cancelando',true)
@@ -81,8 +81,15 @@ Citizen.CreateThread(function()
 							backentrega = selecionado
 							processo = true
 							segundos = 10
-							vRP._playAnim(false,{{"anim@heists@ornate_bank@grab_cash_heels","grab"}},true)
-							if selecionado == 52 then
+							
+							TriggerEvent("progress",10000,"Coletando")
+                            vRP._playAnim(false,{{"anim@heists@ornate_bank@grab_cash_heels","grab"}},true)
+
+                            SetTimeout(10000,function()
+                            	vRP._stopAnim(source,false)
+							end)
+										 
+							if selecionado == 11 then
 								selecionado = 1
 							else
 								selecionado = selecionado + 1
@@ -148,6 +155,6 @@ function CriandoBlip(locs,selecionado)
 	SetBlipAsShortRange(blips,false)
 	SetBlipRoute(blips,true)
 	BeginTextCommandSetBlipName("STRING")
-	AddTextComponentString("Coletar Peças de Armas")
+	AddTextComponentString("Coletar Placas de Metal")
 	EndTextCommandSetBlipName(blips)
 end

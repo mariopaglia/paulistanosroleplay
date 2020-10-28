@@ -605,20 +605,20 @@ function vRPN.useItem(itemName,type,ramount)
 					TriggerClientEvent("Notify",source,"importante","Número insuficiente de policiais no momento para iniciar o roubo.")
 					return true
 				end
-				if vRP.hasPermission(user_id,"policia.permissao") then
-					TriggerEvent("setPlateEveryone",placa)
-					vGARAGE.vehicleClientLock(-1,vnetid,lock)
-					TriggerClientEvent("vrp_sound:source",source,'lock',0.5)
-					return
-				end
+				-- if vRP.hasPermission(user_id,"policia.permissao") then
+				-- 	TriggerEvent("setPlateEveryone",placa)
+				-- 	vGARAGE.vehicleClientLock(-1,vnetid,lock)
+				-- 	TriggerClientEvent("vrp_sound:source",source,'lock',0.5)
+				-- 	return
+				-- end
 				if vRP.getInventoryItemAmount(user_id,"lockpick") >= 1 and vRP.tryGetInventoryItem(user_id,"lockpick",1) and vehicle then
 					actived[user_id] = true
-					if vRP.hasPermission(user_id,"polpar.permissao") then
-						actived[user_id] = nil
-						TriggerEvent("setPlateEveryone",placa)
-						vGARAGE.vehicleClientLock(-1,vnetid,lock)
-						return
-					end
+					-- if vRP.hasPermission(user_id,"polpar.permissao") then
+					-- 	actived[user_id] = nil
+					-- 	TriggerEvent("setPlateEveryone",placa)
+					-- 	vGARAGE.vehicleClientLock(-1,vnetid,lock)
+					-- 	return
+					-- end
 
 					TriggerClientEvent('cancelando',source,true)
 					vRPclient._playAnim(source,false,{{"amb@prop_human_parking_meter@female@idle_a","idle_a_female"}},true)
@@ -632,6 +632,22 @@ function vRPN.useItem(itemName,type,ramount)
 							TriggerEvent("setPlateEveryone",placa)
 							vGARAGE.vehicleClientLock(-1,vnetid,lock)
 							TriggerClientEvent("vrp_sound:source",source,'lock',0.5)
+
+							TriggerClientEvent("Notify",source,"sucesso","Roubo concluído, as autoridades foram acionadas.",8000)
+							local policia = vRP.getUsersByPermission("policia.permissao")
+							local x,y,z = vRPclient.getPosition(source)
+							for k,v in pairs(policia) do
+								local player = vRP.getUserSource(parseInt(v))
+								if player then
+									async(function()
+										local id = idgens:gen()
+										vRPclient._playSound(player,"CONFIRM_BEEP","HUD_MINI_GAME_SOUNDSET")
+										TriggerClientEvent('chatMessage',player,"911",{64,64,255},"Roubo na ^1"..street.."^0 do veículo ^1"..model.."^0 de placa ^1"..placa.."^0 verifique o ocorrido.")
+										pick[id] = vRPclient.addBlip(player,x,y,z,10,5,"Ocorrência",0.5,false)
+										SetTimeout(20000,function() vRPclient.removeBlip(player,pick[id]) idgens:free(id) end)
+									end)
+								end
+							end
 						else
 							TriggerClientEvent("Notify",source,"negado","Roubo do veículo falhou e as autoridades foram acionadas.",8000)
 							local policia = vRP.getUsersByPermission("policia.permissao")

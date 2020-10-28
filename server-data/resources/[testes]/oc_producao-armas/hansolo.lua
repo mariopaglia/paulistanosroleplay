@@ -36,17 +36,14 @@ RegisterNUICallback("ButtonClick",function(data,cb)
 	if data == "produzir-ak47" then
 		TriggerServerEvent("produzir-arma","ak47")
 
-	elseif data == "produzir-ak74u" then
-		TriggerServerEvent("produzir-arma","ak74u")
-
 	elseif data == "produzir-uzi" then
 		TriggerServerEvent("produzir-arma","uzi")
 
 	elseif data == "produzir-magnum44" then
 		TriggerServerEvent("produzir-arma","magnum44")
 
-	elseif data == "produzir-glock" then
-		TriggerServerEvent("produzir-arma","glock")
+	elseif data == "produzir-fiveseven" then
+		TriggerServerEvent("produzir-arma","fiveseven")
 
 	elseif data == "fechar" then
 		ToggleActionMenu()

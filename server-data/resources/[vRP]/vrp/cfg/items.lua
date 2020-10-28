@@ -124,6 +124,7 @@ cfg.items = {
 	["corpodefiveseven"] = { "Corpo de Five Seven",0.5 },
 	["corpodeimitar"] = { "Corpo de Imitar",0.5 },
 	["corpodemagnum"] = { "Corpo de Magnum",0.5 },
+	["corpodeuzi"] = { "Corpo de UZI",0.5 },
 	["gatilho"] = { "Gatilho",0.5 },
 	
 	-- Farm de Metanfetamina

@@ -25,7 +25,8 @@ files {
 	"nui/images/serra.png",
 	"nui/images/repairkit.png",
 	"nui/images/bombaadesiva.png",
-	"nui/images/kevlar.png",
+	"nui/images/malha.png",
+	"nui/images/linha.png",
 	"nui/images/cannabis.png",
 	"nui/images/plantademaconha.png",
 	"nui/images/croquettes.png",
@@ -294,5 +295,6 @@ files {
 	"nui/images/corpodemagnum.png",
 	"nui/images/corpodeuzi.png",
 	"nui/images/gatilho.png",
+	"nui/images/tecido.png",
 	"nui/GothamPro-Black.woff"
 }

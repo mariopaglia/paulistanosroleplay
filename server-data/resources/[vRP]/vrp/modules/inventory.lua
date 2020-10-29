@@ -51,7 +51,6 @@ local itemlist = {
 	["vodka"] = { index = "vodka", nome = "Vodka", type = "usar" },
 	["whisky"] = { index = "whisky", nome = "Whisky", type = "usar" },
 	["agua"] = { index = "agua", nome = "Água", type = "usar" },
-	["kevlar"] = { index = "kevlar,", nome = "Kevlar", type = "usar" },
 	["conhaque"] = { index = "conhaque", nome = "Conhaque", type = "usar" },
 	["absinto"] = { index = "absinto", nome = "Absinto", type = "usar" },
 	["dinheirosujo"] = { index = "dinheirosujo", nome = "Dinheiro Sujo", type = "usar" },
@@ -92,7 +91,6 @@ local itemlist = {
 	["maconha"] = { index = "maconha", nome = "Maconha", type = "usar" },
 	["plantademaconha"] = { index = "plantademaconha", nome = "Pé de Maconha", type = "usar" },
 	["adubo"] = { index = "adubo", nome = "Adubo", type = "usar" },
-	["colete"] = { index = "colete", nome = "Colete Balístico", type = "usar" },
 	["fertilizante"] = { index = "fertilizante", nome = "Fertilizante", type = "usar" },
 	["carbono"] = { index = "carbono", nome = "Carbono", type = "usar" },
 	["bombaadesiva"] = { index = "c4", nome = "Bomba Adesiva", type = "usar" },
@@ -197,6 +195,12 @@ local itemlist = {
 	["corpodemagnum"] = { index = "corpodemagnum", nome = "Corpo de Magnum", type = "usar" },
 	["corpodeuzi"] = { index = "corpodeuzi", nome = "Corpo de UZI", type = "usar" },
 	["gatilho"] = { index = "gatilho", nome = "Gatilho", type = "usar" },
+
+	-- Farm de Colete
+	["tecido"] = { index = "tecido", nome = "Tecido", type = "usar" },
+	["malha"] = { index = "malha", nome = "Malha", type = "usar" },
+	["colete"] = { index = "colete", nome = "Colete Balístico", type = "usar" },
+	["linha"] = { index = "linha", nome = "Linha", type = "usar" },
 
 	["pirulito"] = { index = "pirulito", nome = "Pirulito", type = "usar" },
 	["buque"] = { index = "buque", nome = "Buquê de Flores", type = "usar" },

@@ -35,7 +35,6 @@ local itemlist = {
 	["vodka"] = { index = "vodka", nome = "Vodka" },
 	["rpprotecao"] = { index = "coletemedico", nome = "Colete Médico" },
 	["whisky"] = { index = "whisky", nome = "Whisky" },
-	["colete"] = { index = "colete", nome = "Colete Balístico" },
 	["conhaque"] = { index = "conhaque", nome = "Conhaque" },
 	["nitro"] = { index = "nitro", nome = "nitro" },
 	["absinto"] = { index = "absinto", nome = "Absinto" },
@@ -108,7 +107,6 @@ local itemlist = {
 	["pastadecoca"] = { index = "pastadecoca", nome = "Pasta de Cocaina" },
 
 	-- Farm de Armas
-
 	["placademetal"] = { index = "placademetal", nome = "Placa de Metal" },
 	["mola"] = { index = "mola", nome = "Mola" },
 	["capsula"] = { index = "capsula", nome = "Cápsula" },
@@ -120,6 +118,12 @@ local itemlist = {
 	["corpodemagnum"] = { index = "corpodemagnum", nome = "Corpo de Magnum" },
 	["corpodeuzi"] = { index = "corpodeuzi", nome = "Corpo de UZI" },
 	["gatilho"] = { index = "gatilho", nome = "Gatilho" },
+
+	-- Farm de Colete
+	["tecido"] = { index = "tecido", nome = "Tecido" },
+	["malha"] = { index = "malha", nome = "Malha" },
+	["colete"] = { index = "colete", nome = "Colete Balístico" },
+	["linha"] = { index = "linha", nome = "Linha" },
 
 	["placa"] = { index = "placa", nome = "Placa" },
 	["rebite"] = { index = "rebite", nome = "Rebite" },
@@ -139,7 +143,6 @@ local itemlist = {
 	["carteiraroubada"] = { index = "carteiraroubada", nome = "Carteira Roubada" },
 	["carregadorroubado"] = { index = "carregadorroubado", nome = "Carregador Roubado" },
 	["tabletroubado"] = { index = "tabletroubado", nome = "Tablet Roubado" },
-	["kevlar"] = { index = "kevlar,", nome = "Kevlar" },
 	["sapatosroubado"] = { index = "sapatosroubado", nome = "Sapatos Roubado" },
 	["vibradorroubado"] = { index = "vibradorroubado", nome = "Vibrador Roubado" },
 	["perfumeroubado"] = { index = "perfumeroubado", nome = "Perfume Roubado" },

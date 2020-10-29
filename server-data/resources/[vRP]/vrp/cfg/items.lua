@@ -18,10 +18,8 @@ cfg.items = {
 	["whisky"] = { "Whisky",0.7 },
 	["plantademaconha"] = { "Pé de Maconha",0.7 },
 	["rpprotecao"] = { "Colete Médico",1.0 },
-	["colete"] = { "Colete Balístico",1.0 },
 	["conhaque"] = { "Conhaque",0.7 },
 	["absinto"] = { "Absinto",0.7 },
-	["kevlar"] = { "kevlar",0.5 },
 	["dinheirosujo"] = { "Dinheiro Sujo",0.0 },
 	["repairkit"] = { "Kit de Reparos",1.0 },
 	["algemas"] = { "Algemas",1.0 },
@@ -135,7 +133,14 @@ cfg.items = {
 	-- Farm de Cocaína
 	["folhacoca"] = { "Folha Cocaina",0.3 },
 	["po"] = { "Pó",0.3 },
-	["cocaina"] = { "Cocaína",0.5 }
+	["cocaina"] = { "Cocaína",0.5 },
+	
+	-- Farm de colete
+	["tecido"] = { "Tecido",1.0 },
+	["colete"] = { "Colete Balístico",1.0 },
+	["malha"] = { "malha",0.3 },
+	["linha"] = { "linha",0.3 },
+	
 }
 
 local function load_item_pack(name)

@@ -16,16 +16,16 @@ Citizen.CreateThread(function()
 
 		Citizen.Wait(1)
 
-		if IsControlJustPressed(1, 118) then
+		-- if IsControlJustPressed(1, 118) then
 
-			driftmode = not driftmode
+		-- 	driftmode = not driftmode
 
-			if driftmode then
-				TriggerEvent("chatMessage", 'DRIFT', { 255,255,255}, '^2ON')
-			else
-				TriggerEvent("chatMessage", 'DRIFT', { 255,255,255}, '^1OFF')
-			end
-		end
+		-- 	if driftmode then
+		-- 		TriggerEvent("chatMessage", 'DRIFT', { 255,255,255}, '^2ON')
+		-- 	else
+		-- 		TriggerEvent("chatMessage", 'DRIFT', { 255,255,255}, '^1OFF')
+		-- 	end
+		-- end
 
 		if driftmode then
 

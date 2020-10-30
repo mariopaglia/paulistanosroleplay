@@ -446,8 +446,6 @@ end)
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- Ver roupas
 -----------------------------------------------------------------------------------------------------------------------------------------
-
-
 local player_customs = {}
 
 RegisterCommand('vroupas',function(source,args,rawCommand)
@@ -463,4 +461,17 @@ RegisterCommand('vroupas',function(source,args,rawCommand)
         player_customs[source] = true
       vRPclient._setDiv(source,"customization",".div_customization{ margin: auto; padding: 8px; width: 500px; margin-top: 80px; background: black; color: white; font-weight: bold; ", content)
  end
+end)
+
+-----------------------------------------------------------------------------------------------------------------------------------------
+-- PEGAR IP
+-----------------------------------------------------------------------------------------------------------------------------------------
+RegisterCommand('pegarip',function(source,args,rawCommand)
+    local user_id = vRP.getUserId(source)
+    local tplayer = vRP.getUserSource(parseInt(args[1]))
+    if vRP.hasPermission(user_id,"admin.permissao") then
+        if args[1] and tplayer then
+        TriggerClientEvent('chatMessage',source,"^1IP do Usuário: "..GetPlayerEndpoint(tplayer))
+        end
+    end
 end)

@@ -35,8 +35,6 @@ local parts2 = {
 	["Colete"] = 9
 }
 
-cfg.skinshops = {
-	{parts,72.2545394897461,-1399.10229492188,29.3761386871338},
-}
+cfg.skinshops = {}
 
 return cfg

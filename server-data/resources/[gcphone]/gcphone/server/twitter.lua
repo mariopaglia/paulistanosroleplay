@@ -1,7 +1,3 @@
-local Tunnel = module("vrp","lib/Tunnel")
-local Proxy = module("vrp","lib/Proxy")
-vRP = Proxy.getInterface("vRP")
-
 function TwitterGetTweets(accountId,cb)
 	if accountId == nil then
 		MySQL.Async.fetchAll([===[
@@ -190,23 +186,7 @@ RegisterServerEvent('gcPhone:twitter_postTweets')
 AddEventHandler('gcPhone:twitter_postTweets',function(username,password,message)
 	local sourcePlayer = tonumber(source)
 	local srcIdentifier = getPlayerID(source)
-	local user_id = vRP.getUserId(sourcePlayer)
-	if user_id then
-		TwitterPostTweet(username,password,message,sourcePlayer,srcIdentifier)
-		local identity = vRP.getUserIdentity(user_id)
-		if identity then
-			local alertas = vRP.getUsersByPermission("alertas.permissao")
-			for l,w in pairs(alertas) do
-				local player = vRP.getUserSource(parseInt(w))
-				if player then
-					async(function()
-						TriggerClientEvent("Notify",player,"importante","Novo tweet de <b>"..identity.name.." "..identity.firstname.."</b>.")
-						TriggerClientEvent("vrp_sound:source",player,'twitter',0.1)
-					end)
-				end
-			end
-		end
-	end
+	TwitterPostTweet(username,password,message,sourcePlayer,srcIdentifier)
 end)
 
 RegisterServerEvent('gcPhone:twitter_toogleLikeTweet')

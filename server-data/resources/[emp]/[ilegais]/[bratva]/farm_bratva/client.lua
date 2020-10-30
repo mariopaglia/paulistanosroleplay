@@ -9,9 +9,9 @@ emP = Tunnel.getInterface("farm_bratva")
 local blips = false
 local servico = false
 local selecionado = 0
-local CoordenadaX = -77.33
-local CoordenadaY = 1000.96
-local CoordenadaZ = 230.60
+local CoordenadaX = -99.71
+local CoordenadaY = 1012.88
+local CoordenadaZ = 235.79
 -- local CoordenadaX = 1690.28 -- Teste (primeiro blip)
 -- local CoordenadaY = 3753.29 -- Teste (primeiro blip)
 -- local CoordenadaZ = 34.30 -- Teste (primeiro blip)
@@ -83,9 +83,9 @@ Citizen.CreateThread(function()
 							RemoveBlip(blips)
 							backentrega = selecionado
 							processo = true
-							segundos = 11
+							segundos = 5
 							
-							TriggerEvent("progress",10000,"Coletando")
+							TriggerEvent("progress",5000,"Coletando")
 							vRP._playAnim(false,{{"anim@heists@ornate_bank@grab_cash_heels","grab"}},true)
 										 
 							if selecionado == 11 then
@@ -93,7 +93,7 @@ Citizen.CreateThread(function()
 							else
 								selecionado = selecionado + 1
 							end
-							Citizen.Wait(10000)
+							Citizen.Wait(5000)
 							emP.checkPayment()
 							CriandoBlip(locs,selecionado)
 					end

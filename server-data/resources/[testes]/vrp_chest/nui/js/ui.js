@@ -26,7 +26,7 @@ $(document).ready(function() {
     lastEvent = item.action;
     switch (item.action) {
       case "showMenu":
-        updateMochila();
+        updateChest();
         actionContainer.fadeIn(500);
         break;
 

@@ -3,7 +3,7 @@ local Proxy = module("vrp","lib/Proxy")
 vRP = Proxy.getInterface("vRP")
 
 local myPedId = nil
-local phoneProp = nil
+local phoneProp = 0
 local phoneModel = "prop_amb_phone"
 local currentStatus = "out"
 local lastDict = nil
@@ -51,19 +51,19 @@ function newPhoneProp()
 	while not HasModelLoaded(phoneModel) do
 		Citizen.Wait(10)
 	end
-
-	local coords = GetOffsetFromEntityInWorldCoords(myPedId,0.0,0.0,-5.0)
-	phoneProp = CreateObject(GetHashKey(phoneModel),coords.x,coords.y,coords.z,true,true,true)
+	phoneProp = CreateObject(GetHashKey(phoneModel),1.0,1.0,1.0,1,1,0)
 	SetEntityCollision(phoneProp,false,false)
-	AttachEntityToEntity(phoneProp,myPedId,GetPedBoneIndex(myPedId,28422),0.0,0.0,0.0,0.0,0.0,0.0,false,false,false,false,2,true)
-	SetEntityAsMissionEntity(phoneProp,true,true)
+	AttachEntityToEntity(phoneProp,myPedId,GetPedBoneIndex(myPedId,28422),0.0,0.0,0.0,0.0,0.0,0.0,1,1,0,0,2,1)
+	Citizen.InvokeNative(0xAD738C3085FE7E11,phoneProp,true,true)
 end
 
 function deletePhone()
 	TriggerEvent("binoculos")
 	if DoesEntityExist(phoneProp) then
-		DetachEntity(phoneProp,false,false)
-		TriggerServerEvent("trydeleteobj",ObjToNet(phoneProp))
+		DetachEntity(phoneProp,true,true)
+		Citizen.InvokeNative(0xAD738C3085FE7E11,phoneProp,true,true)
+		SetEntityAsNoLongerNeeded(Citizen.PointerValueIntInitialized(phoneProp))
+		DeleteEntity(phoneProp)
 		phoneProp = nil
 	end
 end

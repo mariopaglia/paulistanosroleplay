@@ -82,6 +82,15 @@ cfg.list = {
 	[79] = { text = true, hash = 631614199, x = -1093.7716064453, y = -822.71356201172, z = 5.4799013137817, lock = true, perm = "policia.permissao" }, -- Selas PMESP
 	[80] = { text = true, hash = 631614199, x = -1091.2698974609, y = -826.02325439453, z = 5.4799017906189, lock = true, perm = "policia.permissao" }, -- Selas PMESP
 	[81] = { text = true, hash = 631614199, x = -1088.9621582031, y = -829.22436523438, z = 5.4797768592834, lock = true, perm = "policia.permissao" }, -- Selas PMESP
+	[82] = { text = true, hash = 1901183774, x = -112.81, y = 986.13, z = 235.75, lock = true, perm = "bratva.permissao" }, -- Entrada da frente
+	[82] = { text = true, hash = 1901183774, x = -62.11, y = 998.71, z = 234.68, lock = true, perm = "bratva.permissao" }, -- Entrada de trás
+	[83] = { text = true, hash = 736699661, ['x'] = -105.13, ['y'] = 992.71, ['z'] = 235.78, lock = true, perm = "bratva.permissao", other = 84 }, -- Portas secundárias (duplas)
+	[84] = { text = true, hash = 736699661, ['x'] = -104.53, ['y'] = 991.51, ['z'] = 235.78, lock = true, perm = "bratva.permissao", other = 83 }, -- Portas secundárias (duplas)
+	[85] = { text = true, hash = 736699661, ['x'] = -96.47, ['y'] = 1001.63, ['z'] = 235.77, lock = true, perm = "bratva.permissao", other = 86 }, -- Portas escritório/rota (duplas)
+	[86] = { text = true, hash = 736699661, ['x'] = -95.60, ['y'] = 1002.00, ['z'] = 235.77, lock = true, perm = "bratva.permissao", other = 85 }, -- Portas escritório/rota (duplas)
+	[87] = { text = true, hash = 736699661, ['x'] = -78.11, ['y'] = 1001.27, ['z'] = 234.56, lock = true, perm = "bratva.permissao" }, -- Portas porão/produção
+	[88] = { text = true, hash = 736699661, ['x'] = -68.11, ['y'] = 997.07, ['z'] = 234.56, lock = true, perm = "bratva.permissao" }, -- Portas porão/produção
+	[89] = { text = true, hash = 736699661, ['x'] = -61.91, ['y'] = 990.87, ['z'] = 234.57, lock = true, perm = "bratva.permissao" }, -- Porta escritório/baú
 --	[] = { text = true/false, hash = , ['x'] = , ['y'] = , ['z'] = , lock = true/false, perm = "suapermissiao" },
 }
 

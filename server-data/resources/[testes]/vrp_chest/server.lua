@@ -25,23 +25,20 @@ end
 -- CHEST
 -----------------------------------------------------------------------------------------------------------------------------------------
 local chest = {
-	["Policia"] = { 15000,"policia.permissao" },
-	["Sheriff"] = { 5000,"policia.permissao" },
-	["Ballas"] = { 5000,"pcc.permissao" },
-	["Vagos"] = { 5000,"tcc.permissao" },
-	["Families"] = { 5000,"crbc.permissao" },
-	["Marabunta"] = { 5000,"marabunta.permissao" },
-	["Mafia"] = { 5000,"mafia.permissao" },
-	["Serpentes"] = { 5000,"serpentes.permissao" },
+	["Policia"] = { 5000,"policia.permissao" },
+	["TCP"] = { 5000,"tcp.permissao" },
+	["ADA"] = { 5000,"ada.permissao" }, 
+	["Milícia"] = { 5000,"milicia.permissao" },
+	["CV"] = { 5000,"cv.permissao" },
 	["Motoclub"] = { 5000,"motoclub.permissao" },
-	["Cosanostra"] = { 5000,"cosanostra.permissao" },
-	["Yakuza"] = { 5000,"yakuza.permissao" },
-	["Corleone"] = { 5000,"corleone.permissao" },
-	["Flanela"] = { 5000,"flanela.permissao" },
-	["Concessionaria"] = { 5000,"conce.permissao" },
-    ["Cv"] = { 5000,"tcc.permissao" },
-	["Pcc"] = { 5000,"pcc.permissao" },
-	["Corredores"] = { 5000,"corredores.permissao" },
+	["lifeinvader"] = { 5000,"lifeinvader.permissao" },
+	["loszetas"] = { 5000,"loszetas.permissao" },
+	["bratva"] = { 5000,"bratva.permissao" },
+	["buscape"] = { 5000,"buscape.permissao" },
+	["speed"] = { 5000,"speed.permissao" },
+	["merryweather"] = { 5000,"merryweather.permissao" },
+	["hotrod"] = { 5000,"mecanico.permissao" },
+	["vanilla"] = { 5000,"vanilla.permissao" },
 }
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- VARIÁVEIS
@@ -127,7 +124,7 @@ function src.storeItem(chestName,itemName,amount)
 
 							if chestName == "Policia" or chestName == "Sheriff" then
 								SendWebhookMessage(webhookbaupolicia,"```prolog\n[ID]: "..user_id.." "..identity.name.." "..identity.firstname.." \n[GUARDOU]: "..vRP.format(parseInt(amount)).." "..vRP.itemNameList(itemName).." \n[BAU]: "..chestName.." "..os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S").." \r```")
-							elseif chestName == "Ballas" or chestName == "Vagos" or chestName == "Families" or chestName == "Marabunta" or chestName == "Mafia" or chestName == "Serpentes" or chestName == "Motoclub" or chestName == "Cosanostra" or chestName == "Yakuza" or chestName == "Corleone" or chestName == "Transportadora" or chestName == "Concessionaria" or chestName == "Corredores" then
+							elseif chestName == "Ballas" or chestName == "CV" or chestName == "ADA" or chestName == "TCP" or chestName == "MILICIA" or chestName == "Serpentes" or chestName == "Motoclub" or chestName == "Cosanostra" or chestName == "Yakuza" or chestName == "Corleone" or chestName == "Transportadora" or chestName == "Concessionaria" or chestName == "Corredores" then
 								SendWebhookMessage(webhookbaugangues,"```prolog\n[ID]: "..user_id.." "..identity.name.." "..identity.firstname.." \n[GUARDOU]: "..vRP.format(parseInt(amount)).." "..vRP.itemNameList(itemName).." \n[BAU]: "..chestName.." "..os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S").." \r```")
 							end
 
@@ -157,7 +154,7 @@ function src.storeItem(chestName,itemName,amount)
 
 									if chestName == "Policia" or chestName == "Sheriff" then
 										SendWebhookMessage(webhookbaupolicia,"```prolog\n[ID]: "..user_id.." "..identity.name.." "..identity.firstname.." \n[GUARDOU]: "..vRP.format(parseInt(v.amount)).." "..vRP.itemNameList(itemName).." \n[BAU]: "..chestName.." "..os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S").." \r```")
-									elseif chestName == "Ballas" or chestName == "Vagos" or chestName == "Families" or chestName == "Marabunta" or chestName == "Mafia" or chestName == "Serpentes" or chestName == "Motoclub" or chestName == "Cosanostra" or chestName == "Yakuza" or chestName == "Corleone" or chestName == "Transportadora" or chestName == "Concessionaria" or chestName == "Corredores" then
+									elseif chestName == "Ballas" or chestName == "CV" or chestName == "ADA" or chestName == "TCP" or chestName == "MILICIA" or chestName == "Serpentes" or chestName == "Motoclub" or chestName == "Cosanostra" or chestName == "Yakuza" or chestName == "Corleone" or chestName == "Transportadora" or chestName == "Concessionaria" or chestName == "Corredores" then
 										SendWebhookMessage(webhookbaugangues,"```prolog\n[ID]: "..user_id.." "..identity.name.." "..identity.firstname.." \n[GUARDOU]: "..vRP.format(parseInt(v.amount)).." "..vRP.itemNameList(itemName).." \n[BAU]: "..chestName.." "..os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S").." \r```")
 									end
 
@@ -194,7 +191,7 @@ function src.takeItem(chestName,itemName,amount)
 
 							if chestName == "Policia" or chestName == "Sheriff" then
 								SendWebhookMessage(webhookbaupolicia,"```prolog\n[ID]: "..user_id.." "..identity.name.." "..identity.firstname.." \n[RETIROU]: "..vRP.format(parseInt(amount)).." "..vRP.itemNameList(itemName).." \n[BAU]: "..chestName.." "..os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S").." \r```<@&584135183213527050>")
-							elseif chestName == "Ballas" or chestName == "Vagos" or chestName == "Families" or chestName == "Marabunta" or chestName == "Mafia" or chestName == "Serpentes" or chestName == "Motoclub" or chestName == "Cosanostra" or chestName == "Yakuza" or chestName == "Corleone" or chestName == "Transportadora" or chestName == "Concessionaria" or chestName == "Corredores" then
+							elseif chestName == "Ballas" or chestName == "CV" or chestName == "ADA" or chestName == "TCP" or chestName == "MILICIA" or chestName == "Serpentes" or chestName == "Motoclub" or chestName == "Cosanostra" or chestName == "Yakuza" or chestName == "Corleone" or chestName == "Transportadora" or chestName == "Concessionaria" or chestName == "Corredores" then
 								SendWebhookMessage(webhookbaugangues,"```prolog\n[ID]: "..user_id.." "..identity.name.." "..identity.firstname.." \n[RETIROU]: "..vRP.format(parseInt(amount)).." "..vRP.itemNameList(itemName).." \n[BAU]: "..chestName.." "..os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S").." \r```")
 							end
 
@@ -215,7 +212,7 @@ function src.takeItem(chestName,itemName,amount)
 
 							if chestName == "Policia" or chestName == "Sheriff" then
 								SendWebhookMessage(webhookbaupolicia,"```prolog\n[ID]: "..user_id.." "..identity.name.." "..identity.firstname.." \n[RETIROU]: "..vRP.format(parseInt(items[itemName].amount)).." "..vRP.itemNameList(itemName).." \n[BAU]: "..chestName.." "..os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S").." \r```<@&584135183213527050>")
-							elseif chestName == "Ballas" or chestName == "Vagos" or chestName == "Families" or chestName == "Marabunta" or chestName == "Mafia" or chestName == "Serpentes" or chestName == "Motoclub" or chestName == "Cosanostra" or chestName == "Yakuza" or chestName == "Corleone" or chestName == "Transportadora" or chestName == "Concessionaria" or chestName == "Corredores" then
+							elseif chestName == "Ballas" or chestName == "CV" or chestName == "ADA" or chestName == "TCP" or chestName == "MILICIA" or chestName == "Serpentes" or chestName == "Motoclub" or chestName == "Cosanostra" or chestName == "Yakuza" or chestName == "Corleone" or chestName == "Transportadora" or chestName == "Concessionaria" or chestName == "Corredores" then
 								SendWebhookMessage(webhookbaugangues,"```prolog\n[ID]: "..user_id.." "..identity.name.." "..identity.firstname.." \n[RETIROU]: "..vRP.format(parseInt(items[itemName].amount)).." "..vRP.itemNameList(itemName).." \n[BAU]: "..chestName.." "..os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S").." \r```")
 							end
 

@@ -185,17 +185,17 @@ Citizen.CreateThread(function()
 				piscaDireito = true
 			end
 
-			-- cruise
-	        if (GetPedInVehicleSeat(PedCar, -1) == ped) then
-	            if IsControlJustReleased(0, 137) then
-	                cruiseIsOn = not cruiseIsOn
-	                cruiseSpeed = GetEntitySpeed(PedCar)
-	            end
-	            local maxSpeed = cruiseIsOn and cruiseSpeed or GetVehicleHandlingFloat(PedCar,"CHandlingData","fInitialDriveMaxFlatVel")
-	            SetEntityMaxSpeed(PedCar, maxSpeed)
-	        else
-	            cruiseIsOn = false
-	        end			
+			-- -- cruise
+	        -- if (GetPedInVehicleSeat(PedCar, -1) == ped) then
+	        --     if IsControlJustReleased(0, 137) then
+	        --         cruiseIsOn = not cruiseIsOn
+	        --         cruiseSpeed = GetEntitySpeed(PedCar)
+	        --     end
+	        --     local maxSpeed = cruiseIsOn and cruiseSpeed or GetVehicleHandlingFloat(PedCar,"CHandlingData","fInitialDriveMaxFlatVel")
+	        --     SetEntityMaxSpeed(PedCar, maxSpeed)
+	        -- else
+	        --     cruiseIsOn = false
+	        -- end			
 		else	
 			inCar  = false
 			PedCar = 0
@@ -279,7 +279,7 @@ Citizen.CreateThread(function()
 					TriggerEvent("cancelando",true)
 					if CintoSeguranca then
 						TriggerEvent("vrp_sound:source",'unbelt',0.5)
-						SetTimeout(2000,function()
+						SetTimeout(1000,function()
 							CintoSeguranca = false
 							TriggerEvent("cancelando",false)
 						end)

@@ -1,4 +1,4 @@
-local registration_number = "00AAA000"
+local registration_number = "AAA-0000"
 
 function tvRP.setRegistrationNumber(registration)
 	registration_number = registration

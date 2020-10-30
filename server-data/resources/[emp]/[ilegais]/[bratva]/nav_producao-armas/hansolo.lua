@@ -49,12 +49,12 @@ RegisterNUICallback("ButtonClick",function(data,cb)
 	end
 end)
 
-RegisterNetEvent("bancada-armas:posicao")
-AddEventHandler("bancada-armas:posicao", function()
-	local ped = PlayerPedId()
-	SetEntityHeading(ped,270.89)
-	SetEntityCoords(ped,1405.96,1137.86,109.75-1,false,false,false,false)
-end)
+-- RegisterNetEvent("bancada-armas:posicao")
+-- AddEventHandler("bancada-armas:posicao", function()
+-- 	local ped = PlayerPedId()
+-- 	SetEntityHeading(ped,270.89)
+-- 	SetEntityCoords(ped,1405.96,1137.86,109.75-1,false,false,false,false)
+-- end)
 
 RegisterNetEvent("fechar-nui")
 AddEventHandler("fechar-nui", function()

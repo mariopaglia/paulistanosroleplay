@@ -503,7 +503,7 @@ RegisterCommand('revistar',function(source,args,rawCommand)
 				TriggerClientEvent('chatMessage',source,"",{},"     1x "..itemlist["wbody|"..k].nome.." | "..vRP.format(parseInt(v.ammo)).."x Munições")
 			end
 		end
-		TriggerClientEvent('chatMessage',source,"",{},"     $"..vRP.format(parseInt(money)).." Dólares")
+		TriggerClientEvent('chatMessage',source,"",{},"     R$"..vRP.format(parseInt(money)).." reais")
 		TriggerClientEvent("Notify",nplayer,"importante","Revistado por <b>"..identity.name.." "..identity.firstname.."</b>.")
 	end
 end)
@@ -729,11 +729,11 @@ RegisterCommand('enviar',function(source,args,rawCommand)
 		if vRP.tryPayment(user_id,parseInt(args[1])) then
 			vRP.giveMoney(nuser_id,parseInt(args[1]))
 			vRPclient._playAnim(source,true,{{"mp_common","givetake1_a"}},false)
-			TriggerClientEvent("Notify",source,"sucesso","Enviou <b>$"..vRP.format(parseInt(args[1])).." dólares</b>.")
-			TriggerClientEvent("Notify",nplayer,"sucesso","Recebeu <b>$"..vRP.format(parseInt(args[1])).." dólares</b>.")
+			TriggerClientEvent("Notify",source,"sucesso","Enviou <b>R$"..vRP.format(parseInt(args[1])).." reais</b>.")
+			TriggerClientEvent("Notify",nplayer,"sucesso","Recebeu <b>R$"..vRP.format(parseInt(args[1])).." reais</b>.")
 			vRP.logs("savedata/enviar.txt","[ID]: "..user_id.." / [NID]: "..nuser_id.." / [VALOR]: "..parseInt(args[1]))
-			SendWebhookMessage(discordwebhook, "```prolog\n[====ENVIO DE DINHEIRO====]\n[DE]: "..user_id.."\n[PARA]: "..nuser_id.."\n[VALOR]: R$ "..args[1].."```")
-			-- TriggerEvent('logs:ToDiscord', discordwebhook , "ENVIAR", "```Player "..user_id.." enviou dinheiro para o ID "..nuser_id.." [R$]: "..args[1].."```", "https://www.tumarcafacil.com/wp-content/uploads/2017/06/RegistroDeMarca-01-1.png", false, false)
+			SendWebhookMessage(discordwebhook, "```prolog\n[====ENVIO DE DINHEIRO====]\n[DE]: "..user_id.."\n[PARA]: "..nuser_id.."\n[VALOR]: RR$ "..args[1].."```")
+			-- TriggerEvent('logs:ToDiscord', discordwebhook , "ENVIAR", "```Player "..user_id.." enviou dinheiro para o ID "..nuser_id.." [RR$]: "..args[1].."```", "https://www.tumarcafacil.com/wp-content/uploads/2017/06/RegistroDeMarca-01-1.png", false, false)
 		else
 			TriggerClientEvent("Notify",source,"negado","Não tem a quantia que deseja enviar.")
 		end
@@ -750,19 +750,19 @@ RegisterCommand('cobrar',function(source,args,rawCommand)
         local banco = vRP.getBankMoney(nuser_id)
         local identity =  vRP.getUserIdentity(user_id)
 		local identityu = vRP.getUserIdentity(nuser_id)
-        if vRP.request(consulta,"Deseja pagar <b>$"..vRP.format(parseInt(args[1])).."</b> Reais para <b>"..identity.name.." "..identity.firstname.."</b>?",30) then    
+        if vRP.request(consulta,"Deseja pagar <b>R$"..vRP.format(parseInt(args[1])).."</b> Reais para <b>"..identity.name.." "..identity.firstname.."</b>?",30) then    
             if banco >= parseInt(args[1]) then
                 vRP.setBankMoney(nuser_id,parseInt(banco-args[1]))
                 vRP.giveBankMoney(user_id,parseInt(args[1]))
-                TriggerClientEvent("Notify",source,"sucesso","Recebeu <b>$"..vRP.format(parseInt(args[1])).." Reais</b> de <b>"..identityu.name.. " "..identityu.firstname.."</b>.")
-                TriggerClientEvent("Notify",consulta,"sucesso","Enviou <b>$"..vRP.format(parseInt(args[1])).." Reais</b> para "..identity.name.." "..identity.firstname.."")
-				SendWebhookMessage(discordwebhook,"```prolog\n[ID]: "..user_id.." "..identity.name.." "..identity.firstname.." \n[COBROU]: R$"..vRP.format(parseInt(args[3])).." \n[DO ID]: "..parseInt(args[2]).." "..identityu.name.." "..identityu.firstname.." "..os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S").." \r```")
+                TriggerClientEvent("Notify",source,"sucesso","Recebeu <b>R$"..vRP.format(parseInt(args[1])).." Reais</b> de <b>"..identityu.name.. " "..identityu.firstname.."</b>.")
+                TriggerClientEvent("Notify",consulta,"sucesso","Enviou <b>R$"..vRP.format(parseInt(args[1])).." Reais</b> para "..identity.name.." "..identity.firstname.."")
+				SendWebhookMessage(discordwebhook,"```prolog\n[ID]: "..user_id.." "..identity.name.." "..identity.firstname.." \n[COBROU]: RR$"..vRP.format(parseInt(args[3])).." \n[DO ID]: "..parseInt(args[2]).." "..identityu.name.." "..identityu.firstname.." "..os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S").." \r```")
                 local player = vRP.getUserSource(parseInt(args[2]))
                 if player == nil then
                     return
                 else
                     local identity = vRP.getUserIdentity(user_id)
-                    TriggerClientEvent("Notify",consulta,"importante","<b>"..identity.name.." "..identity.firstname.."</b> transferiu <b>$"..vRP.format(parseInt(args[1])).." Reais</b> para sua conta.")
+                    TriggerClientEvent("Notify",consulta,"importante","<b>"..identity.name.." "..identity.firstname.."</b> transferiu <b>R$"..vRP.format(parseInt(args[1])).." Reais</b> para sua conta.")
                 end
 			else
 				TriggerClientEvent("Notify",consulta,"negado","Dinheiro insuficiente")
@@ -2372,38 +2372,95 @@ RegisterCommand('paypal',function(source,args,rawCommand)
 		if args[1] == "sacar" and parseInt(args[2]) > 0 then
 			local consulta = vRP.getUData(user_id,"vRP:paypal")
 			local resultado = json.decode(consulta) or 0
-			local confirmacao = vRP.prompt(source,"Deseja sacar o seu dinheiro do paypal?","")
-			if confirmacao == "" then
-				return
-			end
+			local fixbug = vRP.prompt(source,"Confirmaçao(Digite Sim):","")
+			if fixbug == "sim" then
 			if resultado >= parseInt(args[2]) then
 				vRP.giveBankMoney(user_id,parseInt(args[2]))
 				vRP.setUData(user_id,"vRP:paypal",json.encode(parseInt(resultado-args[2])))
-				TriggerClientEvent("Notify",source,"sucesso","Você efetuou o saque de <b>$"..vRP.format(parseInt(args[2])).." dólares</b> da sua conta paypal.")
+				TriggerClientEvent("Notify",source,"sucesso","Efetuou o saque de <b>R$"..vRP.format(parseInt(args[2])).." reais</b> da sua conta paypal.")
 			else
 				TriggerClientEvent("Notify",source,"negado","Dinheiro insuficiente em sua conta paypal.")
-			end
-		elseif args[1] == "trans" and parseInt(args[2]) > 0 and parseInt(args[3]) > 0 then
-			local consulta = vRP.getUData(parseInt(args[2]),"vRP:paypal")
-			local resultado = json.decode(consulta) or 0
-			local banco = vRP.getBankMoney(user_id)
-			local identityu = vRP.getUserIdentity(parseInt(args[2]))
-			if vRP.request(source,"Deseja transferir <b>$"..vRP.format(parseInt(args[3])).."</b> dólares para <b>"..identityu.name.." "..identityu.firstname.."</b>?",30) then	
-				if banco >= parseInt(args[3]) then
-					vRP.setBankMoney(user_id,parseInt(banco-args[3]))
-					vRP.setUData(parseInt(args[2]),"vRP:paypal",json.encode(parseInt(resultado+args[3])))
-					TriggerClientEvent("Notify",source,"sucesso","Enviou <b>$"..vRP.format(parseInt(args[3])).." dólares</b> ao passaporte <b>"..vRP.format(parseInt(args[2])).."</b>.")
-					local player = vRP.getUserSource(parseInt(args[2]))
-					if player == nil then
-						return
-					else
-						local identity = vRP.getUserIdentity(user_id)
-						TriggerClientEvent("Notify",player,"importante","<b>"..identity.name.." "..identity.firstname.."</b> transferiu <b>$"..vRP.format(parseInt(args[3])).." dólares</b> para sua conta do paypal.")
-					end
-				else
-					TriggerClientEvent("Notify",source,"negado","Dinheiro insuficiente.")
 				end
 			end
 		end
 	end
+	local user_id = vRP.getUserId(source)
+	local identity = vRP.getUserIdentity(user_id)
+	if user_id then
+	if args[1] == "trans" and parseInt(args[2]) > 0 and parseInt(args[3]) > 0 then
+	local consulta = vRP.getUData(parseInt(args[2]),"vRP:paypal")
+	local resultado = json.decode(consulta) or 0
+	local banco = vRP.getBankMoney(user_id)
+	local identityu = vRP.getUserIdentity(parseInt(args[2]))
+	if vRP.request(source,"Deseja transferir <b>R$"..vRP.format(parseInt(args[3])).."</b> reais para <b>"..identityu.name.." "..identityu.firstname.."</b>?",30) then
+		if banco >= parseInt(args[3]) then
+			vRP.setBankMoney(user_id,parseInt(banco-args[3]))
+			vRP.setUData(parseInt(args[2]),"vRP:paypal",json.encode(parseInt(resultado+args[3])))
+			TriggerClientEvent("Notify",source,"sucesso","Enviou <b>R$"..vRP.format(parseInt(args[3])).." reais</b> ao passaporte <b>"..vRP.format(parseInt(args[2])).."</b>.")
+			SendWebhookMessage(webhookpaypal,"```prolog\n[ID]: "..user_id.." "..identity.name.." "..identity.firstname.." \n[ENVIOU]: R$"..vRP.format(parseInt(args[3])).." \n[PARA O ID]: "..parseInt(args[2]).." "..identityu.name.." "..identityu.firstname.." "..os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S").." \r```")
+			local player = vRP.getUserSource(parseInt(args[2]))
+			if player == nil then
+				return
+			else
+				local identity = vRP.getUserIdentity(user_id)
+				TriggerClientEvent("Notify",player,"importante","<b>"..identity.name.." "..identity.firstname.."</b> transferiu <b>R$"..vRP.format(parseInt(args[3])).." reais</b> para sua conta do paypal.")
+			end
+		else
+			TriggerClientEvent("Notify",source,"negado","Dinheiro insuficiente.")
+				end
+			end
+		end
+	end
+end)
+
+-----------------------------------------------------------------------------------------------------------------------------------------
+-- /STATUS (PESSOAS ONLINE POR PROFISSÃO)
+-----------------------------------------------------------------------------------------------------------------------------------------
+RegisterCommand('status',function(source,args,rawCommand)
+    local onlinePlayers = GetNumPlayerIndices()
+    local policia = vRP.getUsersByPermission("policia.permissao")
+    local paramedico = vRP.getUsersByPermission("paramedico.permissao")
+    local mec = vRP.getUsersByPermission("mecanico.permissao")
+    local staff = vRP.getUsersByPermission("admin.permissao")
+    local taxista = vRP.getUsersByPermission("taxista.permissao")
+    local user_id = vRP.getUserId(source)        
+        TriggerClientEvent("Notify",source,"importante","<bold><b>Jogadores</b>: <b>"..onlinePlayers.."<br>Staff</b>: <b>"..#staff.."<br>Policiais</b>: <b>"..#policia.."<br>Taxistas</b>: <b>"..#taxista.."<br>Paramédicos</b>: <b>"..#paramedico.."<br>Mecânicos</b>: <b>"..#mec.."</b></bold>",9000)
+	end)
+	
+-----------------------------------------------------------------------------------------------------------------------------------------
+-- /STAFF
+-----------------------------------------------------------------------------------------------------------------------------------------
+RegisterCommand('staff',function(source,args,rawCommand)
+    local staff = vRP.getUsersByPermission("admin.permissao")
+    local user_id = vRP.getUserId(source)        
+        TriggerClientEvent("Notify",source,"importante","Administrador(es): <b>"..#staff.."</b>",9000)
+	end)
+	
+-----------------------------------------------------------------------------------------------------------------------------------------
+-- BEIJO SINCRONIZADO
+-----------------------------------------------------------------------------------------------------------------------------------------
+RegisterCommand("beijar",function(source,args,rawCommand)
+    local user_id = vRP.getUserId(source)
+    local nplayer = vRPclient.getNearestPlayer(source,2)
+    if nplayer then
+        local pedido = vRP.request(nplayer,"Deseja iniciar o beijo ?",10)
+        if pedido then
+            vRPclient.playAnim(source,true,{{"mp_ped_interaction","kisses_guy_a"}},false)    
+            vRPclient.playAnim(nplayer,true,{{"mp_ped_interaction","kisses_guy_b"}},false)
+        end
+    end
+end)
+
+-----------------------------------------------------------------------------------------------------------------------------------------
+-- IDP (ID DO JOGADOR PRÓXIMO)
+-----------------------------------------------------------------------------------------------------------------------------------------
+RegisterCommand('idp',function(source,args,rawCommand)
+    local user_id = vRP.getUserId(source)
+    local nplayer = vRPclient.getNearestPlayer(source,5)
+    if nplayer then
+        local nuser_id = vRP.getUserId(nplayer)
+        TriggerClientEvent("Notify",source,"importante","Jogador próximo: "..nuser_id..".")
+    else
+        TriggerClientEvent("Notify",source,"aviso","Nenhum Jogador Próximo")
+    end
 end)

@@ -74,23 +74,23 @@ cfg.list = {
 	[71] = { text = true, hash = -642608865, x = -2058.05, y = -458.29, z = 16.43, lock = true, perm = "policia.permissao" },
 	[72] = { text = true, hash = 964838196, x = -2049.29, y = -464.29, z = 16.43, lock = true, perm = "policia.permissao" },
 	[73] = { text = true, hash = 2927316334, x = 890.84, y = -2095.76, z = 30.77, lock = true, perm = "motoclub.permissao" },
-	[74] = { text = true, hash = 631614199, x = -1086.8642578125, y = -829.77734375, z = 5.4796905517578, lock = true, perm = "policia.permissao" }, -- Selas PMESP
-	[75] = { text = true, hash = 631614199, x = -1086.6595458984, y = -827.57403564453, z = 5.4798035621643, lock = true, perm = "policia.permissao" }, -- Selas PMESP
-	[76] = { text = true, hash = 631614199, x = -1089.1531982422, y = -824.21099853516, z = 5.4799799919128, lock = true, perm = "policia.permissao" }, -- Selas PMESP
-	[77] = { text = true, hash = 631614199, x = -1091.5496826172, y = -821.17828369141, z = 5.4799766540527, lock = true, perm = "policia.permissao" }, -- Selas PMESP
-	[78] = { text = true, hash = 631614199, x = -1096.0926513672, y = -819.70141601563, z = 5.4798879623413, lock = true, perm = "policia.permissao" }, -- Selas PMESP
-	[79] = { text = true, hash = 631614199, x = -1093.7716064453, y = -822.71356201172, z = 5.4799013137817, lock = true, perm = "policia.permissao" }, -- Selas PMESP
-	[80] = { text = true, hash = 631614199, x = -1091.2698974609, y = -826.02325439453, z = 5.4799017906189, lock = true, perm = "policia.permissao" }, -- Selas PMESP
-	[81] = { text = true, hash = 631614199, x = -1088.9621582031, y = -829.22436523438, z = 5.4797768592834, lock = true, perm = "policia.permissao" }, -- Selas PMESP
-	[82] = { text = true, hash = 1901183774, x = -112.81, y = 986.13, z = 235.75, lock = true, perm = "bratva.permissao" }, -- Entrada da frente
-	[82] = { text = true, hash = 1901183774, x = -62.11, y = 998.71, z = 234.68, lock = true, perm = "bratva.permissao" }, -- Entrada de trás
-	[83] = { text = true, hash = 736699661, ['x'] = -105.13, ['y'] = 992.71, ['z'] = 235.78, lock = true, perm = "bratva.permissao", other = 84 }, -- Portas secundárias (duplas)
-	[84] = { text = true, hash = 736699661, ['x'] = -104.53, ['y'] = 991.51, ['z'] = 235.78, lock = true, perm = "bratva.permissao", other = 83 }, -- Portas secundárias (duplas)
-	[85] = { text = true, hash = 736699661, ['x'] = -96.47, ['y'] = 1001.63, ['z'] = 235.77, lock = true, perm = "bratva.permissao", other = 86 }, -- Portas escritório/rota (duplas)
-	[86] = { text = true, hash = 736699661, ['x'] = -95.60, ['y'] = 1002.00, ['z'] = 235.77, lock = true, perm = "bratva.permissao", other = 85 }, -- Portas escritório/rota (duplas)
-	[87] = { text = true, hash = 736699661, ['x'] = -78.11, ['y'] = 1001.27, ['z'] = 234.56, lock = true, perm = "bratva.permissao" }, -- Portas porão/produção
-	[88] = { text = true, hash = 736699661, ['x'] = -68.11, ['y'] = 997.07, ['z'] = 234.56, lock = true, perm = "bratva.permissao" }, -- Portas porão/produção
-	[89] = { text = true, hash = 736699661, ['x'] = -61.91, ['y'] = 990.87, ['z'] = 234.57, lock = true, perm = "bratva.permissao" }, -- Porta escritório/baú
+	[74] = { text = true, hash = 631614199, x = -1086.8642578125, y = -829.77734375, z = 5.4796905517578, lock = true, perm = "policia.permissao" }, -- Celas PMESP
+	[75] = { text = true, hash = 631614199, x = -1086.6595458984, y = -827.57403564453, z = 5.4798035621643, lock = true, perm = "policia.permissao" }, -- Celas PMESP
+	[76] = { text = true, hash = 631614199, x = -1089.1531982422, y = -824.21099853516, z = 5.4799799919128, lock = true, perm = "policia.permissao" }, -- Celas PMESP
+	[77] = { text = true, hash = 631614199, x = -1091.5496826172, y = -821.17828369141, z = 5.4799766540527, lock = true, perm = "policia.permissao" }, -- Celas PMESP
+	[78] = { text = true, hash = 631614199, x = -1096.0926513672, y = -819.70141601563, z = 5.4798879623413, lock = true, perm = "policia.permissao" }, -- Celas PMESP
+	[79] = { text = true, hash = 631614199, x = -1093.7716064453, y = -822.71356201172, z = 5.4799013137817, lock = true, perm = "policia.permissao" }, -- Celas PMESP
+	[80] = { text = true, hash = 631614199, x = -1091.2698974609, y = -826.02325439453, z = 5.4799017906189, lock = true, perm = "policia.permissao" }, -- Celas PMESP
+	[81] = { text = true, hash = 631614199, x = -1088.9621582031, y = -829.22436523438, z = 5.4797768592834, lock = true, perm = "policia.permissao" }, -- Celas PMESP
+	[82] = { text = true, hash = 1901183774, x = -112.78, y = 986.11, z = 235.75, lock = true, perm = "bratva.permissao" }, -- Entrada da frente
+	[83] = { text = true, hash = 1901183774, x = -62.11, y = 998.71, z = 234.68, lock = true, perm = "bratva.permissao" }, -- Entrada de trás
+	[84] = { text = true, hash = 736699661, ['x'] = -105.13, ['y'] = 992.71, ['z'] = 235.78, lock = true, perm = "bratva.permissao", other = 85 }, -- Portas secundárias (duplas)
+	[85] = { text = true, hash = 736699661, ['x'] = -104.53, ['y'] = 991.51, ['z'] = 235.78, lock = true, perm = "bratva.permissao", other = 84 }, -- Portas secundárias (duplas)
+	[86] = { text = true, hash = 736699661, ['x'] = -96.47, ['y'] = 1001.63, ['z'] = 235.77, lock = true, perm = "bratva.permissao", other = 87 }, -- Portas escritório/rota (duplas)
+	[87] = { text = true, hash = 736699661, ['x'] = -95.60, ['y'] = 1002.00, ['z'] = 235.77, lock = true, perm = "bratva.permissao", other = 86 }, -- Portas escritório/rota (duplas)
+	[88] = { text = true, hash = 736699661, ['x'] = -78.11, ['y'] = 1001.27, ['z'] = 234.56, lock = true, perm = "bratva.permissao" }, -- Portas porão/produção
+	[89] = { text = true, hash = 736699661, ['x'] = -68.11, ['y'] = 997.07, ['z'] = 234.56, lock = true, perm = "bratva.permissao" }, -- Portas porão/produção
+	[90] = { text = true, hash = 736699661, ['x'] = -61.91, ['y'] = 990.87, ['z'] = 234.57, lock = true, perm = "bratva.permissao" }, -- Porta escritório/baú
 --	[] = { text = true/false, hash = , ['x'] = , ['y'] = , ['z'] = , lock = true/false, perm = "suapermissiao" },
 }
 

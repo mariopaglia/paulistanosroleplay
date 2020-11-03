@@ -37,6 +37,12 @@ RegisterNUICallback("ButtonClick",function(data,cb)
 	elseif data == "produzir-uzi" then
 		TriggerServerEvent("produzir-arma","uzi")
 
+	elseif data == "produzir-mtar21" then
+		TriggerServerEvent("produzir-arma","mtar21")
+
+	elseif data == "produzir-famas" then
+		TriggerServerEvent("produzir-arma","famas")
+
 	elseif data == "produzir-magnum44" then
 		TriggerServerEvent("produzir-arma","magnum44")
 

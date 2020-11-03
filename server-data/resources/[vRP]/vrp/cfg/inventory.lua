@@ -230,9 +230,9 @@ cfg.chestweight = {
 	["paradise"] = 100,
 	["pony"] = 100,
 	["pony2"] = 100,
-	["rumpo"] = 100,
-	["rumpo2"] = 100,
-	["rumpo3"] = 120,
+	["rumpo"] = 60,
+	["rumpo2"] = 70,
+	["rumpo3"] = 80,
 	["mule2"] = 200,
 	["mule"] = 200,
 	["pounder"] = 520,
@@ -447,75 +447,60 @@ cfg.chestweight = {
 	["124spider"] = 40
 }
 cfg.static_chest_types = {
-	["policia"] = {
-		weight = 5000,
-		permissions = { "policia.permissao" }
-	},
-	["motoclub"] = {
-		weight = 5000,
-		permissions = { "motoclub.permissao" }
-	},
-	["trafico"] = {
-		weight = 5000,
-		permissions = { "trafico.permissao" }
-	},
+	-- ["policia"] = {
+	-- 	weight = 5000,
+	-- 	permissions = { "policia.permissao" }
+	-- },
+	-- ["motoclub"] = {
+	-- 	weight = 5000,
+	-- 	permissions = { "motoclub.permissao" }
+	-- },
+	-- ["trafico"] = {
+	-- 	weight = 5000,
+	-- 	permissions = { "trafico.permissao" }
+	-- },
 	
-	["CV"] = {
-		weight = 5000,
-		permissions = { "cv.permissao" }
-	},
+	-- ["CV"] = {
+	-- 	weight = 5000,
+	-- 	permissions = { "cv.permissao" }
+	-- },
 	
-	["PCC"] = {
-		weight = 5000,
-		permissions = { "pcc.permissao" }
-	},
+	-- ["PCC"] = {
+	-- 	weight = 5000,
+	-- 	permissions = { "pcc.permissao" }
+	-- },
 	
-	["Vanilla"] = {
-		weight = 5000,
-		permissions = { "vanilla.permissao" }
-	},
+	-- ["Vanilla"] = {
+	-- 	weight = 5000,
+	-- 	permissions = { "vanilla.permissao" }
+	-- },
 
-	["TCP"] = {
-		weight = 5000,
-		permissions = { "tcp.permissao" }
-	},
+	-- ["TCP"] = {
+	-- 	weight = 5000,
+	-- 	permissions = { "tcp.permissao" }
+	-- },
 
-	["cn"] = { -- Na casa
-		weight = 5000,
-		permissions = { "cn.permissao" }
-	},
+	-- ["cn"] = { -- Na casa
+	-- 	weight = 5000,
+	-- 	permissions = { "cn.permissao" }
+	-- },
 
-	["bratva"] = {
-		weight = 5000,
-		permission = { "bratva.permissao" }
-	},
+	-- ["bratva"] = {
+	-- 	weight = 5000,
+	-- 	permission = { "bratva.permissao" }
+	-- },
 	
-	["hospital"] = {
-		weight = 5000,
-		permissions = { "paramedico.permissao" }
-	},
+	-- ["hospital"] = {
+	-- 	weight = 5000,
+	-- 	permissions = { "paramedico.permissao" }
+	-- },
 	
-	["bunker"] = {
-		weight = 5000,
-		permissions = { "mafia.permissao" }
-	},
+	-- ["bunker"] = {
+	-- 	weight = 5000,
+	-- 	permissions = { "mafia.permissao" }
+	-- },
 }
 
-cfg.static_chests = {
-	{ "policia",478.21774291992,-982.66961669922,24.914741516113 }, -- PCESP
-	{ "policia",-2044.5174560547,-457.06552124023,16.424423217773 },
-	{ "policia",828.53796386719,162.86877441406,86.386734008789 },
-	{ "bunker",903.62664794922,-3199.4765625,-97.187950134277 },
-	{ "policia",459.57,-990.62,24.91 },
-	{ "motoclub",904.01873779297,-2105.5119628906,30.762208938599 },
-	{ "hospital",310.30255126953,-599.46258544922,43.291793823242 },
-	{ "Vanilla",108.76905059814,-1304.4376220703,28.768781661987 },
-	{ "trafico",1272.19,-1712.52,54.77 },
-	{ "CV",759.06005859375,-273.84399414063,69.458404541016 },
-	{ "PCC",2041.4327392578,-151.02279663086,267.03945922852 },
-	{ "TCP",1400.3177490234,-579.29699707031,74.461654663086 },
-	{ "cn",-1861.7457275391,2054.7880859375,135.45970153809 },
-	{ "bratva",-85.968597412109,1001.0049438477,230.68367004395 },
-}
+cfg.static_chests = {}
 
 return cfg

@@ -29,9 +29,6 @@ RegisterNUICallback("ButtonClick",function(data,cb)
 	if data == "comprar-molas" then
 		TriggerServerEvent("departamento-comprar","mola")
 
-	elseif data == "comprar-capsula" then
-		TriggerServerEvent("departamento-comprar","capsula")
-
 	elseif data == "comprar-corpodeak" then
 		TriggerServerEvent("departamento-comprar","corpodeak")
 

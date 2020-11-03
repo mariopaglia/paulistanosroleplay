@@ -28,12 +28,16 @@ files {
 	'nui/imagens/magnum44.png',
 	'nui/imagens/glock.png',
 	'nui/imagens/fiveseven.png',
+	'nui/imagens/famas.png',
+	'nui/imagens/imitar.png',
 
 	'nui/imagens/corpo-ak47.png',
 	'nui/imagens/corpo-aks.png',
 	'nui/imagens/corpo-uzi.png',
 	'nui/imagens/corpo-magnum44.png',
 	'nui/imagens/corpo-glock.png',
+	'nui/imagens/corpodefamas.png',
+	'nui/imagens/corpodeimitar.png',
 
 	'nui/imagens/molas.png',
 	'nui/imagens/placa-metal.png',

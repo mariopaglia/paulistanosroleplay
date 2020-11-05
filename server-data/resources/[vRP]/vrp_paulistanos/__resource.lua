@@ -7,5 +7,6 @@ client_scripts {
 	"teleports.lua",
 	"realisticvehicle.lua",
 	-- "showeapons.lua",
+	"peds.lua",
 	"doors.js"
 }

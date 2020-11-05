@@ -33,7 +33,7 @@ files {
 	'nui/imags/corpodeak.png',
 	'nui/imags/corpodefamas.png',
 	'nui/imags/corpodefiveseven.png',
-	'nui/imags/corpodeimitar.png',
+	'nui/imags/corpodemtar21.png',
 	'nui/imags/corpodemagnum.png',
 	'nui/imags/corpodeuzi.png',
 	'nui/imags/gatilho.png',

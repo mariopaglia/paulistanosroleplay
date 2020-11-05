@@ -90,19 +90,22 @@ local locais = {
 -----------------------------------------------------------------------------------------------------------------------------------------
 Citizen.CreateThread(function()
 	while true do
-		Citizen.Wait(1)
+		--Citizen.Wait(1)
+		local esperar = 1000
 		for _,v in pairs(locais) do
 			local ped = PlayerPedId()
 			local x,y,z = table.unpack(GetEntityCoords(ped))
 			local bowz,cdz = GetGroundZFor_3dCoord(v.x,v.y,v.z)
 			local distance = GetDistanceBetweenCoords(v.x,v.y,cdz,x,y,z,true)
 			if distance <= 1.2 and not andamento then
+				esperar = 4
 				drawTxt("PRESSIONE  ~r~E~w~  PARA INICIAR O ROUBO",4,0.5,0.93,0.50,255,255,255,180)
 				if IsControlJustPressed(0,38) and not IsPedInAnyVehicle(ped) then
 					func.checkRobbery(v.id,v.x,v.y,v.z,v.h)
 				end
 			end
 		end
+		Citizen.Wait(esperar)
 	end
 end)
 -----------------------------------------------------------------------------------------------------------------------------------------
@@ -122,7 +125,7 @@ end)
 -----------------------------------------------------------------------------------------------------------------------------------------
 Citizen.CreateThread(function()
 	while true do
-		Citizen.Wait(2000) -- Ajuste de tempo da animação (Ex: 30 segundos = 3000)
+		Citizen.Wait(2000) -- Ajuste de tempo da animação (Ex: 30 segundos = 3000) <--- está completamente errado 3000 é 3 segundos, 30000 que é 30 segundos.
 		if andamento then
 			segundos = segundos - 1
 			if segundos <= 0 then

@@ -51,7 +51,7 @@ local Teleport = {
 
 Citizen.CreateThread(function()
 	while true do
-		Citizen.Wait(1)
+		local esperar = 1000
 		for k,j in pairs(Teleport) do
 			local px,py,pz = table.unpack(GetEntityCoords(PlayerPedId(),true))
 			local unusedBool,coordz = GetGroundZFor_3dCoord(j.positionFrom.x,j.positionFrom.y,j.positionFrom.z,1)
@@ -59,7 +59,8 @@ Citizen.CreateThread(function()
 			local distance = GetDistanceBetweenCoords(j.positionFrom.x,j.positionFrom.y,coordz,px,py,pz,true)
 			local distance2 = GetDistanceBetweenCoords(j.positionTo.x,j.positionTo.y,coordz2,px,py,pz,true)
 
-			if distance <= 30 then
+			if distance <= 15 then
+				esperar = 4
 				DrawMarker(40,j.positionFrom.x,j.positionFrom.y,j.positionFrom.z-0.5,0,0,0,0,0,0,1.0,1.0,1.0,255,255,255,100,0,0,0,0)
 				if distance <= 1.5 then
 					if IsControlJustPressed(0,38) then
@@ -77,5 +78,6 @@ Citizen.CreateThread(function()
 			-- 	end
 			-- end
 		end
+		Citizen.Wait(esperar)
 	end
 end)

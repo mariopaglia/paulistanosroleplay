@@ -38,20 +38,23 @@ local locais = {
 -----------------------------------------------------------------------------------------------------------------------------------------
 Citizen.CreateThread(function()
 	while true do
-		Citizen.Wait(1)
+		--Citizen.Wait(1)
+		local esperar = 1000
 		for _,item in pairs(locais) do
 			local ped = GetPlayerPed(-1)
 			local px,py,pz = table.unpack(GetEntityCoords(ped,true))
 			local unusedBool,coordz = GetGroundZFor_3dCoord(item.x,item.y,item.z,1)
 			local distancia = GetDistanceBetweenCoords(item.x,item.y,coordz,px,py,pz,true)
 			if andamento then
+				esperar = 4
 				if IsControlJustPressed(0,244) or GetEntityHealth(ped) <= 100 then
 					andamento = false
 					rob.CancelandoRoubo()
 					ClearPedTasks(ped)
 				end
 			else
-				if distancia <= 50 then
+				if distancia <= 20 then
+					esperar = 4
 					DrawMarker(29,item.x,item.y,item.z,0,0,0,0,0,0,1.0,0.7,1.0,50,150,50,200,1,0,0,1)
 					if distancia <= 1.5 then
 						DisplayHelpText("Aperte ~INPUT_THROW_GRENADE~ para iniciar o roubo")
@@ -66,6 +69,7 @@ Citizen.CreateThread(function()
 				end
 			end
 		end
+		Citizen.Wait(esperar)
 	end
 end)
 -----------------------------------------------------------------------------------------------------------------------------------------
@@ -84,8 +88,9 @@ end)
 -----------------------------------------------------------------------------------------------------------------------------------------
 Citizen.CreateThread(function()
 	while true do
-		Citizen.Wait(1)
+		local esperar = 1000
 		if andamento then
+			esperar = 4
 			local ui = GetMinimapAnchor()
 			drawTxt(ui.right_x+0.230,ui.bottom_y-0.120,1.0,1.0,0.36,"APERTE ~r~M~w~ PARA CANCELAR O ROUBO EM ANDAMENTO",255,255,255,150,4)
 			drawTxt(ui.right_x+0.230,ui.bottom_y-0.100,1.0,1.0,0.50,"RESTAM ~g~"..segundos.." SEGUNDOS ~w~PARA TERMINAR",255,255,255,255,4)
@@ -106,6 +111,7 @@ Citizen.CreateThread(function()
 			DisableControlAction(0,182,true)
 			DisableControlAction(0,245,true)
 		end
+		Citizen.Wait(esperar)
 	end
 end)
 -----------------------------------------------------------------------------------------------------------------------------------------

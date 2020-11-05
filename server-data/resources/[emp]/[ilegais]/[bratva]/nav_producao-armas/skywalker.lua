@@ -101,11 +101,11 @@ AddEventHandler("produzir-arma",function(item)
                 ---------------------------
                 elseif item == "mtar21" then
                     if vRP.getInventoryWeight(user_id)+vRP.getItemWeight("wbody|WEAPON_ASSAULTSMG") <= vRP.getInventoryMaxWeight(user_id) then
-                        if vRP.getInventoryItemAmount(user_id,"corpodeimitar") >= 1 then
+                        if vRP.getInventoryItemAmount(user_id,"corpodemtar21") >= 1 then
                             if vRP.getInventoryItemAmount(user_id,"placademetal") >= 140 then
                                 if vRP.getInventoryItemAmount(user_id,"mola") >= 8 then
                                     if vRP.getInventoryItemAmount(user_id,"gatilho") >= 1 then
-                                        if vRP.tryGetInventoryItem(user_id,"corpodeimitar",1) and vRP.tryGetInventoryItem(user_id,"placademetal",140) and vRP.tryGetInventoryItem(user_id,"mola",8) and vRP.tryGetInventoryItem(user_id,"gatilho",1) then
+                                        if vRP.tryGetInventoryItem(user_id,"corpodemtar21",1) and vRP.tryGetInventoryItem(user_id,"placademetal",140) and vRP.tryGetInventoryItem(user_id,"mola",8) and vRP.tryGetInventoryItem(user_id,"gatilho",1) then
                                             TriggerClientEvent("fechar-nui",source)
                                             TriggerClientEvent("progress",source,10000,"Montando MTAR-21")
                                             vRPclient._playAnim(source,false,{{"amb@prop_human_parking_meter@female@idle_a","idle_a_female"}},true)

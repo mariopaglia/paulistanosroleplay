@@ -28,13 +28,15 @@ local locais = {
 -----------------------------------------------------------------------------------------------------------------------------------------
 Citizen.CreateThread(function()
 	while true do
-		Citizen.Wait(1)
+		--Citizen.Wait(1)
+		local esperar = 1000
 		for k,v in pairs(locais) do
 			local ped = PlayerPedId()
 			local x,y,z = table.unpack(GetEntityCoords(ped))
 			local bowz,cdz = GetGroundZFor_3dCoord(v.x,v.y,v.z)
 			local distance = GetDistanceBetweenCoords(v.x,v.y,cdz,x,y,z,true)
 			if andamento then
+				esperar = 4
 				drawTxt("APERTE ~r~M~w~ PARA CANCELAR O ROUBO EM ANDAMENTO",4,0.5,0.91,0.36,255,255,255,30)
 				drawTxt("RESTAM ~g~"..segundos.." SEGUNDOS ~w~PARA TERMINAR",4,0.5,0.93,0.50,255,255,255,180)
 				if IsControlJustPressed(0,244) or GetEntityHealth(ped) <= 100 then
@@ -45,6 +47,7 @@ Citizen.CreateThread(function()
 				end
 			else
 				if distance <= 1.2 then
+					esperar = 4
 					drawTxt("PRESSIONE  ~r~G~w~  PARA INICIAR O ROUBO",4,0.5,0.93,0.50,255,255,255,180)
 					if IsControlJustPressed(0,58) and not IsPedInAnyVehicle(ped) then
 						if GetEntityModel(ped) == GetHashKey("mp_m_freemode_01") or GetEntityModel(ped) == GetHashKey("mp_f_freemode_01") then
@@ -54,6 +57,7 @@ Citizen.CreateThread(function()
 				end
 			end
 		end
+		Citizen.Wait(esperar)
 	end
 end)
 -----------------------------------------------------------------------------------------------------------------------------------------

@@ -5,15 +5,15 @@ Config = {
 	deformationExponent = 0.4,					-- How much should the handling file deformation setting be compressed toward 1.0. (Make cars more similar). A value of 1=no change. Lower values will compress more, values above 1 it will expand. Dont set to zero or negative.
 	collisionDamageExponent = 0.6,				-- How much should the handling file deformation setting be compressed toward 1.0. (Make cars more similar). A value of 1=no change. Lower values will compress more, values above 1 it will expand. Dont set to zero or negative.
 
-	damageFactorEngine = 2.3,					-- Os valores são de 1 a 100. Valores mais altos significam mais danos ao veículo. Um bom ponto de partida é 10
-	damageFactorBody = 2.8,						-- Sane values are 1 to 100. Higher values means more damage to vehicle. A good starting point is 10
+	damageFactorEngine = 2.0,					-- Os valores são de 1 a 100. Valores mais altos significam mais danos ao veículo. Um bom ponto de partida é 10
+	damageFactorBody = 2.0,						-- Sane values are 1 to 100. Higher values means more damage to vehicle. A good starting point is 10
 	damageFactorPetrolTank = 35.0,				-- Sane values are 1 to 200. Higher values means more damage to vehicle. A good starting point is 64
 	engineDamageExponent = 0.6,					-- Quanto a configuração de danos no mecanismo de manipulação de arquivos deve ser compactada em direção a 1.0. (Faça carros mais semelhantes). Um valor de 1 = sem alteração. Valores mais baixos irão comprimir mais, valores acima de 1 serão expandidos. Não defina a zero ou negativo.
 	weaponsDamageMultiplier = 2.0,				-- Quanto dano o veículo deve receber do fogo das armas. Faixa de 0,0 a 10,0, onde 0,0 não é dano e 10,0 é 10x dano. -1 = não toque
 	degradingHealthSpeedFactor = 10,			-- Velocidade de degradação lenta da saúde, mas não falha. O valor de 10 significa que levará cerca de 0,25 segundo por ponto de integridade, de modo que a degradação de 800 a 305 levará cerca de 2 minutos de direção limpa. Valores mais altos significam degradação mais rápida
 	cascadingFailureSpeedFactor = 7.0,			-- Sane values are 1 to 100. When vehicle health drops below a certain point, cascading failure sets in, and the health drops rapidly until the vehicle dies. Higher values means faster failure. A good starting point is 8
 
-	degradingFailureThreshold = 800.0,			-- Below this value, slow health degradation will set in
+	degradingFailureThreshold = 600.0,			-- Below this value, slow health degradation will set in
 	cascadingFailureThreshold = 360.0,			-- Below this value, health cascading failure will set in
 	engineSafeGuard = 100.0,					-- Final failure value. Set it too high, and the vehicle won't smoke when disabled. Set too low, and the car will catch fire from a single bullet to the engine. At health 100 a typical car can take 3-4 bullets to the engine before catching fire.
 
@@ -30,7 +30,7 @@ Config = {
 
 	compatibilityMode = true,					-- prevents other scripts from modifying the fuel tank health to avoid random engine failure with BVA 2.01 (Downside is it disabled explosion prevention)
 
-	randomTireBurstInterval = 20,				-- Number of minutes (statistically, not precisely) to drive above 60 mph before you get a tire puncture. 0=feature is disabled
+	randomTireBurstInterval = 0,				-- Number of minutes (statistically, not precisely) to drive above 60 mph before you get a tire puncture. 0=feature is disabled
 
 	-- Class Damagefactor Multiplier
 	-- The damageFactor for engine, body and Petroltank will be multiplied by this value, depending on vehicle class
@@ -44,13 +44,13 @@ Config = {
 				1.0,		--	5: Sports Classics
 				1.0,		--	6: Sports
 				1.0,		--	7: Super
-				0.05,		--	8: Motorcycles
-				0.7,		--	9: Off-road
-				0.25,		--	10: Industrial
+				1.0,		--	8: Motorcycles
+				1.0,		--	9: Off-road
+				1.0,		--	10: Industrial
 				1.0,		--	11: Utility
 				1.0,		--	12: Vans
 				1.0,		--	13: Cycles
-				0.5,		--	14: Boats
+				1.0,		--	14: Boats
 				1.0,		--	15: Helicopters
 				1.0,		--	16: Planes
 				1.0,		--	17: Service

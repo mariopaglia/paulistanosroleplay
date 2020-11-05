@@ -291,7 +291,7 @@ files {
 	"nui/images/corpodeak.png",
 	"nui/images/corpodefamas.png",
 	"nui/images/corpodefiveseven.png",
-	"nui/images/corpodeimitar.png",
+	"nui/images/corpodemtar21.png",
 	"nui/images/corpodemagnum.png",
 	"nui/images/corpodeuzi.png",
 	"nui/images/gatilho.png",

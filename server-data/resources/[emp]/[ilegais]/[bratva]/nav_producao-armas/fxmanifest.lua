@@ -37,7 +37,7 @@ files {
 	'nui/imagens/corpo-magnum44.png',
 	'nui/imagens/corpo-glock.png',
 	'nui/imagens/corpodefamas.png',
-	'nui/imagens/corpodeimitar.png',
+	'nui/imagens/corpodemtar21.png',
 
 	'nui/imagens/molas.png',
 	'nui/imagens/placa-metal.png',

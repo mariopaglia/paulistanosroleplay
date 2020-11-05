@@ -12,7 +12,7 @@ local valores = {
 	{ item = "gatilho", quantidade = 1, compra = 5000 },
 	{ item = "corpodeak", quantidade = 1, compra = 30000 },
 	{ item = "corpodeuzi", quantidade = 1, compra = 25000 },
-	{ item = "corpodeimitar", quantidade = 1, compra = 20000 },
+	{ item = "corpodemtar21", quantidade = 1, compra = 20000 },
 	{ item = "corpodefamas", quantidade = 1, compra = 15000 },
 	{ item = "corpodemagnum", quantidade = 1, compra = 10000 },
 	{ item = "corpodefiveseven", quantidade = 1, compra = 5000 },

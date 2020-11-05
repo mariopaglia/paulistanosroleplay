@@ -25,20 +25,9 @@ end
 -- CHEST
 -----------------------------------------------------------------------------------------------------------------------------------------
 local chest = {
-	["Policia"] = { 5000,"policia.permissao" },
-	["TCP"] = { 5000,"tcp.permissao" },
-	["ADA"] = { 5000,"ada.permissao" }, 
-	["Milícia"] = { 5000,"milicia.permissao" },
-	["CV"] = { 5000,"cv.permissao" },
-	["Motoclub"] = { 5000,"motoclub.permissao" },
-	["lifeinvader"] = { 5000,"lifeinvader.permissao" },
-	["loszetas"] = { 5000,"loszetas.permissao" },
+	["policia"] = { 5000,"policia.permissao" },
+	["cosanostra"] = { 5000,"cn.permissao" },
 	["bratva"] = { 5000,"bratva.permissao" },
-	["buscape"] = { 5000,"buscape.permissao" },
-	["speed"] = { 5000,"speed.permissao" },
-	["merryweather"] = { 5000,"merryweather.permissao" },
-	["hotrod"] = { 5000,"mecanico.permissao" },
-	["vanilla"] = { 5000,"vanilla.permissao" },
 }
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- VARIÁVEIS

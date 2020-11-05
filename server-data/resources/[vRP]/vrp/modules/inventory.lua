@@ -191,7 +191,7 @@ local itemlist = {
 	["corpodeak"] = { index = "corpodeak", nome = "Corpo de AK-47", type = "usar" },
 	["corpodefamas"] = { index = "corpodefamas", nome = "Corpo de Famas", type = "usar" },
 	["corpodefiveseven"] = { index = "corpodefiveseven", nome = "Corpo de Five Seven", type = "usar" },
-	["corpodeimitar"] = { index = "corpodeimitar", nome = "Corpo de Imitar", type = "usar" },
+	["corpodemtar21"] = { index = "corpodemtar21", nome = "Corpo de MTAR-21", type = "usar" },
 	["corpodemagnum"] = { index = "corpodemagnum", nome = "Corpo de Magnum", type = "usar" },
 	["corpodeuzi"] = { index = "corpodeuzi", nome = "Corpo de UZI", type = "usar" },
 	["gatilho"] = { index = "gatilho", nome = "Gatilho", type = "usar" },

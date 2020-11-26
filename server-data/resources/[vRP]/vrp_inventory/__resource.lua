@@ -118,6 +118,7 @@ files {
 	"nui/images/identidade.png",
 	"nui/images/carbono.png",
 	"nui/images/ferro.png",
+	"nui/images/ferro2.png",
 	"nui/images/aco.png",
 	"nui/images/ferramenta.png",
 	"nui/images/encomenda.png",

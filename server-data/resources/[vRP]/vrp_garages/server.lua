@@ -519,7 +519,7 @@ local workgarage = {
 		"tribike3"
 	},
 	["Lixeiro"] = {
-		"trash2"
+		"trash"
 	},
 	["Minerador"] = {
 		"tiptruck"
@@ -541,8 +541,7 @@ local workgarage = {
 	},
 	["Caminhoneiro"] = {
 		"phantom",
-		"hauler",
-		"hauler2"
+		"hauler"
 	},
 	["Advogado"] = {
 		"felon2"

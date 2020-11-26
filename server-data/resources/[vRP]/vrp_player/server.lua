@@ -75,13 +75,6 @@ local itemlist = {
 	["cannabis"] = { index = "cannabis", nome = "Cannabis" },
 	["maconha"] = { index = "maconha", nome = "Maconha" },
 
-	["mouro"] = { index = "ouro", nome = "Ouro" },
-	["mbronze"] = { index = "bronze", nome = "Bronze" },
-	["mferro"] = { index = "ferro", nome = "Ferro" },
-	["mrubi"] = { index = "rubi", nome = "Rubi" },
-	["mesmeralda"] = { index = "esmeralda", nome = "Esmeralda" },
-	["diamante"] = { index = "diamante", nome = "Diamante" },
-
 	["agua"] = { index = "agua", nome = "Água" },
 	["limonada"] = { index = "limonada", nome = "Limonada" },
 	["refrigerante"] = { index = "refrigerante", nome = "Refrigerante" },
@@ -124,6 +117,28 @@ local itemlist = {
 	["malha"] = { index = "malha", nome = "Malha" },
 	["colete"] = { index = "colete", nome = "Colete Balístico" },
 	["linha"] = { index = "linha", nome = "Linha" },
+
+	-- Mineração (Não refinados)
+	["ametista2"] = { index = "ametista2", nome = "Min. Ametista" },
+	["bronze2"] = { index = "bronze2", nome = "Min. Bronze" },
+	["diamante2"] = { index = "diamante2", nome = "Min. Diamante" },
+	["esmeralda2"] = { index = "esmeralda2", nome = "Min. Esmeralda" },
+	["ferro2"] = { index = "ferro2", nome = "Min. Ferro" },
+	["ouro2"] = { index = "ouro2", nome = "Min. Ouro" },
+	["rubi2"] = { index = "rubi2", nome = "Min. Rubi" },
+	["safira2"] = { index = "safira2", nome = "Min. Safira" },
+	["topazio2"] = { index = "topazio2", nome = "Min. Topazio" },
+
+	-- Mineração (Refinados)
+	["ametista"] = { index = "ametista", nome = "Ametista" },
+	["bronze"] = { index = "bronze", nome = "Bronze" },
+	["diamante"] = { index = "diamante", nome = "Diamante" },
+	["esmeralda"] = { index = "esmeralda", nome = "Esmeralda" },
+	["ferro"] = { index = "ferro", nome = "Ferro" },
+	["ouro"] = { index = "ouro", nome = "Ouro" },
+	["rubi"] = { index = "rubi", nome = "Rubi" },
+	["safira"] = { index = "safira", nome = "Safira" },
+	["topazio"] = { index = "topazio", nome = "Topazio" },	
 
 	["placa"] = { index = "placa", nome = "Placa" },
 	["rebite"] = { index = "rebite", nome = "Rebite" },

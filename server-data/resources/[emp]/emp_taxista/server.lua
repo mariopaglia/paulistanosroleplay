@@ -16,8 +16,7 @@ end
 function emP.removeGroup()
 	local source = source
 	local user_id = vRP.getUserId(source)
-  vRP.removeUserGroup(user_id,"Taxista")
-  vRP.addUserGroup(user_id,"Civil")
+	vRP.removeUserGroup(user_id,"Taxista")
 end
 
 function emP.checkPermission()
@@ -30,10 +29,10 @@ function emP.checkPayment(payment)
     local source = source
     local user_id = vRP.getUserId(source)
     if user_id then
-        randmoney = (math.random(100,600))
+        randmoney = (math.random(1000,1900)*payment)
         vRP.giveMoney(user_id,parseInt(randmoney))
         TriggerClientEvent("vrp_sound:source",source,'coins',0.5)
-        TriggerClientEvent("Notify",source,"sucesso","Você recebeu <b>R$"..vRP.format(parseInt(randmoney)).." reais</b>.")
+        TriggerClientEvent("Notify",source,"sucesso","Você recebeu <b>$"..vRP.format(parseInt(randmoney)).." dólares</b>.")
     end
 end
 -----------------------------------------------------------------------------------------------------------------------------------------

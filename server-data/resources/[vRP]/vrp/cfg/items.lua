@@ -43,13 +43,8 @@ cfg.items = {
 	["benzoilecgonina"] = { "Benzoilecgonina",0.5 },
 	["cloridratoecgonina"] = { "Cloridratoecgonina",0.5 },
 	["cloridratococa"] = { "Cloridratococa",0.5 },
-	["pastadecoca"] = { "Pasta de Cocaina",0.5 },	
-	["mouro"] = { "Ouro",0.8 },	
-	["mferro"] = { "Ferro",0.5 },	
-	["mbronze"] = { "Bronze",0.3 },	
-	["mesmeralda"] = { "Esmeralda",0.6 },	
-	["mrubi"] = { "Rubi",0.6 },	
-	["diamante"] = { "Diamante",0.5 },	
+	["pastadecoca"] = { "Pasta de Cocaina",0.5 },
+
     ["graosimpuros"] = { "Grãos impuros",0.2 },	
     ["graos"] = { "Grãos",0.2 },	
 ---------------------------------
@@ -91,7 +86,6 @@ cfg.items = {
 	["placa"] = { "Placa",0.8 },
 	["rebite"] = { "Rebite",0.8 },
 	["carbono"] = { "Carbono",0.0038 },
-	["ferro"] = { "Ferro",0.0038 },
 	["aco"] = { "Aço",0.0015 },
 	["pecadearma"] = { "pecadearma",0.0015 },
 	["orgao"] = { "Órgão",1.2 },
@@ -112,7 +106,6 @@ cfg.items = {
 	["radio"] = { "Radio",1.0 },
 
 	-- Farm de Armas
-
 	["placademetal"] = { "Placa de Metal",0.5 },
 	["mola"] = { "Mola",0.2 },
 	["capsula"] = { "Cápsula",0.2 },
@@ -140,6 +133,28 @@ cfg.items = {
 	["colete"] = { "Colete Balístico",1.0 },
 	["malha"] = { "malha",0.3 },
 	["linha"] = { "linha",0.3 },
+
+	-- Mineração (Sem refinar)
+	["ametista2"] = { "Ametista2",0.3 },
+	["bronze2"] = { "Bronze2",0.3 },
+	["diamante2"] = { "Diamante2",0.3 },
+	["esmeralda2"] = { "Esmeralda2",0.3 },
+	["ferro2"] = { "Ferro2",0.3 },
+	["ouro2"] = { "Ouro2",0.3 },
+	["rubi2"] = { "Rubi2",0.3 },
+	["safira2"] = { "Safira2",0.3 },
+	["topazio2"] = { "Topazio2",0.3 },
+
+	-- Mineração (Refinados)
+	["ametista"] = { "Ametista",0.3 },
+	["bronze"] = { "Bronze",0.3 },
+	["diamante"] = { "Diamante",0.3 },
+	["esmeralda"] = { "Esmeralda",0.3 },
+	["ferro"] = { "Ferro",0.3 },
+	["ouro"] = { "Ouro",0.3 },
+	["rubi"] = { "Rubi",0.3 },
+	["safira"] = { "Safira",0.3 },
+	["topazio"] = { "Topazio",0.3 },
 	
 }
 

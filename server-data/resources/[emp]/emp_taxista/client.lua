@@ -14,14 +14,15 @@ local passageiro = nil
 local lastpassageiro = nil
 local checkped = true
 local timers = 0
-local payment = 1
+local payment = 1 --10
+-- 896.48, -177.45, 74.70
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- VARIAVEIS DO TAXIMETRO
 -----------------------------------------------------------------------------------------------------------------------------------------
 local TaxiGuiAtivo = true -- Ativa o GUIzin (Default: true)
-local Custobandeira = 0.0 --(1.00 = R$60 por minuto) Custo por minuto
-local custoporKm = 300.0 -- Custo por Km
-local CustoBase = 300.0 -- Custo Inicial
+local Custobandeira = 3.0 --(1.00 = R$60 por minuto) Custo por minuto
+local custoporKm = 50.0 -- Custo por Km
+local CustoBase = 10.0 -- Custo Inicial
 
 DecorRegister("bandeiras", 1)
 DecorRegister("kilometros", 1)
@@ -36,19 +37,20 @@ local meterActive = false
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- LOCALIDADES
 -----------------------------------------------------------------------------------------------------------------------------------------
+
 local locs = {
 	[1] = { ['x'] = 151.30, ['y'] = -1028.63, ['z'] = 28.84, ['xp'] = 152.45, ['yp'] = -1041.24, ['zp'] = 29.37, ['h'] = 252.0 },
 	[2] = { ['x'] = 423.84, ['y'] = -959.30, ['z'] = 28.81, ['xp'] = 437.37, ['yp'] = -979.03, ['zp'] = 30.68, ['h'] = 271.0 },
-	[3] = { ['x'] = 1.03, ['y'] = -1510.86, ['z'] = 29.40, ['xp'] = 20.67, ['yp'] = -1505.62, ['zp'] = 31.85, ['h'] = 319.0 },
+	[3] = { ['x'] = 1.03, ['y'] = -1510.86, ['z'] = 29.40, ['xp'] = 21.45, ['yp'] = -1505.35, ['zp'] = 31.85, ['h'] = 261.83 },
 	[4] = { ['x'] = -188.07, ['y'] = -1612.28, ['z'] = 33.39, ['xp'] = -189.55, ['yp'] = -1585.80, ['zp'] = 34.76, ['h'] = 178.0 },
 	[5] = { ['x'] = 98.88, ['y'] = -1927.16, ['z'] = 20.25, ['xp'] = 101.02, ['yp'] = -1912.35, ['zp'] = 21.40, ['h'] = 70.0 },
 	[6] = { ['x'] = 320.98, ['y'] = -2022.02, ['z'] = 20.40, ['xp'] = 335.73, ['yp'] = -2010.77, ['zp'] = 22.31, ['h'] = 321.0 },
 	[7] = { ['x'] = 755.53, ['y'] = -2486.26, ['z'] = 19.54, ['xp'] = 774.34, ['yp'] = -2475.07, ['zp'] = 20.14, ['h'] = 356.0 },
 	[8] = { ['x'] = 1057.66, ['y'] = -2124.80, ['z'] = 32.20, ['xp'] = 1040.09, ['yp'] = -2115.65, ['zp'] = 32.84, ['h'] = 175.0 },
 	[9] = { ['x'] = 1377.08, ['y'] = -1530.01, ['z'] = 56.07, ['xp'] = 1379.33, ['yp'] = -1514.99, ['zp'] = 58.43, ['h'] = 119.0 },
-	[10] = { ['x'] = 1260.24, ['y'] = -588.15, ['z'] = 68.53, ['xp'] = 1240.60, ['yp'] = -601.63, ['zp'] = 69.78, ['h'] = 193.0 },
+	[10] = { ['x'] = 1260.24, ['y'] = -588.15, ['z'] = 68.53, ['xp'] = 1240.61, ['yp'] = -580.47, ['zp'] = 69.78, ['h'] = 193.0 },
 	[11] = { ['x'] = 899.58, ['y'] = -590.58, ['z'] = 56.85, ['xp'] = 886.76, ['yp'] = -608.20, ['zp'] = 58.44, ['h'] = 238.0 },
-	[12] = { ['x'] = 945.18, ['y'] = -140.04, ['z'] = 74.07, ['xp'] = 959.34, ['yp'] = -121.23, ['zp'] = 74.96, ['h'] = 60.0 },
+	[12] = { ['x'] = 945.18, ['y'] = -140.04, ['z'] = 74.07, ['xp'] = 956.69, ['yp'] = -124.27, ['zp'] = 74.35, ['h'] = 130.65 },
 	[13] = { ['x'] = 84.44, ['y'] = 476.19, ['z'] = 146.91, ['xp'] = 80.10, ['yp'] = 486.12, ['zp'] = 148.20, ['h'] = 118.0 },
 	[14] = { ['x'] = -720.03, ['y'] = 482.23, ['z'] = 107.10, ['xp'] = -721.10, ['yp'] = 489.75, ['zp'] = 109.38, ['h'] = 110.0 },
 	[15] = { ['x'] = -1244.39, ['y'] = 497.98, ['z'] = 93.86, ['xp'] = -1229.15, ['yp'] = 515.72, ['zp'] = 95.42, ['h'] = 359.0 },
@@ -64,11 +66,11 @@ local locs = {
 	[25] = { ['x'] = -829.38, ['y'] = -1218.09, ['z'] = 6.54, ['xp'] = -822.50, ['yp'] = -1223.35, ['zp'] = 7.36, ['h'] = 319.0 },
 	[26] = { ['x'] = -334.47, ['y'] = -1418.13, ['z'] = 29.71, ['xp'] = -320.10, ['yp'] = -1389.73, ['zp'] = 36.50, ['h'] = 91.0 },
 	[27] = { ['x'] = 135.28, ['y'] = -1306.46, ['z'] = 28.65, ['xp'] = 132.91, ['yp'] = -1293.90, ['zp'] = 29.26, ['h'] = 119.0 },
-	[28] = { ['x'] = -34.00, ['y'] = -1079.86, ['z'] = 26.26, ['xp'] = -39.02, ['yp'] = -1082.46, ['zp'] = 26.42, ['h'] = 69.0 }
+	[28] = { ['x'] = -34.00, ['y'] = -1079.86, ['z'] = 26.26, ['xp'] = -41.98, ['yp'] = -1081.73, ['zp'] = 26.67, ['h'] = 69.0 }
 }
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- PEDLIST
------------------------------------------------------------------------------------------------------------------------------------------
+-----------------------------------------------------------------------------------------------------------------------------------------xx
 local pedlist = {
 	[1] = { ['model'] = "ig_abigail", ['hash'] = 0x400AEC41 },
 	[2] = { ['model'] = "a_m_o_acult_02", ['hash'] = 0x4BA14CCA },
@@ -96,17 +98,18 @@ local pedlist = {
 -----------------------------------------------------------------------------------------------------------------------------------------
 Citizen.CreateThread(function()
 	while true do
-		Citizen.Wait(5)
+		local kswait = 1000
 		if not emservico then
 			local ped = PlayerPedId()
 			local x,y,z = table.unpack(GetEntityCoords(ped))
 			local bowz,cdz = GetGroundZFor_3dCoord(CoordenadaX,CoordenadaY,CoordenadaZ)
 			local distance = GetDistanceBetweenCoords(CoordenadaX,CoordenadaY,cdz,x,y,z,true)
 
-			if distance <= 3 then
-				DrawMarker(21,CoordenadaX,CoordenadaY,CoordenadaZ-0.6,0,0,0,0.0,0,0,0.5,0.5,0.4,255,0,0,50,0,0,0,1)
+			if distance <= 6 then
+				kswait = 4
+				DrawMarker(21,CoordenadaX,CoordenadaY,CoordenadaZ-0.6,0,0,0,0.0,0,0,0.5,0.5,0.4,255,230,100,100,0,0,0,1)
 				if distance <= 1.2 then
-					drawTxt("PRESSIONE  ~r~E~w~  PARA INICIAR O EXPEDIENTE",4,0.5,0.93,0.50,255,255,255,180)
+					drawTxt("PRESSIONE  ~r~E~w~  PARA INICIAR O ~y~EXPEDIENTE",4,0.5,0.90,0.50,255,255,255,200)
 					if IsControlJustPressed(0,38) then
 						emP.addGroup()
 						emservico = true
@@ -117,6 +120,7 @@ Citizen.CreateThread(function()
 				end
 			end
 		end
+			Citizen.Wait(kswait)
 	end
 end)
 -----------------------------------------------------------------------------------------------------------------------------------------
@@ -124,17 +128,19 @@ end)
 -----------------------------------------------------------------------------------------------------------------------------------------
 Citizen.CreateThread(function()
 	while true do
-		Citizen.Wait(5)
+		local kswait = 1000
 		if emservico then
 			local ped = PlayerPedId()
 			local vehicle = GetVehiclePedIsUsing(ped)
-			local vehiclespeed = GetEntitySpeed(vehicle)*2.236936
+			--local vehiclespeed = GetEntitySpeed(vehicle)*2.236936
+			local vehiclespeed = GetEntitySpeed(vehicle)*3.605936
 			local x,y,z = table.unpack(GetEntityCoords(ped))
 			local bowz,cdz = GetGroundZFor_3dCoord(locs[selecionado].x,locs[selecionado].y,locs[selecionado].z)
 			local distance = GetDistanceBetweenCoords(locs[selecionado].x,locs[selecionado].y,cdz,x,y,z,true)
 
 			if distance <= 50.0 and IsVehicleModel(vehicle,GetHashKey("taxi")) then
-				DrawMarker(21,locs[selecionado].x,locs[selecionado].y,locs[selecionado].z+0.20,0,0,0,0,180.0,130.0,2.0,2.0,1.0,255,0,0,50,1,0,0,1)
+							kswait = 4
+				DrawMarker(21,locs[selecionado].x,locs[selecionado].y,locs[selecionado].z+0.20,0,0,0,0,180.0,130.0,2.0,2.0,1.0,255,230,100,100,1,0,0,1)
 				if distance <= 2.5 then
 					if IsControlJustPressed(0,38) and emP.checkPermission() then
 						RemoveBlip(blips)
@@ -147,6 +153,7 @@ Citizen.CreateThread(function()
 							Citizen.Wait(1100)
 							SetVehicleDoorShut(vehicle,3,0)
 							Citizen.Wait(1000)
+							removePeds()
 						end
 
 						if checkped then
@@ -157,7 +164,7 @@ Citizen.CreateThread(function()
 							SetEntityInvincible(passageiro,true)
 							TaskEnterVehicle(passageiro,vehicle,-1,2,1.0,1,0)
 							checkped = false
-							payment = 1
+							payment = 1 --10
 							lastpassageiro = passageiro
 						else
 							passageiro = nil
@@ -182,7 +189,7 @@ Citizen.CreateThread(function()
 								Citizen.Wait(1)
 								local x2,y2,z2 = table.unpack(GetEntityCoords(passageiro))
 								if not IsPedSittingInVehicle(passageiro,vehicle) then
-									DrawMarker(21,x2,y2,z2+1.3,0,0,0,0,180.0,130.0,0.6,0.8,0.5,255,0,0,50,1,0,0,1)
+									DrawMarker(21,x2,y2,z2+1.3,0,0,0,0,180.0,130.0,0.6,0.8,0.5,250,100,50,150,1,0,0,1)
 								end
 								if IsPedSittingInVehicle(passageiro,vehicle) then
 									FreezeEntityPosition(vehicle,false)
@@ -193,15 +200,16 @@ Citizen.CreateThread(function()
 					end
 				end
 			end
-
-			if IsEntityAVehicle(vehicle) and DoesEntityExist(passageiro) then
-				if math.ceil(vehiclespeed) >= 71 and timers <= 0 and payment > 0 then
-					timers = 5
-					payment = payment - 1
-				end
-			end
+			-- Velocidade Máxima
+			--if IsEntityAVehicle(vehicle) and DoesEntityExist(passageiro) then
+			--	if math.ceil(vehiclespeed) >= 71 and timers <= 0 and payment > 0 then
+			--		timers = 5
+			--		payment = payment - 1
+			--	end
+			--end
 
 		end
+		Citizen.Wait(kswait)
 	end
 end)
 -----------------------------------------------------------------------------------------------------------------------------------------
@@ -221,7 +229,7 @@ end)
 -- REMOVENPCS
 -----------------------------------------------------------------------------------------------------------------------------------------
 function removePeds()
-	SetTimeout(10,function()
+	SetTimeout(20000,function()
 		if emservico and lastpassageiro and passageiro == nil then
 			TriggerServerEvent("trydeleteped",PedToNet(lastpassageiro))
 		end
@@ -232,8 +240,9 @@ end
 -----------------------------------------------------------------------------------------------------------------------------------------
 Citizen.CreateThread(function()
 	while true do
-		Citizen.Wait(5)
+		local kswait = 1000
 		if emservico then
+			kswait = 4
 			local vehicle = GetVehiclePedIsIn(PlayerPedId())
 			if IsControlJustPressed(0,168) then
 				RemoveBlip(blips)
@@ -253,6 +262,7 @@ Citizen.CreateThread(function()
 				TriggerEvent("Notify","aviso","Você saiu de serviço.")
 			end
 		end
+		Citizen.Wait(kswait)
 	end
 end)
 -----------------------------------------------------------------------------------------------------------------------------------------
@@ -289,7 +299,7 @@ Citizen.CreateThread(function()
       else
         DecorSetFloat(veh, "bandeiras", _bandeira + Custobandeira)
       end
-      DecorSetFloat(veh, "kilometros", _kilometros + round(GetEntitySpeed(veh) * 0.0009999997, 5))
+      DecorSetFloat(veh, "kilometros", _kilometros + round(GetEntitySpeed(veh) * 0.000621371, 5))
       TriggerEvent('taxi:updatebandeira', veh)
     end
     if NoTaxi() and not GetPedInVehicleSeat(veh, -1) == ped then
@@ -299,35 +309,37 @@ Citizen.CreateThread(function()
 end)
 
 if TaxiGuiAtivo then
-  Citizen.CreateThread(function()
-    while true do
-      Citizen.Wait(5)
-      if(NoTaxi()) then
-        inTaxi = true
-        local ped = PlayerPedId()
-        local veh = GetVehiclePedIsIn(ped, false)
-        if(NoTaxi() and GetPedInVehicleSeat(veh, -1) == ped) then
-          if IsControlJustReleased(0,170) and emP.checkPermission() then -- F3
-            TriggerEvent('taxi:toggleDisplay')
-            Citizen.Wait(100)
-          end
-          if IsControlJustReleased(0,288) and emP.checkPermission() then -- F1
-            TriggerEvent('taxi:toggleHire')
-            Citizen.Wait(100)
-          end
-          if IsControlJustReleased(0,289) and emP.checkPermission() then -- F2
-            TriggerEvent('taxi:resetMeter')
-            Citizen.Wait(100)
-          end
-        end
-      else
-        if(meterOpen) then
-          closeGui()
-        end
-        meterOpen = false
-      end
-    end
-  end)
+Citizen.CreateThread(function()
+	while true do
+		local kswait = 1000
+		if(NoTaxi()) then
+		inTaxi = true
+		local ped = PlayerPedId()
+		local veh = GetVehiclePedIsIn(ped, false)
+		if(NoTaxi() and GetPedInVehicleSeat(veh, -1) == ped) then
+			kswait = 4
+			if IsControlJustReleased(0,170) and emP.checkPermission() then -- F3
+				TriggerEvent('taxi:toggleDisplay')
+				Citizen.Wait(100)
+			end
+			if IsControlJustReleased(0,288) and emP.checkPermission() then -- F1
+				TriggerEvent('taxi:toggleHire')
+				Citizen.Wait(100)
+			end
+			if IsControlJustReleased(0,289) and emP.checkPermission() then -- F2
+				TriggerEvent('taxi:resetMeter')
+				Citizen.Wait(100)
+			end
+		end
+		else
+		if(meterOpen) then
+			closeGui()
+		end
+			meterOpen = false
+		end
+		Citizen.Wait(kswait)
+	end
+end)
 end
 
 function round(num, numDecimalPlaces)
@@ -409,7 +421,7 @@ function NoTaxi()
   local model = GetEntityModel(veh)
   local displaytext = GetDisplayNameFromVehicleModel(model)
   local name = GetLabelText(displaytext)
-  if (name == "Táxi") then
+  if (name == "taxi") then
     return true
   else
     return false

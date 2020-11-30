@@ -26,32 +26,11 @@ end
 --[ BUTTON ]-----------------------------------------------------------------------------------------------------------------------------
 -----------------------------------------------------------------------------------------------------------------------------------------
 RegisterNUICallback("ButtonClick",function(data,cb)
-	if data == "comprar-molas" then
-		TriggerServerEvent("departamento-comprar","mola")
-
-	elseif data == "comprar-capsula" then
+	if data == "comprar-capsula" then
 		TriggerServerEvent("departamento-comprar","capsula")
 
-	elseif data == "comprar-corpodeak" then
-		TriggerServerEvent("departamento-comprar","corpodeak")
-
-	elseif data == "comprar-corpodefiveseven" then
-		TriggerServerEvent("departamento-comprar","corpodefiveseven")
-
-	elseif data == "comprar-corpodefamas" then
-		TriggerServerEvent("departamento-comprar","corpodefamas")
-
-	elseif data == "comprar-corpodeimitar" then
-		TriggerServerEvent("departamento-comprar","corpodeimitar")
-
-	elseif data == "comprar-corpodemagnum" then
-		TriggerServerEvent("departamento-comprar","corpodemagnum")
-
-	elseif data == "comprar-corpodeuzi" then
-		TriggerServerEvent("departamento-comprar","corpodeuzi")
-
-	elseif data == "comprar-gatilho" then
-		TriggerServerEvent("departamento-comprar","gatilho")
+	elseif data == "comprar-linha" then
+		TriggerServerEvent("departamento-comprar","linha")
 
 	elseif data == "fechar" then
 		ToggleActionMenu()
@@ -62,7 +41,7 @@ end)
 --[ LOCAIS ]-----------------------------------------------------------------------------------------------------------------------------
 -----------------------------------------------------------------------------------------------------------------------------------------
 local lojas = {
-	{ ['x'] = 152.72, ['y'] = -960.55, ['z'] = 30.09 },
+	{ ['x'] = 57.31, ['y'] = 3692.70, ['z'] = 39.92 },
 }
 -----------------------------------------------------------------------------------------------------------------------------------------
 --[ MENU ]-------------------------------------------------------------------------------------------------------------------------------

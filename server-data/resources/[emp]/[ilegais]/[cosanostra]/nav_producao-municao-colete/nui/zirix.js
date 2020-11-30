@@ -40,7 +40,7 @@ function ResetMenu() {
 }
 
 function init() {
-	$(".menuoption").each(function (i, obj) {
+	$(".menuoption2").each(function (i, obj) {
 		if ($(this).attr("data-action")) {
 			$(this).click(function () {
 				var data = $(this).data("action");
@@ -76,25 +76,25 @@ function sendData(name, data) {
 }
 
 $('.category_item').click(function () {
-	let pegArma = $(this).attr('category');
-	$('.item-item').css('transform', 'scale(0)');
+	let pegMuni = $(this).attr('category');
+	$('.item-item2').css('transform', 'scale(0)');
 
 	function hideArma() {
-		$('.item-item').hide();
+		$('.item-item2').hide();
 	}
 	setTimeout(hideArma, 100);
 
 	function showArma() {
-		$('.item-item[category="' + pegArma + '"]').show();
-		$('.item-item[category="' + pegArma + '"]').css('transform', 'scale(1)');
+		$('.item-item2[category="' + pegMuni + '"]').show();
+		$('.item-item2[category="' + pegMuni + '"]').css('transform', 'scale(1)');
 	}
 	setTimeout(showArma, 100);
 });
 
 $('.category_item[category="all"]').click(function () {
 	function showAll() {
-		$('.item-item').show();
-		$('.item-item').css('transform', 'scale(1)');
+		$('.item-item2').show();
+		$('.item-item2').css('transform', 'scale(1)');
 	}
 	setTimeout(showAll, 100);
 });

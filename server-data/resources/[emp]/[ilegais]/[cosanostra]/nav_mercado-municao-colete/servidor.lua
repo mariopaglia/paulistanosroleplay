@@ -8,16 +8,8 @@ Tunnel.bindInterface("nav_mercado-municao-colete",Perm)
 --[ ARRAY ]------------------------------------------------------------------------------------------------------------------------------
 -----------------------------------------------------------------------------------------------------------------------------------------
 local valores = {
-	{ item = "mola", quantidade = 1, compra = 30 },
-	{ item = "polvora", quantidade = 1, compra = 30 },
-	{ item = "capsula", quantidade = 1, compra = 30 },
-	{ item = "corpodeak", quantidade = 1, compra = 30 },
-	{ item = "corpodefiveseven", quantidade = 1, compra = 30 },
-	{ item = "corpodeimitar", quantidade = 1, compra = 30 },
-	{ item = "corpodefamas", quantidade = 1, compra = 30 },
-	{ item = "corpodemagnum", quantidade = 1, compra = 30 },
-	{ item = "corpodeuzi", quantidade = 1, compra = 30 },
-	{ item = "gatilho", quantidade = 1, compra = 30 },
+	{ item = "capsula", quantidade = 30, compra = 300 },
+	{ item = "linha", quantidade = 10, compra = 100 },
 }
 -----------------------------------------------------------------------------------------------------------------------------------------
 --[ COMPRAR ]----------------------------------------------------------------------------------------------------------------------------
@@ -50,7 +42,7 @@ end)
 function Perm.checkPermissao()
     local source = source
     local user_id = vRP.getUserId(source)
-    if vRP.hasPermission(user_id,"bratva.permissao") or vRP.hasPermission(user_id,"cn.permissao") or vRP.hasPermission(user_id,"admin.permissao") then
+    if vRP.hasPermission(user_id,"cn.permissao") or vRP.hasPermission(user_id,"admin.permissao") then
         return true
     end
 end

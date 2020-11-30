@@ -329,15 +329,37 @@ RegisterCommand('tpcds',function(source,args,rawCommand)
 end)
 
 -----------------------------------------------------------------------------------------------------------------------------------------
--- CDS
+--[ COORDENADAS ]------------------------------------------------------------------------------------------------------------------------
 -----------------------------------------------------------------------------------------------------------------------------------------
 RegisterCommand('cds',function(source,args,rawCommand)
-	local user_id = vRP.getUserId(source)
-	if vRP.hasPermission(user_id,"admin.permissao") then
-		local x,y,z = vRPclient.getPosition(source)
-		vRP.prompt(source,"Cordenadas:",x..","..y..","..z)
-	end
+    local user_id = vRP.getUserId(source)
+    if vRP.hasPermission(user_id,"admin.permissao") then
+        local x,y,z = vRPclient.getPosition(source)
+        heading = GetEntityHeading(GetPlayerPed(-1))
+        vRP.prompt(source,"Cordenadas:","['x'] = "..tD(x)..", ['y'] = "..tD(y)..", ['z'] = "..tD(z))
+    end
 end)
+
+RegisterCommand('cds2',function(source,args,rawCommand)
+    local user_id = vRP.getUserId(source)
+    if vRP.hasPermission(user_id,"admin.permissao")  then
+        local x,y,z = vRPclient.getPosition(source)
+        vRP.prompt(source,"Cordenadas:",tD(x)..","..tD(y)..","..tD(z))
+    end
+end)
+
+RegisterCommand('cds3',function(source,args,rawCommand)
+    local user_id = vRP.getUserId(source)
+    if vRP.hasPermission(user_id,"admin.permissao")  then
+        local x,y,z = vRPclient.getPosition(source)
+        vRP.prompt(source,"Cordenadas:","{x="..tD(x)..", y="..tD(y)..", z="..tD(z).."},")
+    end
+end)
+
+function tD(n)
+    n = math.ceil(n * 100) / 100
+    return n
+end
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- GROUP
 -----------------------------------------------------------------------------------------------------------------------------------------

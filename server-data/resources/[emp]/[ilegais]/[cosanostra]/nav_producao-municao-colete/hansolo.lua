@@ -12,12 +12,12 @@ local prodMachine = {
 -------------------------------------------------------------------------------------------------
 --[ MENU ]---------------------------------------------------------------------------------------
 -------------------------------------------------------------------------------------------------
-local menuactive = false
-local onmenu = false
+local menuactive2 = false
+local onmenu2 = false
 
 function ToggleActionMenu()
-	menuactive = not menuactive
-	if menuactive then
+	menuactive2 = not menuactive2
+	if menuactive2 then
 		SetNuiFocus(true,true)
 		TransitionToBlurred(1000)
 		SendNUIMessage({ showmenu = true })
@@ -31,35 +31,37 @@ end
 --[ BOTÕES ]-------------------------------------------------------------------------------------
 -------------------------------------------------------------------------------------------------
 RegisterNUICallback("ButtonClick",function(data,cb)
-	if data == "produzir-ak47" then
-		TriggerServerEvent("produzir-arma","ak47")
+	if data == "produzir-m-ak47" then
+		TriggerServerEvent("produzir-municao","m-ak47")
 
-	elseif data == "produzir-uzi" then
-		TriggerServerEvent("produzir-arma","uzi")
+	elseif data == "produzir-m-uzi" then
+		TriggerServerEvent("produzir-municao","m-uzi")
 
-	elseif data == "produzir-magnum44" then
-		TriggerServerEvent("produzir-arma","magnum44")
+	elseif data == "produzir-m-mtar21" then
+		TriggerServerEvent("produzir-municao","m-mtar21")
 
-	elseif data == "produzir-fiveseven" then
-		TriggerServerEvent("produzir-arma","fiveseven")
+	elseif data == "produzir-m-famas" then
+		TriggerServerEvent("produzir-municao","m-famas")
+
+	elseif data == "produzir-m-magnum44" then
+		TriggerServerEvent("produzir-municao","m-magnum44")
+
+	elseif data == "produzir-m-fiveseven" then
+		TriggerServerEvent("produzir-municao","m-fiveseven")
+		
+	elseif data == "produzir-colete" then
+		TriggerServerEvent("produzir-municao","colete")
 
 	elseif data == "fechar" then
 		ToggleActionMenu()
-		onmenu = false
+		onmenu2 = false
 	end
-end)
-
-RegisterNetEvent("bancada-armas:posicao")
-AddEventHandler("bancada-armas:posicao", function()
-	local ped = PlayerPedId()
-	SetEntityHeading(ped,270.89)
-	SetEntityCoords(ped,1405.96,1137.86,109.75-1,false,false,false,false)
 end)
 
 RegisterNetEvent("fechar-nui")
 AddEventHandler("fechar-nui", function()
 	ToggleActionMenu()
-	onmenu = false
+	onmenu2 = false
 end)
 -------------------------------------------------------------------------------------------------
 --[ AÇÃO ]---------------------------------------------------------------------------------------
@@ -77,14 +79,14 @@ Citizen.CreateThread(function()
 			local idBancada = prodMachine[id]
 
 			if GetDistanceBetweenCoords(GetEntityCoords(PlayerPedId()), prodMachine.x, prodMachine.y, prodMachine.z, true ) <= 1 and not onmenu then
-				DrawText3D(prodMachine.x, prodMachine.y, prodMachine.z, "[~r~E~w~] Para acessar a ~r~BANCADA DE ARMAS~w~.")
+				DrawText3D(prodMachine.x, prodMachine.y, prodMachine.z, "[~r~E~w~] Para acessar a ~r~BANCADA DE PRODUÇÃO~w~.")
 			end
 			if distance <= 15 then
 				DrawMarker(23, prodMachine.x, prodMachine.y, prodMachine.z-0.97,0,0,0,0,0,0,0.7,0.7,0.5,214,29,0,100,0,0,0,0)
 				if distance <= 1.2 then
 					if IsControlJustPressed(0,38) and oC.checkPermissao() then
 						ToggleActionMenu()
-						onmenu = true
+						onmenu2 = true
 					end
 				end
 			end

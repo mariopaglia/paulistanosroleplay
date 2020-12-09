@@ -114,19 +114,19 @@ local banks = {
 	{name="Registradora", id=108, x=-3240.59,y=1008.60,z=12.83 }
 }
 
-Citizen.CreateThread(function()
-  if displayBankBlips then
-    for k,v in ipairs(banks)do
-      local blip = AddBlipForCoord(v.x, v.y, v.z)
-      SetBlipSprite(blip, v.id)
-      SetBlipScale(blip, 0.4)
-      SetBlipAsShortRange(blip, true)
-      BeginTextCommandSetBlipName("STRING");
-      AddTextComponentString(tostring(v.name))
-      EndTextCommandSetBlipName(blip)
-    end
-  end
-end)
+-- Citizen.CreateThread(function()
+--   if displayBankBlips then
+--     for k,v in ipairs(banks)do
+--       local blip = AddBlipForCoord(v.x, v.y, v.z)
+--       SetBlipSprite(blip, v.id)
+--       SetBlipScale(blip, 0.4)
+--       SetBlipAsShortRange(blip, true)
+--       BeginTextCommandSetBlipName("STRING");
+--       AddTextComponentString(tostring(v.name))
+--       EndTextCommandSetBlipName(blip)
+--     end
+--   end
+-- end)
 
 local atBank = false
 local bankOpen = false

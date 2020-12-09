@@ -139,7 +139,7 @@ local blacklist = {
 RegisterCommand("radiof",function(source,args)
     if args[1] then
         local radio = parseInt(args[1])
-        if radio < 1017 and emP.checkPermission(blacklist[radio]['perm'],radio) then
+        if radio < 1017 then
             if emP.checkRadio() then
                 outServers()
                     exports.tokovoip_script:addPlayerToRadio(radio)

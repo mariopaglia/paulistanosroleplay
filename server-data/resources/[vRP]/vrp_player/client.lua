@@ -1421,13 +1421,24 @@ Citizen.CreateThread(
 
 -- ALTERAR O DANO DAS ARMAS
 --------------------------------------------------------------------------------------------------
-Citizen.CreateThread(
-	function()
-		while true do
-			N_0x4757f00bc6323cfe(GetHashKey("WEAPON_UNARMED"), 3.0)
-			Wait(0)
-			N_0x4757f00bc6323cfe(GetHashKey("weapon_assaultrifle"), 3.0)
+-- Citizen.CreateThread(
+-- 	function()
+-- 		while true do
+-- 			N_0x4757f00bc6323cfe(GetHashKey("WEAPON_UNARMED"), 3.0)
+-- 			Wait(0)
+-- 			N_0x4757f00bc6323cfe(GetHashKey("weapon_assaultrifle"), 3.0)
 
-		end
-	end
-)
+-- 		end
+-- 	end
+-- )
+
+-----------------------------------------------------------------------------------------------------------------------------------------
+-- SCRIPT DE HS
+-----------------------------------------------------------------------------------------------------------------------------------------
+
+Citizen.CreateThread(function()
+    while true do
+        Wait(4)
+        SetPedSuffersCriticalHits(PlayerPedId(-1), true)
+    end
+end)

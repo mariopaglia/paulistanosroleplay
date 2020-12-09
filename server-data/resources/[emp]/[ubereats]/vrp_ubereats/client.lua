@@ -231,7 +231,7 @@ Citizen.CreateThread(function()
 				end
 			end
 			if distancecar <= 1.0 and not IsPedInAnyVehicle(ped) and pegando then
-				if model == 55628203 and GetVehicleNumberPlateText(veh) == vRP.getRegistrationNumber() then
+				if model == -909201658 and GetVehicleNumberPlateText(veh) == vRP.getRegistrationNumber() then
 	                DrawText3Ds(coordsMoto.x,coordsMoto.y,coordsMoto.z+0.80,"~b~[E] ~w~Guardar")
 	                TriggerEvent('cancelando',false)
                     if IsControlJustPressed(0,38) then
@@ -303,7 +303,7 @@ local kswait = 1000
 			local distance = GetDistanceBetweenCoords(GetEntityCoords(ped),entregalocal[destino2].x,entregalocal[destino2].y,entregalocal[destino2].z,true)
 			local distancecar = GetDistanceBetweenCoords(GetEntityCoords(ped),coordsMoto.x,coordsMoto.y,coordsMoto.z, true)
 			if distancecar <= 1.0 and not IsPedInAnyVehicle(ped) and not pegando then
-				if model == 55628203 and GetVehicleNumberPlateText(veh) == vRP.getRegistrationNumber() then
+				if model == -909201658 and GetVehicleNumberPlateText(veh) == vRP.getRegistrationNumber() then
 	                DrawText3Ds(coordsMoto.x,coordsMoto.y,coordsMoto.z+0.80,"~b~[E] ~w~Pegar")
                     if IsControlJustPressed(0,38) and not andamento and not andamento2 and not encomendapega then
                         if quantidade > 0 then
@@ -345,7 +345,7 @@ local kswait = 1000
 				end
 			end
 			if distancecar <= 1.0 and not IsPedInAnyVehicle(ped) and pegando then
-				if model == 55628203 and GetVehicleNumberPlateText(veh) == vRP.getRegistrationNumber() then
+				if model == -909201658 and GetVehicleNumberPlateText(veh) == vRP.getRegistrationNumber() then
 	                DrawText3Ds(coordsMoto.x,coordsMoto.y,coordsMoto.z+0.80,"~b~[E] ~w~Guardar")
 	                TriggerEvent('cancelando',false)
                     if IsControlJustPressed(0,38) and encomendapega then
@@ -474,7 +474,7 @@ function Fade(time)
 end
 
 function spawnMoto()
-	local mhash = "faggio2"
+	local mhash = "pcj"
 	if not nveh then
 	 while not HasModelLoaded(mhash) do
 	  RequestModel(mhash)

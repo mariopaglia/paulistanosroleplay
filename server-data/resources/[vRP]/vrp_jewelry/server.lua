@@ -34,7 +34,7 @@ function func.checkJewelry(x,y,z,h,sec,tipo)
 				TriggerClientEvent('iniciandojewelry',source,x,y,z,h,sec,tipo,true)
 				local firewall = math.random(100)
 				SetTimeout(sec*1000,function()
-					if firewall >= 50 then
+					if firewall >= 10 then
 						segundos = 600
 						andamento = true
 						timers = os.time()

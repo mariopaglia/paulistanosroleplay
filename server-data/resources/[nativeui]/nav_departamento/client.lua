@@ -5,12 +5,12 @@ local menuactive = false
 function ToggleActionMenu()
 	menuactive = not menuactive
 	if menuactive then
-		SetNuiFocus(true,true)
 		TransitionToBlurred(1000)
+		SetNuiFocus(true,true)
 		SendNUIMessage({ showmenu = true })
 	else
-		SetNuiFocus(false)
 		TransitionFromBlurred(1000)
+		SetNuiFocus(false)
 		SendNUIMessage({ hidemenu = true })
 	end
 end
@@ -163,23 +163,60 @@ local marcacoes = {
 	{ -816.12249755859,-194.64167785645,37.590026855469 },
 	{ -1095.4796142578,-2594.6533203125,13.925128936768 },
 	{ -1222.78,-907.22,12.32 },
-	{ 886.89581298828,-2097.873046875,35.591915130615 },
+	{ 886.89581298828,-2097.873046875,35.591915130615 }
 }
 
 Citizen.CreateThread(function()
 	SetNuiFocus(false,false)
 	while true do
-		Citizen.Wait(5)
+		local TaylinSleep = 750
 		for _,mark in pairs(marcacoes) do
+			local ped = PlayerPedId()
 			local x,y,z = table.unpack(mark)
-			local distance = GetDistanceBetweenCoords(GetEntityCoords(PlayerPedId()),x,y,z,true)
-			if distance <= 1.0 then
-				-- DrawMarker(21,x,y,z-0.6,0,0,0,0.0,0,0,0.5,0.5,0.4,0,0,255,50,0,0,0,1)
-				DrawMarker(25,x,y,z-0.95,0,0,0,0.0,0,0,1.0,1.0,0.4,0,0,0,200,0,0,0,1)
-				if IsControlJustPressed(0,38) then
-					ToggleActionMenu()
+			local distance = GetDistanceBetweenCoords(GetEntityCoords(ped),x,y,z,true)
+			if distance <= 5.0 then
+				TaylinSleep = 5
+				if distance <= 2.0 then
+					if not menuactive then
+						DrawText3Ds(x,y,z+0.20,"~r~[E] ~w~Para Acessar a Loja de Departamento")
+					end
+					if IsControlJustPressed(0,38) then
+						ToggleActionMenu()
+					end
 				end
 			end
 		end
+		Citizen.Wait(TaylinSleep)
 	end
 end)
+
+
+-----------------------------------------------------------------------------------------------------------------------------------------
+-- FUNÇÕES
+-----------------------------------------------------------------------------------------------------------------------------------------
+function drawTxt(text,font,x,y,scale,r,g,b,a)
+	SetTextFont(font)
+	SetTextScale(scale,scale)
+	SetTextColour(r,g,b,a)
+	SetTextOutline()
+	SetTextCentre(1)
+	SetTextEntry("STRING")
+	AddTextComponentString(text)
+	DrawText(x,y)
+end
+
+function DrawText3Ds(x,y,z,text)
+    local onScreen,_x,_y=World3dToScreen2d(x,y,z)
+    local px,py,pz=table.unpack(GetGameplayCamCoords())
+    
+    SetTextScale(0.34, 0.34)
+    SetTextFont(4)
+    SetTextProportional(1)
+    SetTextColour(255, 255, 255, 215)
+    SetTextEntry("STRING")
+    SetTextCentre(1)
+    AddTextComponentString(text)
+    DrawText(_x,_y)
+    local factor = (string.len(text)) / 370
+    DrawRect(_x,_y+0.0125, 0.001+ factor, 0.028, 0, 0, 0, 78)
+end

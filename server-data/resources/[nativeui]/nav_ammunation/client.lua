@@ -5,9 +5,11 @@ local menuactive = false
 function ToggleActionMenu()
 	menuactive = not menuactive
 	if menuactive then
+		TransitionToBlurred(1000)
 		SetNuiFocus(true,true)
 		SendNUIMessage({ showmenu = true })
 	else
+		TransitionFromBlurred(1000)
 		SetNuiFocus(false)
 		SendNUIMessage({ hidemenu = true })
 	end
@@ -24,9 +26,6 @@ RegisterNUICallback("ButtonClick",function(data,cb)
 		TriggerServerEvent("armamentos-comprar","wbody|WEAPON_PISTOL_MK2")
 	elseif data == "armamentos-comprar-winchester22" then
 		TriggerServerEvent("armamentos-comprar","wbody|WEAPON_MUSKET")
-	elseif data == "armamentos-comprar-sinalizador" then
-		TriggerServerEvent("armamentos-comprar","wbody|WEAPON_FLARE")
-
 	elseif data == "armamentos-vender-m1922" then
 		TriggerServerEvent("armamentos-vender","wbody|WEAPON_VINTAGEPISTOL")
 	elseif data == "armamentos-vender-m1911" then
@@ -35,8 +34,6 @@ RegisterNUICallback("ButtonClick",function(data,cb)
 		TriggerServerEvent("armamentos-vender","wbody|WEAPON_PISTOL_MK2")
 	elseif data == "armamentos-vender-winchester22" then
 		TriggerServerEvent("armamentos-vender","wbody|WEAPON_MUSKET")
-	elseif data == "armamentos-vender-sinalizador" then
-		TriggerServerEvent("armamentos-vender","wbody|WEAPON_FLARE")
 
 
 	elseif data == "municoes-comprar-m1922" then
@@ -131,10 +128,22 @@ RegisterNUICallback("ButtonClick",function(data,cb)
 
 	elseif data == "utilidades-comprar-paraquedas" then
 		TriggerServerEvent("armamentos-comprar","wbody|GADGET_PARACHUTE")
-	elseif data == "armamentos-comprar-colete" then
-		TriggerServerEvent("armamentos-comprar","colete")
+	elseif data == "utilidades-comprar-sinalizador" then
+		TriggerServerEvent("armamentos-comprar","wbody|WEAPON_FLARE")	
 	elseif data == "utilidades-vender-paraquedas" then
 		TriggerServerEvent("armamentos-vender","wbody|GADGET_PARACHUTE")
+	elseif data == "utilidades-vender-sinalizador" then
+		TriggerServerEvent("armamentos-vender","wbody|WEAPON_FLARE")
+--[[	elseif data == "armamentos-comprar-colete" then
+		TriggerServerEvent("armamentos-comprar","colete")		
+	elseif data == "utilidades-comprar-serra" then
+		TriggerServerEvent("armamentos-comprar","serra")
+	elseif data == "utilidades-comprar-furadeira" then
+		TriggerServerEvent("armamentos-comprar","furadeira")
+	elseif data == "utilidades-vender-serra" then
+		TriggerServerEvent("armamentos-vender","serra")
+	elseif data == "utilidades-vender-furadeira" then
+		TriggerServerEvent("armamentos-vender","furadeira")]]
 
 
 	elseif data == "fechar" then
@@ -161,15 +170,54 @@ local marcacoes = {
 Citizen.CreateThread(function()
 	SetNuiFocus(false,false)
 	while true do
-		Citizen.Wait(1)
+		local TaylinSleep = 750
 		for _,mark in pairs(marcacoes) do
+			local ped = PlayerPedId()
 			local x,y,z = table.unpack(mark)
-			local distance = GetDistanceBetweenCoords(GetEntityCoords(PlayerPedId()),x,y,z,true)
-			if distance <= 1.2 then
-				if IsControlJustPressed(0,38) then
-					ToggleActionMenu()
+			local distance = GetDistanceBetweenCoords(GetEntityCoords(ped),x,y,z,true)
+			if distance <= 5.0 then
+				TaylinSleep = 5
+				if distance <= 2.0 then
+					if not menuactive then
+						DrawText3Ds(x,y,z+0.20,"~r~[E] ~w~Para Acessar a Loja")
+					end
+					if IsControlJustPressed(0,38) then
+						ToggleActionMenu()
+					end
 				end
 			end
 		end
+		Citizen.Wait(TaylinSleep)
 	end
 end)
+
+
+-----------------------------------------------------------------------------------------------------------------------------------------
+-- FUNÇÕES
+-----------------------------------------------------------------------------------------------------------------------------------------
+function drawTxt(text,font,x,y,scale,r,g,b,a)
+	SetTextFont(font)
+	SetTextScale(scale,scale)
+	SetTextColour(r,g,b,a)
+	SetTextOutline()
+	SetTextCentre(1)
+	SetTextEntry("STRING")
+	AddTextComponentString(text)
+	DrawText(x,y)
+end
+
+function DrawText3Ds(x,y,z,text)
+    local onScreen,_x,_y=World3dToScreen2d(x,y,z)
+    local px,py,pz=table.unpack(GetGameplayCamCoords())
+    
+    SetTextScale(0.34, 0.34)
+    SetTextFont(4)
+    SetTextProportional(1)
+    SetTextColour(255, 255, 255, 215)
+    SetTextEntry("STRING")
+    SetTextCentre(1)
+    AddTextComponentString(text)
+    DrawText(_x,_y)
+    local factor = (string.len(text)) / 370
+    DrawRect(_x,_y+0.0125, 0.001+ factor, 0.028, 0, 0, 0, 78)
+end

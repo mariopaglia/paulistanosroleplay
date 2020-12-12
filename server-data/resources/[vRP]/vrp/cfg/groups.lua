@@ -541,30 +541,35 @@ cfg.groups = {
 	},
 	---------------------------------------------------
 	---------------------------------------------------
-	["LIDERMecanicoPaycheck"] = {
+	["LIDERMecanico"] = {
 		_config = {
+			title = "Lider Mecânico",
+			gtype = "job"
 		},
 		"mecanico.permissao",
 		"lidermecanico.permissao",
 		"bennys.permissao",
 		"furios.permissao",
 		"furios.portas",
-		"lidermecanico.permissao",
 		"lsc.use"
 	},
-	["LIDERMecanico"] = {
+	["PaisanaLiderMecanico"] = {
 		_config = {
-			title = "Chefe Mecanico",
+			title = "Mecanico Paisana",
 			gtype = "job"
 		},
 		"paisanamecanicolider.permissao",
 		"mecanico.permissao"
 	},
+
 	---------------------------------------------------
-	["MecanicoPaycheck"] = {
+	["Mecanico"] = {
 		_config = {
+			title = "Mecânico(a)",
+			gtype = "job"
 		},
 		"mecanico.permissao",
+		"funcmecanico.permissao",
 		"salariomecanico.permissao",
 		"bennys.permissao",
 		"furios.permissao",
@@ -572,13 +577,12 @@ cfg.groups = {
 		"roubonpc.permissao",
 		"lsc.use"
 	},
-	["Mecanico"] = {
+	["PaisanaMecanico"] = {
 		_config = {
-			title = "Mecanico",
+			title = "Paisana Mecanico",
 			gtype = "job"
 		},
-		"paisanamecanico.permissao",
-		"mecanico.permissao"
+		"paisanamecanico.permissao"
 	},
 	---------------------------------------------------
 	---------------------------------------------------

@@ -157,7 +157,45 @@ Citizen.CreateThread(
 		end
 	end
 )
-
+-----------------------------------------------------------------------------------------------------------------------------------------
+--  ESTOURAR OS PNEUS QUANDO CAPOTA + FOGO NO TANQUE
+-----------------------------------------------------------------------------------------------------------------------------------------
+Citizen.CreateThread(function()
+    while true do
+		local TaylinSleep = 500
+        local ped = PlayerPedId()
+        if IsPedInAnyVehicle(ped) then
+			TaylinSleep = 1
+            local vehicle = GetVehiclePedIsIn(ped)
+            if GetPedInVehicleSeat(vehicle,-1) == ped then
+                local roll = GetEntityRoll(vehicle)
+                if (roll > 30.0 or roll < -30.0) and GetEntitySpeed(vehicle) < 2 then
+                      if IsVehicleTyreBurst(vehicle, wheel_rm1, 0) == false then
+                      --SetVehiclePetrolTankHealth(vehicle, -4000, 1)
+                     --  SetVehicleEngineTemperature(vehicle, 5000, 1)
+                    --  SetVehicleEngineHealth(vehicle, -4000, 1)
+                    SetVehicleTyreBurst(vehicle, 0, 1)
+                    Citizen.Wait(100)
+                    SetVehicleTyreBurst(vehicle, 1, 1)
+                    Citizen.Wait(100)
+                    SetVehicleTyreBurst(vehicle, 2, 1)
+                    Citizen.Wait(100)
+                    SetVehicleTyreBurst(vehicle, 3, 1)
+                    Citizen.Wait(100)
+                    SetVehicleTyreBurst(vehicle, 4, 1)
+                    Citizen.Wait(100)
+                    SetVehicleTyreBurst(vehicle, 5, 1)
+                    Citizen.Wait(100)
+                    SetVehicleTyreBurst(vehicle, 45, 1)
+                    Citizen.Wait(100)
+                    SetVehicleTyreBurst(vehicle, 47, 1)
+                    end
+                end
+            end
+        end
+		Citizen.Wait(TaylinSleep)
+    end
+end)
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- AGACHAR
 -----------------------------------------------------------------------------------------------------------------------------------------
@@ -186,6 +224,17 @@ Citizen.CreateThread(
 		end
 	end
 )
+
+Citizen.CreateThread(function()
+    while true do
+        Citizen.Wait(1)
+        local ped = PlayerPedId()
+        local player = PlayerId()
+        if agachar then 
+            DisablePlayerFiring(player, true)
+        end
+    end
+end)
 ----------------------------------------------------------------------------------------------------------------------------------------
 -- REMOVE DANO
 -----------------------------------------------------------------------------------------------------------------------------------------
@@ -198,10 +247,10 @@ Citizen.CreateThread(
 			N_0x4757f00bc6323cfe(GetHashKey("WEAPON_SNOWBALL"), 0.00)
 			N_0x4757f00bc6323cfe(GetHashKey("WEAPON_SMOKEGRENADE"), 0.01)
 			N_0x4757f00bc6323cfe(GetHashKey("WEAPON_RAYPISTOL"), 0.01)
-			N_0x4757f00bc6323cfe(GetHashKey("WEAPON_NIGHTSTICK"), 0.01)
-			N_0x4757f00bc6323cfe(GetHashKey("weapon_knuckle"), 0.01)
-			N_0x4757f00bc6323cfe(GetHashKey("WEAPON_BAT"), 0.01)
-			N_0x4757f00bc6323cfe(GetHashKey("WEAPON_UNARMED"), 0.40)
+			--N_0x4757f00bc6323cfe(GetHashKey("WEAPON_NIGHTSTICK"), 0.01)
+			--N_0x4757f00bc6323cfe(GetHashKey("weapon_knuckle"), 0.01)
+			--N_0x4757f00bc6323cfe(GetHashKey("WEAPON_BAT"), 0.01)
+			--N_0x4757f00bc6323cfe(GetHashKey("WEAPON_UNARMED"), 0.40)
 			N_0x4757f00bc6323cfe(GetHashKey("WEAPON_MOLOTOV"), 0.01)
 			N_0x4757f00bc6323cfe(GetHashKey("WEAPON_BZGAS"), 0.20)
 		end
@@ -1435,10 +1484,10 @@ Citizen.CreateThread(
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- SCRIPT DE HS
 -----------------------------------------------------------------------------------------------------------------------------------------
-
 Citizen.CreateThread(function()
-    while true do
-        Wait(4)
+   while true do
+        Wait(5)
+
         SetPedSuffersCriticalHits(PlayerPedId(-1), true)
     end
 end)

@@ -23,7 +23,7 @@ local locais = {
 
 	{ id = 13 , nome = "Loja de Departamento" , segundos = 100 , cops = 3 , recompensa = math.random(70000,140000) },
 	{ id = 14 , nome = "Loja de Departamento" , segundos = 80 , cops = 3 , recompensa = math.random(70000,140000) },
-	{ id = 15 , nome = "Loja de Departamento" , segundos = 80 , cops = 1 , recompensa = math.random(70000,140000) },
+	{ id = 15 , nome = "Loja de Departamento" , segundos = 80 , cops = 3 , recompensa = math.random(70000,140000) },
 	{ id = 16 , nome = "Loja de Departamento" , segundos = 80 , cops = 3 , recompensa = math.random(70000,140000) },
 	{ id = 17 , nome = "Loja de Departamento" , segundos = 80 , cops = 3 , recompensa = math.random(70000,140000) },
 	{ id = 18 , nome = "Loja de Departamento" , segundos = 100 , cops = 3 , recompensa = math.random(70000,140000) },
@@ -34,6 +34,8 @@ local locais = {
 	{ id = 23 , nome = "Loja de Departamento" , segundos = 180 , cops = 3 , recompensa = math.random(70000,140000) },
 	{ id = 24 , nome = "Loja de Departamento" , segundos = 180 , cops = 3 , recompensa = math.random(70000,140000) },
 	{ id = 25 , nome = "Loja de Departamento" , segundos = 150 , cops = 3 , recompensa = math.random(70000,140000) },
+	{ id = 26 , nome = "Vanilla" , segundos = 165 , cops = 3 , recompensa = math.random(90000,150000) },
+	{ id = 27 , nome = "Yellow Jack" , segundos = 165 , cops = 3 , recompensa = math.random(90000,150000) },
 --	{ id = 26 , nome = "Joalheria" , segundos = 210 , cops = 0 , recompensa = math.random(140000,210000) }
 }
 -----------------------------------------------------------------------------------------------------------------------------------------

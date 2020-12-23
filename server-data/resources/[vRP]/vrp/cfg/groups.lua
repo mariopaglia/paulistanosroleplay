@@ -547,19 +547,14 @@ cfg.groups = {
 			gtype = "job"
 		},
 		"mecanico.permissao",
-		"lidermecanico.permissao",
-		"bennys.permissao",
-		"furios.permissao",
-		"furios.portas",
-		"lsc.use"
+		"lidermecanico.permissao"
 	},
 	["PaisanaLiderMecanico"] = {
 		_config = {
 			title = "Mecanico Paisana",
 			gtype = "job"
 		},
-		"paisanamecanicolider.permissao",
-		"mecanico.permissao"
+		"paisanamecanicolider.permissao"
 	},
 
 	---------------------------------------------------
@@ -571,11 +566,7 @@ cfg.groups = {
 		"mecanico.permissao",
 		"funcmecanico.permissao",
 		"salariomecanico.permissao",
-		"bennys.permissao",
-		"furios.permissao",
-		"furios.portas",
 		"roubonpc.permissao",
-		"lsc.use"
 	},
 	["PaisanaMecanico"] = {
 		_config = {

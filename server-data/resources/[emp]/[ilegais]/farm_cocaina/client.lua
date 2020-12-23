@@ -8,7 +8,11 @@ local cokePalet = {
 local alreadyCut = {}
 
 local packCoke = {
-	{772.32592773438,-260.45532226563,68.945945739746}
+	{1389.68,3608.77,38.95}
+}
+
+local processarCoke = {
+	{1394.57,3601.76,38.95}
 }
 
 local tempoEmMilssegundos = tempoEmSegundos*1000
@@ -23,9 +27,26 @@ Citizen.CreateThread(function()
             local x,y,z = table.unpack(v)
             local distance = GetDistanceBetweenCoords(pCoords.x, pCoords.y, pCoords.z, x, y, z, true)
 			if distance < 1.0 then
-				DisplayHelpText("Pressione ~INPUT_CONTEXT~ para empacotar a droga~w~")
+				DisplayHelpText("Pressione ~INPUT_CONTEXT~ para Empacotar a Droga~w~")
 				if (IsControlJustPressed(1, 38)) then
 					TriggerServerEvent('cocaina:packDrug')
+				end
+			end
+		end
+	end
+end)
+
+Citizen.CreateThread(function()
+    while true do
+        Citizen.Wait(0)
+		local pCoords = GetEntityCoords(GetPlayerPed(-1), false)
+        for k,v in pairs(processarCoke) do
+            local x,y,z = table.unpack(v)
+            local distance = GetDistanceBetweenCoords(pCoords.x, pCoords.y, pCoords.z, x, y, z, true)
+			if distance < 1.0 then
+				DisplayHelpText("Pressione ~INPUT_CONTEXT~ para Processar a Droga~w~")
+				if (IsControlJustPressed(1, 38)) then
+					TriggerServerEvent('cocaina:processDrug')
 				end
 			end
 		end
@@ -82,7 +103,7 @@ AddEventHandler("cocaina:getcokeOnPalet", function(tree)
 	end
 	TaskPlayAnim(GetPlayerPed(-1), "anim@amb@business@coc@coc_unpack_cut_left@", "coke_cut_coccutter", 8.0, 1.0, -1, 49, 0, 0, 0, 0)
 	FreezeEntityPosition(GetPlayerPed(-1),true)
-    Citizen.Wait(5000)
+    Citizen.Wait(10000)
     FreezeEntityPosition(GetPlayerPed(-1),false)
     ClearPedTasksImmediately(GetPlayerPed(-1))
     TriggerServerEvent('cocaina:getcokeItem')

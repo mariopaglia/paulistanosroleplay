@@ -1116,7 +1116,7 @@ function CanPurchase(price,canpurchase)
 		end
 		return true
 	else
-		TriggerEvent("Notify","negado","Dinheiro insuficiente.",8000)
+		--TriggerEvent("Notify","negado","Dinheiro insuficiente.",8000)
 		--LSCMenu:showNotification("~r~Dinheiro insuficiente.")
 		return false
 	end

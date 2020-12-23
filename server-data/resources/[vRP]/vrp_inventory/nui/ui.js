@@ -106,7 +106,7 @@ var updateMochila = () => {
           <span class="amount">${formatarNumero(item.amount)}</span>
         </div>
         <div class="row">
-          <div class="image" style="background-image: url(images/${item.index}.png)"></div>
+          <div class="image" style="background-image: url(http://200.9.155.158/sincronizados/${item.index}.png)"></div>
         </div>
         <div class="row">
           <div class="name">${item.name} <i>(${(item.peso * item.amount).toFixed(2)}kg)</i></div>

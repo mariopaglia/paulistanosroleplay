@@ -9,9 +9,9 @@ emP = Tunnel.getInterface("farm_cosanostra")
 local blips = false
 local servico = false
 local selecionado = 0
-local CoordenadaX = 1404.23
-local CoordenadaY = 1154.43
-local CoordenadaZ = 114.33
+local CoordenadaX = 1402.02 -- 1402.02,1152.63,114.34
+local CoordenadaY = 1152.63
+local CoordenadaZ = 114.34
 -- local CoordenadaX = 244.65 -- Teste (primeiro blip)
 -- local CoordenadaY = -43.27 -- Teste (primeiro blip)
 -- local CoordenadaZ = 69.89 -- Teste (primeiro blip)
@@ -49,7 +49,7 @@ Citizen.CreateThread(function()
 			if distance <= 3 then
 				DrawMarker(21,CoordenadaX,CoordenadaY,CoordenadaZ-0.6,0,0,0,0.0,0,0,0.5,0.5,0.4,255,0,0,50,0,0,0,1)
 				if distance <= 1.2 then
-					drawTxt("PRESSIONE  ~r~E~w~  PARA INCIAR A COLETA",4,0.5,0.93,0.50,255,255,255,180)
+					drawTxt("PRESSIONE  ~r~E~w~  PARA INICIAR A COLETA",4,0.5,0.93,0.50,255,255,255,180)
 					if IsControlJustPressed(0,38) and emP.checkPermission() then
 						servico = true
 						selecionado = 1
@@ -79,23 +79,23 @@ Citizen.CreateThread(function()
 					drawTxt("PRESSIONE  ~r~E~w~  PARA COLETAR AS ~g~POLVORAS~w~ E ~g~TECIDOS~w~",4,0.5,0.93,0.50,255,255,255,180)
 					if IsControlJustPressed(0,38) and emP.checkPermission() and not IsPedInAnyVehicle(ped) then
 
-							TriggerEvent('cancelando',true)
-							RemoveBlip(blips)
-							backentrega = selecionado
-							processo = true
-							segundos = 11
-							
-							TriggerEvent("progress",10000,"Coletando")
-							vRP._playAnim(false,{{"anim@heists@ornate_bank@grab_cash_heels","grab"}},true)
-										 
-							if selecionado == 11 then
-								selecionado = 1
-							else
-								selecionado = selecionado + 1
-							end
-							Citizen.Wait(10000)
-							emP.checkPayment()
-							CriandoBlip(locs,selecionado)
+						TriggerEvent('cancelando',true)
+						RemoveBlip(blips)
+						backentrega = selecionado
+						processo = true
+						segundos = 11
+						
+						TriggerEvent("progress",10000,"Coletando")
+						vRP._playAnim(false,{{"anim@heists@ornate_bank@grab_cash_heels","grab"}},true)
+									 
+						if selecionado == 11 then
+							selecionado = 1
+						else
+							selecionado = selecionado + 1
+						end
+						Citizen.Wait(10000)
+						emP.checkPayment()
+						CriandoBlip(locs,selecionado)
 						
 					end
 				end

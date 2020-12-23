@@ -74,7 +74,8 @@ local itemlist = {
 	["adubo"] = { index = "adubo", nome = "Adubo" },
 	["cannabis"] = { index = "cannabis", nome = "Cannabis" },
 	["maconha"] = { index = "maconha", nome = "Maconha" },
-
+	["embalagem"] = { index = "embalagem", nome = "Embalagem" },
+	
 	["agua"] = { index = "agua", nome = "Água" },
 	["limonada"] = { index = "limonada", nome = "Limonada" },
 	["refrigerante"] = { index = "refrigerante", nome = "Refrigerante" },
@@ -98,7 +99,9 @@ local itemlist = {
 	["cloridratoecgonina"] = { index = "cloridratoecgonina", nome = "Cloridratoecgonina" },
 	["cloridratococa"] = { index = "cloridrato", nome = "Cloridratococa" },
 	["pastadecoca"] = { index = "pastadecoca", nome = "Pasta de Cocaina" },
-
+	["po"] = { index = "po", nome = "Pó seco" },
+	["pino"] = { index = "pino", nome = "Pino" },
+	
 	-- Farm de Armas
 	["placademetal"] = { index = "placademetal", nome = "Placa de Metal" },
 	["mola"] = { index = "mola", nome = "Mola" },

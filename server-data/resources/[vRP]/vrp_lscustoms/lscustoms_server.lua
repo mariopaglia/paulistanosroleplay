@@ -9,7 +9,7 @@ function emP.checkPermission()
 	local source = source
 	local user_id = vRP.getUserId(source)
 	if user_id then
-		return (vRP.hasPermission(user_id,"mecanico.permissao") or vRP.hasPermission(user_id,"lidermecanico.permissao"))
+		return (vRP.hasPermission(user_id,"mecanico.permissao"))
 	end
 end
 
@@ -62,6 +62,7 @@ AddEventHandler("LSC:buttonSelected", function(name,button)
 			if vRP.tryFullPayment(user_id,button.price) then
 				TriggerClientEvent("LSC:buttonSelected",source,name,button,true)
 			else
+				TriggerClientEvent("Notify",source,"negado","Dinheiro insuficiente.",8000)
 				TriggerClientEvent("LSC:buttonSelected",source,name,button,false)
 			end
 		else

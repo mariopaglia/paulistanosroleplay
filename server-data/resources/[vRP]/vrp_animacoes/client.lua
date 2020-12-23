@@ -565,7 +565,7 @@ local animacoes = {
 RegisterNetEvent('emotes')
 AddEventHandler('emotes',function(nome)
 	local ped = PlayerPedId()
-	if GetEntityHealth(ped) > 100 then
+	if GetEntityHealth(ped) >= 100 then
 		vRP.DeletarObjeto()
 		for _,emote in pairs(animacoes) do
 			if not IsPedInAnyVehicle(ped) and not emote.carros then
@@ -593,6 +593,39 @@ AddEventHandler('emotes',function(nome)
 					end
 				end
 			end
+		end
+	end
+end)
+
+local morrer = false
+local animmorto = 0
+
+Citizen.CreateThread(function()
+    while true do
+		Citizen.Wait(1000)
+		local ped = PlayerPedId()
+		if GetEntityHealth(ped) <= 101 then
+			morrer = true
+			if morrer and animmorto == 0 then
+				animmorto = 1
+				AnimpostfxPlay('ChopVision',30,true)
+				AnimpostfxPlay('HeistCelebEnd',30,true)
+				AnimpostfxPlay('Rampage',30,true)
+				AnimpostfxPlay('DeathFailOut',30,true)
+				--StartScreenEffect('DeathFailOut',500,true)
+				--StartScreenEffect('MP_job_load',500,true)
+				--StartScreenEffect('ChopVision',500,true)
+				TriggerEvent("emotes","morrer")
+			end
+			if animmorto == 1 then
+				if not IsEntityPlayingAnim(ped,"misslamar1dead_body","dead_idle",3) then
+					TriggerEvent("emotes","morrer")
+				end
+			end
+		else
+			AnimpostfxStopAll()
+			morrer = false
+			animmorto = 0
 		end
 	end
 end)

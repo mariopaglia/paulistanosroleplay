@@ -1388,19 +1388,16 @@ CreateThread(
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- DESABILITAR O USO DO "Q" PARA ESCORAR EM OBJETOS
 -----------------------------------------------------------------------------------------------------------------------------------------
-Citizen.CreateThread(
-	function()
-		while true do
-			Citizen.Wait(1)
-			local ped = PlayerPedId()
-			local health = GetEntityHealth(ped)
-			if health >= 101 then
-				DisableControlAction(0, 44, true)
-			end
+Citizen.CreateThread(function()
+	while true do
+		Citizen.Wait(1)
+		local ped = PlayerPedId()
+		local health = GetEntityHealth(ped)
+		if health >= 101 then
+			DisableControlAction(0, 44, true)
 		end
 	end
-)
-
+end)
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- DEIXAR A PORTA ABERTA AO SAIR DO CARRO
 -----------------------------------------------------------------------------------------------------------------------------------------

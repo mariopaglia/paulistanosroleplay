@@ -20,6 +20,5 @@ files {
 	"nui/js/jquery-2.2.4.min.js",
 	"nui/js/jquery-ui.min.js",
 	"nui/js/ui.js",
-	"nui/images/*.png",
 	"nui/GothamPro-Black.woff"
 }

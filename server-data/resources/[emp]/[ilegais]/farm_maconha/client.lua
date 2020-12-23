@@ -85,7 +85,7 @@ AddEventHandler("damn_weedfarm:getWeedOnPalet", function(tree)
 	end
 	TaskStartScenarioInPlace(GetPlayerPed(-1), "PROP_HUMAN_PARKING_METER", 0, true)
 	FreezeEntityPosition(GetPlayerPed(-1),true)
-    Citizen.Wait(3000)
+    Citizen.Wait(10000)
     FreezeEntityPosition(GetPlayerPed(-1),false)
     ClearPedTasksImmediately(GetPlayerPed(-1))
     TriggerServerEvent('damn_weedfarm:getWeedItem')

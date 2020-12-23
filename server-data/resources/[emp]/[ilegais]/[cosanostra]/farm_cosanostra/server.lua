@@ -8,10 +8,12 @@ Tunnel.bindInterface("farm_cosanostra",emP)
 -- QUANTIDADE
 -----------------------------------------------------------------------------------------------------------------------------------------
 local quantidade = {}
+local quantidadetecido = {}
 function emP.Quantidade()
 	local source = source
-	if quantidade[source] == nil then
+	if quantidade[source] == nil and quantidadetecido[source] == nil then
 		quantidade[source] = math.random(6,8)
+		quantidadetecido[source] = math.random(5,15)
 	end
 end
 -----------------------------------------------------------------------------------------------------------------------------------------
@@ -30,13 +32,13 @@ function emP.checkPayment()
 	local source = source
 	local user_id = vRP.getUserId(source)
 	if user_id then
-		if vRP.getInventoryWeight(user_id)+vRP.getItemWeight("polvora")*quantidade[source] <= vRP.getInventoryMaxWeight(user_id) then
-		TriggerClientEvent("Notify",source,"sucesso","Você coletou <b> "..quantidade[source].."x Polvoras</b>.")
-		local quantidade2 = math.random(1,2)	
-		TriggerClientEvent("Notify",source,"sucesso","Você coletou <b> "..quantidade2.."x Tecidos</b>.")
+		if vRP.getInventoryWeight(user_id)+vRP.getItemWeight("polvora")*quantidade[source] and vRP.getInventoryWeight(user_id)+vRP.getItemWeight("tecido")*quantidadetecido[source] <= vRP.getInventoryMaxWeight(user_id) then
 		vRP.giveInventoryItem(user_id,"polvora",quantidade[source])
-		vRP.giveInventoryItem(user_id,"tecido",quantidade2)
+		vRP.giveInventoryItem(user_id,"tecido",quantidadetecido[source])
+		TriggerClientEvent("Notify",source,"sucesso","Você coletou <b> "..quantidade[source].."x Polvoras</b>.")
+		TriggerClientEvent("Notify",source,"sucesso","Você coletou <b> "..quantidadetecido[source].."x Tecidos</b>.")
 		quantidade[source] = nil
+		quantidadetecido[source] = nil
 		return true
 		end
 	end

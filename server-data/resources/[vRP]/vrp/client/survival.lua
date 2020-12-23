@@ -114,7 +114,7 @@ Citizen.CreateThread(function()
 				local x,y,z = table.unpack(GetEntityCoords(ped))
 				DrawText3D(x,y,z, "PRESSIONE ~g~[E]~w~ PARA VOLTAR AO HOSPITAL")
 			end
-			SetPedToRagdoll(PlayerPedId(),1000,1000,0,0,0,0)
+			--SetPedToRagdoll(PlayerPedId(),1000,1000,0,0,0,0)
 			BlockWeaponWheelThisFrame()
 			DisableControlAction(0,21,true)
 			DisableControlAction(0,23,true)

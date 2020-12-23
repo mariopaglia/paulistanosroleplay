@@ -1,14 +1,17 @@
 local tempoEmSegundos = 10
 
 local MetaPalet = {
-	{1496.4322509766,6395.0444335938,20.783910751343},
-	{1493.2894287109,6390.2705078125,21.257806777954},
+	{1493.2894287109,6390.2705078125,21.257806777954}
 }
 
 local alreadyCut = {}
 
 local packMeta = {
-	{1361.0589599609,-601.56701660156,77.328491210938}
+	{1503.13,6393.59,20.79}
+}
+
+local processMeta = {
+	{1494.72,6395.48,20.79}
 }
 
 local tempoEmMilssegundos = tempoEmSegundos*1000
@@ -26,6 +29,23 @@ Citizen.CreateThread(function()
 				DisplayHelpText("Pressione ~INPUT_CONTEXT~ para empacotar a droga~w~")
 				if (IsControlJustPressed(1, 38)) then
 					TriggerServerEvent('damn_methfarm:packDrug')
+				end
+			end
+		end
+	end
+end)
+
+Citizen.CreateThread(function()
+    while true do
+        Citizen.Wait(0)
+		local pCoords = GetEntityCoords(GetPlayerPed(-1), false)
+        for k,v in pairs(processMeta) do
+            local x,y,z = table.unpack(v)
+            local distance = GetDistanceBetweenCoords(pCoords.x, pCoords.y, pCoords.z, x, y, z, true)
+			if distance < 1.0 then
+				DisplayHelpText("Pressione ~INPUT_CONTEXT~ para processar a droga~w~")
+				if (IsControlJustPressed(1, 38)) then
+					TriggerServerEvent('damn_methfarm:processDrug')
 				end
 			end
 		end
@@ -82,7 +102,7 @@ AddEventHandler("damn_methfarm:getMetaOnPalet", function(tree)
 	end
 	TaskStartScenarioInPlace(GetPlayerPed(-1), "PROP_HUMAN_PARKING_METER", 0, true)
 	FreezeEntityPosition(GetPlayerPed(-1),true)
-    Citizen.Wait(3000)
+    Citizen.Wait(10000)
     FreezeEntityPosition(GetPlayerPed(-1),false)
     ClearPedTasksImmediately(GetPlayerPed(-1))
     TriggerServerEvent('damn_methfarm:getMetaItem')

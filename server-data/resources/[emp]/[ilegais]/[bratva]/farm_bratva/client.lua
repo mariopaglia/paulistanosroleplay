@@ -9,8 +9,8 @@ emP = Tunnel.getInterface("farm_bratva")
 local blips = false
 local servico = false
 local selecionado = 0
-local CoordenadaX = -99.71
-local CoordenadaY = 1012.88
+local CoordenadaX = -97.22  -- -97.22,1013.48,235.79
+local CoordenadaY = 1013.48
 local CoordenadaZ = 235.79
 -- local CoordenadaX = 1690.28 -- Teste (primeiro blip)
 -- local CoordenadaY = 3753.29 -- Teste (primeiro blip)
@@ -49,7 +49,7 @@ Citizen.CreateThread(function()
 			if distance <= 3 then
 				DrawMarker(21,CoordenadaX,CoordenadaY,CoordenadaZ-0.6,0,0,0,0.0,0,0,0.5,0.5,0.4,255,0,0,50,0,0,0,1)
 				if distance <= 1.2 then
-					drawTxt("PRESSIONE  ~r~E~w~  PARA INCIAR A COLETA",4,0.5,0.93,0.50,255,255,255,180)
+					drawTxt("PRESSIONE  ~r~E~w~  PARA INICIAR A COLETA",4,0.5,0.93,0.50,255,255,255,180)
 					if IsControlJustPressed(0,38) and emP.checkPermission() then
 						servico = true
 						selecionado = 1
@@ -78,24 +78,24 @@ Citizen.CreateThread(function()
 				if distance <= 2.0 then
 					local vehicle = GetPlayersLastVehicle()
 					drawTxt("PRESSIONE  ~r~E~w~  PARA COLETAR AS ~g~PLACAS DE METAL~w~",4,0.5,0.93,0.50,255,255,255,180)
-					if IsControlJustPressed(0,38) and emP.checkPermission() and not IsPedInAnyVehicle(ped) and GetEntityModel(vehicle) == 1475773103 then
-							TriggerEvent('cancelando',true)
-							RemoveBlip(blips)
-							backentrega = selecionado
-							processo = true
-							segundos = 5
-							
-							TriggerEvent("progress",5000,"Coletando")
-							vRP._playAnim(false,{{"anim@heists@ornate_bank@grab_cash_heels","grab"}},true)
-										 
-							if selecionado == 11 then
-								selecionado = 1
-							else
-								selecionado = selecionado + 1
-							end
-							Citizen.Wait(5000)
-							emP.checkPayment()
-							CriandoBlip(locs,selecionado)
+					if IsControlJustPressed(0,38) and emP.checkPermission() and not IsPedInAnyVehicle(ped) then --and GetEntityModel(vehicle) == 1475773103 then
+						TriggerEvent('cancelando',true)
+						RemoveBlip(blips)
+						backentrega = selecionado
+						processo = true
+						segundos = 5
+						
+						TriggerEvent("progress",5000,"Coletando")
+						vRP._playAnim(false,{{"anim@heists@ornate_bank@grab_cash_heels","grab"}},true)
+									 
+						if selecionado == 11 then
+							selecionado = 1
+						else
+							selecionado = selecionado + 1
+						end
+						Citizen.Wait(5000)
+						emP.checkPayment()
+						CriandoBlip(locs,selecionado)
 					end
 				end
 			end

@@ -130,9 +130,11 @@ RegisterCommand('god',function(source,args,rawCommand)
 			local nplayer = vRP.getUserSource(parseInt(args[1]))
 			if nplayer then
 				vRPclient.killGod(nplayer)
+				vRPclient._stopAnim(nplayer,false)
 				vRPclient.setHealth(nplayer,400)
 			end
 		else
+			vRPclient._stopAnim(source,false)
 			vRPclient.killGod(source)
 			vRPclient.setHealth(source,400) -- Vida
 			vRPclient.setArmour(source,100) -- Colete
@@ -328,38 +330,38 @@ RegisterCommand('tpcds',function(source,args,rawCommand)
 	end
 end)
 
------------------------------------------------------------------------------------------------------------------------------------------
---[ COORDENADAS ]------------------------------------------------------------------------------------------------------------------------
------------------------------------------------------------------------------------------------------------------------------------------
-RegisterCommand('cds',function(source,args,rawCommand)
-    local user_id = vRP.getUserId(source)
-    if vRP.hasPermission(user_id,"admin.permissao") then
-        local x,y,z = vRPclient.getPosition(source)
-        heading = GetEntityHeading(GetPlayerPed(-1))
-        vRP.prompt(source,"Cordenadas:","['x'] = "..tD(x)..", ['y'] = "..tD(y)..", ['z'] = "..tD(z))
-    end
-end)
+-- -----------------------------------------------------------------------------------------------------------------------------------------
+-- --[ COORDENADAS ]------------------------------------------------------------------------------------------------------------------------
+-- -----------------------------------------------------------------------------------------------------------------------------------------
+-- RegisterCommand('cds',function(source,args,rawCommand)
+--     local user_id = vRP.getUserId(source)
+--     if vRP.hasPermission(user_id,"admin.permissao") then
+--         local x,y,z = vRPclient.getPosition(source)
+--         heading = GetEntityHeading(GetPlayerPed(-1))
+--         vRP.prompt(source,"Cordenadas:","['x'] = "..tD(x)..", ['y'] = "..tD(y)..", ['z'] = "..tD(z))
+--     end
+-- end)
 
-RegisterCommand('cds2',function(source,args,rawCommand)
-    local user_id = vRP.getUserId(source)
-    if vRP.hasPermission(user_id,"admin.permissao")  then
-        local x,y,z = vRPclient.getPosition(source)
-        vRP.prompt(source,"Cordenadas:",tD(x)..","..tD(y)..","..tD(z))
-    end
-end)
+-- RegisterCommand('cds2',function(source,args,rawCommand)
+--     local user_id = vRP.getUserId(source)
+--     if vRP.hasPermission(user_id,"admin.permissao")  then
+--         local x,y,z = vRPclient.getPosition(source)
+--         vRP.prompt(source,"Cordenadas:",tD(x)..","..tD(y)..","..tD(z))
+--     end
+-- end)
 
-RegisterCommand('cds3',function(source,args,rawCommand)
-    local user_id = vRP.getUserId(source)
-    if vRP.hasPermission(user_id,"admin.permissao")  then
-        local x,y,z = vRPclient.getPosition(source)
-        vRP.prompt(source,"Cordenadas:","{x="..tD(x)..", y="..tD(y)..", z="..tD(z).."},")
-    end
-end)
+-- RegisterCommand('cds3',function(source,args,rawCommand)
+--     local user_id = vRP.getUserId(source)
+--     if vRP.hasPermission(user_id,"admin.permissao")  then
+--         local x,y,z = vRPclient.getPosition(source)
+--         vRP.prompt(source,"Cordenadas:","{x="..tD(x)..", y="..tD(y)..", z="..tD(z).."},")
+--     end
+-- end)
 
-function tD(n)
-    n = math.ceil(n * 100) / 100
-    return n
-end
+-- function tD(n)
+--     n = math.ceil(n * 100) / 100
+--     return n
+-- end
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- GROUP
 -----------------------------------------------------------------------------------------------------------------------------------------

@@ -84,11 +84,11 @@ function drawInfo(text,font,x,y,width,height,scale,r,g,b,a)
 	SetTextWrap(x - width/2.2,x+ width/2.2)
 	l = GetLineCount(text,x - width/2.2, y - height/2.8)
 	local lx,ly = x,y
-	DrawRect(lx,  ly + 0.0025,width,height,0,0,0,180)
+	DrawRect(lx,  ly + 0.0025,width,height,0,0,0,200)
 	ly = ly+(scale/10)/2 + 0.011
 	if l >1 then
 		for i = 1,l do
-			DrawRect(lx,ly,width,(scale/10)/2,0,0,0,180)
+			DrawRect(lx,ly,width,(scale/10)/2,0,0,0,200)
 			ly = ly+(scale/10)/2
 		end
 	end

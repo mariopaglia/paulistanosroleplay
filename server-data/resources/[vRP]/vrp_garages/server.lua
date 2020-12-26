@@ -106,6 +106,7 @@ local garages = {
 
 
 	[53] = { ['name'] = "HeliPC", ['payment'] = true, ['perm'] = "pcivil.permissao" },
+	[52] = { ['name'] = "Bicicletario", ['payment'] = false, ['perm'] = "livre" },
 	[54] = { ['name'] = "Bicicletario", ['payment'] = false, ['perm'] = "livre" },
 	[55] = { ['name'] = "Concessionaria", ['payment'] = false, ['public'] = true },
 	[56] = { ['name'] = "Exposicao", ['payment'] = false, ['perm'] = "conce.permissao" },
@@ -498,11 +499,10 @@ local workgarage = {
 	},
 	["Paramedico"] = {
 		"ambulance",
-		"motosamu"
+		"policeb"
 	},
 	["ParamedicoH"] = {
-		"polmav",
-		"seasparrow"
+		"polmav"
 	},
 	["Mecanico"] = {
 		"flatbed3",
@@ -686,10 +686,6 @@ function src.spawnVehicles(name,use)
 			local identity = vRP.getUserIdentity(user_id)
 			local value = vRP.getUData(parseInt(user_id),"vRP:multas")
 			local multas = json.decode(value) or 0
-			if multas >= 10000 then
-				TriggerClientEvent("Notify",source,"negado","Você tem multas pendentes.",10000)
-				return true
-			end
 			if not vCLIENT.returnVehicle(source,name) then
 				local vehicle = vRP.query("creative/get_vehicles",{ user_id = parseInt(user_id), vehicle = name })
 				local tuning = vRP.getSData("custom:u"..user_id.."veh_"..name) or {}

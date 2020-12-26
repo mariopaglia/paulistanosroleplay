@@ -1,28 +1,27 @@
 * {
   -webkit-touch-callout: none;
   -webkit-user-select: none;
-   -khtml-user-select: none;
-     -moz-user-select: none;
-      -ms-user-select: none;
-          user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 }
 
 @font-face {
-	font-family: 'OSL';
-	src: url('../font/OSL.ttf') format('truetype');
+  font-family: "OSL";
+  src: url("../font/OSL.ttf") format("truetype");
 }
 
 body {
-    color:#000000;
-    font-family:sans-serif;
-    display: none;
+  color: #000000;
+  font-family: sans-serif;
+  display: none;
+}
 
-  }
-
-  #container {
-    background:#000000;
-    display: none;
-  }
+#container {
+  background: #000000;
+  display: none;
+}
 
 body {
   padding: 0;

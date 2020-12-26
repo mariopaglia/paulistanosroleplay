@@ -104,32 +104,35 @@ function setVoice()
 	NetworkSetTalkerProximity(proximity)
 	NetworkClearVoiceChannel()
 end
+
+RegisterKeyMapping('voice:change', '[V] voice change', 'keyboard', 'HOME')
+
+RegisterCommand('voice:change',function(source, args, rawCommand)
+	if proximity == 3.0 then
+		voiceDisplay = "<span style='color:white'><img class='microfone' src='img/mic2.png'> Sussurro</span>"
+		proximity = 10.0
+	elseif proximity == 10.0 then
+		voiceDisplay = "<span style='color:white'><img class='microfone' src='img/mic3.png'>Gritando</span>"
+		proximity = 25.0
+	elseif proximity == 25.0 then
+		voiceDisplay = "<span style='color:white'><img class='microfone' src='img/mic.png'> Normal</span>"
+		proximity = 3.0
+	end
+	setVoice()
+end)
+
 Citizen.CreateThread(function()
     local currSpeed = 0.0
     local cruiseSpeed = 999.0
     local cruiseIsOn = false
     local seatbeltIsOn = false
 	while true do
-		-- P
-		Citizen.Wait(10)
+		Citizen.Wait(100)
 		ped = PlayerPedId()
 		health = (GetEntityHealth(ped)-100)/300*100
 		armor = GetPedArmour(ped)
 		local x,y,z = table.unpack(GetEntityCoords(ped,false))
 		local street = GetStreetNameFromHashKey(GetStreetNameAtCoord(x,y,z))
-		if IsControlJustPressed(1,212) and GetEntityHealth(ped) > 100 then
-			if proximity == 3.0 then
-				voiceDisplay = "<span style='color:white'><img class='microfone' src='img/mic2.png'> Sussurro</span>"
-				proximity = 10.0
-			elseif proximity == 10.0 then
-				voiceDisplay = "<span style='color:white'><img class='microfone' src='img/mic3.png'>Gritando</span>"
-				proximity = 25.0
-			elseif proximity == 25.0 then
-				voiceDisplay = "<span style='color:white'><img class='microfone' src='img/mic.png'> Normal</span>"
-				proximity = 3.0
-			end
-		 	setVoice()
-		end
 
 		-- print(NetworkGetTalkerProximity())
 		HideHudComponentThisFrame( 1 ) -- Wanted Stars
@@ -183,19 +186,7 @@ Citizen.CreateThread(function()
 			elseif(VehIndicatorLight == 3) then
 				piscaEsquerdo = true
 				piscaDireito = true
-			end
-
-			-- -- cruise
-	        -- if (GetPedInVehicleSeat(PedCar, -1) == ped) then
-	        --     if IsControlJustReleased(0, 137) then
-	        --         cruiseIsOn = not cruiseIsOn
-	        --         cruiseSpeed = GetEntitySpeed(PedCar)
-	        --     end
-	        --     local maxSpeed = cruiseIsOn and cruiseSpeed or GetVehicleHandlingFloat(PedCar,"CHandlingData","fInitialDriveMaxFlatVel")
-	        --     SetEntityMaxSpeed(PedCar, maxSpeed)
-	        -- else
-	        --     cruiseIsOn = false
-	        -- end			
+			end	
 		else	
 			inCar  = false
 			PedCar = 0
@@ -240,65 +231,78 @@ end)
 IsCar = function(veh)
 	local vc = GetVehicleClass(veh)
 	return (vc >= 0 and vc <= 7) or (vc >= 9 and vc <= 12) or (vc >= 17 and vc <= 20)
-end	
-Fwv = function (entity)
+  end
+  
+  Fwv = function (entity)
 	local hr = GetEntityHeading(entity) + 90.0
 	if hr < 0.0 then
-		hr = 360.0 + hr
+	  hr = 360.0 + hr
 	end
 	hr = hr * 0.0174533
 	return { x = math.cos(hr) * 2.0, y = math.sin(hr) * 2.0 }
-end
-local segundos = 0
-Citizen.CreateThread(function()
+  end
+  
+  local segundos = 0
+  
+  Citizen.CreateThread(function()
 	while true do
-		Citizen.Wait(10)
-		if inCar then
-			local ped = PlayerPedId()
-			local car = GetVehiclePedIsIn(ped)
-			if car ~= 0 and (ExNoCarro or IsCar(car)) then
-				ExNoCarro = true
-				if CintoSeguranca then
-					DisableControlAction(0,75)
-				end
-
-				sBuffer[2] = sBuffer[1]
-				sBuffer[1] = GetEntitySpeed(car)
-
-				if sBuffer[2] ~= nil and not CintoSeguranca and GetEntitySpeedVector(car,true).y > 1.0 and sBuffer[1] > 10.25 and (sBuffer[2] - sBuffer[1]) > (sBuffer[1] * 0.255) then
-					local co = GetEntityCoords(ped)
-					local fw = Fwv(ped)
-					SetEntityHealth(ped,GetEntityHealth(ped)-150)
-					SetEntityCoords(ped,co.x+fw.x,co.y+fw.y,co.z-0.47,true,true,true)
-					SetEntityVelocity(ped,vBuffer[2].x,vBuffer[2].y,vBuffer[2].z)
-					segundos = 20
-				end
-				vBuffer[2] = vBuffer[1]
-				vBuffer[1] = GetEntityVelocity(car)
-				if IsControlJustReleased(1,47) then
-					TriggerEvent("cancelando",true)
-					if CintoSeguranca then
-						TriggerEvent("vrp_sound:source",'unbelt',0.5)
-						SetTimeout(1000,function()
-							CintoSeguranca = false
-							TriggerEvent("cancelando",false)
-						end)
-					else
-						TriggerEvent("vrp_sound:source",'belt',0.5)
-						SetTimeout(3000,function()
-							CintoSeguranca = true
-							TriggerEvent("cancelando",false)
-						end)
-					end
-				end
-			elseif ExNoCarro then
-				ExNoCarro = false
+	local idle = 1000
+  
+	  if inCar then
+		idle = 5
+		local ped = PlayerPedId()
+		local car = GetVehiclePedIsIn(ped)
+  
+		if car ~= 0 and (ExNoCarro or IsCar(car)) then
+		  ExNoCarro = true
+  
+		  if CintoSeguranca then
+			DisableControlAction(0,75)
+		  end
+  
+		  sBuffer[2] = sBuffer[1]
+		  sBuffer[1] = GetEntitySpeed(car)
+  
+		  if sBuffer[2] ~= nil and not CintoSeguranca and GetEntitySpeedVector(car,true).y > 1.0 and sBuffer[1] > 10.25 and (sBuffer[2] - sBuffer[1]) > (sBuffer[1] * 0.255) then
+			local co = GetEntityCoords(ped)
+			local fw = Fwv(ped)
+			SetEntityHealth(ped,GetEntityHealth(ped)-150)
+			SetEntityCoords(ped,co.x+fw.x,co.y+fw.y,co.z-0.47,true,true,true)
+			SetEntityVelocity(ped,vBuffer[2].x,vBuffer[2].y,vBuffer[2].z)
+			segundos = 20
+		  end
+  
+		  vBuffer[2] = vBuffer[1]
+		  vBuffer[1] = GetEntityVelocity(car)
+  
+		  if IsControlJustReleased(1,47) then
+			TriggerEvent("cancelando",true)
+			if CintoSeguranca then
+			  TriggerEvent("vrp_sound:source",'unbelt',0.5)
+			  SetTimeout(2000,function()
 				CintoSeguranca = false
-				sBuffer[1],sBuffer[2] = 0.0,0.0
+				TriggerEvent("cancelando",false)
+			  end)
+			else
+			  TriggerEvent("vrp_sound:source",'belt',0.5)
+				SetTimeout(3000,function()
+				  CintoSeguranca = true
+				  TriggerEvent("cancelando",false)
+				end)
+			  end
+  
 			end
+		elseif ExNoCarro then
+		  ExNoCarro = false
+		  CintoSeguranca = false
+		  sBuffer[1],sBuffer[2] = 0.0,0.0
 		end
+	  end
+	  Citizen.Wait(idle)
 	end
-end)
+  end)
+
+
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 -- setas Sound
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -311,30 +315,6 @@ Citizen.CreateThread(function()
 			TriggerEvent('vrp_sound:source','setas2', 0.9)
 		end
 	end
-end)
---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
--- VOIP CIRCLE
---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-local playerNamesDist = 3
-local key_holding = false
-Citizen.CreateThread(function()
-    while true do
-        for _, id in ipairs(GetActivePlayers()) do
-    	local takeaway = 0.95
-            if (GetPlayerPed( id ) ~= PlayerPedId()) then
-                ped = GetPlayerPed( id )
-                x1, y1, z1 = table.unpack( GetEntityCoords( PlayerPedId(), true ) )
-                x2, y2, z2 = table.unpack( GetEntityCoords( GetPlayerPed( id ), true ) )
-                distance = math.floor(GetDistanceBetweenCoords(x1,  y1,  z1,  x2,  y2,  z2,  true))
-                if (distance < NetworkGetTalkerProximity(GetPlayerPed(id))) and GetPlayerPed(id) ~= PlayerPedId() then
-                    if NetworkIsPlayerTalking(id) and IsEntityVisible(GetPlayerPed(id)) then
-                      DrawMarker(25, x2,y2,z2 - takeaway, 0, 0, 0, 0, 0, 0, 0.7, 0.7, 10.3,255, 255, 255, 100, 0, 0, 2, 0, 0, 0, 0)
-                    end
-                end 
-			end
-        end
-        Citizen.Wait(5)
-    end
 end)
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- Oculta o hud quando pausa

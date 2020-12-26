@@ -18,6 +18,15 @@ function tvRP.setFriendlyFire(flag)
 	SetCanAttackFriendly(PlayerPedId(),flag,flag)
 end
 
+------------stamina recarge
+Citizen.CreateThread(function()
+	while true do
+		Citizen.Wait(18000)
+		RestorePlayerStamina(PlayerId(), 1.0)
+	end
+end)
+
+
 local nocauteado = false
 local timedeath = 900
 
@@ -106,13 +115,9 @@ Citizen.CreateThread(function()
 		Citizen.Wait(1)
 		if nocauteado then
 			if timedeath > 0 then
-				local ped = PlayerPedId()
-				local x,y,z = table.unpack(GetEntityCoords(ped))
-				DrawText3D(x,y,z, "VOCE TEM ~r~"..timedeath.."~w~ ML DE SANGUE")
+				drawTxt("VOCE TEM ~r~"..timedeath.." ~w~SEGUNDOS DE VIDA, AGUARDE POR SOCORRO MÉDICO",4,0.5,0.93,0.50,255,255,255,255)
 			else
-				local ped = PlayerPedId()
-				local x,y,z = table.unpack(GetEntityCoords(ped))
-				DrawText3D(x,y,z, "PRESSIONE ~g~[E]~w~ PARA VOLTAR AO HOSPITAL")
+				drawTxt("PRESSIONE ~g~E ~w~PARA VOLTAR AO AEROPORTO OU AGUARDE POR SOCORRO MÉDICO",4,0.5,0.93,0.50,255,255,255,255)
 			end
 			--SetPedToRagdoll(PlayerPedId(),1000,1000,0,0,0,0)
 			BlockWeaponWheelThisFrame()
@@ -159,18 +164,32 @@ Citizen.CreateThread(function()
 	end
 end)
 
-function DrawText3D(x,y,z, text)
-    local onScreen,_x,_y=World3dToScreen2d(x,y,z)
-    local px,py,pz=table.unpack(GetGameplayCamCoords())
+-- function DrawText3D(x,y,z, text)
+--     local onScreen,_x,_y=World3dToScreen2d(x,y,z)
+--     local px,py,pz=table.unpack(GetGameplayCamCoords())
     
-    SetTextScale(0.35, 0.35)
-    SetTextFont(4)
-    SetTextProportional(1)
-    SetTextColour(255, 255, 255, 215)
-    SetTextEntry("STRING")
-    SetTextCentre(1)
-    AddTextComponentString(text)
-    DrawText(_x,_y)
-    local factor = (string.len(text)) / 370
-    DrawRect(_x,_y+0.0125, 0.015+ factor, 0.03, 41, 11, 41, 68)
+--     SetTextScale(0.35, 0.35)
+--     SetTextFont(4)
+--     SetTextProportional(1)
+--     SetTextColour(255, 255, 255, 215)
+--     SetTextEntry("STRING")
+--     SetTextCentre(1)
+--     AddTextComponentString(text)
+--     DrawText(_x,_y)
+--     local factor = (string.len(text)) / 370
+--     DrawRect(_x,_y+0.0125, 0.015+ factor, 0.03, 41, 11, 41, 68)
+-- end
+
+-----------------------------------------------------------------------------------------------------------------------------------------
+-- DRAWTXT
+-----------------------------------------------------------------------------------------------------------------------------------------
+function drawTxt(text,font,x,y,scale,r,g,b,a)
+	SetTextFont(font)
+	SetTextScale(scale,scale)
+	SetTextColour(r,g,b,a)
+	SetTextOutline()
+	SetTextCentre(1)
+	SetTextEntry("STRING")
+	AddTextComponentString(text)
+	DrawText(x,y)
 end

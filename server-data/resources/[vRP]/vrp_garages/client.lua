@@ -107,8 +107,8 @@ local spawn = {
 	[31] = { ['x'] = 53.58, ['y'] = 114.89, ['z'] = 79.19, ['name'] = "Carteiro",
 	    [1] = { ['x'] = 72.89, ['y'] = 121.01, ['z'] = 79.18, ['h'] = 160.0 }
 	},
-	[32] = { ['x'] = -341.58, ['y'] = -1567.46, ['z'] = 25.22, ['name'] = "Lixeiro",
-		[1] = { ['x'] = -342.17, ['y'] = -1560.10, ['z'] = 25.23, ['h'] = 100.0 }
+	[32] = { ['x'] = -340.64, ['y'] = -1567.9, ['z'] = 25.23, ['name'] = "Lixeiro",
+		[1] = { ['x'] = -342.45, ['y'] = -1560.17, ['z'] = 25.24, ['h'] = 100.93 }
 	},
 	[33] = { ['x'] = 1054.13, ['y'] = -1952.76, ['z'] = 32.09, ['name'] = "Minerador",
 		[1] = { ['x'] = 1074.33, ['y'] = -1964.17, ['z'] = 31.10, ['h'] = 55.04 },
@@ -156,6 +156,9 @@ local spawn = {
 		[1] = { ['x'] = -1028.31, ['y'] = -2727.17, ['z'] = 13.63, ['h'] = 272.65 },
 		[2] = { ['x'] = -1027.65, ['y'] = -2728.17, ['z'] = 13.63, ['h'] = 272.65 },
 		[3] = { ['x'] = -1026.31, ['y'] = -2730.17, ['z'] = 13.63, ['h'] = 272.65 },
+	},	
+		[52] = { ['x'] = 1851.72, ['y'] = 2598.01, ['z'] = 45.68, ['name'] = "Bicicletario",
+		[1] = { ['x'] = 1856.14, ['y'] = 2599.76, ['z'] = 45.68, ['h'] = 272.65 }
 	},	
 	[55] = { ['x'] = -1195.29, ['y'] = -1740.14, ['z'] = 11.8, ['name'] = "Concessionaria",
 		[1] = { ['x'] = -1206.59, ['y'] = -1743.49, ['z'] = 3.85, ['h'] = 261.48 }
@@ -1481,13 +1484,14 @@ end
 Citizen.CreateThread(function()
 	SetNuiFocus(false,false)
 	while true do
-		Citizen.Wait(5)
+		local idle = 1000
 		if cooldown < 1 then
 			local ped = PlayerPedId()
 			if not IsPedInAnyVehicle(ped) then
 				local x,y,z = table.unpack(GetEntityCoords(ped))
 				for k,v in pairs(spawn) do
-					if Vdist(x,y,z,v.x,v.y,v.z) <= 10.5 then
+					if Vdist(x,y,z,v.x,v.y,v.z) <= 4 then
+						idle = 5
 						DrawMarker(36,v.x,v.y,v.z-0.6,0,0,0,0.0,0,0,0.7,0.7,1.0,93,182,229,200,0,0,0,1)
 						if Vdist(x,y,z,v.x,v.y,v.z) <= 1 then
 							if IsControlJustPressed(0,38) then
@@ -1497,11 +1501,17 @@ Citizen.CreateThread(function()
 					end
 				end
 			end
-			if IsControlJustPressed(0,182) then
-				cooldown = 3
-				vSERVER.vehicleLock()
-			end
 		end
+		Citizen.Wait(idle)
+	end
+end)
+
+RegisterKeyMapping('veichle:lock', '[V] veichlelock', 'keyboard', 'L')
+
+RegisterCommand('veichle:lock',function(source, args, rawCommand)
+	if cooldown < 1 then
+	cooldown = 3
+	vSERVER.vehicleLock()
 	end
 end)
 -----------------------------------------------------------------------------------------------------------------------------------------

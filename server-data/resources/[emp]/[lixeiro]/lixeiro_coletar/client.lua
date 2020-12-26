@@ -66,12 +66,13 @@ Citizen.CreateThread(function()
 			local distance = GetDistanceBetweenCoords(CoordenadaX,CoordenadaY,cdz,x,y,z,true)
 
 			if distance <= 30.0 then
-				DrawMarker(23,CoordenadaX,CoordenadaY,CoordenadaZ-0.97,0,0,0,0,0,0,1.0,1.0,0.5,240,200,80,20,0,0,0,0)
+				DrawMarker(23,CoordenadaX,CoordenadaY,CoordenadaZ-0.97,0,0,0,0,0,0,1.0,1.0,0.5,255,0,0,100,0,0,0,0)
 				if distance <= 1.2 then
 					drawTxt("PRESSIONE  ~r~E~w~  PARA INICIAR A COLETA",4,0.5,0.93,0.50,255,255,255,180)
 					if IsControlJustPressed(0,38) then
 						servico = true
 						selecionado = 1
+						TriggerEvent("Notify","importante","Utilize <b>/preset lixeiro</b> e pegue seu caminhão no blip para iniciar o trabalho",10000)
 						CriandoBlip(locs,selecionado)
 					end
 				end
@@ -122,6 +123,7 @@ Citizen.CreateThread(function()
 		if servico then
 			if IsControlJustPressed(0,168) then
 				servico = false
+				TriggerEvent("Notify","aviso","Você cancelou o emprego de lixeiro",10000)
 				RemoveBlip(blips)
 			end
 		end

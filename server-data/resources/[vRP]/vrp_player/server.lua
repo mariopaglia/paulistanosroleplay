@@ -982,7 +982,7 @@ end)
 -- CALL
 -----------------------------------------------------------------------------------------------------------------------------------------
 local blips = {}
-RegisterCommand('chamar',function(source,args,rawCommand)
+RegisterCommand('call',function(source,args,rawCommand)
 	local source = source
 	local answered = false
 	local user_id = vRP.getUserId(source)
@@ -1560,15 +1560,6 @@ end)
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- CARTAS
 -----------------------------------------------------------------------------------------------------------------------------------------
-RegisterCommand('card',function(source,args,rawCommand)
-	local user_id = vRP.getUserId(source)
-	local identity = vRP.getUserIdentity(user_id)
-	if user_id then
-		local cd = math.random(1,13)
-		local naipe = math.random(1,4)
-		TriggerClientEvent('CartasMe',-1,source,identity.name,cd,naipe)
-	end
-end)
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- USE
 -----------------------------------------------------------------------------------------------------------------------------------------

@@ -87,9 +87,9 @@ function UpdatePlayerTable(connectedPlayers)
 
 
 
-		if (v.job == 'Enfermeiro' or v.job == 'Paramedico' or v.job == 'Diretor') then
+		if (v.job == 'Enfermeiro' or v.job == 'Medico' or v.job == 'Diretor') then
 			ems = ems + 1
-		elseif (v.job == 'PMESP1' or v.job == 'PMESP2' or v.job == 'PMESP3' or v.job == 'PMESP4' or v.job == 'PMESP5' or v.job == 'PMESP6' or v.job == 'ROTA1' or v.job == 'ROTA2' or v.job == 'ROTA3' or v.job == 'ROTA4' or v.job == 'ROTA5' or v.job == 'ROTA6' or v.job == 'PC1' or v.job == 'PC2' or v.job == 'PC3' or v.job == 'PC4' or v.job == 'PC5' or v.job == 'PRF1' or v.job == 'PRF2' or v.job == 'PRF3' or v.job == 'PRF4') then
+		elseif (v.job == 'Recruta' or v.job == 'Soldado' or v.job == 'Tenente' or v.job == 'Capitao' or v.job == 'Coronel' or v.job == 'Comandante') then
 			police = police + 1
 		elseif v.job == 'Taxista' then
 			taxi = taxi + 1

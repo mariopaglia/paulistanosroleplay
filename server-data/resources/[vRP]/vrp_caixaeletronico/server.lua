@@ -37,10 +37,10 @@ function func.checkRobbery(id,x,y,z,head)
 	local user_id = vRP.getUserId(source)
 	local policia = vRP.getUsersByPermission("policia.permissao")
 	if user_id then
-		if #policia < 0 then
+		if #policia < 2 then
 			TriggerClientEvent("Notify",source,"importante","Número insuficiente de policiais no momento.")
-		elseif (os.time()-timers) <= 1800 then
-			TriggerClientEvent("Notify",source,"importante","Os caixas estão vazios, aguarde <b>"..vRP.format(parseInt((1800-(os.time()-timers)))).." segundos</b> até que os civis depositem dinheiro.")
+		elseif (os.time()-timers) <= 900 then
+			TriggerClientEvent("Notify",source,"importante","Os caixas estão vazios, aguarde <b>"..vRP.format(parseInt((900-(os.time()-timers)))).." segundos</b> até que os civis depositem dinheiro.")
 		else
 			andamento = true
 			timers = os.time()
@@ -89,7 +89,7 @@ function func.cancelRobbery()
 			if player then
 				async(function()
 					TriggerClientEvent('blip:remover:caixaeletronico',player)
-					TriggerClientEvent('chatMessage',player,"911",{65,130,255},"O assaltante saiu correndo e deixou tudo para trás.")
+					TriggerClientEvent('chatMessage',player,"190",{65,130,255},"O assaltante saiu correndo e deixou tudo para trás.")
 				end)
 			end
 		end

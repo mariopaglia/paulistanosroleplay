@@ -9,7 +9,7 @@ function emP.checkPermission()
 	local source = source
 	local user_id = vRP.getUserId(source)
 	if user_id then
-		return (vRP.hasPermission(user_id,"mecanico.permissao"))
+		return vRP.hasPermission(user_id,"mecanico.permissao")  --(vRP.hasPermission(user_id,"mecanico.permissao") or vRP.hasPermission(user_id,"bennys.permissao"))
 	end
 end
 
@@ -18,9 +18,12 @@ local tbl = {
 	[2] = { locked = false, player = nil },
 	[3] = { locked = false, player = nil },
 	[4] = { locked = false, player = nil },
-	[5] = { locked = false, player = nil },
-	[6] = { locked = false, player = nil },
-	[7] = { locked = false, player = nil }
+	[5] = { locked = false, player = nil }
+	--[6] = { locked = false, player = nil },
+	--[7] = { locked = false, player = nil },
+	--[8] = { locked = false, player = nil },
+	--[9] = { locked = false, player = nil },
+	--[10] = { locked = false, player = nil }
 }
 
 RegisterServerEvent('lockGarage')
@@ -62,7 +65,6 @@ AddEventHandler("LSC:buttonSelected", function(name,button)
 			if vRP.tryFullPayment(user_id,button.price) then
 				TriggerClientEvent("LSC:buttonSelected",source,name,button,true)
 			else
-				TriggerClientEvent("Notify",source,"negado","Dinheiro insuficiente.",8000)
 				TriggerClientEvent("LSC:buttonSelected",source,name,button,false)
 			end
 		else

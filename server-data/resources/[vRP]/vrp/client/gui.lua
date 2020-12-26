@@ -150,6 +150,19 @@ function tvRP.DeletarObjeto()
 	end
 end
 
+-----------------------------------------------------------------------------------------------------------------------------------------
+-- COOLDOWN
+-----------------------------------------------------------------------------------------------------------------------------------------
+local cooldown = 0
+Citizen.CreateThread(function()
+	while true do
+		Citizen.Wait(1000)
+		if cooldown > 0 then
+			cooldown = cooldown - 1
+		end
+	end
+end)
+
 Citizen.CreateThread(function()
 	while true do
 		Citizen.Wait(1)
@@ -229,13 +242,17 @@ Citizen.CreateThread(function()
 
 		-- PARA TODAS AS ANIMAÇÕES (F6)
 		if IsControlJustPressed(0,167) then
-			if GetEntityHealth(ped) > 100 then
-				if not menu_state.opened then
-					tvRP.DeletarObjeto()
-					ClearPedTasks(ped)
+			if cooldown < 1 then
+				cooldown = 20
+				if GetEntityHealth(ped) > 101 then
+					if not menu_state.opened then
+						tvRP.DeletarObjeto()
+						ClearPedTasks(ped)
+					end
 				end
 			end
 		end
+
 
 		-- MÃOS NA CABEÇA (F10)
 		if IsControlJustPressed(0,57) then

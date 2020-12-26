@@ -1,8 +1,8 @@
 local Teleport = {
-	-- ["HOSPITAL"] = {
-	-- 	positionFrom = { ['x'] = 332.26, ['y'] = -595.56, ['z'] = 43.28 },
-	-- 	positionTo = { ['x'] = 338.53, ['y'] = -583.79, ['z'] = 74.16 }
-	-- },
+	 ["HOSPITAL"] = {
+		positionFrom = { ['x'] = 332.26, ['y'] = -595.56, ['z'] = 43.28 },
+	 	positionTo = { ['x'] = 338.55, ['y'] = -583.83, ['z'] = 74.17 }
+	},
 	-- ["ESCRITORIO"] = {
 	-- 	positionFrom = { ['x'] = -70.93, ['y'] = -801.04, ['z'] = 44.22 },
 	-- 	positionTo = { ['x'] = -74.57, ['y'] = -820.91, ['z'] = 243.38 }
@@ -69,14 +69,15 @@ Citizen.CreateThread(function()
 				end
 			end
 
-			-- if distance2 <= 30 then
-			-- 	DrawMarker(1,j.positionTo.x,j.positionTo.y,j.positionTo.z-1,0,0,0,0,0,0,1.0,1.0,1.0,255,255,255,50,0,0,0,0)
-			-- 	if distance2 <= 1.5 then
-			-- 		if IsControlJustPressed(0,38) then
-			-- 			SetEntityCoords(PlayerPedId(),j.positionFrom.x,j.positionFrom.y,j.positionFrom.z-0.50)
-			-- 		end
-			-- 	end
-			-- end
+			if distance2 <= 15 then
+				esperar = 4
+			DrawMarker(1,j.positionTo.x,j.positionTo.y,j.positionTo.z-1,0,0,0,0,0,0,1.0,1.0,1.0,255,255,255,50,0,0,0,0)
+				if distance2 <= 1.5 then
+			 		if IsControlJustPressed(0,38) then
+						SetEntityCoords(PlayerPedId(),j.positionFrom.x,j.positionFrom.y,j.positionFrom.z-0.50)
+			 		end
+			 	end
+			 end
 		end
 		Citizen.Wait(esperar)
 	end

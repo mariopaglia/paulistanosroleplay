@@ -22,31 +22,35 @@ local macas = {
 -----------------------------------------------------------------------------------------------------------------------------------------
 Citizen.CreateThread(function()
 	while true do
-		Citizen.Wait(1)
+		local idle = 1000
 		for k,v in pairs(macas) do
 			local ped = PlayerPedId()
 			local x,y,z = table.unpack(GetEntityCoords(ped))
 			local bowz,cdz = GetGroundZFor_3dCoord(v.x,v.y,v.z)
 			local distance = GetDistanceBetweenCoords(v.x,v.y,cdz,x,y,z,true)
-			if distance <= 1.1 then
-				drawTxt("~r~E~w~  DEITAR    ~r~G~w~  TRATAMENTO",4,0.5,0.88,0.50,255,255,255,180)
-				if IsControlJustPressed(0,38) then
-					SetEntityCoords(ped,v.x2,v.y2,v.z2)
-					SetEntityHeading(ped,v.h)
-					vRP._playAnim(false,{{"amb@world_human_sunbathe@female@back@idle_a","idle_a"}},true)
-				end
-				if IsControlJustPressed(0,47) then
-					if emP.checkServices() then
-						TriggerEvent('tratamento-macas')
+			if distance <= 3.1 then
+				idle = 5
+				if distance <= 1.1 then
+					drawTxt("~r~E~w~  DEITAR    ~r~G~w~  TRATAMENTO",4,0.5,0.88,0.50,255,255,255,180)
+					if IsControlJustPressed(0,38) then
 						SetEntityCoords(ped,v.x2,v.y2,v.z2)
 						SetEntityHeading(ped,v.h)
 						vRP._playAnim(false,{{"amb@world_human_sunbathe@female@back@idle_a","idle_a"}},true)
-					else
-						TriggerEvent("Notify","importante","Existem paramédicos em serviço.")
+					end
+					if IsControlJustPressed(0,47) then
+						if emP.checkServices() then
+							TriggerEvent('tratamento-macas')
+							SetEntityCoords(ped,v.x2,v.y2,v.z2)
+							SetEntityHeading(ped,v.h)
+							vRP._playAnim(false,{{"amb@world_human_sunbathe@female@back@idle_a","idle_a"}},true)
+						else
+							TriggerEvent("Notify","importante","Existem paramédicos em serviço.")
+						end
 					end
 				end
 			end
 		end
+		Citizen.Wait(idle)
 	end
 end)
 -----------------------------------------------------------------------------------------------------------------------------------------

@@ -2,6 +2,9 @@ local cfg = {}
 
 cfg.chestweight = {
 	["blista"] = 40,
+	["deathbike"] = 10,
+	["deathbike3"] = 10,
+	["stryder"] = 10,
 	["brioso"] = 30,
 	["dilettante"] = 50,
 	["issi2"] = 50,

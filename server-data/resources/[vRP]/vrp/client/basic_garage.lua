@@ -449,6 +449,7 @@ local vehList = {
 	{ ['name'] = "blazer4", ['hash'] = -440768424, ['banned'] = true },
 	{ ['name'] = "shotaro", ['hash'] = -405626514, ['banned'] = false },
 	{ ['name'] = "ratbike", ['hash'] = 1873600305, ['banned'] = false },
+	{ ['name'] = "polmav", ['hash'] = 353883353, ['banned'] = false },
 	{ ['name'] = "policiacharger2018", ['hash'] = 1743739647, ['banned'] = true },
 	{ ['name'] = "policiamustanggt", ['hash'] = 796154746, ['banned'] = true },
 	{ ['name'] = "policiacapricesid", ['hash'] = 81717913, ['banned'] = true },

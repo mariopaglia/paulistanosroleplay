@@ -219,11 +219,47 @@ AddEventHandler('delnpcs',function()
 	EndFindPed(handle)
 end)
 -----------------------------------------------------------------------------------------------------------------------------------------
--- HEADING
+-- COORDENADAS
 -----------------------------------------------------------------------------------------------------------------------------------------
-RegisterCommand("h",function(source,args)
-	print(GetEntityHeading(PlayerPedId()))
+RegisterCommand("h1",function(source,args)
+	h = GetEntityHeading(PlayerPedId())
+	vRP.prompt("Heading",rCDS(h))
 end)
+
+RegisterCommand("h2",function(source,args)
+	h = GetEntityHeading(PlayerPedId())
+	vRP.prompt("Heading","['h'] = "..rCDS(h))
+end)
+
+RegisterCommand("cds",function(source,args)
+	local ped = PlayerPedId()
+	local x,y,z = table.unpack(GetEntityCoords(ped))
+	vRP.prompt("Cordenadas:","['x'] = "..rCDS(x)..", ['y'] = "..rCDS(y)..", ['z'] = "..rCDS(z))
+end)
+
+RegisterCommand("cds2",function(source,args)
+	local ped = PlayerPedId()
+	local x,y,z = table.unpack(GetEntityCoords(ped))
+	vRP.prompt("Cordenadas:",rCDS(x)..","..rCDS(y)..","..rCDS(z))
+end)
+
+RegisterCommand("cds3",function(source,args)
+	local ped = PlayerPedId()
+	local x,y,z = table.unpack(GetEntityCoords(ped))
+	vRP.prompt("Cordenadas:","{x="..rCDS(x)..", y="..rCDS(y)..", z="..rCDS(z).."},")
+end)
+
+RegisterCommand("cds4",function(source,args)
+	local ped = PlayerPedId()
+	local x,y,z = table.unpack(GetEntityCoords(ped))
+	local h = GetEntityHeading(PlayerPedId())
+	vRP.prompt("Cordenadas:","['x'] = "..rCDS(x)..", ['y'] = "..rCDS(y)..", ['z'] = "..rCDS(z)..", ['h'] = " ..rCDS(h))
+end)
+
+function rCDS(n)
+    n = math.ceil(n * 100) / 100
+    return n
+end
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- HASH VEICULO
 -----------------------------------------------------------------------------------------------------------------------------------------

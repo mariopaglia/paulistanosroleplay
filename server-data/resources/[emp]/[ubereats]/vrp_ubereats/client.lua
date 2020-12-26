@@ -500,25 +500,27 @@ end
 -----------------------------------------------------------------------------------------------------------------------------------------
 Citizen.CreateThread(function()
 	while true do
-local kswait = 1000
-		if IsControlJustPressed(0,168) and emservico and (nveh) then
+	local kswait = 1000
+	if emservico then
 		kswait = 5
-			emservico = false
-			pegando = false
-			andamento = false
-			andamento2 = false
-			quantidade = 0
-			parte = 0
-			encomendapega = false
-			npcoord = false
-			TriggerEvent('cancelando',false)
-			RemoveBlip(blip)
-			vRP.playSound("Oneshot_Final","MP_MISSION_COUNTDOWN_SOUNDSET")
-			if nveh then
-			   DeleteVehicle(nveh)
-			   nveh = nil
+			if IsControlJustPressed(0,168) and (nveh) then
+				emservico = false
+				pegando = false
+				andamento = false
+				andamento2 = false
+				quantidade = 0
+				parte = 0
+				encomendapega = false
+				npcoord = false
+				TriggerEvent('cancelando',false)
+				RemoveBlip(blip)
+				vRP.playSound("Oneshot_Final","MP_MISSION_COUNTDOWN_SOUNDSET")
+				if nveh then
+				DeleteVehicle(nveh)
+				nveh = nil
+				end
 			end
-		end
+	end
 	Citizen.Wait(kswait)
 	end
 end)

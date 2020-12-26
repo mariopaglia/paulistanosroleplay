@@ -29,40 +29,7 @@ end
 -----------------------------------------------------------------------------------------------------------------------------------------
 
 local armalist = {
-	[1] = { ['index'] = "wbody|WEAPON_ASSAULTSMG", ['qtd'] = 1, ['name'] = "MTAR-21" },
-	[2] = { ['index'] = "wbody|WEAPON_ASSAULTRIFLE", ['qtd'] = 1, ['name'] = "AK-103" },
-	[3] = { ['index'] = "wbody|WEAPON_GUSENBERG", ['qtd'] = 1, ['name'] = "THOMPSON" },
-	[4] = { ['index'] = "wbody|WEAPON_PISTOL_MK2", ['qtd'] = 1, ['name'] = "FN FIVE SEVEN" },
-	[7] = { ['index'] = "wbody|WEAPON_MACHINEPISTOL", ['qtd'] = 1, ['name'] = "TEC-9" },
-	[8] = { ['index'] = "wbody|WEAPON_PUMPSHOTGUN_MK2", ['qtd'] = 1, ['name'] = "SHOTGUN" },
-	[8] = { ['index'] = "wammo|WEAPON_ASSAULTSMG", ['qtd'] = 35, ['name'] = "MUNIÇÃO DE MTAR-21" },
-	[9] = { ['index'] = "wammo|WEAPON_ASSAULTRIFLE", ['qtd'] = 50, ['name'] = "MUNIÇÃO DE AK-103" },
-	[10] = { ['index'] = "wammo|WEAPON_GUSENBERG", ['qtd'] = 10, ['name'] = "MUNIÇÃO DE THOMPSON" },
-	[11] = { ['index'] = "wammo|WEAPON_PISTOL_MK2", ['qtd'] = 50, ['name'] = "MUNIÇÃO DE FN FIVE SEVEN" },
-	[14] = { ['index'] = "wammo|WEAPON_MACHINEPISTOL", ['qtd'] = 20, ['name'] = "MUNIÇÃO DE TEC-9" },
-	[15] = { ['index'] = "wammo|WEAPON_PUMPSHOTGUN_MK2", ['qtd'] = 50, ['name'] = "MUNIÇÃO DE SHOTGUN" },
-	[16] = { ['index'] = "dinheirosujo", ['qtd'] = 3500, ['name'] = "Dinheiro Sujo" },
-	[17] = { ['index'] = "dinheirosujo", ['qtd'] = 1500, ['name'] = "Dinheiro Sujo" },
-	[18] = { ['index'] = "dinheirosujo", ['qtd'] = 500, ['name'] = "Dinheiro Sujo" },
-	[19] = { ['index'] = "dinheirosujo", ['qtd'] = 2500, ['name'] = "Dinheiro Sujo" },
-	[20] = { ['index'] = "dinheirosujo", ['qtd'] = 1500, ['name'] = "Dinheiro Sujo" },
-	[21] = { ['index'] = "dinheirosujo", ['qtd'] = 3100, ['name'] = "Dinheiro Sujo" },
-	[22] = { ['index'] = "dinheirosujo", ['qtd'] = 3000, ['name'] = "Dinheiro Sujo" },
-	[23] = { ['index'] = "dinheirosujo", ['qtd'] = 3000, ['name'] = "Dinheiro Sujo" },
-	[24] = { ['index'] = "dinheirosujo", ['qtd'] = 4100, ['name'] = "Dinheiro Sujo" },
-	[25] = { ['index'] = "dinheirosujo", ['qtd'] = 3600, ['name'] = "Dinheiro Sujo" },
-	[26] = { ['index'] = "dinheirosujo", ['qtd'] = 2400, ['name'] = "Dinheiro Sujo" },
-	[27] = { ['index'] = "dinheirosujo", ['qtd'] = 3600, ['name'] = "Dinheiro Sujo" },
-	[28] = { ['index'] = "dinheirosujo", ['qtd'] = 3100, ['name'] = "Dinheiro Sujo" },
-	[29] = { ['index'] = "dinheirosujo", ['qtd'] = 4100, ['name'] = "Dinheiro Sujo" },
-	[30] = { ['index'] = "dinheirosujo", ['qtd'] = 3200, ['name'] = "Dinheiro Sujo" },
-	[31] = { ['index'] = "dinheirosujo", ['qtd'] = 5500, ['name'] = "Dinheiro Sujo" },
-	[32] = { ['index'] = "dinheirosujo", ['qtd'] = 1300, ['name'] = "Dinheiro Sujo" },
-	[33] = { ['index'] = "dinheirosujo", ['qtd'] = 1500, ['name'] = "Dinheiro Sujo" },
-	[34] = { ['index'] = "dinheirosujo", ['qtd'] = 3200, ['name'] = "Dinheiro Sujo" },
-	[35] = { ['index'] = "dinheirosujo", ['qtd'] = 2100, ['name'] = "Dinheiro Sujo" },
-	[36] = { ['index'] = "dinheirosujo", ['qtd'] = 900, ['name'] = "Dinheiro Sujo" },
-	[37] = { ['index'] = "dinheirosujo", ['qtd'] = 300, ['name'] = "Dinheiro Sujo" }
+	[1] = { ['index'] = "wbody|WEAPON_COMBATPISTOL", ['qtd'] = 1, ['name'] = "GLOCK" }
 }
 
 -----------------------------------------------------------------------------------------------------------------------------------------
@@ -82,19 +49,19 @@ end)
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- CHECKROBBERY
 -----------------------------------------------------------------------------------------------------------------------------------------
-function func.checkRobbery(id,x,y,z)
+function func.checkRobbery(id,x,y,z,head)
 	local source = source
 	local user_id = vRP.getUserId(source)
 	local identity = vRP.getUserIdentity(user_id)
 	if user_id then
 		local policia = vRP.getUsersByPermission("policia.permissao")
-		if #policia >= 0 then
+		if #policia >= 2 then
 			if timers[id] == 0 or not timers[id] then
-				timers[id] = 900
-				TriggerClientEvent('iniciandolojadearmas',source,x,y,z)
+				timers[id] = 1200
+				TriggerClientEvent('iniciandolojadearmas',source,head,x,y,z)
 				vRPclient._playAnim(source,false,{{"oddjobs@shop_robbery@rob_till","loop"}},true)
 				local random = math.random(100)
-				if random >= 10 then
+				if random >= 0 then
 					TriggerClientEvent("Notify",source,"importante","A policia foi acionada.",8000)
 					TriggerClientEvent("vrp_sound:source",source,'alarm',0.7)
 					vRPclient.setStandBY(source,parseInt(60))
@@ -105,15 +72,19 @@ function func.checkRobbery(id,x,y,z)
 								local ids = idgens:gen()
 								vRPclient.playSound(player,"Oneshot_Final","MP_MISSION_COUNTDOWN_SOUNDSET")
 								blips[ids] = vRPclient.addBlip(player,x,y,z,1,59,"Roubo em andamento",0.5,true)
-								TriggerClientEvent('chatMessage',player,"911",{64,64,255},"O roubo começou na ^1Loja de armas^0, dirija-se até o local e intercepte o assaltante.")
+								TriggerClientEvent('chatMessage',player,"190",{64,64,255},"O roubo começou na ^1Loja de armas^0, dirija-se até o local e intercepte o assaltante.")
 								SetTimeout(20000,function() vRPclient.removeBlip(player,blips[ids]) idgens:free(ids) end)
 							end)
 						end
 					end
 				end
 				SetTimeout(10000,function()
+					local qntdinheiro = math.random(40000,60000)
+					vRP.giveInventoryItem(user_id,"dinheirosujo",qntdinheiro) -- Ajuste do pagamento em dinheiro sujo
+					TriggerClientEvent("Notify",source,"importante","Você recebeu <b>"..qntdinheiro.."x</b> de dinheiro sujo",8000)
+
 					local randlist = math.random(100)
-						if randlist >= 40 and randlist <= 89 then
+						if randlist >= 90 and randlist <= 100 then
 							local randitem = math.random(#armalist)
 							vRP.giveInventoryItem(user_id,armalist[randitem].index,armalist[randitem].qtd)
 							TriggerClientEvent("Notify",source,"sucesso","Você recebeu "..armalist[randitem].qtd.."x <b>"..armalist[randitem].name.."</b>.",8000)
@@ -121,7 +92,7 @@ function func.checkRobbery(id,x,y,z)
 						end
 				end)
 			else
-				TriggerClientEvent("Notify",source,"importante","O seguro ainda não cobriu o ultimo assalto, aguarde <b>"..timers[id].." segundos</b>até a cobertura.",8000)
+				TriggerClientEvent("Notify",source,"importante","O seguro ainda não cobriu o ultimo assalto, aguarde <b>"..timers[id].." segundos</b> até a cobertura.",8000)
 			end
 		else
 			TriggerClientEvent("Notify",source,"importante","Número insuficiente de policiais no momento.",8000)

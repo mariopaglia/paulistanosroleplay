@@ -82,19 +82,15 @@ function func.comprarVeiculo(categoria, modelo)
                                              {user_id = user_id})
                     local totalGaragens = Config.TotalGaragem
 
-                    if vRP.hasPermission(user_id, "prata.permissao") then
-                        totalGaragens = totalGaragens+1 -- Se for dono da concessionária ganha uma vaga a mais
-                    end
 
-                    if vRP.hasPermission(user_id, "prata.permissao") then
+                    if vRP.hasPermission(user_id, "bronze.permissao") then
                         totalGaragens = Config.TotalGaragem + 2
+                    elseif vRP.hasPermission(user_id, "prata.permissao") then
+                        totalGaragens = Config.TotalGaragem + 4
                     elseif vRP.hasPermission(user_id, "ouro.permissao") then
-                        totalGaragens = Config.TotalGaragem + 5
-                    elseif vRP.hasPermission(user_id, "platina.permissao") then
-                        totalGaragens = Config.TotalGaragem + 10
+                        totalGaragens = Config.TotalGaragem + 6
                     elseif vRP.hasPermission(user_id, "diamante.permissao") then
-                        totalGaragens = Config.TotalGaragem + 10
-                    end
+                        totalGaragens = Config.TotalGaragem + 8
 
                     if parseInt(totalv[1].quantidade) >= totalGaragens then
                         TriggerClientEvent("vrp_concessionaria:notify", source,

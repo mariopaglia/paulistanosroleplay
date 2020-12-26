@@ -1,7 +1,7 @@
 Config = {}
 
 Config.AbertoAll = false
-Config.TotalGaragem = 5
+Config.TotalGaragem = 3
 Config.Veiculos = {
     {
         categoria = {title="Carros Nacionais", id="carros"},
@@ -137,6 +137,59 @@ Config.Veiculos = {
             {title = "visione", model="visione", mala=30, preco=75000, estoque = 15},                                                                                                                                              
             {title = "xa21", model="xa21", mala=30, preco=75000, estoque = 15},                                                                                                                                              
             {title = "zentorno", model="zentorno", mala=30, preco=75000, estoque = 15},                                                                                                                                              
+        }
+    }, 
+	    {
+        categoria = {title="Motos", id="motos"},
+        veiculos = {
+			{title = "akuma", model = "akuma", mala = 10, preco = 100000, estoque = 15},
+			{title = "avarus", model = "avarus", mala = 10, preco = 100000, estoque = 15},
+			{title = "bagger", model = "bagger", mala = 10, preco = 100000, estoque = 15},
+			{title = "bati", model = "bati", mala = 10, preco = 100000, estoque = 15},
+			{title = "bati2", model = "bati2", mala = 10, preco = 100000, estoque = 15},
+			{title = "bf400", model = "bf400", mala = 10, preco = 100000, estoque = 15},
+			{title = "carbonrs", model = "carbonrs", mala = 10, preco = 100000, estoque = 15},
+			{title = "chimera", model = "chimera", mala = 10, preco = 100000, estoque = 15},
+			{title = "cliffhanger", model = "cliffhanger", mala = 10, preco = 100000, estoque = 15},
+			{title = "daemon", model = "daemon", mala = 10, preco = 100000, estoque = 15},
+			{title = "daemon2", model = "daemon2", mala = 10, preco = 100000, estoque = 15},
+			{title = "defiler", model = "defiler", mala = 10, preco = 100000, estoque = 15},
+			{title = "deathbike", model = "deathbike", mala = 10, preco = 100000, estoque = 15},
+			{title = "deathbike3", model = "deathbike3", mala = 10, preco = 100000, estoque = 15},
+			{title = "stryder", model = "stryder", mala = 10, preco = 100000, estoque = 15},
+			{title = "diablous", model = "diablous", mala = 10, preco = 100000, estoque = 15},
+			{title = "diablous2", model = "diablous2", mala = 10, preco = 100000, estoque = 15},
+			{title = "double", model = "double", mala = 10, preco = 100000, estoque = 15},
+			{title = "enduro", model = "enduro", mala = 10, preco = 100000, estoque = 15},
+			{title = "esskey", model = "esskey", mala = 10, preco = 100000, estoque = 15},
+			{title = "faggio", model = "faggio", mala = 10, preco = 100000, estoque = 15},
+			{title = "faggio2", model = "faggio2", mala = 10, preco = 100000, estoque = 15},
+			{title = "faggio3", model = "faggio3", mala = 10, preco = 100000, estoque = 15},
+			{title = "fcr", model = "fcr", mala = 10, preco = 100000, estoque = 15},
+			{title = "fcr2", model = "fcr2", mala = 10, preco = 100000, estoque = 15},
+			{title = "gargoyle", model = "gargoyle", mala = 10, preco = 100000, estoque = 15},
+			{title = "hakuchou", model = "hakuchou", mala = 10, preco = 100000, estoque = 15},
+			{title = "hakuchou2", model = "hakuchou2", mala = 10, preco = 100000, estoque = 15},
+			{title = "hexer", model = "hexer", mala = 10, preco = 100000, estoque = 15},
+			{title = "innovation", model = "innovation", mala = 10, preco = 100000, estoque = 15},
+			{title = "lectro", model = "lectro", mala = 10, preco = 100000, estoque = 15},
+			{title = "manchez", model = "manchez", mala = 10, preco = 100000, estoque = 15},
+			{title = "nemesis", model = "nemesis", mala = 10, preco = 100000, estoque = 15},
+			{title = "nightblade", model = "nightblade", mala = 10, preco = 100000, estoque = 15},
+			{title = "pcj", model = "pcj", mala = 10, preco = 100000, estoque = 15},
+			{title = "ratbike", model = "ratbike", mala = 10, preco = 100000, estoque = 15},
+			{title = "ruffian", model = "ruffian", mala = 10, preco = 100000, estoque = 15},
+			{title = "sanchez", model = "sanchez", mala = 10, preco = 100000, estoque = 15},
+			{title = "sanchez2", model = "sanchez2", mala = 10, preco = 100000, estoque = 15},
+			{title = "sanctus", model = "sanctus", mala = 10, preco = 100000, estoque = 15},
+			{title = "sovereign", model = "sovereign", mala = 10, preco = 100000, estoque = 15},
+			{title = "thrust", model = "thrust", mala = 10, preco = 100000, estoque = 15},
+			{title = "vader", model = "vader", mala = 10, preco = 100000, estoque = 15},
+			{title = "vindicator", model = "vindicator", mala = 10, preco = 100000, estoque = 15},
+			{title = "vortex", model = "vortex", mala = 10, preco = 100000, estoque = 15},
+			{title = "wolfsbane", model = "wolfsbane", mala = 10, preco = 100000, estoque = 15},
+			{title = "zombiea", model = "zombiea", mala = 10, preco = 100000, estoque = 15},
+			{title = "zombieb", model = "zombieb", mala = 10, preco = 100000, estoque = 15},                                                                                                                                                                                            
         }
     },  
 }

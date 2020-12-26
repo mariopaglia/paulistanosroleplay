@@ -30,7 +30,7 @@ function func.checkRobbery(id,x,y,z,head)
 	local user_id = vRP.getUserId(source)
 	if user_id then
 		local policia = vRP.getUsersByPermission("policia.permissao")
-		if #policia >= 0 then
+		if #policia >= 2 then
 			if timers[id] == 0 or not timers[id] then
 				timers[id] = 900
 				TriggerClientEvent('iniciandoregistradora',source,head,x,y,z)
@@ -51,7 +51,9 @@ function func.checkRobbery(id,x,y,z,head)
 					end
 				end
 				SetTimeout(10000,function()
-					vRP.giveInventoryItem(user_id,"dinheirosujo",math.random(12000,30000)) -- Ajuste do pagamento em dinheiro sujo
+					local qntdinheiro = math.random(5000,8000)
+					vRP.giveInventoryItem(user_id,"dinheirosujo",qntdinheiro) -- Ajuste do pagamento em dinheiro sujo
+					TriggerClientEvent("Notify",source,"importante","Você recebeu <b>"..qntdinheiro.."x</b> de dinheiro sujo",8000)
 				end)
 			else
 				TriggerClientEvent("Notify",source,"importante","A registradora está vazia, aguarde <b>"..timers[id].." segundos</b> até que tenha dinheiro novamente.")

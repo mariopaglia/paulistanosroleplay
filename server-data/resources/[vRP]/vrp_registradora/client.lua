@@ -99,8 +99,9 @@ Citizen.CreateThread(function()
 			local distance = GetDistanceBetweenCoords(v.x,v.y,cdz,x,y,z,true)
 			if distance <= 1.2 and not andamento then
 				esperar = 4
-				drawTxt("PRESSIONE  ~r~E~w~  PARA INICIAR O ROUBO",4,0.5,0.93,0.50,255,255,255,180)
-				if IsControlJustPressed(0,38) and not IsPedInAnyVehicle(ped) then
+				drawTxt("PRESSIONE  ~r~G~w~  PARA INICIAR O ROUBO",4,0.5,0.93,0.50,255,255,255,180)
+				if IsControlJustPressed(0,47) and not IsPedInAnyVehicle(ped) then
+					TriggerEvent("progress",10000,"roubando")
 					func.checkRobbery(v.id,v.x,v.y,v.z,v.h)
 				end
 			end
@@ -125,7 +126,7 @@ end)
 -----------------------------------------------------------------------------------------------------------------------------------------
 Citizen.CreateThread(function()
 	while true do
-		Citizen.Wait(2000) -- Ajuste de tempo da animação (Ex: 30 segundos = 3000) <--- está completamente errado 3000 é 3 segundos, 30000 que é 30 segundos.
+		Citizen.Wait(1000) -- Ajuste de tempo da animação (Ex: 30 segundos = 3000) <--- está completamente errado 3000 é 3 segundos, 30000 que é 30 segundos.
 		if andamento then
 			segundos = segundos - 1
 			if segundos <= 0 then

@@ -980,6 +980,11 @@ local vehglobal = {
 	--MOTOS
 	
 	["akuma"] = { ['name'] = "Akuma", ['price'] = 500000, ['tipo'] = "motos" },
+	
+	["deathbike"] = { ['name'] = "deathbike", ['price'] = 500000, ['tipo'] = "motos" },
+	["deathbike3"] = { ['name'] = "deathbike3", ['price'] = 500000, ['tipo'] = "motos" },
+	["stryder"] = { ['name'] = "stryder", ['price'] = 500000, ['tipo'] = "motos" },
+	
 	["avarus"] = { ['name'] = "Avarus", ['price'] = 440000, ['tipo'] = "motos" },
 	["bagger"] = { ['name'] = "Bagger", ['price'] = 300000, ['tipo'] = "motos" },
 	["bati"] = { ['name'] = "Bati", ['price'] = 370000, ['tipo'] = "motos" },
@@ -1051,6 +1056,7 @@ local vehglobal = {
 	--TRABALHO
 
 	["youga2"] = { ['name'] = "Youga2", ['price'] = 1000, ['tipo'] = "work" },
+	["polmav"] = { ['name'] = "polmav", ['price'] = 1000, ['tipo'] = "work" },
 	["felon2"] = { ['name'] = "Felon2", ['price'] = 1000, ['tipo'] = "work" },
 	["pbus"] = { ['name'] = "PBus", ['price'] = 1000, ['tipo'] = "work" },
 	["policiacharger2018"] = { ['name'] = "Dodge Charger 2018", ['price'] = 1000, ['tipo'] = "work" },
@@ -1065,7 +1071,7 @@ local vehglobal = {
 	["policiabmwr1200"] = { ['name'] = "BMW R1200", ['price'] = 1000, ['tipo'] = "work" },
 	["policiaheli"] = { ['name'] = "Policia Helicóptero", ['price'] = 1000, ['tipo'] = "work" },
 	["fbi2"] = { ['name'] = "Granger SOG", ['price'] = 1000, ['tipo'] = "work" },
-	["policeb"] = { ['name'] = "Harley Davidson", ['price'] = 1000, ['tipo'] = "work" },
+	["policeb"] = { ['name'] = "Moto Samu", ['price'] = 1000, ['tipo'] = "work" },
 	["paramedicoambu"] = { ['name'] = "Ambulância", ['price'] = 1000, ['tipo'] = "work" },
 	["paramedicocharger2014"] = { ['name'] = "Dodge Charger 2014", ['price'] = 1000, ['tipo'] = "work" },
 	["paramedicoheli"] = { ['name'] = "Paramédico Helicóptero", ['price'] = 1000, ['tipo'] = "work" },
@@ -1081,6 +1087,7 @@ local vehglobal = {
 	["taxi"] = { ['name'] = "Taxi", ['price'] = 1000, ['tipo'] = "work" },
 	["boxville4"] = { ['name'] = "Caminhão", ['price'] = 1000, ['tipo'] = "work" },
 	["trash"] = { ['name'] = "Caminhão", ['price'] = 1000, ['tipo'] = "work" },
+	["trash2"] = { ['name'] = "Caminhão", ['price'] = 1000, ['tipo'] = "work" },
 	["tiptruck"] = { ['name'] = "Tiptruck", ['price'] = 1000, ['tipo'] = "work" },
 	["scorcher"] = { ['name'] = "Scorcher", ['price'] = 1000, ['tipo'] = "work" },
 	["tribike"] = { ['name'] = "Tribike", ['price'] = 1000, ['tipo'] = "work" },

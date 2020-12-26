@@ -3,8 +3,7 @@
 // version : 1.00
 // update : 16/06/2018
 // info: 
-function hex2rgba(hex, opacity)
-{
+function hex2rgba(hex, opacity) {
     //extract the two hexadecimal digits for each color
     var patt = /^#([\da-fA-F]{2})([\da-fA-F]{2})([\da-fA-F]{2})$/;
     var matches = patt.exec(hex);
@@ -20,22 +19,21 @@ function hex2rgba(hex, opacity)
     //return rgba colour
     return rgba;
 }
-    window.onData = function(data) {
-    	if (data.setDisplay == true) {
-			$("body").css('background', hex2rgba("#000000", 0.95));
-          //$("body").css('background', '#131313bd');
-            $("#container").css('display', 'flex');
-    	} else {
-            $('*').css('background', 'transparent');
-            $("#container").css('display', 'none');
-    	}
-    	
+window.onData = function (data) {
+    if (data.setDisplay == true) {
+        $("body").css('background', hex2rgba("#000000", 0.97));
+        //$("body").css('background', '#131313bd');
+        $("#container").css('display', 'flex');
+    } else {
+        $('*').css('background', 'transparent');
+        $("#container").css('display', 'none');
     }
 
+}
 
-    window.onload = function(e) {
-        window.addEventListener('message', function(event) {
-            onData(event.data)
-        });
-    }
 
+window.onload = function (e) {
+    window.addEventListener('message', function (event) {
+        onData(event.data)
+    });
+}

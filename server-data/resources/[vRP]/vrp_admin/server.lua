@@ -456,11 +456,12 @@ end)
 RegisterCommand('adm',function(source,args,rawCommand)
 	local user_id = vRP.getUserId(source)
 	if vRP.hasPermission(user_id,"admin.permissao") or vRP.hasPermission(user_id,"moderador.permissao") or vRP.hasPermission(user_id,"suporte.permissao") then
+		local identity = vRP.getUserIdentity(user_id)
 		local mensagem = vRP.prompt(source,"Mensagem:","")
 		if mensagem == "" then
 			return
 		end
-		vRPclient.setDiv(-1,"anuncio",".div_anuncio { background: rgba(255,0,0,0.8); font-size: 11px; font-family: arial; color: #fff; padding: 20px; bottom: 50%; right: 20px; max-width: 600px; position: absolute; -webkit-border-radius: 5px; } bold { font-size: 15px; }","<bold>"..mensagem.."</bold><br><br>Mensagem enviada por: Administrador")
+		vRPclient.setDiv(-1,"anuncio",".div_anuncio { background: rgba(255,0,0,0.8); font-size: 11px; font-family: arial; color: #fff; padding: 20px; bottom: 50%; right: 20px; max-width: 600px; position: absolute; -webkit-border-radius: 5px; } bold { font-size: 15px; }","<bold>"..mensagem.."</bold><br><br>Mensagem enviada pelo(a) Staff: "..identity.name.." "..identity.firstname)
 		SetTimeout(60000,function()
 			vRPclient.removeDiv(-1,"anuncio")
 		end)
@@ -480,10 +481,11 @@ RegisterCommand('vroupas',function(source,args,rawCommand)
     else -- show
       local content = ""
     for k,v in pairs(custom) do
-        content = content..k.." => "..json.encode(v).."<br />" 
+		content = content..k.." = "..json.encode(v)
       end
         player_customs[source] = true
-      vRPclient._setDiv(source,"customization",".div_customization{ margin: auto; padding: 8px; width: 500px; margin-top: 80px; background: black; color: white; font-weight: bold; ", content)
+	--   vRPclient._setDiv(source,"customization",".div_customization{ margin: auto; padding: 8px; width: 500px; margin-top: 80px; background: black; color: white; font-weight: bold; ", content)
+	vRP.prompt(source, "Montagem de Preset", content)
  end
 end)
 

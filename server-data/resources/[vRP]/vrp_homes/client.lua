@@ -2836,7 +2836,7 @@ end)
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- ENTER
 -----------------------------------------------------------------------------------------------------------------------------------------
-RegisterCommand("entrar",function(source,args)
+RegisterCommand("enter",function(source,args)
 	local ped = PlayerPedId()
 	local x,y,z = table.unpack(GetEntityCoords(ped))
 	for k,v in pairs(homes) do
@@ -2858,7 +2858,7 @@ end)
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- EXIT
 -----------------------------------------------------------------------------------------------------------------------------------------
-RegisterCommand("sair",function(source,args)
+RegisterCommand("exit",function(source,args)
 	local ped = PlayerPedId()
 	local x,y,z = table.unpack(GetEntityCoords(ped))
 	for k,v in pairs(homes) do
@@ -2880,7 +2880,7 @@ end)
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- VAULT
 -----------------------------------------------------------------------------------------------------------------------------------------
-RegisterCommand("bau",function(source,args)
+RegisterCommand("vault",function(source,args)
 	local ped = PlayerPedId()
 	local x,y,z = table.unpack(GetEntityCoords(ped))
 	for k,v in pairs(homes) do

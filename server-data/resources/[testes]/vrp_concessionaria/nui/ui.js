@@ -28,13 +28,15 @@ $(function () {
 
     document.onkeyup = function (data) {
         if (data.which == 27) {
-            sendData("ButtonClick", { action: "close" });
+            sendData("ButtonClick", {
+                action: "close"
+            });
         }
     }
 });
 
 function getData() {
-    $.post("http://vrp_concessionaria/CarregarDados", null, function (event) { });
+    $.post("http://vrp_concessionaria/CarregarDados", null, function (event) {});
 }
 
 function criarCatalogo(veiculos, totalTipo, aberto, isVendedor) {
@@ -54,9 +56,9 @@ function criarCatalogo(veiculos, totalTipo, aberto, isVendedor) {
                 });
                 var preco = "Consulte"
                 if (aberto || isVendedor) {
-                    preco = "$ " + addCommas(parseInt(dataV.preco))
+                    preco = "R$ " + addCommas(parseInt(dataV.preco))
                     if (isVendedor) {
-                        preco = "U$ " + addCommas(parseInt(dataV.preco * 0.8))
+                        preco = "R$ " + addCommas(parseInt(dataV.preco * 0.9))
                     }
                 }
 
@@ -107,7 +109,7 @@ function criarMeus(veiculos, meusVeiculos, aberto, isVendedor) {
                     // var preco = "$ " + addCommas(dataV.preco * 0.7)
                     var preco = "";
                     if (aberto || isVendedor) {
-                        preco = "$ " + addCommas(parseInt(dataV.preco * 0.8));
+                        preco = "R$ " + addCommas(parseInt(dataV.preco * 0.7));
                     }
 
                     var htmlCarro = '<div class="col-md-4 col-sm-6">';
@@ -162,7 +164,11 @@ function comprar(categoria, model) {
         confirmButtonText: 'COMPRAR'
     }).then((result) => {
         if (result.value) {
-            sendData("ButtonClick", { action: "confirmarCompra", categoria: categoria, model: model });
+            sendData("ButtonClick", {
+                action: "confirmarCompra",
+                categoria: categoria,
+                model: model
+            });
         }
     })
 }
@@ -179,7 +185,11 @@ function vender(categoria, model) {
         confirmButtonText: 'VENDER'
     }).then((result) => {
         if (result.value) {
-            sendData("ButtonClick", { action: "confirmarVenda", categoria: categoria, model: model });
+            sendData("ButtonClick", {
+                action: "confirmarVenda",
+                categoria: categoria,
+                model: model
+            });
         }
     })
 }
@@ -197,6 +207,5 @@ function addCommas(nStr) {
 }
 
 function sendData(name, data) {
-    $.post("http://vrp_concessionaria/" + name, JSON.stringify(data), function (datab) {
-    });
+    $.post("http://vrp_concessionaria/" + name, JSON.stringify(data), function (datab) {});
 }

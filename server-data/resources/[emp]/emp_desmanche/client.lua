@@ -11,7 +11,7 @@ local roubando = false
 -- LOCAIS
 -----------------------------------------------------------------------------------------------------------------------------------------
 local locais = {
-	{ ['x'] = 1261.5, ['y'] = -2565.61, ['z'] = 42.75, ['perm'] = "motoclub.permissao" },
+	{ ['x'] = 1261.5, ['y'] = -2565.61, ['z'] = 42.75, ['perm'] = "motoclub.permissao" }, -- 1261.5, -2565.61, 42.75
 	{ ['x'] = 1548.73, ['y'] = 3517.11, ['z'] = 36.10, ['perm'] = "motoclub.permissao" },
 	{ ['x'] = 2340.87, ['y'] = 3050.18, ['z'] = 48.16, ['perm'] = "motoclub.permissao" }
 }
@@ -31,7 +31,7 @@ Citizen.CreateThread(function()
 					if distance <= 3.1 and IsControlJustPressed(0,38) then
 						if emP.checkVehicle() and emP.checkPermission(v.perm) then
 							roubando = true
-							segundos = 60
+							segundos = 10
 							FreezeEntityPosition(GetVehiclePedIsUsing(ped),true)
 
 							repeat

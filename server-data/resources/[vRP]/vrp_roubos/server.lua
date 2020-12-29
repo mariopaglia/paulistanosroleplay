@@ -13,29 +13,29 @@ local assaltante = false
 -- GERANDO RECOMPENSA
 -----------------------------------------------------------------------------------------------------------------------------------------
 local locais = {
-	{ id = 1 , nome = "Banco" , segundos = 300 , cops = 4, recompensa = math.random(120000,200000) },
-	{ id = 2 , nome = "Banco" , segundos = 300 , cops = 4 , recompensa = math.random(120000,200000) },
-	{ id = 3 , nome = "Banco" , segundos = 300 , cops = 4 , recompensa = math.random(120000,200000) },
-	{ id = 4 , nome = "Banco Paleto" , segundos = 400 , cops = 6 , recompensa = math.random(500000,700000) },
-	{ id = 5 , nome = "Banco" , segundos = 300 , cops = 4 , recompensa = math.random(120000,200000) },
-	{ id = 6 , nome = "Banco" , segundos = 300 , cops = 4 , recompensa = math.random(120000,200000) },
-	{ id = 7 , nome = "Banco" , segundos = 300 , cops = 4 , recompensa = math.random(120000,200000) },
+	{ id = 1 , nome = "Banco" , segundos = 120 , cops = 4, recompensa = math.random(120000,200000) },
+	{ id = 2 , nome = "Banco" , segundos = 120 , cops = 4 , recompensa = math.random(120000,200000) },
+	{ id = 3 , nome = "Banco" , segundos = 120 , cops = 4 , recompensa = math.random(120000,200000) },
+	{ id = 4 , nome = "Banco Paleto" , segundos = 120 , cops = 4 , recompensa = math.random(500000,700000) },
+	{ id = 5 , nome = "Banco" , segundos = 120 , cops = 4 , recompensa = math.random(120000,200000) },
+	{ id = 6 , nome = "Banco" , segundos = 120 , cops = 4 , recompensa = math.random(120000,200000) },
+	{ id = 7 , nome = "Banco" , segundos = 120 , cops = 4 , recompensa = math.random(120000,200000) },
 
-	{ id = 13 , nome = "Loja de Departamento" , segundos = 100 , cops = 3 , recompensa = math.random(70000,140000) },
-	{ id = 14 , nome = "Loja de Departamento" , segundos = 80 , cops = 3 , recompensa = math.random(70000,140000) },
-	{ id = 15 , nome = "Loja de Departamento" , segundos = 80 , cops = 3 , recompensa = math.random(70000,140000) },
-	{ id = 16 , nome = "Loja de Departamento" , segundos = 80 , cops = 3 , recompensa = math.random(70000,140000) },
-	{ id = 17 , nome = "Loja de Departamento" , segundos = 80 , cops = 3 , recompensa = math.random(70000,140000) },
-	{ id = 18 , nome = "Loja de Departamento" , segundos = 100 , cops = 3 , recompensa = math.random(70000,140000) },
-	{ id = 19 , nome = "Loja de Departamento" , segundos = 120 , cops = 3 , recompensa = math.random(70000,140000) },
-	{ id = 20 , nome = "Loja de Departamento" , segundos = 170 , cops = 3 , recompensa = math.random(70000,140000) },
-	{ id = 21 , nome = "Loja de Departamento" , segundos = 150 , cops = 3 , recompensa = math.random(70000,140000) },
-	{ id = 22 , nome = "Loja de Departamento" , segundos = 200 , cops = 3 , recompensa = math.random(70000,140000) },
-	{ id = 23 , nome = "Loja de Departamento" , segundos = 180 , cops = 3 , recompensa = math.random(70000,140000) },
-	{ id = 24 , nome = "Loja de Departamento" , segundos = 180 , cops = 3 , recompensa = math.random(70000,140000) },
-	{ id = 25 , nome = "Loja de Departamento" , segundos = 150 , cops = 3 , recompensa = math.random(70000,140000) },
-	{ id = 26 , nome = "Vanilla" , segundos = 165 , cops = 3 , recompensa = math.random(90000,150000) },
-	{ id = 27 , nome = "Yellow Jack" , segundos = 165 , cops = 3 , recompensa = math.random(90000,150000) },
+	{ id = 13 , nome = "Loja de Departamento" , segundos = 120 , cops = 0 , recompensa = math.random(70000,140000) },
+	{ id = 14 , nome = "Loja de Departamento" , segundos = 120 , cops = 4 , recompensa = math.random(70000,140000) },
+	{ id = 15 , nome = "Loja de Departamento" , segundos = 120 , cops = 4 , recompensa = math.random(70000,140000) },
+	{ id = 16 , nome = "Loja de Departamento" , segundos = 120 , cops = 4 , recompensa = math.random(70000,140000) },
+	{ id = 17 , nome = "Loja de Departamento" , segundos = 120 , cops = 4 , recompensa = math.random(70000,140000) },
+	{ id = 18 , nome = "Loja de Departamento" , segundos = 120 , cops = 4 , recompensa = math.random(70000,140000) },
+	{ id = 19 , nome = "Loja de Departamento" , segundos = 120 , cops = 4 , recompensa = math.random(70000,140000) },
+	{ id = 20 , nome = "Loja de Departamento" , segundos = 120 , cops = 4 , recompensa = math.random(70000,140000) },
+	{ id = 21 , nome = "Loja de Departamento" , segundos = 120 , cops = 4 , recompensa = math.random(70000,140000) },
+	{ id = 22 , nome = "Loja de Departamento" , segundos = 120 , cops = 4 , recompensa = math.random(70000,140000) },
+	{ id = 23 , nome = "Loja de Departamento" , segundos = 120 , cops = 4 , recompensa = math.random(70000,140000) },
+	{ id = 24 , nome = "Loja de Departamento" , segundos = 120 , cops = 4 , recompensa = math.random(70000,140000) },
+	{ id = 25 , nome = "Loja de Departamento" , segundos = 120 , cops = 4 , recompensa = math.random(70000,140000) },
+	{ id = 26 , nome = "Vanilla" , segundos = 120 , cops = 4 , recompensa = math.random(90000,150000) },
+	{ id = 27 , nome = "Yellow Jack" , segundos = 120 , cops = 4 , recompensa = math.random(90000,150000) },
 --	{ id = 26 , nome = "Joalheria" , segundos = 210 , cops = 0 , recompensa = math.random(140000,210000) }
 }
 -----------------------------------------------------------------------------------------------------------------------------------------
@@ -49,7 +49,7 @@ function rob.IniciandoRoubo(id,x,y,z,head)
 		if item.id == id then
 			if #soldado < item.cops then
 				TriggerClientEvent('Notify',source,"negado","Número insuficiente de policiais no momento para iniciar um roubo.")
-			elseif (os.time() - variavel) < 1500 then
+			elseif (os.time() - variavel) < 1800 then
 				TriggerClientEvent('Notify',source,"negado","Os cofres estão vazios, aguarde até que os seguranças retornem com o dinheiro.")
 			else
 				assaltante = true

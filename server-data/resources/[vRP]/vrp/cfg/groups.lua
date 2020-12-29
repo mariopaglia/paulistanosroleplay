@@ -81,6 +81,123 @@ cfg.groups = {
 		"mochila.permissao",
 		"carrosvip.permissao"
 	},
+		---------------------------------------------------
+	--					ROTA
+	---------------------------------------------------
+	["RecrutaR"] = {
+		_config = {
+			title = "ROTA Recruta",
+			gtype = "job"
+		},
+		"policia.permissao",
+		"pmesp.permissao",
+		"rota.permissao",
+		"recrutar.permissao",
+		"polpar.permissao"
+	},
+	["RecrutaRP"] = {
+		_config = {
+			title = "ROTA Paisana",
+			gtype = "job"
+		},
+		"tooglerecr.permissao"
+	},
+
+	["SoldadoR"] = {
+		_config = {
+			title = "ROTA Soldado",
+			gtype = "job"
+		},
+		"policia.permissao",
+		"pmesp.permissao",
+		"rota.permissao",
+		"soldador.permissao",
+		"polpar.permissao"
+	},
+	["SoldadoRP"] = {
+		_config = {
+			title = "ROTA Paisana",
+			gtype = "job"
+		},
+		"tooglesolr.permissao"
+	},
+
+	["TenenteR"] = {
+		_config = {
+			title = "ROTA Tenente",
+			gtype = "job"
+		},
+		"policia.permissao",
+		"pmesp.permissao",
+		"rota.permissao",
+		"tenenter.permissao",
+		"polpar.permissao"
+	},
+	["TenenteRP"] = {
+		_config = {
+			title = "ROTA Paisana",
+			gtype = "job"
+		},
+		"toogletenr.permissao"
+	},
+
+	["CapitaoR"] = {
+		_config = {
+			title = "ROTA Capitao",
+			gtype = "job"
+		},
+		"policia.permissao",
+		"pmesp.permissao",
+		"rota.permissao",
+		"capitaor.permissao",
+		"polpar.permissao"
+	},
+	["CapitaoRP"] = {
+		_config = {
+			title = "ROTA Paisana",
+			gtype = "job"
+		},
+		"tooglecapr.permissao"
+	},
+
+	["CoronelR"] = {
+		_config = {
+			title = "ROTA Coronel",
+			gtype = "job"
+		},
+		"policia.permissao",
+		"pmesp.permissao",
+		"rota.permissao",
+		"coronelr.permissao",
+		"polpar.permissao"
+	},
+	["CoronelRP"] = {
+		_config = {
+			title = "ROTA Paisana",
+			gtype = "job"
+		},
+		"tooglecorr.permissao"
+	},
+
+	["ComandanteR"] = {
+		_config = {
+			title = "ROTA Comandante",
+			gtype = "job"
+		},
+		"policia.permissao",
+		"pmesp.permissao",
+		"rota.permissao",
+		"comandanter.permissao",
+		"polpar.permissao"
+	},
+	["ComandanteRP"] = {
+		_config = {
+			title = "ROTA Paisana",
+			gtype = "job"
+		},
+		"tooglecmdr.permissao"
+	},
+
 	---------------------------------------------------
 	--					PMESP
 	---------------------------------------------------

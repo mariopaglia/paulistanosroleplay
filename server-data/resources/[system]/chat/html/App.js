@@ -25,7 +25,7 @@ window.APP = {
   mounted() {
     post('http://chat/loaded', JSON.stringify({}));
     this.listener = window.addEventListener('message', (event) => {
-      const item = event.data || event.detail;
+      const item = event.data || event.detail; //'detail' is for debuging via browsers
       if (this[item.type]) {
         this[item.type](item);
       }
@@ -77,16 +77,17 @@ window.APP = {
       this.oldMessagesIndex = -1;
     },
     ON_SUGGESTION_ADD({ suggestion }) {
-      if (suggestion){
-        if (suggestion.params) {
-
-        } else {
-          suggestion.params = []; //TODO Move somewhere else
-        }
-        if (this.backingSuggestions.find(a => a.name == suggestion.name)) {
-          return;
-        }
-        this.backingSuggestions.push(suggestion);
+      if (!suggestion.params) {
+        suggestion.params = []; //TODO Move somewhere else
+      }
+      if (this.backingSuggestions.find(a => a.name == suggestion.name)) {
+        return;
+      }
+      this.backingSuggestions.push(suggestion);
+    },
+    ON_SUGGESTION_REMOVE({ name }) {
+      if(this.removedSuggestions.indexOf(name) <= -1) {
+        this.removedSuggestions.push(name);
       }
     },
     ON_TEMPLATE_ADD({ template }) {
@@ -178,7 +179,7 @@ window.APP = {
     warn(msg) {
       this.messages.push({
         args: [msg],
-        template: '<b>CHAT-WARN</b>: {0}',
+        template: '^3<b>CHAT-WARN</b>: ^0{0}',
       });
     },
     clearShowWindowTimer() {

@@ -49,11 +49,11 @@ Citizen.CreateThread(function()
 			local distancia = GetDistanceBetweenCoords(item.x,item.y,coordz,px,py,pz,true)
 			if andamento then
 				esperar = 4
-				if IsControlJustPressed(0,244) or GetEntityHealth(ped) <= 100 then
-					andamento = false
-					rob.CancelandoRoubo()
-					ClearPedTasks(ped)
-				end
+				-- if IsControlJustPressed(0,244) or GetEntityHealth(ped) <= 100 then
+				-- 	andamento = false
+				-- 	rob.CancelandoRoubo()
+				-- 	ClearPedTasks(ped)
+				-- end
 			else
 				if distancia <= 20 then
 					esperar = 4
@@ -94,8 +94,8 @@ Citizen.CreateThread(function()
 		if andamento then
 			esperar = 4
 			local ui = GetMinimapAnchor()
-			drawTxt(ui.right_x+0.230,ui.bottom_y-0.120,1.0,1.0,0.36,"APERTE ~r~M~w~ PARA CANCELAR O ROUBO EM ANDAMENTO",255,255,255,150,4)
-			drawTxt(ui.right_x+0.230,ui.bottom_y-0.100,1.0,1.0,0.50,"RESTAM ~g~"..segundos.." SEGUNDOS ~w~PARA TERMINAR",255,255,255,255,4)
+			-- drawTxt(ui.right_x+0.230,ui.bottom_y-0.120,1.0,1.0,0.36,"APERTE ~r~M~w~ PARA CANCELAR O ROUBO EM ANDAMENTO",255,255,255,150,4)
+			drawTxt(ui.right_x+0.230,ui.bottom_y-0.100,1.0,1.0,0.50,"RESTAM ~g~"..segundos.." SEGUNDOS ~w~PARA TERMINAR, AGUARDE A POLICIA PARA NEGOCIAR",255,255,255,255,4)
 			DisableControlAction(0,288,true)
 			DisableControlAction(0,289,true)
 			DisableControlAction(0,170,true)

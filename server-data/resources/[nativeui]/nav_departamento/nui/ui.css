@@ -1,10 +1,10 @@
-@import url('https://fonts.googleapis.com/css?family=Titillium+Web&display=swap');
+@import url("https://fonts.googleapis.com/css?family=Titillium+Web&display=swap");
 
 body {
   padding: 0;
   margin: 0;
-  height:100vh;
-  letter-spacing: 0px!important;
+  height: 100vh;
+  letter-spacing: 0px !important;
   width: 100%;
   overflow: hidden;
   font-family: Arial, Helvetica, sans-serif;
@@ -26,7 +26,7 @@ body {
 }
 
 .container {
-  margin:  10% auto;
+  margin: 10% auto;
   width: 922px;
   height: 65vh;
   background: transparent;
@@ -51,29 +51,31 @@ body {
 .left {
   width: 180px;
   height: 100%;
-  background-color: rgba(0, 0, 0, 0.10);
+  background-color: rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
 }
 
 .left img {
   width: 120px;
-  height: 100px;
+  /* height: 100px; */
   margin-bottom: 5px;
+  margin-top: 10px;
 }
 
 .left .sectionItem {
   width: 100%;
   padding: 1px;
-  color: #00eaff;
+  color: #ffffff;
   font-size: 15px;
   text-align: center;
-  transition: all .3s;
+  transition: all 0.3s;
   font-weight: 500;
 }
 
 .left .sectionItem:hover {
   color: #fff;
-  background-color: rgba(0, 0, 0, 0.10);
-  border-left: 3px solid rgba(255, 255, 255, 0.795);
+  background-color: rgba(0, 0, 0, 0.1);
+  border-left: 3px solid #d80404;
 }
 
 .right {
@@ -88,7 +90,7 @@ body {
   flex-direction: row;
   height: 100%;
   width: 100%;
-  
+
   overflow: auto;
 }
 
@@ -101,7 +103,7 @@ body {
   margin-right: 10px;
   margin-bottom: 10px;
   background-color: transparent;
-  transition: all .3s;
+  transition: all 0.3s;
   border-radius: 5px;
   text-transform: uppercase;
   /* -webkit-font-smoothing: antialiased; */
@@ -135,7 +137,7 @@ body {
 .right .sectionContent .sectionItem .imgIcon {
   width: 100%;
   height: 95px;
-  
+
   background-position: center;
   background-size: cover;
 }
@@ -152,7 +154,7 @@ body {
 
 .right .sectionContent .sectionItem:hover {
   color: #fff;
-  background-color: rgba(0, 0, 0, 0.10);
+  background-color: rgba(0, 0, 0, 0.5);
 }
 
 .right .sectionContent .sectionItem:hover .overlayItem {
@@ -176,6 +178,6 @@ body {
 }
 
 ::-webkit-scrollbar-thumb {
-  background: rgba(0, 0, 0, 0.10);
-  border-radius: .2rem;
+  background: rgba(0, 0, 0, 0.1);
+  border-radius: 0.2rem;
 }

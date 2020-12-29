@@ -91,7 +91,8 @@ function func.comprarVeiculo(categoria, modelo)
                         totalGaragens = Config.TotalGaragem + 6
                     elseif vRP.hasPermission(user_id, "diamante.permissao") then
                         totalGaragens = Config.TotalGaragem + 8
-
+					end	
+						
                     if parseInt(totalv[1].quantidade) >= totalGaragens then
                         TriggerClientEvent("vrp_concessionaria:notify", source,
                                            "Ops!",
@@ -101,7 +102,7 @@ function func.comprarVeiculo(categoria, modelo)
                     end
 
                     local valor = veiculo.preco
-                    if isVendedor then valor = valor * 0.8 end
+                    if isVendedor then valor = valor * 0.9 end
 
                     if vRP.tryFullPayment(user_id, valor) then
                         vRP.execute("vRP/add_vehicle", {

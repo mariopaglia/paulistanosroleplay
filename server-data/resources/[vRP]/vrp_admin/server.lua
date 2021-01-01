@@ -4,24 +4,24 @@ vRP = Proxy.getInterface("vRP")
 vRPclient = Tunnel.getInterface("vRP")
 
 
---------------------------------------------------------------------------------------------------------------------------------
+-----------------------------------------------------------------------------------------------------------------------------------------
 -- PLAYERSON
 -----------------------------------------------------------------------------------------------------------------------------------------
 RegisterCommand('pon',function(source,args,rawCommand)
     local user_id = vRP.getUserId(source)
-    if vRP.hasPermission(user_id,"admin.permissao")  or vRP.hasPermission(user_id,"leif.permissao")  or vRP.hasPermission(user_id,"mod.permissao") then
+    if vRP.hasPermission(user_id,"admin.permissao") then
         local users = vRP.getUsers()
         local players = ""
-		local quantidade = 0
+        local quantidade = 0
         for k,v in pairs(users) do
             if k ~= #users then
-                players = players..","
+                players = players..", "
             end
             players = players..k
             quantidade = quantidade + 1
         end
-        TriggerClientEvent('chatMessage',source,"TOTAL ONLINE",{0,150,255},quantidade)
-        TriggerClientEvent('chatMessage',source,"ID's ONLINE",{0,150,255},players)
+        TriggerClientEvent('chatMessage',source,"TOTAL ONLINE",{255,160,0},quantidade)
+        TriggerClientEvent('chatMessage',source,"ID's ONLINE",{255,160,0},players)
     end
 end)
 ------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -500,4 +500,39 @@ RegisterCommand('pegarip',function(source,args,rawCommand)
         TriggerClientEvent('chatMessage',source,"^1IP do Usuário: "..GetPlayerEndpoint(tplayer))
         end
     end
+end)
+
+-----------------------------------------------------------------------------------------------------------------------------------------
+-- MONEY
+-----------------------------------------------------------------------------------------------------------------------------------------
+RegisterCommand('tirardinheiro',function(source,args,rawCommand)
+	local user_id = vRP.getUserId(source)
+	local identity = vRP.getUserIdentity(user_id)
+	if vRP.hasPermission(user_id,"admin.permissao") then
+		if args[1] then
+			vRP.tryPayment(user_id,parseInt(args[1]))
+			SendWebhookMessage(webhookadmin,"```prolog\n[ID]: "..user_id.." "..identity.name.." "..identity.firstname.." \n[FEZ]: $"..vRP.format(parseInt(args[1])).." "..os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S").." \r```")
+		end
+	end
+end)
+-----------------------------------------------------------------------------------------------------------------------------------------
+-- CHAT INTERNO DA STAFF
+-----------------------------------------------------------------------------------------------------------------------------------------
+RegisterCommand('s',function(source,args,rawCommand)
+	if args[1] then
+		local user_id = vRP.getUserId(source)
+		local identity = vRP.getUserIdentity(user_id)
+		local permission = "admin.permissao"
+		if vRP.hasPermission(user_id,permission) then
+			local soldado = vRP.getUsersByPermission(permission)
+			for l,w in pairs(soldado) do
+				local player = vRP.getUserSource(parseInt(w))
+				if player then
+					async(function()
+						TriggerClientEvent('chatMessage',player,identity.name.." "..identity.firstname.. " [" ..user_id.. "]: ",{0,255,255},rawCommand:sub(3))
+					end)
+				end
+			end
+		end
+	end
 end)

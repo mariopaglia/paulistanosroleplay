@@ -15,6 +15,7 @@ cfg.groups = {
 		"ticket.permissao",
 		"tp.permissao",
 		"spawncar.permissao",
+		"polpar.permissao",
 		"msg.permissao"
 	},
 	["mod"] = {
@@ -30,6 +31,7 @@ cfg.groups = {
 		"noclip.permissao",
 		"tp.permissao",
 		"spawncar.permissao",
+		"polpar.permissao",
 		"msg.permissao"
 	},
 	["sup"] = {
@@ -74,10 +76,10 @@ cfg.groups = {
 	},
 	["Diamante"] = {
 		_config = {
-			title = "Platina",
+			title = "Diamante",
 			gtype = "vip"
 		},
-		"platina.permissao",
+		"diamante.permissao",
 		"mochila.permissao",
 		"carrosvip.permissao"
 	},

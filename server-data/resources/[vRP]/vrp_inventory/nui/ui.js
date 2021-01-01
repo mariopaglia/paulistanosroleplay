@@ -1,6 +1,6 @@
-(function($) {
-  $.fn.inputFilter = function(inputFilter) {
-    return this.on("input keydown keyup mousedown mouseup select contextmenu drop", function() {
+(function ($) {
+  $.fn.inputFilter = function (inputFilter) {
+    return this.on("input keydown keyup mousedown mouseup select contextmenu drop", function () {
       if (inputFilter(this.value)) {
         this.oldValue = this.value;
         this.oldSelectionStart = this.selectionStart;
@@ -13,8 +13,8 @@
   };
 }(jQuery));
 
-$(document).on('contextmenu', function(event) {
-    event.preventDefault();
+$(document).on('contextmenu', function (event) {
+  event.preventDefault();
 });
 
 function str_reverse(str) {
@@ -24,10 +24,10 @@ function str_reverse(str) {
   return joinArray;
 }
 
-$(document).ready(function() {
+$(document).ready(function () {
   var actionContainer = $(".inventory-mask, .inventory-content");
 
-  window.addEventListener("message", function(event) {
+  window.addEventListener("message", function (event) {
     var item = event.data;
     switch (item.action) {
       case "showMenu":
@@ -45,9 +45,9 @@ $(document).ready(function() {
     }
   });
 
-  document.onkeyup = function(data) {
+  document.onkeyup = function (data) {
     if (data.which == 27) {
-      $.post("http://vrp_inventory/invClose", JSON.stringify({}), function(datab) {});
+      $.post("http://vrp_inventory/invClose", JSON.stringify({}), function (datab) {});
     }
   };
 });
@@ -106,7 +106,7 @@ var updateMochila = () => {
           <span class="amount">${formatarNumero(item.amount)}</span>
         </div>
         <div class="row">
-          <div class="image" style="background-image: url(http://200.9.155.158/sincronizados/${item.index}.png)"></div>
+          <div class = "image" style = "background-image: url(http://177.54.158.241:8080/imagens/${item.index}.png)" > </div>
         </div>
         <div class="row">
           <div class="name">${item.name} <i>(${(item.peso * item.amount).toFixed(2)}kg)</i></div>
@@ -122,29 +122,29 @@ var updateMochila = () => {
 
 window.Option = false;
 
-$(document).ready(function() {
-  $(document).on('mousedown', '.objects .cell', function(ev){
-    if(ev.which == 3) {
+$(document).ready(function () {
+  $(document).on('mousedown', '.objects .cell', function (ev) {
+    if (ev.which == 3) {
       $(".cell .options").hide();
       $('.amount-option').hide();
       $(this).find('.options').show();
     }
   });
 
-  $(document).on('click', function(e) {
+  $(document).on('click', function (e) {
     if (!$(e.target).is(".objects .cell").length) {
       $(".cell .options").hide();
     }
   });
 
-  $(document).on('click', '.options .option', function() {
+  $(document).on('click', '.options .option', function () {
     var event = $(this).data('event');
     var parentEl = $(this).closest('.cell');
-    if(event == 'send' || event == 'drop') {
+    if (event == 'send' || event == 'drop') {
       Option = event;
       parentEl.find('.amount-option').show();
       parentEl.find('.amount-option').find('input').val('');
-    } else if(event == 'use') {
+    } else if (event == 'use') {
       var $el = $(this).closest('.cell');
       var amount = 1;
       $.post(
@@ -158,9 +158,9 @@ $(document).ready(function() {
     }
   });
 
-  $(document).on('click', '.amount-option button', function() {
+  $(document).on('click', '.amount-option button', function () {
     var event = $(this).data('event');
-    if(event == 'send') {
+    if (event == 'send') {
       var paramUrl = (Option == 'send' ? 'sendItem' : 'dropItem');
       var $el = $(this).closest('.cell');
       var amount = Number($el.find(".amount-value").val());
@@ -178,27 +178,27 @@ $(document).ready(function() {
     $('.amount-option').hide();
   });
 
-  $(".row.objects").on('focusout blur', '.amount-option .center input', function() {
+  $(".row.objects").on('focusout blur', '.amount-option .center input', function () {
     /*if($(this).val() < 0 || $(this).val() == '') {
       $(this).attr('placeholder', '0');
     }*/
-  }).inputFilter(function(value) {
-    return /^\d*$/.test(value); 
+  }).inputFilter(function (value) {
+    return /^\d*$/.test(value);
   });
-  
-  $(".row.objects").on('click', '.amount-option .left', function() {
+
+  $(".row.objects").on('click', '.amount-option .left', function () {
     var amountVal = $(this).closest('.cell').find(".amount-option .center input");
-    if(amountVal.val() == '') {
+    if (amountVal.val() == '') {
       amountVal.val('0');
     }
-    if((parseInt(amountVal.val()) - 1) >= 0) {
+    if ((parseInt(amountVal.val()) - 1) >= 0) {
       amountVal.val(parseInt(amountVal.val()) - 1);
     }
   });
-  
-  $(".row.objects").on('click', '.amount-option .right', function() {
+
+  $(".row.objects").on('click', '.amount-option .right', function () {
     var amountVal = $(this).closest('.cell').find(".amount-option .center input");
-    if(amountVal.val() == '') {
+    if (amountVal.val() == '') {
       amountVal.val('0');
     }
     amountVal.val(parseInt(amountVal.val()) + 1);

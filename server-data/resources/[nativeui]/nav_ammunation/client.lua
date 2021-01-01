@@ -18,51 +18,8 @@ end
 -- BUTTON
 -----------------------------------------------------------------------------------------------------------------------------------------
 RegisterNUICallback("ButtonClick",function(data,cb)
-	if data == "armamentos-comprar-m1922" then
-		TriggerServerEvent("armamentos-comprar","wbody|WEAPON_VINTAGEPISTOL")
-	elseif data == "armamentos-comprar-m1911" then
-		TriggerServerEvent("armamentos-comprar","wbody|WEAPON_PISTOL")
-	elseif data == "armamentos-comprar-fnfiveseven" then
-		TriggerServerEvent("armamentos-comprar","wbody|WEAPON_PISTOL_MK2")
-	elseif data == "armamentos-comprar-winchester22" then
-		TriggerServerEvent("armamentos-comprar","wbody|WEAPON_MUSKET")
-	elseif data == "armamentos-vender-m1922" then
-		TriggerServerEvent("armamentos-vender","wbody|WEAPON_VINTAGEPISTOL")
-	elseif data == "armamentos-vender-m1911" then
-		TriggerServerEvent("armamentos-vender","wbody|WEAPON_PISTOL")
-	elseif data == "armamentos-vender-fnfiveseven" then
-		TriggerServerEvent("armamentos-vender","wbody|WEAPON_PISTOL_MK2")
-	elseif data == "armamentos-vender-winchester22" then
-		TriggerServerEvent("armamentos-vender","wbody|WEAPON_MUSKET")
-
-
-	elseif data == "municoes-comprar-m1922" then
-		TriggerServerEvent("armamentos-comprar","wammo|WEAPON_VINTAGEPISTOL")
-	elseif data == "municoes-comprar-m1911" then
-		TriggerServerEvent("armamentos-comprar","wammo|WEAPON_PISTOL")
-	elseif data == "municoes-comprar-fnfiveseven" then
-		TriggerServerEvent("armamentos-comprar","wammo|WEAPON_PISTOL_MK2")
-	elseif data == "municoes-comprar-winchester22" then
-		TriggerServerEvent("armamentos-comprar","wammo|WEAPON_MUSKET")
-	elseif data == "municoes-comprar-sinalizador" then
-		TriggerServerEvent("armamentos-comprar","wammo|WEAPON_FLARE")
-
-	elseif data == "municoes-vender-m1922" then
-		TriggerServerEvent("armamentos-vender","wammo|WEAPON_VINTAGEPISTOL")
-	elseif data == "municoes-vender-m1911" then
-		TriggerServerEvent("armamentos-vender","wammo|WEAPON_PISTOL")
-	elseif data == "municoes-vender-fnfiveseven" then
-		TriggerServerEvent("armamentos-vender","wammo|WEAPON_PISTOL_MK2")
-	elseif data == "municoes-vender-winchester22" then
-		TriggerServerEvent("armamentos-vender","wammo|WEAPON_MUSKET")
-	elseif data == "municoes-vender-sinalizador" then
-		TriggerServerEvent("armamentos-vender","wammo|WEAPON_FLARE")
-
-
-	elseif data == "armamentos-comprar-faca" then
+	if data == "armamentos-comprar-faca" then
 		TriggerServerEvent("armamentos-comprar","wbody|WEAPON_KNIFE")
-	elseif data == "armamentos-comprar-adaga" then
-		TriggerServerEvent("armamentos-comprar","wbody|WEAPON_DAGGER")
 	elseif data == "armamentos-comprar-ingles" then
 		TriggerServerEvent("armamentos-comprar","wbody|WEAPON_KNUCKLE")
 	elseif data == "armamentos-comprar-machete" then
@@ -73,29 +30,15 @@ RegisterNUICallback("ButtonClick",function(data,cb)
 		TriggerServerEvent("armamentos-comprar","wbody|WEAPON_WRENCH")
 	elseif data == "armamentos-comprar-martelo" then
 		TriggerServerEvent("armamentos-comprar","wbody|WEAPON_HAMMER")
-	elseif data == "armamentos-comprar-golf" then
-		TriggerServerEvent("armamentos-comprar","wbody|WEAPON_GOLFCLUB")
 	elseif data == "armamentos-comprar-cabra" then
 		TriggerServerEvent("armamentos-comprar","wbody|WEAPON_CROWBAR")
-	elseif data == "armamentos-comprar-machado" then
-		TriggerServerEvent("armamentos-comprar","wbody|WEAPON_HATCHET")
-	elseif data == "armamentos-comprar-lanterna" then
-		TriggerServerEvent("armamentos-comprar","wbody|WEAPON_FLASHLIGHT")
 	elseif data == "armamentos-comprar-beisebol" then
 		TriggerServerEvent("armamentos-comprar","wbody|WEAPON_BAT")
-	elseif data == "armamentos-comprar-garrafa" then
-		TriggerServerEvent("armamentos-comprar","wbody|WEAPON_BOTTLE")
-	elseif data == "armamentos-comprar-batalha" then
-		TriggerServerEvent("armamentos-comprar","wbody|WEAPON_BATTLEAXE")
 	elseif data == "armamentos-comprar-sinuca" then
 		TriggerServerEvent("armamentos-comprar","wbody|WEAPON_POOLCUE")
-	elseif data == "armamentos-comprar-pedra" then
-		TriggerServerEvent("armamentos-comprar","wbody|WEAPON_STONE_HATCHET")
 
 	elseif data == "armamentos-vender-faca" then
 		TriggerServerEvent("armamentos-vender","wbody|WEAPON_KNIFE")
-	elseif data == "armamentos-vender-adaga" then
-		TriggerServerEvent("armamentos-vender","wbody|WEAPON_DAGGER")
 	elseif data == "armamentos-vender-ingles" then
 		TriggerServerEvent("armamentos-vender","wbody|WEAPON_KNUCKLE")
 	elseif data == "armamentos-vender-machete" then
@@ -106,45 +49,17 @@ RegisterNUICallback("ButtonClick",function(data,cb)
 		TriggerServerEvent("armamentos-vender","wbody|WEAPON_WRENCH")
 	elseif data == "armamentos-vender-martelo" then
 		TriggerServerEvent("armamentos-vender","wbody|WEAPON_HAMMER")
-	elseif data == "armamentos-vender-golf" then
-		TriggerServerEvent("armamentos-vender","wbody|WEAPON_GOLFCLUB")
 	elseif data == "armamentos-vender-cabra" then
 		TriggerServerEvent("armamentos-vender","wbody|WEAPON_CROWBAR")
-	elseif data == "armamentos-vender-machado" then
-		TriggerServerEvent("armamentos-vender","wbody|WEAPON_HATCHET")
-	elseif data == "armamentos-vender-lanterna" then
-		TriggerServerEvent("armamentos-vender","wbody|WEAPON_FLASHLIGHT")
 	elseif data == "armamentos-vender-beisebol" then
 		TriggerServerEvent("armamentos-vender","wbody|WEAPON_BAT")
-	elseif data == "armamentos-vender-garrafa" then
-		TriggerServerEvent("armamentos-vender","wbody|WEAPON_BOTTLE")
-	elseif data == "armamentos-vender-batalha" then
-		TriggerServerEvent("armamentos-vender","wbody|WEAPON_BATTLEAXE")
 	elseif data == "armamentos-vender-sinuca" then
 		TriggerServerEvent("armamentos-vender","wbody|WEAPON_POOLCUE")
-	elseif data == "armamentos-vender-pedra" then
-		TriggerServerEvent("armamentos-vender","wbody|WEAPON_STONE_HATCHET")
-
 
 	elseif data == "utilidades-comprar-paraquedas" then
-		TriggerServerEvent("armamentos-comprar","wbody|GADGET_PARACHUTE")
-	elseif data == "utilidades-comprar-sinalizador" then
-		TriggerServerEvent("armamentos-comprar","wbody|WEAPON_FLARE")	
+		TriggerServerEvent("armamentos-comprar","wbody|GADGET_PARACHUTE")	
 	elseif data == "utilidades-vender-paraquedas" then
 		TriggerServerEvent("armamentos-vender","wbody|GADGET_PARACHUTE")
-	elseif data == "utilidades-vender-sinalizador" then
-		TriggerServerEvent("armamentos-vender","wbody|WEAPON_FLARE")
---[[	elseif data == "armamentos-comprar-colete" then
-		TriggerServerEvent("armamentos-comprar","colete")		
-	elseif data == "utilidades-comprar-serra" then
-		TriggerServerEvent("armamentos-comprar","serra")
-	elseif data == "utilidades-comprar-furadeira" then
-		TriggerServerEvent("armamentos-comprar","furadeira")
-	elseif data == "utilidades-vender-serra" then
-		TriggerServerEvent("armamentos-vender","serra")
-	elseif data == "utilidades-vender-furadeira" then
-		TriggerServerEvent("armamentos-vender","furadeira")]]
-
 
 	elseif data == "fechar" then
 		ToggleActionMenu()

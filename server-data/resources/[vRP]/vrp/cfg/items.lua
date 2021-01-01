@@ -82,8 +82,8 @@ cfg.items = {
 	["mochila"] = { "Mochila",1 },
 	["adubo"] = { "Adubo",0.8 },
 	["fertilizante"] = { "Fertilizante",0.8 },
-	["maconha"] = { "Maconha",0.8 },
-	["embalagem"] = { "Embalagem",0.1 },
+	["maconha"] = { "Maconha",1.0 },
+	["embalagem"] = { "Embalagem",0.2 },
 	["placa"] = { "Placa",0.8 },
 	["rebite"] = { "Rebite",0.8 },
 	["carbono"] = { "Carbono",0.0038 },
@@ -122,13 +122,14 @@ cfg.items = {
 	-- Farm de Metanfetamina
 	["acucar"] = { "Açucar",0.8 },
 	["xarope"] = { "Xarope",0.8 },
-	["metanfetamina"] = { "Metanfetamina",0.8 },
+	["frasco"] = { "Frasco",0.2 },
+	["metanfetamina"] = { "Metanfetamina",1.0 },
 	
 	-- Farm de Cocaína
 	["folhacoca"] = { "Folha Cocaina",0.3 },
 	["po"] = { "Pó",0.1 },
-	["cocaina"] = { "Cocaína",0.1 },
-	["pino"] = { "Pino",0.1 },
+	["cocaina"] = { "Cocaína",1.0 },
+	["pino"] = { "Pino",0.2 },
 	
 	-- Farm de colete
 	["tecido"] = { "Tecido",0.3 },

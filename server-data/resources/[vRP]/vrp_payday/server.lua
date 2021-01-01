@@ -8,7 +8,7 @@ salarii = {
   {"bronze.permissao", 1000},
   {"prata.recruta", 1000},
   {"ouro.recruta", 1000},
-  {"platina.recruta", 1000},
+  {"diamante.recruta", 1000},
   {"recruta.recruta", 1000},
   {"soldado.recruta", 1000},
   {"tenente.recruta", 1000},
@@ -39,7 +39,7 @@ AddEventHandler('offred:salar', function(salar)
       vRP.giveBankMoney(user_id,salar)
       TriggerClientEvent("vrp_sound:source",source,'coins',1)
       TriggerClientEvent("Notify",source,"importante","Obrigado por colaborar com a cidade, seu salario de <b>R$ "..salar.."</b> foi depositado.")
-      TriggerClientEvent('chatMessage',source,"Obrigado por colaborar com a cidade! Seu salário de ^2R$"..salar.." ^0 foi depositado.")
+      -- TriggerClientEvent('chatMessage',source,"Obrigado por colaborar com a cidade! Seu salário de ^2R$"..salar.." ^0 foi depositado.")
 		end
 	end
 end)

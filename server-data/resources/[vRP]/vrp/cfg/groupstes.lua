@@ -6,6 +6,7 @@ cfg.groups = {
 		"verids.permissao",
 		"dv.permissao",
 		"vip.permissao",
+		"policia.permissao",
 	},
 	["admin"] = {
 		"admin.permissao",
@@ -13,12 +14,14 @@ cfg.groups = {
 		"dv.permissao",
 		"ticket.permissao",
 		"vip.permissao",
+		"policia.permissao",
 	},
 	["moderador"] = {
 		"moderador.permissao",
 		"verids.permissao",
 		"dv.permissao",
 		"vip.permissao",
+		"policia.permissao",
 	},
 	["suporte"] = {
 		"suporte.permissao",

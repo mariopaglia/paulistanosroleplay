@@ -46,7 +46,8 @@ local nomes = {
 	Combatpdw = "Sig Sauer MPX",
 	Heavysniper = "M82",
 	Bzgas = "Granada",
-	Petrolcan = "Galão de Gasolina"
+	Petrolcan = "Galão de Gasolina",
+	Raypistol = "Pistola ADMIN"
 }
 
 local get_wname = function(weapon_id)

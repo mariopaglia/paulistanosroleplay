@@ -6,38 +6,16 @@ vRPclient = Tunnel.getInterface("vRP")
 -- ARRAY
 -----------------------------------------------------------------------------------------------------------------------------------------
 local valores = {
-	{ item = "wbody|WEAPON_VINTAGEPISTOL", quantidade = 1, compra = 25000, venda = 12500 },
-	{ item = "wbody|WEAPON_PISTOL", quantidade = 1, compra = 30000, venda = 15000 },
-	{ item = "wbody|WEAPON_PISTOL_MK2", quantidade = 1, compra = 35000, venda = 17500 },
-	{ item = "wbody|WEAPON_MUSKET", quantidade = 1, compra = 50000, venda = 25000 },
-	{ item = "wbody|WEAPON_FLARE", quantidade = 1, compra = 1000, venda = 500 },
-	{ item = "serra", quantidade = 1, compra = 2500, venda = 2000 },
-	{ item = "furadeira", quantidade = 1, compra = 2500, venda = 3000 },
-
-	{ item = "wammo|WEAPON_VINTAGEPISTOL", quantidade = 50, compra = 1000, venda = 500 },
-	{ item = "wammo|WEAPON_PISTOL", quantidade = 50, compra = 1250, venda = 625 },
-	{ item = "wammo|WEAPON_PISTOL_MK2", quantidade = 50, compra = 1500, venda = 750 },
-	{ item = "wammo|WEAPON_MUSKET", quantidade = 50, compra = 3000, venda = 1500 },
-	{ item = "wammo|WEAPON_FLARE", quantidade = 10, compra = 1000, venda = 500 },
-
-	{ item = "wbody|WEAPON_KNIFE", quantidade = 1, compra = 2000, venda = 1000 },
-	{ item = "wbody|WEAPON_DAGGER", quantidade = 1, compra = 2000, venda = 1000 },
-	{ item = "wbody|WEAPON_KNUCKLE", quantidade = 1, compra = 2000, venda = 1000 },
-	{ item = "wbody|WEAPON_MACHETE", quantidade = 1, compra = 2000, venda = 1000 },
-	{ item = "wbody|WEAPON_SWITCHBLADE", quantidade = 1, compra = 2000, venda = 1000 },
-	{ item = "wbody|WEAPON_WRENCH", quantidade = 1, compra = 2000, venda = 1000 },
-	{ item = "wbody|WEAPON_HAMMER", quantidade = 1, compra = 2000, venda = 1000 },
-	{ item = "wbody|WEAPON_GOLFCLUB", quantidade = 1, compra = 2000, venda = 1000 },
-	{ item = "wbody|WEAPON_CROWBAR", quantidade = 1, compra = 2000, venda = 1000 },
-	{ item = "wbody|WEAPON_HATCHET", quantidade = 1, compra = 2000, venda = 1000 },
-	{ item = "wbody|WEAPON_FLASHLIGHT", quantidade = 1, compra = 2000, venda = 1000 },
-	{ item = "wbody|WEAPON_BAT", quantidade = 1, compra = 2000, venda = 1000 },
-	{ item = "wbody|WEAPON_BOTTLE", quantidade = 1, compra = 2000, venda = 1000 },
-	{ item = "wbody|WEAPON_BATTLEAXE", quantidade = 1, compra = 2000, venda = 1000 },
-	{ item = "wbody|WEAPON_POOLCUE", quantidade = 1, compra = 2000, venda = 1000 },
-	{ item = "wbody|WEAPON_STONE_HATCHET", quantidade = 1, compra = 10000, venda = 5000 },
-
-	{ item = "wbody|GADGET_PARACHUTE", quantidade = 1, compra = 5000, venda = 500 }
+	{ item = "wbody|WEAPON_KNIFE", quantidade = 1, compra = 5000, venda = 2500 }, -- Faca
+	{ item = "wbody|WEAPON_KNUCKLE", quantidade = 1, compra = 5000, venda = 2500 }, -- Soco ingles
+	{ item = "wbody|WEAPON_MACHETE", quantidade = 1, compra = 5000, venda = 2500 }, -- Machete
+	{ item = "wbody|WEAPON_SWITCHBLADE", quantidade = 1, compra = 5000, venda = 2500 }, -- Canivete
+	{ item = "wbody|WEAPON_WRENCH", quantidade = 1, compra = 5000, venda = 2500 }, -- Chave de grifo
+	{ item = "wbody|WEAPON_HAMMER", quantidade = 1, compra = 5000, venda = 2500 }, -- Martelo
+	{ item = "wbody|WEAPON_CROWBAR", quantidade = 1, compra = 5000, venda = 2500 }, -- Pé-de-cabra
+	{ item = "wbody|WEAPON_BAT", quantidade = 1, compra = 5000, venda = 2500 }, -- Taco de beisebol
+	{ item = "wbody|WEAPON_POOLCUE", quantidade = 1, compra = 5000, venda = 2500 }, -- Taco de sinuca
+	{ item = "wbody|GADGET_PARACHUTE", quantidade = 1, compra = 5000, venda = 500 } -- Paraquedas
 }
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- COMPRAR

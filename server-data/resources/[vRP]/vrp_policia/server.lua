@@ -6,10 +6,9 @@ vRPclient = Tunnel.getInterface("vRP")
 -- WEBHOOK
 -----------------------------------------------------------------------------------------------------------------------------------------
 local webhookpolicia = "https://discord.com/api/webhooks/792944214543171605/qpfMkc8Her6den80JaSqbY9iqXtzbUKmMsiYFXWgicKF5U1hklVoHgYSulCpuDY4DfgZ"
-local webhookparamedico = ""
-local webhookmecanico = ""
-
-local prender = "https://discordapp.com/api/webhooks/756009434710409388/D6FFuDiqhkjGcscrCve30W9_5fzbdf2O7NNvW73FJjS4361c7S2P7AGyMcHtfuDLjCAD"
+local webhookparamedico = "https://discord.com/api/webhooks/793597683155599380/ql-y4081JzoLAv-KwjKVFmDZLMvfVmFNSFnig6NKSyxCvsfzN51lJuui9S0rsrm8doKk"
+local webhookmecanico = "https://discord.com/api/webhooks/793597828386521108/UsgyanaAIxAXtNuDuP8Cbf67cauDpARltO9RxIAsGioYKolylf3TWyJl_CtTRyK5sA3O"
+local prender = "https://discord.com/api/webhooks/793598348400525362/7Vmc5T27ujAUmvJYwVKSlAAtEIOlzbdDyxYHFiqF5lSTakzkYiYg23ObwslxDE624uF-"
 
 function SendWebhookMessage(webhook,message)
 	if webhook ~= nil and webhook ~= "" then
@@ -24,11 +23,6 @@ RegisterCommand('arsenal',function(source,args,rawCommand)
 	if vRP.hasPermission(user_id,"policia.permissao") then
 		TriggerClientEvent('arsenal',source)
 	end
-end)
-
-RegisterCommand('testando',function(source,args,rawCommand)	
-	TriggerClientEvent("vrp_sound:source",source,'coins',1)
-    TriggerClientEvent("Notify",source,"importante","Obrigado por colaborar com a cidade, seu salario de <b> dólares</b> foi depositado.")
 end)
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- PLACA
@@ -492,7 +486,7 @@ RegisterCommand('prender',function(source,args,rawCommand)
 		local oficialid = vRP.getUserIdentity(user_id)
 		local identity = vRP.getUserIdentity(parseInt(args[1]))
 		local nplayer = vRP.getUserSource(parseInt(args[1]))
-		SendWebhookMessage(webhookpolicia,"```prolog\n[OFICIAL]: "..user_id.." "..oficialid.name.." "..oficialid.firstname.." \n[==============PRENDEU==============] \n[PASSAPORTE]: "..(args[1]).." "..identity.name.." "..identity.firstname.." \n[TEMPO]: "..vRP.format(parseInt(args[2])).." Meses \n[CRIMES]: "..crimes.." "..os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S").." \r```")
+		SendWebhookMessage(prender,"```prolog\n[OFICIAL]: "..user_id.." "..oficialid.name.." "..oficialid.firstname.." \n[==============PRENDEU==============] \n[PASSAPORTE]: "..(args[1]).." "..identity.name.." "..identity.firstname.." \n[TEMPO]: "..vRP.format(parseInt(args[2])).." Meses \n[CRIMES]: "..crimes.." "..os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S").." \r```")
 
 		TriggerClientEvent("Notify",player,"importante","Você foi preso pelo(s) seguinte(s) crime(s): "..crimes..".")
 		prison_lock(parseInt(args[1]))

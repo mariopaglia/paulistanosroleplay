@@ -1,7 +1,7 @@
-local discordwebhook = "https://discordapp.com/api/webhooks/756009434710409388/D6FFuDiqhkjGcscrCve30W9_5fzbdf2O7NNvW73FJjS4361c7S2P7AGyMcHtfuDLjCAD"
-local discord_webhook1 = ""
-local discord_webhook2 = ""
-local discord_webhook3 = ""
+local logsitens = "https://discord.com/api/webhooks/793599139048980510/TgicubBv4Dhi21Gk8p6jLQLC5kT5y8Cje6qK8VLUpHd3lyufdiDDL229cQpp4JCTDfSS"
+local logsenviar = "https://discord.com/api/webhooks/793600149590769685/-PHSTM2RRZkVfb1PIZcitPEByn0rd5ZeEyhs6IX3AJ1O1MPssKnZlhHMot6VTFbH6w_d"
+local logscobrar = "https://discord.com/api/webhooks/793600242192220200/xChABlHgz09Kmro84R5i7773NydbQ504C8-5w8RX63mPKdVxxxXvp5wbNwiaQ-8DbWg4"
+local logsroubar = "https://discord.com/api/webhooks/793600303437971546/Mq-CbSWOOD7CYQo48zM_Ie8M0-KUIdfLLdqjQiG2WJsXAbqiLN1ZSfWqY_bxbxtf4XUr"
 local discord_webhook4 = ""
 local discord_webhook5 = ""
 local Tunnel = module("vrp","lib/Tunnel")
@@ -75,6 +75,7 @@ local itemlist = {
 	["cannabis"] = { index = "cannabis", nome = "Cannabis" },
 	["maconha"] = { index = "maconha", nome = "Maconha" },
 	["embalagem"] = { index = "embalagem", nome = "Embalagem" },
+	["frasco"] = { index = "frasco", nome = "Frasco" },
 	
 	["agua"] = { index = "agua", nome = "Água" },
 	["limonada"] = { index = "limonada", nome = "Limonada" },
@@ -233,6 +234,7 @@ local itemlist = {
 	["wammo|WEAPON_GUSENBERG"] = { index = "m-thompson", nome = "Munição de Thompson" },
 	["wammo|WEAPON_PETROLCAN"] = { index = "combustivel", nome = "Combustível" },
 	["wbody|WEAPON_PETROLCAN"] = { index = "gasolina", nome = "Galão de Gasolina" },
+	["wbody|WEAPON_RAYPISTOL"] = { index = "raypistol", nome = "Raypistol" },
 	-- Criação de munição Cosanosta
 	["wammo|WEAPON_ASSAULTRIFLE_MK2"] = { index = "m-ak47", nome = "Munição de AK-47" },
 	["wammo|WEAPON_MICROSMG"] = { index = "m-uzi", nome = "Munição de UZI" },
@@ -250,7 +252,7 @@ RegisterCommand('item',function(source,args,rawCommand)
 	if vRP.hasPermission(user_id,"admin.permissao") then
 		if args[1] and args[2] and itemlist[args[1]] ~= nil then
 			vRP.giveInventoryItem(user_id,args[1],parseInt(args[2]))
-			SendWebhookMessage(discordwebhook, "```prolog\n[====SPAW DE ITEM (/ITEM)====]\n[ADM ID]: "..user_id.."\n[PEGOU O ITEM]: '"..args[1].."'\n[QUANTIDADE]: "..args[2].."```")
+			SendWebhookMessage(logsitens, "```prolog\n[====SPAW DE ITEM (/ITEM)====]\n[ADM ID]: "..user_id.."\n[PEGOU O ITEM]: '"..args[1].."'\n[QUANTIDADE]: "..args[2].."```")
 			-- TriggerEvent('logs:ToDiscord', discordwebhook , "ABUSER", "```ADM "..user_id.." pegou o item: "..args[1].." Quantidade: "..args[2].."```", "https://www.tumarcafacil.com/wp-content/uploads/2017/06/RegistroDeMarca-01-1.png", false, false)
 		end
 	end
@@ -391,14 +393,14 @@ RegisterCommand('acessorios',function(source,args,rawCommand)
 	end
 end)
 -------------------------------------------------------------------------------------------------------------------------------------------
----- SAPATO
+---- COLETE
 -------------------------------------------------------------------------------------------------------------------------------------------
-RegisterCommand('sapatos',function(source,args,rawCommand)
+RegisterCommand('colete',function(source,args,rawCommand)
 	local user_id = vRP.getUserId(source)
 	if vRP.getInventoryItemAmount(user_id,"roupas") >= 1 then
-		TriggerClientEvent('sapatos',source,args[1],args[2])
+		TriggerClientEvent('colete',source,args[1],args[2])
 	else
-		TriggerClientEvent('chatMessage',source,"ALERTA",{255,70,50},"Você precisa de ^1Roupas ^0para mudar de sapatos.")
+		TriggerClientEvent('chatMessage',source,"ALERTA",{255,70,50},"Você precisa de ^1Roupas ^0para mudar de colete.")
 	end
 end)
 -----------------------------------------------------------------------------------------------------------------------------------------
@@ -728,6 +730,8 @@ RegisterCommand('enviar',function(source,args,rawCommand)
 	local user_id = vRP.getUserId(source)
 	local nplayer = vRPclient.getNearestPlayer(source,2)
 	local nuser_id = vRP.getUserId(nplayer)
+	local identity = vRP.getUserIdentity(user_id)
+	local identityu = vRP.getUserIdentity(nuser_id)
 	if nuser_id and args[1] and parseInt(args[2]) > 0 then
 		for k,v in pairs(itemlist) do
 			if args[1] == v.index then
@@ -737,7 +741,7 @@ RegisterCommand('enviar',function(source,args,rawCommand)
 						vRPclient._playAnim(source,true,{{"mp_common","givetake1_a"}},false)
 						TriggerClientEvent("Notify",source,"sucesso","Enviou <b>"..parseInt(args[2]).."x "..v.nome.."</b>.")
 						TriggerClientEvent("Notify",nplayer,"sucesso","Recebeu <b>"..parseInt(args[2]).."x "..v.nome.."</b>.")
-						SendWebhookMessage(discordwebhook, "```Player "..user_id.." enviou(por comando) o item: "..k.. " para o ID "..nuser_id.." [QTD]: "..args[2].."```")
+						SendWebhookMessage(logsenviar, "```Player "..user_id.." enviou(por comando) o item: "..k.. " para o ID "..nuser_id.." [QTD]: "..args[2].."```")
 						vRP.logs("savedata/enviar.txt","[ID]: "..user_id.." / [NID]: "..nuser_id.." / [ITEM]: "..k)
 						-- TriggerEvent('logs:ToDiscord', discord_webhook , "ENVIAR", "```Player "..user_id.." enviou(por comando) o item: "..k.. " para o ID "..nuser_id.." [QTD]: "..args[2].."```", "https://www.tumarcafacil.com/wp-content/uploads/2017/06/RegistroDeMarca-01-1.png", false, false)
 					end
@@ -750,8 +754,8 @@ RegisterCommand('enviar',function(source,args,rawCommand)
 			vRPclient._playAnim(source,true,{{"mp_common","givetake1_a"}},false)
 			TriggerClientEvent("Notify",source,"sucesso","Enviou <b>R$"..vRP.format(parseInt(args[1])).." reais</b>.")
 			TriggerClientEvent("Notify",nplayer,"sucesso","Recebeu <b>R$"..vRP.format(parseInt(args[1])).." reais</b>.")
-			vRP.logs("savedata/enviar.txt","[ID]: "..user_id.." / [NID]: "..nuser_id.." / [VALOR]: "..parseInt(args[1]))
-			SendWebhookMessage(discordwebhook, "```prolog\n[====ENVIO DE DINHEIRO====]\n[DE]: "..user_id.."\n[PARA]: "..nuser_id.."\n[VALOR]: RR$ "..args[1].."```")
+			-- SendWebhookMessage(logsenviar, "```prolog\n[====ENVIO DE DINHEIRO====]\n[DE]: "..user_id.."\n[PARA]: "..nuser_id.."\n[VALOR]: R$ "..args[1].."```")
+			SendWebhookMessage(logsenviar,"```prolog\n[ID]: "..user_id.." "..identity.name.." "..identity.firstname.." \n[ENVIOU]: R$ "..vRP.format(parseInt(args[1])).." \n[PARA O ID]: "..nuser_id.." "..identityu.name.." "..identityu.firstname.." "..os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S").." \r```")
 			-- TriggerEvent('logs:ToDiscord', discordwebhook , "ENVIAR", "```Player "..user_id.." enviou dinheiro para o ID "..nuser_id.." [RR$]: "..args[1].."```", "https://www.tumarcafacil.com/wp-content/uploads/2017/06/RegistroDeMarca-01-1.png", false, false)
 		else
 			TriggerClientEvent("Notify",source,"negado","Não tem a quantia que deseja enviar.")
@@ -767,7 +771,7 @@ RegisterCommand('cobrar',function(source,args,rawCommand)
         local nuser_id = vRP.getUserId(consulta)
         local resultado = json.decode(consulta) or 0
         local banco = vRP.getBankMoney(nuser_id)
-        local identity =  vRP.getUserIdentity(user_id)
+        local identity = vRP.getUserIdentity(user_id)
 		local identityu = vRP.getUserIdentity(nuser_id)
         if vRP.request(consulta,"Deseja pagar <b>R$"..vRP.format(parseInt(args[1])).."</b> Reais para <b>"..identity.name.." "..identity.firstname.."</b>?",30) then    
             if banco >= parseInt(args[1]) then
@@ -775,7 +779,7 @@ RegisterCommand('cobrar',function(source,args,rawCommand)
                 vRP.giveBankMoney(user_id,parseInt(args[1]))
                 TriggerClientEvent("Notify",source,"sucesso","Recebeu <b>R$"..vRP.format(parseInt(args[1])).." Reais</b> de <b>"..identityu.name.. " "..identityu.firstname.."</b>.")
                 TriggerClientEvent("Notify",consulta,"sucesso","Enviou <b>R$"..vRP.format(parseInt(args[1])).." Reais</b> para "..identity.name.." "..identity.firstname.."")
-				SendWebhookMessage(discordwebhook,"```prolog\n[ID]: "..user_id.." "..identity.name.." "..identity.firstname.." \n[COBROU]: RR$"..vRP.format(parseInt(args[3])).." \n[DO ID]: "..parseInt(args[2]).." "..identityu.name.." "..identityu.firstname.." "..os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S").." \r```")
+				SendWebhookMessage(logscobrar,"```prolog\n[ID]: "..user_id.." "..identity.name.." "..identity.firstname.." \n[COBROU]: R$ "..vRP.format(parseInt(args[1])).." \n[DO ID]: "..nuser_id.." "..identityu.name.." "..identityu.firstname.." "..os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S").." \r```")
                 local player = vRP.getUserSource(parseInt(args[2]))
                 if player == nil then
                     return
@@ -888,7 +892,7 @@ RegisterCommand('roubar',function(source,args,rawCommand)
 						vRPclient._stopAnim(source,false)
 						TriggerClientEvent('cancelando',source,false)
 						TriggerClientEvent("Notify",source,"importante","Roubo concluido com sucesso.")
-						SendWebhookMessage(discordwebhook, "```Player "..user_id.." roubou o ID: "..nuser_id.."```")
+						SendWebhookMessage(logsroubar, "```Player "..user_id.." roubou o ID: "..nuser_id.."```")
 						-- TriggerEvent('logs:ToDiscord', discord_webhook1 , "ROUBO", "```Player "..user_id.." roubou o ID: "..nuser_id.."```", "https://www.tumarcafacil.com/wp-content/uploads/2017/06/RegistroDeMarca-01-1.png", false, false)
 					end)
 				else
@@ -2324,6 +2328,16 @@ end)
 -- ROUPAS
 -----------------------------------------------------------------------------------------------------------------------------------------
 local roupas = {
+-- [1] = { -1,0 }, -- máscara
+-- [3] = { 20,0 }, -- maos
+-- [4] = { 75,0 }, -- calça
+-- [5] = { 34,0 }, -- mochila
+-- [6] = { 24,0 }, -- sapato
+-- [7] = { -1,0 }, -- acessorios
+-- [8] = { -1,0 }, -- blusa
+-- [9] = { -1,0 }, -- colete
+-- [10] = { -1,0 }, -- adesivo
+-- [11] = { 86,1 }, -- jaqueta
 	["minerador"] = {
 		[1885233650] = {                                      
 			[1] = { -1,0 },
@@ -2636,7 +2650,7 @@ RegisterCommand('idp',function(source,args,rawCommand)
     local nplayer = vRPclient.getNearestPlayer(source,5)
     if nplayer then
         local nuser_id = vRP.getUserId(nplayer)
-        TriggerClientEvent("Notify",source,"importante","Jogador próximo: "..nuser_id..".")
+        TriggerClientEvent("Notify",source,"importante","Jogador próximo: "..nuser_id.."")
     else
         TriggerClientEvent("Notify",source,"aviso","Nenhum Jogador Próximo")
     end

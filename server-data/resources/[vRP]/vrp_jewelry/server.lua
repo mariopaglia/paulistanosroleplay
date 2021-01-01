@@ -23,7 +23,7 @@ function func.checkJewelry(x,y,z,h,sec,tipo)
 	local user_id = vRP.getUserId(source)
 	local policia = vRP.getUsersByPermission("policia.permissao")
 	if user_id then
-		if #policia < 4 then
+		if #policia < 7 then
 			TriggerClientEvent("Notify",source,"importante","Número insuficiente de policiais no momento.")
 		elseif (os.time()-timers) <= 3600 then
 			TriggerClientEvent("Notify",source,"importante","A joalheria não se recuperou do ultimo roubo, aguarde <b>"..vRP.format(parseInt((3600-(os.time()-timers)))).." segundos</b> até que o sistema seja restaurado.")
@@ -39,6 +39,7 @@ function func.checkJewelry(x,y,z,h,sec,tipo)
 						andamento = true
 						timers = os.time()
 						TriggerClientEvent('iniciandojewelry',source,x,y,z,h,sec,tipo,false)
+						vRP.tryGetInventoryItem(user_id,"pendrive",1)
 						TriggerClientEvent("Notify",source,"sucesso","A proteção do <b>Baidu Antivirus</b> foi comprometida e todos os balcões foram liberados.")
 						SetTimeout(20000,function()
 							vRPclient.setStandBY(source,parseInt(300))
@@ -109,11 +110,7 @@ end)
 -- CHECKJEWELS
 -----------------------------------------------------------------------------------------------------------------------------------------
 local jewels = {
-	[1] = { item = "relogioroubado" },
-	[2] = { item = "pulseiraroubada" },
-	[3] = { item = "anelroubado" },
-	[4] = { item = "colarroubado" },
-	[5] = { item = "brincoroubado" }
+	[1] = { item = "dinheirosujo" }
 }
 
 function func.checkJewels(id,x,y,z,h,tipo)
@@ -126,7 +123,7 @@ function func.checkJewels(id,x,y,z,h,tipo)
 			vRPclient._playAnim(source,false,{{"oddjobs@shop_robbery@rob_till","loop"}},true)
 			SetTimeout(10000,function()
 				vRPclient.setStandBY(source,parseInt(60))
-				vRP.giveInventoryItem(user_id,jewels[math.random(5)].item,math.random(3))
+				vRP.giveInventoryItem(user_id,"dinheirosujo",math.random(15000,25000))
 			end)
 		else
 			TriggerClientEvent("Notify",source,"importante","O balcão está vazio, aguarde <b>"..vRP.format(parseInt(timers[id])).." segundos</b> até que a loja se recupera do ultimo roubo.")

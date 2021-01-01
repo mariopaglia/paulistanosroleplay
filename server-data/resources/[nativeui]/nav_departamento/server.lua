@@ -13,7 +13,7 @@ local valores = {
 	{ item = "roupas", quantidade = 1, compra = 5000, venda = 2500 },
 	{ item = "celular", quantidade = 1, compra = 3000, venda = 1500 },
 	{ item = "radio", quantidade = 1, compra = 1000, venda = 500 },
-	{ item = "energetico", quantidade = 1, compra = 1000, venda = 500 },
+	{ item = "energetico", quantidade = 3, compra = 5000, venda = 2500 },
 }
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- COMPRAR
@@ -42,20 +42,20 @@ end)
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- VENDER
 -----------------------------------------------------------------------------------------------------------------------------------------
--- RegisterServerEvent("departamento-vender")
--- AddEventHandler("departamento-vender",function(item)
--- 	local source = source
--- 	local user_id = vRP.getUserId(source)
--- 	if user_id then
--- 		for k,v in pairs(valores) do
--- 			if item == v.item then
--- 				if vRP.tryGetInventoryItem(user_id,v.item,parseInt(v.quantidade)) then
--- 					vRP.giveMoney(user_id,parseInt(v.venda))
--- 					TriggerClientEvent("Notify",source,"sucesso","Venda efetuada com sucesso!</b>.")
--- 				else
--- 					TriggerClientEvent("Notify",source,"negado","Não possui <b>"..parseInt(v.quantidade).."x "..vRP.getItemName(v.item).."</b> em sua mochila.")
--- 				end
--- 			end
--- 		end
--- 	end
--- end)
+RegisterServerEvent("departamento-vender")
+AddEventHandler("departamento-vender",function(item)
+	local source = source
+	local user_id = vRP.getUserId(source)
+	if user_id then
+		for k,v in pairs(valores) do
+			if item == v.item then
+				if vRP.tryGetInventoryItem(user_id,v.item,parseInt(v.quantidade)) then
+					vRP.giveMoney(user_id,parseInt(v.venda))
+					TriggerClientEvent("Notify",source,"sucesso","Vendeu <b>"..parseInt(v.quantidade).."x "..vRP.itemNameList(v.item).."</b> por <b>$"..vRP.format(parseInt(v.venda)).." reais</b>.")
+				else
+					TriggerClientEvent("Notify",source,"aviso","Não possui <b>"..parseInt(v.quantidade).."x "..vRP.itemNameList(v.item).."</b> em sua mochila.")
+				end
+			end
+		end
+	end
+end)

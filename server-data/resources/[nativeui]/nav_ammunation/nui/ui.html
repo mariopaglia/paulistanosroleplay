@@ -1,258 +1,170 @@
 <html>
-  <head>
-    <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="  crossorigin="anonymous"></script>
+
+<head>
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
     <link href="ui.css" rel="stylesheet" type="text/css" />
-  </head>
-  <body>
+</head>
+
+<body>
     <div class="actionmenu" style="display: none;">
-      <div class="container">
-        <div class="containerInline">
-            <section class="left">
-                <div class="centerDiv">
-                    <img class="category_arma" category="all" src="images/paulistanos.png">
-                </div>
-                <div class="sectionItem item-category category_arma" category="utilidades"> 
-                    <p>Utilidades</p>
-                </div>
-                <div class="sectionItem item-category category_arma" category="armamentos">
-                    <p>Corpo a Corpo</p>
-                </div>
-                <!-- <div class="sectionItem item-category category_arma" category="armas">
-                    <p>Armamentos</p>
-                </div> -->
-                <!-- <div class="sectionItem item-category category_arma" category="municoes">
-                    <p>Munições</p>
-                </div> -->
-            </section>
-
-            <section class="right">
-                <div class="sectionContent">
-                    <!--UTILIDADES-->
-                    <div class="sectionItem arma-item" category="utilidades">
-                        <p>Paraquedas</p>
-
-                        <div class="imgIcon">
-                            <img src="images/paraquedas.png">
-                        </div>
-                        <div class="overlayItem">  
-                          <button data-action="utilidades-comprar-paraquedas" class="menuoption">Comprar</button>
-                        </div>
-
-                        <p class="priceItem">$5000</p>
+        <div class="container">
+            <div class="containerInline">
+                <section class="left">
+                    <div class="centerDiv">
+                        <img class="category_arma" category="all" src="images/serverlogo.png">
                     </div>
-                    
-                <!--    <div class="sectionItem arma-item" category="utilidades">
-                        <p>Serra</p>
-
-                        <div class="imgIcon">
-                            <img src="images/serra.png">
-                        </div>
-                        <div class="overlayItem">  
-                          <button data-action="utilidades-comprar-serra" class="menuoption">Comprar</button>
-                        </div>
-
-                        <p class="priceItem">$2500</p>
+                    <div class="sectionItem item-category category_arma" category="todos">
+                        <p>Todos</p>
                     </div>
-                    
-                    <div class="sectionItem arma-item" category="utilidades">
-                        <p>Furadeira</p>
+                </section>
 
-                        <div class="imgIcon">
-                            <img src="images/furadeira.png">
-                        </div>
-                        <div class="overlayItem">  
-                          <button data-action="utilidades-comprar-furadeira" class="menuoption">Comprar</button>
-                        </div>
+                <section class="right">
+                    <div class="sectionContent">
+                        <!--UTILIDADES-->
+                        <div class="sectionItem arma-item" category="todos">
+                            <p>Paraquedas</p>
 
-                        <p class="priceItem">$2500</p>
-                    </div> -->
-                    
-					<!-- ARMAMENTOS -->
-                    <div class="sectionItem arma-item" category="armamentos">
-                        <p>Faca</p>
+                            <div class="imgIcon">
+                                <img src="images/paraquedas.png">
+                            </div>
+                            <div class="overlayItem">
+                                <button data-action="utilidades-comprar-paraquedas" class="menuoption">Comprar</button>
+                                <button data-action="utilidades-vender-paraquedas" class="menuoption">Vender</button>
+                            </div>
 
-                        <div class="imgIcon">
-                            <img src="images/faca.png">
-                        </div>
-                        <div class="overlayItem">  
-                          <button data-action="armamentos-comprar-faca" class="menuoption">Comprar</button>
+                            <p class="priceItem">R$ 5.000</p>
                         </div>
 
-                        <p class="priceItem">$2000</p>
-                    </div>
+                        <!-- ARMAMENTOS -->
+                        <div class="sectionItem arma-item" category="todos">
+                            <p>Faca</p>
 
-                    <div class="sectionItem arma-item" category="armamentos">
-                        <p>Adaga</p>
+                            <div class="imgIcon">
+                                <img src="images/faca.png">
+                            </div>
+                            <div class="overlayItem">
+                                <button data-action="armamentos-comprar-faca" class="menuoption">Comprar</button>
+                                <button data-action="armamentos-vender-faca" class="menuoption">Vender</button>
+                            </div>
 
-                        <div class="imgIcon">
-                            <img src="images/adaga.png">
-                        </div>
-                        <div class="overlayItem">  
-                          <button data-action="armamentos-comprar-adaga" class="menuoption">Comprar</button>
-                        </div>
-
-                        <p class="priceItem">$2000</p>
-                    </div>
-
-                    <div class="sectionItem arma-item" category="armamentos">
-                        <p>Soco-Inglês</p>
-
-                        <div class="imgIcon">
-                            <img src="images/ingles.png">
-                        </div>
-                        <div class="overlayItem">  
-                          <button data-action="armamentos-comprar-ingles" class="menuoption">Comprar</button>
+                            <p class="priceItem">R$ 5.000</p>
                         </div>
 
-                        <p class="priceItem">$2000</p>
-                    </div>
+                        <div class="sectionItem arma-item" category="todos">
+                            <p>Soco-Inglês</p>
 
-                    <div class="sectionItem arma-item" category="armamentos">
-                        <p>Machete</p>
+                            <div class="imgIcon">
+                                <img src="images/ingles.png">
+                            </div>
+                            <div class="overlayItem">
+                                <button data-action="armamentos-comprar-ingles" class="menuoption">Comprar</button>
+                                <button data-action="armamentos-vender-ingles" class="menuoption">Vender</button>
+                            </div>
 
-                        <div class="imgIcon">
-                            <img src="images/machete.png">
-                        </div>
-                        <div class="overlayItem">  
-                          <button data-action="armamentos-comprar-machete" class="menuoption">Comprar</button>
-                        </div>
-
-                        <p class="priceItem">$2000</p>
-                    </div>
-
-                    <div class="sectionItem arma-item" category="armamentos">
-                        <p>Canivete</p>
-
-                        <div class="imgIcon">
-                            <img src="images/canivete.png">
-                        </div>
-                        <div class="overlayItem">  
-                          <button data-action="armamentos-comprar-canivete" class="menuoption">Comprar</button>
+                            <p class="priceItem">R$ 5.000</p>
                         </div>
 
-                        <p class="priceItem">$2000</p>
-                    </div>
+                        <div class="sectionItem arma-item" category="todos">
+                            <p>Machete</p>
 
-                    <div class="sectionItem arma-item" category="armamentos">
-                        <p>Chave de Grifo</p>
+                            <div class="imgIcon">
+                                <img src="images/machete.png">
+                            </div>
+                            <div class="overlayItem">
+                                <button data-action="armamentos-comprar-machete" class="menuoption">Comprar</button>
+                                <button data-action="armamentos-vender-machete" class="menuoption">Vender</button>
+                            </div>
 
-                        <div class="imgIcon">
-                            <img src="images/grifo.png">
-                        </div>
-                        <div class="overlayItem">  
-                          <button data-action="armamentos-comprar-grifo" class="menuoption">Comprar</button>
-                        </div>
-
-                        <p class="priceItem">$2000</p>
-                    </div>
-
-                    <div class="sectionItem arma-item" category="armamentos">
-                        <p>Martelo</p>
-
-                        <div class="imgIcon">
-                            <img src="images/martelo.png">
-                        </div>
-                        <div class="overlayItem">  
-                          <button data-action="armamentos-comprar-martelo" class="menuoption">Comprar</button>
+                            <p class="priceItem">R$ 5.000</p>
                         </div>
 
-                        <p class="priceItem">$2000</p>
-                    </div>
+                        <div class="sectionItem arma-item" category="todos">
+                            <p>Canivete</p>
 
-                    <div class="sectionItem arma-item" category="armamentos">
-                        <p>Taco de Golf</p>
+                            <div class="imgIcon">
+                                <img src="images/canivete.png">
+                            </div>
+                            <div class="overlayItem">
+                                <button data-action="armamentos-comprar-canivete" class="menuoption">Comprar</button>
+                                <button data-action="armamentos-vender-canivete" class="menuoption">Vender</button>
+                            </div>
 
-                        <div class="imgIcon">
-                            <img src="images/golf.png">
-                        </div>
-                        <div class="overlayItem">  
-                          <button data-action="armamentos-comprar-golf" class="menuoption">Comprar</button>
-                        </div>
-
-                        <p class="priceItem">$2000</p>
-                    </div>
-
-                    <div class="sectionItem arma-item" category="armamentos">
-                        <p>Pé de Cabra</p>
-
-                        <div class="imgIcon">
-                            <img src="images/cabra.png">
-                        </div>
-                        <div class="overlayItem">  
-                          <button data-action="armamentos-comprar-cabra" class="menuoption">Comprar</button>
+                            <p class="priceItem">R$ 5.000</p>
                         </div>
 
-                        <p class="priceItem">$2000</p>
-                    </div>
+                        <div class="sectionItem arma-item" category="todos">
+                            <p>Chave de Grifo</p>
 
-                    <div class="sectionItem arma-item" category="armamentos">
-                        <p>Taco de Beiseball</p>
+                            <div class="imgIcon">
+                                <img src="images/grifo.png">
+                            </div>
+                            <div class="overlayItem">
+                                <button data-action="armamentos-comprar-grifo" class="menuoption">Comprar</button>
+                                <button data-action="armamentos-vender-grifo" class="menuoption">Vender</button>
+                            </div>
 
-                        <div class="imgIcon">
-                            <img src="images/beisebol.png">
-                        </div>
-                        <div class="overlayItem">  
-                          <button data-action="armamentos-comprar-beisebol" class="menuoption">Comprar</button>
-                        </div>
-
-                        <p class="priceItem">$2000</p>
-                    </div>
-
-                    <div class="sectionItem arma-item" category="armamentos">
-                        <p>Garrafa</p>
-
-                        <div class="imgIcon">
-                            <img src="images/carrafa.png">
-                        </div>
-                        <div class="overlayItem">  
-                          <button data-action="armamentos-comprar-garrafa" class="menuoption">Comprar</button>
+                            <p class="priceItem">R$ 5.000</p>
                         </div>
 
-                        <p class="priceItem">$2000</p>
-                    </div>
+                        <div class="sectionItem arma-item" category="todos">
+                            <p>Martelo</p>
 
-                    <div class="sectionItem arma-item" category="armamentos">
-                        <p>Machado de Batalha</p>
+                            <div class="imgIcon">
+                                <img src="images/martelo.png">
+                            </div>
+                            <div class="overlayItem">
+                                <button data-action="armamentos-comprar-martelo" class="menuoption">Comprar</button>
+                                <button data-action="armamentos-vender-martelo" class="menuoption">Vender</button>
+                            </div>
 
-                        <div class="imgIcon">
-                            <img src="images/batalha.png">
-                        </div>
-                        <div class="overlayItem">  
-                          <button data-action="armamentos-comprar-batalha" class="menuoption">Comprar</button>
-                        </div>
-
-                        <p class="priceItem">$2000</p>
-                    </div>
-
-                    <div class="sectionItem arma-item" category="armamentos">
-                        <p>Taco de Sinuca</p>
-
-                        <div class="imgIcon">
-                            <img src="images/sinuca.png">
-                        </div>
-                        <div class="overlayItem">  
-                          <button data-action="armamentos-comprar-sinuca" class="menuoption">Comprar</button>
+                            <p class="priceItem">R$ 5.000</p>
                         </div>
 
-                        <p class="priceItem">$2000</p>
-                    </div>
+                        <div class="sectionItem arma-item" category="todos">
+                            <p>Pé de Cabra</p>
 
-                    <div class="sectionItem arma-item" category="armamentos">
-                        <p>Machado de Pedra</p>
+                            <div class="imgIcon">
+                                <img src="images/cabra.png">
+                            </div>
+                            <div class="overlayItem">
+                                <button data-action="armamentos-comprar-cabra" class="menuoption">Comprar</button>
+                                <button data-action="armamentos-vender-cabra" class="menuoption">Vender</button>
+                            </div>
 
-                        <div class="imgIcon">
-                            <img src="images/pedra.png">
+                            <p class="priceItem">R$ 5.000</p>
                         </div>
-                        <div class="overlayItem">  
-                          <button data-action="armamentos-comprar-pedra" class="menuoption">Comprar</button>
+
+                        <div class="sectionItem arma-item" category="todos">
+                            <p>Taco de Beiseball</p>
+
+                            <div class="imgIcon">
+                                <img src="images/beisebol.png">
+                            </div>
+                            <div class="overlayItem">
+                                <button data-action="armamentos-comprar-beisebol" class="menuoption">Comprar</button>
+                                <button data-action="armamentos-vender-beisebol" class="menuoption">Vender</button>
+                            </div>
+
+                            <p class="priceItem">R$ 5.000</p>
                         </div>
 
-                        <p class="priceItem">$10000</p>
-                    </div>
+                        <div class="sectionItem arma-item" category="todos">
+                            <p>Taco de Sinuca</p>
 
-                    <!--MUNIÇÃO-->
+                            <div class="imgIcon">
+                                <img src="images/sinuca.png">
+                            </div>
+                            <div class="overlayItem">
+                                <button data-action="armamentos-comprar-sinuca" class="menuoption">Comprar</button>
+                                <button data-action="armamentos-vender-sinuca" class="menuoption">Vender</button>
+                            </div>
 
-                    <!-- <div class="sectionItem arma-item" category="municoes">
+                            <p class="priceItem">R$ 5.000</p>
+                        </div>
+
+                        <!--MUNIÇÃO-->
+
+                        <!-- <div class="sectionItem arma-item" category="municoes">
                         <p>Munição Winchester x50</p>
 
                         <div class="imgIcon">
@@ -265,12 +177,13 @@
 
                         <p class="priceItem">$3000</p>
                     </div> -->
-                    
-                </div>
-            </section>
+
+                    </div>
+                </section>
+            </div>
         </div>
     </div>
-    </div>
     <script src="ui.js" type="text/javascript"></script>
-  </body>
+</body>
+
 </html>

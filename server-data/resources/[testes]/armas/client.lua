@@ -15,6 +15,9 @@ local weaponstoadd = {
 "WEAPON_REVOLVER_MK2",
 "WEAPON_COMBATPISTOL",
 "WEAPON_RAYPISTOL",
+"WEAPON_SPECIALCARBINE_MK2",
+"WEAPON_SMG_MK2",
+"WEAPON_CARBINERIFLE_MK2",
 }
 
 RegisterCommand("arma", function(source, args)

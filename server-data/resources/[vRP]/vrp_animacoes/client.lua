@@ -602,9 +602,10 @@ local animmorto = 0
 
 Citizen.CreateThread(function()
     while true do
-		Citizen.Wait(1000)
+		local idle = 500
 		local ped = PlayerPedId()
 		if GetEntityHealth(ped) <= 101 then
+			idle = 5
 			morrer = true
 			if morrer and animmorto == 0 then
 				animmorto = 1
@@ -612,9 +613,6 @@ Citizen.CreateThread(function()
 				AnimpostfxPlay('HeistCelebEnd',30,true)
 				AnimpostfxPlay('Rampage',30,true)
 				AnimpostfxPlay('DeathFailOut',30,true)
-				--StartScreenEffect('DeathFailOut',500,true)
-				--StartScreenEffect('MP_job_load',500,true)
-				--StartScreenEffect('ChopVision',500,true)
 				TriggerEvent("emotes","morrer")
 			end
 			if animmorto == 1 then
@@ -627,6 +625,7 @@ Citizen.CreateThread(function()
 			morrer = false
 			animmorto = 0
 		end
+		Citizen.Wait(idle)
 	end
 end)
 -----------------------------------------------------------------------------------------------------------------------------------------

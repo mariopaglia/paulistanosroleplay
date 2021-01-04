@@ -1,6 +1,8 @@
 local Tunnel = module("vrp", "lib/Tunnel")
 local Proxy = module("vrp", "lib/Proxy")
 vRP = Proxy.getInterface("vRP")
+
+emP = Tunnel.getInterface("vrp_player")
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- SALÁRIO
 -----------------------------------------------------------------------------------------------------------------------------------------
@@ -29,6 +31,241 @@ AddEventHandler(
 	end
 )
 -----------------------------------------------------------------------------------------------------------------------------------------
+-- /CARREGARN
+-----------------------------------------------------------------------------------------------------------------------------------------
+
+carryingBackInProgress = false
+
+RegisterCommand("carregar",function(source, args)
+	print("carrying")
+	if not carryingBackInProgress then
+		carryingBackInProgress = true
+		local player = PlayerPedId()	
+		lib = 'missfinale_c2mcs_1'
+		anim1 = 'fin_c2_mcs_1_camman'
+		lib2 = 'nm'
+		anim2 = 'firemans_carry'
+		distans = 0.15
+		distans2 = 0.27
+		height = 0.63
+		spin = 0.0		
+		length = 100000
+		controlFlagMe = 49
+		controlFlagTarget = 33
+		animFlagTarget = 1
+		local closestPlayer = GetClosestPlayer(3)
+		target = GetPlayerServerId(closestPlayer)
+		if closestPlayer ~= nil then
+			print("triggering cmg2_animations:sync")
+			TriggerServerEvent('cmg2_animations:sync', closestPlayer, lib,lib2, anim1, anim2, distans, distans2, height,target,length,spin,controlFlagMe,controlFlagTarget,animFlagTarget)
+		else
+			print("[CMG Anim] No player nearby")
+		end
+	else
+		carryingBackInProgress = false
+		ClearPedSecondaryTask(GetPlayerPed(-1))
+		DetachEntity(GetPlayerPed(-1), true, false)
+		local closestPlayer = GetClosestPlayer(3)
+		target = GetPlayerServerId(closestPlayer)
+		TriggerServerEvent("cmg2_animations:stop",target)
+	end
+end,false)
+
+RegisterNetEvent('cmg2_animations:syncTarget')
+AddEventHandler('cmg2_animations:syncTarget', function(target, animationLib, animation2, distans, distans2, height, length,spin,controlFlag)
+	local playerPed = GetPlayerPed(-1)
+	local targetPed = GetPlayerPed(GetPlayerFromServerId(target))
+	carryingBackInProgress = true
+	print("triggered cmg2_animations:syncTarget")
+	RequestAnimDict(animationLib)
+
+	while not HasAnimDictLoaded(animationLib) do
+		Citizen.Wait(10)
+	end
+	if spin == nil then spin = 180.0 end
+	AttachEntityToEntity(GetPlayerPed(-1), targetPed, 0, distans2, distans, height, 0.5, 0.5, spin, false, false, false, false, 2, false)
+	if controlFlag == nil then controlFlag = 0 end
+	TaskPlayAnim(playerPed, animationLib, animation2, 8.0, -8.0, length, controlFlag, 0, false, false, false)
+end)
+
+RegisterNetEvent('cmg2_animations:syncMe')
+AddEventHandler('cmg2_animations:syncMe', function(animationLib, animation,length,controlFlag,animFlag)
+	local playerPed = GetPlayerPed(-1)
+	print("triggered cmg2_animations:syncMe")
+	RequestAnimDict(animationLib)
+
+	while not HasAnimDictLoaded(animationLib) do
+		Citizen.Wait(10)
+	end
+	Wait(500)
+	if controlFlag == nil then controlFlag = 0 end
+	TaskPlayAnim(playerPed, animationLib, animation, 8.0, -8.0, length, controlFlag, 0, false, false, false)
+
+	Citizen.Wait(length)
+end)
+
+RegisterNetEvent('cmg2_animations:cl_stop')
+AddEventHandler('cmg2_animations:cl_stop', function()
+	carryingBackInProgress = false
+	ClearPedSecondaryTask(GetPlayerPed(-1))
+	DetachEntity(GetPlayerPed(-1), true, false)
+end)
+
+function GetPlayers()
+    local players = {}
+
+	for _, player in ipairs(GetActivePlayers()) do
+        table.insert(players, player)
+	end
+	
+	--[[for i = 0, 255 do
+        if NetworkIsPlayerActive(i) then
+            table.insert(players, i)
+        end
+    end]]
+
+    return players
+end
+
+
+-----------------------------------------------------------------------------------------------------------------------------------------
+-- EMPURRAR
+-----------------------------------------------------------------------------------------------------------------------------------------
+local entityEnumerator = {
+	__gc = function(enum)
+		if enum.destructor and enum.handle then
+			enum.destructor(enum.handle)
+		end
+		enum.destructor = nil
+		enum.handle = nil
+	end
+}
+
+local function EnumerateEntities(initFunc,moveFunc,disposeFunc)
+	return coroutine.wrap(function()
+		local iter, id = initFunc()
+		if not id or id == 0 then
+			disposeFunc(iter)
+			return
+		end
+
+		local enum = { handle = iter, destructor = disposeFunc }
+		setmetatable(enum, entityEnumerator)
+
+		local next = true
+		repeat
+		coroutine.yield(id)
+		next,id = moveFunc(iter)
+		until not next
+
+		enum.destructor,enum.handle = nil,nil
+		disposeFunc(iter)
+	end)
+end
+
+function EnumerateVehicles()
+	return EnumerateEntities(FindFirstVehicle,FindNextVehicle,EndFindVehicle)
+end
+
+function GetVeh()
+    local vehicles = {}
+    for vehicle in EnumerateVehicles() do
+        table.insert(vehicles,vehicle)
+    end
+    return vehicles
+end
+
+function GetClosestVeh(coords)
+	local vehicles = GetVeh()
+	local closestDistance = -1
+	local closestVehicle = -1
+	local coords = coords
+
+	if coords == nil then
+		local ped = PlayerPedId()
+		coords = GetEntityCoords(ped)
+	end
+
+	for i=1,#vehicles,1 do
+		local vehicleCoords = GetEntityCoords(vehicles[i])
+		local distance = GetDistanceBetweenCoords(vehicleCoords,coords.x,coords.y,coords.z,true)
+		if closestDistance == -1 or closestDistance > distance then
+			closestVehicle  = vehicles[i]
+			closestDistance = distance
+		end
+	end
+	return closestVehicle,closestDistance
+end
+
+local First = vector3(0.0,0.0,0.0)
+local Second = vector3(5.0,5.0,5.0)
+local Vehicle = { Coords = nil, Vehicle = nil, Dimension = nil, IsInFront = false, Distance = nil }
+
+Citizen.CreateThread(function()
+	while true do
+		local ped = PlayerPedId()
+		local closestVehicle,Distance = GetClosestVeh()
+		if Distance < 6.1 and not IsPedInAnyVehicle(ped) then
+			Vehicle.Coords = GetEntityCoords(closestVehicle)
+			Vehicle.Dimensions = GetModelDimensions(GetEntityModel(closestVehicle),First,Second)
+			Vehicle.Vehicle = closestVehicle
+			Vehicle.Distance = Distance
+			if GetDistanceBetweenCoords(GetEntityCoords(closestVehicle) + GetEntityForwardVector(closestVehicle), GetEntityCoords(ped), true) > GetDistanceBetweenCoords(GetEntityCoords(closestVehicle) + GetEntityForwardVector(closestVehicle) * -1, GetEntityCoords(ped), true) then
+				Vehicle.IsInFront = false
+			else
+				Vehicle.IsInFront = true
+			end
+		else
+			Vehicle = { Coords = nil, Vehicle = nil, Dimensions = nil, IsInFront = false, Distance = nil }
+		end
+		Citizen.Wait(500)
+	end
+end)
+
+Citizen.CreateThread(function()
+	while true do 
+		Citizen.Wait(500)
+		if Vehicle.Vehicle ~= nil then
+			local ped = PlayerPedId()
+			if IsControlPressed(0,244) and GetEntityHealth(ped) > 100 and IsVehicleSeatFree(Vehicle.Vehicle,-1) and not IsEntityInAir(ped) and not IsPedBeingStunned(ped) and not IsEntityAttachedToEntity(ped,Vehicle.Vehicle) and not (GetEntityRoll(Vehicle.Vehicle) > 75.0 or GetEntityRoll(Vehicle.Vehicle) < -75.0) then
+				RequestAnimDict('missfinale_c2ig_11')
+				TaskPlayAnim(ped,'missfinale_c2ig_11','pushcar_offcliff_m',2.0,-8.0,-1,35,0,0,0,0)
+				NetworkRequestControlOfEntity(Vehicle.Vehicle)
+
+				if Vehicle.IsInFront then
+					AttachEntityToEntity(ped,Vehicle.Vehicle,GetPedBoneIndex(6286),0.0,Vehicle.Dimensions.y*-1+0.1,Vehicle.Dimensions.z+1.0,0.0,0.0,180.0,0.0,false,false,true,false,true)
+				else
+					AttachEntityToEntity(ped,Vehicle.Vehicle,GetPedBoneIndex(6286),0.0,Vehicle.Dimensions.y-0.3,Vehicle.Dimensions.z+1.0,0.0,0.0,0.0,0.0,false,false,true,false,true)
+				end
+
+				while true do
+					Citizen.Wait(5)
+					if IsDisabledControlPressed(0,34) then
+						TaskVehicleTempAction(ped,Vehicle.Vehicle,11,100)
+					end
+
+					if IsDisabledControlPressed(0,9) then
+						TaskVehicleTempAction(ped,Vehicle.Vehicle,10,100)
+					end
+
+					if Vehicle.IsInFront then
+						SetVehicleForwardSpeed(Vehicle.Vehicle,-1.0)
+					else
+						SetVehicleForwardSpeed(Vehicle.Vehicle,1.0)
+					end
+
+					if not IsDisabledControlPressed(0,244) then
+						DetachEntity(ped,false,false)
+						StopAnimTask(ped,'missfinale_c2ig_11','pushcar_offcliff_m',2.0)
+						break
+					end
+				end
+			end
+		end
+	end
+end)
+
+-----------------------------------------------------------------------------------------------------------------------------------------
 -- CORONHADA
 -----------------------------------------------------------------------------------------------------------------------------------------
 Citizen.CreateThread(
@@ -44,6 +281,17 @@ Citizen.CreateThread(
 		end
 	end
 )
+
+RegisterCommand("cor",function(source,args)
+    local tinta = tonumber(args[1])
+    local ped = PlayerPedId()
+	local arma = GetSelectedPedWeapon(ped)
+		if tinta >= 0 and emP.checkPermission() then
+			SetPedWeaponTintIndex(ped,arma,tinta)
+		else
+			TriggerEvent("Notify", "negado", "Necessário <b>VIP Prata ou superior</b> para utilizar <b>/cor</b>")
+        end
+end,false)
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- /VTUNING
 -----------------------------------------------------------------------------------------------------------------------------------------
@@ -277,52 +525,66 @@ Citizen.CreateThread(
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- /ATTACHS
 -----------------------------------------------------------------------------------------------------------------------------------------
-RegisterCommand(
-	"attachs",
-	function(source, args)
-		local ped = PlayerPedId()
-		if GetSelectedPedWeapon(ped) == GetHashKey("WEAPON_COMBATPISTOL") then
-			GiveWeaponComponentToPed(ped, GetHashKey("WEAPON_COMBATPISTOL"), GetHashKey("COMPONENT_AT_PI_FLSH"))
-		elseif GetSelectedPedWeapon(ped) == GetHashKey("WEAPON_APPISTOL") then
-			GiveWeaponComponentToPed(ped, GetHashKey("WEAPON_APPISTOL"), GetHashKey("COMPONENT_AT_PI_FLSH"))
-		elseif GetSelectedPedWeapon(ped) == GetHashKey("WEAPON_SMG") then
-			GiveWeaponComponentToPed(ped, GetHashKey("WEAPON_SMG"), GetHashKey("COMPONENT_AT_AR_FLSH"))
-			GiveWeaponComponentToPed(ped, GetHashKey("WEAPON_SMG"), GetHashKey("COMPONENT_AT_SCOPE_MACRO_02"))
-		elseif GetSelectedPedWeapon(ped) == GetHashKey("WEAPON_COMBATPDW") then
-			GiveWeaponComponentToPed(ped, GetHashKey("WEAPON_COMBATPDW"), GetHashKey("COMPONENT_AT_AR_FLSH"))
-			GiveWeaponComponentToPed(ped, GetHashKey("WEAPON_COMBATPDW"), GetHashKey("COMPONENT_AT_SCOPE_SMALL"))
-			GiveWeaponComponentToPed(ped, GetHashKey("WEAPON_COMBATPDW"), GetHashKey("COMPONENT_AT_AR_AFGRIP"))
-		elseif GetSelectedPedWeapon(ped) == GetHashKey("WEAPON_PUMPSHOTGUN_MK2") then
-			GiveWeaponComponentToPed(ped, GetHashKey("WEAPON_PUMPSHOTGUN_MK2"), GetHashKey("COMPONENT_AT_SIGHTS"))
-			GiveWeaponComponentToPed(ped, GetHashKey("WEAPON_PUMPSHOTGUN_MK2"), GetHashKey("COMPONENT_AT_SCOPE_SMALL_MK2"))
-			GiveWeaponComponentToPed(ped, GetHashKey("WEAPON_PUMPSHOTGUN_MK2"), GetHashKey("COMPONENT_AT_AR_FLSH"))
-		elseif GetSelectedPedWeapon(ped) == GetHashKey("WEAPON_CARBINERIFLE") then
-			GiveWeaponComponentToPed(ped, GetHashKey("WEAPON_CARBINERIFLE"), GetHashKey("COMPONENT_AT_AR_FLSH"))
-			GiveWeaponComponentToPed(ped, GetHashKey("WEAPON_CARBINERIFLE"), GetHashKey("COMPONENT_AT_SCOPE_MEDIUM"))
-			GiveWeaponComponentToPed(ped, GetHashKey("WEAPON_CARBINERIFLE"), GetHashKey("COMPONENT_AT_AR_AFGRIP"))
-		elseif GetSelectedPedWeapon(ped) == GetHashKey("WEAPON_MICROSMG") then
-			GiveWeaponComponentToPed(ped, GetHashKey("WEAPON_MICROSMG"), GetHashKey("COMPONENT_AT_PI_FLSH"))
-			GiveWeaponComponentToPed(ped, GetHashKey("WEAPON_MICROSMG"), GetHashKey("COMPONENT_AT_SCOPE_MACRO"))
-		elseif GetSelectedPedWeapon(ped) == GetHashKey("WEAPON_ASSAULTRIFLE") then
-			GiveWeaponComponentToPed(ped, GetHashKey("WEAPON_ASSAULTRIFLE"), GetHashKey("COMPONENT_AT_AR_FLSH"))
-			GiveWeaponComponentToPed(ped, GetHashKey("WEAPON_ASSAULTRIFLE"), GetHashKey("COMPONENT_AT_SCOPE_MACRO"))
-			GiveWeaponComponentToPed(ped, GetHashKey("WEAPON_ASSAULTRIFLE"), GetHashKey("COMPONENT_AT_AR_AFGRIP"))
-		elseif GetSelectedPedWeapon(ped) == GetHashKey("WEAPON_PISTOL_MK2") then
-			GiveWeaponComponentToPed(ped, GetHashKey("WEAPON_PISTOL_MK2"), GetHashKey("COMPONENT_AT_PI_RAIL"))
-			GiveWeaponComponentToPed(ped, GetHashKey("WEAPON_PISTOL_MK2"), GetHashKey("COMPONENT_AT_PI_FLSH_02"))
-			GiveWeaponComponentToPed(ped, GetHashKey("WEAPON_PISTOL_MK2"), GetHashKey("COMPONENT_AT_PI_COMP"))
-		elseif GetSelectedPedWeapon(ped) == GetHashKey("WEAPON_PISTOL_MK2") then
-			GiveWeaponComponentToPed(ped, GetHashKey("WEAPON_PISTOL_MK2"), GetHashKey("COMPONENT_AT_PI_RAIL"))
-			GiveWeaponComponentToPed(ped, GetHashKey("WEAPON_PISTOL_MK2"), GetHashKey("COMPONENT_AT_PI_FLSH_02"))
-			GiveWeaponComponentToPed(ped, GetHashKey("WEAPON_PISTOL_MK2"), GetHashKey("COMPONENT_AT_PI_COMP"))
-		elseif GetSelectedPedWeapon(ped) == GetHashKey("WEAPON_ASSAULTSMG") then
-			GiveWeaponComponentToPed(ped, GetHashKey("WEAPON_ASSAULTSMG"), GetHashKey("COMPONENT_AT_AR_FLSH"))
-			GiveWeaponComponentToPed(ped, GetHashKey("WEAPON_ASSAULTSMG"), GetHashKey("COMPONENT_AT_SCOPE_MACRO"))
-		elseif GetSelectedPedWeapon(ped) == GetHashKey("WEAPON_PISTOL") then
-			GiveWeaponComponentToPed(ped, GetHashKey("WEAPON_PISTOL"), GetHashKey("COMPONENT_AT_PI_FLSH"))
-		end
+RegisterCommand("attachs",function(source,args)
+	local ped = PlayerPedId()
+	if GetSelectedPedWeapon(ped) == GetHashKey("WEAPON_SPECIALCARBINE_MK2") then -- G36C
+        GiveWeaponComponentToPed(ped,GetHashKey("WEAPON_SPECIALCARBINE_MK2"),GetHashKey("COMPONENT_AT_SCOPE_MEDIUM_MK2")) -- MIRA GRANDE
+        GiveWeaponComponentToPed(ped,GetHashKey("WEAPON_SPECIALCARBINE_MK2"),GetHashKey("COMPONENT_AT_MUZZLE_02")) -- FREIO DE BOCA TATICO
+        GiveWeaponComponentToPed(ped,GetHashKey("WEAPON_SPECIALCARBINE_MK2"),GetHashKey("COMPONENT_AT_AR_AFGRIP_02")) -- EMPUNHADURA
+	elseif GetSelectedPedWeapon(ped) == GetHashKey("WEAPON_ASSAULTRIFLE_MK2") then -- AK-47
+        GiveWeaponComponentToPed(ped,GetHashKey("WEAPON_ASSAULTRIFLE_MK2"),GetHashKey("COMPONENT_AT_SCOPE_MEDIUM_MK2")) -- MIRA GRANDE
+        GiveWeaponComponentToPed(ped,GetHashKey("WEAPON_ASSAULTRIFLE_MK2"),GetHashKey("COMPONENT_AT_MUZZLE_02")) -- FREIO DE BOCA TATICO
+        GiveWeaponComponentToPed(ped,GetHashKey("WEAPON_ASSAULTRIFLE_MK2"),GetHashKey("COMPONENT_AT_AR_AFGRIP_02")) -- EMPUNHADURA
+	elseif GetSelectedPedWeapon(ped) == GetHashKey("WEAPON_SMG_MK2") then -- MP5-MK2
+        GiveWeaponComponentToPed(ped,GetHashKey("WEAPON_SMG_MK2"),GetHashKey("COMPONENT_AT_SCOPE_SMALL_SMG_MK2")) -- MIRA MEDIA
+        GiveWeaponComponentToPed(ped,GetHashKey("WEAPON_SMG_MK2"),GetHashKey("COMPONENT_AT_MUZZLE_02")) -- FREIO DE BOCA TATICO
+        GiveWeaponComponentToPed(ped,GetHashKey("WEAPON_SMG_MK2"),GetHashKey("COMPONENT_AT_SB_BARREL_01")) -- CANO PESADO
+	elseif GetSelectedPedWeapon(ped) == GetHashKey("WEAPON_PISTOL_MK2") then -- FIVE-SEVEN
+        GiveWeaponComponentToPed(ped,GetHashKey("WEAPON_PISTOL_MK2"),GetHashKey("COMPONENT_AT_PI_COMP")) -- COMPENSADOR
+        GiveWeaponComponentToPed(ped,GetHashKey("WEAPON_PISTOL_MK2"),GetHashKey("COMPONENT_AT_PI_RAIL")) -- MIRA
+        GiveWeaponComponentToPed(ped,GetHashKey("WEAPON_PISTOL_MK2"),GetHashKey("COMPONENT_AT_PI_FLSH_02")) -- LANTERNA
+        GiveWeaponComponentToPed(ped,GetHashKey("WEAPON_PISTOL_MK2"),GetHashKey("COMPONENT_PISTOL_MK2_CLIP_02")) -- CARREGADOR ESTENDIDO
+	elseif GetSelectedPedWeapon(ped) == GetHashKey("WEAPON_CARBINERIFLE_MK2") then -- M4A1
+        GiveWeaponComponentToPed(ped,GetHashKey("WEAPON_CARBINERIFLE_MK2"),GetHashKey("COMPONENT_AT_SCOPE_MEDIUM_MK2")) -- MIRA GRANDE
+        GiveWeaponComponentToPed(ped,GetHashKey("WEAPON_CARBINERIFLE_MK2"),GetHashKey("COMPONENT_AT_MUZZLE_02")) -- FREIO DE BOCA TATICO
+        GiveWeaponComponentToPed(ped,GetHashKey("WEAPON_CARBINERIFLE_MK2"),GetHashKey("COMPONENT_AT_AR_AFGRIP_02")) -- EMPUNHADURA
+	elseif GetSelectedPedWeapon(ped) == GetHashKey("WEAPON_CARBINERIFLE") then -- AR-15
+        GiveWeaponComponentToPed(ped,GetHashKey("WEAPON_CARBINERIFLE"),GetHashKey("COMPONENT_AT_SCOPE_MEDIUM")) -- MIRA GRANDE
+        GiveWeaponComponentToPed(ped,GetHashKey("WEAPON_CARBINERIFLE"),GetHashKey("COMPONENT_AT_AR_AFGRIP")) -- EMPUNHADURA
+	elseif GetSelectedPedWeapon(ped) == GetHashKey("WEAPON_COMBATPDW") then -- SIG SAUER
+        GiveWeaponComponentToPed(ped,GetHashKey("WEAPON_COMBATPDW"),GetHashKey("COMPONENT_AT_SCOPE_SMALL")) -- MIRA
+        GiveWeaponComponentToPed(ped,GetHashKey("WEAPON_COMBATPDW"),GetHashKey("COMPONENT_AT_AR_AFGRIP")) -- EMPUNHADURA
+        GiveWeaponComponentToPed(ped,GetHashKey("WEAPON_COMBATPDW"),GetHashKey("COMPONENT_AT_AR_FLSH")) -- LANTERNA
+	elseif GetSelectedPedWeapon(ped) == GetHashKey("WEAPON_COMBATPISTOL") then -- GLOCK
+        GiveWeaponComponentToPed(ped,GetHashKey("WEAPON_COMBATPISTOL"),GetHashKey("COMPONENT_AT_PI_FLSH")) -- LANTERNA
+        GiveWeaponComponentToPed(ped,GetHashKey("WEAPON_COMBATPISTOL"),GetHashKey("COMPONENT_COMBATPISTOL_CLIP_02")) -- CARREGADOR ESTENDIDO	
 	end
-)
+end)
+-----------------------------------------------------------------------------------------------------------------------------------------
+-- /SILENCIADOR
+-----------------------------------------------------------------------------------------------------------------------------------------
+RegisterCommand("silenciador",function(source,args)
+	if emP.checkPermissionSilenciador() then
+		local ped = PlayerPedId()
+		if GetSelectedPedWeapon(ped) == GetHashKey("WEAPON_SPECIALCARBINE_MK2") then -- G36C
+    	    GiveWeaponComponentToPed(ped,GetHashKey("WEAPON_SPECIALCARBINE_MK2"),GetHashKey("COMPONENT_AT_AR_SUPP_02"))
+		elseif GetSelectedPedWeapon(ped) == GetHashKey("WEAPON_ASSAULTRIFLE_MK2") then -- AK-47
+    	    GiveWeaponComponentToPed(ped,GetHashKey("WEAPON_ASSAULTRIFLE_MK2"),GetHashKey("COMPONENT_AT_AR_SUPP_02"))
+		elseif GetSelectedPedWeapon(ped) == GetHashKey("WEAPON_SMG_MK2") then -- MP5-MK2
+    	    GiveWeaponComponentToPed(ped,GetHashKey("WEAPON_SMG_MK2"),GetHashKey("COMPONENT_AT_PI_SUPP"))
+		elseif GetSelectedPedWeapon(ped) == GetHashKey("WEAPON_PISTOL_MK2") then -- FIVE-SEVEN
+    	    GiveWeaponComponentToPed(ped,GetHashKey("WEAPON_PISTOL_MK2"),GetHashKey("COMPONENT_AT_PI_SUPP_02"))
+		elseif GetSelectedPedWeapon(ped) == GetHashKey("WEAPON_CARBINERIFLE_MK2") then -- M4A1
+    	    GiveWeaponComponentToPed(ped,GetHashKey("WEAPON_CARBINERIFLE_MK2"),GetHashKey("COMPONENT_AT_AR_SUPP"))
+		elseif GetSelectedPedWeapon(ped) == GetHashKey("WEAPON_CARBINERIFLE") then -- AR-15
+    	    GiveWeaponComponentToPed(ped,GetHashKey("WEAPON_CARBINERIFLE"),GetHashKey("COMPONENT_AT_AR_SUPP"))
+		elseif GetSelectedPedWeapon(ped) == GetHashKey("WEAPON_COMBATPISTOL") then -- GLOCK
+    	    GiveWeaponComponentToPed(ped,GetHashKey("WEAPON_COMBATPISTOL"),GetHashKey("COMPONENT_AT_PI_SUPP"))	
+		end
+	else
+		TriggerEvent("Notify", "negado", "Necessário <b>VIP Prata, VIP Ouro ou VIP Diamante</b> para utilizar <b>/silenciador</b>")
+	end
+end)
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- BEBIDAS ENERGETICAS
 -----------------------------------------------------------------------------------------------------------------------------------------
@@ -1037,38 +1299,7 @@ AddEventHandler(
 			)
 		end
 	end
-)
------------------------------------------------------------------------------------------------------------------------------------------
--- /CARREGAR
------------------------------------------------------------------------------------------------------------------------------------------
-local carregado = false
-RegisterCommand(
-	"carregar",
-	function(source, args)
-		local ped = PlayerPedId()
-		local randomico, npcs = FindFirstPed()
-		repeat
-			local distancia = GetDistanceBetweenCoords(GetEntityCoords(ped), GetEntityCoords(npcs), true)
-			if not IsPedAPlayer(npcs) and distancia <= 3 and not IsPedInAnyVehicle(ped) and not IsPedInAnyVehicle(npcs) then
-				if carregado then
-					ClearPedTasksImmediately(carregado)
-					DetachEntity(carregado, true, true)
-					TaskWanderStandard(carregado, 10.0, 10)
-					SetEntityAsMissionEntity(carregado, false, true)
-					carregado = false
-				else
-					SetEntityAsMissionEntity(npcs, true, true)
-					AttachEntityToEntity(npcs, ped, 4103, 11816, 0.48, 0.0, 0.0, 0.0, 0.0, 0.0, false, false, true, false, 2, true)
-					carregado = npcs
-					sucess = true
-				end
-			end
-			sucess, npcs = FindNextPed(randomico)
-		until not sucess
-		EndFindPed(randomico)
-	end
-)
------------------------------------------------------------------------------------------------------------------------------------------
+)---------------------------------------------------------------------------------------------------------------------------------
 -- /sequestro2
 -----------------------------------------------------------------------------------------------------------------------------------------
 local sequestrado = nil
@@ -1515,4 +1746,267 @@ function setNotHurt()
     ResetPedMovementClipset(GetPlayerPed(-1))
     ResetPedWeaponMovementClipset(GetPlayerPed(-1))
     ResetPedStrafeClipset(GetPlayerPed(-1))
+end
+-----------------------------------------------------------------------------------------------------------------------------------------
+-- BOOST DE FPS
+-----------------------------------------------------------------------------------------------------------------------------------------
+RegisterCommand('fps',function(source,args)
+    if args[1] == 'on' then
+        SetTimecycleModifier('cinema')
+        TriggerEvent('Notify','sucesso','Boost de FPS ligado!')
+    elseif args[1] == 'off' then
+        SetTimecycleModifier('default')
+        TriggerEvent('Notify','sucesso','Boost de FPS desligado!')
+    end
+end)
+-----------------------------------------------------------------------------------------------------------------------------------------
+-- /CARREGARN
+-----------------------------------------------------------------------------------------------------------------------------------------
+
+carryingBackInProgress = false
+
+RegisterCommand("carregar",function(source, args)
+	print("carrying")
+	if not carryingBackInProgress then
+		carryingBackInProgress = true
+		local player = PlayerPedId()	
+		lib = 'missfinale_c2mcs_1'
+		anim1 = 'fin_c2_mcs_1_camman'
+		lib2 = 'nm'
+		anim2 = 'firemans_carry'
+		distans = 0.15
+		distans2 = 0.27
+		height = 0.63
+		spin = 0.0		
+		length = 100000
+		controlFlagMe = 49
+		controlFlagTarget = 33
+		animFlagTarget = 1
+		local closestPlayer = GetClosestPlayer(3)
+		target = GetPlayerServerId(closestPlayer)
+		if closestPlayer ~= nil then
+			print("triggering cmg2_animations:sync")
+			TriggerServerEvent('cmg2_animations:sync', closestPlayer, lib,lib2, anim1, anim2, distans, distans2, height,target,length,spin,controlFlagMe,controlFlagTarget,animFlagTarget)
+		else
+			print("[CMG Anim] No player nearby")
+		end
+	else
+		carryingBackInProgress = false
+		ClearPedSecondaryTask(GetPlayerPed(-1))
+		DetachEntity(GetPlayerPed(-1), true, false)
+		local closestPlayer = GetClosestPlayer(3)
+		target = GetPlayerServerId(closestPlayer)
+		TriggerServerEvent("cmg2_animations:stop",target)
+	end
+end,false)
+
+RegisterNetEvent('cmg2_animations:syncTarget')
+AddEventHandler('cmg2_animations:syncTarget', function(target, animationLib, animation2, distans, distans2, height, length,spin,controlFlag)
+	local playerPed = GetPlayerPed(-1)
+	local targetPed = GetPlayerPed(GetPlayerFromServerId(target))
+	carryingBackInProgress = true
+	print("triggered cmg2_animations:syncTarget")
+	RequestAnimDict(animationLib)
+
+	while not HasAnimDictLoaded(animationLib) do
+		Citizen.Wait(10)
+	end
+	if spin == nil then spin = 180.0 end
+	AttachEntityToEntity(GetPlayerPed(-1), targetPed, 0, distans2, distans, height, 0.5, 0.5, spin, false, false, false, false, 2, false)
+	if controlFlag == nil then controlFlag = 0 end
+	TaskPlayAnim(playerPed, animationLib, animation2, 8.0, -8.0, length, controlFlag, 0, false, false, false)
+end)
+
+RegisterNetEvent('cmg2_animations:syncMe')
+AddEventHandler('cmg2_animations:syncMe', function(animationLib, animation,length,controlFlag,animFlag)
+	local playerPed = GetPlayerPed(-1)
+	print("triggered cmg2_animations:syncMe")
+	RequestAnimDict(animationLib)
+
+	while not HasAnimDictLoaded(animationLib) do
+		Citizen.Wait(10)
+	end
+	Wait(500)
+	if controlFlag == nil then controlFlag = 0 end
+	TaskPlayAnim(playerPed, animationLib, animation, 8.0, -8.0, length, controlFlag, 0, false, false, false)
+
+	Citizen.Wait(length)
+end)
+
+RegisterNetEvent('cmg2_animations:cl_stop')
+AddEventHandler('cmg2_animations:cl_stop', function()
+	carryingBackInProgress = false
+	ClearPedSecondaryTask(GetPlayerPed(-1))
+	DetachEntity(GetPlayerPed(-1), true, false)
+end)
+
+function GetPlayers()
+    local players = {}
+
+	for _, player in ipairs(GetActivePlayers()) do
+        table.insert(players, player)
+	end
+	
+	--[[for i = 0, 255 do
+        if NetworkIsPlayerActive(i) then
+            table.insert(players, i)
+        end
+    end]]
+
+    return players
+end
+
+-------------------------------------
+---------  Cavalinho ----------------
+-------------------------------------
+local piggyBackInProgress = false
+
+RegisterCommand("cavalinho",function(source, args)
+	if not piggyBackInProgress then
+		piggyBackInProgress = true
+		local player = PlayerPedId()	
+		lib = 'anim@arena@celeb@flat@paired@no_props@'
+		anim1 = 'piggyback_c_player_a'
+		anim2 = 'piggyback_c_player_b'
+		distans = -0.07
+		distans2 = 0.0
+		height = 0.45
+		spin = 0.0		
+		length = 100000
+		controlFlagMe = 49
+		controlFlagTarget = 33
+		animFlagTarget = 1
+		local closestPlayer = GetClosestPlayer(3)
+		target = GetPlayerServerId(closestPlayer)
+		if closestPlayer ~= nil then
+			print("triggering cmg2_animations:sync")
+			TriggerServerEvent('cmg2_animations:sync', closestPlayer, lib, anim1, anim2, distans, distans2, height,target,length,spin,controlFlagMe,controlFlagTarget,animFlagTarget)
+		else
+			print("[CMG Anim] No player nearby")
+		end
+	else
+		piggyBackInProgress = false
+		ClearPedSecondaryTask(GetPlayerPed(-1))
+		DetachEntity(GetPlayerPed(-1), true, false)
+		local closestPlayer = GetClosestPlayer(3)
+		target = GetPlayerServerId(closestPlayer)
+		TriggerServerEvent("cmg2_animations:stop",target)
+	end
+end,false)
+
+RegisterNetEvent('cmg2_animations:syncTarget')
+AddEventHandler('cmg2_animations:syncTarget', function(target, animationLib, animation2, distans, distans2, height, length,spin,controlFlag)
+	local playerPed = GetPlayerPed(-1)
+	local targetPed = GetPlayerPed(GetPlayerFromServerId(target))
+	piggyBackInProgress = true
+	print("triggered cmg2_animations:syncTarget")
+	RequestAnimDict(animationLib)
+
+	while not HasAnimDictLoaded(animationLib) do
+		Citizen.Wait(10)
+	end
+	if spin == nil then spin = 180.0 end
+	AttachEntityToEntity(GetPlayerPed(-1), targetPed, 0, distans2, distans, height, 0.5, 0.5, spin, false, false, false, false, 2, false)
+	if controlFlag == nil then controlFlag = 0 end
+	TaskPlayAnim(playerPed, animationLib, animation2, 8.0, -8.0, length, controlFlag, 0, false, false, false)
+end)
+
+RegisterNetEvent('cmg2_animations:syncMe')
+AddEventHandler('cmg2_animations:syncMe', function(animationLib, animation,length,controlFlag,animFlag)
+	local playerPed = GetPlayerPed(-1)
+	print("triggered cmg2_animations:syncMe")
+	RequestAnimDict(animationLib)
+
+	while not HasAnimDictLoaded(animationLib) do
+		Citizen.Wait(10)
+	end
+	Wait(500)
+	if controlFlag == nil then controlFlag = 0 end
+	TaskPlayAnim(playerPed, animationLib, animation, 8.0, -8.0, length, controlFlag, 0, false, false, false)
+
+	Citizen.Wait(length)
+end)
+
+RegisterNetEvent('cmg2_animations:cl_stop')
+AddEventHandler('cmg2_animations:cl_stop', function()
+	piggyBackInProgress = false
+	ClearPedSecondaryTask(GetPlayerPed(-1))
+	DetachEntity(GetPlayerPed(-1), true, false)
+end)
+
+function GetPlayers()
+    local players = {}
+
+    for _, player in ipairs(GetActivePlayers()) do
+        table.insert(players, player)
+	end
+	
+	--[[for i = 0, 255 do
+        if NetworkIsPlayerActive(i) then
+            table.insert(players, i)
+        end
+    end]]
+
+    return players
+end
+
+function GetClosestPlayer(radius)
+    local players = GetPlayers()
+    local closestDistance = -1
+    local closestPlayer = -1
+    local ply = GetPlayerPed(-1)
+    local plyCoords = GetEntityCoords(ply, 0)
+
+    for index,value in ipairs(players) do
+        local target = GetPlayerPed(value)
+        if(target ~= ply) then
+            local targetCoords = GetEntityCoords(GetPlayerPed(value), 0)
+            local distance = GetDistanceBetweenCoords(targetCoords['x'], targetCoords['y'], targetCoords['z'], plyCoords['x'], plyCoords['y'], plyCoords['z'], true)
+            if(closestDistance == -1 or closestDistance > distance) then
+                closestPlayer = value
+                closestDistance = distance
+            end
+        end
+    end
+	print("closest player is dist: " .. tostring(closestDistance))
+	if closestDistance <= radius then
+		return closestPlayer
+	else
+		return nil
+	end
+end
+-- Cor da arma
+RegisterCommand("cor",function(source,args)
+    local tinta = tonumber(args[1])
+    local ped = PlayerPedId()
+    local arma = GetSelectedPedWeapon(ped)
+        if tinta >= 0 then
+            SetPedWeaponTintIndex(ped,arma,tinta)
+        end
+end,false)
+
+function GetClosestPlayer(radius)
+    local players = GetPlayers()
+    local closestDistance = -1
+    local closestPlayer = -1
+    local ply = GetPlayerPed(-1)
+    local plyCoords = GetEntityCoords(ply, 0)
+
+    for index,value in ipairs(players) do
+        local target = GetPlayerPed(value)
+        if(target ~= ply) then
+            local targetCoords = GetEntityCoords(GetPlayerPed(value), 0)
+            local distance = GetDistanceBetweenCoords(targetCoords['x'], targetCoords['y'], targetCoords['z'], plyCoords['x'], plyCoords['y'], plyCoords['z'], true)
+            if(closestDistance == -1 or closestDistance > distance) then
+                closestPlayer = value
+                closestDistance = distance
+            end
+        end
+    end
+	print("closest player is dist: " .. tostring(closestDistance))
+	if closestDistance <= radius then
+		return closestPlayer
+	else
+		return nil
+	end
 end

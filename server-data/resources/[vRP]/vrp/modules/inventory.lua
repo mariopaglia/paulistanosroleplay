@@ -178,6 +178,8 @@ local itemlist = {
 	["corpodemtar21"] = { index = "corpodemtar21", nome = "Corpo de MTAR-21", type = "usar" },
 	["corpodemagnum"] = { index = "corpodemagnum", nome = "Corpo de Magnum", type = "usar" },
 	["corpodeuzi"] = { index = "corpodeuzi", nome = "Corpo de UZI", type = "usar" },
+	["corpodeg36"] = { index = "corpodeg36", nome = "Corpo de G36", type = "usar" },
+	["corpodemp5"] = { index = "corpodemp5", nome = "Corpo de MP5", type = "usar" },
 	["gatilho"] = { index = "gatilho", nome = "Gatilho", type = "usar" },
 
 	-- Farm de Colete
@@ -251,10 +253,12 @@ local itemlist = {
 	["wbody|WEAPON_GUSENBERG"] = { index = "thompson", nome = "Thompson", type = "equipar" },		
 	["wbody|WEAPON_MACHINEPISTOL"] = { index = "tec9", nome = "Tec-9", type = "equipar" },
 	["wbody|WEAPON_COMPACTRIFLE"] = { index = "aks", nome = "AKS", type = "equipar" },
-	["wbody|WEAPON_CARBINERIFLE_MK2"] = { index = "mpx", nome = "MPX", type = "equipar" },
+	["wbody|WEAPON_CARBINERIFLE_MK2"] = { index = "m4a1", nome = "m4a1", type = "equipar" },
 	["wbody|WEAPON_BULLPUPRIFLE_MK2"] = { index = "famas", nome = "FAMAS", type = "equipar" },
 	["wbody|WEAPON_SPECIALCARBINE_MK2"] = { index = "g36c", nome = "G36C", type = "equipar" },
 	["wbody|WEAPON_RAYPISTOL"] = { index = "raypistol", nome = "Raypistol", type = "equipar" },
+	["wbody|WEAPON_SMG_MK2"] = { index = "mp5mk2", nome = "MP5-MK2", type = "equipar" },
+	["wammo|WEAPON_SMG_MK2"] = { index = "m-mp5mk2", nome = "M.MP5-MK2", type = "recarregar" },
 	["wammo|WEAPON_SPECIALCARBINE_MK2"] = { index = "m-g36c", nome = "M.G36C", type = "recarregar" },
 	["wammo|WEAPON_BULLPUPRIFLE_MK2"] = { index = "m-famas", nome = "M.FAMAS", type = "recarregar" },
 	["wammo|WEAPON_PISTOL"] = { index = "m-m1911", nome = "M.M1911", type = "recarregar" },
@@ -276,7 +280,7 @@ local itemlist = {
 	["wammo|WEAPON_GUSENBERG"] = { index = "m-thompson", nome = "M.Thompson", type = "recarregar" },
 	["wammo|WEAPON_MACHINEPISTOL"] = { index = "m-tec9", nome = "M.Tec-9", type = "recarregar" },
 	["wammo|WEAPON_COMPACTRIFLE"] = { index = "m-aks", nome = "M.AKS", type = "recarregar" },
-	["wammo|WEAPON_CARBINERIFLE_MK2"] = { index = "m-mpx", nome = "M.MPX", type = "recarregar" },
+	["wammo|WEAPON_CARBINERIFLE_MK2"] = { index = "m-m4a1", nome = "M.M4A1", type = "recarregar" },
 	["wammo|WEAPON_PETROLCAN"] = { index = "combustivel", nome = "Combustível", type = "recarregar" },
 	["wammo|WEAPON_REVOLVER"] = { index = "m-magnum44", nome = "M.MAGNUM-44", type = "recarregar" },
 	-- Criação de munição Cosanostra

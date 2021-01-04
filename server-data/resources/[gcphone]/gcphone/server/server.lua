@@ -7,16 +7,7 @@ vRPclient = Tunnel.getInterface("vRP", "gcphone")
 local Tools = module("vrp","lib/Tools")
 local idgens = Tools.newIDGenerator()
 
------------------------------------------------------------------------------------------------------------------------------------------
--- WEBHOOK
------------------------------------------------------------------------------------------------------------------------------------------
-local webhookbanco = "https://discordapp.com/api/webhooks/733668370913951757/ONw3TcF7G9ub0I1d_2z--9oAJIlJ4gXCjQvqNkIjWLETAvqlpWz7mQhHr72FCvoQnuwj"
-
-function SendWebhookMessage(webhook,message)
-	if webhook ~= nil and webhook ~= "" then
-		PerformHttpRequest(webhook, function(err, text, headers) end, 'POST', json.encode({content = message}), { ['Content-Type'] = 'application/json' })
-	end
-end
+local webhookbanco = ""
 
 function src.checkItemPhone()
     local source = source

@@ -29,7 +29,7 @@ end)
 -----------------------------------------------------------------------------------------------------------------------------------------
 RegisterCommand('placa',function(source,args,rawCommand)
 	local user_id = vRP.getUserId(source)
-	if vRP.hasPermission(user_id,"admin.permissao") or vRP.hasPermission(user_id,"policia.permissao") or vRP.hasPermission(user_id,"desmanche.permissao") then
+	if vRP.hasPermission(user_id,"admin.permissao") or vRP.hasPermission(user_id,"policia.permissao") then
 		if args[1] then
 			local user_id = vRP.getUserByRegistration(args[1])
 			if user_id then
@@ -407,7 +407,7 @@ end)
 -----------------------------------------------------------------------------------------------------------------------------------------
 RegisterCommand('multar',function(source,args,rawCommand)
 	local user_id = vRP.getUserId(source)
-	if vRP.hasPermission(user_id,"polpar.permissao") then
+	if vRP.hasPermission(user_id,"policia.permissao") then
 		local id = vRP.prompt(source,"Passaporte:","")
 		local valor = vRP.prompt(source,"Valor:","")
 		if id == "" or valor == "" then
@@ -531,6 +531,28 @@ RegisterCommand('id',function(source,args,rawCommand)
 		end
 	end
 end)
+
+RegisterCommand('algemar',function(source,args,rawCommand)
+	local source = source
+	local user_id = vRP.getUserId(source)
+	if vRP.hasPermission(user_id,"admin.permissao") then
+		if args[1] then
+			local nplayer = vRP.getUserSource(parseInt(args[1]))
+			if vRPclient.isHandcuffed(nplayer) then
+				vRPclient.toggleHandcuff(nplayer)
+			else
+				vRPclient.toggleHandcuff(nplayer)
+			end
+		else
+			local nplayer = source
+			if vRPclient.isHandcuffed(nplayer) then
+				vRPclient.toggleHandcuff(nplayer)
+			else
+				vRPclient.toggleHandcuff(nplayer)
+			end
+		end
+	end
+end)
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- ALGEMAR
 -----------------------------------------------------------------------------------------------------------------------------------------
@@ -594,7 +616,7 @@ RegisterServerEvent("vrp_policia:carregar")
 AddEventHandler("vrp_policia:carregar",function()
 	local source = source
 	local user_id = vRP.getUserId(source)
-	if vRP.hasPermission(user_id,"polpar.permissao") then
+	if vRP.hasPermission(user_id,"polpar.permissao") or vRP.hasPermission(user_id,"helper.permissao") then
 		local nplayer = vRPclient.getNearestPlayer(source,10)
 		if nplayer then
 			TriggerClientEvent('carregar',nplayer,source)

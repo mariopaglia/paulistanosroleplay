@@ -95,7 +95,7 @@ local garages = {
 	[34] = { ['name'] = "Lenhador", ['payment'] = false, ['perm'] = "livre" },
 	[35] = { ['name'] = "Leiteiro", ['payment'] = false, ['perm'] = "livre" },
 	[36] = { ['name'] = "Caminhoneiro", ['payment'] = false, ['perm'] = "livre" },
-	[37] = { ['name'] = "Advogado", ['payment'] = true, ['perm'] = "advogado.permissao" },
+	[37] = { ['name'] = "Advogado", ['payment'] = false, ['perm'] = "advogado.permissao" },
 	[38] = { ['name'] = "Embarcações", ['payment'] = false, ['perm'] = "livre" },
 	[39] = { ['name'] = "Embarcações", ['payment'] = false, ['perm'] = "livre" },
 	[40] = { ['name'] = "Embarcações", ['payment'] = false, ['perm'] = "livre" },
@@ -111,9 +111,9 @@ local garages = {
 	[55] = { ['name'] = "Concessionaria", ['payment'] = false, ['public'] = true },
 	[56] = { ['name'] = "Exposicao", ['payment'] = false, ['perm'] = "conce.permissao" },
 	[57] = { ['name'] = "Exposicao", ['payment'] = false, ['perm'] = "conce.permissao" },
-	[58] = { ['name'] = "Bicicletario", ['payment'] = true, ['perm'] = "livre" },
+	[58] = { ['name'] = "Bicicletario", ['payment'] = false, ['perm'] = "livre" },
 	[59] = { ['name'] = "Colheita", ['payment'] = false, ['perm'] = "livre" },
-	[60] = { ['name'] = "Desmanche", ['payment'] = true, ['perm'] = "desmanche.permissao" },
+	[60] = { ['name'] = "Desmanche", ['payment'] = false, ['perm'] = "desmanche.permissao" },
 -----------------------------------------------------------------------------------------------------------------------------------------
 ---------------------------------------------------------FORTHILLS-----------------------------------------------------------------------
 -----------------------------------------------------------------------------------------------------------------------------------------
@@ -434,7 +434,7 @@ local garages = {
 --													BRATVA
 -----------------------------------------------------------------------------------------------------------------------------------------
 	[618] = { ['name'] = "Bratva", ['payment'] = false, ['perm'] = "bratva.permissao" },
-	[619] = { ['name'] = "Garagem", ['payment'] = false, ['public'] = true },
+	[619] = { ['name'] = "Garagem", ['payment'] = false, ['perm'] = "carrosvip.permissao" },
 }
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- GARAGEMS
@@ -817,7 +817,7 @@ end)
 -----------------------------------------------------------------------------------------------------------------------------------------
 RegisterCommand('dv',function(source,args,rawCommand)
 	local user_id = vRP.getUserId(source)
-	if vRP.hasPermission(user_id,"admin.permissao") or vRP.hasPermission(user_id,"polpar.permissao") or vRP.hasPermission(user_id,"mecanico.permissao") or vRP.hasPermission(user_id,"conce.permissao") then
+	if vRP.hasPermission(user_id,"admin.permissao") or vRP.hasPermission(user_id,"dv.permissao") then
 		local vehicle = vRPclient.getNearestVehicle(source,7)
 		if vehicle then
 			vCLIENT.deleteVehicle(source,vehicle)
@@ -933,7 +933,7 @@ RegisterCommand('travar',function(source,args,rawCommand)
 	local source = source
 	local user_id = vRP.getUserId(source)
 	if user_id then
-		if vRP.hasPermission(user_id,"policia.permissao") or vRP.hasPermission(user_id,"conce.permissao") then
+		if vRP.hasPermission(user_id,"policia.permissao") then
 			if vRPclient.isInVehicle(source) then
 				local vehicle,vnetid,placa,vname,lock,banned = vRPclient.vehList(source,7)
 				if vehicle then
@@ -995,7 +995,7 @@ RegisterCommand('car',function(source,args,rawCommand)
 	local user_id = vRP.getUserId(source)
 	if user_id then
 		local identity = vRP.getUserIdentity(user_id)
-		if vRP.hasPermission(user_id,"admin.permissao") or vRP.hasPermission(user_id,"conce2.permissao") then
+		if vRP.hasPermission(user_id,"admin.permissao") then
 			if args[1] then
 				SendWebhookMessage(webhookadmin,"```prolog\n[ID]: "..user_id.." "..identity.name.." "..identity.firstname.." \n[SPAWNOU]: "..(args[1]).." "..os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S").." \r```")
 				TriggerClientEvent('spawnarveiculo',source,args[1])

@@ -21,7 +21,7 @@ local nomes = {
 	Gadget_parachute = "Paraquedas",
 	Combatpistol = "Glock 19",
 	Appistol = "Koch VP9",
-	Carbinerifle = "Imbel IA2",
+	Carbinerifle = "AR-15",
 	SpecialCarbine = "Parafall",
 	Smg = "MP5",
 	Pumpshotgun_mk2 = "Remington 870",
@@ -47,7 +47,10 @@ local nomes = {
 	Heavysniper = "M82",
 	Bzgas = "Granada",
 	Petrolcan = "Galão de Gasolina",
-	Raypistol = "Pistola ADMIN"
+	Raypistol = "Pistola ADMIN",
+	Specialcarbine_mk2 = "G36C",
+	Smg_mk2 = "MP5-MK2",
+	Carbinerifle_mk2 = "M4A1"
 }
 
 local get_wname = function(weapon_id)

@@ -1,7 +1,7 @@
 emergencyNumbers = {
-  [911] = 'Policia',
-  [112] = "EMS",
+  [190] = 'Policia',
+  [192] = "SAMU",
   ["taxi"] = "Táxi",
-  ["mechanic"] = "Mecânico",
-  ["ADM"] = "Admin"
+  ["mec"] = "Mecânico",
+  ["adm"] = "Admin"
 }

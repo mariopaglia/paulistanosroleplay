@@ -11,11 +11,16 @@ vRP = Proxy.getInterface("vRP")
 vRPclient = Tunnel.getInterface("vRP")
 local idgens = Tools.newIDGenerator()
 
+emP = {}
+Tunnel.bindInterface("vrp_player",emP)
+
 function SendWebhookMessage(webhook,message)
 	if webhook ~= nil and webhook ~= "" then
 		PerformHttpRequest(webhook, function(err, text, headers) end, 'POST', json.encode({content = message}), { ['Content-Type'] = 'application/json' })
 	end
 end
+
+
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- ITEMLIST
 -----------------------------------------------------------------------------------------------------------------------------------------
@@ -114,6 +119,8 @@ local itemlist = {
 	["corpodemtar21"] = { index = "corpodemtar21", nome = "Corpo de MTAR-21" },
 	["corpodemagnum"] = { index = "corpodemagnum", nome = "Corpo de Magnum" },
 	["corpodeuzi"] = { index = "corpodeuzi", nome = "Corpo de UZI" },
+	["corpodeg36"] = { index = "corpodeg36", nome = "Corpo de G36" },
+	["corpodemp5"] = { index = "corpodemp5", nome = "Corpo de MP5" },
 	["gatilho"] = { index = "gatilho", nome = "Gatilho" },
 
 	-- Farm de Colete
@@ -214,6 +221,10 @@ local itemlist = {
 	["wbody|WEAPON_BULLPUPRIFLE_MK2"] = { index = "famas", nome = "FAMAS" },
 	["wbody|WEAPON_GUSENBERG"] = { index = "thompson", nome = "Thompson" },
 	["wbody|WEAPON_SPECIALCARBINE_MK2"] = { index = "g36c", nome = "G36C" },
+	["wbody|WEAPON_SMG_MK2"] = { index = "mp5mk2", nome = "MP5-MK2" },
+	["wbody|WEAPON_CARBINERIFLE_MK2"] = { index = "m4a1", nome = "M4A1" },
+	["wammo|WEAPON_CARBINERIFLE_MK2"] = { index = "m-m4a1", nome = "Munição de M4A1" },
+	["wammo|WEAPON_SMG_MK2"] = { index = "m-mp5mk2", nome = "Munição de MP5-MK2" },
 	["wammo|WEAPON_SPECIALCARBINE_MK2"] = { index = "m-g36c", nome = "Munição de G36C" },
 	["wammo|WEAPON_PISTOL"] = { index = "m-m1911", nome = "Munição de M1911" },
 	["wammo|WEAPON_COMBATPISTOL"] = { index = "m-glock", nome = "Munição de Glock 19" },
@@ -244,6 +255,38 @@ local itemlist = {
 	["wammo|WEAPON_PISTOL_MK2"] = { index = "m-fiveseven", nome = "Munição de FIVE-SEVEN" }
 }
 
+--------------------------------------------------------------------------------------------------
+-------------------------- /cavalinho ------------------------------------------------------------
+--------------------------------------------------------------------------------------------------
+RegisterServerEvent('cmg2_animations:sync')
+AddEventHandler('cmg2_animations:sync', function(target, animationLib, animation, animation2, distans, distans2, height,targetSrc,length,spin,controlFlagSrc,controlFlagTarget,animFlagTarget)
+	print("got to srv cmg2_animations:sync")
+	TriggerClientEvent('cmg2_animations:syncTarget', targetSrc, source, animationLib, animation2, distans, distans2, height, length,spin,controlFlagTarget,animFlagTarget)
+	print("triggering to target: " .. tostring(targetSrc))
+	TriggerClientEvent('cmg2_animations:syncMe', source, animationLib, animation,length,controlFlagSrc,animFlagTarget)
+end)
+
+RegisterServerEvent('cmg2_animations:stop')
+AddEventHandler('cmg2_animations:stop', function(targetSrc)
+	TriggerClientEvent('cmg2_animations:cl_stop', targetSrc)
+end)
+-----------------------------------------------------------------------------------------------------------------------------------------
+-- Carregar
+-----------------------------------------------------------------------------------------------------------------------------------------
+RegisterServerEvent('cmg2_animations:sync')
+AddEventHandler('cmg2_animations:sync', function(target, animationLib,animationLib2, animation, animation2, distans, distans2, height,targetSrc,length,spin,controlFlagSrc,controlFlagTarget,animFlagTarget)
+	print("got to srv cmg2_animations:sync")
+	TriggerClientEvent('cmg2_animations:syncTarget', targetSrc, source, animationLib2, animation2, distans, distans2, height, length,spin,controlFlagTarget,animFlagTarget)
+	print("triggering to target: " .. tostring(targetSrc))
+	TriggerClientEvent('cmg2_animations:syncMe', source, animationLib, animation,length,controlFlagSrc,animFlagTarget)
+end)
+
+RegisterServerEvent('cmg2_animations:stop')
+AddEventHandler('cmg2_animations:stop', function(targetSrc)
+	TriggerClientEvent('cmg2_animations:cl_stop', targetSrc)
+end)
+
+
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- ITEM
 -----------------------------------------------------------------------------------------------------------------------------------------
@@ -257,6 +300,24 @@ RegisterCommand('item',function(source,args,rawCommand)
 		end
 	end
 end)
+
+-----------------------------------------------------------------------------------------------------------------------------------------
+-- CHECAR PERMISSÃO DO COMANDO /COR
+-----------------------------------------------------------------------------------------------------------------------------------------
+function emP.checkPermission()
+	local source = source
+	local user_id = vRP.getUserId(source)
+	return vRP.hasPermission(user_id,'corarma.permissao')
+end
+
+-----------------------------------------------------------------------------------------------------------------------------------------
+-- CHECAR PERMISSÃO DO COMANDO /SILENCIADOR
+-----------------------------------------------------------------------------------------------------------------------------------------
+function emP.checkPermissionSilenciador()
+	local source = source
+	local user_id = vRP.getUserId(source)
+	return vRP.hasPermission(user_id,'corarma.permissao')
+end
 
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- GUARDAR COLETE
@@ -331,7 +392,7 @@ end)
 -----------------------------------------------------------------------------------------------------------------------------------------
 RegisterCommand('mascara',function(source,args,rawCommand)
 	local user_id = vRP.getUserId(source)
-	if vRP.getInventoryItemAmount(user_id,"roupas") >= 1 then
+	if vRP.getInventoryItemAmount(user_id,"roupas") >= 1 or vRP.hasPermission(user_id,'carrosvip.permissao') then
 		TriggerClientEvent('mascara',source,args[1],args[2])
 	else
 		TriggerClientEvent('chatMessage',source,"ALERTA",{255,70,50},"Você precisa de ^1Roupas ^0para mudar de máscara.")
@@ -342,7 +403,7 @@ end)
 -----------------------------------------------------------------------------------------------------------------------------------------
 RegisterCommand('blusa',function(source,args,rawCommand)
 	local user_id = vRP.getUserId(source)
-	if vRP.getInventoryItemAmount(user_id,"roupas") >= 1 then
+	if vRP.getInventoryItemAmount(user_id,"roupas") >= 1 or vRP.hasPermission(user_id,'carrosvip.permissao') then
 		TriggerClientEvent('blusa',source,args[1],args[2])
 	else
 		TriggerClientEvent('chatMessage',source,"ALERTA",{255,70,50},"Você precisa de ^1Roupas ^0para mudar de blusa.")
@@ -353,7 +414,7 @@ end)
 -----------------------------------------------------------------------------------------------------------------------------------------
 RegisterCommand('jaqueta',function(source,args,rawCommand)
 	local user_id = vRP.getUserId(source)
-	if vRP.getInventoryItemAmount(user_id,"roupas") >= 1 then
+	if vRP.getInventoryItemAmount(user_id,"roupas") >= 1 or vRP.hasPermission(user_id,'carrosvip.permissao') then
 		TriggerClientEvent('jaqueta',source,args[1],args[2])
 	else
 	TriggerClientEvent('chatMessage',source,"ALERTA",{255,70,50},"Você precisa de ^1Roupas ^0para mudar de jaqueta.")
@@ -364,7 +425,7 @@ end)
 -------------------------------------------------------------------------------------------------------------------------------------------
 RegisterCommand('calca',function(source,args,rawCommand)
 	local user_id = vRP.getUserId(source)
-	if vRP.getInventoryItemAmount(user_id,"roupas") >= 1 then
+	if vRP.getInventoryItemAmount(user_id,"roupas") >= 1 or vRP.hasPermission(user_id,'carrosvip.permissao') then
 		TriggerClientEvent('calca',source,args[1],args[2])
 	else
 		TriggerClientEvent('chatMessage',source,"ALERTA",{255,70,50},"Você precisa de ^1Roupas ^0para mudar de calça.")
@@ -375,7 +436,7 @@ end)
 -----------------------------------------------------------------------------------------------------------------------------------------
 RegisterCommand('maos',function(source,args,rawCommand)
 	local user_id = vRP.getUserId(source)
-	if vRP.getInventoryItemAmount(user_id,"roupas") >= 1 then
+	if vRP.getInventoryItemAmount(user_id,"roupas") >= 1 or vRP.hasPermission(user_id,'carrosvip.permissao') then
 		TriggerClientEvent('maos',source,args[1],args[2])
 	else
 		TriggerClientEvent('chatMessage',source,"ALERTA",{255,70,50},"Você precisa de ^1Roupas ^0para mudar de mãos.")
@@ -386,7 +447,7 @@ end)
 -----------------------------------------------------------------------------------------------------------------------------------------
 RegisterCommand('acessorios',function(source,args,rawCommand)
 	local user_id = vRP.getUserId(source)
-	if vRP.getInventoryItemAmount(user_id,"roupas") >= 1 then
+	if vRP.getInventoryItemAmount(user_id,"roupas") >= 1 or vRP.hasPermission(user_id,'carrosvip.permissao') then
 		TriggerClientEvent('acessorios',source,args[1],args[2])
 	else
 		TriggerClientEvent('chatMessage',source,"ALERTA",{255,70,50},"Você precisa de ^1Roupas ^0para mudar de acessórios.")
@@ -397,7 +458,7 @@ end)
 -------------------------------------------------------------------------------------------------------------------------------------------
 RegisterCommand('colete',function(source,args,rawCommand)
 	local user_id = vRP.getUserId(source)
-	if vRP.getInventoryItemAmount(user_id,"roupas") >= 1 then
+	if vRP.getInventoryItemAmount(user_id,"roupas") >= 1 or vRP.hasPermission(user_id,'carrosvip.permissao') then
 		TriggerClientEvent('colete',source,args[1],args[2])
 	else
 		TriggerClientEvent('chatMessage',source,"ALERTA",{255,70,50},"Você precisa de ^1Roupas ^0para mudar de colete.")
@@ -408,7 +469,7 @@ end)
 -----------------------------------------------------------------------------------------------------------------------------------------
 RegisterCommand('chapeu',function(source,args,rawCommand)
 	local user_id = vRP.getUserId(source)
-	if vRP.getInventoryItemAmount(user_id,"roupas") >= 1 then
+	if vRP.getInventoryItemAmount(user_id,"roupas") >= 1 or vRP.hasPermission(user_id,'carrosvip.permissao') then
 		TriggerClientEvent('chapeu',source,args[1],args[2])
 	else
 		TriggerClientEvent('chatMessage',source,"ALERTA",{255,70,50},"Você precisa de ^1Roupas ^0para mudar de chapéu.")
@@ -419,7 +480,7 @@ end)
 -----------------------------------------------------------------------------------------------------------------------------------------
 RegisterCommand('oculos',function(source,args,rawCommand)
 	local user_id = vRP.getUserId(source)
-	if vRP.getInventoryItemAmount(user_id,"roupas") >= 1 then
+	if vRP.getInventoryItemAmount(user_id,"roupas") >= 1 or vRP.hasPermission(user_id,'carrosvip.permissao') then
 		TriggerClientEvent('oculos',source,args[1],args[2])
 	else
 		TriggerClientEvent('chatMessage',source,"ALERTA",{255,70,50},"Você precisa de ^1Roupas ^0para mudar de óculos.")
@@ -798,7 +859,7 @@ RegisterCommand('cobrar',function(source,args,rawCommand)
 -----------------------------------------------------------------------------------------------------------------------------------------
 RegisterCommand('garmas',function(source,args,rawCommand)
 	local user_id = vRP.getUserId(source)
-	if not vRP.hasPermission(user_id,"policia.permissao") then
+	if not vRP.hasPermission(user_id,"policia.permissao") and not vRP.hasPermission(user_id,"nogarmas.permissao") then
 		if user_id then
 			local weapons = vRPclient.replaceWeapons(source,{})
 			for k,v in pairs(weapons) do
@@ -814,7 +875,7 @@ end)
 
 RegisterCommand('limpar',function(source,args,rawCommand)
 	local user_id = vRP.getUserId(source)
-	if vRP.hasPermission(user_id,"policia.permissao") then
+	if vRP.hasPermission(user_id,"policia.permissao") or vRP.hasPermission(user_id,"nogarmas.permissao") then
 		RemoveAllPedWeapons(user_id,true)
 		TriggerClientEvent("Notify",source,"sucesso","Suas armas foram guardadas.")
 	end
@@ -996,7 +1057,7 @@ RegisterCommand('call',function(source,args,rawCommand)
 			players = vRP.getUsersByPermission("policia.permissao")
 		elseif args[1] == "192" then
 			players = vRP.getUsersByPermission("paramedico.permissao")
-		elseif args[1] == "mecanico" then
+		elseif args[1] == "mec" then
 			players = vRP.getUsersByPermission("mecanico.permissao")
 		elseif args[1] == "taxi" then
 			players = vRP.getUsersByPermission("taxista.permissao")
@@ -2304,7 +2365,7 @@ local presets = {
 
 RegisterCommand('preset',function(source,args,rawCommand)
 	local user_id = vRP.getUserId(source)
-	if vRP.hasPermission(user_id,"polpar.permissao") or vRP.hasPermission(user_id,"news.permissao") then
+	if vRP.hasPermission(user_id,"polpar.permissao") or vRP.hasPermission(user_id,"admin.permissao") then
 		if args[1] then
 			local custom = presets[tostring(args[1])]
 			if custom then

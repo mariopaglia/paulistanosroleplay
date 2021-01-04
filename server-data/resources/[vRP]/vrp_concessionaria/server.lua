@@ -9,7 +9,7 @@ func = {}
 Tunnel.bindInterface("vrp_concessionaria", func)
 
 vRP._prepare("vRP/add_vehicle",
-             "INSERT IGNORE INTO vrp_user_vehicles(user_id,vehicle,ipva) VALUES(@user_id,@vehicle,1606156388)")
+             "INSERT IGNORE INTO vrp_user_vehicles(user_id,vehicle,ipva) VALUES(@user_id,@vehicle,1609546955)")
 vRP._prepare("vRP/remove_vehicle",
              "DELETE FROM vrp_user_vehicles WHERE user_id = @user_id AND vehicle = @vehicle")
 vRP._prepare("vRP/remove_vrp_srv_data",

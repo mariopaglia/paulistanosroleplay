@@ -9,38 +9,32 @@ cfg.groups = {
 		"wl.permissao",
 		"kick.permissao",
 		"ban.permissao",
-		"unban.permissao",
-		"money.permissao",
 		"noclip.permissao",
-		"ticket.permissao",
 		"tp.permissao",
-		"spawncar.permissao",
 		"polpar.permissao",
-		"msg.permissao"
+		"anuncio.permissao"
 	},
 	["mod"] = {
-		"admin.permissao",
+		"mod.permissao",
 		"fix.permissao",
 		"dv.permissao",
 		"god.permissao",
-		"ticket.permissao",
 		"wl.permissao",
 		"kick.permissao",
 		"ban.permissao",
-		"unban.permissao",
 		"noclip.permissao",
 		"tp.permissao",
-		"spawncar.permissao",
 		"polpar.permissao",
-		"msg.permissao"
+		"anuncio.permissao"
 	},
-	["sup"] = {
-		"admin.permissao",
-		"ticket.permissao",
-		"fix.permissao",
+	["helper"] = {
+		"helper.permissao",
 		"dv.permissao",
 		"wl.permissao",
-		"kick.permissao"
+		"kick.permissao",
+		"noclip.permissao",
+		"polpar.permissao",
+		"anuncio.permissao"
 	},
 	["aprovadorwl"] = {
 		"wl.permissao"
@@ -55,7 +49,8 @@ cfg.groups = {
 			gtype = "vip"
 		},
 		"bronze.permissao",
-		"carrosvip.permissao"
+		"carrosvip.permissao",
+		"mochila.permissao"
 	},
 	["Prata"] = {
 		_config = {
@@ -63,7 +58,9 @@ cfg.groups = {
 			gtype = "vip"
 		},
 		"prata.permissao",
-		"carrosvip.permissao"
+		"carrosvip.permissao",
+		"corarma.permissao",
+		"mochila.permissao"
 	},
 	["Ouro"] = {
 		_config = {
@@ -71,8 +68,29 @@ cfg.groups = {
 			gtype = "vip"
 		},
 		"ouro.permissao",
-		"mochila.permissao",
-		"carrosvip.permissao"
+		"carrosvip.permissao",
+		"corarma.permissao",
+		"mochila.permissao"
+	},
+	["Platina"] = {
+		_config = {
+			title = "Platina",
+			gtype = "vip"
+		},
+		"platina.permissao",
+		"carrosvip.permissao",
+		"corarma.permissao",
+		"mochila.permissao"
+	},
+	["Esmeralda"] = {
+		_config = {
+			title = "Esmeralda",
+			gtype = "vip"
+		},
+		"esmeralda.permissao",
+		"carrosvip.permissao",
+		"corarma.permissao",
+		"mochila.permissao"
 	},
 	["Diamante"] = {
 		_config = {
@@ -80,8 +98,17 @@ cfg.groups = {
 			gtype = "vip"
 		},
 		"diamante.permissao",
-		"mochila.permissao",
-		"carrosvip.permissao"
+		"carrosvip.permissao",
+		"corarma.permissao",
+		"mochila.permissao"
+	},
+	["Boost"] = {
+		_config = {
+			title = "Nitro Boost",
+			gtype = "vip2"
+		},
+		"boost.permissao",
+		"corarma.permissao"
 	},
 		---------------------------------------------------
 	--					ROTA
@@ -102,7 +129,8 @@ cfg.groups = {
 			title = "ROTA Paisana",
 			gtype = "job"
 		},
-		"tooglerecr.permissao"
+		"tooglerecr.permissao",
+		"nogarmas.permissao"
 	},
 
 	["SoldadoR"] = {
@@ -121,7 +149,8 @@ cfg.groups = {
 			title = "ROTA Paisana",
 			gtype = "job"
 		},
-		"tooglesolr.permissao"
+		"tooglesolr.permissao",
+		"nogarmas.permissao"
 	},
 
 	["TenenteR"] = {
@@ -140,7 +169,8 @@ cfg.groups = {
 			title = "ROTA Paisana",
 			gtype = "job"
 		},
-		"toogletenr.permissao"
+		"toogletenr.permissao",
+		"nogarmas.permissao"
 	},
 
 	["CapitaoR"] = {
@@ -159,7 +189,8 @@ cfg.groups = {
 			title = "ROTA Paisana",
 			gtype = "job"
 		},
-		"tooglecapr.permissao"
+		"tooglecapr.permissao",
+		"nogarmas.permissao"
 	},
 
 	["CoronelR"] = {
@@ -178,7 +209,8 @@ cfg.groups = {
 			title = "ROTA Paisana",
 			gtype = "job"
 		},
-		"tooglecorr.permissao"
+		"tooglecorr.permissao",
+		"nogarmas.permissao"
 	},
 
 	["ComandanteR"] = {
@@ -197,7 +229,8 @@ cfg.groups = {
 			title = "ROTA Paisana",
 			gtype = "job"
 		},
-		"tooglecmdr.permissao"
+		"tooglecmdr.permissao",
+		"nogarmas.permissao"
 	},
 
 	---------------------------------------------------
@@ -218,7 +251,8 @@ cfg.groups = {
 			title = "PMESP Paisana",
 			gtype = "job"
 		},
-		"tooglerec.permissao"
+		"tooglerec.permissao",
+		"nogarmas.permissao"
 	},
 
 	["Soldado"] = {
@@ -236,7 +270,8 @@ cfg.groups = {
 			title = "PMESP Paisana",
 			gtype = "job"
 		},
-		"tooglesol.permissao"
+		"tooglesol.permissao",
+		"nogarmas.permissao"
 	},
 
 	["Tenente"] = {
@@ -254,7 +289,8 @@ cfg.groups = {
 			title = "PMESP Paisana",
 			gtype = "job"
 		},
-		"toogleten.permissao"
+		"toogleten.permissao",
+		"nogarmas.permissao"
 	},
 
 	["Capitao"] = {
@@ -272,7 +308,8 @@ cfg.groups = {
 			title = "PMESP Paisana",
 			gtype = "job"
 		},
-		"tooglecap.permissao"
+		"tooglecap.permissao",
+		"nogarmas.permissao"
 	},
 
 	["Coronel"] = {
@@ -290,7 +327,8 @@ cfg.groups = {
 			title = "PMESP Paisana",
 			gtype = "job"
 		},
-		"tooglecor.permissao"
+		"tooglecor.permissao",
+		"nogarmas.permissao"
 	},
 
 	["Comandante"] = {
@@ -308,7 +346,8 @@ cfg.groups = {
 			title = "PMESP Paisana",
 			gtype = "job"
 		},
-		"tooglecmd.permissao"
+		"tooglecmd.permissao",
+		"nogarmas.permissao"
 	},
 
 	---------------------------------------------------
@@ -330,7 +369,8 @@ cfg.groups = {
 			title = "Policia Civil Paisana",
 			gtype = "job"
 		},
-		"toogleagente.permissao"
+		"toogleagente.permissao",
+		"nogarmas.permissao"
 	},
 
 	["Inspetor"] = {
@@ -348,7 +388,8 @@ cfg.groups = {
 			title = "Policia Civil Paisana",
 			gtype = "job"
 		},
-		"toogleins.permissao"
+		"toogleins.permissao",
+		"nogarmas.permissao"
 	},
 
 	["Investigador"] = {
@@ -366,7 +407,8 @@ cfg.groups = {
 			title = "Policia Civil Paisana",
 			gtype = "job"
 		},
-		"toogleinv.permissao"
+		"toogleinv.permissao",
+		"nogarmas.permissao"
 	},
 
 	["Delegado"] = {
@@ -384,7 +426,8 @@ cfg.groups = {
 			title = "Policia Civil Paisana",
 			gtype = "job"
 		},
-		"toogledel.permissao"
+		"toogledel.permissao",
+		"nogarmas.permissao"
 	},
 
 	---------------------------------------------------
@@ -475,7 +518,7 @@ cfg.groups = {
 		"mecanico.permissao",
 		"funcmecanico.permissao",
 		"salariomecanico.permissao",
-		"roubonpc.permissao",
+		"roubonpc.permissao"
 	},
 	["PaisanaMecanico"] = {
 		_config = {

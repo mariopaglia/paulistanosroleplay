@@ -10,7 +10,7 @@ local blip = nil
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- GERANDO LOCAL DO ROUBO
 -----------------------------------------------------------------------------------------------------------------------------------------
-local locais = {
+local bancos = {
 	{ id = 1 , x = 147.27 , y = -1045.04 , z = 29.368 , h = 70.0 },
 	{ id = 2 , x = -1211.65 , y = -335.76 , z = 37.79 , h = 300.0 },
 	{ id = 3 , x = -2957.61 , y = 481.65 , z = 15.69 , h = 330.0 },
@@ -18,7 +18,9 @@ local locais = {
 	{ id = 5 , x = 311.70 , y = -283.37 , z = 54.16 , h = 180.0 },
 	{ id = 6 , x = -353.46 , y = -54.39 , z = 49.03 , h = 360.0 },
 	{ id = 7 , x = 1175.94 , y = 2711.73 , z = 38.08 , h = 30.0 },
+}
 
+local lojas = {
 	{ id = 13 , x = 2549.43 , y = 384.90 , z = 108.62 , h = 80.0 },
 	{ id = 14 , x = 1159.67 , y = -313.91 , z = 69.20 , h = 100.0 },
 	{ id = 15 , x = 28.27 , y = -1339.48 , z = 29.49 , h = 0.0 },
@@ -32,6 +34,9 @@ local locais = {
 	{ id = 23 , x = 2672.90 , y = 3286.58 , z = 55.24 , h = 60.0 },
 	{ id = 24 , x = 1707.93 , y = 4920.44 , z = 42.06 , h = 320.0 },
 	{ id = 25 , x = -1829.23 , y = 798.76 , z = 138.19 , h = 120.0 },
+}
+
+local outros = {	
 	{ id = 26 , x = 108.86, y = -1304.74, z = 28.77 , h = 298.95 },
 	{ id = 27 , x = 1984.1, y = 3049.81, z = 47.22 , h = 327.04 },
 }
@@ -40,20 +45,14 @@ local locais = {
 -----------------------------------------------------------------------------------------------------------------------------------------
 Citizen.CreateThread(function()
 	while true do
-		--Citizen.Wait(1)
 		local esperar = 1000
-		for _,item in pairs(locais) do
+		for _,item in pairs(bancos) do
 			local ped = GetPlayerPed(-1)
 			local px,py,pz = table.unpack(GetEntityCoords(ped,true))
 			local unusedBool,coordz = GetGroundZFor_3dCoord(item.x,item.y,item.z,1)
 			local distancia = GetDistanceBetweenCoords(item.x,item.y,coordz,px,py,pz,true)
 			if andamento then
 				esperar = 4
-				-- if IsControlJustPressed(0,244) or GetEntityHealth(ped) <= 100 then
-				-- 	andamento = false
-				-- 	rob.CancelandoRoubo()
-				-- 	ClearPedTasks(ped)
-				-- end
 			else
 				if distancia <= 20 then
 					esperar = 4
@@ -62,7 +61,7 @@ Citizen.CreateThread(function()
 						DisplayHelpText("Aperte ~INPUT_THROW_GRENADE~ para iniciar o roubo")
 						if IsControlJustPressed(0,47) and not IsPedInAnyVehicle(ped,false) then
 							if GetEntityModel(ped) == GetHashKey("mp_m_freemode_01") or GetEntityModel(ped) == GetHashKey("mp_f_freemode_01") then
-								rob.IniciandoRoubo(item.id,item.x,item.y,item.z,item.h)
+								rob.IniciandoRoubo1(item.id,item.x,item.y,item.z,item.h)
 							else
 								TriggerEvent('chatMessage',"ALERTA",{255,70,50},"Você não pode iniciar um roubo utilizando skin de personagem.")
 							end
@@ -74,7 +73,71 @@ Citizen.CreateThread(function()
 		Citizen.Wait(esperar)
 	end
 end)
------------------------------------------------------------------------------------------------------------------------------------------
+--------------
+
+Citizen.CreateThread(function()
+	while true do
+		local esperar = 1000
+		for _,item in pairs(lojas) do
+			local ped = GetPlayerPed(-1)
+			local px,py,pz = table.unpack(GetEntityCoords(ped,true))
+			local unusedBool,coordz = GetGroundZFor_3dCoord(item.x,item.y,item.z,1)
+			local distancia = GetDistanceBetweenCoords(item.x,item.y,coordz,px,py,pz,true)
+			if andamento then
+				esperar = 4
+			else
+				if distancia <= 20 then
+					esperar = 4
+					DrawMarker(29,item.x,item.y,item.z,0,0,0,0,0,0,1.0,0.7,1.0,50,150,50,200,1,0,0,1)
+					if distancia <= 1.5 then
+						DisplayHelpText("Aperte ~INPUT_THROW_GRENADE~ para iniciar o roubo")
+						if IsControlJustPressed(0,47) and not IsPedInAnyVehicle(ped,false) then
+							if GetEntityModel(ped) == GetHashKey("mp_m_freemode_01") or GetEntityModel(ped) == GetHashKey("mp_f_freemode_01") then
+								rob.IniciandoRoubo2(item.id,item.x,item.y,item.z,item.h)
+							else
+								TriggerEvent('chatMessage',"ALERTA",{255,70,50},"Você não pode iniciar um roubo utilizando skin de personagem.")
+							end
+						end
+					end
+				end
+			end
+		end
+		Citizen.Wait(esperar)
+	end
+end)
+
+Citizen.CreateThread(function()
+	while true do
+		local esperar = 1000
+		for _,item in pairs(outros) do
+			local ped = GetPlayerPed(-1)
+			local px,py,pz = table.unpack(GetEntityCoords(ped,true))
+			local unusedBool,coordz = GetGroundZFor_3dCoord(item.x,item.y,item.z,1)
+			local distancia = GetDistanceBetweenCoords(item.x,item.y,coordz,px,py,pz,true)
+			if andamento then
+				esperar = 4
+			else
+				if distancia <= 20 then
+					esperar = 4
+					DrawMarker(29,item.x,item.y,item.z,0,0,0,0,0,0,1.0,0.7,1.0,50,150,50,200,1,0,0,1)
+					if distancia <= 1.5 then
+						DisplayHelpText("Aperte ~INPUT_THROW_GRENADE~ para iniciar o roubo")
+						if IsControlJustPressed(0,47) and not IsPedInAnyVehicle(ped,false) then
+							if GetEntityModel(ped) == GetHashKey("mp_m_freemode_01") or GetEntityModel(ped) == GetHashKey("mp_f_freemode_01") then
+								rob.IniciandoRoubo3(item.id,item.x,item.y,item.z,item.h)
+							else
+								TriggerEvent('chatMessage',"ALERTA",{255,70,50},"Você não pode iniciar um roubo utilizando skin de personagem.")
+							end
+						end
+					end
+				end
+			end
+		end
+		Citizen.Wait(esperar)
+	end
+end)
+
+---------------------------------------------------------------------------------------------------------------------------
 -- INICIANDO O ROUBO
 -----------------------------------------------------------------------------------------------------------------------------------------
 RegisterNetEvent("iniciarroubo")

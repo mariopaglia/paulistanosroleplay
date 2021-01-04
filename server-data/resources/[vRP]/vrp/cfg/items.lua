@@ -35,7 +35,6 @@ cfg.items = {
 	["croquettes"] = { "Ração",0.05 },
 	["cannabis"] = { "Cannabis",0.15 },
 	["pseudoefedrina"] = { "Pseudoefedrina",0.15 },
-	["anfetamina"] = { "Anfetamina",0.15 },
 	["ritalina"] = { "Ritalina",0.15 },
 	["metasuja"] = { "Metanfetamina Suja",0.2 },
 	["nitro"] = { "nitro",0.5 },
@@ -43,7 +42,6 @@ cfg.items = {
 	["benzoilecgonina"] = { "Benzoilecgonina",0.5 },
 	["cloridratoecgonina"] = { "Cloridratoecgonina",0.5 },
 	["cloridratococa"] = { "Cloridratococa",0.5 },
-	["pastadecoca"] = { "Pasta de Cocaina",0.5 },
 
     ["graosimpuros"] = { "Grãos impuros",0.2 },	
     ["graos"] = { "Grãos",0.2 },	
@@ -80,10 +78,7 @@ cfg.items = {
 	["lambari"] = { "Lambari",0.6 },
 	["energetico"] = { "Energético",0.3 },
 	["mochila"] = { "Mochila",1 },
-	["adubo"] = { "Adubo",0.8 },
 	["fertilizante"] = { "Fertilizante",0.8 },
-	["maconha"] = { "Maconha",1.0 },
-	["embalagem"] = { "Embalagem",0.2 },
 	["placa"] = { "Placa",0.8 },
 	["rebite"] = { "Rebite",0.8 },
 	["carbono"] = { "Carbono",0.0038 },
@@ -111,25 +106,34 @@ cfg.items = {
 	["mola"] = { "Mola",0.2 },
 	["capsula"] = { "Cápsula",0.2 },
 	["polvora"] = { "Pólvora",0.5 },
-	["corpodeak"] = { "Corpo de AK-47",0.5 },
+	["corpodeak"] = { "Corpo de AK-47",0.5 }, -- OK
+	["corpodefiveseven"] = { "Corpo de Five Seven",0.5 }, -- OK
+	["corpodeg36"] = { "Corpo de G36",0.5 }, -- OK
+	["corpodemp5"] = { "Corpo de MP5",0.5 }, -- OK
 	["corpodefamas"] = { "Corpo de Famas",0.5 },
-	["corpodefiveseven"] = { "Corpo de Five Seven",0.5 },
 	["corpodemtar21"] = { "Corpo de M-TAR21",0.5 },
 	["corpodemagnum"] = { "Corpo de Magnum",0.5 },
 	["corpodeuzi"] = { "Corpo de UZI",0.5 },
 	["gatilho"] = { "Gatilho",0.5 },
+
+	-- Farm de Maconha
+	["adubo"] = { "Adubo",0.3 },
+	["embalagem"] = { "Embalagem",0.3 },
+	["maconha"] = { "Maconha",1.0 },
 	
 	-- Farm de Metanfetamina
 	["acucar"] = { "Açucar",0.8 },
 	["xarope"] = { "Xarope",0.8 },
-	["frasco"] = { "Frasco",0.2 },
+	["anfetamina"] = { "Anfetamina",0.3 },
+	["frasco"] = { "Frasco",0.3 },
 	["metanfetamina"] = { "Metanfetamina",1.0 },
 	
 	-- Farm de Cocaína
 	["folhacoca"] = { "Folha Cocaina",0.3 },
 	["po"] = { "Pó",0.1 },
+	["pino"] = { "Pino",0.3 },
+	["pastadecoca"] = { "Pasta de Cocaina",0.3 },
 	["cocaina"] = { "Cocaína",1.0 },
-	["pino"] = { "Pino",0.2 },
 	
 	-- Farm de colete
 	["tecido"] = { "Tecido",0.3 },

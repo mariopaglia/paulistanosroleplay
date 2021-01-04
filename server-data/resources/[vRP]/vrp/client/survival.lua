@@ -26,6 +26,39 @@ Citizen.CreateThread(function()
 	end
 end)
 
+local menuactive = false
+function ToggleActionMenu()
+	menuactive = not menuactive
+	if menuactive then
+		TransitionToBlurred(1000)
+	else
+		TransitionFromBlurred(1000)
+	end
+end
+local morto = 0
+Citizen.CreateThread(function()
+    while true do
+        local ped = PlayerPedId()
+        if GetEntityHealth(ped) <= 101 then
+            if morto == 0 then
+                ToggleActionMenu()
+                morto = 1
+            end
+			DisableControlAction(1, 244, true)
+        else 
+        if GetEntityHealth(ped) >= 101 then
+            if morto == 1 then
+                ToggleActionMenu()
+                morto = 0
+            end
+				DisableControlAction(1, 244, false)
+            end
+        end
+        Citizen.Wait(500)
+    end
+end)
+
+
 
 local nocauteado = false
 local timedeath = 900
@@ -119,7 +152,6 @@ Citizen.CreateThread(function()
 			else
 				drawTxt("PRESSIONE ~g~E ~w~PARA VOLTAR AO AEROPORTO OU AGUARDE POR SOCORRO MÉDICO",4,0.5,0.93,0.50,255,255,255,255)
 			end
-			--SetPedToRagdoll(PlayerPedId(),1000,1000,0,0,0,0)
 			BlockWeaponWheelThisFrame()
 			DisableControlAction(0,21,true)
 			DisableControlAction(0,23,true)
@@ -133,6 +165,7 @@ Citizen.CreateThread(function()
 			DisableControlAction(0,140,true)
 			DisableControlAction(0,141,true)
 			DisableControlAction(0,142,true)
+			DisableControlAction(0,245,true)
 			DisableControlAction(0,143,true)
 			DisableControlAction(0,75,true)
 			DisableControlAction(0,22,true)
@@ -159,26 +192,9 @@ Citizen.CreateThread(function()
 			DisableControlAction(0,189,true)
 			DisableControlAction(0,190,true)
 			DisableControlAction(0,188,true)
-			-- DisableControlAction(0,311,true)
 		end
 	end
 end)
-
--- function DrawText3D(x,y,z, text)
---     local onScreen,_x,_y=World3dToScreen2d(x,y,z)
---     local px,py,pz=table.unpack(GetGameplayCamCoords())
-    
---     SetTextScale(0.35, 0.35)
---     SetTextFont(4)
---     SetTextProportional(1)
---     SetTextColour(255, 255, 255, 215)
---     SetTextEntry("STRING")
---     SetTextCentre(1)
---     AddTextComponentString(text)
---     DrawText(_x,_y)
---     local factor = (string.len(text)) / 370
---     DrawRect(_x,_y+0.0125, 0.015+ factor, 0.03, 41, 11, 41, 68)
--- end
 
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- DRAWTXT

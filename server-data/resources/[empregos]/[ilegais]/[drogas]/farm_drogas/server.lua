@@ -11,7 +11,7 @@ local quantidade = {}
 function emP.Quantidade()
 	local source = source
 	if quantidade[source] == nil then
-		quantidade[source] = math.random(10,15)
+		quantidade[source] = math.random(3,6)
 	end
 end
 -----------------------------------------------------------------------------------------------------------------------------------------

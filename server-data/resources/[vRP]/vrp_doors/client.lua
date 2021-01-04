@@ -35,8 +35,6 @@ Citizen.CreateThread(function()
 		if IsControlJustPressed(0,38) then
 			local id = searchIdDoor()
 			if id ~= 0 then
-				vRP._playAnim(true,{{"veh@mower@base","start_engine"}},false)
-				Citizen.Wait(2200)
 				TriggerServerEvent("vrpdoorsystem:open",id)
 			end
 		end

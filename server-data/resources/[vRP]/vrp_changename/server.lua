@@ -19,9 +19,9 @@ AddEventHandler("hoppe:changename",function(characterNome,characterSobrenome,cha
 			vRP.execute("vRP/update_user_first_spawn",{ user_id = user_id, firstname = characterSobrenome, name = characterNome, age = characterAge })
 			TriggerClientEvent("Notify",source, "sucesso", "Nome alterado para "..characterNome.." "..characterSobrenome)
 			TriggerClientEvent("Notify",source, "importante", "Você não pagou pois é a primeira vez!")
-		elseif vRP.tryFullPayment(user_id,250000) then
+		elseif vRP.tryFullPayment(user_id,300000) then
 			vRP.execute("vRP/update_user_first_spawn",{ user_id = user_id, firstname = characterSobrenome, name = characterNome, age = characterAge })
-			TriggerClientEvent("Notify",source, "sucesso", "Nome alterado para "..characterNome.." "..characterSobrenome)
+			TriggerClientEvent("Notify",source, "sucesso", "Nome alterado para <b>"..characterNome.." "..characterSobrenome.."</b>, <b>"..characterAge.."</b> anos")
 		else
 			TriggerClientEvent("Notify",source, "negado", "Você não possui dinheiro.")
 		end	

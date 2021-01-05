@@ -1,3 +1,8 @@
+-- local Tunnel = module("vrp","lib/Tunnel")
+-- local Proxy = module("vrp","lib/Proxy")
+-- vRP = Proxy.getInterface("vRP")
+-- vRPclient = Tunnel.getInterface("vRP")
+
 local logs = "https://discordapp.com/api/webhooks/756009434710409388/D6FFuDiqhkjGcscrCve30W9_5fzbdf2O7NNvW73FJjS4361c7S2P7AGyMcHtfuDLjCAD"
 local communityname = "Paulistanos Roleplay"
 local communtiylogo = "https://i.imgur.com/lSLWJ65.png"
@@ -18,7 +23,7 @@ local connect = {
         }
     }
 
-PerformHttpRequest(logs, function(err, text, headers) end, 'POST', json.encode({username = "ENTROU", embeds = connect}), { ['Content-Type'] = 'application/json' })
+PerformHttpRequest(logs, function(err, text, headers) end, 'POST', json.encode({username = "Log de Entrada", embeds = connect}), { ['Content-Type'] = 'application/json' })
 end)
 
 AddEventHandler('playerDropped', function(reason)
@@ -37,5 +42,10 @@ local disconnect = {
         }
     }
 
-    PerformHttpRequest(logs, function(err, text, headers) end, 'POST', json.encode({username = "SAIU", embeds = disconnect}), { ['Content-Type'] = 'application/json' })
+    PerformHttpRequest(logs, function(err, text, headers) end, 'POST', json.encode({username = "Log de Saída", embeds = disconnect}), { ['Content-Type'] = 'application/json' })
+end)
+
+RegisterCommand('teste',function(source,args,rawCommand)
+    local user_id = vRP.getUserId(source)
+        TriggerClientEvent("Notify",source,"importante","Coordenada: "..x..","..y..","..z.."")
 end)

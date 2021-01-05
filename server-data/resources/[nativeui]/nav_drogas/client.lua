@@ -44,7 +44,7 @@ end)
 -- LOCAIS
 -----------------------------------------------------------------------------------------------------------------------------------------
 local marcacoes = {
-	{ 2045.07,-150.36,270.99 }
+	{ 1973.15,3819.46,33.43 }
 }
 
 Citizen.CreateThread(function()
@@ -59,7 +59,7 @@ Citizen.CreateThread(function()
 				TaylinSleep = 5
 				if distance <= 2.0 then
 					if not menuactive then
-						DrawText3Ds(x,y,z+0.20,"~r~[E] ~w~Para Acessar a Loja de Drogas")
+						DrawText3Ds(x,y,z+0.20,"~r~[E] ~w~Para Acessar a Loja")
 					end
 					if IsControlJustPressed(0,38) then
 						if emP.checkPermission1() then

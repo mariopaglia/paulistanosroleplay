@@ -1,6 +1,6 @@
 --  CONFIGURAÇÃO --
 
-local timezone = -4
+local timezone = -3
 
 -------------------
 
@@ -13,7 +13,7 @@ vRPclient = Tunnel.getInterface("vRP","damn_logger")
 local Time = {}
 local webhooklinkserver = ""
 local webhooklinkchat = ""
-local webhooklinkdeath = "https://discord.com/api/webhooks/794791160437538849/n6x-ZEp_kYgfpldXvtXjQUwJoUCCvijWWsv_E7sMoMbs4M3Hsou8SBiz_rW3wNYlJAi2"
+local webhooklinkdeath = "https://discord.com/api/webhooks/795876520295792671/i4usAZoXLAtMxyfJaDAQBsamVZWTN3262wDFqZ1FcC-vpAoqTAGdM9rLiBL2p9bEGKqU"
 local webhooklinkmoney = "https://discord.com/api/webhooks/794791627645648896/MAskJrP9qQeKgxRz1YwQ8AOpykb6Q45aHYwjUnxM4n5lbR7l9hE19gmnJSxT_oEf_Bpb"
 local webhooklinkinout = "https://discord.com/api/webhooks/794791807891669013/DOY3kVr1QmuN_0RBz3D_ZyFF1H6Wx-smJnLRByOXgT7EWHPigPr5xK11YXmohAtMZzdi"
 local webhooklinkcriminal = ""
@@ -70,10 +70,10 @@ AddEventHandler("vRP:playerLeave",function(user_id, source)
 	SendWebhookMessage(webhooklinkinout, "```["..Time.hora..":"..Time.min..":"..Time.seg.."] ".. GetPlayerName(source) .." [user_id ".. user_id .."] saiu.```")
 end)
 
-AddEventHandler('chatMessage', function(source, name, msg)
-    local user_id = vRP.getUserId({source})
-	SendWebhookMessage(webhooklinkchat, "```["..Time.hora..":"..Time.min..":"..Time.seg.."] ".. name.." [user_id ".. user_id .."]: "..tostring(msg)..".```")
-end)
+-- AddEventHandler('chatMessage', function(source, name, msg)
+--     local user_id = vRP.getUserId({source})
+-- 	SendWebhookMessage(webhooklinkchat, "```["..Time.hora..":"..Time.min..":"..Time.seg.."] ".. name.." [user_id ".. user_id .."]: "..tostring(msg)..".```")
+-- end)
 
 RegisterServerEvent('logplayerDied')
 AddEventHandler('logplayerDied',function(killer,reason,weapon)

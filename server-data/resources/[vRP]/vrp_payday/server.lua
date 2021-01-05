@@ -7,40 +7,23 @@ vRPclient = Tunnel.getInterface("vRP","vRP_salar")
 salarii = {
   -- VIPS
   {"bronze.permissao", 2000, "VIP Bronze"},
-  {"prata.permissao", 4000, "VIP Prata"},
-  {"ouro.permissao", 6000, "VIP Ouro"},
-  {"diamante.permissao", 8000, "VIP Diamante"},
-  {"boost.permissao", 1000, "Nitro Boost"},
-  -- Policia Militar (PMESP)
-  {"recruta.permissao", 1000, "Recruta PMESP"},
-  {"soldado.permissao", 2000, "Soldado PMESP"},
-  {"tenente.permissao", 3000, "Tenente PMESP"},
-  {"capitao.permissao", 4000, "Capitão PMESP"},
-  {"coronel.permissao", 5000, "Coronel PMESP"},
-  {"comandante.permissao", 10000, "Comandante PMESP"},
-   -- ROTA
-  {"recrutar.permissao", 2000, "Recruta ROTA"},
-  {"soldador.permissao", 3000, "Soldado ROTA"},
-  {"tenenter.permissao", 4000, "Tenente ROTA"},
-  {"capitaor.permissao", 5000, "Capitão ROTA"},
-  {"coronelr.permissao", 6000, "Coronel ROTA"},
-  {"comandanter.permissao", 10000, "Comandante ROTA"},
-  -- Policia Civil
-  {"agente.permissao", 4000, "Agente Policia Civil"},
-  {"inspetor.permissao", 5000, "Inspetor Policia Civil"},
-  {"investigador.permissao", 6000, "Investigador Policia Civil"},
-  {"delegado.permissao", 10000, "Delegado Policia Civil"},
+  {"prata.permissao", 3000, "VIP Prata"},
+  {"ouro.permissao", 5000, "VIP Ouro"},
+  {"platina.permissao", 7000, "VIP Platina"},
+  {"esmeralda.permissao", 8000, "VIP Esmeralda"},
+  {"diamante.permissao", 10000, "VIP Diamante"},
+  {"boost.permissao", 800, "Nitro Boost"},
+  -- Policia
+  {"policia.permissao", 5000, "Policial"},
+  {"comandante.permissao", 3000, "Comandante PMESP"},
+  {"comandanter.permissao", 3000, "Comandante ROTA"},
+  {"delegado.permissao", 3000, "Delegado Policia Civil"},
   -- SAMU
-  {"enfermeiro.permissao", 4000, "Enfermeiro SAMU"},
-  {"medico.permissao", 6000, "Médico SAMU"},
-  {"diretor.permissao", 10000, "Diretor SAMU"},
+  {"paramedico.permissao", 5000, "Médico/Paramédico"},
+  {"diretor.permissao", 3000, "Diretor SAMU"},
   -- Mecanico
   {"funcmecanico.permissao", 2000, "Mecanico"},
-  {"lidermecanico.permissao", 4000, "Lider Mecanico"},
-  -- Concessionária
-  {"concessionaria.permissao", 4000, "Vendedor Concessionária"},
-
-
+  {"lidermecanico.permissao", 3000, "Lider Mecanico"},
 }
 
 RegisterServerEvent('offred:salar')
@@ -53,7 +36,7 @@ AddEventHandler('offred:salar', function(salar)
       titulo = v[3]
       vRP.giveBankMoney(user_id,salar)
       TriggerClientEvent("vrp_sound:source",source,'coins',1)
-      TriggerClientEvent("Notify",source,"importante","Seu salario de <b>"..titulo.."</b> de <b>R$ "..salar.."</b> foi depositado.")
+      TriggerClientEvent("Notify",source,"importante","Seu salario de <b>"..titulo.."</b> de <b>R$ "..vRP.format(parseInt(salar)).."</b> foi depositado")
       -- TriggerClientEvent('chatMessage',source,"Obrigado por colaborar com a cidade! Seu salário de ^2R$"..salar.." ^0 foi depositado.")
 		end
 	end

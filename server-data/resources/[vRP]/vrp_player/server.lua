@@ -292,11 +292,11 @@ end)
 -----------------------------------------------------------------------------------------------------------------------------------------
 RegisterCommand('item',function(source,args,rawCommand)
 	local user_id = vRP.getUserId(source)
+	local identity = vRP.getUserIdentity(user_id)
 	if vRP.hasPermission(user_id,"admin.permissao") then
 		if args[1] and args[2] and itemlist[args[1]] ~= nil then
 			vRP.giveInventoryItem(user_id,args[1],parseInt(args[2]))
-			SendWebhookMessage(logsitens, "```prolog\n[====SPAW DE ITEM (/ITEM)====]\n[ADM ID]: "..user_id.."\n[PEGOU O ITEM]: '"..args[1].."'\n[QUANTIDADE]: "..args[2].."```")
-			-- TriggerEvent('logs:ToDiscord', discordwebhook , "ABUSER", "```ADM "..user_id.." pegou o item: "..args[1].." Quantidade: "..args[2].."```", "https://www.tumarcafacil.com/wp-content/uploads/2017/06/RegistroDeMarca-01-1.png", false, false)
+			SendWebhookMessage(logsitens, "```prolog\n[ID]: "..user_id.." "..identity.name.." "..identity.firstname.." \n[CRIOU]: '"..args[1].."'\n[QNT]: "..args[2]..""..os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S").."```")
 		end
 	end
 end)
@@ -586,7 +586,7 @@ RegisterCommand('revistar',function(source,args,rawCommand)
 			end
 		end
 		TriggerClientEvent('chatMessage',source,"",{},"     R$"..vRP.format(parseInt(money)).." reais")
-		TriggerClientEvent("Notify",nplayer,"importante","Revistado por <b>"..identity.name.." "..identity.firstname.."</b>.")
+		TriggerClientEvent("Notify",nplayer,"importante","Você está sendo revistado por <b>"..identity.name.." "..identity.firstname.."</b>.")
 	end
 end)
 -----------------------------------------------------------------------------------------------------------------------------------------

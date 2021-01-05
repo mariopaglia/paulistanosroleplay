@@ -289,7 +289,7 @@ RegisterCommand("cor",function(source,args)
 		if tinta >= 0 and emP.checkPermission() then
 			SetPedWeaponTintIndex(ped,arma,tinta)
 		else
-			TriggerEvent("Notify", "negado", "Necessário <b>VIP Prata ou superior</b> para utilizar <b>/cor</b>")
+			TriggerEvent("Notify", "negado", "Necessário <b>Nitro Boost, VIP Prata ou superior</b> para utilizar <b>/cor</b>")
         end
 end,false)
 -----------------------------------------------------------------------------------------------------------------------------------------
@@ -582,7 +582,7 @@ RegisterCommand("silenciador",function(source,args)
     	    GiveWeaponComponentToPed(ped,GetHashKey("WEAPON_COMBATPISTOL"),GetHashKey("COMPONENT_AT_PI_SUPP"))	
 		end
 	else
-		TriggerEvent("Notify", "negado", "Necessário <b>VIP Prata, VIP Ouro ou VIP Diamante</b> para utilizar <b>/silenciador</b>")
+		TriggerEvent("Notify", "negado", "Necessário <b>VIP Ouro ou superior</b> para utilizar <b>/silenciador</b>")
 	end
 end)
 -----------------------------------------------------------------------------------------------------------------------------------------
@@ -1975,15 +1975,6 @@ function GetClosestPlayer(radius)
 		return nil
 	end
 end
--- Cor da arma
-RegisterCommand("cor",function(source,args)
-    local tinta = tonumber(args[1])
-    local ped = PlayerPedId()
-    local arma = GetSelectedPedWeapon(ped)
-        if tinta >= 0 then
-            SetPedWeaponTintIndex(ped,arma,tinta)
-        end
-end,false)
 
 function GetClosestPlayer(radius)
     local players = GetPlayers()

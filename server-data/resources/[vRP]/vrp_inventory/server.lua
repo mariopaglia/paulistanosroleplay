@@ -15,9 +15,8 @@ vDIAGNOSTIC = Tunnel.getInterface("vrp_diagnostic")
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- WEBHOOK
 -----------------------------------------------------------------------------------------------------------------------------------------
-local webhookequipar = "https://discordapp.com/api/webhooks/756009434710409388/D6FFuDiqhkjGcscrCve30W9_5fzbdf2O7NNvW73FJjS4361c7S2P7AGyMcHtfuDLjCAD" 
-local webhookenviaritem = "https://discordapp.com/api/webhooks/756009434710409388/D6FFuDiqhkjGcscrCve30W9_5fzbdf2O7NNvW73FJjS4361c7S2P7AGyMcHtfuDLjCAD"
-local webhookdropar = "https://discordapp.com/api/webhooks/756009434710409388/D6FFuDiqhkjGcscrCve30W9_5fzbdf2O7NNvW73FJjS4361c7S2P7AGyMcHtfuDLjCAD"
+local webhookinventario = "https://discord.com/api/webhooks/795672460493193266/swXw7bzSoJNVsjGoyfigHFUkNq5-du7u-mIDjqIAqvg6fFuB3B4UDkelCxKiA2ub-Mle" 
+
 function SendWebhookMessage(webhook,message)
 	if webhook ~= nil and webhook ~= "" then
 		PerformHttpRequest(webhook, function(err, text, headers) end, 'POST', json.encode({content = message}), { ['Content-Type'] = 'application/json' })
@@ -62,7 +61,7 @@ function vRPN.sendItem(itemName,amount)
 						vRP.giveInventoryItem(nuser_id,itemName,amount)
 						vRPclient._playAnim(source,true,{{"mp_common","givetake1_a"}},false)
 						TriggerClientEvent("Notify",source,"sucesso","Enviou <b>"..vRP.format(amount).."x "..vRP.itemNameList(itemName).."</b>.",8000)
-						SendWebhookMessage(webhookenviaritem,"```prolog\n[ID]: "..user_id.." "..identity.name.." "..identity.firstname.." \n[ENVIOU]: "..vRP.format(amount).." "..vRP.itemNameList(itemName).." \n[PARA O ID]: "..nuser_id.." "..identitynu.name.." "..identitynu.firstname.." "..os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S").." \r```")
+						SendWebhookMessage(webhookinventario,"```prolog\n[ID]: "..user_id.." "..identity.name.." "..identity.firstname.." \n[ENVIOU]: "..vRP.format(amount).." "..vRP.itemNameList(itemName).." \n[PARA O ID]: "..nuser_id.." "..identitynu.name.." "..identitynu.firstname.." "..os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S").." \r```")
 						TriggerClientEvent("Notify",nplayer,"sucesso","Recebeu <b>"..vRP.format(amount).."x "..vRP.itemNameList(itemName).."</b>.",8000)
 						vRPclient._playAnim(nplayer,true,{{"mp_common","givetake1_a"}},false)
 						TriggerClientEvent('Creative:Update',source,'updateMochila')
@@ -79,7 +78,7 @@ function vRPN.sendItem(itemName,amount)
 								vRP.giveInventoryItem(nuser_id,itemName,parseInt(v.amount))
 								vRPclient._playAnim(source,true,{{"mp_common","givetake1_a"}},false)
 								TriggerClientEvent("Notify",source,"sucesso","Enviou <b>"..vRP.format(parseInt(v.amount)).."x "..vRP.itemNameList(itemName).."</b>.",8000)
-								SendWebhookMessage(webhookenviaritem,"```prolog\n[ID]: "..user_id.." "..identity.name.." "..identity.firstname.." \n[ENVIOU]: "..vRP.format(parseInt(v.amount)).." "..vRP.itemNameList(itemName).." \n[PARA O ID]: "..nuser_id.." "..identitynu.name.." "..identitynu.firstname.." "..os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S").." \r```")
+								SendWebhookMessage(webhookinventario,"```prolog\n[ID]: "..user_id.." "..identity.name.." "..identity.firstname.." \n[ENVIOU]: "..vRP.format(parseInt(v.amount)).." "..vRP.itemNameList(itemName).." \n[PARA O ID]: "..nuser_id.." "..identitynu.name.." "..identitynu.firstname.." "..os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S").." \r```")
 								TriggerClientEvent("Notify",nplayer,"sucesso","Recebeu <b>"..vRP.format(parseInt(v.amount)).."x "..vRP.itemNameList(itemName).."</b>.",8000)
 								vRPclient._playAnim(nplayer,true,{{"mp_common","givetake1_a"}},false)
 								TriggerClientEvent('Creative:Update',source,'updateMochila')
@@ -106,7 +105,7 @@ function vRPN.dropItem(itemName,amount)
 		if parseInt(amount) > 0 and vRP.tryGetInventoryItem(user_id,itemName,amount) then
 			TriggerEvent("DropSystem:create",itemName,amount,x,y,z,3600)
 			vRPclient._playAnim(source,true,{{"pickup_object","pickup_low"}},false)
-			SendWebhookMessage(webhookdropar,"```prolog\n[ID]: "..user_id.." "..identity.name.." "..identity.firstname.." \n[DROPOU]: "..vRP.itemNameList(itemName).." \n[QUANTIDADE]: "..vRP.format(parseInt(amount)).." "..os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S").." \r```")
+			SendWebhookMessage(webhookinventario,"```prolog\n[ID]: "..user_id.." "..identity.name.." "..identity.firstname.." \n[DROPOU]: "..vRP.itemNameList(itemName).." \n[QUANTIDADE]: "..vRP.format(parseInt(amount)).." "..os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S").." \r```")
 			TriggerClientEvent('Creative:Update',source,'updateMochila')
 			return true
 		else
@@ -116,7 +115,7 @@ function vRPN.dropItem(itemName,amount)
 					if vRP.tryGetInventoryItem(user_id,itemName,parseInt(v.amount)) then
 						TriggerEvent("DropSystem:create",itemName,parseInt(v.amount),x,y,z,3600)
 						vRPclient._playAnim(source,true,{{"pickup_object","pickup_low"}},false)
-						SendWebhookMessage(webhookdropar,"```prolog\n[ID]: "..user_id.." "..identity.name.." "..identity.firstname.." \n[DROPOU]: "..vRP.itemNameList(itemName).." \n[QUANTIDADE]: "..vRP.format(parseInt(v.amount)).." "..os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S").." \r```")
+						SendWebhookMessage(webhookinventario,"```prolog\n[ID]: "..user_id.." "..identity.name.." "..identity.firstname.." \n[DROPOU]: "..vRP.itemNameList(itemName).." \n[QUANTIDADE]: "..vRP.format(parseInt(v.amount)).." "..os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S").." \r```")
 						TriggerClientEvent('Creative:Update',source,'updateMochila')
 						return true
 					end
@@ -882,7 +881,7 @@ function vRPN.useItem(itemName,type,ramount)
 				local identity = vRP.getUserIdentity(user_id)
 				weapons[string.gsub(itemName,"wbody|","")] = { ammo = 0 }
 				vRPclient._giveWeapons(source,weapons)
-				SendWebhookMessage(webhookequipar,"```prolog\n[ID]: "..user_id.." "..identity.name.." "..identity.firstname.." \n[EQUIPOU]: "..vRP.itemNameList(itemName).." "..os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S").." \r```")
+				SendWebhookMessage(webhookinventario,"```prolog\n[ID]: "..user_id.." "..identity.name.." "..identity.firstname.." \n[EQUIPOU]: "..vRP.itemNameList(itemName).." "..os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S").." \r```")
 				TriggerClientEvent('Creative:Update',source,'updateMochila')
 			end
 		elseif type == "recarregar" then
@@ -906,7 +905,7 @@ function vRPN.useItem(itemName,type,ramount)
               weapons[weaponuse] = { ammo = v.amount }
               itemAmount = v.amount
               vRPclient._giveWeapons(source,weapons,false)
-              SendWebhookMessage(webhookequipar,"```prolog\n[ID]: "..user_id.." "..identity.name.." "..identity.firstname.." \n[RECARREGOU]: "..vRP.itemNameList(itemName).." \n[MUNICAO]: "..parseInt(v.amount).." "..os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S").." \r```")
+              SendWebhookMessage(webhookinventario,"```prolog\n[ID]: "..user_id.." "..identity.name.." "..identity.firstname.." \n[RECARREGOU]: "..vRP.itemNameList(itemName).." \n[MUNICAO]: "..parseInt(v.amount).." "..os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S").." \r```")
               TriggerClientEvent('Creative:Update',source,'updateMochila')
             end
           end

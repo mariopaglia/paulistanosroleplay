@@ -988,22 +988,22 @@ function src.policeAlert()
 		end
 	end
 end
------------------------------------------------------------------------------------------------------------------------------------------
--- CAR
------------------------------------------------------------------------------------------------------------------------------------------
-RegisterCommand('car',function(source,args,rawCommand)
-	local user_id = vRP.getUserId(source)
-	if user_id then
-		local identity = vRP.getUserIdentity(user_id)
-		if vRP.hasPermission(user_id,"admin.permissao") then
-			if args[1] then
-				SendWebhookMessage(webhookadmin,"```prolog\n[ID]: "..user_id.." "..identity.name.." "..identity.firstname.." \n[SPAWNOU]: "..(args[1]).." "..os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S").." \r```")
-				TriggerClientEvent('spawnarveiculo',source,args[1])
-				TriggerEvent("setPlateEveryone",identity.registration)
-			end
-		end
-	end
-end)
+-- -----------------------------------------------------------------------------------------------------------------------------------------
+-- -- CAR
+-- -----------------------------------------------------------------------------------------------------------------------------------------
+-- RegisterCommand('car',function(source,args,rawCommand)
+-- 	local user_id = vRP.getUserId(source)
+-- 	if user_id then
+-- 		local identity = vRP.getUserIdentity(user_id)
+-- 		if vRP.hasPermission(user_id,"admin.permissao") then
+-- 			if args[1] then
+-- 				SendWebhookMessage(webhookadmin,"```prolog\n[ID]: "..user_id.." "..identity.name.." "..identity.firstname.." \n[SPAWNOU]: "..(args[1]).." "..os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S").." \r```")
+-- 				TriggerClientEvent('spawnarveiculo',source,args[1])
+-- 				TriggerEvent("setPlateEveryone",identity.registration)
+-- 			end
+-- 		end
+-- 	end
+-- end)
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- VEHS
 -----------------------------------------------------------------------------------------------------------------------------------------

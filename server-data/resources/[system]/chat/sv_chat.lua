@@ -97,7 +97,7 @@ AddEventHandler('onServerResourceStart', function(resName)
         fal = identity.name.. " " .. identity.firstname
         if vRP.hasPermission(user_id, "taxista.permissao") then
             TriggerClientEvent('chat:addMessage', -1, {
-                template = '<div style="padding: 0.2vw; margin: 0.1vw; background-image: linear-gradient(to right, rgba(255, 255, 0,0.5) 3%, rgba(0, 0, 0,0) 95%); border-radius: 15px 50px 30px 5px;"><img style="width: 20px" src="https://www.flaticon.com/svg/static/icons/svg/3485/3485591.svg"> Taxista - '..fal..' ['..user_id..']: {1}</div>',
+                template = '<div style="padding: 0.2vw; margin: 0.1vw; background-image: linear-gradient(to right, rgba(255, 255, 0,0.7) 3%, rgba(0, 0, 0,0) 95%); border-radius: 15px 50px 30px 5px;"><img style="width: 20px" src="https://www.flaticon.com/svg/static/icons/svg/3485/3485591.svg"> Taxista - '..fal..' ['..user_id..']: {1}</div>',
                 args = { fal, message }
             })
             SendWebhookMessage(webhook,"```prolog\n[JOGADOR]: "..user_id.." "..identity.name.." "..identity.firstname..""..os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S").."\n[Chat]: Taxista\n[Mensagem]:'"..message.."'\r```")
@@ -111,7 +111,7 @@ AddEventHandler('onServerResourceStart', function(resName)
         fal = identity.name.. " " .. identity.firstname
         if vRP.hasPermission(user_id, "concessionaria.permissao") then
             TriggerClientEvent('chat:addMessage', -1, {
-                template = '<div style="padding: 0.2vw; margin: 0.1vw; background-image: linear-gradient(to right, rgba(255, 0, 255,0.5) 3%, rgba(0, 0, 0,0) 95%); border-radius: 15px 50px 30px 5px;"><img style="width: 20px" src="https://www.flaticon.com/svg/static/icons/svg/741/741407.svg"> Concessionária - '..fal..' ['..user_id..']: {1}</div>',
+                template = '<div style="padding: 0.2vw; margin: 0.1vw; background-image: linear-gradient(to right, rgba(255, 0, 255,0.7) 3%, rgba(0, 0, 0,0) 95%); border-radius: 15px 50px 30px 5px;"><img style="width: 20px" src="https://www.flaticon.com/svg/static/icons/svg/741/741407.svg"> Concessionária - '..fal..' ['..user_id..']: {1}</div>',
                 args = { fal, message }
             })
             SendWebhookMessage(webhook,"```prolog\n[JOGADOR]: "..user_id.." "..identity.name.." "..identity.firstname..""..os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S").."\n[Chat]: Concessionária\n[Mensagem]:'"..message.."'\r```")
@@ -125,7 +125,7 @@ AddEventHandler('onServerResourceStart', function(resName)
         fal = identity.name.. " " .. identity.firstname
         if vRP.hasPermission(user_id, "mecanico.permissao") then
             TriggerClientEvent('chat:addMessage', -1, {
-                template = '<div style="padding: 0.2vw; margin: 0.1vw; background-image: linear-gradient(to right, rgba(255, 20, 147,0.5) 3%, rgba(0, 0, 0,0) 95%); border-radius: 15px 50px 30px 5px;"><img style="width: 20px" src="https://www.flaticon.com/svg/static/icons/svg/748/748847.svg"> Mecânica - '..fal..' ['..user_id..']: {1}</div>',
+                template = '<div style="padding: 0.2vw; margin: 0.1vw; background-image: linear-gradient(to right, rgba(255, 20, 147,0.7) 3%, rgba(0, 0, 0,0) 95%); border-radius: 15px 50px 30px 5px;"><img style="width: 20px" src="https://www.flaticon.com/svg/static/icons/svg/748/748847.svg"> Mecânica - '..fal..' ['..user_id..']: {1}</div>',
                 args = { fal, message }
             })
             SendWebhookMessage(webhook,"```prolog\n[JOGADOR]: "..user_id.." "..identity.name.." "..identity.firstname..""..os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S").."\n[Chat]: Mecanica\n[Mensagem]:'"..message.."'\r```")
@@ -140,7 +140,7 @@ AddEventHandler('onServerResourceStart', function(resName)
         fal = identity.name.. " " .. identity.firstname
         if vRP.hasPermission(user_id, "policia.permissao") then
             TriggerClientEvent('chat:addMessage', -1, {
-                template = "<div style='padding: 0.2vw; margin: 0.1vw; background-image: linear-gradient(to right, rgba(0, 0, 255,0.5) 3%, rgba(0, 0, 0,0) 95%); border-radius: 15px 50px 30px 5px;'><img style='width: 18px' src='https://image.flaticon.com/icons/svg/1022/1022484.svg'> 190 - "..fal.." ["..user_id.."]: {1}</div>",
+                template = "<div style='padding: 0.2vw; margin: 0.1vw; background-image: linear-gradient(to right, rgba(0, 0, 255,0.7) 3%, rgba(0, 0, 0,0) 95%); border-radius: 15px 50px 30px 5px;'><img style='width: 18px' src='https://image.flaticon.com/icons/svg/1022/1022484.svg'> 190 - "..fal.." ["..user_id.."]: {1}</div>",
                 args = { fal, message }
             })
             SendWebhookMessage(webhook,"```prolog\n[JOGADOR]: "..user_id.." "..identity.name.." "..identity.firstname..""..os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S").."\n[Chat]: Policia (190)\n[Mensagem]:'"..message.."'\r```")
@@ -154,7 +154,7 @@ AddEventHandler('onServerResourceStart', function(resName)
         if vRP.hasPermission(user_id, "paramedico.permissao") then
             fal = identity.name.. " " .. identity.firstname
             TriggerClientEvent('chat:addMessage', -1, {
-                template = '<div style="padding: 0.2vw; margin: 0.1vw; background-image: linear-gradient(to right, rgba(255, 0, 0,0.5) 3%, rgba(0, 0, 0,0) 95%); border-radius: 15px 50px 30px 5px;"><img style="width: 18px" src="https://image.flaticon.com/icons/svg/1142/1142131.svg"> 192 - '..fal..' ['..user_id..']: {1}</div>',
+                template = '<div style="padding: 0.2vw; margin: 0.1vw; background-image: linear-gradient(to right, rgba(255, 0, 0,0.7) 3%, rgba(0, 0, 0,0) 95%); border-radius: 15px 50px 30px 5px;"><img style="width: 18px" src="https://image.flaticon.com/icons/svg/1142/1142131.svg"> 192 - '..fal..' ['..user_id..']: {1}</div>',
                 args = { fal, message }
             })
             SendWebhookMessage(webhook,"```prolog\n[JOGADOR]: "..user_id.." "..identity.name.." "..identity.firstname..""..os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S").."\n[Chat]: SAMU (192)\n[Mensagem]:'"..message.."'\r```")
@@ -168,7 +168,7 @@ AddEventHandler('onServerResourceStart', function(resName)
         fal = identity.name.. " " .. identity.firstname
         if vRP.hasPermission(user_id, "owner.permissao") or vRP.hasPermission(user_id, "admin.permissao") or vRP.hasPermission(user_id, "moderador.permissao") or vRP.hasPermission(user_id, "wl.permissao") then
         TriggerClientEvent('chat:addMessage', -1, {
-            template = '<div style="padding: 0.2vw; margin: 0.1vw; background-image: linear-gradient(to right, rgba(0, 255, 255,0.5) 3%, rgba(0, 0, 0,0) 95%); border-radius: 15px 50px 30px 5px;"><img style="width: 17px" src="https://image.flaticon.com/icons/svg/138/138304.svg"> PREFEITURA - '..fal..' ['..user_id..']: {1}</div>',
+            template = '<div style="padding: 0.2vw; margin: 0.1vw; background-image: linear-gradient(to right, rgba(0, 255, 255,0.7) 3%, rgba(0, 0, 0,0) 95%); border-radius: 15px 50px 30px 5px;"><img style="width: 17px" src="https://image.flaticon.com/icons/svg/138/138304.svg"> PREFEITURA - '..fal..' ['..user_id..']: {1}</div>',
             args = { fal, message }
         })
         SendWebhookMessage(webhook,"```prolog\n[JOGADOR]: "..user_id.." "..identity.name.." "..identity.firstname..""..os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S").."\n[Chat]: Admin\n[Mensagem]:'"..message.."'\r```")

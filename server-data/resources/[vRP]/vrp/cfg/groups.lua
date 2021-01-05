@@ -431,7 +431,7 @@ cfg.groups = {
 	},
 
 	---------------------------------------------------
-	--					EMS
+	--					SAMU
 	---------------------------------------------------
 	["Enfermeiro"] = {
 		_config = {
@@ -491,7 +491,7 @@ cfg.groups = {
 	},
 
 	---------------------------------------------------
-	--------           OFM                   ----------
+	--------           MECANICA                   ----------
 	---------------------------------------------------
 	["LIDERMecanico"] = {
 		_config = {
@@ -518,7 +518,6 @@ cfg.groups = {
 		"mecanico.permissao",
 		"funcmecanico.permissao",
 		"salariomecanico.permissao",
-		"roubonpc.permissao"
 	},
 	["PaisanaMecanico"] = {
 		_config = {
@@ -529,27 +528,12 @@ cfg.groups = {
 	},
 	---------------------------------------------------
 	---------------------------------------------------
-	["Advogado"] = {
-		_config = {
-			title = "Advogado",
-			gtype = "job"
-		},
-		"advogado.permissao"
-	},
-	["Juiz"] = {
-		_config = {
-			title = "Juiz",
-			gtype = "job"
-		},
-		"juiz.permissao"
-	},
-
 	["Civil"] = {
 		_config = {
 			title = "Civil",
 			gtype = "job"
 		},
-		"roubonpc.permissao"
+		"civil.permissao"
 	},
 	---------------------------------------------------
 	---------------------------------------------------
@@ -559,7 +543,6 @@ cfg.groups = {
 			gtype = "job2"
 		},
 		"paisanataxista.permissao",
-		"roubonpc.permissao",
 		"taxista.permissao"
 	},
 	---------------------------------------------------
@@ -580,8 +563,6 @@ cfg.groups = {
 			gtype = "job"
 		},
 		"motoclub.permissao",
-		"roubonpc.permissao",
-		"entrada.permissao"
 	},
 	----------------------------------------
 	["PCC"] = {
@@ -590,8 +571,6 @@ cfg.groups = {
 			gtype = "job"
 		},
 		"pcc.permissao",
-		"roubonpc.permissao",
-		"entrada.permissao"
 	},
 	----------------------------------------
 	["CV"] = {
@@ -600,8 +579,6 @@ cfg.groups = {
 			gtype = "job"
 		},
 		"cv.permissao",
-		"roubonpc.permissao",
-		"entrada.permissao"
 	},
 	-------------------------------------------
 	["TCP"] = {
@@ -609,9 +586,7 @@ cfg.groups = {
 			title = "T.C.P",
 			gtype = "job"
 		},
-		"roubonpc.permissao",
 		"tcp.permissao",
-		"entrada.permissao"
 	},
 	----------------------------------------
 	["CN"] = {
@@ -620,8 +595,6 @@ cfg.groups = {
 			gtype = "job"
 		},
 		"cn.permissao",
-		"roubonpc.permissao",
-		"entrada.permissao"
 	},
 	---------------------------------------
 	["Bratva"] = {
@@ -630,19 +603,13 @@ cfg.groups = {
 			gtype = "job"
 		},
 		"bratva.permissao",
-		"roubonpc.permissao",
-		"entrada.permissao"
 	},
 	["Yakuza"] = {
 		_config = {
 			title = "Yakuza",
 			gtype = "job"
 		},
-		"lavar.dinheiro",
-		"vanilla.permissao",
 		"yakuza.permissao",
-		"roubonpc.permissao",
-		"entrada.permissao"
 	},
 }
 

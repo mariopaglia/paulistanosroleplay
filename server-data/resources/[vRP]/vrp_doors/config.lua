@@ -16,7 +16,7 @@ cfg.list = {
 	[13] = { text = false, hash = 132154435, x = 1973.54, y = 3815.41, z = 33.42, lock = true, perm = "admin.permissao" },
 	[14] = { text = true, hash = 185711165, x = 445.37, y = -989.77, z = 30.68, lock = true, perm = "policia.permissao", other = 15 },
 	[15] = { text = true, hash = 185711165, x = 444.07, y = -989.77, z = 30.68, lock = true, perm = "policia.permissao", other = 14 },
-	[16] = { text = false, hash = 190770132, x = 981.90, y = -103.00, z = 74.84, lock = false, perm = "motoclub.permissao" },
+	[16] = { text = true, hash = 190770132, x = 981.90, y = -103.00, z = 74.84, lock = true, perm = "motoclub.permissao" },
 	[17] = { text = false, hash = 2264746914, x = -1002.85, y = -477.84, z = 50.02, lock = true, perm = "admin.permissao" },
 	[18] = { text = false, hash = 1145337974, x = 1274.57, y = -1720.67, z = 54.68, lock = true, perm = "trafico.permissao" },
 	[19] = { text = true, hash = 749848321, x = 453.0793, y = -983.1895, z = 30.83926, lock = true, perm = "policia.permissao" }, 

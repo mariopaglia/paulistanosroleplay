@@ -30,8 +30,8 @@ local chest = {
 	["cosanostra"] = { 10000,"cn.permissao" },
 	["bratva"] = { 10000,"bratva.permissao" },
 	["pcc"] = { 10000,"pcc.permissao" },
-	["bratva"] = { 10000,"cv.permissao" },
-	["cv"] = { 10000,"tcp.permissao" },
+	["cv"] = { 10000,"cv.permissao" },
+	["tcp"] = { 10000,"tcp.permissao" },
 	["motoclub"] = { 10000,"motoclub.permissao" },
 }
 -----------------------------------------------------------------------------------------------------------------------------------------

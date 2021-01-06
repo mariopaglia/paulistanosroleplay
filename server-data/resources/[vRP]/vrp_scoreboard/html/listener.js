@@ -118,14 +118,14 @@ function sortPlayerList() {
 	var table = $('#playerlist'),
 		rows = $('tr:not(.heading)', table);
 
-	rows.sort(function(a, b) {
+	rows.sort(function (a, b) {
 		var keyA = $('td', a).eq(1).html();
 		var keyB = $('td', b).eq(1).html();
 
 		return (keyA - keyB);
 	});
 
-	rows.each(function(index, row) {
+	rows.each(function (index, row) {
 		table.append(row);
 	});
 }

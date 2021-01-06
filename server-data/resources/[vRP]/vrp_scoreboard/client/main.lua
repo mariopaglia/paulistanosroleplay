@@ -95,7 +95,7 @@ function UpdatePlayerTable(connectedPlayers)
 			taxi = taxi + 1
 		elseif (v.job == 'LIDERMecanico' or v.job == 'Mecanico') then
 			mechanic = mechanic + 1
-		elseif (v.job == 'Advogado' or v.job == 'Juiz') then
+		elseif v.job == 'CONCE' then
 			cardealer = cardealer + 1
 		elseif v.job == 'Reporter' then
 			estate = estate + 1

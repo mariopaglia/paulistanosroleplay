@@ -70,6 +70,7 @@ cfg.groups = {
 		"ouro.permissao",
 		"carrosvip.permissao",
 		"corarma.permissao",
+		"roupavip.permissao",
 		"mochila.permissao"
 	},
 	["Platina"] = {
@@ -80,6 +81,7 @@ cfg.groups = {
 		"platina.permissao",
 		"carrosvip.permissao",
 		"corarma.permissao",
+		"roupavip.permissao",
 		"mochila.permissao"
 	},
 	["Esmeralda"] = {
@@ -90,6 +92,7 @@ cfg.groups = {
 		"esmeralda.permissao",
 		"carrosvip.permissao",
 		"corarma.permissao",
+		"roupavip.permissao",
 		"mochila.permissao"
 	},
 	["Diamante"] = {
@@ -100,6 +103,7 @@ cfg.groups = {
 		"diamante.permissao",
 		"carrosvip.permissao",
 		"corarma.permissao",
+		"roupavip.permissao",
 		"mochila.permissao"
 	},
 	["Boost"] = {

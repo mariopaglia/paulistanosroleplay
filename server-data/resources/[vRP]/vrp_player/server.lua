@@ -2,6 +2,7 @@ local logsitens = "https://discord.com/api/webhooks/793599139048980510/TgicubBv4
 local logsenviar = "https://discord.com/api/webhooks/793600149590769685/-PHSTM2RRZkVfb1PIZcitPEByn0rd5ZeEyhs6IX3AJ1O1MPssKnZlhHMot6VTFbH6w_d"
 local logscobrar = "https://discord.com/api/webhooks/793600242192220200/xChABlHgz09Kmro84R5i7773NydbQ504C8-5w8RX63mPKdVxxxXvp5wbNwiaQ-8DbWg4"
 local logsroubar = "https://discord.com/api/webhooks/793600303437971546/Mq-CbSWOOD7CYQo48zM_Ie8M0-KUIdfLLdqjQiG2WJsXAbqiLN1ZSfWqY_bxbxtf4XUr"
+local webhooklinkinout = "https://discord.com/api/webhooks/794791807891669013/DOY3kVr1QmuN_0RBz3D_ZyFF1H6Wx-smJnLRByOXgT7EWHPigPr5xK11YXmohAtMZzdi"
 local discord_webhook4 = ""
 local discord_webhook5 = ""
 local Tunnel = module("vrp","lib/Tunnel")
@@ -296,7 +297,7 @@ RegisterCommand('item',function(source,args,rawCommand)
 	if vRP.hasPermission(user_id,"admin.permissao") then
 		if args[1] and args[2] and itemlist[args[1]] ~= nil then
 			vRP.giveInventoryItem(user_id,args[1],parseInt(args[2]))
-			SendWebhookMessage(logsitens, "```prolog\n[ID]: "..user_id.." "..identity.name.." "..identity.firstname.." \n[CRIOU]: '"..args[1].."'\n[QNT]: "..args[2]..""..os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S").."```")
+			SendWebhookMessage(logsitens, "```prolog\n[ID]: "..user_id.." "..identity.name.." "..identity.firstname.." \n[CRIOU]: "..args[1].."\n[QNT]: "..args[2]..""..os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S").."```")
 		end
 	end
 end)
@@ -392,10 +393,11 @@ end)
 -----------------------------------------------------------------------------------------------------------------------------------------
 RegisterCommand('mascara',function(source,args,rawCommand)
 	local user_id = vRP.getUserId(source)
-	if vRP.getInventoryItemAmount(user_id,"roupas") >= 1 or vRP.hasPermission(user_id,'carrosvip.permissao') then
+	if vRP.getInventoryItemAmount(user_id,"roupas") >= 1 or vRP.hasPermission(user_id,'roupavip.permissao') then
 		TriggerClientEvent('mascara',source,args[1],args[2])
 	else
-		TriggerClientEvent('chatMessage',source,"ALERTA",{255,70,50},"Você precisa de ^1Roupas ^0para mudar de máscara.")
+		TriggerClientEvent("Notify",source,"negado","Você precisa de <b>Roupas</b> para mudar de mascara")
+		-- TriggerClientEvent('chatMessage',source,"ALERTA",{255,70,50},"Você precisa de ^1Roupas ^0para mudar de máscara.")
 	end
 end)
 -----------------------------------------------------------------------------------------------------------------------------------------
@@ -403,10 +405,11 @@ end)
 -----------------------------------------------------------------------------------------------------------------------------------------
 RegisterCommand('blusa',function(source,args,rawCommand)
 	local user_id = vRP.getUserId(source)
-	if vRP.getInventoryItemAmount(user_id,"roupas") >= 1 or vRP.hasPermission(user_id,'carrosvip.permissao') then
+	if vRP.getInventoryItemAmount(user_id,"roupas") >= 1 or vRP.hasPermission(user_id,'roupavip.permissao') then
 		TriggerClientEvent('blusa',source,args[1],args[2])
 	else
-		TriggerClientEvent('chatMessage',source,"ALERTA",{255,70,50},"Você precisa de ^1Roupas ^0para mudar de blusa.")
+		TriggerClientEvent("Notify",source,"negado","Você precisa de <b>Roupas</b> para mudar de blusa")
+		-- TriggerClientEvent('chatMessage',source,"ALERTA",{255,70,50},"Você precisa de ^1Roupas ^0para mudar de blusa.")
 	end
 end)
 -----------------------------------------------------------------------------------------------------------------------------------------
@@ -414,10 +417,10 @@ end)
 -----------------------------------------------------------------------------------------------------------------------------------------
 RegisterCommand('jaqueta',function(source,args,rawCommand)
 	local user_id = vRP.getUserId(source)
-	if vRP.getInventoryItemAmount(user_id,"roupas") >= 1 or vRP.hasPermission(user_id,'carrosvip.permissao') then
+	if vRP.getInventoryItemAmount(user_id,"roupas") >= 1 or vRP.hasPermission(user_id,'roupavip.permissao') then
 		TriggerClientEvent('jaqueta',source,args[1],args[2])
 	else
-	TriggerClientEvent('chatMessage',source,"ALERTA",{255,70,50},"Você precisa de ^1Roupas ^0para mudar de jaqueta.")
+		TriggerClientEvent("Notify",source,"negado","Você precisa de <b>Roupas</b> para mudar de jaqueta")
 	end
 end)
 -------------------------------------------------------------------------------------------------------------------------------------------
@@ -425,10 +428,10 @@ end)
 -------------------------------------------------------------------------------------------------------------------------------------------
 RegisterCommand('calca',function(source,args,rawCommand)
 	local user_id = vRP.getUserId(source)
-	if vRP.getInventoryItemAmount(user_id,"roupas") >= 1 or vRP.hasPermission(user_id,'carrosvip.permissao') then
+	if vRP.getInventoryItemAmount(user_id,"roupas") >= 1 or vRP.hasPermission(user_id,'roupavip.permissao') then
 		TriggerClientEvent('calca',source,args[1],args[2])
 	else
-		TriggerClientEvent('chatMessage',source,"ALERTA",{255,70,50},"Você precisa de ^1Roupas ^0para mudar de calça.")
+		TriggerClientEvent("Notify",source,"negado","Você precisa de <b>Roupas</b> para mudar de calça")
 	end
 end)
 -----------------------------------------------------------------------------------------------------------------------------------------
@@ -436,10 +439,10 @@ end)
 -----------------------------------------------------------------------------------------------------------------------------------------
 RegisterCommand('maos',function(source,args,rawCommand)
 	local user_id = vRP.getUserId(source)
-	if vRP.getInventoryItemAmount(user_id,"roupas") >= 1 or vRP.hasPermission(user_id,'carrosvip.permissao') then
+	if vRP.getInventoryItemAmount(user_id,"roupas") >= 1 or vRP.hasPermission(user_id,'roupavip.permissao') then
 		TriggerClientEvent('maos',source,args[1],args[2])
 	else
-		TriggerClientEvent('chatMessage',source,"ALERTA",{255,70,50},"Você precisa de ^1Roupas ^0para mudar de mãos.")
+		TriggerClientEvent("Notify",source,"negado","Você precisa de <b>Roupas</b> para mudar de mãos")
 	end
 end)
 -----------------------------------------------------------------------------------------------------------------------------------------
@@ -447,10 +450,10 @@ end)
 -----------------------------------------------------------------------------------------------------------------------------------------
 RegisterCommand('acessorios',function(source,args,rawCommand)
 	local user_id = vRP.getUserId(source)
-	if vRP.getInventoryItemAmount(user_id,"roupas") >= 1 or vRP.hasPermission(user_id,'carrosvip.permissao') then
+	if vRP.getInventoryItemAmount(user_id,"roupas") >= 1 or vRP.hasPermission(user_id,'roupavip.permissao') then
 		TriggerClientEvent('acessorios',source,args[1],args[2])
 	else
-		TriggerClientEvent('chatMessage',source,"ALERTA",{255,70,50},"Você precisa de ^1Roupas ^0para mudar de acessórios.")
+		TriggerClientEvent("Notify",source,"negado","Você precisa de <b>Roupas</b> para mudar de acessórios")
 	end
 end)
 -------------------------------------------------------------------------------------------------------------------------------------------
@@ -458,10 +461,10 @@ end)
 -------------------------------------------------------------------------------------------------------------------------------------------
 RegisterCommand('colete',function(source,args,rawCommand)
 	local user_id = vRP.getUserId(source)
-	if vRP.getInventoryItemAmount(user_id,"roupas") >= 1 or vRP.hasPermission(user_id,'carrosvip.permissao') then
+	if vRP.getInventoryItemAmount(user_id,"roupas") >= 1 or vRP.hasPermission(user_id,'roupavip.permissao') then
 		TriggerClientEvent('colete',source,args[1],args[2])
 	else
-		TriggerClientEvent('chatMessage',source,"ALERTA",{255,70,50},"Você precisa de ^1Roupas ^0para mudar de colete.")
+		TriggerClientEvent("Notify",source,"negado","Você precisa de <b>Roupas</b> para mudar de colete")
 	end
 end)
 -----------------------------------------------------------------------------------------------------------------------------------------
@@ -469,10 +472,10 @@ end)
 -----------------------------------------------------------------------------------------------------------------------------------------
 RegisterCommand('chapeu',function(source,args,rawCommand)
 	local user_id = vRP.getUserId(source)
-	if vRP.getInventoryItemAmount(user_id,"roupas") >= 1 or vRP.hasPermission(user_id,'carrosvip.permissao') then
+	if vRP.getInventoryItemAmount(user_id,"roupas") >= 1 or vRP.hasPermission(user_id,'roupavip.permissao') then
 		TriggerClientEvent('chapeu',source,args[1],args[2])
 	else
-		TriggerClientEvent('chatMessage',source,"ALERTA",{255,70,50},"Você precisa de ^1Roupas ^0para mudar de chapéu.")
+		TriggerClientEvent("Notify",source,"negado","Você precisa de <b>Roupas</b> para mudar de chapéu")
 	end
 end)
 -----------------------------------------------------------------------------------------------------------------------------------------
@@ -480,85 +483,85 @@ end)
 -----------------------------------------------------------------------------------------------------------------------------------------
 RegisterCommand('oculos',function(source,args,rawCommand)
 	local user_id = vRP.getUserId(source)
-	if vRP.getInventoryItemAmount(user_id,"roupas") >= 1 or vRP.hasPermission(user_id,'carrosvip.permissao') then
+	if vRP.getInventoryItemAmount(user_id,"roupas") >= 1 or vRP.hasPermission(user_id,'roupavip.permissao') then
 		TriggerClientEvent('oculos',source,args[1],args[2])
 	else
-		TriggerClientEvent('chatMessage',source,"ALERTA",{255,70,50},"Você precisa de ^1Roupas ^0para mudar de óculos.")
+		TriggerClientEvent("Notify",source,"negado","Você precisa de <b>Roupas</b> para mudar de oculos")
 	end
 end)
------------------------------------------------------------------------------------------------------------------------------------------
--- /RECARREGAR
------------------------------------------------------------------------------------------------------------------------------------------
-RegisterCommand('recarregar',function(source,args,rawCommand)
-	for k,v in pairs(itemlist) do
-		if args[1] == v.index and args[1] ~= "mochila" then
-			local uweapons = vRPclient.getWeapons(source)
-			local weaponuse = string.gsub(k,"wbody|","")
-			if uweapons[weaponuse] then
-				local user_id = vRP.getUserId(source)
-				if vRP.tryGetInventoryItem(user_id,"wammo|"..weaponuse,parseInt(args[2])) then
-					local weapons = {}
-					weapons[weaponuse] = { ammo = parseInt(args[2]) }
-					vRPclient._giveWeapons(source,weapons,false)
-					vRP.logs("savedata/armamento.txt","[ID]: "..user_id.." / [FUNÇÃO]: Recarregar / [ARMA]: "..v.index)
-				else
-					TriggerClientEvent("Notify",source,"negado","Munição não encontrada.")
-				end
-			else
-				TriggerClientEvent("Notify",source,"importante","Equipe o armamento antes.")
-			end
-		end
-	end
-end)
+-- -----------------------------------------------------------------------------------------------------------------------------------------
+-- -- /RECARREGAR
+-- -----------------------------------------------------------------------------------------------------------------------------------------
+-- RegisterCommand('recarregar',function(source,args,rawCommand)
+-- 	for k,v in pairs(itemlist) do
+-- 		if args[1] == v.index and args[1] ~= "mochila" then
+-- 			local uweapons = vRPclient.getWeapons(source)
+-- 			local weaponuse = string.gsub(k,"wbody|","")
+-- 			if uweapons[weaponuse] then
+-- 				local user_id = vRP.getUserId(source)
+-- 				if vRP.tryGetInventoryItem(user_id,"wammo|"..weaponuse,parseInt(args[2])) then
+-- 					local weapons = {}
+-- 					weapons[weaponuse] = { ammo = parseInt(args[2]) }
+-- 					vRPclient._giveWeapons(source,weapons,false)
+-- 					vRP.logs("savedata/armamento.txt","[ID]: "..user_id.." / [FUNÇÃO]: Recarregar / [ARMA]: "..v.index)
+-- 				else
+-- 					TriggerClientEvent("Notify",source,"negado","Munição não encontrada.")
+-- 				end
+-- 			else
+-- 				TriggerClientEvent("Notify",source,"importante","Equipe o armamento antes.")
+-- 			end
+-- 		end
+-- 	end
+-- end)
 
------------------------------------------------------------------------------------------------------------------------------------------
--- /MOC
------------------------------------------------------------------------------------------------------------------------------------------
-RegisterCommand('moc',function(source,args,rawCommand)
-	local user_id = vRP.getUserId(source)
-	if user_id then
-		local data = vRP.getUserDataTable(user_id)
-		if data then
-			TriggerClientEvent('chatMessage',source,"",{},"^4- -  ^5M O C H I L A^4  - - - - - - - - - - - - - - - - - - - - - - - - - - -  [  ^3"..string.format("%.2f",vRP.getInventoryWeight(user_id)).."kg^4  /  ^3"..string.format("%.2f",vRP.getInventoryMaxWeight(user_id)).."kg^4  ]  - -")
-			for k,v in pairs(data.inventory) do
-				if k and v then
-					TriggerClientEvent('chatMessage',source,"",{},"     "..vRP.format(parseInt(v.amount)).."x "..itemlist[k].nome.."^2    |    "..itemlist[k].index)
-				end
-			end
-		end
-	end
-end)
------------------------------------------------------------------------------------------------------------------------------------------
--- /DROPAR
------------------------------------------------------------------------------------------------------------------------------------------
-RegisterCommand('dropar',function(source,args,rawCommand)
-	local user_id = vRP.getUserId(source)
-	if user_id and args[1] then
-		local px,py,pz = vRPclient.getPosition(source)
-		for k,v in pairs(itemlist) do
-			if args[1] == v.index then
-				if args[2] and parseInt(args[2]) > 0 then
-					if vRP.tryGetInventoryItem(user_id,k,parseInt(args[2])) then
-						TriggerEvent("DropSystem:create",k,parseInt(args[2]),px,py,pz)
-						vRPclient._playAnim(source,true,{{"pickup_object","pickup_low"}},false)
-						vRP.logs("savedata/dropar.txt","[ID]: "..user_id.." / [ITEM]: "..k.." / [QTD]: "..parseInt(args[2]))
-					end
-				else
-					local data = vRP.getUserDataTable(user_id)
-					for i,o in pairs(data.inventory) do
-						if itemlist[i].index == args[1] then
-							if vRP.tryGetInventoryItem(user_id,k,parseInt(o.amount)) then
-								TriggerEvent("DropSystem:create",k,parseInt(o.amount),px,py,pz)
-								vRPclient._playAnim(source,true,{{"pickup_object","pickup_low"}},false)
-								vRP.logs("savedata/dropar.txt","[ID]: "..user_id.." / [ITEM]: "..k.." / [QTD]: "..parseInt(o.amount))
-							end
-						end
-					end
-				end
-			end
-		end
-	end
-end)
+-- -----------------------------------------------------------------------------------------------------------------------------------------
+-- -- /MOC
+-- -----------------------------------------------------------------------------------------------------------------------------------------
+-- RegisterCommand('moc',function(source,args,rawCommand)
+-- 	local user_id = vRP.getUserId(source)
+-- 	if user_id then
+-- 		local data = vRP.getUserDataTable(user_id)
+-- 		if data then
+-- 			TriggerClientEvent('chatMessage',source,"",{},"^4- -  ^5M O C H I L A^4  - - - - - - - - - - - - - - - - - - - - - - - - - - -  [  ^3"..string.format("%.2f",vRP.getInventoryWeight(user_id)).."kg^4  /  ^3"..string.format("%.2f",vRP.getInventoryMaxWeight(user_id)).."kg^4  ]  - -")
+-- 			for k,v in pairs(data.inventory) do
+-- 				if k and v then
+-- 					TriggerClientEvent('chatMessage',source,"",{},"     "..vRP.format(parseInt(v.amount)).."x "..itemlist[k].nome.."^2    |    "..itemlist[k].index)
+-- 				end
+-- 			end
+-- 		end
+-- 	end
+-- end)
+-- -----------------------------------------------------------------------------------------------------------------------------------------
+-- -- /DROPAR
+-- -----------------------------------------------------------------------------------------------------------------------------------------
+-- RegisterCommand('dropar',function(source,args,rawCommand)
+-- 	local user_id = vRP.getUserId(source)
+-- 	if user_id and args[1] then
+-- 		local px,py,pz = vRPclient.getPosition(source)
+-- 		for k,v in pairs(itemlist) do
+-- 			if args[1] == v.index then
+-- 				if args[2] and parseInt(args[2]) > 0 then
+-- 					if vRP.tryGetInventoryItem(user_id,k,parseInt(args[2])) then
+-- 						TriggerEvent("DropSystem:create",k,parseInt(args[2]),px,py,pz)
+-- 						vRPclient._playAnim(source,true,{{"pickup_object","pickup_low"}},false)
+-- 						vRP.logs("savedata/dropar.txt","[ID]: "..user_id.." / [ITEM]: "..k.." / [QTD]: "..parseInt(args[2]))
+-- 					end
+-- 				else
+-- 					local data = vRP.getUserDataTable(user_id)
+-- 					for i,o in pairs(data.inventory) do
+-- 						if itemlist[i].index == args[1] then
+-- 							if vRP.tryGetInventoryItem(user_id,k,parseInt(o.amount)) then
+-- 								TriggerEvent("DropSystem:create",k,parseInt(o.amount),px,py,pz)
+-- 								vRPclient._playAnim(source,true,{{"pickup_object","pickup_low"}},false)
+-- 								vRP.logs("savedata/dropar.txt","[ID]: "..user_id.." / [ITEM]: "..k.." / [QTD]: "..parseInt(o.amount))
+-- 							end
+-- 						end
+-- 					end
+-- 				end
+-- 			end
+-- 		end
+-- 	end
+-- end)
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- /REVISTAR
 -----------------------------------------------------------------------------------------------------------------------------------------
@@ -589,9 +592,6 @@ RegisterCommand('revistar',function(source,args,rawCommand)
 		TriggerClientEvent("Notify",nplayer,"importante","Você está sendo revistado por <b>"..identity.name.." "..identity.firstname.."</b>.")
 	end
 end)
------------------------------------------------------------------------------------------------------------------------------------------
--- SALÁRIO
------------------------------------------------------------------------------------------------------------------------------------------
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- NOCARJACK
 -----------------------------------------------------------------------------------------------------------------------------------------
@@ -876,7 +876,7 @@ end)
 RegisterCommand('limpar',function(source,args,rawCommand)
 	local user_id = vRP.getUserId(source)
 	if vRP.hasPermission(user_id,"policia.permissao") or vRP.hasPermission(user_id,"nogarmas.permissao") then
-		RemoveAllPedWeapons(user_id,true)
+		RemoveAllPedWeapons(user_id, true)
 		TriggerClientEvent("Notify",source,"sucesso","Suas armas foram guardadas.")
 	end
 end)
@@ -2685,7 +2685,7 @@ RegisterCommand('status',function(source,args,rawCommand)
 RegisterCommand('staff',function(source,args,rawCommand)
     local staff = vRP.getUsersByPermission("admin.permissao")
     local user_id = vRP.getUserId(source)        
-        TriggerClientEvent("Notify",source,"importante","Administrador(es): <b>"..#staff.."</b>",9000)
+        TriggerClientEvent("Notify",source,"importante","Staffs Online: <b>"..#staff.."</b>",9000)
 	end)
 	
 -----------------------------------------------------------------------------------------------------------------------------------------
@@ -2715,4 +2715,18 @@ RegisterCommand('idp',function(source,args,rawCommand)
     else
         TriggerClientEvent("Notify",source,"aviso","Nenhum Jogador Próximo")
     end
+end)
+-----------------------------------------------------------------------------------------------------------------------------------------
+-- LOGS DE ENTRADA E SAÍDA COM COORDENADAS
+-----------------------------------------------------------------------------------------------------------------------------------------
+AddEventHandler("vRP:playerJoin",function(user_id,source,name,last_login)
+	local crds = GetEntityCoords(GetPlayerPed(source))
+	local identity = vRP.getUserIdentity(user_id)
+	SendWebhookMessage(webhooklinkinout, "```"..os.date("[%d/%m/%Y %H:%M:%S]").." "..identity.name.." "..identity.firstname.." [".. user_id .."] entrou```")
+end)
+
+AddEventHandler("vRP:playerLeave",function(user_id, source)
+	local crds = GetEntityCoords(GetPlayerPed(source))
+	local identity = vRP.getUserIdentity(user_id)
+	SendWebhookMessage(webhooklinkinout, "```"..os.date("[%d/%m/%Y %H:%M:%S]").." "..identity.name.." "..identity.firstname.." [".. user_id .."] saiu na coordenada: "..crds.x..","..crds.y..","..crds.z.."```")
 end)

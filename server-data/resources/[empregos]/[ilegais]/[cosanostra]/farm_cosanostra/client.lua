@@ -9,12 +9,12 @@ emP = Tunnel.getInterface("farm_cosanostra")
 local blips = false
 local servico = false
 local selecionado = 0
-local CoordenadaX = 1395.4 -- 1395.4,1159.49,114.34
-local CoordenadaY = 1159.49
-local CoordenadaZ = 114.34
--- local CoordenadaX = 244.65 -- Teste (primeiro blip)
--- local CoordenadaY = -43.27 -- Teste (primeiro blip)
--- local CoordenadaZ = 69.89 -- Teste (primeiro blip)
+-- local CoordenadaX = 1395.4 -- 1395.4,1159.49,114.34
+-- local CoordenadaY = 1159.49
+-- local CoordenadaZ = 114.34
+local CoordenadaX = 244.65 -- Teste (primeiro blip)
+local CoordenadaY = -43.27 -- Teste (primeiro blip)
+local CoordenadaZ = 69.89 -- Teste (primeiro blip)
 local selecionado = 0
 local processo = false
 local segundos = 0
@@ -54,7 +54,7 @@ Citizen.CreateThread(function()
 						servico = true
 						selecionado = 1
 						CriandoBlip(locs,selecionado)
-						TriggerEvent("Notify","sucesso","Você entrou em serviço.")
+						TriggerEvent("Notify","sucesso","Você entrou em serviço")
 					end
 				end
 			end
@@ -83,9 +83,9 @@ Citizen.CreateThread(function()
 						RemoveBlip(blips)
 						backentrega = selecionado
 						processo = true
-						segundos = 11
+						segundos = 5
 						
-						TriggerEvent("progress",10000,"Coletando")
+						TriggerEvent("progress",5000,"Coletando")
 						vRP._playAnim(false,{{"anim@heists@ornate_bank@grab_cash_heels","grab"}},true)
 									 
 						if selecionado == 11 then
@@ -93,7 +93,7 @@ Citizen.CreateThread(function()
 						else
 							selecionado = selecionado + 1
 						end
-						Citizen.Wait(10000)
+						Citizen.Wait(5000)
 						emP.checkPayment()
 						CriandoBlip(locs,selecionado)
 						
@@ -113,7 +113,7 @@ Citizen.CreateThread(function()
 			if IsControlJustPressed(0,168) then
 				servico = false
 				RemoveBlip(blips)
-				TriggerEvent("Notify","importante","Você saiu de serviço.")
+				TriggerEvent("Notify","importante","Você saiu de serviço")
 			end
 		end
 	end

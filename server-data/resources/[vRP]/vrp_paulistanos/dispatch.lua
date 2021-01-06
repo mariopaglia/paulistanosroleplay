@@ -49,8 +49,8 @@ Citizen.CreateThread(function()
             end
         end
 		SetDiscordAppId(756846972077342781)
-		SetDiscordRichPresenceAsset('logo08')
-        SetRichPresence("Jogadores Conectados: "..#players)
+		SetDiscordRichPresenceAsset('logo')
+        SetRichPresence("Jogadores Online: "..#players)
 
         SetDiscordRichPresenceAssetText('discord.gg/F3Jp5J2')
 	end

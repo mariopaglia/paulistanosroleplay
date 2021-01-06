@@ -537,8 +537,8 @@ RegisterCommand('s',function(source,args,rawCommand)
 		local identity = vRP.getUserIdentity(user_id)
 		local permission = "admin.permissao"
 		if vRP.hasPermission(user_id,"admin.permissao") or vRP.hasPermission(user_id,"mod.permissao") or vRP.hasPermission(user_id,"helper.permissao") then
-			local soldado = vRP.getUsersByPermission(permission)
-			for l,w in pairs(soldado) do
+			local staff = vRP.getUsersByPermission(permission)
+			for l,w in pairs(staff) do
 				local player = vRP.getUserSource(parseInt(w))
 				if player then
 					async(function()

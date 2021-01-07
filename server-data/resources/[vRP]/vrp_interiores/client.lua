@@ -39,7 +39,7 @@ Citizen.CreateThread(function()
 	RequestIpl("DisneyFamilies_14")
 	RequestIpl("DisneyFamilies_15")
 
-	--DisneyForthills
+	-- DisneyForthills
 	RequestIpl("DisneyForthills_01")
 	RequestIpl("DisneyForthills_02")
 	RequestIpl("DisneyForthills_03")
@@ -194,7 +194,7 @@ Citizen.CreateThread(function()
 	RequestIpl("DisneyLuxury_50")
 	RequestIpl("DisneyLuxury_51")
 	RequestIpl("DisneyLuxury_52")
-	RequestIpl("DisneyLuxury_53")
+	-- RequestIpl("DisneyLuxury_53")
 	RequestIpl("DisneyLuxury_54")
 	RequestIpl("DisneyLuxury_55")
 	RequestIpl("DisneyLuxury_56")

@@ -110,11 +110,11 @@ RegisterKeyMapping('voice:change', '[V] voice change', 'keyboard', 'HOME')
 RegisterCommand('voice:change',function(source, args, rawCommand)
 	if proximity == 3.0 then
 		voiceDisplay = "<span style='color:white'><img class='microfone' src='img/mic2.png'> Sussurro</span>"
+		proximity = 30.0
+	elseif proximity == 30.0 then
+		voiceDisplay = "<span style='color:white'><img class='microfone' src='img/mic3.png'>Gritando</span>"
 		proximity = 10.0
 	elseif proximity == 10.0 then
-		voiceDisplay = "<span style='color:white'><img class='microfone' src='img/mic3.png'>Gritando</span>"
-		proximity = 25.0
-	elseif proximity == 25.0 then
 		voiceDisplay = "<span style='color:white'><img class='microfone' src='img/mic.png'> Normal</span>"
 		proximity = 3.0
 	end

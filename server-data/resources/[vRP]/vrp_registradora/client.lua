@@ -101,7 +101,6 @@ Citizen.CreateThread(function()
 				esperar = 4
 				drawTxt("PRESSIONE  ~r~G~w~  PARA INICIAR O ROUBO",4,0.5,0.93,0.50,255,255,255,180)
 				if IsControlJustPressed(0,47) and not IsPedInAnyVehicle(ped) then
-					TriggerEvent("progress",10000,"roubando")
 					func.checkRobbery(v.id,v.x,v.y,v.z,v.h)
 				end
 			end
@@ -116,6 +115,7 @@ RegisterNetEvent("iniciandoregistradora")
 AddEventHandler("iniciandoregistradora",function(head,x,y,z)
 	segundos = 10
 	andamento = true
+	TriggerEvent("progress",10000,"roubando")
 	SetEntityHeading(PlayerPedId(),head)
 	SetEntityCoords(PlayerPedId(),x,y,z-1,false,false,false,false)
 	-- SetCurrentPedWeapon(PlayerPedId(),GetHashKey("WEAPON_UNARMED"),true)

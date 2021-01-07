@@ -30,8 +30,8 @@ RegisterCommand('pon',function(source,args,rawCommand)
             players = players..k
             quantidade = quantidade + 1
         end
-        TriggerClientEvent('chatMessage',source,"TOTAL ONLINE",{255,160,0},quantidade)
-        TriggerClientEvent('chatMessage',source,"ID's ONLINE",{255,160,0},players)
+        TriggerClientEvent('chatMessage',source,"TOTAL ONLINE",{0,191,255},quantidade)
+        TriggerClientEvent('chatMessage',source,"ID's ONLINE",{0,191,255},players)
     end
 end)
 ------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -301,6 +301,25 @@ RegisterCommand('unban',function(source,args,rawCommand)
 			vRP.setBanned(parseInt(args[1]),false)
 		end
 	end
+end)
+
+
+RegisterCommand('reset',function(source,args,rawCommand)
+    local user_id = vRP.getUserId(source)
+    if user_id then
+        if vRP.hasPermission(user_id,"admin.permissao") then
+            if args[1] then
+                local nplayer = vRP.getUserSource(parseInt(args[1]))
+                local id = vRP.getUserId(nplayer)
+                if id then
+                    vRP.kick(nplayer,"Transplante Iniciado.")
+                    vRP.setUData(id,"vRP:spawnController",json.encode(1))
+                    vRP.setUData(id,"vRP:currentCharacterMode",json.encode(1))
+                    vRP.setUData(id,"vRP:tattoos",json.encode(1))
+                end
+            end
+        end
+    end
 end)
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- MONEY

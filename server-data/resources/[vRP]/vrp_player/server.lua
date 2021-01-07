@@ -194,8 +194,6 @@ local itemlist = {
 	["wbody|WEAPON_POOLCUE"] = { index = "sinuca", nome = "Taco de Sinuca" },
 	["wbody|WEAPON_STONE_HATCHET"] = { index = "pedra", nome = "Machado de Pedra" },
 	["wbody|WEAPON_PISTOL"] = { index = "m1911", nome = "M1911" },
-	["wbody|WEAPON_PISTOL_MK2"] = { index = "fiveseven", nome = "FN Five Seven" },
-	["wbody|WEAPON_COMBATPISTOL"] = { index = "glock", nome = "Glock 19" },
 	["wbody|WEAPON_APPISTOL"] = { index = "vp9", nome = "Koch VP9" },
 	["wbody|WEAPON_STUNGUN"] = { index = "tazer", nome = "Tazer" },
 	["wbody|WEAPON_SNSPISTOL"] = { index = "hkp7m10", nome = "HK P7M10" },
@@ -208,27 +206,17 @@ local itemlist = {
 	["wbody|GADGET_PARACHUTE"] = { index = "paraquedas", nome = "Paraquedas" },
 	["wbody|WEAPON_FIREEXTINGUISHER"] = { index = "extintor", nome = "Extintor" },
 	["wbody|WEAPON_MICROSMG"] = { index = "uzi", nome = "Uzi" },
-	["wbody|WEAPON_SMG"] = { index = "mp5", nome = "MP5" },
+	-- ["wbody|WEAPON_SMG"] = { index = "mp5", nome = "MP5" },
 	["wbody|WEAPON_ASSAULTSMG"] = { index = "mtar21", nome = "MTAR-21" },
-	["wbody|WEAPON_COMBATPDW"] = { index = "sigsauer", nome = "Sig Sauer MPX" },
 	["wbody|WEAPON_PUMPSHOTGUN_MK2"] = { index = "remington", nome = "Remington 870" },
 	["wbody|WEAPON_SAWNOFFSHOTGUN"] = { index = "shotgun", nome = "Shotgun" },
 	["wammo|WEAPON_SAWNOFFSHOTGUN"] = { index = "m-shotgun", nome = "Munição de Shotgun" },
 	["wbody|WEAPON_MACHINEPISTOL"] = { index = "tec9", nome = "Tec-9" },
 	["wammo|WEAPON_MACHINEPISTOL"] = { index = "m-tec9", nome = "Munição de Tec-9" },
-	["wbody|WEAPON_CARBINERIFLE"] = { index = "imbel", nome = "Imbel IA2" },
 	["wbody|WEAPON_ASSAULTRIFLE"] = { index = "ak103", nome = "AK-103" },
-	["wbody|WEAPON_ASSAULTRIFLE_MK2"] = { index = "ak47", nome = "AK-47" },
 	["wbody|WEAPON_BULLPUPRIFLE_MK2"] = { index = "famas", nome = "FAMAS" },
 	["wbody|WEAPON_GUSENBERG"] = { index = "thompson", nome = "Thompson" },
-	["wbody|WEAPON_SPECIALCARBINE_MK2"] = { index = "g36c", nome = "G36C" },
-	["wbody|WEAPON_SMG_MK2"] = { index = "mp5mk2", nome = "MP5-MK2" },
-	["wbody|WEAPON_CARBINERIFLE_MK2"] = { index = "m4a1", nome = "M4A1" },
-	["wammo|WEAPON_CARBINERIFLE_MK2"] = { index = "m-m4a1", nome = "Munição de M4A1" },
-	["wammo|WEAPON_SMG_MK2"] = { index = "m-mp5mk2", nome = "Munição de MP5-MK2" },
-	["wammo|WEAPON_SPECIALCARBINE_MK2"] = { index = "m-g36c", nome = "Munição de G36C" },
 	["wammo|WEAPON_PISTOL"] = { index = "m-m1911", nome = "Munição de M1911" },
-	["wammo|WEAPON_COMBATPISTOL"] = { index = "m-glock", nome = "Munição de Glock 19" },
 	["wammo|WEAPON_APPISTOL"] = { index = "m-vp9", nome = "Munição de Koch VP9" },
 	["wammo|WEAPON_STUNGUN"] = { index = "m-tazer", nome = "Munição de Tazer" },
 	["wammo|WEAPON_SNSPISTOL"] = { index = "m-hkp7m10", nome = "Munição de HK P7M10" },
@@ -238,22 +226,40 @@ local itemlist = {
 	["wammo|WEAPON_FLARE"] = { index = "m-sinalizador", nome = "Munição de Sinalizador" },
 	["wammo|GADGET_PARACHUTE"] = { index = "m-paraquedas", nome = "Munição de Paraquedas" },
 	["wammo|WEAPON_FIREEXTINGUISHER"] = { index = "m-extintor", nome = "Munição de Extintor" },
-	["wammo|WEAPON_SMG"] = { index = "m-mp5", nome = "Munição de MP5" },
-	["wammo|WEAPON_COMBATPDW"] = { index = "m-sigsauer", nome = "Munição de Sig Sauer MPX" },
+	-- ["wammo|WEAPON_SMG"] = { index = "m-mp5", nome = "Munição de MP5" },
 	["wammo|WEAPON_PUMPSHOTGUN_MK2"] = { index = "m-remington", nome = "Munição de Remington 870" },
-	["wammo|WEAPON_CARBINERIFLE"] = { index = "m-imbel", nome = "Munição de Imbel" },
 	["wammo|WEAPON_ASSAULTRIFLE"] = { index = "m-ak103", nome = "Munição de AK-103" },
 	["wammo|WEAPON_GUSENBERG"] = { index = "m-thompson", nome = "Munição de Thompson" },
 	["wammo|WEAPON_PETROLCAN"] = { index = "combustivel", nome = "Combustível" },
 	["wbody|WEAPON_PETROLCAN"] = { index = "gasolina", nome = "Galão de Gasolina" },
 	["wbody|WEAPON_RAYPISTOL"] = { index = "raypistol", nome = "Raypistol" },
-	-- Criação de munição Cosanosta
-	["wammo|WEAPON_ASSAULTRIFLE_MK2"] = { index = "m-ak47", nome = "Munição de AK-47" },
 	["wammo|WEAPON_MICROSMG"] = { index = "m-uzi", nome = "Munição de UZI" },
 	["wammo|WEAPON_ASSAULTSMG"] = { index = "m-mtar21", nome = "Munição de MTAR-21" },
 	["wammo|WEAPON_BULLPUPRIFLE_MK2"] = { index = "m-famas", nome = "Munição de FAMAS" },
 	["wammo|WEAPON_REVOLVER_MK2"] = { index = "m-magnum357", nome = "Munição de MAGNUM-357" },
-	["wammo|WEAPON_PISTOL_MK2"] = { index = "m-fiveseven", nome = "Munição de FIVE-SEVEN" }
+	
+	-- Armas Policia
+	["wbody|WEAPON_CARBINERIFLE_MK2"] = { index = "m4a1", nome = "M4A1" },
+	["wbody|WEAPON_CARBINERIFLE"] = { index = "ar15", nome = "AR-15" },
+	["wbody|WEAPON_COMBATPDW"] = { index = "sigsauer", nome = "Sig Sauer MPX" },
+	["wbody|WEAPON_COMBATPISTOL"] = { index = "glock", nome = "Glock" },
+	-- Munição Policia
+	["wammo|WEAPON_CARBINERIFLE_MK2"] = { index = "m-m4a1", nome = "Munição de M4A1" },
+	["wammo|WEAPON_CARBINERIFLE"] = { index = "m-ar15", nome = "Munição de AR-15" },
+	["wammo|WEAPON_COMBATPDW"] = { index = "m-sigsauer", nome = "Munição de Sig Sauer" },
+	["wammo|WEAPON_COMBATPISTOL"] = { index = "m-glock", nome = "Munição de Glock" },
+	
+	-- Armas Ilegal
+	["wbody|WEAPON_ASSAULTRIFLE_MK2"] = { index = "ak47", nome = "AK-47" },
+	["wbody|WEAPON_SPECIALCARBINE_MK2"] = { index = "g36", nome = "G36" },
+	["wbody|WEAPON_SMG_MK2"] = { index = "mp5", nome = "MP5" },
+	["wbody|WEAPON_PISTOL_MK2"] = { index = "fiveseven", nome = "Five Seven" },
+	-- Munição Ilegal
+	["wammo|WEAPON_ASSAULTRIFLE_MK2"] = { index = "m-ak47", nome = "Munição de AK-47" },
+	["wammo|WEAPON_SPECIALCARBINE_MK2"] = { index = "m-g36", nome = "Munição de G36" },
+	["wammo|WEAPON_SMG_MK2"] = { index = "m-mp5", nome = "Munição de MP5" },
+	["wammo|WEAPON_PISTOL_MK2"] = { index = "m-fiveseven", nome = "Munição de Five Seven" }
+	
 }
 
 --------------------------------------------------------------------------------------------------
@@ -388,6 +394,19 @@ RegisterCommand('equipar',function(source,args,rawCommand)
 		end
 	end
 end)
+
+-----------------------------------------------------------------------------------------------------------------------------------------
+-- /sapatos
+-----------------------------------------------------------------------------------------------------------------------------------------
+
+RegisterCommand('sapatos',function(source,args,rawCommand)
+	local user_id = vRP.getUserId(source)
+	if vRP.getInventoryItemAmount(user_id,"roupas") >= 1 or vRP.hasPermission(user_id,'roupavip.permissao') then
+		TriggerClientEvent('setsapatos',source,args[1],args[2])
+	else
+		TriggerClientEvent("Notify",source,"negado","Você precisa de <b>Roupas</b> para mudar de sapatos")
+	end
+end)
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- MASCARA
 -----------------------------------------------------------------------------------------------------------------------------------------
@@ -487,6 +506,17 @@ RegisterCommand('oculos',function(source,args,rawCommand)
 		TriggerClientEvent('oculos',source,args[1],args[2])
 	else
 		TriggerClientEvent("Notify",source,"negado","Você precisa de <b>Roupas</b> para mudar de oculos")
+	end
+end)
+-----------------------------------------------------------------------------------------------------------------------------------------
+-- SAPATOS
+-----------------------------------------------------------------------------------------------------------------------------------------
+RegisterCommand('sapatos',function(source,args,rawCommand)
+	local user_id = vRP.getUserId(source)
+	if vRP.getInventoryItemAmount(user_id,"roupas") >= 1 or vRP.hasPermission(user_id,'roupavip.permissao') then
+		TriggerClientEvent('sapatos',source,args[1],args[2])
+	else
+		TriggerClientEvent("Notify",source,"negado","Você precisa de <b>Roupas</b> para mudar de sapatos")
 	end
 end)
 -- -----------------------------------------------------------------------------------------------------------------------------------------

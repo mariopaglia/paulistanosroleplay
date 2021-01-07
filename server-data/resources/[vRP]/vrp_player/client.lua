@@ -912,6 +912,46 @@ AddEventHandler(
 		end
 	end
 )
+
+
+-----------------------------------------------------------------------------------------------------------------------------------------
+-- SETSAPATOS
+-----------------------------------------------------------------------------------------------------------------------------------------
+RegisterNetEvent('setsapatos')
+AddEventHandler('setsapatos',function(modelo,cor)
+	local ped = PlayerPedId()
+	if GetEntityHealth(ped) > 101 and src.checkRoupas() and not IsPedInAnyVehicle(ped) then
+		if not modelo then
+			if GetEntityModel(ped) == GetHashKey("mp_m_freemode_01") then
+				vRP._playAnim(false,{{"clothingshoes","try_shoes_positive_d"}},false)
+				Wait(2200)
+				SetPedComponentVariation(ped,6,34,0,2)
+				Wait(500)
+				ClearPedTasks(ped)
+			elseif GetEntityModel(ped) == GetHashKey("mp_f_freemode_01") then
+				vRP._playAnim(false,{{"clothingshoes","try_shoes_positive_d"}},false)
+				Wait(2200)
+				SetPedComponentVariation(ped,6,35,0,2)
+				Wait(500)
+				ClearPedTasks(ped)
+			end
+			return
+		end
+		if GetEntityModel(ped) == GetHashKey("mp_m_freemode_01") then
+			vRP._playAnim(false,{{"clothingshoes","try_shoes_positive_d"}},false)
+			Wait(2200)
+			SetPedComponentVariation(ped,6,parseInt(modelo),parseInt(cor),2)
+			Wait(500)
+			ClearPedTasks(ped)
+		elseif GetEntityModel(ped) == GetHashKey("mp_f_freemode_01") then
+			vRP._playAnim(false,{{"clothingshoes","try_shoes_positive_d"}},false)
+			Wait(2200)
+			SetPedComponentVariation(ped,6,parseInt(modelo),parseInt(cor),2)
+			Wait(500)
+			ClearPedTasks(ped)
+		end
+	end
+end)
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- /jaqueta
 -----------------------------------------------------------------------------------------------------------------------------------------
@@ -1762,7 +1802,6 @@ end)
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- /CARREGARN
 -----------------------------------------------------------------------------------------------------------------------------------------
-
 carryingBackInProgress = false
 
 RegisterCommand("carregar",function(source, args)
@@ -1856,9 +1895,9 @@ function GetPlayers()
     return players
 end
 
--------------------------------------
----------  Cavalinho ----------------
--------------------------------------
+-----------------------------------------------------------------------------------------------------------------------------------------
+-- CAVALINHO
+-----------------------------------------------------------------------------------------------------------------------------------------
 local piggyBackInProgress = false
 
 RegisterCommand("cavalinho",function(source, args)
@@ -2001,3 +2040,54 @@ function GetClosestPlayer(radius)
 		return nil
 	end
 end
+
+-----------------------------------------------------------------------------------------------------------------------------------------
+-- RECUO DAS ARMAS
+-----------------------------------------------------------------------------------------------------------------------------------------
+local recoils = {
+	-------------- PISTOLAS --------------
+	[-1075685676] = 0.3, -- PISTOL MK2 | FIVE-SEVEN
+	[1593441988] = 0.3, -- COMBAT PISTOL | GLOCK
+	-------------- SMGS --------------
+	[2024373456] = 0.4, -- SMG MK2 | MP5-MK2
+	[171789620] = 0.4, -- COMBAT PDW | SIGSAUER
+	-------------- FUZIS --------------
+	[961495388] = 0.5, -- ASSAULT RIFLE MK2 | AK-47
+	[-1768145561] = 0.5, -- SPECIAL CARBINE MK2 | G36
+	[-2084633992] = 0.4, -- CARBINE RIFLE | AR-15
+	[-86904375] = 0.5, -- CARBINE RIFLE MK2 | M4A1
+	-----------------------------------
+}
+
+Citizen.CreateThread(function()
+	while true do
+		Citizen.Wait(0)
+		if IsPedShooting(PlayerPedId()) and not IsPedDoingDriveby(PlayerPedId()) then
+			local _,wep = GetCurrentPedWeapon(PlayerPedId())
+			_,cAmmo = GetAmmoInClip(PlayerPedId(), wep)
+			if recoils[wep] and recoils[wep] ~= 0 then
+				tv = 0
+				if GetFollowPedCamViewMode() ~= 4 then
+					repeat 
+						Wait(0)
+						p = GetGameplayCamRelativePitch()
+						SetGameplayCamRelativePitch(p+0.1, 0.2)
+						tv = tv+0.1
+					until tv >= recoils[wep]
+				else
+					repeat 
+						Wait(0)
+						p = GetGameplayCamRelativePitch()
+						if recoils[wep] > 0.1 then
+							SetGameplayCamRelativePitch(p+0.6, 1.2)
+							tv = tv+0.6
+						else
+							SetGameplayCamRelativePitch(p+0.016, 0.333)
+							tv = tv+0.1
+						end
+					until tv >= recoils[wep]
+				end
+			end
+		end
+	end
+end)

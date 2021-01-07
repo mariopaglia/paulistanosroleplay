@@ -7,7 +7,7 @@ oC = Tunnel.getInterface("nav_producao-armas")
 --[ LOCAL ]--------------------------------------------------------------------------------------
 -------------------------------------------------------------------------------------------------
 local prodMachine = {
-	{ ['x'] = -100.56, ['y'] = 996.54, ['z'] = 235.79 } -- -100.56, 996.54, 235.79
+	{ ['x'] = -85.7, ['y'] = 997.66, ['z'] = 230.61 } -- -85.7,997.66,230.61
 }
 -------------------------------------------------------------------------------------------------
 --[ MENU ]---------------------------------------------------------------------------------------
@@ -77,7 +77,7 @@ Citizen.CreateThread(function()
 			local idBancada = prodMachine[id]
 
 			if GetDistanceBetweenCoords(GetEntityCoords(PlayerPedId()), prodMachine.x, prodMachine.y, prodMachine.z, true ) <= 1 and not onmenu then
-				DrawText3D(prodMachine.x, prodMachine.y, prodMachine.z, "[~r~E~w~] Para acessar a ~r~BANCADA DE ARMAS~w~.")
+				DrawText3D(prodMachine.x, prodMachine.y, prodMachine.z, "[~r~E~w~] Para acessar a ~r~BANCADA~w~")
 			end
 			if distance <= 15 then
 				DrawMarker(23, prodMachine.x, prodMachine.y, prodMachine.z-0.97,0,0,0,0,0,0,0.7,0.7,0.5,214,29,0,100,0,0,0,0)

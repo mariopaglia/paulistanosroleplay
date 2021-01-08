@@ -164,7 +164,7 @@ function receivedClientCall(event) {
 		checkPluginVersion();
 
 	if (voipStatus != OK) {
-		// If no Ok status for more than 5 seconds, display screen
+		// Se não houver status Ok por mais de 5 segundos, a tela mostrará
 		if (getTickCount() - lastOk > 5000) {
 			displayPluginScreen(true);
 		}
@@ -245,16 +245,19 @@ function updateTokovoipInfo(msg) {
 			color = 'red';
 			break;
 		case OK:
-			color = '#01b0f0';
+			color = '#ffffff';
 			break;
+	}
+	if (msg) {
+		document.getElementById('tokovoipInfo').innerHTML = `<font color="${color}">Voz: ${msg}</font>`;
 	}
 	document.getElementById('pluginStatus').innerHTML = `Plugin status: <font color="${color}">${screenMessage || msg}</font>`;
 }
 
 function updateConfig(payload) {
 	voip = payload;
-	document.getElementById('TSServer').innerHTML = `TeamSpeak server: <font color="#01b0f0">${voip.plugin_data.TSServer}</font>`;
-	document.getElementById('TSChannel').innerHTML = `TeamSpeak channel: <font color="#01b0f0">${(voip.plugin_data.TSChannelWait) ? voip.plugin_data.TSChannelWait : voip.plugin_data.TSChannel}</font>`;
+	document.getElementById('TSServer').innerHTML = `TeamSpeak server: <font color="#ffffff">${voip.plugin_data.TSServer}</font>`;
+	document.getElementById('TSChannel').innerHTML = `TeamSpeak channel: <font color="#ffffff">${(voip.plugin_data.TSChannelWait) ? voip.plugin_data.TSChannelWait : voip.plugin_data.TSChannel}</font>`;
 	document.getElementById('TSDownload').innerHTML = voip.plugin_data.TSDownload;
 	document.getElementById('TSChannelSupport').innerHTML = voip.plugin_data.TSChannelSupport;
 }

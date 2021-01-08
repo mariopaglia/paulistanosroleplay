@@ -13,7 +13,7 @@ local inventory = module("vrp","cfg/inventory")
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- WEBHOOK
 -----------------------------------------------------------------------------------------------------------------------------------------
-local webhookbaucarro = ""
+local webhookbaucarro = "https://discord.com/api/webhooks/796968859604090910/a_RqvYnTZs3NSeR0JMrnnk9oSRqr0NfFf-yO1NtC5rEw0iYJ_vv9d90HURRVpzscjQCn"
 
 function SendWebhookMessage(webhook,message)
 	if webhook ~= nil and webhook ~= "" then

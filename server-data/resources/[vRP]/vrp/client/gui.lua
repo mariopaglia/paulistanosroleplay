@@ -290,7 +290,8 @@ Citizen.CreateThread(function()
 		-- FACEPALM (ARROW RIGHT)
 		if IsControlJustPressed(0,190) then
 			if not IsPedInAnyVehicle(ped) and GetEntityHealth(ped) > 101 and not menu_state.opened and not menu_celular then
-				tvRP.playAnim(true,{{"anim@mp_player_intcelebrationmale@face_palm","face_palm"}},false)
+				-- tvRP.playAnim(true,{{"anim@mp_player_intcelebrationmale@face_palm","face_palm"}},false) -- Antigo
+				tvRP.playAnim(true,{{"anim@mp_player_intupperface_palm","idle_a"}},false)
         	end
 		end
 

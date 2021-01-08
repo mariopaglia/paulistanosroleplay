@@ -25,7 +25,9 @@ function addPlayerToRadio(channelId, playerServerId)
 	end
 
 	channels[channelId].subscribers[playerServerId] = playerServerId;
-	--print("Added [" .. playerServerId .. "] " .. (GetPlayerName(playerServerId) or "") .. " to channel " .. channelId);
+	print("Added [" .. playerServerId .. "] " .. (GetPlayerName(playerServerId) or "") .. " to channel " .. channelId);
+	--SendWebhookMessage(webhookradio,"```css\n[ID]: " .. playerServerId .. " "..GetPlayerName(playerServerId).." \n[Entrou na Frequência]: "..channelId.." \nData: "..Time.dia.."/"..Time.mes.." Hora: "..Time.hora..":"..Time.min.." \r```")
+	
 
 	for _, subscriberServerId in pairs(channels[channelId].subscribers) do
 		if (subscriberServerId ~= playerServerId) then
@@ -42,12 +44,13 @@ AddEventHandler("TokoVoip:addPlayerToRadio", addPlayerToRadio);
 function removePlayerFromRadio(channelId, playerServerId)
 	if (channels[channelId] and channels[channelId].subscribers[playerServerId]) then
 		channels[channelId].subscribers[playerServerId] = nil;
-		if (channelId > 1039) then
+		if (channelId > 1034) then
 			if (tablelength(channels[channelId].subscribers) == 0) then
 				channels[channelId] = nil;
 			end
 		end
-	--	print("Removed [" .. playerServerId .. "] " .. (GetPlayerName(playerServerId) or "") .. " from channel " .. channelId);
+		print("Removed [" .. playerServerId .. "] " .. (GetPlayerName(playerServerId) or "") .. " from channel " .. channelId);
+		--SendWebhookMessage(webhookradio,"```css\n[ID]: " .. playerServerId .. " "..GetPlayerName(playerServerId).." \n[Removido da Frequência]: "..channelId.." \nData: "..Time.dia.."/"..Time.mes.." Hora: "..Time.hora..":"..Time.min.." \r```")
 
 		-- Tell unsubscribed player he's left the channel as well
 		TriggerClientEvent("TokoVoip:onPlayerLeaveChannel", playerServerId, channelId, playerServerId);
@@ -76,19 +79,3 @@ AddEventHandler("TokoVoip:removePlayerFromAllRadio", removePlayerFromAllRadio);
 AddEventHandler("playerDropped", function()
 	removePlayerFromAllRadio(source);
 end);
-
-function printChannels()
-	for i, channel in pairs(channels) do
-		RconPrint("Channel: " .. channel.name .. "\n");
-		for j, player in pairs(channel.subscribers) do
-			RconPrint("- [" .. player .. "] " .. GetPlayerName(player) .. "\n");
-		end
-	end
-end
-
-AddEventHandler('rconCommand', function(commandName, args)
-	if commandName == 'voipChannels' then
-	--	printChannels();
-		CancelEvent();
-	end
-end)

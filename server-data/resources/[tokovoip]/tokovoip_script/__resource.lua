@@ -16,3 +16,11 @@ files({
     "nui/index.html",
     "nui/script.js",
 })
+
+export "setPlayerData"
+export "getPlayerData"
+export "refreshAllPlayerData"
+export "addPlayerToRadio"
+export "removePlayerFromRadio"
+export "clientRequestUpdateChannels"
+export "isPlayerInChannel"

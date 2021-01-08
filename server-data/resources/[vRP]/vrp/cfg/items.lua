@@ -42,6 +42,8 @@ cfg.items = {
 	["benzoilecgonina"] = { "Benzoilecgonina",0.5 },
 	["cloridratoecgonina"] = { "Cloridratoecgonina",0.5 },
 	["cloridratococa"] = { "Cloridratococa",0.5 },
+	["c4"] = { "C4",5.0 },
+	["macarico"] = { "Maçarico",5.0 },
 
     ["graosimpuros"] = { "Grãos impuros",0.2 },	
     ["graos"] = { "Grãos",0.2 },	
@@ -87,6 +89,7 @@ cfg.items = {
 	["orgao"] = { "Órgão",1.2 },
 	["etiqueta"] = { "Etiqueta",0 },
 	["pendrive"] = { "Pendrive",0.1 },
+	["serra"] = { "Serra",1.0 },
 	["relogioroubado"] = { "Relógio Roubado",0.3 },
 	["pulseiraroubada"] = { "Pulseira Roubada",0.2 },
 	["anelroubado"] = { "Anel Roubado",0.2 },

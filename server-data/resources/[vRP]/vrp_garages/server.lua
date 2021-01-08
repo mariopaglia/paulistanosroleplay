@@ -422,6 +422,7 @@ local garages = {
 -----------------------------------------------------------------------------------------------------------------------------------------
 	[612] = { ['name'] = "PMESP", ['payment'] = false, ['perm'] = "pmesp.permissao" },
 	[613] = { ['name'] = "PMESPH", ['payment'] = false, ['perm'] = "pmesp.permissao" },
+	[618] = { ['name'] = "PCESPH", ['payment'] = false, ['perm'] = "pcivil.permissao" },
 	[614] = { ['name'] = "ROTA", ['payment'] = false, ['perm'] = "rota.permissao" },
 	[615] = { ['name'] = "PCESP", ['payment'] = false, ['perm'] = "pcivil.permissao" },
 	[616] = { ['name'] = "PRF", ['payment'] = false, ['perm'] = "prf.permissao" },
@@ -431,9 +432,8 @@ local garages = {
 -----------------------------------------------------------------------------------------------------------------------------------------
 	[617] = { ['name'] = "Taxista", ['payment'] = false, ['perm'] = "taxista.permissao" },
 -----------------------------------------------------------------------------------------------------------------------------------------
---													BRATVA
+--													HELICOPTEROS VIP
 -----------------------------------------------------------------------------------------------------------------------------------------
-	[618] = { ['name'] = "Bratva", ['payment'] = false, ['perm'] = "bratva.permissao" },
 	[619] = { ['name'] = "Garagem", ['payment'] = false, ['perm'] = "carrosvip.permissao" },
 }
 -----------------------------------------------------------------------------------------------------------------------------------------
@@ -446,24 +446,39 @@ local workgarage = {
 		"trailprf"
 	},
 	["PCESP"] = {
-		"trailgarra1",
-		"trailcivileie"
+		"sw4pc1",
+		"trailcivileie",
+		"traildesc",
+		"trailgarra1"
+	},
+	["PCESPH"] = {
+		"buzzard2",
+		"frogger2",
 	},
 	["ROTA"] = {
-		"trailnovarota"
+		"sw4revrota1",
+		"trailrota2"
 	},
 	["PMESP"] = {
+		"pbus",
+		"riot",
 		"paliopmrp1",
-		"spin18rp",
-		"spacerp"
+		"spacerp",
+		"hilux15ft",
+		"spin19rp",
+		"trail19cfp",
+		"xrerpm",
+		"xtrocam"
 	},
 	["PMESPH"] = {
-		"as350"
+		"as350",
+		"polmav"
 	},
 	["PoliciaPC"] = {
-		"voyagepc",
-		"corollapc",
-		"dusterpc"
+		"sw4pc1",
+		"trailcivileie",
+		"traildesc",
+		"trailgarra1"
 	},
 	["RECOM"] = {
 		"frontierrecom",

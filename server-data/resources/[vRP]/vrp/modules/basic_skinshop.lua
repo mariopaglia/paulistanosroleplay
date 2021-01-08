@@ -100,7 +100,7 @@ function vRP.openSkinshop(source,parts)
 
 			if vRP.tryFullPayment(user_id,price) then
 				if price > 0 then
-					TriggerClientEvent("Notify",source,"sucesso","Comprou <b>$"..vRP.format(parseInt(price)).."</b> em roupas e acessórios.")
+					TriggerClientEvent("Notify",source,"sucesso","Comprou <b>R$"..vRP.format(parseInt(price)).."</b> em roupas e acessórios.")
 				end
 			else
 				TriggerClientEvent("Notify",source,"negado","Dinheiro insuficiente.")

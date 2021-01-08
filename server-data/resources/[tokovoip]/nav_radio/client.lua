@@ -99,8 +99,8 @@ RegisterNUICallback("ButtonClick",function(data,cb)
 			outServers()
 			exports.tokovoip_script:addPlayerToRadio(150)
 		end		
-	elseif data == "vanilla" then
-		if emP.checkPermission2("vanilla.permissao","Vanilla") then
+	elseif data == "yakuza" then
+		if emP.checkPermission2("yakuza.permissao","Yakuza") then
 			outServers()
 			exports.tokovoip_script:addPlayerToRadio(160)
 		end

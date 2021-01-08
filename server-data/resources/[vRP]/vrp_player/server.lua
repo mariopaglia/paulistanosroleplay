@@ -73,6 +73,8 @@ local itemlist = {
 	["lambari"] = { index = "lambari", nome = "Lambari" },
 	["energetico"] = { index = "energetico", nome = "Energético" },
 	["mochila"] = { index = "mochila", nome = "Mochila" },
+	["c4"] = { index = "c4", nome = "C4" },
+	["serra"] = { index = "serra", nome = "Serra" },
 	
 	["graos"] = { index = "graos", nome = "Grãos" },
 	["graosimpuros"] = { index = "graosimpuros", nome = "Grãos Impuros" },
@@ -82,6 +84,7 @@ local itemlist = {
 	["maconha"] = { index = "maconha", nome = "Maconha" },
 	["embalagem"] = { index = "embalagem", nome = "Embalagem" },
 	["frasco"] = { index = "frasco", nome = "Frasco" },
+	["macarico"] = { index = "macarico", nome = "Maçarico" },
 	
 	["agua"] = { index = "agua", nome = "Água" },
 	["limonada"] = { index = "limonada", nome = "Limonada" },
@@ -326,38 +329,38 @@ function emP.checkPermissionSilenciador()
 	return vRP.hasPermission(user_id,'corarma.permissao')
 end
 
------------------------------------------------------------------------------------------------------------------------------------------
--- GUARDAR COLETE
------------------------------------------------------------------------------------------------------------------------------------------
-RegisterCommand('gcolete',function(source,args,rawCommand)
-	local user_id = vRP.getUserId(source)
-	local player = vRP.getUserSource(user_id)
-	local armour = vRPclient.getArmour(player)
-	if armour > 95 then
-       vRPclient.setArmour(source,0)
-       vRP.giveInventoryItem(user_id,"colete",1,true)
-       TriggerClientEvent("tirandocolete",player)
-       TriggerClientEvent("Notify",source,"sucesso","Você guardou o seu <b>Colete</b>.")
-    else
-       TriggerClientEvent("Notify",source,"negado","<b>Coletes</b> danificados não podem ser <b>Guardados</b>.")
-    end
-end)
------------------------------------------------------------------------------------------------------------------------------------------
--- JOGAR FORA O COLETE
------------------------------------------------------------------------------------------------------------------------------------------
-RegisterCommand('jcolete',function(source,args,rawCommand)
-	local user_id = vRP.getUserId(source)
-	local player = vRP.getUserSource(user_id)
-	local armour = vRPclient.getArmour(player)
-	if armour < 95 then
-       vRPclient.setArmour(source,0)
-       TriggerClientEvent("tirandocolete",player)
-       TriggerClientEvent("Notify",source,"sucesso","Você jogou fora o seu <b>Colete</b>.")
-       vRPclient._playAnim(player,true,{{"pickup_object","pickup_low",1}},false)
-    else
-       TriggerClientEvent("Notify",source,"negado","Seu <b>Colete</b> nao está <b>Danificado</b>.")
-    end
-end)
+-- -----------------------------------------------------------------------------------------------------------------------------------------
+-- -- GUARDAR COLETE
+-- -----------------------------------------------------------------------------------------------------------------------------------------
+-- RegisterCommand('gcolete',function(source,args,rawCommand)
+-- 	local user_id = vRP.getUserId(source)
+-- 	local player = vRP.getUserSource(user_id)
+-- 	local armour = vRPclient.getArmour(player)
+-- 	if armour > 95 then
+--        vRPclient.setArmour(source,0)
+--        vRP.giveInventoryItem(user_id,"colete",1,true)
+--        TriggerClientEvent("tirandocolete",player)
+--        TriggerClientEvent("Notify",source,"sucesso","Você guardou o seu <b>Colete</b>.")
+--     else
+--        TriggerClientEvent("Notify",source,"negado","<b>Coletes</b> danificados não podem ser <b>Guardados</b>.")
+--     end
+-- end)
+-- -----------------------------------------------------------------------------------------------------------------------------------------
+-- -- JOGAR FORA O COLETE
+-- -----------------------------------------------------------------------------------------------------------------------------------------
+-- RegisterCommand('jcolete',function(source,args,rawCommand)
+-- 	local user_id = vRP.getUserId(source)
+-- 	local player = vRP.getUserSource(user_id)
+-- 	local armour = vRPclient.getArmour(player)
+-- 	if armour < 95 then
+--        vRPclient.setArmour(source,0)
+--        TriggerClientEvent("tirandocolete",player)
+--        TriggerClientEvent("Notify",source,"sucesso","Você jogou fora o seu <b>Colete</b>.")
+--        vRPclient._playAnim(player,true,{{"pickup_object","pickup_low",1}},false)
+--     else
+--        TriggerClientEvent("Notify",source,"negado","Seu <b>Colete</b> nao está <b>Danificado</b>.")
+--     end
+-- end)
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- BUG CRIAÇÃO
 -----------------------------------------------------------------------------------------------------------------------------------------
@@ -2750,7 +2753,6 @@ end)
 -- LOGS DE ENTRADA E SAÍDA COM COORDENADAS
 -----------------------------------------------------------------------------------------------------------------------------------------
 AddEventHandler("vRP:playerJoin",function(user_id,source,name,last_login)
-	local crds = GetEntityCoords(GetPlayerPed(source))
 	local identity = vRP.getUserIdentity(user_id)
 	SendWebhookMessage(webhooklinkinout, "```"..os.date("[%d/%m/%Y %H:%M:%S]").." "..identity.name.." "..identity.firstname.." [".. user_id .."] entrou```")
 end)

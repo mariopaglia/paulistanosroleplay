@@ -95,21 +95,29 @@ function tvRP.replaceWeapons(weapons)
 	return old_weapons
 end
 
-function tvRP.giveWeapons(weapons,clear_before)
-	local player = PlayerPedId()
-	if clear_before then
-		RemoveAllPedWeapons(player,true)
-	end
+function tvRP.giveWeapons(weapons, clear_before, save)
+    local player = PlayerPedId()
 
-	for k,weapon in pairs(weapons) do
-		local hash = GetHashKey(k)
-		local ammo = weapon.ammo or 0
-		GiveWeaponToPed(player,hash,ammo,false)
-	end
+    if clear_before then
+        RemoveAllPedWeapons(player, true)
+    end
+
+    for k, weapon in pairs(weapons) do
+        local hash = GetHashKey(k)
+        local ammo = weapon.ammo or 0
+        GiveWeaponToPed(player, hash, ammo, false)
+    end
+
+    if save == nil or save == true then
+        vRPserver.updateWeapons(tvRP.getWeapons())
+    end
 end
 
-function tvRP.setArmour(amount)
-	SetPedArmour(PlayerPedId(),amount)
+function tvRP.setArmour(amount, save)
+    SetPedArmour(PlayerPedId(), amount)
+    if save == nil or save == true then
+        vRPserver.updateArmor(tvRP.getArmour())
+    end
 end
 
 function tvRP.getArmour()
@@ -183,7 +191,7 @@ function tvRP.setCustomization(custom)
 					local health = tvRP.getHealth()
 					SetPlayerModel(PlayerId(),mhash)
 					tvRP.setHealth(health)
-					tvRP.giveWeapons(weapons,true)
+					tvRP.giveWeapons(weapons, true, false)
 					tvRP.setArmour(armour)
 					SetModelAsNoLongerNeeded(mhash)
 				end

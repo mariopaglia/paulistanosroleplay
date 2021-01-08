@@ -6,16 +6,16 @@ vRPclient = Tunnel.getInterface("vRP")
 -- ARRAY
 -----------------------------------------------------------------------------------------------------------------------------------------
 local valores = {
-	{ item = "wbody|WEAPON_KNIFE", quantidade = 1, compra = 5000, venda = 2500 }, -- Faca
 	{ item = "wbody|WEAPON_KNUCKLE", quantidade = 1, compra = 5000, venda = 2500 }, -- Soco ingles
-	{ item = "wbody|WEAPON_MACHETE", quantidade = 1, compra = 5000, venda = 2500 }, -- Machete
-	{ item = "wbody|WEAPON_SWITCHBLADE", quantidade = 1, compra = 5000, venda = 2500 }, -- Canivete
-	{ item = "wbody|WEAPON_WRENCH", quantidade = 1, compra = 5000, venda = 2500 }, -- Chave de grifo
-	{ item = "wbody|WEAPON_HAMMER", quantidade = 1, compra = 5000, venda = 2500 }, -- Martelo
-	{ item = "wbody|WEAPON_CROWBAR", quantidade = 1, compra = 5000, venda = 2500 }, -- Pé-de-cabra
-	{ item = "wbody|WEAPON_BAT", quantidade = 1, compra = 5000, venda = 2500 }, -- Taco de beisebol
-	{ item = "wbody|WEAPON_POOLCUE", quantidade = 1, compra = 5000, venda = 2500 }, -- Taco de sinuca
-	{ item = "wbody|GADGET_PARACHUTE", quantidade = 1, compra = 5000, venda = 500 } -- Paraquedas
+	{ item = "wbody|WEAPON_KNIFE", quantidade = 1, compra = 4000, venda = 2000 }, -- Faca
+	{ item = "wbody|WEAPON_SWITCHBLADE", quantidade = 1, compra = 4000, venda = 2000 }, -- Canivete
+	{ item = "wbody|WEAPON_MACHETE", quantidade = 1, compra = 3000, venda = 1500 }, -- Machete
+	{ item = "wbody|WEAPON_WRENCH", quantidade = 1, compra = 3000, venda = 1500 }, -- Chave de grifo
+	{ item = "wbody|WEAPON_HAMMER", quantidade = 1, compra = 3000, venda = 1500 }, -- Martelo
+	{ item = "wbody|WEAPON_CROWBAR", quantidade = 1, compra = 3000, venda = 1500 }, -- Pé-de-cabra
+	{ item = "wbody|WEAPON_BAT", quantidade = 1, compra = 3000, venda = 1500 }, -- Taco de beisebol
+	{ item = "wbody|WEAPON_POOLCUE", quantidade = 1, compra = 3000, venda = 1500 }, -- Taco de sinuca
+	{ item = "wbody|GADGET_PARACHUTE", quantidade = 1, compra = 3000, venda = 1500 }, -- Paraquedas
 }
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- COMPRAR

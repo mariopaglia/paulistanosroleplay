@@ -52,35 +52,27 @@ function TokoVoip.sendDataToTS3(self) -- Send usersdata to the Javascript Websoc
 	self:updatePlugin("updateTokoVoip", self.plugin_data);
 end
 
-
-
-local falando = 2
 function TokoVoip.updateTokoVoipInfo(self, forceUpdate) -- Update the top-left info
 	local info = "";
 	if (self.mode == 1) then
-		info = 1
+		info = "Sussuro";
 	elseif (self.mode == 2) then
-		info = 2
+		info = "Normal";
 	elseif (self.mode == 3) then
-		info = 3
+		info = "Grito";
 	end
-
-	falando = info
 
 	if (self.plugin_data.radioTalking) then
-		info = info .. " on radio ";
+		info = info .. " Radio"; -- "No Radio"
 	end
 	if (self.talking == 1 or self.plugin_data.radioTalking) then
-		TriggerEvent("vrp_hud:TokovoipTalking",true)
-	else
-		TriggerEvent("vrp_hud:TokovoipTalking",false)
+		info = "<font class='talking'>" .. info .. "</font>";
 	end
-
 	if (self.plugin_data.radioChannel ~= -1 and self.myChannels[self.plugin_data.radioChannel]) then
 		if (string.match(self.myChannels[self.plugin_data.radioChannel].name, "Call")) then
 			info = info  .. "<br> [Phone] " .. self.myChannels[self.plugin_data.radioChannel].name;
 		else
-			info = info  .. "<br> [Radio] " .. self.myChannels[self.plugin_data.radioChannel].name;
+			-- info = info  .. "<br> [Radio] " .. self.myChannels[self.plugin_data.radioChannel].name;
 		end
 	end
 	if (info == self.screenInfo and not forceUpdate) then return end
@@ -88,18 +80,7 @@ function TokoVoip.updateTokoVoipInfo(self, forceUpdate) -- Update the top-left i
 	self:updatePlugin("updateTokovoipInfo", "" .. info);
 end
 
-RegisterCommand("tk",function(source,args,rawCommand,self,falando,forceUpdate)
-	if args[1] then
-		falando = args[1]
-		print(falando)
-	else
-		falando = 2
-		print(falando)
-	end
-end)
-
 function TokoVoip.updatePlugin(self, event, payload)
-	TriggerEvent("vrp_hud:Tokovoip",falando)
 	exports.tokovoip_script:doSendNuiMessage(event, payload);
 end
 
@@ -149,32 +130,22 @@ function TokoVoip.initialize(self)
 				if (self.mode > 3) then
 					self.mode = 1;
 				end
-
-				if self.mode == 1 then
-					falando = 1
-				elseif self.mode == 2 then
-					falando = 2
-				elseif self.mode == 3 then
-					falando = 3
-				end
-
-				TriggerEvent("vrp_hud:Tokovoip",falando)
 				setPlayerData(self.serverId, "voip:mode", self.mode, true);
 				self:updateTokoVoipInfo();
 			end
 
 
-			if (IsControlPressed(0, self.radioKey) and self.plugin_data.radioChannel ~= -1 and self.config.radioEnabled) then -- Talk on radio
+			if (IsControlPressed(0, self.radioKey) and self.plugin_data.radioChannel ~= -1) then -- Talk on radio
 				self.plugin_data.radioTalking = true;
 				self.plugin_data.localRadioClicks = true;
-				if (self.plugin_data.radioChannel > self.config.radioClickMaxChannel) then
+				if (self.plugin_data.radioChannel > 1034) then
 					self.plugin_data.localRadioClicks = false;
 				end
 				if (not getPlayerData(self.serverId, "radio:talking")) then
 					setPlayerData(self.serverId, "radio:talking", true, true);
 				end
 				self:updateTokoVoipInfo();
-				if (lastTalkState == false and self.myChannels[self.plugin_data.radioChannel] and self.config.radioAnim) then
+				if (lastTalkState == false and self.myChannels[self.plugin_data.radioChannel]) then
 					if (not string.match(self.myChannels[self.plugin_data.radioChannel].name, "Call") and not IsPedSittingInAnyVehicle(PlayerPedId())) then
 						RequestAnimDict("random@arrests");
 						while not HasAnimDictLoaded("random@arrests") do
@@ -191,7 +162,7 @@ function TokoVoip.initialize(self)
 				end
 				self:updateTokoVoipInfo();
 				
-				if lastTalkState == true and self.config.radioAnim then
+				if lastTalkState == true then
 					lastTalkState = false
 					StopAnimTask(PlayerPedId(), "random@arrests","generic_radio_chatter", -4.0);
 				end

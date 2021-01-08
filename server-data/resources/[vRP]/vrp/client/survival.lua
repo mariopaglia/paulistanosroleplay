@@ -61,7 +61,7 @@ end)
 
 
 local nocauteado = false
-local timedeath = 900
+local timedeath = 600
 
 Citizen.CreateThread(function()
 	while true do
@@ -109,7 +109,7 @@ function tvRP.killGod()
 	SetEntityHealth(PlayerPedId(),120)
 	vRPserver._updateHealth(120)
 	SetTimeout(5000,function()
-		timedeath = 900
+		timedeath = 600
 	end)
 end
 
@@ -137,7 +137,7 @@ Citizen.CreateThread(function()
 			SetEntityInvincible(PlayerPedId(),false)
 			SetEntityHealth(PlayerPedId(),0)
 			SetTimeout(5000,function()
-				timedeath = 900
+				timedeath = 600
 			end)
 		end
 	end

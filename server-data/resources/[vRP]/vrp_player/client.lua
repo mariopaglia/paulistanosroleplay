@@ -418,7 +418,9 @@ Citizen.CreateThread(function()
             if GetPedInVehicleSeat(vehicle,-1) == ped then
 				local roll = GetEntityRoll(vehicle)
 				local altura = GetEntityHeightAboveGround(vehicle)
-                if roll > 100.0 or altura > 5 then
+				if roll > 150.0 then
+					-- print("Eixo: ",roll)
+					-- print("Altura: ",altura)
                     if IsVehicleTyreBurst(vehicle, wheel_rm1, 0) == false then
                     	-- SetVehiclePetrolTankHealth(vehicle, -4000, 1)
                     	-- SetVehicleEngineTemperature(vehicle, 5000, 1)
@@ -564,7 +566,7 @@ end)
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- /SILENCIADOR
 -----------------------------------------------------------------------------------------------------------------------------------------
-RegisterCommand("silenciador",function(source,args)
+RegisterCommand("sil",function(source,args)
 	if emP.checkPermissionSilenciador() then
 		local ped = PlayerPedId()
 		if GetSelectedPedWeapon(ped) == GetHashKey("WEAPON_SPECIALCARBINE_MK2") then -- G36C
@@ -1691,46 +1693,6 @@ Citizen.CreateThread(
 				 then
 					local veh = GetVehiclePedIsIn(ped, false)
 					TaskLeaveVehicle(ped, veh, 256)
-				end
-			end
-		end
-	end
-)
-
------------------------------------------------------------------------------------------------------------------------------------------
--- ESTOURAR PNEU AO CAPOTAR
------------------------------------------------------------------------------------------------------------------------------------------
-Citizen.CreateThread(
-	function()
-		while true do
-			Citizen.Wait(5)
-			local ped = PlayerPedId()
-			if IsPedInAnyVehicle(ped) then
-				local vehicle = GetVehiclePedIsIn(ped)
-				if GetPedInVehicleSeat(vehicle, -1) == ped then
-					local roll = GetEntityRoll(vehicle)
-					if (roll > 75.0 or roll < -75.0) and GetEntitySpeed(vehicle) < 2 then
-						if IsVehicleTyreBurst(vehicle, wheel_rm1, 0) == false then
-							-- SetVehiclePetrolTankHealth(vehicle, -4000, 1)
-							SetVehicleEngineTemperature(vehicle, 5000, 1)
-							SetVehicleEngineHealth(vehicle, 300.0)
-							SetVehicleTyreBurst(vehicle, 0, true, 1000.0)
-							Citizen.Wait(1000)
-							SetVehicleTyreBurst(vehicle, 1, true, 1000.0)
-							Citizen.Wait(1000)
-							SetVehicleTyreBurst(vehicle, 2, true, 1000.0)
-							Citizen.Wait(1000)
-							SetVehicleTyreBurst(vehicle, 3, true, 1000.0)
-							Citizen.Wait(1000)
-							SetVehicleTyreBurst(vehicle, 4, true, 1000.0)
-							Citizen.Wait(1000)
-							SetVehicleTyreBurst(vehicle, 5, true, 1000.0)
-							Citizen.Wait(1000)
-							SetVehicleTyreBurst(vehicle, 6, true, 1000.0)
-							Citizen.Wait(1000)
-							SetVehicleTyreBurst(vehicle, 7, true, 1000.0)
-						end
-					end
 				end
 			end
 		end

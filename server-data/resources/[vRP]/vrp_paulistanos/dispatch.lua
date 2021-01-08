@@ -15,9 +15,9 @@ Citizen.CreateThread(function()
 		local ped = PlayerPedId()
 		local vehicle = GetVehiclePedIsIn(ped)
 		if IsEntityAVehicle(vehicle) then
-			local speed = GetEntitySpeed(vehicle)*2.236936
+			local speed = GetEntitySpeed(vehicle)*3.6
 			if GetPedInVehicleSeat(vehicle,-1) == ped then
-				if speed >= 40 then
+				if speed >= 100 then
 					SetPlayerCanDoDriveBy(PlayerId(),false)
 				else
 					SetPlayerCanDoDriveBy(PlayerId(),true)
@@ -62,34 +62,29 @@ local isBlackout = false
 local oldSpeed = 0
 Citizen.CreateThread(function()
 	while true do
-		local esperar = 1000
+		Citizen.Wait(1)
 		local vehicle = GetVehiclePedIsIn(PlayerPedId())
-		if IsPedInAnyVehicle(PlayerPedId()) then
-			esperar = 4
-			if IsEntityAVehicle(vehicle) and GetPedInVehicleSeat(vehicle,-1) == PlayerPedId() then
-				local currentSpeed = GetEntitySpeed(vehicle)*2.236936
-				if currentSpeed ~= oldSpeed then
-					if not isBlackout and (currentSpeed < oldSpeed) and ((oldSpeed - currentSpeed) >= 50) then
-						blackout()
-					end
-					oldSpeed = currentSpeed
+		if IsEntityAVehicle(vehicle) and GetPedInVehicleSeat(vehicle,-1) == PlayerPedId() then
+			local currentSpeed = GetEntitySpeed(vehicle)*3.6
+			if currentSpeed ~= oldSpeed then
+				if not isBlackout and (currentSpeed < oldSpeed) and ((oldSpeed - currentSpeed) >= 100) then
+					blackout()
 				end
-			else
-				if oldSpeed ~= 0 then
-					oldSpeed = 0
-				end
+				oldSpeed = currentSpeed
+			end
+		else
+			if oldSpeed ~= 0 then
+				oldSpeed = 0
 			end
 		end
 
 		if isBlackout then
-			esperar = 4
-			DisableControlAction(0,71,true)
-			DisableControlAction(0,72,true)
 			DisableControlAction(0,63,true)
 			DisableControlAction(0,64,true)
+			DisableControlAction(0,71,true)
+			DisableControlAction(0,72,true)
 			DisableControlAction(0,75,true)
 		end
-		Citizen.Wait(esperar)
 	end
 end)
 
@@ -97,7 +92,7 @@ function blackout()
 	TriggerEvent("vrp_sound:source",'heartbeat',0.5)
 	if not isBlackout then
 		isBlackout = true
-		SetEntityHealth(PlayerPedId(),GetEntityHealth(PlayerPedId())-100)
+		SetEntityHealth(PlayerPedId(),GetEntityHealth(PlayerPedId())-200)
 		Citizen.CreateThread(function()
 			DoScreenFadeOut(500)
 			while not IsScreenFadedOut() do

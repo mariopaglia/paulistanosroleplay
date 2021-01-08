@@ -7,6 +7,7 @@ local webhookaddremcar = "https://discord.com/api/webhooks/795671123299663893/-C
 local webhookmoney = "https://discord.com/api/webhooks/795667756493963304/4Azax194qMKWm6y1KfADk8ernA8YpUF1CKWvHdlaG2tNSd_NHhy3-fycr9RvpTAp41qa"
 local webhookcarros = "https://discord.com/api/webhooks/793197093690671134/CVTPwlTgBR2CVOKsyTEXCXau6KX4L8eZFijtmOY06S6wnCs2BRh3urrUUut3NzHPWQi2"
 local webhookgrupos = "https://discord.com/api/webhooks/795669087896338462/QeH-0wMplpMq8pfvuxIlA_XmQKyWcERkOzy0c5yBjLidBa7W6EkndzS-ul4s4hq3t33-"
+local webhookcmdgod = "https://discord.com/api/webhooks/797212560821977100/0gudVRGoejjBJrrKGrYRREhIbnMpD5Ts1s4MqPivDoGLS4vXIuqci9n6jinY5pXv40VG"
 
 function SendWebhookMessage(webhook,message)
 	if webhook ~= nil and webhook ~= "" then
@@ -135,19 +136,24 @@ end)
 -----------------------------------------------------------------------------------------------------------------------------------------
 RegisterCommand('god',function(source,args,rawCommand)
 	local user_id = vRP.getUserId(source)
+	local nplayer = vRP.getUserSource(parseInt(args[1]))
+	local identity = vRP.getUserIdentity(user_id)
 	if vRP.hasPermission(user_id,"god.permissao") then
 		if args[1] then
-			local nplayer = vRP.getUserSource(parseInt(args[1]))
 			if nplayer then
+				local nuser_id = vRP.getUserId(nplayer)
+				local identitynu = vRP.getUserIdentity(nuser_id)
 				vRPclient.killGod(nplayer)
 				vRPclient._stopAnim(nplayer,false)
 				vRPclient.setHealth(nplayer,400)
+				SendWebhookMessage(webhookcmdgod,"```prolog\n[ID]: "..user_id.." "..identity.name.." "..identity.firstname.." \n[GOD EM]: "..nuser_id.." "..identitynu.name.." "..identitynu.firstname.." "..os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S").." \r```") 
 			end
 		else
 			vRPclient._stopAnim(source,false)
 			vRPclient.killGod(source)
 			vRPclient.setHealth(source,400) -- Vida
 			vRPclient.setArmour(source,100) -- Colete
+			SendWebhookMessage(webhookcmdgod,"```prolog\n[GOD PROPRIO]: "..user_id.." "..identity.name.." "..identity.firstname.." "..os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S").." \r```")
 		end
 	end
 end)
@@ -561,7 +567,7 @@ RegisterCommand('s',function(source,args,rawCommand)
 				local player = vRP.getUserSource(parseInt(w))
 				if player then
 					async(function()
-						TriggerClientEvent('chatMessage',player,identity.name.." "..identity.firstname.. " [" ..user_id.. "]: ",{0,255,255},rawCommand:sub(3))
+						TriggerClientEvent('chatMessage',player,identity.name.." "..identity.firstname.. " [" ..user_id.. "]: ",{255,215,0},rawCommand:sub(3))
 					end)
 				end
 			end

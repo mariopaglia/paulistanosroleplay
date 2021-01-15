@@ -15,6 +15,7 @@ vSERVER = Tunnel.getInterface("vrp_chest")
 -----------------------------------------------------------------------------------------------------------------------------------------
 local chestTimer = 0
 local chestOpen = ""
+local cbb = false
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- STARTFOCUS
 -----------------------------------------------------------------------------------------------------------------------------------------
@@ -26,62 +27,54 @@ Citizen.CreateThread(
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- CHESTCLOSE
 -----------------------------------------------------------------------------------------------------------------------------------------
-RegisterNUICallback(
-	"chestClose",
-	function(data)
-		SetNuiFocus(false, false)
-		SendNUIMessage({action = "hideMenu"})
-	end
-)
+RegisterNUICallback("chestClose",function(data)
+	SetNuiFocus(false, false)
+	SendNUIMessage({action = "hideMenu"})
+	cbb = false
+end)
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- TAKEITEM
 -----------------------------------------------------------------------------------------------------------------------------------------
-RegisterNUICallback(
-	"takeItem",
-	function(data)
+RegisterNUICallback("takeItem",function(data)
+	if not cbb then
+		cbb = true
 		vSERVER.takeItem(tostring(chestOpen), data.item, data.amount)
+		cbb = false
 	end
-)
+end)
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- STOREITEM
 -----------------------------------------------------------------------------------------------------------------------------------------
-RegisterNUICallback(
-	"storeItem",
-	function(data)
+RegisterNUICallback("storeItem",function(data)
+	if not cbb then
+		cbb = true
 		vSERVER.storeItem(tostring(chestOpen), data.item, data.amount)
+		cbb = false
 	end
-)
+end)
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- AUTO-UPDATE
 -----------------------------------------------------------------------------------------------------------------------------------------
 RegisterNetEvent("Creative:UpdateChest")
-AddEventHandler(
-	"Creative:UpdateChest",
-	function(action)
-		SendNUIMessage({action = action})
-	end
-)
+AddEventHandler("Creative:UpdateChest", function(action)
+	SendNUIMessage({action = action})
+end)
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- REQUESTCHEST
 -----------------------------------------------------------------------------------------------------------------------------------------
-RegisterNUICallback(
-	"requestChest",
-	function(data, cb)
-		local inventario, inventario2, peso, maxpeso, peso2, maxpeso2 = vSERVER.openChest(tostring(chestOpen))
-		if inventario then
-			cb(
-				{
-					inventario = inventario,
-					inventario2 = inventario2,
-					peso = peso,
-					maxpeso = maxpeso,
-					peso2 = peso2,
-					maxpeso2 = maxpeso2
-				}
-			)
-		end
+RegisterNUICallback("requestChest", function(data, cb)
+	local inventario, inventario2, peso, maxpeso, peso2, maxpeso2 = vSERVER.openChest(tostring(chestOpen))
+	if inventario then
+		cb({
+			inventario = inventario,
+			inventario2 = inventario2,
+			peso = peso,
+			maxpeso = maxpeso,
+			peso2 = peso2,
+			maxpeso2 = maxpeso2
+		})
 	end
-)
+end)
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- VARIAVEIS
 -----------------------------------------------------------------------------------------------------------------------------------------
@@ -113,8 +106,7 @@ Citizen.CreateThread(
 -- CHEST
 -----------------------------------------------------------------------------------------------------------------------------------------
 RegisterCommand(
-	"chest",
-	function(source, args)
+	"chest", function(source, args)
 		local ped = PlayerPedId()
 		local x, y, z = table.unpack(GetEntityCoords(ped))
 		for k, v in pairs(chest) do
@@ -143,7 +135,7 @@ Citizen.CreateThread(
 			for k, v in pairs(chest) do
 				if Vdist(x, y, z, v[2], v[3], v[4]) <= 2.0 then
 					-- DrawMarker(21, v[2], v[3], v[4] - 0.6, 0, 0, 0, 0.0, 0, 0, 0.4, 0.4, 0.3, 50, 200, 50, 100, 0, 0, 0, 1)
-					DrawText3D(v[2], v[3], v[4], "[~b~E~w~] Para acessar o baú")
+					DrawText3D(v[2], v[3], v[4], "[~r~E~r~]~w~ Para acessar o baú")
 					if IsControlJustPressed(0, 38) then
 						if Vdist(x, y, z, v[2], v[3], v[4]) <= 1.5 then
 							if vSERVER.checkIntPermissions(v[1]) then
@@ -166,7 +158,7 @@ function DrawText3D(x, y, z, text)
 	SetTextScale(0.40, 0.40)
 	SetTextFont(4)
 	SetTextProportional(1)
-	SetTextColour(255, 255, 255, 215)
+	SetTextColour(255, 0, 0, 215)
 	SetTextEntry("STRING")
 	SetTextCentre(1)
 	AddTextComponentString(text)

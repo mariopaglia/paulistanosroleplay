@@ -1,6 +1,9 @@
 local Tunnel = module("vrp","lib/Tunnel")
 local Proxy = module("vrp","lib/Proxy")
 vRP = Proxy.getInterface("vRP")
+
+vADMC = {}
+Tunnel.bindInterface("vrp_admin",vADMC)
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- Blips
 -----------------------------------------------------------------------------------------------------------------------------------------
@@ -534,6 +537,22 @@ function DrawText3Ds(x,y,z, text)
     DrawRect(_x,_y+0.0125, 0.015+ factor, 0.03, 41, 11, 41, 68)
 end
 -----------------------------------------------------------------------------------------------------------------------------------------
+-- CORAÇÃO EM CIMA DA CABEÇA
+-----------------------------------------------------------------------------------------------------------------------------------------
+function DrawText3D(coords, text)
+	local x,y,z = table.unpack(coords)
+    local camCoords = GetGameplayCamCoord()
+    SetTextScale(0.0, 0.2)
+    SetTextFont(0)
+    SetTextCentre(true)
+	SetTextProportional(1)
+    BeginTextCommandDisplayText("STRING")
+    AddTextComponentSubstringPlayerName(text)
+    SetDrawOrigin(x,y,z+1, 0)
+    EndTextCommandDisplayText(0.0, 0.0)
+    ClearDrawOrigin()
+end
+-----------------------------------------------------------------------------------------------------------------------------------------
 -- RETIRAR ALGEMA
 -----------------------------------------------------------------------------------------------------------------------------------------
 RegisterNetEvent('admcuff')
@@ -544,3 +563,13 @@ AddEventHandler('admcuff',function()
         SetPedComponentVariation(PlayerPedId(),7,0,0,2)
     end
 end)
+
+
+function vADMC.showGodHeart(player)
+	local timer = 200
+	while timer > 0 do
+		DrawText3D(GetEntityCoords(GetPlayerPed(GetPlayerFromServerId(player))), "❤")
+		Citizen.Wait(10)
+		timer = timer - 1
+	end
+end

@@ -75,7 +75,7 @@ AddEventHandler('fuel:startFuelUpTick',function(pumpObject,ped,vehicle)
 		Citizen.Wait(100)
 		local oldFuel = DecorGetFloat(vehicle,Config.FuelDecor)
 		local fuelToAdd = math.random(10,20) / 100.0
-		local extraCost = fuelToAdd / 0.2
+		local extraCost = fuelToAdd * 5.0
 
 		if not pumpObject then
 			if GetAmmoInPedWeapon(ped,883325847) - fuelToAdd * 100 >= 0 then

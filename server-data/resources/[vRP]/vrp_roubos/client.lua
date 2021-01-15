@@ -67,9 +67,6 @@ Citizen.CreateThread(function()
 							end
 						end
 					end
-				elseif andamento then
-					rob.CancelandoRoubo1()
-					andamento = false
 				end
 			end
 		end
@@ -102,9 +99,6 @@ Citizen.CreateThread(function()
 							end
 						end
 					end
-				elseif andamento then
-					rob.CancelandoRoubo2()
-					andamento = false
 				end
 			end
 		end
@@ -136,9 +130,6 @@ Citizen.CreateThread(function()
 							end
 						end
 					end
-				elseif andamento then
-					rob.CancelandoRoubo3()
-					andamento = false
 				end
 			end
 		end

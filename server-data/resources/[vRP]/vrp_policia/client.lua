@@ -273,9 +273,9 @@ Citizen.CreateThread(function()
 		Citizen.Wait(5000)
 		if prisioneiro then
 			local distance = GetDistanceBetweenCoords(GetEntityCoords(PlayerPedId()),1700.5,2605.2,45.5,true)
-			if distance >= 200 then
+			if distance >= 150 then
 				SetEntityCoords(PlayerPedId(),1680.1,2513.0,45.5)
-				TriggerEvent("Notify","importante","O agente penitenciário encontrou você tentando escapar.")
+				TriggerEvent("Notify","aviso","O agente penitenciário encontrou você tentando escapar.")
 			end
 		end
 	end
@@ -296,7 +296,7 @@ Citizen.CreateThread(function()
 			if distance01 <= 100 and not reducaopenal then
 				DrawMarker(21,1691.59,2566.05,45.56,0,0,0,0,180.0,130.0,1.0,1.0,0.5,255,255,255,100,1,0,0,1)
 				if distance01 <= 1.2 then
-					drawTxt("PRESSIONE  ~r~E~w~  PARA CONCLUIR",4,0.5,0.93,0.50,255,255,255,180)
+					drawTxt("PRESSIONE  ~r~E~w~  PARA PEGAR A CAIXA",4,0.5,0.93,0.50,255,255,255,180)
 					if IsControlJustPressed(0,38) then
 						reducaopenal = true
 						ResetPedMovementClipset(PlayerPedId(),0)
@@ -309,7 +309,7 @@ Citizen.CreateThread(function()
 			if distance02 <= 100 and reducaopenal then
 				DrawMarker(21,1669.51,2487.71,45.82,0,0,0,0,180.0,130.0,1.0,1.0,0.5,255,255,255,100,1,0,0,1)
 				if distance02 <= 1.2 then
-					drawTxt("PRESSIONE  ~r~E~w~  PARA CONCLUIR",4,0.5,0.93,0.50,255,255,255,180)
+					drawTxt("PRESSIONE  ~r~E~w~  PARA ENTREGAR A CAIXA",4,0.5,0.93,0.50,255,255,255,180)
 					if IsControlJustPressed(0,38) then
 						reducaopenal = false
 						TriggerServerEvent("diminuirpena")

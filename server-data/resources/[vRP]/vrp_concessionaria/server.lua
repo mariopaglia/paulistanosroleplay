@@ -114,9 +114,9 @@ function func.comprarVeiculo(categoria, modelo)
                             vehicle = veiculo.model
                         })
                         TriggerClientEvent("vrp_concessionaria:notify", source,
-                                           "Oba!", "Pagou <b>$" ..
+                                           "Oba!", "Pagou <b>R$" ..
                                                vRP.format(parseInt(valor)) ..
-                                               " dólares</b>.", "success")
+                                               "</b>.", "success")
                         return true
                     else
                         TriggerClientEvent("vrp_concessionaria:notify", source,
@@ -179,14 +179,13 @@ function func.venderVeiculo(categoria, modelo)
                     
         vRP.execute("vRP/remove_vrp_srv_data",
                     {dkey = "custom:u" .. user_id .. "veh_" .. veiculo.model})
-        vRP.setSData("custom:u" .. user_id .. "veh_" .. veiculo.model,
-                     json.encode())
-
+        -- vRP.setSData("custom:u" .. user_id .. "veh_" .. veiculo.model,
+        --              json.encode())
         vRP.giveMoney(user_id, parseInt(price))
         if parseInt(price) > 0 then
             TriggerClientEvent("vrp_concessionaria:notify", source, "Oba!",
-                               "Recebeu <b>$" .. vRP.format(parseInt(price)) ..
-                                   " dólares</b>.", "success")
+                               "Recebeu <b>R$" .. vRP.format(parseInt(price)) ..
+                                   "</b>.", "success")
         end
         vRP.closeMenu(source)
 

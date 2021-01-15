@@ -28,12 +28,12 @@ local bancos = {
 }
 
 local lojas = {
-	{ id = 13 , nome = "Loja de Departamento" , segundos = 120 , cops = 0 , recompensa = math.random(70000,140000) },
+	{ id = 13 , nome = "Loja de Departamento" , segundos = 120 , cops = 4 , recompensa = math.random(70000,140000) },
 	{ id = 14 , nome = "Loja de Departamento" , segundos = 120 , cops = 4 , recompensa = math.random(70000,140000) },
 	{ id = 15 , nome = "Loja de Departamento" , segundos = 120 , cops = 4 , recompensa = math.random(70000,140000) },
 	{ id = 16 , nome = "Loja de Departamento" , segundos = 120 , cops = 4 , recompensa = math.random(70000,140000) },
 	{ id = 17 , nome = "Loja de Departamento" , segundos = 120 , cops = 4 , recompensa = math.random(70000,140000) },
-	{ id = 18 , nome = "Loja de Departamento" , segundos = 20 , cops = 0 , recompensa = math.random(70000,140000) },
+	{ id = 18 , nome = "Loja de Departamento" , segundos = 120 , cops = 4 , recompensa = math.random(70000,140000) },
 	{ id = 19 , nome = "Loja de Departamento" , segundos = 120 , cops = 4 , recompensa = math.random(70000,140000) },
 	{ id = 20 , nome = "Loja de Departamento" , segundos = 120 , cops = 4 , recompensa = math.random(70000,140000) },
 	{ id = 21 , nome = "Loja de Departamento" , segundos = 120 , cops = 4 , recompensa = math.random(70000,140000) },
@@ -47,10 +47,13 @@ local outros = {
 	{ id = 26 , nome = "Vanilla" , segundos = 120 , cops = 4 , recompensa = math.random(90000,150000) },
 	{ id = 27 , nome = "Yellow Jack" , segundos = 120 , cops = 4 , recompensa = math.random(90000,150000) },
 }
-
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- FUNÇÕES
 -----------------------------------------------------------------------------------------------------------------------------------------
+
+---------------------
+-- BANCOS
+---------------------
 function rob.IniciandoRoubo1(id,x,y,z,head)
 	local source = source
 	local user_id = vRP.getUserId(source)
@@ -97,6 +100,9 @@ function rob.IniciandoRoubo1(id,x,y,z,head)
 	end
 end
 
+---------------------
+-- LOJAS
+---------------------
 function rob.IniciandoRoubo2(id,x,y,z,head)
 	local source = source
 	local user_id = vRP.getUserId(source)
@@ -143,6 +149,9 @@ function rob.IniciandoRoubo2(id,x,y,z,head)
 	end
 end
 
+---------------------
+-- OUTROS
+---------------------
 function rob.IniciandoRoubo3(id,x,y,z,head)
 	local source = source
 	local user_id = vRP.getUserId(source)
@@ -200,7 +209,6 @@ function rob.CancelandoRoubo1()
 				end)
 			end
 		end
-		variavel1 = variavel1-5000
 		TriggerClientEvent('removerblip',-1)
 		assaltante1 = false
 	end
@@ -217,7 +225,6 @@ function rob.CancelandoRoubo2()
 				end)
 			end
 		end
-		variavel2 = variavel2-5000
 		TriggerClientEvent('removerblip',-1)
 		assaltante2 = false
 	end
@@ -234,7 +241,6 @@ function rob.CancelandoRoubo3()
 				end)
 			end
 		end
-		variavel3 = variavel3-5000
 		TriggerClientEvent('removerblip',-1)
 		assaltante3 = false
 	end

@@ -24,20 +24,31 @@ function emP.checkVehicle()
 			if puser_id then
 				local vehicle = vRP.query("creative/get_vehicles",{ user_id = parseInt(puser_id), vehicle = vname })
 				if #vehicle <= 0 then
-					TriggerClientEvent("Notify",source,"importante","Veículo não encontrado na lista do proprietário.",8000)
+					TriggerClientEvent("Notify",source,"importante","Veículo não encontrado na lista do proprietário",8000)
 						return
 					end
 					if parseInt(vehicle[1].detido) == 1 then
-						TriggerClientEvent("Notify",source,"aviso","Veículo encontra-se apreendido na seguradora.",8000)
+						TriggerClientEvent("Notify",source,"aviso","Veículo encontra-se apreendido na seguradora",8000)
 						return
 					end
 					if banned then
-						TriggerClientEvent("Notify",source,"negado","Veículos de serviço ou alugados não podem ser desmanchados.",8000)
+						TriggerClientEvent("Notify",source,"negado","Veículos de serviço ou alugados não podem ser desmanchados",8000)
 						return
 					end
 				end
 
 			return true
 		end
+	end
+end
+
+function emP.checkItem()
+	local source = source
+	local user_id = vRP.getUserId(source)
+	if vRP.getInventoryItemAmount(user_id,"macarico") >= 1 then
+		vRP.tryGetInventoryItem(user_id,"macarico",1)
+		return true
+	else
+		TriggerClientEvent("Notify",source,"negado","Você necessita de <b>1x Maçarico</b> para realizar o desmanche",5000)
 	end
 end

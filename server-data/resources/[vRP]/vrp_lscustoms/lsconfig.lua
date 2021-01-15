@@ -725,7 +725,7 @@ LSC_Config.prices = {
 }
 
 LSC_Config.ModelBlacklist = {
-	--"police"
+	-- "trailrota2"
 }
 
 LSC_Config.lock = true

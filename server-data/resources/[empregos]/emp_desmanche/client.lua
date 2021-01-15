@@ -29,13 +29,13 @@ Citizen.CreateThread(function()
 				if distance <= 50 and GetPedInVehicleSeat(GetVehiclePedIsUsing(ped),-1) == ped then
 					DrawMarker(23,v.x,v.y,v.z-0.96,0,0,0,0,0,0,5.0,5.0,0.5,255,0,0,50,0,0,0,0)
 					if distance <= 3.1 and IsControlJustPressed(0,38) then
-						if emP.checkVehicle() and emP.checkPermission(v.perm) then
+						if emP.checkVehicle() and emP.checkPermission(v.perm) and emP.checkItem() then
 							roubando = true
-							segundos = 10
+							segundos = 60
 							FreezeEntityPosition(GetVehiclePedIsUsing(ped),true)
 
 							repeat
-								Citizen.Wait(10)
+								Citizen.Wait(60)
 							until segundos == 0
 
 							TriggerServerEvent("desmancheVehicles")

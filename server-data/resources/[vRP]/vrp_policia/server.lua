@@ -9,6 +9,7 @@ local webhookpolicia = "https://discord.com/api/webhooks/792944214543171605/qpfM
 local webhookparamedico = "https://discord.com/api/webhooks/793597683155599380/ql-y4081JzoLAv-KwjKVFmDZLMvfVmFNSFnig6NKSyxCvsfzN51lJuui9S0rsrm8doKk"
 local webhookmecanico = "https://discord.com/api/webhooks/793597828386521108/UsgyanaAIxAXtNuDuP8Cbf67cauDpARltO9RxIAsGioYKolylf3TWyJl_CtTRyK5sA3O"
 local prender = "https://discord.com/api/webhooks/793598348400525362/7Vmc5T27ujAUmvJYwVKSlAAtEIOlzbdDyxYHFiqF5lSTakzkYiYg23ObwslxDE624uF-"
+local webhookdetido = "https://discord.com/api/webhooks/798618363663614052/SBxflS1IWnK_y4anATpLS3AxMLRI0PRN9tAulg2cS2yKq1_tQjC4wZH7Pf1FIvS3YIi6"
 
 function SendWebhookMessage(webhook,message)
 	if webhook ~= nil and webhook ~= "" then
@@ -321,6 +322,25 @@ RegisterCommand('toogle',function(source,args,rawCommand)
 		SendWebhookMessage(webhookpolicia,"```prolog\n[POLICIAL]: "..user_id.." "..identity.name.." "..identity.firstname.." \n[==========ENTROU EM SERVICO=========] "..os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S").." \r```")
 
 -----------------------------------------------------------------------------------------------------------------------------------------
+-- POLICIA RODOVIÁRIA FEDERAL
+-----------------------------------------------------------------------------------------------------------------------------------------
+
+---------------------
+-- POLICIAL PRF
+---------------------
+	elseif vRP.hasPermission(user_id,"prf.permissao") then
+		TriggerEvent('eblips:remove',source)
+		vRP.addUserGroup(user_id,"PRFP")
+		TriggerClientEvent("Notify",source,"sucesso","Você saiu de serviço.")
+		SendWebhookMessage(webhookpolicia,"```prolog\n[POLICIAL]: "..user_id.." "..identity.name.." "..identity.firstname.." \n[===========SAIU DE SERVICO==========] "..os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S").." \r```")
+		TriggerClientEvent('desligarRadios',source)
+	elseif vRP.hasPermission(user_id,"toogleprf.permissao") then
+		TriggerEvent('eblips:add',{ name = "Policial Civil", src = source, color = 47 })
+		vRP.addUserGroup(user_id,"PRF")
+		TriggerClientEvent("Notify",source,"sucesso","Você entrou de serviço.")
+		SendWebhookMessage(webhookpolicia,"```prolog\n[POLICIAL]: "..user_id.." "..identity.name.." "..identity.firstname.." \n[==========ENTROU EM SERVICO=========] "..os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S").." \r```")
+
+-----------------------------------------------------------------------------------------------------------------------------------------
 -- HOSPITAL
 -----------------------------------------------------------------------------------------------------------------------------------------
 
@@ -378,13 +398,13 @@ RegisterCommand('toogle',function(source,args,rawCommand)
 		TriggerEvent('eblips:remove',source)
 		vRP.addUserGroup(user_id,"PaisanaLiderMecanico")
 		TriggerClientEvent("Notify",source,"sucesso","Você saiu de serviço.")
-		SendWebhookMessage(webhookmecanico,"```prolog\n[MECÂNICO]: "..user_id.." "..identity.name.." "..identity.firstname.." \n[===========SAIU DE SERVICO==========] "..os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S").." \r```")
+		SendWebhookMessage(webhookmecanico,"```prolog\n[MECANICO]: "..user_id.." "..identity.name.." "..identity.firstname.." \n[===========SAIU DE SERVICO==========] "..os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S").." \r```")
 		TriggerClientEvent('desligarRadios',source)
 	elseif vRP.hasPermission(user_id,"paisanamecanicolider.permissao") then
 		TriggerEvent('eblips:add',{ name = "Mecanico", src = source, color = 48 })
 		vRP.addUserGroup(user_id,"LIDERMecanico")
 		TriggerClientEvent("Notify",source,"sucesso","Você entrou em serviço.")
-		SendWebhookMessage(webhookmecanico,"```prolog\n[MECÂNICO]: "..user_id.." "..identity.name.." "..identity.firstname.." \n[==========ENTROU EM SERVICO=========] "..os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S").." \r```")
+		SendWebhookMessage(webhookmecanico,"```prolog\n[MECANICO]: "..user_id.." "..identity.name.." "..identity.firstname.." \n[==========ENTROU EM SERVICO=========] "..os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S").." \r```")
 ---------------------
 -- MECANICO
 ---------------------
@@ -392,13 +412,13 @@ RegisterCommand('toogle',function(source,args,rawCommand)
 		TriggerEvent('eblips:remove',source)
 		vRP.addUserGroup(user_id,"PaisanaMecanico")
 		TriggerClientEvent("Notify",source,"sucesso","Você saiu de serviço.")
-		SendWebhookMessage(webhookmecanico,"```prolog\n[MECÂNICO]: "..user_id.." "..identity.name.." "..identity.firstname.." \n[===========SAIU DE SERVICO==========] "..os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S").." \r```")
+		SendWebhookMessage(webhookmecanico,"```prolog\n[MECANICO]: "..user_id.." "..identity.name.." "..identity.firstname.." \n[===========SAIU DE SERVICO==========] "..os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S").." \r```")
 		TriggerClientEvent('desligarRadios',source)
 	elseif vRP.hasPermission(user_id,"paisanamecanico.permissao") then
 		vRP.addUserGroup(user_id,"Mecanico")
 		TriggerEvent('eblips:add',{ name = "Mecanico", src = source, color = 48 })
 		TriggerClientEvent("Notify",source,"sucesso","Você entrou em serviço.")
-		SendWebhookMessage(webhookmecanico,"```prolog\n[MECÂNICO]: "..user_id.." "..identity.name.." "..identity.firstname.." \n[==========ENTROU EM SERVICO=========] "..os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S").." \r```")
+		SendWebhookMessage(webhookmecanico,"```prolog\n[MECANICO]: "..user_id.." "..identity.name.." "..identity.firstname.." \n[==========ENTROU EM SERVICO=========] "..os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S").." \r```")
 	end
 end)
 
@@ -445,25 +465,37 @@ end)
 -- DETIDO
 -----------------------------------------------------------------------------------------------------------------------------------------
 RegisterCommand('detido',function(source,args,rawCommand)
-	local user_id = vRP.getUserId(source)
-	if vRP.hasPermission(user_id,"policia.permissao") then
-		local placa,vname,vnet = vRPclient.ModelName(source,7)
-		local placa_user = vRP.getUserByRegistration(placa)
-		if placa_user then
-			if vname then
-				local rows = vRP.query("vRP/get_vehicle",{ user_id = placa_user, vehicle = vname })
-				if #rows > 0 then
-					if rows[1].detido == 1 then
-						TriggerClientEvent("Notify",source,"importante","Este veículo já se encontra detido.")
-					else
-						vRP.execute("vRP/set_detido",{ user_id = placa_user, vehicle = vname, detido = 1, time = parseInt(os.time()) })
-						TriggerClientEvent("Notify",source,"sucesso","Veículo detido com sucesso.")
-					end
-				end
-			end
+    local user_id = vRP.getUserId(source)
+    if vRP.hasPermission(user_id,"policia.permissao") then
+        local vehicle,vnetid,placa,vname,lock,banned = vRPclient.vehList(source,5)
+        local motivo = vRP.prompt(source,"Motivo:","")
+        if motivo == "" then
+			return
 		end
-	end
-end)
+		local oficialid = vRP.getUserIdentity(user_id)
+        if vehicle then
+            local puser_id = vRP.getUserByRegistration(placa)
+            local rows = vRP.query("creative/get_vehicles",{ user_id = parseInt(puser_id), vehicle = vname })
+            if rows[1] then
+                if parseInt(rows[1].detido) == 1 then
+                    TriggerClientEvent("Notify",source,"importante","Este veículo já se encontra detido.",8000)
+                else
+                	local identity = vRP.getUserIdentity(puser_id)
+                	local nplayer = vRP.getUserSource(parseInt(puser_id))
+                	SendWebhookMessage(webhookdetido,"```prolog\n[OFICIAL]: "..user_id.." "..oficialid.name.." "..oficialid.firstname.." \n[==============PRENDEU==============] \n[CARRO]: "..vname.." \n[PASSAPORTE]: "..puser_id.." "..identity.name.." "..identity.firstname.." \n[MOTIVO]: "..motivo.." "..os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S").." \r```")
+                    vRP.execute("creative/set_detido",{ user_id = parseInt(puser_id), vehicle = vname, detido = 1, time = parseInt(os.time()) })
+
+					randmoney = math.random(90,150)
+					vRP.giveMoney(user_id,parseInt(randmoney))
+					TriggerClientEvent("Notify",source,"sucesso","Carro apreendido com sucesso.")
+					TriggerClientEvent("Notify",source,"importante","Você recebeu <b>$"..vRP.format(parseInt(randmoney)).." dólares</b> de bonificação.")
+					TriggerClientEvent("Notify",nplayer,"importante","Seu Veículo foi <b>Detido</b>.<br><b>Motivo:</b> "..motivo..".")
+					vRPclient.playSound(source,"Hack_Success","DLC_HEIST_BIOLAB_PREP_HACKING_SOUNDS")
+                end
+            end
+        end
+    end
+end) 
 
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- PRENDER
@@ -488,7 +520,10 @@ RegisterCommand('prender',function(source,args,rawCommand)
 		local nplayer = vRP.getUserSource(parseInt(args[1]))
 		SendWebhookMessage(prender,"```prolog\n[OFICIAL]: "..user_id.." "..oficialid.name.." "..oficialid.firstname.." \n[==============PRENDEU==============] \n[PASSAPORTE]: "..(args[1]).." "..identity.name.." "..identity.firstname.." \n[TEMPO]: "..vRP.format(parseInt(args[2])).." Meses \n[CRIMES]: "..crimes.." "..os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S").." \r```")
 
-		TriggerClientEvent("Notify",player,"importante","Você foi preso pelo(s) seguinte(s) crime(s): "..crimes..".")
+		randmoney = math.random(500,2000)
+		vRP.giveMoney(user_id,parseInt(randmoney))
+		TriggerClientEvent("Notify",source,"sucesso","Prisão efetuada com sucesso, você recebeu <b>R$ "..vRP.format(parseInt(randmoney)).."</b> de bonificação")
+		TriggerClientEvent("Notify",player,"importante","Você foi preso pelos seguintes crimes: <b>"..crimes.."</b>")
 		prison_lock(parseInt(args[1]))
 	end
 end)
@@ -1019,19 +1054,22 @@ function prison_lock(target_id)
 			local value = vRP.getUData(parseInt(target_id),"vRP:prisao")
 			local tempo = json.decode(value) or 0
 			if parseInt(tempo) >= 1 then
-				TriggerClientEvent("Notify",player,"importante","Ainda vai passar <b>"..parseInt(tempo).." meses</b> preso.")
+				TriggerClientEvent("Notify",player,"importante","Ainda vai passar <b>"..parseInt(tempo).." meses</b> preso")
 				vRP.setUData(parseInt(target_id),"vRP:prisao",json.encode(parseInt(tempo)-1))
 				prison_lock(parseInt(target_id))
 			elseif parseInt(tempo) == 0 then
 				TriggerClientEvent('prisioneiro',player,false)
 				vRPclient.teleport(player,1850.5,2604.0,45.5)
 				vRP.setUData(parseInt(target_id),"vRP:prisao",json.encode(-1))
-				TriggerClientEvent("Notify",player,"importante","Sua sentença terminou, esperamos não ve-lo novamente.")
+				TriggerClientEvent("Notify",player,"importante","Sua sentença terminou, esperamos não ve-lo novamente")
 			end
-			vRPclient.killGod(player)
+			if vRPclient.getHealth(player) <= 100 then
+				vRPclient.killGod(player)
+			end
 		end)
 	end
 end
+
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- DIMINUIR PENA
 -----------------------------------------------------------------------------------------------------------------------------------------
@@ -1041,17 +1079,17 @@ AddEventHandler("diminuirpena",function()
 	local user_id = vRP.getUserId(source)
 	local value = vRP.getUData(parseInt(user_id),"vRP:prisao")
 	local tempo = json.decode(value) or 0
-	if tempo >= 5 then
+	if tempo >= 10 then
 		vRP.setUData(parseInt(user_id),"vRP:prisao",json.encode(parseInt(tempo)-2))
-		TriggerClientEvent("Notify",source,"importante","Sua pena foi reduzida em <b>2 meses</b>, continue o trabalho.")
+		TriggerClientEvent("Notify",source,"importante","Sua pena foi reduzida em <b>2 meses</b>, continue o trabalho")
 	else
-		TriggerClientEvent("Notify",source,"importante","Atingiu o limite da redução de pena, não precisa mais trabalhar.")
+		TriggerClientEvent("Notify",source,"importante","Atingiu o limite da redução de pena, não precisa mais trabalhar")
 	end
 end)
+
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- BUG
 -----------------------------------------------------------------------------------------------------------------------------------------
-
 RegisterCommand('bug',function(source,rawCommand)
 	local user_id = vRP.getUserId(source)		
 		vRPclient._setCustomization(source,vRPclient.getCustomization(source))
@@ -1084,6 +1122,8 @@ RegisterCommand('p',function(source,args,rawCommand)
 			TriggerClientEvent("Notify",source,"sucesso","Localização enviada com sucesso.")
 			vRPclient.playSound(source,"Event_Message_Purple","GTAO_FM_Events_Soundset")
 		end
+	else
+		TriggerClientEvent("Notify",source,"negado","Você não pode enviar sua localização desmaiado/morto")
 	end
 end)
 -----------------------------------------------------------------------------------------------------------------------------------------

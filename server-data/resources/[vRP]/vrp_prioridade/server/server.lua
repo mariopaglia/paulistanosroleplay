@@ -3,11 +3,16 @@ local Config = {}
 -- Priority list can be any identifier. (hex steamid, steamid32, ip) Integer = power over other priorities
 -- A lot of the steamid converting websites are broken rn and give you the wrong steamid. I use https://steamid.xyz/ with no problems.
 Config.Priority = {
-	["steam:110000115bc0c5b"] = 100, 
+	["steam:110000115bc0c5b"] = 100, -- Porcão (1)
+	["steam:110000104dcdf67"] = 95, -- Kappa (2)
+	["steam:11000010b5d5948"] = 95, -- Wally (5)
+	["steam:110000104c4cfa1"] = 95, -- Yang Programador (83)
+	["steam:11000010cb6cb95"] = 95, -- Cortez (13)
+	["steam:11000011094c516"] = 95, -- Renan (17)
 } 
 
 Config.RequireSteam = true
-Config.PriorityOnly = false -- whitelist only server
+Config.PriorityOnly = true -- whitelist only server
 
 -- Needed this because sometimes canceling events don't work... for me at least
 -- callback(isbanned, banmsg)
@@ -26,11 +31,11 @@ Config.Language = {
     joining = "Entrando...",
     connecting = "Conectando...",
     idrr = "Error 405.",
-    err = "There was an error",
+    err = "Havia um erro",
     pos = "[FILA] Você está em %d/%d na fila",
     connectingerr = "Erro ao te adicionar na lista",
     timedout = "Desconectado?",
-    wlonly = "You must be whitelisted to join this server",
+    wlonly = "Inauguração em 19/02/2021 - Acesse nosso Discord (https://discord.gg/F3Jp5J2) e fique por dentro das novidades!",
     banned = "Banido | motivo: %s",
     steam = "Error: Steam precisa estar aberta"
 }
@@ -235,7 +240,7 @@ function Queue:AddToConnecting(ids, ignorePos, autoRemove, done)
         done(Config.Language.connectingerr)
         self:RemoveFromConnecting(ids)
         self:RemoveFromQueue(ids)
-        self:DebugPrint("Player could not be added to the connecting list")
+        self:DebugPrint("O jogador não pôde ser adicionado à lista de conexão")
     end
     
     if self:ConnectingSize() >= 5 then removeFromQueue() return false end
@@ -278,7 +283,7 @@ function Queue:AddPriority(id, power)
             if k and type(k) == "string" and v and type(v) == "number" then
                 self.Priority[k] = v
             else
-                self:DebugPrint("Error adding a priority id, invalid data passed")
+                self:DebugPrint("Erro ao adicionar um ID de prioridade, dados inválidos passados")
                 return false
             end
         end
@@ -379,7 +384,7 @@ Citizen.CreateThread(function()
             -- prevent joining
             done(Config.Language.iderr)
             CancelEvent()
-            Queue:DebugPrint("Dropped " .. name .. ", couldn't retrieve any of their id's")
+            Queue:DebugPrint("Desistiu " .. name .. ", não conseguiram recuperar nenhum de seus IDs")
             return
         end
 
@@ -406,7 +411,7 @@ Citizen.CreateThread(function()
         while banned == nil do Citizen.Wait(1) end
         if banned then CancelEvent() return end
 
-        local reason = "You were kicked from joining the queue"
+        local reason = "Você foi expulso da fila"
         
         local function setReason(msg)
             reason = tostring(msg)
@@ -431,7 +436,7 @@ Citizen.CreateThread(function()
         if Queue:IsInQueue(ids) then
             rejoined = true
             Queue:UpdatePosData(src, ids, deferrals)
-            Queue:DebugPrint(string_format("%s[%s] has rejoined queue after cancelling", name, ids[1]))
+            Queue:DebugPrint(string_format("%s[%s] retornou à fila após o cancelamento", name, ids[1]))
         else
             Queue:AddToQueue(ids, connectTime, name, src, deferrals)
         end
@@ -555,7 +560,7 @@ Citizen.CreateThread(function()
             if not data.ids or not data.name or not data.firstconnect or data.priority == nil or not data.source then
                 data.deferrals.done(Config.Language.err .. "[1]")
                 table_remove(Queue.QueueList, i)
-                Queue:DebugPrint(tostring(data.name) .. "[" .. tostring(data.ids[1]) .. "] was removed from the queue because it had invalid data")
+                Queue:DebugPrint(tostring(data.name) .. "[" .. tostring(data.ids[1]) .. "] foi removido da fila porque tinha dados inválidos")
 
             elseif (data.timeout >= 300) and data.source ~= "debug" and os_time() - data.firstconnect > 5 then
                 data.deferrals.done(Config.Language.err .. "[2]")

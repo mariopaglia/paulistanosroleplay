@@ -435,6 +435,7 @@ local garages = {
 --													HELICOPTEROS VIP
 -----------------------------------------------------------------------------------------------------------------------------------------
 	[619] = { ['name'] = "Garagem", ['payment'] = false, ['perm'] = "carrosvip.permissao" },
+	[620] = { ['name'] = "Garagem", ['payment'] = false, ['public'] = true },
 }
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- GARAGEMS
@@ -634,9 +635,9 @@ function src.myVehicles(work)
 					if v.home == work then
 						for k2,v2 in pairs(vehicle) do
 							if parseInt(os.time()) <= parseInt(vehicle[k2].time+24*60*60) then
-								status = "<span class=\"red\">$"..vRP.format(parseInt(vRP.vehiclePrice(vehicle[k2].vehicle)*0.5)).."</span>"
+								status = "<span class=\"red\">R$ "..vRP.format(parseInt(vRP.vehiclePrice(vehicle[k2].vehicle)*0.5)).."</span>"
 							elseif vehicle[k2].detido == 1 then
-								status = "<span class=\"orange\">$"..vRP.format(parseInt(vRP.vehiclePrice(vehicle[k2].vehicle)*0.1)).."</span>"
+								status = "<span class=\"orange\">R$ "..vRP.format(parseInt(vRP.vehiclePrice(vehicle[k2].vehicle)*0.1)).."</span>"
 							else
 								status = "<span class=\"green\">Gratuita</span>"
 							end
@@ -652,11 +653,11 @@ function src.myVehicles(work)
 					else
 						for k2,v2 in pairs(vehicle) do
 							if parseInt(os.time()) <= parseInt(vehicle[k2].time+24*60*60) then
-								status = "<span class=\"red\">$"..vRP.format(parseInt(vRP.vehiclePrice(vehicle[k2].vehicle)*0.5)).."</span>"
+								status = "<span class=\"red\">R$ "..vRP.format(parseInt(vRP.vehiclePrice(vehicle[k2].vehicle)*0.5)).."</span>"
 							elseif vehicle[k2].detido == 1 then
-								status = "<span class=\"orange\">$"..vRP.format(parseInt(vRP.vehiclePrice(vehicle[k2].vehicle)*0.1)).."</span>"
+								status = "<span class=\"orange\">R$ "..vRP.format(parseInt(vRP.vehiclePrice(vehicle[k2].vehicle)*0.1)).."</span>"
 							else
-								status = "<span class=\"green\">$"..vRP.format(parseInt(vRP.vehiclePrice(vehicle[k2].vehicle)*0.005)).."</span>"
+								status = "<span class=\"green\">R$ "..vRP.format(parseInt(vRP.vehiclePrice(vehicle[k2].vehicle)*0.005)).."</span>"
 							end
 
 							if parseInt(os.time()) >= parseInt(vehicle[k2].ipva+24*15*60*60) then
@@ -672,11 +673,11 @@ function src.myVehicles(work)
 			else
 				for k,v in pairs(vehicle) do
 					if parseInt(os.time()) <= parseInt(vehicle[k].time+24*60*60) then
-						status = "<span class=\"red\">$"..vRP.format(parseInt(vRP.vehiclePrice(vehicle[k].vehicle)*0.5)).."</span>"
+						status = "<span class=\"red\">R$ "..vRP.format(parseInt(vRP.vehiclePrice(vehicle[k].vehicle)*0.5)).."</span>"
 					elseif vehicle[k].detido == 1 then
-						status = "<span class=\"orange\">$"..vRP.format(parseInt(vRP.vehiclePrice(vehicle[k].vehicle)*0.1)).."</span>"
+						status = "<span class=\"orange\">R$ "..vRP.format(parseInt(vRP.vehiclePrice(vehicle[k].vehicle)*0.1)).."</span>"
 					else
-						status = "<span class=\"green\">$"..vRP.format(parseInt(vRP.vehiclePrice(vehicle[k].vehicle)*0.005)).."</span>"
+						status = "<span class=\"green\">R$ "..vRP.format(parseInt(vRP.vehiclePrice(vehicle[k].vehicle)*0.005)).."</span>"
 					end
 
 					if parseInt(os.time()) >= parseInt(vehicle[k].ipva+24*15*60*60) then
@@ -708,7 +709,7 @@ function src.spawnVehicles(name,use)
 				local custom = json.decode(tuning) or {}
 				if vehicle[1] ~= nil then
 					if parseInt(os.time()) <= parseInt(vehicle[1].time+24*60*60) then
-						local ok = vRP.request(source,"Veículo desmanchado, deseja acionar o seguro pagando <b>R$"..vRP.format(parseInt(vRP.vehiclePrice(name)*0.2)).."</b> reais ?",60)
+						local ok = vRP.request(source,"Veículo na retenção, deseja acionar o seguro pagando <b>R$ "..vRP.format(parseInt(vRP.vehiclePrice(name)*0.5)).."</b> reais ?",60)
 						if ok then
 							if vRP.tryFullPayment(user_id,parseInt(vRP.vehiclePrice(name)*0.5)) then
 								vRP.execute("creative/set_detido",{ user_id = parseInt(user_id), vehicle = name, detido = 0, time = 0 })
@@ -718,9 +719,9 @@ function src.spawnVehicles(name,use)
 							end
 						end
 					elseif parseInt(vehicle[1].detido) >= 1 then
-						local ok = vRP.request(source,"Veículo na detenção, deseja acionar o seguro pagando <b>R$"..vRP.format(parseInt(vRP.vehiclePrice(name)*0.1)).."</b> reais ?",60)
+						local ok = vRP.request(source,"Veículo na detenção, deseja acionar o seguro pagando <b>R$ "..vRP.format(parseInt(vRP.vehiclePrice(name)*0.3)).."</b> reais ?",60)
 						if ok then
-							if vRP.tryFullPayment(user_id,parseInt(vRP.vehiclePrice(name)*0.1)) then
+							if vRP.tryFullPayment(user_id,parseInt(vRP.vehiclePrice(name)*0.3)) then
 								vRP.execute("creative/set_detido",{ user_id = parseInt(user_id), vehicle = name, detido = 0, time = 0 })
 								TriggerClientEvent("Notify",source,"sucesso","Veículo liberado.",10000)
 							else
@@ -754,7 +755,7 @@ function src.spawnVehicles(name,use)
 							end
 						else
 							if vRP.vehicleType(tostring(name)) == "exclusive" or vRP.vehicleType(tostring(name)) == "rental" then
-								local ok = vRP.request(source,"Deseja pagar o <b>Vehicle Tax</b> do veículo <b>"..vRP.vehicleName(name).."</b> por <b>R$"..vRP.format(parseInt(vRP.vehiclePrice(name)*0.00)).."</b> reais?",60)
+								local ok = vRP.request(source,"Deseja pagar o <b>Vehicle Tax</b> do veículo <b>"..vRP.vehicleName(name).."</b> por <b>R$ "..vRP.format(parseInt(vRP.vehiclePrice(name)*0.00)).."</b> reais?",60)
 								if ok then
 									if vRP.tryFullPayment(user_id,parseInt(vRP.vehiclePrice(name)*0.00)) then
 										vRP.execute("creative/set_ipva",{ user_id = parseInt(user_id), vehicle = name, ipva = parseInt(os.time()) })
@@ -768,7 +769,7 @@ function src.spawnVehicles(name,use)
 								if price_tax > 100000 then
 									price_tax = 100000
 								end
-								local ok = vRP.request(source,"Deseja pagar o <b>Vehicle Tax</b> do veículo <b>"..vRP.vehicleName(name).."</b> por <b>R$"..vRP.format(price_tax).."</b> reais?",60)
+								local ok = vRP.request(source,"Deseja pagar o <b>Vehicle Tax</b> do veículo <b>"..vRP.vehicleName(name).."</b> por <b>R$ "..vRP.format(price_tax).."</b> reais?",60)
 								if ok then
 									if vRP.tryFullPayment(user_id,price_tax) then
 										vRP.execute("creative/set_ipva",{ user_id = parseInt(user_id), vehicle = name, ipva = parseInt(os.time()) })
@@ -819,10 +820,11 @@ AddEventHandler("desmancheVehicles",function()
 			local puser_id = vRP.getUserByRegistration(placa)
 			if puser_id then
 				vRP.execute("creative/set_detido",{ user_id = parseInt(puser_id), vehicle = vname, detido = 1, time = parseInt(os.time()) })
-				vRP.giveInventoryItem(user_id,"dinheirosujo",parseInt(vRP.vehiclePrice(vname)*0.1))
+				vRP.giveInventoryItem(user_id,"dinheirosujo",parseInt(vRP.vehiclePrice(vname)*0.5))
+				TriggerClientEvent("Notify",source,"sucesso","Veículo <b>desmanchado</b> com sucesso, você recebeu <b>"..vRP.format(parseInt(vRP.vehiclePrice(vname)*0.5)).."x em Dinheiro Sujo</b>",8000)
 				vCLIENT.deleteVehicle(source,vehicle)
 				local identity = vRP.getUserIdentity(user_id)
-				SendWebhookMessage(webhookdesmanche,"```prolog\n[ID]: "..user_id.." "..identity.name.." "..identity.firstname.." \n[DESMANCHOU]: "..vname.." [ID]: "..puser_id.." \n[VALOR]: $"..vRP.format(parseInt(vRP.vehiclePrice(vname)*0.1)).." "..os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S").." \r```")
+				SendWebhookMessage(webhookdesmanche,"```prolog\n[ID]: "..user_id.." "..identity.name.." "..identity.firstname.." \n[DESMANCHOU]: "..vname.." [ID]: "..puser_id.." \n[VALOR]: R$ "..vRP.format(parseInt(vRP.vehiclePrice(vname)*0.1)).." "..os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S").." \r```")
 			end
 		end
 	end
@@ -854,7 +856,7 @@ function src.vehicleLock()
 				TriggerClientEvent("vrp_sound:source",source,'lock',0.5)
 				vRPclient.playAnim(source,true,{{"anim@mp_player_intmenu@key_fob@","fob_click"}},false)
 				if lock == 1 then
-					TriggerClientEvent("Notify",source,"importante","Veículo <b>trancado</b> com sucesso.",8000)
+					TriggerClientEvent("Notify",source,"importante","Veículo <>trancado</> com sucesso.",8000)
 				else
 					TriggerClientEvent("Notify",source,"importante","Veículo <b>destrancado</b> com sucesso.",8000)
 				end
@@ -1035,8 +1037,8 @@ RegisterCommand('vehs',function(source,args,rawCommand)
 					local identity = vRP.getUserIdentity(parseInt(args[2]))
 					local identity2 = vRP.getUserIdentity(user_id)
 					local price = tonumber(sanitizeString(vRP.prompt(source,"Valor:",""),"\"[]{}+=?!_()#@%/\\|,.",false))			
-					if vRP.request(source,"Deseja vender um <b>"..vRP.vehicleName(tostring(args[1])).."</b> para <b>"..identity.name.." "..identity.firstname.."</b> por <b>R$"..vRP.format(parseInt(price)).."</b> reais ?",30) then	
-						if vRP.request(nplayer,"Aceita comprar um <b>"..vRP.vehicleName(tostring(args[1])).."</b> de <b>"..identity2.name.." "..identity2.firstname.."</b> por <b>R$"..vRP.format(parseInt(price)).."</b> reais ?",30) then
+					if vRP.request(source,"Deseja vender um <b>"..vRP.vehicleName(tostring(args[1])).."</b> para <b>"..identity.name.." "..identity.firstname.."</b> por <b>R$ "..vRP.format(parseInt(price)).."</b> reais ?",30) then	
+						if vRP.request(nplayer,"Aceita comprar um <b>"..vRP.vehicleName(tostring(args[1])).."</b> de <b>"..identity2.name.." "..identity2.firstname.."</b> por <b>R$ "..vRP.format(parseInt(price)).."</b> reais ?",30) then
 							local vehicle = vRP.query("creative/get_vehicles",{ user_id = parseInt(args[2]), vehicle = tostring(args[1]) })
 							if parseInt(price) > 0 then
 								if vRP.tryFullPayment(parseInt(args[2]),parseInt(price)) then
@@ -1059,14 +1061,14 @@ RegisterCommand('vehs',function(source,args,rawCommand)
 											vRP.execute("creative/rem_srv_data",{ dkey = "chest:u"..parseInt(user_id).."veh_"..tostring(args[1]) })
 										end
 
-										TriggerClientEvent("Notify",source,"sucesso","Você Vendeu <b>"..vRP.vehicleName(tostring(args[1])).."</b> e Recebeu <b>$"..vRP.format(parseInt(price)).."</b> reais.",20000)
-										TriggerClientEvent("Notify",nplayer,"importante","Você recebeu as chaves do veículo <b>"..vRP.vehicleName(tostring(args[1])).."</b> de <b>"..identity2.name.." "..identity2.firstname.."</b> e pagou <b>$"..vRP.format(parseInt(price)).."</b> reais.",40000)
+										TriggerClientEvent("Notify",source,"sucesso","Você Vendeu <b>"..vRP.vehicleName(tostring(args[1])).."</b> e Recebeu <b>R$ "..vRP.format(parseInt(price)).."</b> reais.",20000)
+										TriggerClientEvent("Notify",nplayer,"importante","Você recebeu as chaves do veículo <b>"..vRP.vehicleName(tostring(args[1])).."</b> de <b>"..identity2.name.." "..identity2.firstname.."</b> e pagou <b>R$ "..vRP.format(parseInt(price)).."</b> reais.",40000)
 											vRPclient.playSound(source,"Hack_Success","DLC_HEIST_BIOLAB_PREP_HACKING_SOUNDS")
 											vRPclient.playSound(nplayer,"Hack_Success","DLC_HEIST_BIOLAB_PREP_HACKING_SOUNDS")
 											local consulta = vRP.getUData(user_id,"vRP:paypal")
 											local resultado = json.decode(consulta) or 0
 											vRP.setUData(user_id,"vRP:paypal",json.encode(parseInt(resultado + price)))
-											SendWebhookMessage(webhookvehs,"```prolog\n[ID]: "..user_id.." "..identity2.name.." "..identity2.firstname.." \n[VENDEU]: "..vRP.vehicleName(tostring(args[1])).." \n[PARA]: "..(args[2]).." "..identity.name.." "..identity.firstname.." \n[VALOR]: $"..vRP.format(parseInt(price)).." "..os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S").." \r```")
+											SendWebhookMessage(webhookvehs,"```prolog\n[ID]: "..user_id.." "..identity2.name.." "..identity2.firstname.." \n[VENDEU]: "..vRP.vehicleName(tostring(args[1])).." \n[PARA]: "..(args[2]).." "..identity.name.." "..identity.firstname.." \n[VALOR]: R$ "..vRP.format(parseInt(price)).." "..os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S").." \r```")
 										end
 									else
 										TriggerClientEvent("Notify",nplayer,"negado","Dinheiro insuficiente.",8000)

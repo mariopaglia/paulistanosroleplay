@@ -6,6 +6,7 @@ vRPNserver = Tunnel.getInterface("vrp_trunkchest")
 -- VARIÁVEIS
 -----------------------------------------------------------------------------------------------------------------------------------------
 local invOpen = false
+local cbb = false
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- STARTFOCUS
 -----------------------------------------------------------------------------------------------------------------------------------------
@@ -20,6 +21,7 @@ RegisterNUICallback("invClose",function(data)
 	SetNuiFocus(false,false)
 	SendNUIMessage({ action = "hideMenu" })
 	invOpen = false
+	cbb = false
 	vRPNserver.chestClose()
 end)
 -----------------------------------------------------------------------------------------------------------------------------------------
@@ -47,13 +49,21 @@ end)
 -- TAKEITEM
 -----------------------------------------------------------------------------------------------------------------------------------------
 RegisterNUICallback("takeItem",function(data)
-	vRPNserver.takeItem(data.item,data.amount)
+	if not cbb then
+		cbb = true
+		vRPNserver.takeItem(data.item,data.amount)
+		cbb = false
+	end
 end)
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- STOREITEM
 -----------------------------------------------------------------------------------------------------------------------------------------
 RegisterNUICallback("storeItem",function(data)
-	vRPNserver.storeItem(data.item,data.amount)
+	if not cbb then
+		cbb = true
+		vRPNserver.storeItem(data.item,data.amount)
+		cbb = false
+	end
 end)
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- REQUESTMOCHILA

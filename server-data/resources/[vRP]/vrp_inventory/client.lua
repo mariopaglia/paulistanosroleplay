@@ -6,6 +6,7 @@ vRPNserver = Tunnel.getInterface("vrp_inventory")
 -- VARIÁVEIS
 -----------------------------------------------------------------------------------------------------------------------------------------
 local invOpen = false
+local cbb = false
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- STARTFOCUS
 -----------------------------------------------------------------------------------------------------------------------------------------
@@ -21,6 +22,7 @@ RegisterNUICallback("invClose",function(data)
 	SetNuiFocus(false,false)
 	SendNUIMessage({ action = "hideMenu" })
 	invOpen = false
+	cbb = false
 end)
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- ABRIR INVENTARIO
@@ -95,19 +97,31 @@ end)]]
 -- DROPITEM
 -----------------------------------------------------------------------------------------------------------------------------------------
 RegisterNUICallback("dropItem",function(data)
-	vRPNserver.dropItem(data.item,data.amount)
+	if not cbb then
+		cbb = true
+		vRPNserver.dropItem(data.item,data.amount)
+		cbb = false
+	end
 end)
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- SENDITEM
 -----------------------------------------------------------------------------------------------------------------------------------------
 RegisterNUICallback("sendItem",function(data)
-	vRPNserver.sendItem(data.item,data.amount)
+	if not cbb then
+		cbb = true
+		vRPNserver.sendItem(data.item,data.amount)
+		cbb = false
+	end
 end)
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- USEITEM
 -----------------------------------------------------------------------------------------------------------------------------------------
 RegisterNUICallback("useItem",function(data)
-	vRPNserver.useItem(data.item,data.type,data.amount)
+	if not cbb then
+		cbb = true
+		vRPNserver.useItem(data.item,data.type,data.amount)
+		cbb = false
+	end
 end)
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- MOCHILA

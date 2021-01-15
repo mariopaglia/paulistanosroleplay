@@ -13,48 +13,48 @@ function emP.checkPermission()
 	end
 end
 
-local tbl = {
-	[1] = { locked = false, player = nil },
-	[2] = { locked = false, player = nil },
-	[3] = { locked = false, player = nil },
-	[4] = { locked = false, player = nil },
-	[5] = { locked = false, player = nil }
-	--[6] = { locked = false, player = nil },
-	--[7] = { locked = false, player = nil },
-	--[8] = { locked = false, player = nil },
-	--[9] = { locked = false, player = nil },
-	--[10] = { locked = false, player = nil }
-}
+-- local tbl = {
+-- 	[1] = { locked = false, player = nil },
+-- 	[2] = { locked = false, player = nil },
+-- 	[3] = { locked = false, player = nil },
+-- 	[4] = { locked = false, player = nil },
+-- 	[5] = { locked = false, player = nil }
+-- 	--[6] = { locked = false, player = nil },
+-- 	--[7] = { locked = false, player = nil },
+-- 	--[8] = { locked = false, player = nil },
+-- 	--[9] = { locked = false, player = nil },
+-- 	--[10] = { locked = false, player = nil }
+-- }
 
-RegisterServerEvent('lockGarage')
-AddEventHandler('lockGarage',function(b,garage)
-	local source = source
-	tbl[parseInt(garage)].locked = b
-	if not b then
-		tbl[parseInt(garage)].player = nil
-	else
-		tbl[parseInt(garage)].player = source
-	end
-	TriggerClientEvent('lockGarage',-1,tbl)
-end)
+-- RegisterServerEvent('lockGarage')
+-- AddEventHandler('lockGarage',function(b,garage)
+-- 	local source = source
+-- 	tbl[parseInt(garage)].locked = b
+-- 	if not b then
+-- 		tbl[parseInt(garage)].player = nil
+-- 	else
+-- 		tbl[parseInt(garage)].player = source
+-- 	end
+-- 	TriggerClientEvent('lockGarage',-1,tbl)
+-- end)
 
-RegisterServerEvent('getGarageInfo')
-AddEventHandler('getGarageInfo',function()
-	TriggerClientEvent('lockGarage',-1,tbl)
-end)
+-- RegisterServerEvent('getGarageInfo')
+-- AddEventHandler('getGarageInfo',function()
+-- 	TriggerClientEvent('lockGarage',-1,tbl)
+-- end)
 
-AddEventHandler('playerDropped',function()
-	local source = source
-	for i,g in pairs(tbl) do
-		if g.player then
-			if source == g.player then
-				g.locked = false
-				g.player = nil
-				TriggerClientEvent('lockGarage',-1,tbl)
-			end
-		end
-	end
-end)
+-- AddEventHandler('playerDropped',function()
+-- 	local source = source
+-- 	for i,g in pairs(tbl) do
+-- 		if g.player then
+-- 			if source == g.player then
+-- 				g.locked = false
+-- 				g.player = nil
+-- 				TriggerClientEvent('lockGarage',-1,tbl)
+-- 			end
+-- 		end
+-- 	end
+-- end)
 
 RegisterServerEvent("LSC:buttonSelected")
 AddEventHandler("LSC:buttonSelected", function(name,button)

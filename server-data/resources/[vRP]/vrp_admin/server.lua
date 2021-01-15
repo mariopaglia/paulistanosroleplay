@@ -3,6 +3,8 @@ local Proxy = module("vrp","lib/Proxy")
 vRP = Proxy.getInterface("vRP")
 vRPclient = Tunnel.getInterface("vRP")
 
+vADMC = Tunnel.getInterface("vrp_admin","vrp_admin")
+
 local webhookaddremcar = "https://discord.com/api/webhooks/795671123299663893/-CZgy7czgUO7BeEHlYJpdCm00mxjG11oSrEHkhUC1r2mmXgGm93p9vq4VWp6gTzyi9vK"
 local webhookmoney = "https://discord.com/api/webhooks/795667756493963304/4Azax194qMKWm6y1KfADk8ernA8YpUF1CKWvHdlaG2tNSd_NHhy3-fycr9RvpTAp41qa"
 local webhookcarros = "https://discord.com/api/webhooks/793197093690671134/CVTPwlTgBR2CVOKsyTEXCXau6KX4L8eZFijtmOY06S6wnCs2BRh3urrUUut3NzHPWQi2"
@@ -67,7 +69,7 @@ end)
 -----------------------------------------------------------------------------------------------------------------------------------------
 RegisterCommand('limparinv',function(source,args,rawCommand)
     local user_id = vRP.getUserId(source)
-    if vRP.hasPermission(user_id,"god.permissao") then
+    if vRP.hasPermission(user_id,"admin.permissao") or vRP.hasPermission(user_id,"mod.permissao") then
         vRP.clearInventory(user_id)
         TriggerClientEvent("Notify",source,"importante","Seu <b>inventario</b> foi limpo.")
     end
@@ -127,7 +129,7 @@ end)
 RegisterCommand('limparea',function(source,args,rawCommand)
 	local user_id = vRP.getUserId(source)
 	local x,y,z = vRPclient.getPosition(source)
-	if vRP.hasPermission(user_id,"admin.permissao") then
+	if vRP.hasPermission(user_id,"admin.permissao") or vRP.hasPermission(user_id,"mod.permissao") then
 		TriggerClientEvent("syncarea",-1,x,y,z)
 	end
 end)
@@ -141,14 +143,25 @@ RegisterCommand('god',function(source,args,rawCommand)
 	if vRP.hasPermission(user_id,"god.permissao") then
 		if args[1] then
 			if nplayer then
+				local raio = vRPclient.getNearestPlayers(nplayer,50)
+				for k, v in pairs(raio) do
+					vADMC._showGodHeart(k, nplayer)
+				end
+				vADMC._showGodHeart(nplayer, nplayer)
 				local nuser_id = vRP.getUserId(nplayer)
 				local identitynu = vRP.getUserIdentity(nuser_id)
+				
 				vRPclient.killGod(nplayer)
 				vRPclient._stopAnim(nplayer,false)
 				vRPclient.setHealth(nplayer,400)
 				SendWebhookMessage(webhookcmdgod,"```prolog\n[ID]: "..user_id.." "..identity.name.." "..identity.firstname.." \n[GOD EM]: "..nuser_id.." "..identitynu.name.." "..identitynu.firstname.." "..os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S").." \r```") 
 			end
 		else
+			local raio = vRPclient.getNearestPlayers(source,30)
+			for k, v in pairs(raio) do
+				vADMC._showGodHeart(k, source)
+			end
+			vADMC._showGodHeart(source, source)
 			vRPclient._stopAnim(source,false)
 			vRPclient.killGod(source)
 			vRPclient.setHealth(source,400) -- Vida
@@ -305,11 +318,14 @@ RegisterCommand('unban',function(source,args,rawCommand)
 	if vRP.hasPermission(user_id,"ban.permissao") then
 		if args[1] then
 			vRP.setBanned(parseInt(args[1]),false)
+			vRP.setWhitelisted(parseInt(args[1]),true)
 		end
 	end
 end)
 
-
+-----------------------------------------------------------------------------------------------------------------------------------------
+-- RESETAR O PERSONAGEM
+-----------------------------------------------------------------------------------------------------------------------------------------
 RegisterCommand('reset',function(source,args,rawCommand)
     local user_id = vRP.getUserId(source)
     if user_id then
@@ -568,6 +584,27 @@ RegisterCommand('s',function(source,args,rawCommand)
 				if player then
 					async(function()
 						TriggerClientEvent('chatMessage',player,identity.name.." "..identity.firstname.. " [" ..user_id.. "]: ",{255,215,0},rawCommand:sub(3))
+					end)
+				end
+			end
+		end
+	end
+end)
+-----------------------------------------------------------------------------------------------------------------------------------------
+-- CHAT INTERNO DO HOSPITAL
+-----------------------------------------------------------------------------------------------------------------------------------------
+RegisterCommand('hp',function(source,args,rawCommand)
+	if args[1] then
+		local user_id = vRP.getUserId(source)
+		local identity = vRP.getUserIdentity(user_id)
+		local permission = "paramedico.permissao"
+		if vRP.hasPermission(user_id,"paramedico.permissao") then
+			local hospital = vRP.getUsersByPermission(permission)
+			for l,w in pairs(hospital) do
+				local player = vRP.getUserSource(parseInt(w))
+				if player then
+					async(function()
+						TriggerClientEvent('chatMessage',player,identity.name.." "..identity.firstname.. " [" ..user_id.. "]: ",{255,0,0},rawCommand:sub(3))
 					end)
 				end
 			end

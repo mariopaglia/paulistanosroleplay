@@ -9,9 +9,9 @@ AddEventHandler("vrp_legacyfuel:pagamento",function(price,galao)
 		if vRP.tryPayment(user_id,price) then
 			if galao then
 				TriggerClientEvent('vrp_legacyfuel:galao',source)
-				TriggerClientEvent("Notify",source,"sucesso","Pagou <b>$"..vRP.format(price).." dólares</b> pelo <b>Galão</b>.")
+				TriggerClientEvent("Notify",source,"sucesso","Pagou <b>R$ "..vRP.format(price).." </b> pelo <b>Galão</b>")
 			else
-				TriggerClientEvent("Notify",source,"sucesso","Pagou <b>$"..vRP.format(price).." dólares</b> em combustível.")
+				TriggerClientEvent("Notify",source,"sucesso","Pagou <b>R$ "..vRP.format(price).." </b> em combustível")
 			end
 		else
 			TriggerClientEvent('vrp_legacyfuel:insuficiente',source)

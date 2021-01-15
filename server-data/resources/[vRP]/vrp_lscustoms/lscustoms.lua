@@ -535,10 +535,10 @@ Citizen.CreateThread(function()
 													TriggerEvent("Notify","negado","Apenas <b>Mecânicos</b> podem modificar os veículos.",8000)
 												end
 											else
-												drawTxt("PRESSIONE  ~r~E~w~  PARA ACESSAR A ~y~BENNYS",4,0.5,0.90,0.50,255,255,255,200)
+												drawTxt("PRESSIONE  ~r~E~w~  PARA ACESSAR A ~y~MECANICA",4,0.5,0.90,0.50,255,255,255,200)
 											end
 										else
-											drawTxt("~y~BENNYS~w~ OCUPADA NO MOMENTO",4,0.5,0.90,0.50,255,255,255,200)
+											drawTxt("~y~MECANICA~w~ OCUPADA NO MOMENTO",4,0.5,0.90,0.50,255,255,255,200)
 										end
 									else
 										if IsControlJustPressed(1,38) then
@@ -551,11 +551,11 @@ Citizen.CreateThread(function()
 												TriggerEvent("Notify","negado","Apenas <b>Mecânicos</b> podem modificar os veículos.",8000)
 											end
 										else
-											drawTxt("PRESSIONE  ~r~E~w~  PARA ACESSAR A ~y~BENNYS",4,0.5,0.90,0.50,255,255,255,200)
+											drawTxt("PRESSIONE  ~r~E~w~  PARA ACESSAR A ~y~MECANICA",4,0.5,0.90,0.50,255,255,255,200)
 										end
 									end
 								else
-									drawTxt("~y~BENNYS~w~ OCUPADA NO MOMENTO",4,0.5,0.90,0.50,255,255,255,200)
+									drawTxt("~y~MECANICA~w~ OCUPADA NO MOMENTO",4,0.5,0.90,0.50,255,255,255,200)
 								end
 							end
 						else
@@ -568,7 +568,7 @@ Citizen.CreateThread(function()
 											currentgarage = i
 											DriveInGarage()
 										else
-											drawTxt("~y~BENNYS~w~ OCUPADA NO MOMENTO",4,0.5,0.90,0.50,255,255,255,200)
+											drawTxt("~y~MECANICA~w~ OCUPADA NO MOMENTO",4,0.5,0.90,0.50,255,255,255,200)
 										end
 									else
 										inside = true
@@ -577,7 +577,7 @@ Citizen.CreateThread(function()
 										DriveInGarage()
 									end
 								else
-									drawTxt("~y~BENNYS~w~ OCUPADA NO MOMENTO",4,0.5,0.90,0.50,255,255,255,200)
+									drawTxt("~y~MECANICA~w~ OCUPADA NO MOMENTO",4,0.5,0.90,0.50,255,255,255,200)
 								end
 							end
 						end

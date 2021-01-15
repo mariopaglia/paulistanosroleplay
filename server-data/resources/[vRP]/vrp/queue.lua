@@ -31,7 +31,7 @@ Queue.ThreadCount = 0
 local debug = false
 local displayQueue = false
 local initHostName = false
-local maxPlayers = 100
+local maxPlayers = 128
 
 local tostring = tostring
 local tonumber = tonumber
@@ -539,7 +539,7 @@ Citizen.CreateThread(function()
 					return
 				end
 
-				local msg = string_format("Paulistanos Roleplay\n\n"..Config.Language.pos.."%s\nhttps://discord.gg/F3Jp5J2.\nAtualizações frequentes, deixe sua sugestão em nosso discord.",pos,Queue:GetSize(),dots)
+				local msg = string_format("Paulistanos Roleplay\n\n"..Config.Language.pos.."%s\nhttps://discord.gg/F3Jp5J2.\nAtualizações frequentes, deixe sua sugestão em nosso Discord.",pos,Queue:GetSize(),dots)
 				data.deferrals.update(msg)
 			end
 		end)

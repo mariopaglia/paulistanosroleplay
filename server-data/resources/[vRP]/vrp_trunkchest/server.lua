@@ -55,7 +55,7 @@ function vRPN.Mochila()
 				local mala = "chest:u"..parseInt(placa_user_id).."veh_"..vname
 				local data = vRP.getSData(mala)
 				local sdata = json.decode(data) or {}
-				local max_veh = inventory.chestweight[vname] or 50
+				local max_veh = inventory.chestweight[vname] or 0
 				if sdata then
 					for k,v in pairs(sdata) do
 						table.insert(myinventory,{ amount = parseInt(v.amount), name = vRP.itemNameList(k), index = vRP.itemIndexList(k), key = k, peso = vRP.getItemWeight(k) })
@@ -94,7 +94,7 @@ function vRPN.storeItem(itemName,amount)
 			local data = vRP.getSData(uchests[user_id])
 			local items = json.decode(data) or {}
 			if items then
-				local max_veh = inventory.chestweight[vchests[user_id]] or 50
+				local max_veh = inventory.chestweight[vchests[user_id]] or 0
 				if parseInt(amount) > 0 then
 					local new_weight = vRP.computeItemsWeight(items)+vRP.getItemWeight(itemName)*parseInt(amount)
 					if new_weight <= parseInt(max_veh) then

@@ -433,7 +433,26 @@ cfg.groups = {
 		"toogledel.permissao",
 		"nogarmas.permissao"
 	},
-
+	---------------------------------------------------
+	--					PRF
+	---------------------------------------------------
+	["PRF"] = {
+		_config = {
+			title = "Policial PRF",
+			gtype = "job"
+		},
+		"policia.permissao",
+		"prf.permissao",
+		"polpar.permissao"
+	},
+	["PRFP"] = {
+		_config = {
+			title = "PRF Paisana",
+			gtype = "job"
+		},
+		"toogleprf.permissao",
+		"nogarmas.permissao"
+	},
 	---------------------------------------------------
 	--					SAMU
 	---------------------------------------------------

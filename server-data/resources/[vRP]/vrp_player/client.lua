@@ -1523,86 +1523,49 @@ Citizen.CreateThread(
 	end
 )
 
-Citizen.CreateThread(
-	function()
-		while true do
-			Citizen.Wait(500)
-			if Vehicle.Vehicle ~= nil then
-				local ped = PlayerPedId()
-				if
-					IsControlPressed(0, 244) and GetEntityHealth(ped) > 100 and IsVehicleSeatFree(Vehicle.Vehicle, -1) and
-						not IsEntityAttachedToEntity(ped, Vehicle.Vehicle) and
-						not (GetEntityRoll(Vehicle.Vehicle) > 75.0 or GetEntityRoll(Vehicle.Vehicle) < -75.0)
-				 then
-					RequestAnimDict("missfinale_c2ig_11")
-					TaskPlayAnim(ped, "missfinale_c2ig_11", "pushcar_offcliff_m", 2.0, -8.0, -1, 35, 0, 0, 0, 0)
-					NetworkRequestControlOfEntity(Vehicle.Vehicle)
+Citizen.CreateThread(function()
+	while true do
+		Citizen.Wait(500)
+		if Vehicle.Vehicle ~= nil then
+			local ped = PlayerPedId()
+			if IsControlPressed(0, 244) and GetEntityHealth(ped) > 100 and IsVehicleSeatFree(Vehicle.Vehicle, -1) and not IsEntityAttachedToEntity(ped, Vehicle.Vehicle) and not (GetEntityRoll(Vehicle.Vehicle) > 75.0 or GetEntityRoll(Vehicle.Vehicle) < -75.0) then
+				print("d")
+				RequestAnimDict("missfinale_c2ig_11")
+				TaskPlayAnim(ped, "missfinale_c2ig_11", "pushcar_offcliff_m", 2.0, -8.0, -1, 35, 0, 0, 0, 0)
+				NetworkRequestControlOfEntity(Vehicle.Vehicle)
 
-					if Vehicle.IsInFront then
-						AttachEntityToEntity(
-							ped,
-							Vehicle.Vehicle,
-							GetPedBoneIndex(6286),
-							0.0,
-							Vehicle.Dimensions.y * -1 + 0.1,
-							Vehicle.Dimensions.z + 1.0,
-							0.0,
-							0.0,
-							180.0,
-							0.0,
-							false,
-							false,
-							true,
-							false,
-							true
-						)
-					else
-						AttachEntityToEntity(
-							ped,
-							Vehicle.Vehicle,
-							GetPedBoneIndex(6286),
-							0.0,
-							Vehicle.Dimensions.y - 0.3,
-							Vehicle.Dimensions.z + 1.0,
-							0.0,
-							0.0,
-							0.0,
-							0.0,
-							false,
-							false,
-							true,
-							false,
-							true
-						)
+				if Vehicle.IsInFront then
+					AttachEntityToEntity(ped,Vehicle.Vehicle,GetPedBoneIndex(6286),0.0,Vehicle.Dimensions.y * -1 + 0.1,Vehicle.Dimensions.z + 1.0,0.0,0.0,180.0,0.0,false,false,true,false,true)
+				else
+					AttachEntityToEntity(ped,Vehicle.Vehicle,GetPedBoneIndex(6286),0.0,Vehicle.Dimensions.y - 0.3,Vehicle.Dimensions.z + 1.0,0.0,0.0,0.0,0.0,false,false,true,false,true)
+				end
+
+				while true do
+					Citizen.Wait(5)
+					if IsDisabledControlPressed(0, 34) then
+						TaskVehicleTempAction(ped, Vehicle.Vehicle, 11, 100)
 					end
 
-					while true do
-						Citizen.Wait(5)
-						if IsDisabledControlPressed(0, 34) then
-							TaskVehicleTempAction(ped, Vehicle.Vehicle, 11, 100)
-						end
+					if IsDisabledControlPressed(0, 9) then
+						TaskVehicleTempAction(ped, Vehicle.Vehicle, 10, 100)
+					end
 
-						if IsDisabledControlPressed(0, 9) then
-							TaskVehicleTempAction(ped, Vehicle.Vehicle, 10, 100)
-						end
+					if Vehicle.IsInFront then
+						SetVehicleForwardSpeed(Vehicle.Vehicle, -1.0)
+					else
+						SetVehicleForwardSpeed(Vehicle.Vehicle, 1.0)
+					end
 
-						if Vehicle.IsInFront then
-							SetVehicleForwardSpeed(Vehicle.Vehicle, -1.0)
-						else
-							SetVehicleForwardSpeed(Vehicle.Vehicle, 1.0)
-						end
-
-						if not IsDisabledControlPressed(0, 244) then
-							DetachEntity(ped, false, false)
-							StopAnimTask(ped, "missfinale_c2ig_11", "pushcar_offcliff_m", 2.0)
-							break
-						end
+					if not IsDisabledControlPressed(0, 244) then
+						DetachEntity(ped, false, false)
+						StopAnimTask(ped, "missfinale_c2ig_11", "pushcar_offcliff_m", 2.0)
+						break
 					end
 				end
 			end
 		end
 	end
-)
+end)
 
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- NÃO IR PARA O P1 AUTOMATICAMENTE

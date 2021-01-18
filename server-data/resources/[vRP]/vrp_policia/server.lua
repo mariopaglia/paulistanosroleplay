@@ -1073,8 +1073,8 @@ end
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- DIMINUIR PENA
 -----------------------------------------------------------------------------------------------------------------------------------------
-RegisterServerEvent("diminuirpena")
-AddEventHandler("diminuirpena",function()
+RegisterServerEvent("diminuirpena1372391")
+AddEventHandler("diminuirpena1372391",function()
 	local source = source
 	local user_id = vRP.getUserId(source)
 	local value = vRP.getUData(parseInt(user_id),"vRP:prisao")

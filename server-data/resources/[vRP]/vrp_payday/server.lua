@@ -27,6 +27,7 @@ salarii = {
 
 RegisterServerEvent('offred:salar')
 AddEventHandler('offred:salar', function(salar)
+  vRP.antiflood(source,"Pagamento Salario",2)
 	local user_id = vRP.getUserId(source)
 	for i,v in pairs(salarii) do
 		permisiune = v[1]

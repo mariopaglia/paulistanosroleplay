@@ -623,3 +623,16 @@ RegisterCommand('algema',function(source,args,rawCommand)
         end
     end
 end)
+
+-----------------------------------------------------------------------------------------------------------------------------------------
+-- CORREÇÃO DE SPAWNAR ARMA
+-----------------------------------------------------------------------------------------------------------------------------------------
+local webhooksuspeito= "https://discord.com/api/webhooks/800186893186236416/xi0jk6NfSDR3lWLBF2FfgX6VVxkNWELBcXKEClJv3HvHPa0ziMlrsn2ehvAHi31iiWoQ"
+
+RegisterServerEvent('LOG:ARMAS')
+AddEventHandler('LOG:ARMAS', function()
+    local user_id = vRP.getUserId(source)
+    if user_id~=nil then
+      PerformHttpRequest(webhooksuspeito, function(err, text, headers) end, 'POST', json.encode({content = "[SUSPEITO] SPAWN DE ARMAS "..user_id}), { ['Content-Type'] = 'application/json' })
+    end
+end)

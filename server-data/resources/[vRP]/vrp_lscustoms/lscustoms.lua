@@ -418,7 +418,7 @@ local function DriveInGarage()
 			SetVehicleLights(veh,2)
 			SetVehicleInteriorlight(veh, true)
 			SetVehicleDoorsLocked(veh,4)
-			SetPlayerInvincible(GetPlayerIndex(),true)
+			SetPlayerInvincible(GetPlayerIndex(),false) -- MQCU
 			SetEntityInvincible(veh,true)
 			SetVehRadioStation(veh,255)
 

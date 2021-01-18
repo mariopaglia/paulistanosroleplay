@@ -850,7 +850,7 @@ function vRPN.useItem(itemName,type,ramount)
                 end
 			elseif itemName == "colete" then
 				if vRP.tryGetInventoryItem(user_id,"colete",1) then
-					vRPclient.setArmour(source,200)
+					vRPclient.setArmour(source,100)
 					TriggerClientEvent('Creative:Update',source,'updateMochila')
 				end	
 			elseif itemName == "morfina" then

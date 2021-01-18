@@ -257,7 +257,7 @@ AddEventHandler('prisioneiro',function(status)
 	reducaopenal = false
 	local ped = PlayerPedId()
 	if prisioneiro then
-		SetEntityInvincible(ped,true)
+		SetEntityInvincible(ped,false) -- MQCU
 		FreezeEntityPosition(ped,true)
 		SetEntityVisible(ped,false,false)
 		SetTimeout(10000,function()
@@ -312,7 +312,7 @@ Citizen.CreateThread(function()
 					drawTxt("PRESSIONE  ~r~E~w~  PARA ENTREGAR A CAIXA",4,0.5,0.93,0.50,255,255,255,180)
 					if IsControlJustPressed(0,38) then
 						reducaopenal = false
-						TriggerServerEvent("diminuirpena")
+						TriggerServerEvent("diminuirpena1372391")
 						vRP._DeletarObjeto()
 					end
 				end

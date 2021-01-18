@@ -9,8 +9,8 @@ vRPbanking = {}
 Tunnel.bindInterface("nav_nubank",vRPbanking)
 Proxy.addInterface("nav_nubank",vRPbanking)
 
-RegisterServerEvent('bank:deposit')
-AddEventHandler('bank:deposit', function(amount)
+RegisterServerEvent('bank:deposit128317')
+AddEventHandler('bank:deposit128317', function(amount)
 	local thePlayer = source
 	
 	local user_id = vRP.getUserId(thePlayer)
@@ -30,8 +30,8 @@ AddEventHandler('bank:deposit', function(amount)
 end)
 
 
-RegisterServerEvent('bank:withdraw')
-AddEventHandler('bank:withdraw', function(amount)
+RegisterServerEvent('bank:withdraw128317')
+AddEventHandler('bank:withdraw128317', function(amount)
 	local thePlayer = source
 	
 	local user_id = vRP.getUserId(thePlayer)
@@ -51,8 +51,8 @@ AddEventHandler('bank:withdraw', function(amount)
 	end
 end)
 
-RegisterServerEvent('bank:balance')
-AddEventHandler('bank:balance', function()
+RegisterServerEvent('bank:balance128317')
+AddEventHandler('bank:balance128317', function()
 	local thePlayer = source
 	
 	local user_id = vRP.getUserId(thePlayer)
@@ -60,8 +60,8 @@ AddEventHandler('bank:balance', function()
 	TriggerClientEvent('currentbalance1', thePlayer, bankMoney)
 end)
 
-RegisterServerEvent('bank:transfer')
-AddEventHandler('bank:transfer', function(to, amount)
+RegisterServerEvent('bank:transfer128317')
+AddEventHandler('bank:transfer128317', function(to, amount)
 	local thePlayer = source
 	local user_id = vRP.getUserId(thePlayer)
 	if(tonumber(to)  and to ~= "" and to ~= nil)then

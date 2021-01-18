@@ -267,22 +267,27 @@ function emP.checkPermissionSilenciador()
 	return vRP.hasPermission(user_id,'corarma.permissao')
 end
 
--- -----------------------------------------------------------------------------------------------------------------------------------------
--- -- GUARDAR COLETE
--- -----------------------------------------------------------------------------------------------------------------------------------------
--- RegisterCommand('gcolete',function(source,args,rawCommand)
--- 	local user_id = vRP.getUserId(source)
--- 	local player = vRP.getUserSource(user_id)
--- 	local armour = vRPclient.getArmour(player)
--- 	if armour > 95 then
---        vRPclient.setArmour(source,0)
---        vRP.giveInventoryItem(user_id,"colete",1,true)
---        TriggerClientEvent("tirandocolete",player)
---        TriggerClientEvent("Notify",source,"sucesso","Você guardou o seu <b>Colete</b>.")
---     else
---        TriggerClientEvent("Notify",source,"negado","<b>Coletes</b> danificados não podem ser <b>Guardados</b>.")
---     end
--- end)
+-----------------------------------------------------------------------------------------------------------------------------------------
+-- GUARDAR COLETE
+-----------------------------------------------------------------------------------------------------------------------------------------
+RegisterCommand('gcolete',function(source,args,rawCommand)
+	vRP.antiflood(source,"/gcolete",2)
+	local user_id = vRP.getUserId(source)
+	local player = vRP.getUserSource(user_id)
+	local armour = vRPclient.getArmour(player)
+	if vRP.getInventoryWeight(user_id)+vRP.getItemWeight("colete") <= vRP.getInventoryMaxWeight(user_id) then
+		if armour > 95 then
+		   vRPclient.setArmour(source,0)
+		   vRP.giveInventoryItem(user_id,"colete",1,true)
+		   TriggerClientEvent("tirandocolete",player)
+		   TriggerClientEvent("Notify",source,"sucesso","Você guardou o seu <b>Colete</b>.")
+		else
+		   TriggerClientEvent("Notify",source,"negado","<b>Coletes</b> danificados não podem ser <b>Guardados</b>")
+		end
+	else
+		TriggerClientEvent("Notify",source,"negado","Você não possui espaço suficiente na mochila")
+	end
+end)
 -- -----------------------------------------------------------------------------------------------------------------------------------------
 -- -- JOGAR FORA O COLETE
 -- -----------------------------------------------------------------------------------------------------------------------------------------

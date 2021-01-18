@@ -1,3 +1,7 @@
+local Tunnel = module('vrp', 'lib/Tunnel')
+local Proxy = module('vrp', 'lib/Proxy')
+vRP = Proxy.getInterface('vRP')
+
 local isNearPump = false
 local isFueling = false
 local currentFuel = 0.0
@@ -100,14 +104,14 @@ AddEventHandler('fuel:startFuelUpTick',function(pumpObject,ped,vehicle)
 	end
 
 	if pumpObject then
-		TriggerServerEvent('vrp_legacyfuel:pagamento',parseInt(currentCost))
+		TriggerServerEvent('vrp_legacyfuel:pagamento1731910',parseInt(currentCost))
 	end
 
 	currentCost = 0.0
 end)
 
-RegisterNetEvent('vrp_legacyfuel:insuficiente')
-AddEventHandler('vrp_legacyfuel:insuficiente',function()
+RegisterNetEvent('vrp_legacyfuel:insuficiente1731910')
+AddEventHandler('vrp_legacyfuel:insuficiente1731910',function()
 	local vehicle = GetPlayersLastVehicle()
 	if vehicle then
 		SetVehicleFuelLevel(vehicle,currentFuel2)
@@ -115,9 +119,10 @@ AddEventHandler('vrp_legacyfuel:insuficiente',function()
 	end
 end)
 
-RegisterNetEvent('vrp_legacyfuel:galao')
-AddEventHandler('vrp_legacyfuel:galao',function()
-	GiveWeaponToPed(PlayerPedId(),883325847,4500,false,true)
+RegisterNetEvent('vrp_legacyfuel:galao1731910')
+AddEventHandler('vrp_legacyfuel:galao1731910',function()
+	-- GiveWeaponToPed(PlayerPedId(),883325847,4500,false,true)
+	vRP.giveWeapons({["WEAPON_PETROLCAN"] = { ammo = 4500 }})
 end)
 
 function Round(num,numDecimalPlaces)
@@ -199,7 +204,7 @@ Citizen.CreateThread(function()
 					local stringCoords = GetEntityCoords(isNearPump)
 					DrawText3Ds(stringCoords.x,stringCoords.y,stringCoords.z + 1.2,"PRESSIONE ~r~E ~w~PARA COMPRAR UM GALÃO DE GASOLINA")
 					if IsControlJustReleased(0,38) then
-						TriggerServerEvent('vrp_legacyfuel:pagamento',parseInt(300),true)
+						TriggerServerEvent('vrp_legacyfuel:pagamento1731910',parseInt(300),true)
 					end
 				else
 					Citizen.Wait(250)

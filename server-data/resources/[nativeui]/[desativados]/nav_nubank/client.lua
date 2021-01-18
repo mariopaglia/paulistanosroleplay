@@ -36,7 +36,7 @@ if bankMenu then
 			inMenu = true
 			SetNuiFocus(true, true)
 			SendNUIMessage({type = 'openGeneral'})
-			TriggerServerEvent('bank:balance')
+			TriggerServerEvent('bank:balance128317')
 			local ped = GetPlayerPed(-1)
 		end
 	end
@@ -67,27 +67,27 @@ end)
 --==           Deposit Event                   ==
 --===============================================
 RegisterNUICallback('deposit', function(data)
-	TriggerServerEvent('bank:deposit', tonumber(data.amount))
-	TriggerServerEvent('bank:balance')
+	TriggerServerEvent('bank:deposit128317', tonumber(data.amount))
+	TriggerServerEvent('bank:balance128317')
 end)
 
 --===============================================
 --==          Withdraw Event                   ==
 --===============================================
 RegisterNUICallback('withdrawl', function(data)
-	TriggerServerEvent('bank:withdraw', tonumber(data.amountw))
-	TriggerServerEvent('bank:balance')
+	TriggerServerEvent('bank:withdraw128317', tonumber(data.amountw))
+	TriggerServerEvent('bank:balance128317')
 end)
 
 --===============================================
 --==         Balance Event                     ==
 --===============================================
 RegisterNUICallback('balance', function()
-	TriggerServerEvent('bank:balance')
+	TriggerServerEvent('bank:balance128317')
 end)
 
-RegisterNetEvent('balance:back')
-AddEventHandler('balance:back', function(balance)
+RegisterNetEvent('balance:back8193771')
+AddEventHandler('balance:back8193771', function(balance)
 	SendNUIMessage({type = 'balanceReturn', bal = balance})
 end)
 
@@ -96,15 +96,15 @@ end)
 --==         Transfer Event                    ==
 --===============================================
 RegisterNUICallback('transfer', function(data)
-	TriggerServerEvent('bank:transfer', data.to, data.amountt)
-	TriggerServerEvent('bank:balance')
+	TriggerServerEvent('bank:transfer128317', data.to, data.amountt)
+	TriggerServerEvent('bank:balance128317')
 end)
 
 --===============================================
 --==         Result   Event                    ==
 --===============================================
-RegisterNetEvent('bank:result')
-AddEventHandler('bank:result', function(type, message)
+RegisterNetEvent('bank:result128317')
+AddEventHandler('bank:result128317', function(type, message)
 	SendNUIMessage({type = 'result', m = message, t = type})
 end)
 

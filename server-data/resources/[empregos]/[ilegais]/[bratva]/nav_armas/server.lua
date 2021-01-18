@@ -8,6 +8,9 @@ Tunnel.bindInterface("nav_armas",emP)
 -- ARRAY
 -----------------------------------------------------------------------------------------------------------------------------------------
 local valores = {
+	{ item = "corpodeak", quantidade = 1, compra = 20000, venda = 10000 },
+	{ item = "corpodeg36", quantidade = 1, compra = 20000, venda = 10000 },
+	{ item = "corpodemp5", quantidade = 1, compra = 20000, venda = 10000 },
 	{ item = "corpodefiveseven", quantidade = 1, compra = 20000, venda = 10000 },
 	{ item = "mola", quantidade = 1, compra = 2000, venda = 1000 },
 	{ item = "gatilho", quantidade = 1, compra = 5000, venda = 2500 },

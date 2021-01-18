@@ -30,9 +30,9 @@ local chest = {
 	["policiacivil"] = { 100000,"pcivil.permissao" },
 	["cosanostra"] = { 10000,"cn.permissao" },
 	["bratva"] = { 10000,"bratva.permissao" },
-	["pcc"] = { 10000,"pcc.permissao" },
-	["cv"] = { 10000,"cv.permissao" },
-	["tcp"] = { 10000,"tcp.permissao" },
+	["verdes"] = { 10000,"verdes.permissao" },
+	["vermelhos"] = { 10000,"vermelhos.permissao" },
+	["roxos"] = { 10000,"roxos.permissao" },
 	["motoclub"] = { 10000,"motoclub.permissao" },
 	["yakuza"] = { 10000,"yakuza.permissao" },
 }
@@ -122,7 +122,7 @@ function src.storeItem(chestName,itemName,amount)
 								SendWebhookMessage(webhookbaupoliciamilitar,"```prolog\n[ID]: "..user_id.." "..identity.name.." "..identity.firstname.." \n[GUARDOU]: "..vRP.format(parseInt(amount)).." "..vRP.itemNameList(itemName).." \n[BAU]: "..chestName.." "..os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S").." \r```")
 							elseif chestName == "policiacivil" then
 								SendWebhookMessage(webhookbaupoliciacivil,"```prolog\n[ID]: "..user_id.." "..identity.name.." "..identity.firstname.." \n[GUARDOU]: "..vRP.format(parseInt(amount)).." "..vRP.itemNameList(itemName).." \n[BAU]: "..chestName.." "..os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S").." \r```")
-							elseif chestName == "cosanostra" or chestName == "bratva" or chestName == "pcc" or chestName == "cv" or chestName == "tcp" or chestName == "motoclub" or chestName == "yakuza" then
+							elseif chestName == "cosanostra" or chestName == "bratva" or chestName == "verdes" or chestName == "vermelhos" or chestName == "roxos" or chestName == "motoclub" or chestName == "yakuza" then
 								SendWebhookMessage(webhookbaugangues,"```prolog\n[ID]: "..user_id.." "..identity.name.." "..identity.firstname.." \n[GUARDOU]: "..vRP.format(parseInt(amount)).." "..vRP.itemNameList(itemName).." \n[BAU]: "..chestName.." "..os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S").." \r```")
 							end
 
@@ -154,7 +154,7 @@ function src.storeItem(chestName,itemName,amount)
 										SendWebhookMessage(webhookbaupoliciamilitar,"```prolog\n[ID]: "..user_id.." "..identity.name.." "..identity.firstname.." \n[GUARDOU]: "..vRP.format(parseInt(v.amount)).." "..vRP.itemNameList(itemName).." \n[BAU]: "..chestName.." "..os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S").." \r```")
 									elseif chestName == "policiacivil" then
 										SendWebhookMessage(webhookbaupoliciacivil,"```prolog\n[ID]: "..user_id.." "..identity.name.." "..identity.firstname.." \n[GUARDOU]: "..vRP.format(parseInt(v.amount)).." "..vRP.itemNameList(itemName).." \n[BAU]: "..chestName.." "..os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S").." \r```")
-									elseif chestName == "cosanostra" or chestName == "bratva" or chestName == "pcc" or chestName == "cv" or chestName == "tcp" or chestName == "motoclub" or chestName == "yakuza" then
+									elseif chestName == "cosanostra" or chestName == "bratva" or chestName == "verdes" or chestName == "vermelhos" or chestName == "roxos" or chestName == "motoclub" or chestName == "yakuza" then
 										SendWebhookMessage(webhookbaugangues,"```prolog\n[ID]: "..user_id.." "..identity.name.." "..identity.firstname.." \n[GUARDOU]: "..vRP.format(parseInt(v.amount)).." "..vRP.itemNameList(itemName).." \n[BAU]: "..chestName.." "..os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S").." \r```")
 									end
 
@@ -193,7 +193,7 @@ function src.takeItem(chestName,itemName,amount)
 								SendWebhookMessage(webhookbaupoliciamilitar,"```prolog\n[ID]: "..user_id.." "..identity.name.." "..identity.firstname.." \n[RETIROU]: "..vRP.format(parseInt(amount)).." "..vRP.itemNameList(itemName).." \n[BAU]: "..chestName.." "..os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S").." \r```")
 							elseif chestName == "policiacivil" then
 								SendWebhookMessage(webhookbaupoliciacivil,"```prolog\n[ID]: "..user_id.." "..identity.name.." "..identity.firstname.." \n[RETIROU]: "..vRP.format(parseInt(amount)).." "..vRP.itemNameList(itemName).." \n[BAU]: "..chestName.." "..os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S").." \r```")
-							elseif chestName == "cosanostra" or chestName == "bratva" or chestName == "pcc" or chestName == "cv" or chestName == "tcp" or chestName == "motoclub" or chestName == "yakuza" then
+							elseif chestName == "cosanostra" or chestName == "bratva" or chestName == "verdes" or chestName == "vermelhos" or chestName == "roxos" or chestName == "motoclub" or chestName == "yakuza" then
 								SendWebhookMessage(webhookbaugangues,"```prolog\n[ID]: "..user_id.." "..identity.name.." "..identity.firstname.." \n[RETIROU]: "..vRP.format(parseInt(amount)).." "..vRP.itemNameList(itemName).." \n[BAU]: "..chestName.." "..os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S").." \r```")
 							end
 
@@ -216,7 +216,7 @@ function src.takeItem(chestName,itemName,amount)
 								SendWebhookMessage(webhookbaupoliciamilitar,"```prolog\n[ID]: "..user_id.." "..identity.name.." "..identity.firstname.." \n[RETIROU]: "..vRP.format(parseInt(items[itemName].amount)).." "..vRP.itemNameList(itemName).." \n[BAU]: "..chestName.." "..os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S").." \r```")
 							elseif chestName == "policiacivil" then
 								SendWebhookMessage(webhookbaupoliciacivil,"```prolog\n[ID]: "..user_id.." "..identity.name.." "..identity.firstname.." \n[RETIROU]: "..vRP.format(parseInt(items[itemName].amount)).." "..vRP.itemNameList(itemName).." \n[BAU]: "..chestName.." "..os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S").." \r```")
-							elseif chestName == "cosanostra" or chestName == "bratva" or chestName == "pcc" or chestName == "cv" or chestName == "tcp" or chestName == "motoclub" or chestName == "yakuza" then
+							elseif chestName == "cosanostra" or chestName == "bratva" or chestName == "verdes" or chestName == "vermelhos" or chestName == "roxos" or chestName == "motoclub" or chestName == "yakuza" then
 								SendWebhookMessage(webhookbaugangues,"```prolog\n[ID]: "..user_id.." "..identity.name.." "..identity.firstname.." \n[RETIROU]: "..vRP.format(parseInt(items[itemName].amount)).." "..vRP.itemNameList(itemName).." \n[BAU]: "..chestName.." "..os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S").." \r```")
 							end
 

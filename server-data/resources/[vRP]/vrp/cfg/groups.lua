@@ -12,6 +12,13 @@ cfg.groups = {
 		"noclip.permissao",
 		"tp.permissao",
 		"polpar.permissao",
+		"player.blips",
+		"player.noclip",
+		"player.teleport",
+		"player.secret",
+		"player.spec", -- Comando /spec
+		"player.wall", -- Comando /wall
+		"mqcu.permissao", -- Acesso ao menu MQCU
 		"anuncio.permissao"
 	},
 	["mod"] = {
@@ -25,6 +32,13 @@ cfg.groups = {
 		"noclip.permissao",
 		"tp.permissao",
 		"polpar.permissao",
+		"player.blips",
+		"player.noclip",
+		"player.teleport",
+		"player.secret",
+		"player.spec", -- Comando /spec
+		"player.wall", -- Comando /wall
+		"mqcu.permissao", -- Acesso ao menu MQCU
 		"anuncio.permissao"
 	},
 	["helper"] = {
@@ -34,6 +48,13 @@ cfg.groups = {
 		"kick.permissao",
 		"noclip.permissao",
 		"polpar.permissao",
+		"player.blips",
+		"player.noclip",
+		"player.teleport",
+		"player.secret",
+		"player.spec", -- Comando /spec
+		"player.wall", -- Comando /wall
+		"mqcu.permissao", -- Acesso ao menu MQCU
 		"anuncio.permissao"
 	},
 	["aprovadorwl"] = {
@@ -126,6 +147,7 @@ cfg.groups = {
 		"pmesp.permissao",
 		"rota.permissao",
 		"recrutar.permissao",
+		"player.blips",
 		"polpar.permissao"
 	},
 	["RecrutaRP"] = {
@@ -134,6 +156,7 @@ cfg.groups = {
 			gtype = "job"
 		},
 		"tooglerecr.permissao",
+		"player.blips",
 		"nogarmas.permissao"
 	},
 
@@ -146,6 +169,7 @@ cfg.groups = {
 		"pmesp.permissao",
 		"rota.permissao",
 		"soldador.permissao",
+		"player.blips",
 		"polpar.permissao"
 	},
 	["SoldadoRP"] = {
@@ -154,6 +178,7 @@ cfg.groups = {
 			gtype = "job"
 		},
 		"tooglesolr.permissao",
+		"player.blips",
 		"nogarmas.permissao"
 	},
 
@@ -166,6 +191,7 @@ cfg.groups = {
 		"pmesp.permissao",
 		"rota.permissao",
 		"tenenter.permissao",
+		"player.blips",
 		"polpar.permissao"
 	},
 	["TenenteRP"] = {
@@ -174,6 +200,7 @@ cfg.groups = {
 			gtype = "job"
 		},
 		"toogletenr.permissao",
+		"player.blips",
 		"nogarmas.permissao"
 	},
 
@@ -186,6 +213,7 @@ cfg.groups = {
 		"pmesp.permissao",
 		"rota.permissao",
 		"capitaor.permissao",
+		"player.blips",
 		"polpar.permissao"
 	},
 	["CapitaoRP"] = {
@@ -194,6 +222,7 @@ cfg.groups = {
 			gtype = "job"
 		},
 		"tooglecapr.permissao",
+		"player.blips",
 		"nogarmas.permissao"
 	},
 
@@ -206,6 +235,7 @@ cfg.groups = {
 		"pmesp.permissao",
 		"rota.permissao",
 		"coronelr.permissao",
+		"player.blips",
 		"polpar.permissao"
 	},
 	["CoronelRP"] = {
@@ -214,6 +244,7 @@ cfg.groups = {
 			gtype = "job"
 		},
 		"tooglecorr.permissao",
+		"player.blips",
 		"nogarmas.permissao"
 	},
 
@@ -226,6 +257,7 @@ cfg.groups = {
 		"pmesp.permissao",
 		"rota.permissao",
 		"comandanter.permissao",
+		"player.blips",
 		"polpar.permissao"
 	},
 	["ComandanteRP"] = {
@@ -234,6 +266,7 @@ cfg.groups = {
 			gtype = "job"
 		},
 		"tooglecmdr.permissao",
+		"player.blips",
 		"nogarmas.permissao"
 	},
 
@@ -248,6 +281,7 @@ cfg.groups = {
 		"policia.permissao",
 		"pmesp.permissao",
 		"recruta.permissao",
+		"player.blips",
 		"polpar.permissao"
 	},
 	["RecrutaP"] = {
@@ -256,6 +290,7 @@ cfg.groups = {
 			gtype = "job"
 		},
 		"tooglerec.permissao",
+		"player.blips",
 		"nogarmas.permissao"
 	},
 
@@ -267,6 +302,7 @@ cfg.groups = {
 		"policia.permissao",
 		"pmesp.permissao",
 		"soldado.permissao",
+		"player.blips",
 		"polpar.permissao"
 	},
 	["SoldadoP"] = {
@@ -275,6 +311,7 @@ cfg.groups = {
 			gtype = "job"
 		},
 		"tooglesol.permissao",
+		"player.blips",
 		"nogarmas.permissao"
 	},
 
@@ -286,6 +323,7 @@ cfg.groups = {
 		"policia.permissao",
 		"pmesp.permissao",
 		"tenente.permissao",
+		"player.blips",
 		"polpar.permissao"
 	},
 	["TenenteP"] = {
@@ -294,6 +332,7 @@ cfg.groups = {
 			gtype = "job"
 		},
 		"toogleten.permissao",
+		"player.blips",
 		"nogarmas.permissao"
 	},
 
@@ -305,6 +344,7 @@ cfg.groups = {
 		"policia.permissao",
 		"pmesp.permissao",
 		"capitao.permissao",
+		"player.blips",
 		"polpar.permissao"
 	},
 	["CapitaoP"] = {
@@ -313,6 +353,7 @@ cfg.groups = {
 			gtype = "job"
 		},
 		"tooglecap.permissao",
+		"player.blips",
 		"nogarmas.permissao"
 	},
 
@@ -324,6 +365,7 @@ cfg.groups = {
 		"policia.permissao",
 		"pmesp.permissao",
 		"coronel.permissao",
+		"player.blips",
 		"polpar.permissao"
 	},
 	["CoronelP"] = {
@@ -332,6 +374,7 @@ cfg.groups = {
 			gtype = "job"
 		},
 		"tooglecor.permissao",
+		"player.blips",
 		"nogarmas.permissao"
 	},
 
@@ -343,6 +386,7 @@ cfg.groups = {
 		"policia.permissao",
 		"pmesp.permissao",
 		"comandante.permissao",
+		"player.blips",
 		"polpar.permissao"
 	},
 	["ComandanteP"] = {
@@ -351,6 +395,7 @@ cfg.groups = {
 			gtype = "job"
 		},
 		"tooglecmd.permissao",
+		"player.blips",
 		"nogarmas.permissao"
 	},
 
@@ -366,6 +411,7 @@ cfg.groups = {
 		"policia.permissao",
 		"pcivil.permissao",
 		"agente.permissao",
+		"player.blips",
 		"polpar.permissao"
 	},
 	["AgenteP"] = {
@@ -374,6 +420,7 @@ cfg.groups = {
 			gtype = "job"
 		},
 		"toogleagente.permissao",
+		"player.blips",
 		"nogarmas.permissao"
 	},
 
@@ -385,6 +432,7 @@ cfg.groups = {
 		"policia.permissao",
 		"pcivil.permissao",
 		"inspetor.permissao",
+		"player.blips",
 		"polpar.permissao"
 	},
 	["InspetorP"] = {
@@ -393,6 +441,7 @@ cfg.groups = {
 			gtype = "job"
 		},
 		"toogleins.permissao",
+		"player.blips",
 		"nogarmas.permissao"
 	},
 
@@ -404,6 +453,7 @@ cfg.groups = {
 		"policia.permissao",
 		"pcivil.permissao",
 		"investigador.permissao",
+		"player.blips",
 		"polpar.permissao"
 	},
 	["InvestigadorP"] = {
@@ -412,6 +462,7 @@ cfg.groups = {
 			gtype = "job"
 		},
 		"toogleinv.permissao",
+		"player.blips",
 		"nogarmas.permissao"
 	},
 
@@ -423,6 +474,7 @@ cfg.groups = {
 		"policia.permissao",
 		"pcivil.permissao",
 		"delegado.permissao",
+		"player.blips",
 		"polpar.permissao"
 	},
 	["DelegadoP"] = {
@@ -431,6 +483,7 @@ cfg.groups = {
 			gtype = "job"
 		},
 		"toogledel.permissao",
+		"player.blips",
 		"nogarmas.permissao"
 	},
 	---------------------------------------------------
@@ -443,6 +496,7 @@ cfg.groups = {
 		},
 		"policia.permissao",
 		"prf.permissao",
+		"player.blips",
 		"polpar.permissao"
 	},
 	["PRFP"] = {
@@ -451,6 +505,7 @@ cfg.groups = {
 			gtype = "job"
 		},
 		"toogleprf.permissao",
+		"player.blips",
 		"nogarmas.permissao"
 	},
 	---------------------------------------------------
@@ -465,6 +520,7 @@ cfg.groups = {
 		"portahospital.permissao",
 		"reviver.permissao",
 		"enfermeiro.permissao",
+		"player.blips",
 		"polpar.permissao"
 	},
 	["PaisanaEnfermeiro"] = {
@@ -472,6 +528,7 @@ cfg.groups = {
 			title = "SAMU Paisana",
 			gtype = "job"
 		},
+		"player.blips",
 		"toogleenf.permissao"
 	},
 
@@ -484,6 +541,7 @@ cfg.groups = {
 		"portahospital.permissao",
 		"reviver.permissao",
 		"medico.permissao",
+		"player.blips",
 		"polpar.permissao"
 	},
 	["PaisanaMedico"] = {
@@ -491,6 +549,7 @@ cfg.groups = {
 			title = "SAMU Paisana",
 			gtype = "job"
 		},
+		"player.blips",
 		"tooglemed.permissao"
 	},
 
@@ -503,6 +562,7 @@ cfg.groups = {
 		"portahospital.permissao",
 		"reviver.permissao",
 		"diretor.permissao",
+		"player.blips",
 		"polpar.permissao"
 	},
 	["PaisanaDiretor"] = {
@@ -510,6 +570,7 @@ cfg.groups = {
 			title = "SAMU Paisana",
 			gtype = "job"
 		},
+		"player.blips",
 		"tooglemed.permissao"
 	},
 
@@ -522,6 +583,7 @@ cfg.groups = {
 			gtype = "job"
 		},
 		"mecanico.permissao",
+		"player.blips",
 		"lidermecanico.permissao"
 	},
 	["PaisanaLiderMecanico"] = {
@@ -529,6 +591,7 @@ cfg.groups = {
 			title = "Mecanico Paisana",
 			gtype = "job"
 		},
+		"player.blips",
 		"paisanamecanicolider.permissao"
 	},
 
@@ -540,6 +603,7 @@ cfg.groups = {
 		},
 		"mecanico.permissao",
 		"funcmecanico.permissao",
+		"player.blips",
 		"salariomecanico.permissao",
 	},
 	["PaisanaMecanico"] = {
@@ -547,6 +611,7 @@ cfg.groups = {
 			title = "Paisana Mecanico",
 			gtype = "job"
 		},
+		"player.blips",
 		"paisanamecanico.permissao"
 	},
 	---------------------------------------------------
@@ -588,28 +653,28 @@ cfg.groups = {
 		"motoclub.permissao",
 	},
 	----------------------------------------
-	["PCC"] = {
+	["Verdes"] = {
 		_config = {
-			title = "P.C.C",
+			title = "Verdes",
 			gtype = "job"
 		},
-		"pcc.permissao",
+		"verdes.permissao",
 	},
 	----------------------------------------
-	["CV"] = {
+	["Vermelhos"] = {
 		_config = {
-			title = "Comando Vermelho",
+			title = "Vermelhos",
 			gtype = "job"
 		},
-		"cv.permissao",
+		"vermelhos.permissao",
 	},
 	-------------------------------------------
-	["TCP"] = {
+	["Roxos"] = {
 		_config = {
-			title = "T.C.P",
+			title = "Roxos",
 			gtype = "job"
 		},
-		"tcp.permissao",
+		"roxos.permissao",
 	},
 	----------------------------------------
 	["CN"] = {

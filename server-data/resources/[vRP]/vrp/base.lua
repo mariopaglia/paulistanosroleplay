@@ -112,6 +112,15 @@ vRP.prepare("vRP/get_whitelisted","SELECT whitelisted FROM vrp_users WHERE id = 
 vRP.prepare("vRP/set_whitelisted","UPDATE vrp_users SET whitelisted = @whitelisted WHERE id = @user_id")
 vRP.prepare("vRP/set_last_login","UPDATE vrp_users SET last_login = @last_login, ip = @ip WHERE id = @user_id")
 
+function vRP.getUserIdByIdentifier(ids)
+	local rows = vRP.query("vRP/userid_byidentifier",{ identifier = ids})
+	if #rows > 0 then
+		return rows[1].user_id
+	else
+		return -1
+	end
+end
+
 function vRP.getUserIdByIdentifiers(ids)
 	if ids and #ids then
 		for i=1,#ids do

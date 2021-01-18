@@ -175,7 +175,7 @@ if enableBankingGui then
               closeGui()
               bankOpen = false
             else
-              TriggerServerEvent("bank:update")
+              TriggerServerEvent("bank:update128317")
               TriggerServerEvent("get:banco")
               bankOpen = true
           end
@@ -243,7 +243,7 @@ RegisterNUICallback('transfer', function(data, cb)
 end)
 
 RegisterNUICallback('quickCash', function(data, cb)
-  TriggerServerEvent('bank:quickCash')
+  TriggerServerEvent('bank:quickCash128317')
   cb('ok')
 end)
 
@@ -255,24 +255,24 @@ RegisterNUICallback('erroMulta2', function()
 end)
 
 RegisterNUICallback('withdrawSubmit', function(data, cb)
-  TriggerEvent('bank:withdraw', data.amount)
+  TriggerEvent('bank:withdraw128317', data.amount)
   cb('ok')
 end)
 
 RegisterNUICallback('depositSubmit', function(data, cb)
-  TriggerEvent('bank:deposit', data.amount)
+  TriggerEvent('bank:deposit128317', data.amount)
   cb('ok')
 end)
 
 RegisterNUICallback('pagarMulta', function(data,cb)
-  TriggerEvent('bank:pagarmulta', tonumber(data.amount))
+  TriggerEvent('bank:pagarmulta128317', tonumber(data.amount))
   cb('ok')
 end)
 
 RegisterNUICallback('transferSubmit', function(data, cb)
   local toPlayer = data.toPlayer
   local amount = data.amount
-  TriggerServerEvent("bank:transfer", toPlayer, tonumber(amount))
+  TriggerServerEvent("bank:transfer128317", toPlayer, tonumber(amount))
 end)
 
 function IsNearBank()
@@ -297,40 +297,40 @@ function IsNearPlayer(player)
   end
 end
 
-RegisterNetEvent('bank:pagarmulta')
-AddEventHandler('bank:pagarmulta', function(amount)
+RegisterNetEvent('bank:pagarmulta128317')
+AddEventHandler('bank:pagarmulta128317', function(amount)
   if(IsNearBank() == true or depositAnywhere == true ) then
-    TriggerServerEvent("bank:pagarmulta", tonumber(amount))
+    TriggerServerEvent("bank:pagarmulta128317", tonumber(amount))
   else
     vRP.notifyError("Você só pode pagar multa em um banco!")
   end
 end)
 
-RegisterNetEvent('bank:deposit')
-AddEventHandler('bank:deposit', function(amount)
+RegisterNetEvent('bank:deposit128317')
+AddEventHandler('bank:deposit128317', function(amount)
   if(IsNearBank() == true or depositAnywhere == true ) then
-    TriggerServerEvent("bank:deposit", tonumber(amount))
+    TriggerServerEvent("bank:deposit128317", tonumber(amount))
   else
     vRP.notifyError("Você só pode depositar em um banco!")
   end
 end)
 
-RegisterNetEvent('bank:withdraw')
-AddEventHandler('bank:withdraw', function(amount)
+RegisterNetEvent('bank:withdraw128317')
+AddEventHandler('bank:withdraw128317', function(amount)
   if (IsNearBank() == true or withdraWAnywhere == true) then
-    TriggerServerEvent("bank:withdraw", tonumber(amount))
+    TriggerServerEvent("bank:withdraw128317", tonumber(amount))
   else
     vRP.notifyError("Você só pode sacar em um banco!")
   end
 end)
 
-RegisterNetEvent('bank:givecash')
-AddEventHandler('bank:givecash', function(toPlayer, amount)
+RegisterNetEvent('bank:givecash128317')
+AddEventHandler('bank:givecash128317', function(toPlayer, amount)
   if(IsNearPlayer(toPlayer) == true or giveCashAnywhere == true) then
     local player2 = GetPlayerFromServerId(toPlayer)
     local playing = IsPlayerPlaying(player2)
     if (playing ~= false) then
-      TriggerServerEvent("bank:givecash", toPlayer, tonumber(amount))
+      TriggerServerEvent("bank:givecash128317", toPlayer, tonumber(amount))
       vRP.notify("Você transferiu " .. tonumber(amount) .. " para " .. toPlayer)
     else
       vRP.notifyWarning("Cidadão fora da cidade!")
@@ -340,8 +340,8 @@ AddEventHandler('bank:givecash', function(toPlayer, amount)
   end
 end)
 
-RegisterNetEvent('banking:updateBalance')
-AddEventHandler('banking:updateBalance', function(balance, walletbalance, multasbalance,   identidade)
+RegisterNetEvent('banking:updateBalance12691261')
+AddEventHandler('banking:updateBalance12691261', function(balance, walletbalance, multasbalance,   identidade)
 	SendNUIMessage({
 		updateBalance = true,
     balance = balance,
@@ -352,16 +352,16 @@ AddEventHandler('banking:updateBalance', function(balance, walletbalance, multas
 	})
 end)
 
-RegisterNetEvent("banking:addBalance")
-AddEventHandler("banking:addBalance", function(amount)
+RegisterNetEvent("banking:addBalance12691261")
+AddEventHandler("banking:addBalance12691261", function(amount)
 	SendNUIMessage({
 		addBalance = true,
 		amount = amount
 	})
 end)
 
-RegisterNetEvent("banking:removeBalance")
-AddEventHandler("banking:removeBalance", function(amount)
+RegisterNetEvent("banking:removeBalance12691261")
+AddEventHandler("banking:removeBalance12691261", function(amount)
 	SendNUIMessage({
 		removeBalance = true,
 		amount = amount

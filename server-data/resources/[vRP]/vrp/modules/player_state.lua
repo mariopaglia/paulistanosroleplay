@@ -7,9 +7,15 @@ AddEventHandler("vRP:playerSpawn",function(user_id,source,first_spawn)
 	vRPclient._setFriendlyFire(source,true)
 
 	if first_spawn then
-		if data.colete then
-			vRPclient.setArmour(source,data.colete)
-		end
+		local colete = data.colete
+		SetTimeout(20000,function()
+			if data.colete then
+				source = vRP.getUserSource(user_id)
+				if(source~=nil)then
+					vRPclient.setArmour(source,colete)
+				end
+			end
+		end)
 
 		if data.customization == nil then
 			data.customization = cfg.default_customization

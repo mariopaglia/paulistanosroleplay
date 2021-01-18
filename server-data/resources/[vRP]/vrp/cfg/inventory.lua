@@ -491,12 +491,12 @@ cfg.static_chest_types = {
 	
 	-- ["CV"] = {
 	-- 	weight = 5000,
-	-- 	permissions = { "cv.permissao" }
+	-- 	permissions = { "vermelhos.permissao" }
 	-- },
 	
 	-- ["PCC"] = {
 	-- 	weight = 5000,
-	-- 	permissions = { "pcc.permissao" }
+	-- 	permissions = { "verdes.permissao" }
 	-- },
 	
 	-- ["Vanilla"] = {
@@ -506,7 +506,7 @@ cfg.static_chest_types = {
 
 	-- ["TCP"] = {
 	-- 	weight = 5000,
-	-- 	permissions = { "tcp.permissao" }
+	-- 	permissions = { "roxos.permissao" }
 	-- },
 
 	-- ["cn"] = { -- Na casa

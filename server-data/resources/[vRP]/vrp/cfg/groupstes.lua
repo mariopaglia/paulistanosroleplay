@@ -335,13 +335,13 @@ cfg.groups = {
 	"addgrupo.cv",
 	"baufull.permissao",
 	"anticrime.permissao",
-	"cv.permissao"
+	"vermelhos.permissao"
 
 },
 
 ["CV"] = {
 	_config = { title = "C.V", gtype = "job", code = "cv"},
-	"cv.permissao",
+	"vermelhos.permissao",
 	"anticrime.permissao",
 	"drogas.permissao",
 },
@@ -352,13 +352,13 @@ cfg.groups = {
 	"addgrupo.pcc",
 	"baufull.permissao",
 	"anticrime.permissao",
-	"pcc.permissao"
+	"verdes.permissao"
 
 },
 
 ["PCC"] = {
 	_config = { title = "P.C.C", gtype = "job", code = "pcc"},
-	"pcc.permissao",
+	"verdes.permissao",
 	"anticrime.permissao",
 	"drogas.permissao",
 },

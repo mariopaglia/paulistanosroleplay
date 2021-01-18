@@ -74,18 +74,18 @@ RegisterNUICallback("ButtonClick",function(data,cb)
 			outServers()
 			exports.tokovoip_script:addPlayerToRadio(184)
 		end		
-	elseif data == "pcc" then
-		if emP.checkPermission2("pcc.permissao","PCC") then
+	elseif data == "verdes" then
+		if emP.checkPermission2("verdes.permissao","Verdes") then
 			outServers()
 			exports.tokovoip_script:addPlayerToRadio(110)
 		end	
-	elseif data == "cv" then
-		if emP.checkPermission2("cv.permissao","CV") then
+	elseif data == "vermelhos" then
+		if emP.checkPermission2("vermelhos.permissao","Vermelhos") then
 			outServers()
 			exports.tokovoip_script:addPlayerToRadio(120)
 		end	
-	elseif data == "tcp" then
-		if emP.checkPermission2("tcp.permissao","TCP") then
+	elseif data == "roxos" then
+		if emP.checkPermission2("roxos.permissao","Roxos") then
 			outServers()
 			exports.tokovoip_script:addPlayerToRadio(130)
 		end

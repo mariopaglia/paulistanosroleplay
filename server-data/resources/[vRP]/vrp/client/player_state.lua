@@ -1,3 +1,4 @@
+local weapon_list = {}
 local state_ready = false
 
 function tvRP.playerStateReady(state)
@@ -19,53 +20,113 @@ Citizen.CreateThread(function()
 end)
 
 local weapon_types = {
-	"WEAPON_DAGGER",
-	"WEAPON_BAT",
-	"WEAPON_BOTTLE",
-	"WEAPON_CROWBAR",
-	"WEAPON_FLASHLIGHT",
-	"WEAPON_GOLFCLUB",
-	"WEAPON_HAMMER",
-	"WEAPON_HATCHET",
-	"WEAPON_KNUCKLE",
+	"GADGET_PARACHUTE",
 	"WEAPON_KNIFE",
-	"WEAPON_MACHETE",
-	"WEAPON_SWITCHBLADE",
+	"WEAPON_KNUCKLE",
 	"WEAPON_NIGHTSTICK",
+	"WEAPON_HAMMER",
+	"WEAPON_BAT",
+	"WEAPON_GOLFCLUB",
+	"WEAPON_CROWBAR",
+	"WEAPON_BOTTLE",
+	"WEAPON_DAGGER",
+	"WEAPON_HATCHET",
+	"WEAPON_MACHETE",
+	"WEAPON_FLASHLIGHT",
+	"WEAPON_SWITCHBLADE",
+	"WEAPON_POOLCUE",
+	"WEAPON_PIPEWRENCH",
+	"WEAPON_STONE_HATCHET",
 	"WEAPON_WRENCH",
 	"WEAPON_BATTLEAXE",
-	"WEAPON_POOLCUE",
-	"WEAPON_STONE_HATCHET",
+	"WEAPON_AUTOSHOTGUN",
+	
+
+	"WEAPON_GRENADE",
+	"WEAPON_STICKYBOMB",
+	"WEAPON_PROXMINE",
+	"WEAPON_BZGAS",
+	"WEAPON_SMOKEGRENADE",
+	"WEAPON_MOLOTOV",
+	"WEAPON_FIREEXTINGUISHER",
+	"WEAPON_PETROLCAN",
+	"WEAPON_SNOWBALL",
+	"WEAPON_FLARE",
+	"WEAPON_BALL",
+	
+
 	"WEAPON_PISTOL",
 	"WEAPON_PISTOL_MK2",
 	"WEAPON_COMBATPISTOL",
 	"WEAPON_APPISTOL",
-	"WEAPON_STUNGUN",
-	"WEAPON_SNSPISTOL",
-	"WEAPON_VINTAGEPISTOL",
 	"WEAPON_REVOLVER",
 	"WEAPON_REVOLVER_MK2",
-	"WEAPON_MUSKET",
-	"WEAPON_FLARE",
-	"GADGET_PARACHUTE",
-	"WEAPON_FIREEXTINGUISHER",
+	"WEAPON_DOUBLEACTION",
+	"WEAPON_PISTOL50",
+	"WEAPON_SNSPISTOL",
+	"WEAPON_SNSPISTOL_MK2",
+	"WEAPON_HEAVYPISTOL",
+	"WEAPON_VINTAGEPISTOL",
+	"WEAPON_STUNGUN",
+	"WEAPON_FLAREGUN",
+	"WEAPON_MARKSMANPISTOL",
+	"WEAPON_RAYPISTOL",
+	
+
 	"WEAPON_MICROSMG",
+	"WEAPON_MINISMG",
 	"WEAPON_SMG",
+	"WEAPON_SMG_MK2",
 	"WEAPON_ASSAULTSMG",
 	"WEAPON_COMBATPDW",
-	"WEAPON_PUMPSHOTGUN_MK2",
-	"WEAPON_CARBINERIFLE",
-	"WEAPON_HEAVYSNIPER",
-	"WEAPON_SPECIALCARBINE",
+	"WEAPON_GUSENBERG",
+	"WEAPON_MACHINEPISTOL",
+	"WEAPON_MG",
+	"WEAPON_COMBATMG",
+	"WEAPON_COMBATMG_MK2",
+	"WEAPON_RAYCARBINE",
+	
+
 	"WEAPON_ASSAULTRIFLE",
 	"WEAPON_ASSAULTRIFLE_MK2",
-	"WEAPON_BULLPUPRIFLE_MK2",
+	"WEAPON_CARBINERIFLE",
+	"WEAPON_CARBINERIFLE_MK2",
+	"WEAPON_ADVANCEDRIFLE",
+	"WEAPON_SPECIALCARBINE",
 	"WEAPON_SPECIALCARBINE_MK2",
-	"WEAPON_GUSENBERG",
-	"WEAPON_RAYPISTOL",
-	"WEAPON_PETROLCAN",
-	"WEAPON_SMG_MK2",
-	"WEAPON_CARBINERIFLE_MK2"
+	"WEAPON_BULLPUPRIFLE",
+	"WEAPON_BULLPUPRIFLE_MK2",
+	"WEAPON_COMPACTRIFLE",
+	
+
+	"WEAPON_PUMPSHOTGUN",
+	"WEAPON_PUMPSHOTGUN_MK2",
+	"WEAPON_SWEEPERSHOTGUN",
+	"WEAPON_SAWNOFFSHOTGUN",
+	"WEAPON_BULLPUPSHOTGUN",
+	"WEAPON_ASSAULTSHOTGUN",
+	"WEAPON_MUSKET",
+	"WEAPON_HEAVYSHOTGUN",
+	"WEAPON_DBSHOTGUN",
+	
+
+	"WEAPON_SNIPERRIFLE",
+	"WEAPON_HEAVYSNIPER",
+	"WEAPON_HEAVYSNIPER_MK2",
+	"WEAPON_MARKSMANRIFLE",
+	"WEAPON_MARKSMANRIFLE_MK2",
+	
+
+	"WEAPON_GRENADELAUNCHER",
+	"WEAPON_GRENADELAUNCHER_SMOKE",
+	"WEAPON_RPG",
+	"WEAPON_MINIGUN",
+	"WEAPON_FIREWORK",
+	"WEAPON_RAILGUN",
+	"WEAPON_HOMINGLAUNCHER",
+	"WEAPON_COMPACTLAUNCHER",
+	"WEAPON_RAYMINIGUN",
+	"WEAPON_PIPEBOMB"
 }
 
 function tvRP.getWeapons()
@@ -86,6 +147,7 @@ function tvRP.getWeapons()
 			end
 		end
 	end
+	weapons = tvRP.legalWeaponsChecker(weapons)
 	return weapons
 end
 
@@ -99,13 +161,15 @@ function tvRP.giveWeapons(weapons, clear_before, save)
     local player = PlayerPedId()
 
     if clear_before then
-        RemoveAllPedWeapons(player, true)
+		RemoveAllPedWeapons(player, true)
+		weapon_list = {}
     end
 
     for k, weapon in pairs(weapons) do
         local hash = GetHashKey(k)
         local ammo = weapon.ammo or 0
-        GiveWeaponToPed(player, hash, ammo, false)
+		GiveWeaponToPed(player, hash, ammo, false)
+		weapon_list[k] = weapon
     end
 
     if save == nil or save == true then
@@ -113,8 +177,31 @@ function tvRP.giveWeapons(weapons, clear_before, save)
     end
 end
 
+function tvRP.getWeaponsLegal()
+									
+	return weapon_list
+end
+function tvRP.legalWeaponsChecker(weapon)
+	local source = source
+	local weapon = weapon
+	local weapons_legal = tvRP.getWeaponsLegal()
+	local ilegal = false
+	for v, b in pairs(weapon) do
+	  if not weapon_list[v] then
+		ilegal = true 
+	  end
+	end
+	if ilegal then
+		tvRP.giveWeapons(weapons_legal, true)
+		weapon = weapons_legal
+		TriggerServerEvent("LOG:ARMAS", source)
+		--return tvRP.getWeaponsLegal()							 
+	end
+	return weapon
+end	
 function tvRP.setArmour(amount, save)
-    SetPedArmour(PlayerPedId(), amount)
+	-- SetPedArmour(PlayerPedId(), amount)
+	TriggerEvent("n4018231ns7ag1",amount)
     if save == nil or save == true then
         vRPserver.updateArmor(tvRP.getArmour())
     end

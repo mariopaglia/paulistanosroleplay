@@ -15,6 +15,7 @@ server_scripts {
 	"modules/inventory.lua",
 	"modules/identity.lua",
 	"modules/survival.lua",
+	"modules/AntiFlood.lua",
 --	"modules/home.lua",
 --	"modules/home_components.lua",
 	"modules/aptitude.lua",
@@ -25,6 +26,7 @@ server_scripts {
 
 client_scripts {
 	"lib/utils.lua",
+	"lib/lib.lua",
 	"client/base.lua",
 	"client/basic_garage.lua",
 	"client/iplloader.lua",

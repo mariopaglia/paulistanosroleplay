@@ -62,17 +62,17 @@ end)
 function emP.checkPermission1()
 	local source = source
 	local user_id = vRP.getUserId(source)
-	return vRP.hasPermission(user_id,"pcc.permissao")
+	return vRP.hasPermission(user_id,"verdes.permissao")
 end
 
 function emP.checkPermission2()
 	local source = source
 	local user_id = vRP.getUserId(source)
-	return vRP.hasPermission(user_id,"cv.permissao")
+	return vRP.hasPermission(user_id,"vermelhos.permissao")
 end
 
 function emP.checkPermission3()
 	local source = source
 	local user_id = vRP.getUserId(source)
-	return vRP.hasPermission(user_id,"tcp.permissao")
+	return vRP.hasPermission(user_id,"roxos.permissao")
 end

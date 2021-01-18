@@ -414,7 +414,7 @@ local garages = {
 	[607] = { ['name'] = "MS08", ['payment'] = false, ['public'] = false },
 
 	[608] = { ['name'] = "ADM", ['payment'] = false, ['perm'] = "admin.permissao" },
-	[609] = { ['name'] = "Garagem", ['payment'] = false, ['public'] = true }, -- Cosanostra (Fazenda)
+	-- [609] = { ['name'] = "Garagem", ['payment'] = false, ['public'] = true }, -- Cosanostra (Fazenda)
 	[610] = { ['name'] = "Piloto", ['payment'] = false, ['perm'] = "piloto.permissao" },	
 	[611] = { ['name'] = "Fotos", ['payment'] = false, ['perm'] = "admin.permissao" },
 -----------------------------------------------------------------------------------------------------------------------------------------
@@ -564,12 +564,7 @@ local workgarage = {
 		"felon2"
 	},
 	["Bicicletario"] = {
-		"scorcher",
-		"tribike",
-		"tribike2",
 		"tribike3",
-		"fixter",
-		"cruiser",
 		"bmx"
 	},
 	["Colheita"] = {

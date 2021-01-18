@@ -609,8 +609,8 @@ AddEventHandler("vRP:playerSpawn", function(user_id, source, first_spawn)
     end
 end)
 
-RegisterServerEvent('bank:transfer')
-AddEventHandler('bank:transfer', function(id, amount)
+RegisterServerEvent('bank:transfer128317')
+AddEventHandler('bank:transfer128317', function(id, amount)
     local _source = source
     local user_id = vRP.getUserId(source)
     local targetPlayer = vRP.getUserSource(tonumber(id))

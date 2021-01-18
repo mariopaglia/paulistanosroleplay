@@ -43,7 +43,7 @@ AddEventHandler("vRPclient:playerSpawned",function(user_id,source)
     local bankbalance = vRP.getBankMoney(user_id)
     local multasbalance = vRP.getUData(user_id,"vRP:multas")
     local walletbalance = vRP.getBank(user_id)
-    TriggerClientEvent('banking:updateBalance', source, bankbalance, multasbalance, walletbalance)
+    TriggerClientEvent('banking:updateBalance12691261', source, bankbalance, multasbalance, walletbalance)
 end)
 
 RegisterServerEvent('playerSpawned')
@@ -53,7 +53,7 @@ AddEventHandler('playerSpawned', function()
   local walletbalance = vRP.getBank(user_id)
   local multasbalance = vRP.getUData(user_id,"vRP:multas")
 
-  TriggerClientEvent('banking:updateBalance', source, bankbalance, multasbalance, walletbalance)
+  TriggerClientEvent('banking:updateBalance12691261', source, bankbalance, multasbalance, walletbalance)
 end)
 
 function bankBalance(user_id)
@@ -71,7 +71,7 @@ end
 function Depositar(user_id, amount)
   local bankbalance = vRP.getBankMoney(user_id)
   local new_balance = bankbalance + math.abs(amount)
-  TriggerClientEvent("banking:updateBalance", source, new_balance)
+  TriggerClientEvent("banking:updateBalance12691261", source, new_balance)
   vRP.tryDeposit(user_id,math.floor(math.abs(amount)))
 end
 
@@ -93,19 +93,19 @@ function addComma(amount)
   return formatted
 end
 
-RegisterServerEvent('bank:update')
-AddEventHandler('bank:update', function()
+RegisterServerEvent('bank:update128317')
+AddEventHandler('bank:update128317', function()
   local source = source
   local user_id = vRP.getUserId(source)
   local bankbalance = vRP.getBankMoney(user_id)
   local identity = vRP.getUserIdentity(user_id)
   local multasbalance = vRP.getUData(user_id,"vRP:multas")
   local walletbalance = vRP.getMoney(user_id)
-  TriggerClientEvent("banking:updateBalance", source, bankbalance, walletbalance, multasbalance, identity.name.." "..identity.firstname) -- ADICIONAR VALORES AQUI PARA APARECER NA NUI + JAVA SCRIPT + HTML
+  TriggerClientEvent("banking:updateBalance12691261", source, bankbalance, walletbalance, multasbalance, identity.name.." "..identity.firstname) -- ADICIONAR VALORES AQUI PARA APARECER NA NUI + JAVA SCRIPT + HTML
 end)
 
-RegisterServerEvent('bank:pagarmulta')
-AddEventHandler('bank:pagarmulta', function(amount)
+RegisterServerEvent('bank:pagarmulta128317')
+AddEventHandler('bank:pagarmulta128317', function(amount)
   local source = source
   local user_id = vRP.getUserId(source)
   local valor = vRP.getUData(user_id,"vRP:multas")
@@ -118,16 +118,16 @@ AddEventHandler('bank:pagarmulta', function(amount)
     local newvalor = vRP.getUData(user_id,"vRP:multas")
     local bank = vRP.getBankMoney(user_id)
     local wallet = vRP.getMoney(user_id)
-    TriggerClientEvent("banking:updateBalance", source, bank, wallet,novamulta)
-    TriggerClientEvent("banking:removeMulta", source, rounded)
+    TriggerClientEvent("banking:updateBalance12691261", source, bank, wallet,novamulta)
+    TriggerClientEvent("banking:removeMulta12691261", source, rounded)
     vRP.execute("sRP/inserir_table", {user_id = user_id, extrato = "Você pagou <strong>$"..addComma(math.floor(rounded)).."</strong> em multas, restando <strong>$"..addComma(math.floor(novamulta)).."</strong> de multas pendentes e seu novo saldo ficou em <strong>$"..addComma(math.floor(bank)).."</strong> e o valor na carteira é de <strong>$"..wallet.."</strong>"})
     TriggerClientEvent("Notify", source, "sucesso","Voce pagou <b>$"..rounded.." em multas </b>")
   else
     TriggerClientEvent("Notify", source, "negado","<b>Dinheiro Insuficiente </b>")
   end
 end)
-RegisterServerEvent('bank:deposit')
-AddEventHandler('bank:deposit', function(amount)
+RegisterServerEvent('bank:deposit128317')
+AddEventHandler('bank:deposit128317', function(amount)
   local source = source
   local user_id = vRP.getUserId(source)
   if user_id then
@@ -141,8 +141,8 @@ AddEventHandler('bank:deposit', function(amount)
           
           Depositar(user_id, rounded)
           local carteira = vRP.getMoney(user_id)
-          TriggerClientEvent("banking:updateBalance", source, new_balance,carteira)
-          TriggerClientEvent("banking:addBalance", source, rounded)
+          TriggerClientEvent("banking:updateBalance12691261", source, new_balance,carteira)
+          TriggerClientEvent("banking:addBalance12691261", source, rounded)
           vRP.execute("sRP/inserir_table", {user_id = user_id, extrato = "Você depositou <strong>$"..addComma(math.floor(rounded)).."</strong>, seu saldo ficou em <strong>$"..addComma(math.floor(bankbalance + rounded)).."</strong> e seu novo valor na carteira é de <strong>$"..carteira.."</strong"})
           TriggerClientEvent("Notify", source, "sucesso","Você acabou de depositar <b>$" ..addComma(amount).."</b>")
         else
@@ -153,8 +153,8 @@ AddEventHandler('bank:deposit', function(amount)
   end
 end)
 
-RegisterServerEvent('bank:withdraw')
-AddEventHandler('bank:withdraw', function(amount)
+RegisterServerEvent('bank:withdraw128317')
+AddEventHandler('bank:withdraw128317', function(amount)
   local source = source
   local user_id = vRP.getUserId(source)
   if user_id then
@@ -169,8 +169,8 @@ AddEventHandler('bank:withdraw', function(amount)
         local carteira = vRP.getMoney(user_id)
         vRP.execute("sRP/inserir_table", {user_id = user_id, extrato = "Você fez um saque de <strong>$"..addComma(math.floor(rounded)).."</strong>, seu saldo ficou em <strong>$" .. addComma(math.floor(bankbalance - rounded)) .. "</strong>e seu novo valor na carteira é de <strong>$"..carteira.."</strong"})
         -- Update NUI
-        TriggerClientEvent("banking:updateBalance", source, new_balance, carteira)
-        TriggerClientEvent("banking:removeBalance", source, rounded)
+        TriggerClientEvent("banking:updateBalance12691261", source, new_balance, carteira)
+        TriggerClientEvent("banking:removeBalance12691261", source, rounded)
         -- Salva o extrato
         TriggerClientEvent("Notify", source, "sucesso","Você acabou de sacar <b>$" ..rounded.."</b>")
       else
@@ -181,8 +181,8 @@ AddEventHandler('bank:withdraw', function(amount)
   end
 end)
 
-RegisterServerEvent('bank:quickCash')
-AddEventHandler('bank:quickCash', function()
+RegisterServerEvent('bank:quickCash128317')
+AddEventHandler('bank:quickCash128317', function()
   local source = source
   local user_id = vRP.getUserId(source)
   local source = vRP.getUserSource(user_id)
@@ -192,8 +192,8 @@ AddEventHandler('bank:quickCash', function()
     local new_balance = bankbalance - math.abs(quantia)
     vRP.tryWithdraw(user_id,quantia)
     local carteira = vRP.getMoney(user_id)
-    TriggerClientEvent("banking:updateBalance", source, new_balance,carteira)
-    TriggerClientEvent("banking:removeBalance", source, quantia)
+    TriggerClientEvent("banking:updateBalance12691261", source, new_balance,carteira)
+    TriggerClientEvent("banking:removeBalance12691261", source, quantia)
     TriggerClientEvent("Notify", source, "sucesso","Você acabou de sacar <b>$1000!</b>")
     vRP.execute("sRP/inserir_table", {user_id = user_id, extrato = "Você fez um saque rapído de <strong>$" .. "1.000" .. "</strong>, seu saldo ficou em <strong>$" .. addComma(bankbalance - 1000) .. "</strong> e seu novo valor na carteira é de <strong>$"..carteira.."</strong"})
   else
@@ -224,8 +224,8 @@ AddEventHandler('bank:transfer', function(toPlayer, amount)
             vRP.setBankMoney(nuser_id, newBalance_Player)
 
             -- Seta o dinheiro pro player
-            TriggerClientEvent("banking:updateBalance", player, newBalance_Player)
-            TriggerClientEvent("banking:addBalance", player, rounded)
+            TriggerClientEvent("banking:updateBalance12691261", player, newBalance_Player)
+            TriggerClientEvent("banking:addBalance12691261", player, rounded)
           else
             local bank = vRP.scalar('sRP/get_dinheiro', {user_id = nuser_id})
             vRP.setBankMoney(user_id, newBalance)
@@ -233,8 +233,8 @@ AddEventHandler('bank:transfer', function(toPlayer, amount)
           end
           -- Remove o dinheiro do player que enviou
           local carteira = vRP.getMoney(user_id)
-          TriggerClientEvent("banking:updateBalance", source, newBalance, carteira)
-          TriggerClientEvent("banking:removeBalance", source, rounded)
+          TriggerClientEvent("banking:updateBalance12691261", source, newBalance, carteira)
+          TriggerClientEvent("banking:removeBalance12691261", source, rounded)
           -- Extrato
           vRP.execute("sRP/inserir_table", {user_id = user_id, extrato = "Você Transferiu <strong>$"..addComma(math.floor(rounded)).."</strong> para o ID: "..toPlayer..", seu saldo ficou em <strong>$"..addComma(math.floor(bankbalance - rounded)).."</strong> comprovante <strong>NL"..aleatorio.."</strong> e seu novo valor na carteira é de <strong>$"..carteira.."</strong"})
           TriggerClientEvent("Notify", source, "sucesso","Você transferiu <b>$"..rounded.."</b> para o <b>ID: "..nuser_id.."</b>")

@@ -11,7 +11,7 @@ local quantidade = {}
 function emP.Quantidade()
 	local source = source
 	if quantidade[source] == nil then
-		quantidade[source] = math.random(1,4)
+		quantidade[source] = math.random(1,3)
 	end
 end
 -----------------------------------------------------------------------------------------------------------------------------------------
@@ -30,9 +30,9 @@ function emP.checkPayment()
 	local source = source
 	local user_id = vRP.getUserId(source)
 	if user_id then
-		if vRP.getInventoryWeight(user_id)+vRP.getItemWeight("serra")*quantidade[source] <= vRP.getInventoryMaxWeight(user_id) then
-		TriggerClientEvent("Notify",source,"sucesso","Você coletou <b> "..quantidade[source].."x Serra</b>.")
-		vRP.giveInventoryItem(user_id,"serra",quantidade[source])
+		if vRP.getInventoryWeight(user_id)+vRP.getItemWeight("placacircuito")*quantidade[source] <= vRP.getInventoryMaxWeight(user_id) then
+		TriggerClientEvent("Notify",source,"sucesso","Você coletou <b> "..quantidade[source].."x Placa de Circuito</b>.")
+		vRP.giveInventoryItem(user_id,"placacircuito",quantidade[source])
 		quantidade[source] = nil
 		return true
 		end

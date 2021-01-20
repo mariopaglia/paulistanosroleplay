@@ -16,6 +16,5 @@ files {
 	"nui/index.html",
 	"nui/ui.js",
 	"nui/style.css",
-	"nui/imagens/*",
 	"nui/GothamPro-Black.woff"
 }

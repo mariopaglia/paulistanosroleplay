@@ -15,6 +15,15 @@ for i = 0, 19 do
 end
 
 cfg.cloakroom_types = {
+	["Uniforme Mecanica"] = {
+		_config = {permissions = {"mecanico.permissao"}},
+		["Mecanico"] = {
+			[8] = {90,1,1},
+		},
+		["Mecanica"] = {
+			[8] = {54,0,1},
+		},
+	},
 	["Fardamento PMESP"] = {
 		_config = {permissions = {"pmesp.permissao"}},
 		["PMESP [M] - [Recruta]"] = {
@@ -424,7 +433,9 @@ cfg.cloakrooms = {
 	{"Fardamento ROTA", -1095.0867919922, -829.58959960938, 14.282787322998},
 	{"Fardamento PCESP", 458.6598815918, -992.93743896484, 30.689655303955},
 	{"Fardamento PRF", 2900.6137695313, 3819.74609375, 54.609714508057},
-	{"Fardamento SAMU", 301.32916259766, -599.16723632813, 43.283996582031}
+	{"Fardamento SAMU", 301.32916259766, -599.16723632813, 43.283996582031},
+	{"Uniforme Mecanica", -203.69,-1339.3,34.9}, -- Bennys
+	{"Uniforme Mecanica", 957.1,-965.36,39.76}, -- Sport Racing
 }
 
 return cfg

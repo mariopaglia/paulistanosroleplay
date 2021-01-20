@@ -3,6 +3,7 @@ local logsenviar = "https://discord.com/api/webhooks/793600149590769685/-PHSTM2R
 local logscobrar = "https://discord.com/api/webhooks/793600242192220200/xChABlHgz09Kmro84R5i7773NydbQ504C8-5w8RX63mPKdVxxxXvp5wbNwiaQ-8DbWg4"
 local logsroubar = "https://discord.com/api/webhooks/793600303437971546/Mq-CbSWOOD7CYQo48zM_Ie8M0-KUIdfLLdqjQiG2WJsXAbqiLN1ZSfWqY_bxbxtf4XUr"
 local webhooklinkinout = "https://discord.com/api/webhooks/794791807891669013/DOY3kVr1QmuN_0RBz3D_ZyFF1H6Wx-smJnLRByOXgT7EWHPigPr5xK11YXmohAtMZzdi"
+local webhookpaypal = "https://discord.com/api/webhooks/800804690471813162/Q7nryy87L97UxJnsnEODRV4bx4s6aVqmlzxVYf91Hfgf_XXTUvlI-Rud_PRuJ9BCClR_"
 local discord_webhook4 = ""
 local discord_webhook5 = ""
 local Tunnel = module("vrp","lib/Tunnel")
@@ -41,13 +42,15 @@ local itemlist = {
 	["capuz"] = { index = "capuz", nome = "Capuz" },
 	["lockpick"] = { index = "lockpick", nome = "Lockpick" },
 	["masterpick"] = { index = "masterpick", nome = "Masterpick" },
-	["militec"] = { index = "militec", nome = "Militec-1" },
+	["militec"] = { index = "militec", nome = "Militec" },
 	["energetico"] = { index = "energetico", nome = "Energético" },
 	["mochila"] = { index = "mochila", nome = "Mochila" },
 	["c4"] = { index = "c4", nome = "C4" },
 	["carbono"] = { index = "carbono", nome = "Carbono" },
 	["pendrive"] = { index = "pendrive", nome = "Pendrive" },
 	["celular"] = { index = "celular", nome = "Celular" },
+	["placa"] = { index = "placa", nome = "Placa" },
+	["pneus"] = { index = "pneus", nome = "Pneus" },
 	
 	-- Pesca
 	["isca"] = { index = "isca", nome = "Isca" },
@@ -60,6 +63,11 @@ local itemlist = {
 	["tilapia"] = { index = "tilapia", nome = "Tilápia" },
 	["tucunare"] = { index = "tucunare", nome = "Tucunaré" },
 	["lambari"] = { index = "lambari", nome = "Lambari" },
+	
+	-- Farm de Lavagem
+	["pendrivedeep"] = { index = "pendrivedeep", nome = "Pendrive Deepweb" },
+	["placacircuito"] = { index = "placacircuito", nome = "Placa de Circuito" },
+	["chipset"] = { index = "chipset", nome = "Chipset" },
 	
 	-- Farm de Drogas
 	["adubo"] = { index = "adubo", nome = "Adubo" },
@@ -272,21 +280,38 @@ end
 -----------------------------------------------------------------------------------------------------------------------------------------
 RegisterCommand('gcolete',function(source,args,rawCommand)
 	vRP.antiflood(source,"/gcolete",2)
-	local user_id = vRP.getUserId(source)
-	local player = vRP.getUserSource(user_id)
-	local armour = vRPclient.getArmour(player)
-	if vRP.getInventoryWeight(user_id)+vRP.getItemWeight("colete") <= vRP.getInventoryMaxWeight(user_id) then
-		if armour > 95 then
-		   vRPclient.setArmour(source,0)
-		   vRP.giveInventoryItem(user_id,"colete",1,true)
-		   TriggerClientEvent("tirandocolete",player)
-		   TriggerClientEvent("Notify",source,"sucesso","Você guardou o seu <b>Colete</b>.")
-		else
-		   TriggerClientEvent("Notify",source,"negado","<b>Coletes</b> danificados não podem ser <b>Guardados</b>")
-		end
-	else
-		TriggerClientEvent("Notify",source,"negado","Você não possui espaço suficiente na mochila")
-	end
+    local source = source
+    local user_id = vRP.getUserId(source)
+    local armourlevel = vRPclient.getArmour(source)
+    local descricao = vRP.prompt(source,"Deseja guardar seu colete?  DIGITE: sim","")
+    
+    if descricao == "sim" or descricao == "Sim" or descricao == "SIM" then
+        if vRPclient.getHealth(source) > 101 then
+            if vRP.getInventoryWeight(user_id)+vRP.getItemWeight("colete") <= vRP.getInventoryMaxWeight(user_id) then        
+                if armourlevel > 89 then
+                    if not vRPclient.isHandcuffed(source) then
+                        if not vRP.searchReturn(source,user_id) then
+                            if user_id then
+                                vRPclient.setArmour(source, 0)
+                                TriggerClientEvent("tirandocolete",source,args[10],args[20])
+                                vRP.giveInventoryItem(user_id,'colete',1)
+                            end
+                        end
+                    else
+                        TriggerClientEvent("Notify",source,"negado","Esta algemado!")
+                    end
+                elseif armourlevel > 0 then
+                    TriggerClientEvent("Notify",source,"negado","Seu colete esta danificado se deseja retirar execute o comando '/jcolete'") 
+                else
+                    TriggerClientEvent("Notify",source,"negado","Colete não encontrado!") 
+                end
+            else
+                TriggerClientEvent("Notify",source,"negado","Seu colete não cabe em sua mochila!") 
+            end
+        else
+            TriggerClientEvent("Notify",source,"negado","Morto não se meche!")
+        end    
+    end
 end)
 -- -----------------------------------------------------------------------------------------------------------------------------------------
 -- -- JOGAR FORA O COLETE
@@ -311,7 +336,7 @@ Citizen.CreateThread(function()
 	while true do
 		Citizen.Wait(0)
 		if Instanced then
-			for i=0, 255 do
+			for i=0, 255 do --altere para 32 caso não use onesync
 				local otherPlayerPed = GetPlayerPed(i)
 				
 				if otherPlayerPed ~= PlayerPedId() then
@@ -685,81 +710,71 @@ end)
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- MOTOR
 -----------------------------------------------------------------------------------------------------------------------------------------
-RegisterCommand('motor',function(source,args,rawCommand)
-	local user_id = vRP.getUserId(source)
-	if not vRPclient.isInVehicle(source) then
-		local vehicle = vRPclient.getNearestVehicle(source,7)
-		if vRP.hasPermission(user_id,"mecanico.permissao") then
-			TriggerClientEvent('cancelando',source,true)
-			vRPclient._playAnim(source,false,{{"mini@repair","fixing_a_player"}},true)
-			TriggerClientEvent("progress",source,30000,"reparando")
-			SetTimeout(30000,function()
-				TriggerClientEvent('cancelando',source,false)
-				TriggerClientEvent('repararmotor',source,vehicle)
-				vRPclient._stopAnim(source,false)
-			end)
-		else
-			if vRP.tryGetInventoryItem(user_id,"militec",1) then
-				TriggerClientEvent('cancelando',source,true)
-				vRPclient._playAnim(source,false,{{"mini@repair","fixing_a_player"}},true)
-				TriggerClientEvent("progress",source,30000,"reparando")
-				SetTimeout(30000,function()
-					TriggerClientEvent('cancelando',source,false)
-					TriggerClientEvent('repararmotor',source,vehicle)
-					vRPclient._stopAnim(source,false)
-				end)
-			else
-				TriggerClientEvent("Notify",source,"negado","Precisa de um <b>Militec-1</b> para reparar o motor.")
-			end
-		end
-	else
-		TriggerClientEvent("Notify",source,"negado","Precisa estar próximo ou fora do veículo para efetuar os reparos.")
-	end
-end)
+-- RegisterCommand('motor',function(source,args,rawCommand)
+-- 	local user_id = vRP.getUserId(source)
+-- 	if not vRPclient.isInVehicle(source) then
+-- 		local vehicle = vRPclient.getNearestVehicle(source,7)
+-- 		if vRP.hasPermission(user_id,"mecanico.permissao") then
+-- 			TriggerClientEvent('cancelando',source,true)
+-- 			vRPclient._playAnim(source,false,{{"mini@repair","fixing_a_player"}},true)
+-- 			TriggerClientEvent("progress",source,30000,"reparando")
+-- 			SetTimeout(30000,function()
+-- 				TriggerClientEvent('cancelando',source,false)
+-- 				TriggerClientEvent('repararmotor',source,vehicle)
+-- 				vRPclient._stopAnim(source,false)
+-- 			end)
+-- 		else
+-- 			if vRP.tryGetInventoryItem(user_id,"militec",1) then
+-- 				TriggerClientEvent('cancelando',source,true)
+-- 				vRPclient._playAnim(source,false,{{"mini@repair","fixing_a_player"}},true)
+-- 				TriggerClientEvent("progress",source,30000,"reparando")
+-- 				SetTimeout(30000,function()
+-- 					TriggerClientEvent('cancelando',source,false)
+-- 					TriggerClientEvent('repararmotor',source,vehicle)
+-- 					vRPclient._stopAnim(source,false)
+-- 				end)
+-- 			else
+-- 				TriggerClientEvent("Notify",source,"negado","Precisa de um <b>Militec-1</b> para reparar o motor.")
+-- 			end
+-- 		end
+-- 	else
+-- 		TriggerClientEvent("Notify",source,"negado","Precisa estar próximo ou fora do veículo para efetuar os reparos.")
+-- 	end
+-- end)
 
-RegisterServerEvent("trymotor")
-AddEventHandler("trymotor",function(nveh)
-	TriggerClientEvent("syncmotor",-1,nveh)
-end)
+-- RegisterServerEvent("trymotor")
+-- AddEventHandler("trymotor",function(nveh)
+-- 	TriggerClientEvent("syncmotor",-1,nveh)
+-- end)
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- REPARAR
 -----------------------------------------------------------------------------------------------------------------------------------------
-RegisterCommand('reparar',function(source,args,rawCommand)
-	local user_id = vRP.getUserId(source)
-	if not vRPclient.isInVehicle(source) then
-		local vehicle = vRPclient.getNearestVehicle(source,7)
-		if vRP.hasPermission(user_id,"mecanico.permissao") then
-			TriggerClientEvent('cancelando',source,true)
-			vRPclient._playAnim(source,false,{{"mini@repair","fixing_a_player"}},true)
-			TriggerClientEvent("progress",source,30000,"reparando")
-			SetTimeout(30000,function()
-				TriggerClientEvent('cancelando',source,false)
-				TriggerClientEvent('reparar',source,vehicle)
-				vRPclient._stopAnim(source,false)
-			end)
-		else
-			if vRP.tryGetInventoryItem(user_id,"repairkit",1) then
-				TriggerClientEvent('cancelando',source,true)
-				vRPclient._playAnim(source,false,{{"mini@repair","fixing_a_player"}},true)
-				TriggerClientEvent("progress",source,30000,"reparando")
-				SetTimeout(30000,function()
-					TriggerClientEvent('cancelando',source,false)
-					TriggerClientEvent('reparar',source,vehicle)
-					vRPclient._stopAnim(source,false)
-				end)
-			else
-				TriggerClientEvent("Notify",source,"negado","Precisa de um <b>Kit de Reparos</b> para reparar o veículo.")
-			end
-		end
-	else
-		TriggerClientEvent("Notify",source,"negado","Precisa estar próximo ou fora do veículo para efetuar os reparos.")
-	end
-end)
+-- RegisterCommand('reparar',function(source,args,rawCommand)
+-- 	local user_id = vRP.getUserId(source)
+-- 	if not vRPclient.isInVehicle(source) then
+-- 		local vehicle = vRPclient.getNearestVehicle(source,7)
+-- 		if vRP.hasPermission(user_id,"mecanico.permissao") then
+			
+-- 			TriggerClientEvent('cancelando',source,true)
+-- 			vRPclient._playAnim(source,false,{{"mini@repair","fixing_a_player"}},true)
+-- 			TriggerClientEvent("progress",source,30000,"reparando")
+-- 			SetTimeout(30000,function()
+-- 				TriggerClientEvent('cancelando',source,false)
+-- 				TriggerClientEvent('reparar',source,vehicle)
+-- 				vRPclient._stopAnim(source,false)
+-- 			end)
+-- 		else
+-- 			TriggerClientEvent("Notify",source,"negado","Somente mecanicos podem utilizar <b>Kit de Reparo</b>, chame um através do <b>/call mec</b>")
+-- 		end
+-- 	else
+-- 		TriggerClientEvent("Notify",source,"negado","Precisa estar próximo ou fora do veículo para efetuar os reparos.")
+-- 	end
+-- end)
 
-RegisterServerEvent("tryreparar")
-AddEventHandler("tryreparar",function(nveh)
-	TriggerClientEvent("syncreparar",-1,nveh)
-end)
+-- RegisterServerEvent("tryreparar")
+-- AddEventHandler("tryreparar",function(nveh)
+-- 	TriggerClientEvent("syncreparar",-1,nveh)
+-- end)
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- ENVIAR
 -----------------------------------------------------------------------------------------------------------------------------------------
@@ -2141,6 +2156,7 @@ RegisterCommand('paypal',function(source,args,rawCommand)
 	local identity = vRP.getUserIdentity(user_id)
 	if user_id then
 		if args[1] == "sacar" and parseInt(args[2]) > 0 then
+			vRP.antiflood(source,"/paypal sacar",3)
 			local consulta = vRP.getUData(user_id,"vRP:paypal")
 			local resultado = json.decode(consulta) or 0
 			local fixbug = vRP.prompt(source,"Confirmaçao(Digite Sim):","")
@@ -2149,6 +2165,7 @@ RegisterCommand('paypal',function(source,args,rawCommand)
 				vRP.giveBankMoney(user_id,parseInt(args[2]))
 				vRP.setUData(user_id,"vRP:paypal",json.encode(parseInt(resultado-args[2])))
 				TriggerClientEvent("Notify",source,"sucesso","Efetuou o saque de <b>R$"..vRP.format(parseInt(args[2])).." reais</b> da sua conta paypal.")
+				SendWebhookMessage(webhookpaypal,"```prolog\n[ID]: "..user_id.." "..identity.name.." "..identity.firstname.." \n[SACOU]: R$ "..vRP.format(parseInt(args[2]))..""..os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S").." \r```")
 			else
 				TriggerClientEvent("Notify",source,"negado","Dinheiro insuficiente em sua conta paypal.")
 				end
@@ -2159,6 +2176,7 @@ RegisterCommand('paypal',function(source,args,rawCommand)
 	local identity = vRP.getUserIdentity(user_id)
 	if user_id then
 	if args[1] == "trans" and parseInt(args[2]) > 0 and parseInt(args[3]) > 0 then
+	vRP.antiflood(source,"/paypal trans",3)
 	local consulta = vRP.getUData(parseInt(args[2]),"vRP:paypal")
 	local resultado = json.decode(consulta) or 0
 	local banco = vRP.getBankMoney(user_id)
@@ -2167,8 +2185,8 @@ RegisterCommand('paypal',function(source,args,rawCommand)
 		if banco >= parseInt(args[3]) then
 			vRP.setBankMoney(user_id,parseInt(banco-args[3]))
 			vRP.setUData(parseInt(args[2]),"vRP:paypal",json.encode(parseInt(resultado+args[3])))
-			TriggerClientEvent("Notify",source,"sucesso","Enviou <b>R$"..vRP.format(parseInt(args[3])).." reais</b> ao passaporte <b>"..vRP.format(parseInt(args[2])).."</b>.")
-			SendWebhookMessage(webhookpaypal,"```prolog\n[ID]: "..user_id.." "..identity.name.." "..identity.firstname.." \n[ENVIOU]: R$"..vRP.format(parseInt(args[3])).." \n[PARA O ID]: "..parseInt(args[2]).." "..identityu.name.." "..identityu.firstname.." "..os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S").." \r```")
+			TriggerClientEvent("Notify",source,"sucesso","Enviou <b>R$ "..vRP.format(parseInt(args[3])).." reais</b> ao passaporte <b>"..vRP.format(parseInt(args[2])).."</b>.")
+			SendWebhookMessage(webhookpaypal,"```prolog\n[ID]: "..user_id.." "..identity.name.." "..identity.firstname.." \n[ENVIOU]: R$ "..vRP.format(parseInt(args[3])).." \n[PARA O ID]: "..parseInt(args[2]).." "..identityu.name.." "..identityu.firstname.." "..os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S").." \r```")
 			local player = vRP.getUserSource(parseInt(args[2]))
 			if player == nil then
 				return

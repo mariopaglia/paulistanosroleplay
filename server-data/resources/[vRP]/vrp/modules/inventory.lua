@@ -37,7 +37,7 @@ local itemlist = {
 	["capuz"] = { index = "capuz", nome = "Capuz", type = "usar" },
 	["lockpick"] = { index = "lockpick", nome = "Lockpick", type = "usar" },
 	["masterpick"] = { index = "masterpick", nome = "Masterpick", type = "usar" },
-	["militec"] = { index = "militec", nome = "Militec-1", type = "usar" },
+	["militec"] = { index = "militec", nome = "Militec", type = "usar" },
 	["roupas"] = { index = "roupas", nome = "Roupas", type = "usar" },
 	["energetico"] = { index = "energetico", nome = "Energético", type = "usar" },
 	["mochila"] = { index = "mochila", nome = "Mochila", type = "usar" },
@@ -45,6 +45,8 @@ local itemlist = {
 	["pendrive"] = { index = "pendrive", nome = "Pendrive", type = "usar" },
 	["radio"] = { index = "radio", nome = "Radio", type = "usar" },
 	["c4"] = { index = "c4", nome = "C4", type = "usar" },
+	["placa"] = { index = "placa", nome = "Placa", type = "usar" },
+	["pneus"] = { index = "pneus", nome = "Pneus", type = "usar" },
 	
 	-- Pesca
 	["isca"] = { index = "isca", nome = "Isca", type = "usar" },
@@ -57,6 +59,11 @@ local itemlist = {
 	["tilapia"] = { index = "tilapia", nome = "Tilápia", type = "usar" },
 	["tucunare"] = { index = "tucunare", nome = "Tucunaré", type = "usar" },
 	["lambari"] = { index = "lambari", nome = "Lambari", type = "usar" },
+	
+	-- Farm de Lavagem
+	["pendrivedeep"] = { index = "pendrivedeep", nome = "Pendrive Deepweb", type = "usar" },
+	["placacircuito"] = { index = "placacircuito", nome = "Placa de Circuito", type = "usar" },
+	["chipset"] = { index = "chipset", nome = "Chipset", type = "usar" },
 	
 	-- Farm Drogas
 	["pastadecoca"] = { index = "pastadecoca", nome = "Pasta de Coca", type = "usar" },
@@ -893,7 +900,7 @@ local vehglobal = {
 	["btype"] = { ['name'] = "Btype", ['price'] = 200000, ['tipo'] = "work" },
 	["tractor2"] = { ['name'] = "Tractor2", ['price'] = 1000, ['tipo'] = "work" },
 	["rebel"] = { ['name'] = "Rebel", ['price'] = 1000, ['tipo'] = "work" },
-	["flatbed3"] = { ['name'] = "Reboque", ['price'] = 1000, ['tipo'] = "work" },
+	["flatbed"] = { ['name'] = "Reboque", ['price'] = 1000, ['tipo'] = "work" },
 	["volatus"] = { ['name'] = "Volatus", ['price'] = 1000000, ['tipo'] = "work" },
 	["cargobob2"] = { ['name'] = "Cargo Bob", ['price'] = 1000000, ['tipo'] = "work" },		
 	["hauler"] = { ['name'] = "Caminhão", ['price'] = 1000, ['tipo'] = "work" },	

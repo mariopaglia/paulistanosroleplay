@@ -10,19 +10,21 @@ cfg.items = {
 	["bandagem"] = { "Bandagem",0.7 },
 	["roupas"] = { "Roupas",1.0 },
 	["dinheirosujo"] = { "Dinheiro Sujo",0.0 },
-	["repairkit"] = { "Kit de Reparos",1.0 },
+	["repairkit"] = { "Kit de Reparos",10.0 },
 	["algemas"] = { "Algemas",1.0 },
 	["celular"] = { "Celular",0.5 },
 	["capuz"] = { "Capuz",0.5 },
 	["lockpick"] = { "Lockpick",10 },
 	["masterpick"] = { "Masterpick",10 },
-	["militec"] = { "Militec-1",0.8 },
+	["militec"] = { "Militec",5.0 },
 	["c4"] = { "C4",5.0 },
 	["energetico"] = { "Energético",0.3 },
 	["mochila"] = { "Mochila",1 },
 	["carbono"] = { "Carbono",0.0038 },
-	["pendrive"] = { "Pendrive",0.1 },
+	["pendrive"] = { "Pendrive",0.5 },
 	["radio"] = { "Radio",1.0 },
+	["placa"] = { "Placa",5.0 },
+	["pneus"] = { "Pneus",70.0 },
 	
 	-- Pesca
 	["isca"] = { "Isca",0.6 },
@@ -35,6 +37,11 @@ cfg.items = {
 	["tilapia"] = { "Tilápia",0.6 },
 	["tucunare"] = { "Tucunaré",0.6 },
 	["lambari"] = { "Lambari",0.6 },
+
+	-- Farm de Lavagem
+	["pendrivedeep"] = { "Pendrive Deepweb",0.5 },
+	["placacircuito"] = { "Placa de Circuito",0.3 },
+	["chipset"] = { "Chipset",0.3 },
 	
 	-- Farm de Armas
 	["placademetal"] = { "Placa de Metal",0.5 },

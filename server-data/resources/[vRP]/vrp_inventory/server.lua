@@ -763,19 +763,7 @@ function vRPN.useItem(itemName,type,ramount)
 								vRPclient._stopAnim(source,false)
 							end)
 						else
-							if vRP.tryGetInventoryItem(user_id,"repairkit",1) then
-								actived[user_id] = true
-								TriggerClientEvent('Creative:Update',source,'updateMochila')
-								TriggerClientEvent('cancelando',source,true)
-								vRPclient._playAnim(source,false,{{"mini@repair","fixing_a_player"}},true)
-								TriggerClientEvent("progress",source,30000,"reparando veículo")
-								SetTimeout(30000,function()
-									actived[user_id] = nil
-									TriggerClientEvent('cancelando',source,false)
-									TriggerClientEvent('reparar',source)
-									vRPclient._stopAnim(source,false)
-								end)
-							end
+							TriggerClientEvent("Notify",source,"negado","Somente mecanicos podem utilizar <b>Kit de Reparo</b>, chame um através do <b>/call mec</b>")
 						end
 					end
 				end	

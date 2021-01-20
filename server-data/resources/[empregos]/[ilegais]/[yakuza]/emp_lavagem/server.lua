@@ -26,10 +26,10 @@ function lav.checkDinheiro()
 	local source = source
 	local user_id = vRP.getUserId(source)
 	if user_id then
-		if vRP.getInventoryItemAmount(user_id,"dinheirosujo") >= 10000 then
+		if vRP.getInventoryItemAmount(user_id,"dinheirosujo") >= 10000 and vRP.getInventoryItemAmount(user_id,"pendrivedeep") >= 1 then
 			return true 
 		else
-			TriggerClientEvent("Notify",source,"negado","Sem dinheiro sujo.") 
+			TriggerClientEvent("Notify",source,"negado","Sem <b>Dinheiro Sujo</b> ou <b>Pendrive Deepweb</b>") 
 			return false
 		end
 	end
@@ -39,7 +39,7 @@ function lav.checkPayment()
     local user_id = vRP.getUserId(source)
     local policia = vRP.getUsersByPermission("policia.permissao")
     if user_id then
-        if vRP.tryGetInventoryItem(user_id,"dinheirosujo",10000) then
+        if vRP.tryGetInventoryItem(user_id,"dinheirosujo",10000) and vRP.tryGetInventoryItem(user_id,"pendrivedeep",1) then
            vRP.giveMoney(user_id,parseInt(10000))
       end
    end

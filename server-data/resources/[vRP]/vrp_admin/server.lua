@@ -558,6 +558,47 @@ RegisterCommand('vroupas',function(source,args,rawCommand)
 end)
 
 -----------------------------------------------------------------------------------------------------------------------------------------
+-- /VROUPAS 2 (JÁ NO FORMATO CORRETO)
+-----------------------------------------------------------------------------------------------------------------------------------------
+function IsNumber( numero )
+    return tonumber(numero) ~= nil
+end
+
+RegisterCommand('vroupas2', function(source, args, rawCommand)
+    local user_id = vRP.getUserId(source)
+    local custom = vRPclient.getCustomization(source)
+    if vRP.hasPermission(user_id,"admin.permissao") then
+          if player_customs[source] then
+            player_customs[source] = nil
+            vRPclient._removeDiv(source,"customization")
+        else 
+            local content = ""
+            for k, v in pairs(custom) do
+                if (IsNumber(k) and k <= 11) or k == "p0" or k == "p1" or k == "p2" or k == "p6" or k == "p7" then
+                    if IsNumber(k) then
+                        content = content .. '[' .. k .. '] = {' 
+                    else
+                        content = content .. '["' ..k..'"] = {'
+                    end
+                    local contador = 1
+                    for y, x in pairs(v) do
+                        if contador < #v then
+                            content  = content .. x .. ',' 
+                        else
+                            content = content .. x 
+                        end
+                        contador = contador + 1
+                    end
+                    content = content .. "},\n"
+                end
+            end
+            player_customs[source] = true
+            vRPclient.prompt(source, 'vRoupas: ', content)
+        end
+    end
+end)
+
+-----------------------------------------------------------------------------------------------------------------------------------------
 -- PEGAR IP
 -----------------------------------------------------------------------------------------------------------------------------------------
 RegisterCommand('pegarip',function(source,args,rawCommand)

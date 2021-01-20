@@ -23,11 +23,11 @@ end
 -- BUTTON
 -----------------------------------------------------------------------------------------------------------------------------------------
 RegisterNUICallback("ButtonClick",function(data,cb)
-	if data == "desmanche-comprar-ferramenta" then
-		TriggerServerEvent("desmanche-comprar","ferramenta")
+	if data == "yakuza-comprar-chipset" then
+		TriggerServerEvent("yakuza-comprar","chipset")
 
-	elseif data == "desmanche-vender-ferramenta" then
-		TriggerServerEvent("desmanche-vender","ferramenta")
+	elseif data == "yakuza-vender-chipset" then
+		TriggerServerEvent("yakuza-vender","chipset")
 
 	elseif data == "fechar" then
 		ToggleActionMenu()

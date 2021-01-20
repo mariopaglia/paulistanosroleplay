@@ -436,11 +436,20 @@ local garages = {
 -----------------------------------------------------------------------------------------------------------------------------------------
 	[619] = { ['name'] = "Garagem", ['payment'] = false, ['perm'] = "carrosvip.permissao" },
 	[620] = { ['name'] = "Garagem", ['payment'] = false, ['public'] = true },
+-----------------------------------------------------------------------------------------------------------------------------------------
+--													MECANICAS
+-----------------------------------------------------------------------------------------------------------------------------------------
+	[621] = { ['name'] = "Mecanica", ['payment'] = false, ['perm'] = "mecanico.permissao" },
+	[622] = { ['name'] = "Mecanica", ['payment'] = false, ['perm'] = "mecanico.permissao" },
 }
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- GARAGEMS
 -----------------------------------------------------------------------------------------------------------------------------------------
 local workgarage = {
+	["Mecanica"] = {
+		"flatbed",
+		"towtruck"
+	},
 	["PRF"] = {
 		"cruzeprf2",
 		"l200prf",
@@ -851,7 +860,7 @@ function src.vehicleLock()
 				TriggerClientEvent("vrp_sound:source",source,'lock',0.5)
 				vRPclient.playAnim(source,true,{{"anim@mp_player_intmenu@key_fob@","fob_click"}},false)
 				if lock == 1 then
-					TriggerClientEvent("Notify",source,"importante","Veículo <>trancado</> com sucesso.",8000)
+					TriggerClientEvent("Notify",source,"importante","Veículo <b>trancado</b> com sucesso.",8000)
 				else
 					TriggerClientEvent("Notify",source,"importante","Veículo <b>destrancado</b> com sucesso.",8000)
 				end

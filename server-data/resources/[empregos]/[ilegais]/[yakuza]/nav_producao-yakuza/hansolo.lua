@@ -8,7 +8,7 @@ local nomesnui = "fechar-nui-yakuza"
 --[ LOCAL ]--------------------------------------------------------------------------------------
 -------------------------------------------------------------------------------------------------
 local prodMachine = {
-	{ ['x'] = -875.77, ['y'] = -1458.38, ['z'] = 7.53 } -- -875.77,-1458.38,7.53
+	{ ['x'] = -875.76, ['y'] = -1458.43, ['z'] = 7.53 } -- -875.76,-1458.43,7.53
 }
 -------------------------------------------------------------------------------------------------
 --[ MENU ]---------------------------------------------------------------------------------------
@@ -32,8 +32,8 @@ end
 --[ BOTÕES ]-------------------------------------------------------------------------------------
 -------------------------------------------------------------------------------------------------
 RegisterNUICallback("ButtonClick",function(data,cb)
-	if data == "produzir-pendrive" then
-		TriggerServerEvent("produzir-pendrive","pendrive")
+	if data == "produzir-pendrivedeep" then
+		TriggerServerEvent("produzir-pendrivedeep","pendrivedeep")
 
 	elseif data == "fechar" then
 		ToggleActionMenu()
@@ -73,7 +73,7 @@ Citizen.CreateThread(function()
 			end
 			if distance <= 15 then
 				DrawMarker(23, prodMachine.x, prodMachine.y, prodMachine.z-0.97,0,0,0,0,0,0,0.7,0.7,0.5,214,29,0,100,0,0,0,0)
-				if distance <= 1.2 then
+				if distance <= 4.0 then
 					if IsControlJustPressed(0,38) and oC.checkPermissao() then
 						ToggleActionMenu()
 						onmenu = true

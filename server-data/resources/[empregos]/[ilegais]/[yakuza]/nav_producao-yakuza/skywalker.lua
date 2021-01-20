@@ -10,13 +10,13 @@ local nomesnui = "fechar-nui-yakuza"
 --[ ARRAY ]------------------------------------------------------------------------------------------------------------------------------
 -----------------------------------------------------------------------------------------------------------------------------------------
 local listaitens = {
-	{ item = "pendrive" },
+	{ item = "pendrivedeep" },
 }
 -----------------------------------------------------------------------------------------------------------------------------------
 --[ EVENTOS ]----------------------------------------------------------------------------------------------------------------------
 -----------------------------------------------------------------------------------------------------------------------------------
-RegisterServerEvent("produzir-pendrive")
-AddEventHandler("produzir-pendrive",function(item)
+RegisterServerEvent("produzir-pendrivedeep")
+AddEventHandler("produzir-pendrivedeep",function(item)
 	local source = source
 	local user_id = vRP.getUserId(source)
 	if user_id then
@@ -25,19 +25,19 @@ AddEventHandler("produzir-pendrive",function(item)
             local itemupper = string.upper(item)
                 
                 ---------------------------
-                -- PRODUÇÃO PENDRIVE
+                -- PRODUÇÃO MAÇARICO
                 ---------------------------
-				if item == "pendrive" then
-                    if vRP.getInventoryWeight(user_id)+vRP.getItemWeight("macarico") <= vRP.getInventoryMaxWeight(user_id) then
-                        if vRP.getInventoryItemAmount(user_id,"serra") >= 10 and vRP.getInventoryItemAmount(user_id,"ferramenta") >= 10 then
-                            if vRP.tryGetInventoryItem(user_id,"serra",10) and vRP.tryGetInventoryItem(user_id,"ferramenta",10) then
+				if item == "pendrivedeep" then
+                    if vRP.getInventoryWeight(user_id)+vRP.getItemWeight("pendrivedeep") <= vRP.getInventoryMaxWeight(user_id) then
+                        if vRP.getInventoryItemAmount(user_id,"placacircuito") >= 10 and vRP.getInventoryItemAmount(user_id,"chipset") >= 10 then
+                            if vRP.tryGetInventoryItem(user_id,"placacircuito",10) and vRP.tryGetInventoryItem(user_id,"chipset",10) then
                                 TriggerClientEvent(nomesnui,source) --------- trocar quando duplicar
-                                TriggerClientEvent("progress",source,10000,"Montando "..itemupper.."")
+                                TriggerClientEvent("progress",source,10000,"Montando Pendrive Deepweb")
                                 vRPclient._playAnim(source,false,{{"amb@prop_human_parking_meter@female@idle_a","idle_a_female"}},true)
                                 SetTimeout(10000,function()
                                     vRPclient._stopAnim(source,false)
-                                    vRP.giveInventoryItem(user_id,"macarico",1)
-                                    TriggerClientEvent("Notify",source,"sucesso","Você produziu <b>Pendrive</b>")
+                                    vRP.giveInventoryItem(user_id,"pendrivedeep",10)
+                                    TriggerClientEvent("Notify",source,"sucesso","Você produziu <b>10x Pendrive Deepweb</b>")
                                 end)
                             end
                         else

@@ -4,35 +4,35 @@ vRP = Proxy.getInterface("vRP")
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- REANIMAR
 -----------------------------------------------------------------------------------------------------------------------------------------
-RegisterNetEvent('reanimar')
-AddEventHandler('reanimar',function()
-	local handle,ped = FindFirstPed()
-	local finished = false
-	local reviver = nil
-	repeat
-		local distance = GetDistanceBetweenCoords(GetEntityCoords(PlayerPedId()),GetEntityCoords(ped),true)
-		if IsPedDeadOrDying(ped) and not IsPedAPlayer(ped) and distance <= 1.5 and reviver == nil then
-			reviver = ped
-			TriggerEvent("cancelando",true)
-			vRP._playAnim(false,{{"amb@medic@standing@tendtodead@base","base"},{"mini@cpr@char_a@cpr_str","cpr_pumpchest"}},true)
-			TriggerEvent("progress",15000,"reanimando")
-			SetTimeout(15000,function()
-				SetEntityHealth(reviver,400)
-				local newped = ClonePed(reviver,GetEntityHeading(reviver),true,true)
-				TaskWanderStandard(newped,10.0,10)
-				local model = GetEntityModel(reviver)
-				SetModelAsNoLongerNeeded(model)
-				TriggerServerEvent("trydeleteped",PedToNet(reviver))
-				vRP._stopAnim(false)
-				TriggerServerEvent("reanimar:pagamento")
-				TriggerEvent("cancelando",false)
-			end)
-			finished = true
-		end
-		finished,ped = FindNextPed(handle)
-	until not finished
-	EndFindPed(handle)
-end)
+-- RegisterNetEvent('reanimar')
+-- AddEventHandler('reanimar',function()
+-- 	local handle,ped = FindFirstPed()
+-- 	local finished = false
+-- 	local reviver = nil
+-- 	repeat
+-- 		local distance = GetDistanceBetweenCoords(GetEntityCoords(PlayerPedId()),GetEntityCoords(ped),true)
+-- 		if IsPedDeadOrDying(ped) and not IsPedAPlayer(ped) and distance <= 1.5 and reviver == nil then
+-- 			reviver = ped
+-- 			TriggerEvent("cancelando",true)
+-- 			vRP._playAnim(false,{{"amb@medic@standing@tendtodead@base","base"},{"mini@cpr@char_a@cpr_str","cpr_pumpchest"}},true)
+-- 			TriggerEvent("progress",15000,"reanimando")
+-- 			SetTimeout(15000,function()
+-- 				SetEntityHealth(reviver,400)
+-- 				local newped = ClonePed(reviver,GetEntityHeading(reviver),true,true)
+-- 				TaskWanderStandard(newped,10.0,10)
+-- 				local model = GetEntityModel(reviver)
+-- 				SetModelAsNoLongerNeeded(model)
+-- 				TriggerServerEvent("trydeleteped",PedToNet(reviver))
+-- 				vRP._stopAnim(false)
+-- 				TriggerServerEvent("reanimar:pagamento")
+-- 				TriggerEvent("cancelando",false)
+-- 			end)
+-- 			finished = true
+-- 		end
+-- 		finished,ped = FindNextPed(handle)
+-- 	until not finished
+-- 	EndFindPed(handle)
+-- end)
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- /RMASCARA
 -----------------------------------------------------------------------------------------------------------------------------------------

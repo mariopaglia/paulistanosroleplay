@@ -83,7 +83,7 @@ Citizen.CreateThread(function()
 				DrawMarker(25,locs[selecionado].x,locs[selecionado].y,locs[selecionado].z-0.99,0,0,0,0.0,0,0,3.0,3.0,0.4,0,180,0,80,0,0,0,1)
 				if distance <= 2.0 then
 					local vehicle = GetPlayersLastVehicle()
-					drawTxt("PRESSIONE  ~r~E~w~  PARA COLETAR ~g~SERRA~w~",4,0.5,0.93,0.50,255,255,255,180)
+					drawTxt("PRESSIONE  ~r~E~w~  PARA COLETAR ~g~PLACA DE CIRCUITO~w~",4,0.5,0.93,0.50,255,255,255,180)
 					if IsControlJustPressed(0,38) and emP.checkPermission() and not IsPedInAnyVehicle(ped) then --and GetEntityModel(vehicle) == 1475773103 then
 						TriggerEvent('cancelando',true)
 						RemoveBlip(blips)

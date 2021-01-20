@@ -8,13 +8,13 @@ Tunnel.bindInterface("nav_yakuza",emP)
 -- ARRAY
 -----------------------------------------------------------------------------------------------------------------------------------------
 local valores = {
-	{ item = "ferramenta", quantidade = 1, compra = 20000, venda = 10000 },
+	{ item = "chipset", quantidade = 10, compra = 10000, venda = 5000 },
 }
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- COMPRAR
 -----------------------------------------------------------------------------------------------------------------------------------------
-RegisterServerEvent("desmanche-comprar")
-AddEventHandler("desmanche-comprar",function(item)
+RegisterServerEvent("yakuza-comprar")
+AddEventHandler("yakuza-comprar",function(item)
 	local source = source
 	local user_id = vRP.getUserId(source)
 	if user_id then
@@ -37,8 +37,8 @@ end)
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- VENDER
 -----------------------------------------------------------------------------------------------------------------------------------------
-RegisterServerEvent("desmanche-vender")
-AddEventHandler("desmanche-vender",function(item)
+RegisterServerEvent("yakuza-vender")
+AddEventHandler("yakuza-vender",function(item)
 	local source = source
 	local user_id = vRP.getUserId(source)
 	if user_id then

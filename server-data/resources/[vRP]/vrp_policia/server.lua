@@ -445,22 +445,22 @@ end)
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- REANIMAR
 -----------------------------------------------------------------------------------------------------------------------------------------
-RegisterCommand('reanimar',function(source,args,rawCommand)
-	local user_id = vRP.getUserId(source)
-	if vRP.hasPermission(user_id,"reviver.permissao") then
-		TriggerClientEvent('reanimar',source)
-	end
-end)
+-- RegisterCommand('reanimar',function(source,args,rawCommand)
+-- 	local user_id = vRP.getUserId(source)
+-- 	if vRP.hasPermission(user_id,"reviver.permissao") then
+-- 		TriggerClientEvent('reanimar',source)
+-- 	end
+-- end)
 
-RegisterServerEvent("reanimar:pagamento")
-AddEventHandler("reanimar:pagamento",function()
-	local user_id = vRP.getUserId(source)
-	if user_id then
-		pagamento = math.random(50,80)
-		vRP.giveMoney(user_id,pagamento)
-		TriggerClientEvent("Notify",source,"sucesso","Recebeu <b>$"..pagamento.." dólares</b> de gorjeta do americano.")
-	end
-end)
+-- RegisterServerEvent("reanimar:pagamento")
+-- AddEventHandler("reanimar:pagamento",function()
+-- 	local user_id = vRP.getUserId(source)
+-- 	if user_id then
+-- 		pagamento = math.random(50,80)
+-- 		vRP.giveMoney(user_id,pagamento)
+-- 		TriggerClientEvent("Notify",source,"sucesso","Recebeu <b>$"..pagamento.." dólares</b> de gorjeta do americano.")
+-- 	end
+-- end)
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- DETIDO
 -----------------------------------------------------------------------------------------------------------------------------------------
@@ -1167,4 +1167,26 @@ RegisterCommand('ptr', function(source,args,rawCommand)
  			TriggerClientEvent("Notify",source,"importante", oficiais_nomes)
  		end
  	end
+end)
+
+-----------------------------------------------------------------------------------------------------------------------------------------
+-- HOSPITAL
+-----------------------------------------------------------------------------------------------------------------------------------------
+RegisterCommand('medicos', function(source,args,rawCommand)
+     local user_id = vRP.getUserId(source)
+     local player = vRP.getUserSource(user_id)
+     local oficiais = vRP.getUsersByPermission("paramedico.permissao")
+     local paramedicos = 0
+     local paramedicos_nomes = ""
+     if vRP.hasPermission(user_id,"paramedico.permissao") or vRP.hasPermission(user_id,"admin.permissao") then
+         for k,v in ipairs(oficiais) do
+             local identity = vRP.getUserIdentity(parseInt(v))
+             paramedicos_nomes = paramedicos_nomes .. "<b>" .. v .. "</b>: " .. identity.name .. " " .. identity.firstname .. "<br>"
+             paramedicos = paramedicos + 1
+         end
+         TriggerClientEvent("Notify",source,"importante", "Atualmente <b>"..paramedicos.." Paramédicos</b> em serviço.")
+         if parseInt(paramedicos) > 0 then
+             TriggerClientEvent("Notify",source,"importante", paramedicos_nomes)
+         end
+     end
 end)

@@ -29,8 +29,8 @@ AddEventHandler("produzir-macarico",function(item)
                 ---------------------------
 				if item == "maçarico" then
                     if vRP.getInventoryWeight(user_id)+vRP.getItemWeight("macarico") <= vRP.getInventoryMaxWeight(user_id) then
-                        if vRP.getInventoryItemAmount(user_id,"serra") >= 10 and vRP.getInventoryItemAmount(user_id,"ferramenta") >= 10 then
-                            if vRP.tryGetInventoryItem(user_id,"serra",10) and vRP.tryGetInventoryItem(user_id,"ferramenta",10) then
+                        if vRP.getInventoryItemAmount(user_id,"serra") >= 20 and vRP.getInventoryItemAmount(user_id,"ferramenta") >= 20 then
+                            if vRP.tryGetInventoryItem(user_id,"serra",20) and vRP.tryGetInventoryItem(user_id,"ferramenta",20) then
                                 TriggerClientEvent(nomesnui,source) --------- trocar quando duplicar
                                 TriggerClientEvent("progress",source,10000,"Montando "..itemupper.."")
                                 vRPclient._playAnim(source,false,{{"amb@prop_human_parking_meter@female@idle_a","idle_a_female"}},true)

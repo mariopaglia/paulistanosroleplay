@@ -50,7 +50,7 @@ sistemas["[OUTROS4]"]=true
 sistemas["[TELEPORT]"]=true
 sistemas["[STOPCLIENT]"]=true
 sistemas["[STOPCLIENT2]"]=true
-
+sistemas["[STOPCLIENT3]"]=false
 
 sistemas["[WALL2]"]=false
 sistemas["[EXPLOSAO3]"]=false
@@ -58,8 +58,8 @@ sistemas["[Modo_Spawner]"]=true
 sistemas["[SPAWN_VEICULOS]"]=false
 sistemas["[SPAWN_PROP]"]=false
 sistemas["[SPAWN_NPC]"]=false
-
-
+sistemas["[SPAWN_VEICULO]"]=false
+sistemas["[EXPLOSAO4]"]=true
 
 local banidos = {}
 AddEventHandler("MQCU:LixoDetectado", function(user_id,msg,cb)
@@ -144,12 +144,29 @@ AddEventHandler("MCU:Load",function(cb)
 		getUData = vRP.getUData,
 		setUData = vRP.setUData,
 		giveMoney = vRP.giveMoney,
-		giveBankMoney = vRP.giveBankMoney
+		giveBankMoney = vRP.giveBankMoney,
+		getUserIdentity = vRP.getUserIdentity,
+		Log = RegistraLog,
+		getPlacas = getAllPlacas
 	}	
 	cb(vrpobj)
 end)
+vRP._prepare("mqcu/get_AllPlacas","SELECT plate FROM vrp_user_vehicles WHERE user_id = @user_id")
+function getAllPlacas(user_id)
+	return vRP.query("mqcu/get_AllPlacas", {user_id = user_id})
+end
 
 
+function RegistraLog(a,arquivo)
+	if(a~=nil)then
+		a = "\n"..a
+		archive = io.open(arquivo..".txt","a")
+		if archive then	
+			archive:write(a)
+		end
+		archive:close()
+	end
+end
 
 
 
@@ -276,6 +293,3 @@ AddEventHandler("vRP:playerSpawn",function(user_id,source,first_spawn)
 		end
 	end
 end)
-
-
-

@@ -2,14 +2,13 @@ local cfg = {}
 
 cfg.items = {
 	-- Gerais
-	["ferramenta"] = { "Ferramenta",3 },
 	["sacodelixo"] = { "Saco de Lixo",2 },
 	["garrafavazia"] = { "Garrafa Vazia",0.2 },
 	["garrafadeleite"] = { "Garrafa de Leite",0.5 },
-	["alianca"] = { "Aliança",0 },
+	["alianca"] = { "Aliança",0.5 },
 	["bandagem"] = { "Bandagem",0.7 },
 	["roupas"] = { "Roupas",1.0 },
-	["dinheirosujo"] = { "Dinheiro Sujo",0.0 },
+	["dinheirosujo"] = { "Dinheiro Sujo",0.001 },
 	["repairkit"] = { "Kit de Reparos",10.0 },
 	["algemas"] = { "Algemas",1.0 },
 	["celular"] = { "Celular",0.5 },
@@ -21,10 +20,10 @@ cfg.items = {
 	["energetico"] = { "Energético",0.3 },
 	["mochila"] = { "Mochila",1 },
 	["carbono"] = { "Carbono",0.0038 },
-	["pendrive"] = { "Pendrive",0.5 },
 	["radio"] = { "Radio",1.0 },
 	["placa"] = { "Placa",5.0 },
-	["pneus"] = { "Pneus",70.0 },
+	["pneu"] = { "Pneu",15.0 },
+	["cartaoinvasao"] = { "Cartão de Invasão",0.5 },
 	
 	-- Pesca
 	["isca"] = { "Isca",0.6 },
@@ -37,7 +36,7 @@ cfg.items = {
 	["tilapia"] = { "Tilápia",0.6 },
 	["tucunare"] = { "Tucunaré",0.6 },
 	["lambari"] = { "Lambari",0.6 },
-
+	
 	-- Farm de Lavagem
 	["pendrivedeep"] = { "Pendrive Deepweb",0.5 },
 	["placacircuito"] = { "Placa de Circuito",0.3 },
@@ -55,8 +54,9 @@ cfg.items = {
 	-- Farm de Munição
 	["capsula"] = { "Cápsula",0.2 },
 	["polvora"] = { "Pólvora",0.5 },
-
+	
 	-- Farm de Desmanche
+	["ferramenta"] = { "Ferramenta",3 },
 	["serra"] = { "Serra",1.0 },
 	["macarico"] = { "Maçarico",5.0 },
 	

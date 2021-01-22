@@ -51,10 +51,17 @@ function vRPN.sendItem(itemName,amount)
 	if itemName then
 		local user_id = vRP.getUserId(source)
 		local nplayer = vRPclient.getNearestPlayer(source,2)
+		if nplayer == nil then
+			return
+		end
 		local nuser_id = vRP.getUserId(nplayer)
 		local identity = vRP.getUserIdentity(user_id)
 		local identitynu = vRP.getUserIdentity(nuser_id)
-		if nuser_id and vRP.itemIndexList(itemName) and item ~= vRP.itemIndexList("identidade") then
+		print(nuser_id)
+		print(vRP.itemIndexList(itemName))
+		print(item)
+		print(vRP.itemIndexList("identidade"))
+		if nuser_id and vRP.itemIndexList(itemName) then
 			if parseInt(amount) > 0 then
 				if vRP.getInventoryWeight(nuser_id) + vRP.getItemWeight(itemName) * amount <= vRP.getInventoryMaxWeight(nuser_id) then
 					if vRP.tryGetInventoryItem(user_id,itemName,amount) then

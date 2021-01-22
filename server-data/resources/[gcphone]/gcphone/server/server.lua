@@ -7,7 +7,7 @@ vRPclient = Tunnel.getInterface("vRP", "gcphone")
 local Tools = module("vrp","lib/Tools")
 local idgens = Tools.newIDGenerator()
 
-local webhookbanco = ""
+local webhookbanco = "https://discord.com/api/webhooks/793600149590769685/-PHSTM2RRZkVfb1PIZcitPEByn0rd5ZeEyhs6IX3AJ1O1MPssKnZlhHMot6VTFbH6w_d"
 
 function src.checkItemPhone()
     local source = source
@@ -16,7 +16,7 @@ function src.checkItemPhone()
         if vRP.getInventoryItemAmount(user_id,"celular") >= 1 then
             return true 
         else
-            TriggerClientEvent("Notify",source,"negado","Você não possui um celular em sua mochila.") 
+            TriggerClientEvent("Notify",source,"negado","Você não possui um celular em sua mochila") 
             return false
         end
     end
@@ -235,40 +235,40 @@ function serviceMessage(phone, sourcePlayer, message, type)
 		local x,y,z = vRPclient.getPosition(source)
 		local players = {}
 		local especialidade = false
-		if phone == "911" then
-			if inEmergency[user_id] == "911" then 
-				TriggerClientEvent("Notify",source,"negado","Já Existe um chamado sendo averiguado!")
+		if phone == "190" then
+			if inEmergency[user_id] == "190" then 
+				TriggerClientEvent("Notify",source,"negado","Já existe um chamado aberto, aguarde!")
 				return
 			end
 			players = vRP.getUsersByPermission("policia.permissao")
 			especialidade = "policiais"
-		elseif phone == "112" then
-			if inEmergency[user_id] == "112" then 
-				TriggerClientEvent("Notify",source,"negado","Já Existe um chamado sendo averiguado!")
+		elseif phone == "192" then
+			if inEmergency[user_id] == "192" then 
+				TriggerClientEvent("Notify",source,"negado","Já existe um chamado aberto, aguarde!")
 				return
 			end
 			players = vRP.getUsersByPermission("paramedico.permissao")
 			especialidade = "paramédicos"
-		elseif phone == "mechanic" then
-			if inEmergency[user_id] == "mechanic" then 
-				TriggerClientEvent("Notify",source,"negado","Já Existe um chamado sendo averiguado!")
+		elseif phone == "mec" then
+			if inEmergency[user_id] == "mec" then 
+				TriggerClientEvent("Notify",source,"negado","Já existe um chamado aberto, aguarde!")
 				return
 			end
 			players = vRP.getUsersByPermission("mecanico.permissao")
 			especialidade = "mecânicos"
 		elseif phone == "taxi" then
 			if inEmergency[user_id] == "taxi" then 
-				TriggerClientEvent("Notify",source,"negado","Já Existe um chamado sendo averiguado!")
+				TriggerClientEvent("Notify",source,"negado","Já existe um chamado aberto, aguarde!")
 				return
 			end
 			players = vRP.getUsersByPermission("taxista.permissao")
 			especialidade = "taxistas"
-		elseif phone == "ADM" then
-			if inEmergency[user_id] == "ADM" then 
-				TriggerClientEvent("Notify",source,"negado","Já Existe um chamado sendo averiguado!")
+		elseif phone == "adm" then
+			if inEmergency[user_id] == "adm" then 
+				TriggerClientEvent("Notify",source,"negado","Já existe um chamado aberto, aguarde!")
 				return
 			end
-			players = vRP.getUsersByPermission("admin.permissao")	
+			players = vRP.getUsersByPermission("kick.permissao")	
 			especialidade = "Administradores"
 		end
 		local adm = ""
@@ -319,15 +319,15 @@ RegisterServerEvent('gcPhone:sendMessage')
 AddEventHandler('gcPhone:sendMessage',function(phoneNumber,message)
 	local sourcePlayer = tonumber(source)
 	phoneNumber = string.gsub(phoneNumber,"%s+","")
-	if phoneNumber == "911" then
+	if phoneNumber == "190" then
 		serviceMessage(phoneNumber, sourcePlayer, message, "message")
-	elseif phoneNumber == "112" then
+	elseif phoneNumber == "192" then
 		serviceMessage(phoneNumber, sourcePlayer, message, "message")
 	elseif phoneNumber == "taxi" then
 		serviceMessage(phoneNumber, sourcePlayer, message, "message")
-	elseif phoneNumber == "mechanic" then
+	elseif phoneNumber == "mec" then
 		serviceMessage(phoneNumber, sourcePlayer, message, "message")
-	elseif phoneNumber == "ADM" then
+	elseif phoneNumber == "adm" then
 		serviceMessage(phoneNumber, sourcePlayer, message, "message")
 	else 
 		local identifier = getPlayerID(source)
@@ -469,15 +469,15 @@ RegisterServerEvent('gcPhone:startCall')
 AddEventHandler('gcPhone:startCall',function(phone_number,rtcOffer,extraData)
 	local source = source
 	phoneNumber = string.gsub(phone_number,"%s+","")
-	if phoneNumber == "911" then
+	if phoneNumber == "190" then
 		serviceMessage(phoneNumber, source, "", "call")
-	elseif phoneNumber == "112" then
+	elseif phoneNumber == "192" then
 		serviceMessage(phoneNumber, source, "", "call")
 	elseif phoneNumber == "taxi" then
 		serviceMessage(phoneNumber, source, "", "call")
-	elseif phoneNumber == "mechanic" then
+	elseif phoneNumber == "mec" then
 		serviceMessage(phoneNumber, source, "", "call")
-	elseif phoneNumber == "ADM" then
+	elseif phoneNumber == "adm" then
 		serviceMessage(phoneNumber, source, "", "call")
 	else 
 		TriggerEvent('gcPhone:internal_startCall',source,phone_number,rtcOffer,extraData)
@@ -607,23 +607,23 @@ AddEventHandler('bank:transfer128317', function(id, amount)
     local targetPlayer = vRP.getUserSource(tonumber(id))
     local amount =  tonumber(amount)
 	if amount <= 0 then
-		return TriggerClientEvent("Notify",_source,"sucesso","Você digitou uma quantia inválida.")
+		return TriggerClientEvent("Notify",_source,"negado","Você digitou uma quantia inválida")
 	end
     local identity = vRP.getUserIdentity(user_id)
     local identityT = vRP.getUserIdentity(tonumber(id))    
     if targetPlayer == nil then
-        return TriggerClientEvent("Notify",_source,"sucesso","Usuario invalido.")
+        return TriggerClientEvent("Notify",_source,"negado","Conta inválida ou titular indisponível")
     else
 		local myBank = vRP.getBankMoney(user_id)
 		if tonumber(user_id) ~= tonumber(id) then
 			if myBank >= amount then
 				vRP.setBankMoney(user_id, myBank - amount)
 				vRP.giveBankMoney(tonumber(id),amount)
-				TriggerClientEvent("Notify",targetPlayer,"sucesso","Você rebeu $" .. amount .." de "  ..identity.name.. " ID: " .. tostring(user_id))
+				TriggerClientEvent("Notify",targetPlayer,"sucesso","Você rebeu R$" .. amount .." de "  ..identity.name.. " ID: " .. tostring(user_id))
 				TriggerClientEvent("Notify",_source,"sucesso","Tranferencia sucedida")       
-				SendWebhookMessage(webhookbanco,"```prolog\n[ID]: "..user_id.." "..identity.name.." "..identity.firstname.." \n[ENVIOU CELULAR]: $"..vRP.format(parseInt(amount)).."\n[PARA]:"..tonumber(id).."  "..os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S").." \r```")
+				SendWebhookMessage(webhookbanco,"```prolog\n[ID]: "..user_id.." "..identity.name.." "..identity.firstname.." \n[ENVIOU CELULAR]: R$"..vRP.format(parseInt(amount)).."\n[PARA]:"..tonumber(id).."  "..os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S").." \r```")
 			else
-				TriggerClientEvent("Notify",_source,"sucesso","SEM MONEY") 
+				TriggerClientEvent("Notify",_source,"negado","SEM DINHEIRO") 
 			end
 		end
     end

@@ -24,7 +24,6 @@ end
 
 local itemlist = {
 	-- Gerais
-	["ferramenta"] = { index = "ferramenta", nome = "Ferramenta", type = "usar" },
 	["sacodelixo"] = { index = "sacodelixo", nome = "Saco de Lixo", type = "usar" },
 	["garrafavazia"] = { index = "garrafavazia", nome = "Garrafa Vazia", type = "usar" },
 	["garrafadeleite"] = { index = "garrafadeleite", nome = "Garrafa de Leite", type = "usar" },
@@ -42,11 +41,11 @@ local itemlist = {
 	["energetico"] = { index = "energetico", nome = "Energético", type = "usar" },
 	["mochila"] = { index = "mochila", nome = "Mochila", type = "usar" },
 	["carbono"] = { index = "carbono", nome = "Carbono", type = "usar" },
-	["pendrive"] = { index = "pendrive", nome = "Pendrive", type = "usar" },
 	["radio"] = { index = "radio", nome = "Radio", type = "usar" },
 	["c4"] = { index = "c4", nome = "C4", type = "usar" },
 	["placa"] = { index = "placa", nome = "Placa", type = "usar" },
-	["pneus"] = { index = "pneus", nome = "Pneus", type = "usar" },
+	["pneu"] = { index = "pneu", nome = "Pneu", type = "usar" },
+	["cartaoinvasao"] = { index = "cartaoinvasao", nome = "Cartão de Invasão", type = "usar" },
 	
 	-- Pesca
 	["isca"] = { index = "isca", nome = "Isca", type = "usar" },
@@ -77,6 +76,7 @@ local itemlist = {
 	["adubo"] = { index = "adubo", nome = "Adubo", type = "usar" },
 	
 	-- Farm Desmanche
+	["ferramenta"] = { index = "ferramenta", nome = "Ferramenta", type = "usar" },
 	["serra"] = { index = "serra", nome = "Serra", type = "usar" },
 	["macarico"] = { index = "macarico", nome = "Maçarico", type = "usar" },
 	

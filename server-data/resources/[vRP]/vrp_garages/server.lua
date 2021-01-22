@@ -36,6 +36,7 @@ vRP._prepare("creative/get_users","SELECT * FROM vrp_users WHERE id = @user_id")
 local webhookadmin = "https://discord.com/api/webhooks/793197093690671134/CVTPwlTgBR2CVOKsyTEXCXau6KX4L8eZFijtmOY06S6wnCs2BRh3urrUUut3NzHPWQi2"
 local webhookvehs = "https://discord.com/api/webhooks/793197242017251340/m38nBrCozEd6EG49g41kol7rVjvIyjSyd9iQVyzqwyGKhTPfAh0i7lp7vT7EAPNbgUDs"
 local webhookdesmanche = "https://discord.com/api/webhooks/793197449845932093/P1HMnAXjr-7k2icegOpS7J6QOOeCTt0qGWpz02W6dhLtgu1DyWS-rdMyHe4iqAPQoteU"
+local webhookdv = "https://discord.com/api/webhooks/801618027405246504/30GykWSbexZirC6QSj1Hh1GscfW_Es4WZxzWuNcfaoIzwhEJktWejcmjsTilndHmHbiT"
 
 function SendWebhookMessage(webhook,message)
 	if webhook ~= nil and webhook ~= "" then
@@ -840,8 +841,12 @@ RegisterCommand('dv',function(source,args,rawCommand)
 	local user_id = vRP.getUserId(source)
 	if vRP.hasPermission(user_id,"admin.permissao") or vRP.hasPermission(user_id,"dv.permissao") then
 		local vehicle = vRPclient.getNearestVehicle(source,7)
+		local vnetid,placa,vname,nome,banned = vRPclient.vehList(source,7)
 		if vehicle then
+			local identity = vRP.getUserIdentity(user_id)
+			local crds = GetEntityCoords(GetPlayerPed(source))
 			vCLIENT.deleteVehicle(source,vehicle)
+			SendWebhookMessage(webhookdv,"```prolog\n[ID]: "..user_id.." "..identity.name.." "..identity.firstname.." \n[VEICULO]: "..nome.."\n[Coordenada]: "..crds.x..","..crds.y..","..crds.z..""..os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S").." \r```")
 		end
 	end
 end)

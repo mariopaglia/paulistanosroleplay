@@ -140,6 +140,7 @@ RegisterCommand('god',function(source,args,rawCommand)
 	local user_id = vRP.getUserId(source)
 	local nplayer = vRP.getUserSource(parseInt(args[1]))
 	local identity = vRP.getUserIdentity(user_id)
+	local crds = GetEntityCoords(GetPlayerPed(source))
 	if vRP.hasPermission(user_id,"god.permissao") then
 		if args[1] then
 			if nplayer then
@@ -154,7 +155,7 @@ RegisterCommand('god',function(source,args,rawCommand)
 				vRPclient.killGod(nplayer)
 				vRPclient._stopAnim(nplayer,false)
 				vRPclient.setHealth(nplayer,400)
-				SendWebhookMessage(webhookcmdgod,"```prolog\n[ID]: "..user_id.." "..identity.name.." "..identity.firstname.." \n[GOD EM]: "..nuser_id.." "..identitynu.name.." "..identitynu.firstname.." "..os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S").." \r```") 
+				SendWebhookMessage(webhookcmdgod,"```prolog\n[ID]: "..user_id.." "..identity.name.." "..identity.firstname.." \n[GOD EM]: "..nuser_id.." "..identitynu.name.." "..identitynu.firstname.."\n[COORDENADA]: "..crds.x..","..crds.y..","..crds.z..""..os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S").." \r```") 
 			end
 		else
 			local raio = vRPclient.getNearestPlayers(source,30)
@@ -166,7 +167,7 @@ RegisterCommand('god',function(source,args,rawCommand)
 			vRPclient.killGod(source)
 			vRPclient.setHealth(source,400) -- Vida
 			vRPclient.setArmour(source,100) -- Colete
-			SendWebhookMessage(webhookcmdgod,"```prolog\n[GOD PROPRIO]: "..user_id.." "..identity.name.." "..identity.firstname.." "..os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S").." \r```")
+			SendWebhookMessage(webhookcmdgod,"```prolog\n[GOD PROPRIO]: "..user_id.." "..identity.name.." "..identity.firstname.."\n[COORDENADA]: "..crds.x..","..crds.y..","..crds.z..""..os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S").." \r```")
 		end
 	end
 end)
@@ -502,10 +503,11 @@ end)
 RegisterCommand('car',function(source,args,rawCommand)
 	local user_id = vRP.getUserId(source)
 	local identity = vRP.getUserIdentity(user_id)
+	local crds = GetEntityCoords(GetPlayerPed(source))
 	if vRP.hasPermission(user_id,"admin.permissao") then
 		if args[1] then
 			TriggerClientEvent('spawnarveiculo',source,args[1])
-			SendWebhookMessage(webhookcarros,"```prolog\n[ID]: "..user_id.." "..identity.name.." "..identity.firstname.." \n[SPAWNOU]: "..(args[1]).." "..os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S").." \r```")
+			SendWebhookMessage(webhookcarros,"```prolog\n[ID]: "..user_id.." "..identity.name.." "..identity.firstname.." \n[SPAWNOU]: "..(args[1]).."\n[COORDENADA]: "..crds.x..","..crds.y..","..crds.z..""..os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S").." \r```")
 		end
 	end
 end)

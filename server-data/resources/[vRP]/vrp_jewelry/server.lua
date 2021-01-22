@@ -28,7 +28,7 @@ function func.checkJewelry(x,y,z,h,sec,tipo)
 		elseif (os.time()-timers) <= 3600 then
 			TriggerClientEvent("Notify",source,"importante","A joalheria não se recuperou do ultimo roubo, aguarde <b>"..vRP.format(parseInt((3600-(os.time()-timers)))).." segundos</b> até que o sistema seja restaurado.")
 		else
-			if vRP.getInventoryItemAmount(user_id,"pendrive") >= 1 and not roubando then
+			if vRP.getInventoryItemAmount(user_id,"cartaoinvasao") >= 1 and not roubando then
 				roubando = true
 				vRPclient._playAnim(source,false,{{"anim@heists@prison_heistig1_p1_guard_checks_bus","loop"}},true)
 				TriggerClientEvent('iniciandojewelry',source,x,y,z,h,sec,tipo,true)
@@ -39,7 +39,7 @@ function func.checkJewelry(x,y,z,h,sec,tipo)
 						andamento = true
 						timers = os.time()
 						TriggerClientEvent('iniciandojewelry',source,x,y,z,h,sec,tipo,false)
-						vRP.tryGetInventoryItem(user_id,"pendrive",1)
+						vRP.tryGetInventoryItem(user_id,"cartaoinvasao",1)
 						TriggerClientEvent("Notify",source,"sucesso","A proteção do <b>Baidu Antivirus</b> foi comprometida e todos os balcões foram liberados.")
 						SetTimeout(20000,function()
 							vRPclient.setStandBY(source,parseInt(300))
@@ -53,7 +53,7 @@ function func.checkJewelry(x,y,z,h,sec,tipo)
 					end
 				end)
 			else
-				TriggerClientEvent("Notify",source,"importante","Precisa de um <b>Pendrive</b> para hackear as câmeras de segurança.")
+				TriggerClientEvent("Notify",source,"importante","Precisa de um <b>Cartão de Invasão</b> para hackear as câmeras de segurança.")
 			end
 		end
 	end

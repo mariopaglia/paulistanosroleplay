@@ -7,12 +7,13 @@ Config.Priority = {
 	["steam:110000104dcdf67"] = 95, -- Kappa (2)
 	["steam:11000010b5d5948"] = 95, -- Wally (5)
 	["steam:110000104c4cfa1"] = 95, -- Yang Programador (83)
-	["steam:11000010cb6cb95"] = 95, -- Cortez (13)
+	["steam:1100001095d6051"] = 95, -- Cortez (13)
 	["steam:11000011094c516"] = 95, -- Renan (17)
+	["steam:110000115e4bc7d"] = 95, -- Marq (89)
 } 
 
 Config.RequireSteam = true
-Config.PriorityOnly = true -- whitelist only server
+Config.PriorityOnly = false -- whitelist only server
 
 -- Needed this because sometimes canceling events don't work... for me at least
 -- callback(isbanned, banmsg)

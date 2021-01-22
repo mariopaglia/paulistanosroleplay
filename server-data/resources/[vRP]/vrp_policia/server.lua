@@ -10,6 +10,7 @@ local webhookparamedico = "https://discord.com/api/webhooks/793597683155599380/q
 local webhookmecanico = "https://discord.com/api/webhooks/793597828386521108/UsgyanaAIxAXtNuDuP8Cbf67cauDpARltO9RxIAsGioYKolylf3TWyJl_CtTRyK5sA3O"
 local prender = "https://discord.com/api/webhooks/793598348400525362/7Vmc5T27ujAUmvJYwVKSlAAtEIOlzbdDyxYHFiqF5lSTakzkYiYg23ObwslxDE624uF-"
 local webhookdetido = "https://discord.com/api/webhooks/798618363663614052/SBxflS1IWnK_y4anATpLS3AxMLRI0PRN9tAulg2cS2yKq1_tQjC4wZH7Pf1FIvS3YIi6"
+local webhookre = "https://discord.com/api/webhooks/801625540917723156/GObuH96poB7LSHB-wtzjaVH8dgOf-adONt1EaBKtHs215eaQgLIult4XGimjQBxKefKX"
 
 function SendWebhookMessage(webhook,message)
 	if webhook ~= nil and webhook ~= "" then
@@ -481,8 +482,9 @@ RegisterCommand('detido',function(source,args,rawCommand)
                     TriggerClientEvent("Notify",source,"importante","Este veículo já se encontra detido.",8000)
                 else
                 	local identity = vRP.getUserIdentity(puser_id)
-                	local nplayer = vRP.getUserSource(parseInt(puser_id))
-                	SendWebhookMessage(webhookdetido,"```prolog\n[OFICIAL]: "..user_id.." "..oficialid.name.." "..oficialid.firstname.." \n[==============PRENDEU==============] \n[CARRO]: "..vname.." \n[PASSAPORTE]: "..puser_id.." "..identity.name.." "..identity.firstname.." \n[MOTIVO]: "..motivo.." "..os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S").." \r```")
+					local nplayer = vRP.getUserSource(parseInt(puser_id))
+					local crds = GetEntityCoords(GetPlayerPed(source))
+                	SendWebhookMessage(webhookdetido,"```prolog\n[OFICIAL]: "..user_id.." "..oficialid.name.." "..oficialid.firstname.." \n[==============PRENDEU==============] \n[CARRO]: "..vname.." \n[PASSAPORTE]: "..puser_id.." "..identity.name.." "..identity.firstname.." \n[MOTIVO]: "..motivo.."\n[COORDENADA]: "..crds.x..","..crds.y..","..crds.z..""..os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S").." \r```")
                     vRP.execute("creative/set_detido",{ user_id = parseInt(puser_id), vehicle = vname, detido = 1, time = parseInt(os.time()) })
 
 					randmoney = math.random(90,150)
@@ -740,6 +742,9 @@ RegisterCommand('re',function(source,args,rawCommand)
 		local nplayer = vRPclient.getNearestPlayer(source,2)
 		local nuser_id = vRP.getUserId(nplayer)
 		if nplayer then
+			local identity = vRP.getUserIdentity(user_id)
+			local identityu = vRP.getUserIdentity(nuser_id)
+			local crds = GetEntityCoords(GetPlayerPed(source))
 			if vRPclient.isInComa(nplayer) and pulso > 50 then
 				TriggerClientEvent('cancelando',source,true)
 				vRPclient._playAnim(source,false,{{"amb@medic@standing@tendtodead@base","base"},{"mini@cpr@char_a@cpr_str","cpr_pumpchest"}},true)
@@ -752,6 +757,7 @@ RegisterCommand('re',function(source,args,rawCommand)
 					TriggerClientEvent('cancelando',source,false)
 					pulso = nil
 					upulso = 0
+					SendWebhookMessage(webhookre,"```prolog\n[ID]: "..user_id.." "..identity.name.." "..identity.firstname.." \n[REVIVEU]: "..nuser_id.." "..identityu.name.." "..identityu.firstname.."\n[COORDENADA]: "..crds.x..","..crds.y..","..crds.z..""..os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S").." \r```")
 				end)
 			elseif pulso == nil then
 				TriggerClientEvent("Notify",source,"importante","Utilize /card para medir o pulso.")

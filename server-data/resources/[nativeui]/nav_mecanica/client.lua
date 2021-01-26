@@ -29,11 +29,17 @@ RegisterNUICallback("ButtonClick",function(data,cb)
 	elseif data == "mecanica-comprar-repairkit" then
 		TriggerServerEvent("mecanica-comprar","repairkit")
 
+	elseif data == "mecanica-comprar-pneu" then
+		TriggerServerEvent("mecanica-comprar","pneu")
+
 	elseif data == "mecanica-vender-militec" then
 		TriggerServerEvent("mecanica-vender","militec")
 
 	elseif data == "mecanica-vender-repairkit" then
 		TriggerServerEvent("mecanica-vender","repairkit")
+
+	elseif data == "mecanica-vender-pneu" then
+		TriggerServerEvent("mecanica-vender","pneu")
 
 	elseif data == "fechar" then
 		ToggleActionMenu()

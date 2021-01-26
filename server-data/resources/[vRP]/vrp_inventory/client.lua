@@ -2,6 +2,8 @@ local Tunnel = module("vrp","lib/Tunnel")
 local Proxy = module("vrp","lib/Proxy")
 vRP = Proxy.getInterface("vRP")
 vRPNserver = Tunnel.getInterface("vrp_inventory")
+vRPNclient = {}
+Tunnel.bindInterface("vrp_inventory",vRPNclient)
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- VARIÁVEIS
 -----------------------------------------------------------------------------------------------------------------------------------------
@@ -66,6 +68,28 @@ AddEventHandler('cloneplates',function()
         end
     end
 end)
+
+function vRPNclient.ityrerepair(car)
+	local wl = {"wheel_lf","wheel_rf","wheel_lm1","wheel_rm1","wheel_lr","wheel_rr"}
+	local bone
+	local d = 5
+	for k, v in pairs(wl) do
+		local dist = GetDistanceBetweenCoords(GetEntityCoords(PlayerPedId()), GetWorldPositionOfEntityBone(car, GetEntityBoneIndexByName(car, v)))
+		if dist < d then
+			bone = k-1
+			d = dist
+		end
+	end
+	if d ~= 5 then
+		return bone
+	else
+		return -1
+	end
+end)
+
+function vRPNclient.syncTyreRepair(car, tyre)
+	SetVehicleTyreFixed(car, tyre)
+end
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- VEHICLEANCHOR
 -----------------------------------------------------------------------------------------------------------------------------------------
@@ -139,3 +163,8 @@ RegisterNetEvent("Creative:Update")
 AddEventHandler("Creative:Update",function(action)
 	SendNUIMessage({ action = action })
 end)
+
+
+function vRPNclient.isNearCds(cds, dist)
+	return GetDistanceBetweenCoords(GetEntityCoords(PlayerPedId()), cds) <= dist
+end

@@ -105,17 +105,19 @@ Citizen.CreateThread(function()
 			local bowz,cdz = GetGroundZFor_3dCoord(CoordenadaX,CoordenadaY,CoordenadaZ)
 			local distance = GetDistanceBetweenCoords(CoordenadaX,CoordenadaY,cdz,x,y,z,true)
 
-			if distance <= 6 then
+			if distance <= 10 then
 				kswait = 4
 				DrawMarker(21,CoordenadaX,CoordenadaY,CoordenadaZ-0.6,0,0,0,0.0,0,0,0.5,0.5,0.4,255,230,100,100,0,0,0,1)
 				if distance <= 1.2 then
-					drawTxt("PRESSIONE  ~r~E~w~  PARA INICIAR O ~y~EXPEDIENTE",4,0.5,0.90,0.50,255,255,255,200)
+					drawTxt("PRESSIONE  ~r~E~w~  PARA INICIAR O SERVIÇO",4,0.5,0.93,0.50,255,255,255,180)
 					if IsControlJustPressed(0,38) then
-						emP.addGroup()
-						emservico = true
-						selecionado = math.random(#locs)
-						CriandoBlip(locs,selecionado)
-						TriggerEvent("Notify","sucesso","Você entrou em serviço.")
+						if emP.cobrarTaxa() then
+							emP.addGroup()
+							emservico = true
+							selecionado = math.random(#locs)
+							CriandoBlip(locs,selecionado)
+							TriggerEvent("Notify","sucesso","Você entrou no serviço de <b>taxista</b>")
+						end
 					end
 				end
 			end
@@ -133,7 +135,7 @@ Citizen.CreateThread(function()
 			local ped = PlayerPedId()
 			local vehicle = GetVehiclePedIsUsing(ped)
 			--local vehiclespeed = GetEntitySpeed(vehicle)*2.236936
-			local vehiclespeed = GetEntitySpeed(vehicle)*3.605936
+			local vehiclespeed = GetEntitySpeed(vehicle)*3.6
 			local x,y,z = table.unpack(GetEntityCoords(ped))
 			local bowz,cdz = GetGroundZFor_3dCoord(locs[selecionado].x,locs[selecionado].y,locs[selecionado].z)
 			local distance = GetDistanceBetweenCoords(locs[selecionado].x,locs[selecionado].y,cdz,x,y,z,true)
@@ -259,7 +261,7 @@ Citizen.CreateThread(function()
 				checkped = true
 				emservico = false
 				emP.removeGroup()
-				TriggerEvent("Notify","aviso","Você saiu de serviço.")
+				TriggerEvent("Notify","aviso","Você saiu do serviço de <b>taxista</b>")
 			end
 		end
 		Citizen.Wait(kswait)

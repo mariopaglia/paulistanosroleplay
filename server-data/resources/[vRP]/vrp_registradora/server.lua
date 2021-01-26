@@ -8,6 +8,17 @@ func = {}
 Tunnel.bindInterface("vrp_registradora",func)
 local idgens = Tools.newIDGenerator()
 local blips = {}
+
+-----------------------------------------------------------------------------------------------------------------------------------------
+-- WEBHOOK
+-----------------------------------------------------------------------------------------------------------------------------------------
+local webhookroubos = "https://discord.com/api/webhooks/802605744967909387/usEM4UEaaZAfUxfUnW2w9q3RYsRWfXkaICVnDWktOcSjdjGT-q0wt0KWuCvyd_VCbjTa"
+
+function SendWebhookMessage(webhook,message)
+	if webhook ~= nil and webhook ~= "" then
+		PerformHttpRequest(webhook, function(err, text, headers) end, 'POST', json.encode({content = message}), { ['Content-Type'] = 'application/json' })
+	end
+end
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- TEMPO
 -----------------------------------------------------------------------------------------------------------------------------------------
@@ -28,11 +39,13 @@ end)
 function func.checkRobbery(id,x,y,z,head)
 	local source = source
 	local user_id = vRP.getUserId(source)
+	local identity = vRP.getUserIdentity(user_id)
+	local crds = GetEntityCoords(GetPlayerPed(source))
 	if user_id then
 		local policia = vRP.getUsersByPermission("policia.permissao")
 		if #policia >= 2 then
 			if timers[id] == 0 or not timers[id] then
-				timers[id] = 900
+				timers[id] = 900				
 				TriggerClientEvent('iniciandoregistradora',source,head,x,y,z)
 				vRPclient._playAnim(source,false,{{"oddjobs@shop_robbery@rob_till","loop"}},true)
 				local random = math.random(100)
@@ -53,7 +66,8 @@ function func.checkRobbery(id,x,y,z,head)
 				SetTimeout(10000,function()
 					local qntdinheiro = math.random(5000,8000)
 					vRP.giveInventoryItem(user_id,"dinheirosujo",qntdinheiro) -- Ajuste do pagamento em dinheiro sujo
-					TriggerClientEvent("Notify",source,"importante","Você recebeu <b>"..qntdinheiro.."x</b> de dinheiro sujo",8000)
+					TriggerClientEvent("Notify",source,"importante","Você recebeu <b>R$ "..vRP.format(parseInt(qntdinheiro)).."</b> de <b>dinheiro sujo</b>",8000)
+					SendWebhookMessage(webhookroubos,"```prolog\n[ID]: "..user_id.." "..identity.name.." "..identity.firstname.."\n[ROUBOU]: Caixa Registradora\n[RECOMPENSA]: R$ "..vRP.format(parseInt(qntdinheiro)).."\n[COORDENADA]: "..crds.x..","..crds.y..","..crds.z..""..os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S").." \r```")
 				end)
 			else
 				TriggerClientEvent("Notify",source,"importante","A registradora está vazia, aguarde <b>"..timers[id].." segundos</b> até que tenha dinheiro novamente.")

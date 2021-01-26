@@ -25,7 +25,7 @@ function addPlayerToRadio(channelId, playerServerId)
 	end
 
 	channels[channelId].subscribers[playerServerId] = playerServerId;
-	print("Added [" .. playerServerId .. "] " .. (GetPlayerName(playerServerId) or "") .. " to channel " .. channelId);
+	-- print("Added [" .. playerServerId .. "] " .. (GetPlayerName(playerServerId) or "") .. " to channel " .. channelId);
 	--SendWebhookMessage(webhookradio,"```css\n[ID]: " .. playerServerId .. " "..GetPlayerName(playerServerId).." \n[Entrou na Frequência]: "..channelId.." \nData: "..Time.dia.."/"..Time.mes.." Hora: "..Time.hora..":"..Time.min.." \r```")
 	
 
@@ -49,7 +49,7 @@ function removePlayerFromRadio(channelId, playerServerId)
 				channels[channelId] = nil;
 			end
 		end
-		print("Removed [" .. playerServerId .. "] " .. (GetPlayerName(playerServerId) or "") .. " from channel " .. channelId);
+		-- print("Removed [" .. playerServerId .. "] " .. (GetPlayerName(playerServerId) or "") .. " from channel " .. channelId);
 		--SendWebhookMessage(webhookradio,"```css\n[ID]: " .. playerServerId .. " "..GetPlayerName(playerServerId).." \n[Removido da Frequência]: "..channelId.." \nData: "..Time.dia.."/"..Time.mes.." Hora: "..Time.hora..":"..Time.min.." \r```")
 
 		-- Tell unsubscribed player he's left the channel as well

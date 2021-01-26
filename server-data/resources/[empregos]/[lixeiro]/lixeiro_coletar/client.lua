@@ -65,14 +65,14 @@ Citizen.CreateThread(function()
 			local bowz,cdz = GetGroundZFor_3dCoord(CoordenadaX,CoordenadaY,CoordenadaZ)
 			local distance = GetDistanceBetweenCoords(CoordenadaX,CoordenadaY,cdz,x,y,z,true)
 
-			if distance <= 30.0 then
-				DrawMarker(23,CoordenadaX,CoordenadaY,CoordenadaZ-0.97,0,0,0,0,0,0,1.0,1.0,0.5,255,0,0,100,0,0,0,0)
+			if distance <= 10.0 then
+				DrawMarker(21,CoordenadaX,CoordenadaY,CoordenadaZ-0.6,0,0,0,0.0,0,0,0.5,0.5,0.4,255,230,100,100,0,0,0,1)
 				if distance <= 1.2 then
-					drawTxt("PRESSIONE  ~r~E~w~  PARA INICIAR A COLETA",4,0.5,0.93,0.50,255,255,255,180)
+					drawTxt("PRESSIONE  ~r~E~w~  PARA INICIAR O SERVIÇO",4,0.5,0.93,0.50,255,255,255,180)
 					if IsControlJustPressed(0,38) then
 						servico = true
 						selecionado = 1
-						TriggerEvent("Notify","importante","Utilize <b>/preset lixeiro</b> e pegue seu caminhão no blip para iniciar o trabalho",10000)
+						TriggerEvent("Notify","sucesso","Você entrou no serviço de <b>lixeiro</b>",10000)
 						CriandoBlip(locs,selecionado)
 					end
 				end
@@ -93,9 +93,9 @@ Citizen.CreateThread(function()
 			local distance = GetDistanceBetweenCoords(locs[selecionado].x,locs[selecionado].y,cdz,x,y,z,true)
 
 			if distance <= 30.0 then
-				DrawMarker(21,locs[selecionado].x,locs[selecionado].y,locs[selecionado].z+0.30,0,0,0,0,180.0,130.0,2.0,2.0,1.0,240,200,80,20,1,0,0,1)
+				DrawMarker(21,locs[selecionado].x,locs[selecionado].y,locs[selecionado].z+0.30,0,0,0,0,180.0,130.0,2.0,2.0,1.0,240,200,80,200,1,0,0,1)
 				if distance <= 2.5 then
-					drawTxt("PRESSIONE  ~r~E~w~  PARA COLETAR SACO DE LIXO",4,0.5,0.93,0.50,255,255,255,180)
+					drawTxt("PRESSIONE  ~r~E~w~  PARA COLETAR ~y~SACO DE LIXO~w~",4,0.5,0.93,0.50,255,255,255,180)
 					if IsControlJustPressed(0,38) then
 						if IsVehicleModel(GetVehiclePedIsUsing(ped),GetHashKey("trash")) or IsVehicleModel(GetVehiclePedIsUsing(ped),GetHashKey("trash2")) then
 							if emP.checkPayment() then
@@ -123,7 +123,7 @@ Citizen.CreateThread(function()
 		if servico then
 			if IsControlJustPressed(0,168) then
 				servico = false
-				TriggerEvent("Notify","aviso","Você cancelou o emprego de lixeiro",10000)
+				TriggerEvent("Notify","aviso","Você saiu do serviço de <b>lixeiro</b>")
 				RemoveBlip(blips)
 			end
 		end

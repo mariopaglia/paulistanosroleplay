@@ -69,12 +69,16 @@ AddEventHandler("MQCU:LixoDetectado", function(user_id,msg,cb)
 				banidos[user_id]=true
 				local id = user_id
 				local source = vRP.getUserSource(user_id)
-				local x,y,z = vRPclient.getPosition(source)
-				local reason = "ANTI HACK: 	localização:	"..x..","..y..","..z
+				local ped = GetPlayerPed(source)
+				-- local loc = GetEntityCoords(ped)
+				local identity = vRP.getUserIdentity(user_id)
+				local crds = GetEntityCoords(GetPlayerPed(source))
+				-- local reason = "ANTI HACK:     localização:    "..loc.x..","..loc.y..","..loc.z
 				vRP.setBanned(id,true)					
 				local temp = os.date("%x  %X")
 				--vRP.logs("savedata/BANIMENTOS.txt","ANTI HACK	[ID]: "..id.."		"..temp.."[BAN]		[MOTIVO:"..msg.."]	"..reason)
-				SendWebhookMessage(ac_webhook_anthack, "ANTI HACK	[ID]: "..id.."		"..temp.."[BAN]		[MOTIVO:"..msg.."]	"..reason)
+				-- SendWebhookMessage(ac_webhook_anthack, "ANTI HACK	[ID]: "..id.."		"..temp.."[BAN]		[MOTIVO:"..msg.."]	"..reason)
+				SendWebhookMessage(ac_webhook_anthack, "```prolog\n[===== MQCU - ANTI-HACK =====]\n[ID]: "..id.." "..identity.name.." "..identity.firstname.." \n[MOTIVO]: "..msg.."\n[COORDENADA]: "..crds.x..","..crds.y..","..crds.z..""..os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S").."```")
 				local source = vRP.getUserSource(id)
 				if source ~= nil then	
 					-- TriggerClientEvent("vrp_sound:source",source,"ban",1.0)
@@ -86,10 +90,12 @@ AddEventHandler("MQCU:LixoDetectado", function(user_id,msg,cb)
 			end
 		else
 			local temp = os.date("%x  %X")
-			SendWebhookMessage(ac_webhook_suspeitos, "ANTI HACK     Suspeito	[ID]: "..user_id.."		"..temp.."[BAN]		[MOTIVO:"..msg.."]	")
+			-- SendWebhookMessage(ac_webhook_suspeitos, "ANTI HACK     Suspeito	[ID]: "..user_id.."		"..temp.."[BAN]		[MOTIVO:"..msg.."]	")
+			SendWebhookMessage(ac_webhook_suspeitos, "```prolog\n[===== MQCU - ANTI-HACK (SUSPEITO) =====]\n[ID]: "..id.." "..identity.name.." "..identity.firstname.." \n[MOTIVO]: "..msg.."\n[COORDENADA]: "..crds.x..","..crds.y..","..crds.z..""..os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S").."```")
 		end
 	else
-		SendWebhookMessage(ac_webhook_suspeitos, "Função não mapeada => "..msg.."          ["..user_id.."]")
+		-- SendWebhookMessage(ac_webhook_suspeitos, "Função não mapeada => "..msg.."          ["..user_id.."]")
+		SendWebhookMessage(ac_webhook_suspeitos, "```prolog\n[===== MQCU - ANTI-HACK (FUNÇÃO NÃO MAPEADA) =====]\n[ID]: "..id.." "..identity.name.." "..identity.firstname.." \n[MOTIVO]: "..msg.."\n[COORDENADA]: "..crds.x..","..crds.y..","..crds.z..""..os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S").."```")
 	end
 end)
 

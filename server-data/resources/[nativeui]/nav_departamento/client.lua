@@ -18,11 +18,7 @@ end
 -- BUTTON
 -----------------------------------------------------------------------------------------------------------------------------------------
 RegisterNUICallback("ButtonClick",function(data,cb)
-	if data == "utilidades-comprar-militec" then
-		TriggerServerEvent("departamento-comprar","militec")
-	elseif data == "utilidades-comprar-reparos" then
-		TriggerServerEvent("departamento-comprar","repairkit")
-	elseif data == "utilidades-comprar-roupas" then
+	if data == "utilidades-comprar-roupas" then
 		TriggerServerEvent("departamento-comprar","roupas")	
 	elseif data == "utilidades-comprar-mochila" then
 		TriggerServerEvent("departamento-comprar","mochila")
@@ -35,10 +31,6 @@ RegisterNUICallback("ButtonClick",function(data,cb)
 	elseif data == "utilidades-comprar-radio" then
 		TriggerServerEvent("departamento-comprar","radio")
 
-	elseif data == "utilidades-vender-militec" then
-		TriggerServerEvent("departamento-vender","militec")
-	elseif data == "utilidades-vender-reparos" then
-		TriggerServerEvent("departamento-vender","repairkit")
 	elseif data == "utilidades-vender-roupas" then
 		TriggerServerEvent("departamento-vender","roupas")	
 	elseif data == "utilidades-vender-mochila" then

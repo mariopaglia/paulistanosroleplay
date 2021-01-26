@@ -86,7 +86,7 @@ function vRPN.storeItem(itemName,amount)
 		local user_id = vRP.getUserId(source)
 		local identity = vRP.getUserIdentity(user_id)
 		if user_id and actived[user_id] == 0 or not actived[user_id] then
-			if string.match(itemName,"dinheirosujo") or string.match(itemName,"identidade") then
+			if string.match(itemName,"dinheirosujo") then
 				TriggerClientEvent("Notify",source,"importante","Não pode guardar este item em veículos.",8000)
 				return
 			end
@@ -142,6 +142,7 @@ end
 -- TAKEITEM
 -----------------------------------------------------------------------------------------------------------------------------------------
 function vRPN.takeItem(itemName,amount)
+	vRP.antiflood(source,"dumpbaucarro",3)
 	local source = source
 	if itemName then
 		local user_id = vRP.getUserId(source)

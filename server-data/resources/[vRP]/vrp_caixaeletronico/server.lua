@@ -5,6 +5,17 @@ vRPclient = Tunnel.getInterface("vRP")
 
 func = {}
 Tunnel.bindInterface("vrp_caixaeletronico",func)
+
+-----------------------------------------------------------------------------------------------------------------------------------------
+-- WEBHOOK
+-----------------------------------------------------------------------------------------------------------------------------------------
+local webhookroubos = "https://discord.com/api/webhooks/802605744967909387/usEM4UEaaZAfUxfUnW2w9q3RYsRWfXkaICVnDWktOcSjdjGT-q0wt0KWuCvyd_VCbjTa"
+
+function SendWebhookMessage(webhook,message)
+	if webhook ~= nil and webhook ~= "" then
+		PerformHttpRequest(webhook, function(err, text, headers) end, 'POST', json.encode({content = message}), { ['Content-Type'] = 'application/json' })
+	end
+end
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- VARIAVEIS
 -----------------------------------------------------------------------------------------------------------------------------------------
@@ -35,6 +46,8 @@ local caixas = {
 function func.checkRobbery(id,x,y,z,head)
 	local source = source
 	local user_id = vRP.getUserId(source)
+	local identity = vRP.getUserIdentity(user_id)
+	local crds = GetEntityCoords(GetPlayerPed(source))
 	local policia = vRP.getUsersByPermission("policia.permissao")
 	if user_id then
 		if #policia < 2 then
@@ -49,6 +62,9 @@ function func.checkRobbery(id,x,y,z,head)
 			vRPclient.setStandBY(source,parseInt(700))
 			recompensa = parseInt(math.random(10000,14000)/caixas[id].seconds)
 			TriggerClientEvent('iniciandocaixaeletronico',source,x,y,z,caixas[id].seconds,head)
+
+			SendWebhookMessage(webhookroubos,"```prolog\n[ID]: "..user_id.." "..identity.name.." "..identity.firstname.."\n[ROUBOU]: Caixa Eletronico (ATM)\n[COORDENADA]: "..crds.x..","..crds.y..","..crds.z..""..os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S").." \r```")
+			
 			vRPclient._playAnim(source,false,{{"anim@heists@ornate_bank@grab_cash_heels","grab"}},true)
 			for l,w in pairs(policia) do
 				local player = vRP.getUserSource(parseInt(w))

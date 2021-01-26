@@ -10,6 +10,7 @@ Tunnel.bindInterface("nav_mecanica",emP)
 local valores = {
 	{ item = "militec", quantidade = 1, compra = 500, venda = 50 },
 	{ item = "repairkit", quantidade = 1, compra = 1000, venda = 50 },
+	{ item = "pneu", quantidade = 1, compra = 250, venda = 50 },
 }
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- COMPRAR

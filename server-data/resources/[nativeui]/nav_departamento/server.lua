@@ -6,8 +6,6 @@ vRPclient = Tunnel.getInterface("vRP")
 -- ARRAY
 -----------------------------------------------------------------------------------------------------------------------------------------
 local valores = {
-	{ item = "militec", quantidade = 1, compra = 5000, venda = 2500 },
-	{ item = "repairkit", quantidade = 1, compra = 10000, venda = 5000 },
 	{ item = "mochila", quantidade = 1, compra = 10000, venda = 5000 },
 	{ item = "alianca", quantidade = 1, compra = 1000, venda = 500 },
 	{ item = "roupas", quantidade = 1, compra = 5000, venda = 2500 },

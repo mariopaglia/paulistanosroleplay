@@ -4,6 +4,17 @@ vRP = Proxy.getInterface("vRP")
 vRPclient = Tunnel.getInterface("vRP")
 rob = {}
 Tunnel.bindInterface("vrp_roubos",rob)
+
+-----------------------------------------------------------------------------------------------------------------------------------------
+-- WEBHOOK
+-----------------------------------------------------------------------------------------------------------------------------------------
+local webhookroubos = "https://discord.com/api/webhooks/802605744967909387/usEM4UEaaZAfUxfUnW2w9q3RYsRWfXkaICVnDWktOcSjdjGT-q0wt0KWuCvyd_VCbjTa"
+
+function SendWebhookMessage(webhook,message)
+	if webhook ~= nil and webhook ~= "" then
+		PerformHttpRequest(webhook, function(err, text, headers) end, 'POST', json.encode({content = message}), { ['Content-Type'] = 'application/json' })
+	end
+end
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- VARIAVEIS
 -----------------------------------------------------------------------------------------------------------------------------------------
@@ -57,6 +68,8 @@ local outros = {
 function rob.IniciandoRoubo1(id,x,y,z,head)
 	local source = source
 	local user_id = vRP.getUserId(source)
+	local identity = vRP.getUserIdentity(user_id)
+	local crds = GetEntityCoords(GetPlayerPed(source))
 	local soldado = vRP.getUsersByPermission("policia.permissao")
 	for _,item in pairs(bancos) do
 		if item.id == id then
@@ -67,6 +80,9 @@ function rob.IniciandoRoubo1(id,x,y,z,head)
 			else
 				assaltante1 = true
 				variavel1 = os.time()
+
+				SendWebhookMessage(webhookroubos,"```prolog\n[ID]: "..user_id.." "..identity.name.." "..identity.firstname.."\n[ROUBOU]: "..item.nome.."\n[RECOMPENSA]: R$ "..vRP.format(parseInt(item.recompensa)).."\n[COORDENADA]: "..crds.x..","..crds.y..","..crds.z..""..os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S").." \r```")
+
 				TriggerClientEvent('iniciarroubo',source,item.segundos,head)
 				vRPclient.playAnim(source,false,{{"anim@heists@ornate_bank@grab_cash_heels","grab",1}},true)
 				for l,w in pairs(soldado) do
@@ -106,6 +122,8 @@ end
 function rob.IniciandoRoubo2(id,x,y,z,head)
 	local source = source
 	local user_id = vRP.getUserId(source)
+	local identity = vRP.getUserIdentity(user_id)
+	local crds = GetEntityCoords(GetPlayerPed(source))
 	local soldado = vRP.getUsersByPermission("policia.permissao")
 	for _,item in pairs(lojas) do
 		if item.id == id then
@@ -116,6 +134,9 @@ function rob.IniciandoRoubo2(id,x,y,z,head)
 			else
 				assaltante2 = true
 				variavel2 = os.time()
+
+				SendWebhookMessage(webhookroubos,"```prolog\n[ID]: "..user_id.." "..identity.name.." "..identity.firstname.."\n[ROUBOU]: "..item.nome.."\n[RECOMPENSA]: R$ "..vRP.format(parseInt(item.recompensa)).."\n[COORDENADA]: "..crds.x..","..crds.y..","..crds.z..""..os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S").." \r```")
+				
 				TriggerClientEvent('iniciarroubo',source,item.segundos,head)
 				vRPclient.playAnim(source,false,{{"anim@heists@ornate_bank@grab_cash_heels","grab",1}},true)
 				for l,w in pairs(soldado) do
@@ -155,6 +176,8 @@ end
 function rob.IniciandoRoubo3(id,x,y,z,head)
 	local source = source
 	local user_id = vRP.getUserId(source)
+	local identity = vRP.getUserIdentity(user_id)
+	local crds = GetEntityCoords(GetPlayerPed(source))
 	local soldado = vRP.getUsersByPermission("policia.permissao")
 	for _,item in pairs(outros) do
 		if item.id == id then
@@ -165,6 +188,9 @@ function rob.IniciandoRoubo3(id,x,y,z,head)
 			else
 				assaltante3 = true
 				variavel3 = os.time()
+
+				SendWebhookMessage(webhookroubos,"```prolog\n[ID]: "..user_id.." "..identity.name.." "..identity.firstname.."\n[ROUBOU]: "..item.nome.."\n[RECOMPENSA]: R$ "..vRP.format(parseInt(item.recompensa)).."\n[COORDENADA]: "..crds.x..","..crds.y..","..crds.z..""..os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S").." \r```")
+				
 				TriggerClientEvent('iniciarroubo',source,item.segundos,head)
 				vRPclient.playAnim(source,false,{{"anim@heists@ornate_bank@grab_cash_heels","grab",1}},true)
 				for l,w in pairs(soldado) do

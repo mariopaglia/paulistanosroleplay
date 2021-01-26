@@ -50,7 +50,7 @@ RegisterNUICallback("ButtonClick",function(data,cb)
 			exports.tokovoip_script:addPlayerToRadio(188)
 		end
 	elseif data == "pcsp" then
-		if emP.checkPermission2("policia.permissao","Polícia Civil") then
+		if emP.checkPermission2("pcivil.permissao","Polícia Civil") then
 			outServers()
 			exports.tokovoip_script:addPlayerToRadio(187)
 		end	
@@ -171,3 +171,16 @@ function outServers()
       i = i + 1
     end
 end
+-----------------------------------------------------------------------------------------------------------------------------------------
+-- DESLIGAR RADIOS
+-----------------------------------------------------------------------------------------------------------------------------------------
+RegisterNetEvent('desligarRadios')
+AddEventHandler('desligarRadios',function()
+	local i = 0
+    while i < 1033 do
+      if exports.tokovoip_script:isPlayerInChannel(i) == true then
+		exports.tokovoip_script:removePlayerFromRadio(i)
+	  end	
+      i = i + 1
+    end
+end)

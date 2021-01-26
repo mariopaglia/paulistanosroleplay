@@ -177,6 +177,7 @@ end
 -- TAKEITEM
 -----------------------------------------------------------------------------------------------------------------------------------------
 function src.takeItem(chestName,itemName,amount)
+	vRP.antiflood(source,"dumpbaufac",3)
 	local source = source
 	if itemName then
 		local user_id = vRP.getUserId(source)

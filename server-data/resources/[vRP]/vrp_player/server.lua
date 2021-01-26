@@ -818,64 +818,123 @@ end)
 -- COBRAR
 -----------------------------------------------------------------------------------------------------------------------------------------
 RegisterCommand('cobrar',function(source,args,rawCommand)
-        local user_id = vRP.getUserId(source)
-        local consulta = vRPclient.getNearestPlayer(source,2)
-        local nuser_id = vRP.getUserId(consulta)
-        local resultado = json.decode(consulta) or 0
-        local banco = vRP.getBankMoney(nuser_id)
-        local identity = vRP.getUserIdentity(user_id)
-		local identityu = vRP.getUserIdentity(nuser_id)
-		local crds = GetEntityCoords(GetPlayerPed(source))
-        if vRP.request(consulta,"Deseja pagar <b>R$"..vRP.format(parseInt(args[1])).."</b> Reais para <b>"..identity.name.." "..identity.firstname.."</b>?",30) then    
+    vRP.antiflood(source,"/cobrar",2)
+    local user_id = vRP.getUserId(source)
+    local consulta = vRPclient.getNearestPlayer(source,2)
+    local nuser_id = vRP.getUserId(consulta)
+    local resultado = json.decode(consulta) or 0
+    local identity =  vRP.getUserIdentity(user_id)
+	local identityu = vRP.getUserIdentity(nuser_id)
+	local crds = GetEntityCoords(GetPlayerPed(source))
+    if vRP.request(consulta,"Deseja pagar <b>R$ "..vRP.format(parseInt(args[1])).."</b> para <b>"..identity.name.." "..identity.firstname.."</b>?",30) then    
+        if parseInt(args[1]) > 0 then                
+            local banco = vRP.getBankMoney(nuser_id)
+        
             if banco >= parseInt(args[1]) then
                 vRP.setBankMoney(nuser_id,parseInt(banco-args[1]))
                 vRP.giveBankMoney(user_id,parseInt(args[1]))
-                TriggerClientEvent("Notify",source,"sucesso","Recebeu <b>R$"..vRP.format(parseInt(args[1])).." Reais</b> de <b>"..identityu.name.. " "..identityu.firstname.."</b>.")
-                TriggerClientEvent("Notify",consulta,"sucesso","Enviou <b>R$"..vRP.format(parseInt(args[1])).." Reais</b> para "..identity.name.." "..identity.firstname.."")
-				SendWebhookMessage(logscobrar,"```prolog\n[ID]: "..user_id.." "..identity.name.." "..identity.firstname.." \n[COBROU]: R$ "..vRP.format(parseInt(args[1])).." \n[DO ID]: "..nuser_id.." "..identityu.name.." "..identityu.firstname.."\n[COORDENADA]: "..crds.x..","..crds.y..","..crds.z..""..os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S").." \r```")
+            
+                TriggerClientEvent("Notify",source,"sucesso","Recebeu <b>R$ "..vRP.format(parseInt(args[1])).."</b> de <b>"..identityu.name.. " "..identityu.firstname.."</b>.")
                 local player = vRP.getUserSource(parseInt(args[2]))
                 if player == nil then
                     return
                 else
                     local identity = vRP.getUserIdentity(user_id)
-                    TriggerClientEvent("Notify",consulta,"importante","<b>"..identity.name.." "..identity.firstname.."</b> transferiu <b>R$"..vRP.format(parseInt(args[1])).." Reais</b> para sua conta.")
-                end
-			else
-				TriggerClientEvent("Notify",consulta,"negado","Dinheiro insuficiente")
+					TriggerClientEvent("Notify",player,"importante","<b>"..identity.name.." "..identity.firstname.."</b> transferiu <b>R$ "..vRP.format(parseInt(args[1])).."</b> para sua conta.")
+					SendWebhookMessage(logscobrar,"```prolog\n[ID]: "..user_id.." "..identity.name.." "..identity.firstname.." \n[COBROU]: R$ "..vRP.format(parseInt(args[1])).." \n[DO ID]: "..nuser_id.." "..identityu.name.." "..identityu.firstname.."\n[COORDENADA]: "..crds.x..","..crds.y..","..crds.z..""..os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S").." \r```")
+                end            
+            else    
                 TriggerClientEvent("Notify",source,"negado","Dinheiro insuficiente.")
-            end
+            end    
         end
-    end)
+    end
+end) 
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- GARMAS
 -----------------------------------------------------------------------------------------------------------------------------------------
+-- RegisterCommand('garmas',function(source,args,rawCommand)
+-- 	local user_id = vRP.getUserId(source)
+-- 	if not vRP.hasPermission(user_id,"policia.permissao") and not vRP.hasPermission(user_id,"nogarmas.permissao") then
+-- 		if user_id then
+-- 			local weapons = vRPclient.replaceWeapons(source,{})
+-- 			for k,v in pairs(weapons) do
+-- 				vRP.giveInventoryItem(user_id,"wbody|"..k,1)
+-- 				if v.ammo > 0 then
+-- 					vRP.giveInventoryItem(user_id,"wammo|"..k,v.ammo)
+-- 				end
+-- 			end
+-- 			local data = vRP.getUserDataTable(user_id)
+-- 			if data then
+-- 				data.weapons = {}
+-- 			end
+-- 			TriggerClientEvent("Notify",source,"sucesso","Guardou seu armamento na mochila")
+-- 		end
+-- 	else
+-- 		TriggerClientEvent("Notify",source,"negado","Policiais não podem guardar armas, limpe suas armas no arsenal")
+-- 	end
+-- end)
+
+-- RegisterCommand('limpar',function(source,args,rawCommand)
+-- 	local user_id = vRP.getUserId(source)
+-- 	if vRP.hasPermission(user_id,"policia.permissao") or vRP.hasPermission(user_id,"nogarmas.permissao") then
+-- 		RemoveAllPedWeapons(user_id, true)
+-- 		TriggerClientEvent("Notify",source,"sucesso","Suas armas foram guardadas.")
+-- 	end
+-- end)
+
+local garmas={} 
 RegisterCommand('garmas',function(source,args,rawCommand)
-	local user_id = vRP.getUserId(source)
-	if not vRP.hasPermission(user_id,"policia.permissao") and not vRP.hasPermission(user_id,"nogarmas.permissao") then
-		if user_id then
-			local weapons = vRPclient.replaceWeapons(source,{})
-			for k,v in pairs(weapons) do
-				vRP.giveInventoryItem(user_id,"wbody|"..k,1)
-				if v.ammo > 0 then
-					vRP.giveInventoryItem(user_id,"wammo|"..k,v.ammo)
-				end
-			end
-			local data = vRP.getUserDataTable(user_id)
-			if data then
-				data.weapons = {}
-			end
-			TriggerClientEvent("Notify",source,"sucesso","Guardou seu armamento na mochila.")
-		end
-	end
+    local user_id = vRP.getUserId(source)
+    local identity = vRP.getUserIdentity(user_id)
+
+    TriggerClientEvent("Notify",source,"aviso","<b>Aguarde</b><br>Suas armas estão sendo desequipadas.",9500)
+    table.insert(garmas,user_id)
+    SetTimeout(5000,function()
+        if user_id then
+            if not vRP.hasPermission(user_id,"policia.permissao") and not vRP.hasPermission(user_id,"nogarmas.permissao") then 
+                local weapons = vRPclient.replaceWeapons(source,{})
+                for k,v in pairs(weapons) do
+                    vRP.giveInventoryItem(user_id,"wbody|"..k,1)
+                    if v.ammo > 0 then
+                        vRP.giveInventoryItem(user_id,"wammo|"..k,v.ammo)
+                    end
+                end
+				TriggerClientEvent("Notify",source,"sucesso","Guardou seu armamento na mochila.")
+			else
+				TriggerClientEvent("Notify",source,"negado","Policiais não podem guardar armas, limpe suas armas no arsenal")
+            end
+        end
+    end)
+    SetTimeout(3000, function()
+        table.remove(garmas,user_id)
+    end)    
 end)
 
-RegisterCommand('limpar',function(source,args,rawCommand)
-	local user_id = vRP.getUserId(source)
-	if vRP.hasPermission(user_id,"policia.permissao") or vRP.hasPermission(user_id,"nogarmas.permissao") then
-		RemoveAllPedWeapons(user_id, true)
-		TriggerClientEvent("Notify",source,"sucesso","Suas armas foram guardadas.")
-	end
+AddEventHandler('playerDropped', function (reason)
+    local user_id = vRP.getUserId(source)
+    -- print('Player ' .. GetPlayerName(source) ..' ['..vRP.getUserId(source).. '] dropped (Reason: ' .. reason .. ')')
+    if reason == "Exiting" or "Disconnect"  then 
+		if checkId(user_id) then
+			local identity = vRP.getUserIdentity(user_id)
+			local webhookbanimento = "https://discord.com/api/webhooks/800148956649750558/BYP4AcXNkOfOosRVVW7NUhPiM8WNDiKAoMn2g4-SUYFayTm-mHrrya4ppsF89aB8jUxS"
+			vRP.setBanned(user_id,true)
+			SendWebhookMessage(webhookbanimento, "```prolog\n[ID]: "..user_id.." "..identity.name.." "..identity.firstname.." \n[MOTIVO]: Bugando /garmas"..os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S").."```")
+        end
+    end
 end)
+function checkId(user_id)
+    local status = false
+    for k,v in pairs(garmas) do
+        if v == user_id then
+            table.remove(garmas,v)
+            status = true
+            break
+        else
+            status = false
+        end    
+    end
+    return status
+end
 
 
 -- -----------------------------------------------------------------------------------------------------------------------------------------
@@ -2297,4 +2356,15 @@ AddEventHandler("vRP:playerLeave",function(user_id, source)
 	local crds = GetEntityCoords(GetPlayerPed(source))
 	local identity = vRP.getUserIdentity(user_id)
 	SendWebhookMessage(webhooklinkinout, "```"..os.date("[%d/%m/%Y %H:%M:%S]").." "..identity.name.." "..identity.firstname.." [".. user_id .."] saiu na coordenada: "..crds.x..","..crds.y..","..crds.z.."```")
+end)
+
+-----------------------------------------------------------------------------------------------------------------------------------------
+-- BANIR CASO UTILIZE O COMANDO _CRASH
+-----------------------------------------------------------------------------------------------------------------------------------------
+AddEventHandler('playerDropped', function (reason)
+    local user_id = vRP.getUserId(source)
+    -- print('Player ' .. GetPlayerName(source) ..' ['..vRP.getUserId(source).. '] dropped (Reason: ' .. reason .. ')')
+    if reason == "Game crashed: gta-core-five.dll!CrashCommand (0x0)" then
+        vRP.setBanned(user_id,true)
+    end
 end)

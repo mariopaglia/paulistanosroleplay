@@ -155,6 +155,7 @@ function refreshDefaultCharacter()
 	SetPedDefaultComponentVariation(PlayerPedId())
 	ClearAllPedProps(PlayerPedId())
 	if GetEntityModel(PlayerPedId()) == GetHashKey("mp_m_freemode_01") then
+		-- Roupa inicial masculina
 		SetPedComponentVariation(PlayerPedId(),1,-1,0,2)
 		SetPedComponentVariation(PlayerPedId(),5,-1,0,2)
 		SetPedComponentVariation(PlayerPedId(),7,-1,0,2)
@@ -169,6 +170,7 @@ function refreshDefaultCharacter()
 		SetPedPropIndex(PlayerPedId(),6,-1,0,2)
 		SetPedPropIndex(PlayerPedId(),7,-1,0,2)
 	else
+		-- Roupa inicial feminina
 		SetPedComponentVariation(PlayerPedId(),1,-1,0,2)
 		SetPedComponentVariation(PlayerPedId(),5,-1,0,2)
 		SetPedComponentVariation(PlayerPedId(),7,-1,0,2)

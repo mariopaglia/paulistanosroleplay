@@ -127,6 +127,7 @@ end
 
 RegisterServerEvent('gcPhone:addContact')
 AddEventHandler('gcPhone:addContact',function(display,phoneNumber)
+	vRP.antiflood(source,"gcPhone:addContact",5)
 	local sourcePlayer = tonumber(source)
 	local identifier = getPlayerID(source)
 	addContact(sourcePlayer,identifier,phoneNumber,display)

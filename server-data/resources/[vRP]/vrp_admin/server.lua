@@ -119,7 +119,7 @@ RegisterCommand('fix',function(source,args,rawCommand)
 	if vRP.hasPermission(user_id,"fix.permissao") then
 		local vehicle = vRPclient.getNearestVehicle(source,7)
 		if vehicle then
-			TriggerClientEvent('reparar',source,vehicle)
+			TriggerClientEvent('reparar2',source,vehicle)
 		end
 	end
 end)
@@ -677,5 +677,26 @@ AddEventHandler('LOG:ARMAS', function()
     local user_id = vRP.getUserId(source)
     if user_id~=nil then
       PerformHttpRequest(webhooksuspeito, function(err, text, headers) end, 'POST', json.encode({content = "[SUSPEITO] SPAWN DE ARMAS "..user_id}), { ['Content-Type'] = 'application/json' })
+    end
+end)
+
+-----------------------------------------------------------------------------------------------------------------------------------------
+-- KICKAR PLAYERS SEM ID
+-----------------------------------------------------------------------------------------------------------------------------------------
+RegisterCommand('kickbugados',function(source,args,rawCommand)
+    local user_id = vRP.getUserId(source)
+    if vRP.hasPermission(user_id,"admin.permissao")then
+        TriggerClientEvent('MQCU:bugado',-1)
+    end
+end)
+
+RegisterServerEvent("MQCU:bugado")
+AddEventHandler("MQCU:bugado",function()
+    local user_id = vRP.getUserId(source)
+    if user_id == nil then
+        local identifiers = GetPlayerIdentifiers(source)
+        DropPlayer(source,"Você foi kikado da cidade!")
+        identifiers = json.decode(identifiers)
+        print("Player bugado encontrado: "..identifiers)
     end
 end)

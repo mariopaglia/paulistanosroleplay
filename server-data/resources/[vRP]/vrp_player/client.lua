@@ -1227,27 +1227,6 @@ AddEventHandler(
 		TriggerServerEvent("tryreparar", VehToNet(vehicle))
 	end
 )
-
-RegisterNetEvent("syncreparar")
-AddEventHandler(
-	"syncreparar",
-	function(index)
-		if NetworkDoesNetworkIdExist(index) then
-			local v = NetToVeh(index)
-			local fuel = GetVehicleFuelLevel(v)
-			if DoesEntityExist(v) then
-				if IsEntityAVehicle(v) then
-					SetVehicleFixed(v)
-					SetVehicleDirtLevel(v, 0.0)
-					SetVehicleUndriveable(v, false)
-					SetEntityAsMissionEntity(v, true, true)
-					SetVehicleOnGroundProperly(v)
-					SetVehicleFuelLevel(v, fuel)
-				end
-			end
-		end
-	end
-)
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- REPARAR MOTOR
 -----------------------------------------------------------------------------------------------------------------------------------------

@@ -27,7 +27,7 @@ TokoVoipConfig = {
 		TSChannelWait = "AGUARDANDO", --CANAL ONDE O PLAYER FICARA AGUARDANDO PARA ENTRAR NO JOGO!!!
 		
 		-- Blocking screen informations
-		TSServer = "paulistanosrp.ts3br.top", -- IP DO TS
+		TSServer = "ts.paulistanosrp.com", -- IP DO TS
 		TSChannelSupport = "", -- TeamSpeak support channel name displayed on blocking screen
 		TSDownload = "", -- Download link displayed on blocking screen
 		TSChannelWhitelist = { -- Black screen will not be displayed when users are in those TS channels

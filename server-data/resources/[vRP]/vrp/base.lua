@@ -337,7 +337,28 @@ AddEventHandler("queue:playerConnecting",function(source,ids,name,setKickReason,
 	if ids ~= nil and #ids > 0 then
 		deferrals.update("Carregando identidades.")
 		local user_id = vRP.getUserIdByIdentifiers(ids)
+
+		local nsource = vRP.getUserSource(user_id)
+		local nuser_id = vRP.getUserId(nsource)
+		if(nsource~=nil and nuser_id~=nil)then
+		  deferrals.done("Bug corrigido by MQCU")
+		  TriggerEvent("queue:playerConnectingRemoveQueues",ids)
+		  return
+		end
+		
 		if user_id then
+			-- Adiciona novos identifies na tabela
+			for l,w in pairs(ids) do
+			   if not (string.find(w,"ip:")) then
+			      local row = vRP.query("vRP/userid_byidentifier"
+			             ,{ identifier = w })            
+			      if not row[1] then
+			        vRP.execute("vRP/add_identifier"
+			             ,{ user_id = user_id, identifier = w })
+			      end    
+			   end
+			end
+
 			deferrals.update("Carregando banimentos.")
 			if not vRP.isBanned(user_id) then
 				 deferrals.update("Carregando whitelist.")

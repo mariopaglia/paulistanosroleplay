@@ -1059,6 +1059,7 @@ Citizen.CreateThread( function()
 end)
 
 function src.takeItem(homeName,itemName,amount)
+	vRP.antiflood(source,"dumpbaucasa",3)
 	local source = source
 	if itemName then
 		local user_id = vRP.getUserId(source)

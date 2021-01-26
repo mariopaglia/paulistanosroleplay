@@ -7,6 +7,7 @@ vRPclient = Tunnel.getInterface("vRP")
 vRPN = {}
 Tunnel.bindInterface("vrp_inventory",vRPN)
 Proxy.addInterface("vrp_inventory",vRPN)
+vRPNclient = Tunnel.getInterface("vrp_inventory","vrp_inventory")
 
 local idgens = Tools.newIDGenerator()
 
@@ -51,16 +52,9 @@ function vRPN.sendItem(itemName,amount)
 	if itemName then
 		local user_id = vRP.getUserId(source)
 		local nplayer = vRPclient.getNearestPlayer(source,2)
-		if nplayer == nil then
-			return
-		end
 		local nuser_id = vRP.getUserId(nplayer)
 		local identity = vRP.getUserIdentity(user_id)
 		local identitynu = vRP.getUserIdentity(nuser_id)
-		print(nuser_id)
-		print(vRP.itemIndexList(itemName))
-		print(item)
-		print(vRP.itemIndexList("identidade"))
 		if nuser_id and vRP.itemIndexList(itemName) then
 			if parseInt(amount) > 0 then
 				if vRP.getInventoryWeight(nuser_id) + vRP.getItemWeight(itemName) * amount <= vRP.getInventoryMaxWeight(nuser_id) then
@@ -726,17 +720,24 @@ function vRPN.useItem(itemName,type,ramount)
 				if not vRPclient.isInVehicle(source) then
 					local vehicle = vRPclient.getNearestVehicle(source,3.5)
 					if vehicle then
-						if vRP.hasPermission(user_id,"mecanico.permissao") then
-							actived[user_id] = true
-							TriggerClientEvent('cancelando',source,true)
-							vRPclient._playAnim(source,false,{{"mini@repair","fixing_a_player"}},true)
-							TriggerClientEvent("progress",source,30000,"reparando motor")
-							SetTimeout(30000,function()
-								actived[user_id] = nil
-								TriggerClientEvent('cancelando',source,false)
-								TriggerClientEvent('repararmotor',source,vehicle)
-								vRPclient._stopAnim(source,false)
-							end)
+						local mec = vRP.getUsersByPermission("mecanico.permissao")
+						if #mec > 0 then
+							if vRP.hasPermission(user_id,"mecanico.permissao") then
+								if vRP.tryGetInventoryItem(user_id,"militec",1) then
+									actived[user_id] = true
+									TriggerClientEvent('cancelando',source,true)
+									vRPclient._playAnim(source,false,{{"mini@repair","fixing_a_player"}},true)
+									TriggerClientEvent("progress",source,15000,"reparando motor")
+									SetTimeout(15000,function()
+										actived[user_id] = nil
+										TriggerClientEvent('cancelando',source,false)
+										TriggerClientEvent('repararmotor',source,vehicle, true)
+										vRPclient._stopAnim(source,false)
+									end)
+								end
+							else
+								TriggerClientEvent("Notify",source,"negado","Existe mecânico(a) em serviço, chame através do seu <b>celular</b>")
+							end
 						else
 							if vRP.tryGetInventoryItem(user_id,"militec",1) then
 								actived[user_id] = true
@@ -747,7 +748,7 @@ function vRPN.useItem(itemName,type,ramount)
 								SetTimeout(30000,function()
 									actived[user_id] = nil
 									TriggerClientEvent('cancelando',source,false)
-									TriggerClientEvent('repararmotor',source,vehicle)
+									TriggerClientEvent('repararmotor',source,vehicle, false)
 									vRPclient._stopAnim(source,false)
 								end)
 							end
@@ -759,48 +760,61 @@ function vRPN.useItem(itemName,type,ramount)
 					local vehicle = vRPclient.getNearestVehicle(source,3.5)
 					if vehicle then
 						if vRP.hasPermission(user_id,"mecanico.permissao") then
-							actived[user_id] = true
-							TriggerClientEvent('cancelando',source,true)
-							vRPclient._playAnim(source,false,{{"mini@repair","fixing_a_player"}},true)
-							TriggerClientEvent("progress",source,30000,"reparando veículo")
-							SetTimeout(30000,function()
-								actived[user_id] = nil
-								TriggerClientEvent('cancelando',source,false)
-								TriggerClientEvent('reparar',source)
-								vRPclient._stopAnim(source,false)
-							end)
+							if vRPNclient.isNearCds(source, vector3(-211.1,-1324.73,30.9), 25) or vRPNclient.isNearCds(source, vector3(928.35,-968.11,39.76), 25) then
+								if vRP.tryGetInventoryItem(user_id,"repairkit",1) then
+									actived[user_id] = true
+									TriggerClientEvent('cancelando',source,true)
+									vRPclient._playAnim(source,false,{{"mini@repair","fixing_a_player"}},true)
+									TriggerClientEvent("progress",source,30000,"reparando veículo")
+									SetTimeout(30000,function()
+										actived[user_id] = nil
+										TriggerClientEvent('cancelando',source,false)
+										TriggerClientEvent('reparar',source)
+										vRPclient._stopAnim(source,false)
+									end)
+								end
+							else
+								TriggerClientEvent("Notify",source,"negado","<b>Kit de Reparo</b> só pode ser utilizado na mecânica")
+							end
 						else
-							TriggerClientEvent("Notify",source,"negado","Somente mecanicos podem utilizar <b>Kit de Reparo</b>, chame um através do <b>/call mec</b>")
+							TriggerClientEvent("Notify",source,"negado","Somente mecanicos podem utilizar <b>Kit de Reparo</b>, chame um através do <b>celular</b>")
 						end
 					end
 				end	
-			elseif itemName == "pneus" then
+			elseif itemName == "pneu" then
 				if not vRPclient.isInVehicle(source) then
-					local vehicle = vRPclient.getNearestVehicle(source,3)
+					local vehicle = vRPclient.getNearestVehicle(source,4)
 					if vehicle then
-						if vRP.hasPermission(user_id,"mecanico.permissao") then
-							actived[user_id] = true
-							TriggerClientEvent('cancelando',source,true)
-							vRPclient._playAnim(source,false,{{"mini@repair","fixing_a_player"}},true)
-							TriggerClientEvent("progress",source,30000,"reparando pneus")
-							SetTimeout(30000,function()
-								actived[user_id] = nil
-								TriggerClientEvent('cancelando',source,false)
-								TriggerClientEvent('repararpneus',source,vehicle)
-								vRPclient._stopAnim(source,false)
-							end)
-						else
-							if vRP.tryGetInventoryItem(user_id,"pneus",1) then
+						if vRP.tryGetInventoryItem(user_id,"pneu",1) then
+							if vRP.hasPermission(user_id,"mecanico.permissao") then
+								actived[user_id] = true
+								TriggerClientEvent('cancelando',source,true)
+								vRPclient._playAnim(source,false,{{"amb@medic@standing@tendtodead@idle_a","idle_a"}},true)
+								TriggerClientEvent("progress",source,10000,"trocando pneu")
+								SetTimeout(10000,function()
+									actived[user_id] = nil
+									TriggerClientEvent('cancelando',source,false)
+									local tyre = vRPNclient.ityrerepair(source, vehicle)
+									if tyre ~= -1 then
+										vRPNclient._syncTyreRepair(-1, vehicle, tyre)
+									end
+									vRPclient._stopAnim(source,false)
+								end)
+							else
 								actived[user_id] = true
 								TriggerClientEvent('Creative:Update',source,'updateMochila')
 								TriggerClientEvent('cancelando',source,true)
-								vRPclient._playAnim(source,false,{{"mini@repair","fixing_a_player"}},true)
-								TriggerClientEvent("progress",source,30000,"reparando pneus")
+								vRPclient._playAnim(source,false,{{"amb@medic@standing@tendtodead@idle_a","idle_a"}},true)
+								TriggerClientEvent("progress",source,30000,"trocando pneu")
 								SetTimeout(30000,function()
 									actived[user_id] = nil
 									TriggerClientEvent('cancelando',source,false)
-									TriggerClientEvent('repararpneus',source,vehicle)
+									local tyre = vRPNclient.ityrerepair(source, vehicle)
+									if tyre ~= -1 then
+										vRPNclient._syncTyreRepair(-1, vehicle, tyre)
+									end
 									vRPclient._stopAnim(source,false)
+									vRPclient._stopAnim(source,true)
 								end)
 							end
 						end

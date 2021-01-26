@@ -12,6 +12,7 @@ function emP.checkPayment()
 	if user_id then
 		if vRP.getInventoryWeight(user_id)+vRP.getItemWeight("sacodelixo") <= vRP.getInventoryMaxWeight(user_id) then
 			vRP.giveInventoryItem(user_id,"sacodelixo",1)
+			TriggerClientEvent("Notify",source,"sucesso","Você coletou <b>1x Saco de Lixo</b>")
 			return true
 		end
 	end

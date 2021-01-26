@@ -17,6 +17,7 @@ function emP.removeGroup()
 	local source = source
 	local user_id = vRP.getUserId(source)
 	vRP.removeUserGroup(user_id,"Taxista")
+	TriggerClientEvent('desligarRadios',source)
 end
 
 function emP.checkPermission()
@@ -29,11 +30,27 @@ function emP.checkPayment(payment)
     local source = source
     local user_id = vRP.getUserId(source)
     if user_id then
-        randmoney = (math.random(1000,1900)*payment)
+        randmoney = (math.random(500,1500)*payment)
         vRP.giveMoney(user_id,parseInt(randmoney))
         TriggerClientEvent("vrp_sound:source",source,'coins',0.5)
-        TriggerClientEvent("Notify",source,"sucesso","Você recebeu <b>$"..vRP.format(parseInt(randmoney)).." dólares</b>.")
+        TriggerClientEvent("Notify",source,"sucesso","Você recebeu <b>R$ "..vRP.format(parseInt(randmoney)).."</b>.")
+      end
     end
+    
+function emP.cobrarTaxa()
+    local source = source
+    local user_id = vRP.getUserId(source)
+
+    if vRP.request(source,"Deseja pagar <b>R$ 2.000</b> pela licença <b>temporária</b> de taxista?",30) then
+        if vRP.tryFullPayment(user_id, 2000) then
+            return true
+        else
+            TriggerClientEvent("Notify",source,"negado","Dinheiro insuficiente")
+            return false
+        end
+    else
+        return false
+    end  
 end
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- FUNÇÕES DO TAXIMETRO

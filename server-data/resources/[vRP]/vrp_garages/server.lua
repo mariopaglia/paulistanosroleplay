@@ -88,7 +88,7 @@ local garages = {
 	[23] = { ['name'] = "Paramedico", ['payment'] = false, ['perm'] = "paramedico.permissao" },
 	[26] = { ['name'] = "ParamedicoH", ['payment'] = false, ['perm'] = "paramedico.permissao" },
 	[27] = { ['name'] = "Mecanico", ['payment'] = false, ['perm'] = "mecanico.permissao" },
-	[29] = { ['name'] = "Taxista", ['payment'] = false, ['perm'] = "taxista.permissao" },
+	-- [29] = { ['name'] = "Taxista", ['payment'] = false, ['perm'] = "taxista.permissao" },
 	[30] = { ['name'] = "Motorista", ['payment'] = false, ['perm'] = "livre" },
 	[31] = { ['name'] = "Carteiro", ['payment'] = false, ['perm'] = "livre" },
 	[32] = { ['name'] = "Lixeiro", ['payment'] = false, ['perm'] = "livre" },
@@ -431,7 +431,7 @@ local garages = {
 -----------------------------------------------------------------------------------------------------------------------------------------
 --													TAXISTA
 -----------------------------------------------------------------------------------------------------------------------------------------
-	[617] = { ['name'] = "Taxista", ['payment'] = false, ['perm'] = "taxista.permissao" },
+	[617] = { ['name'] = "Garagem", ['payment'] = false, ['perm'] = "taxista.permissao" },
 -----------------------------------------------------------------------------------------------------------------------------------------
 --													HELICOPTEROS VIP
 -----------------------------------------------------------------------------------------------------------------------------------------
@@ -603,9 +603,6 @@ local workgarage = {
 	["ADM"] = {
 		"ferrariitalia",
 		"corvette"
-	},
-	["Taxista"] = {
-		"taxi"
 	},
 	["Bratva"] = {
 		"rumpo3"
@@ -817,6 +814,7 @@ end
 -----------------------------------------------------------------------------------------------------------------------------------------
 RegisterServerEvent("desmancheVehicles")
 AddEventHandler("desmancheVehicles",function()
+	vRP.antiflood(source,"desmancheVehicles",3)
 	local source = source
 	local user_id = vRP.getUserId(source)
 	if user_id then
@@ -1111,12 +1109,16 @@ RegisterServerEvent("tryreparar")
 AddEventHandler("tryreparar",function(nveh)
 	TriggerClientEvent("syncreparar",-1,nveh)
 end)
+RegisterServerEvent("tryreparar2")
+AddEventHandler("tryreparar2",function(nveh)
+	TriggerClientEvent("syncreparar2",-1,nveh)
+end)
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- MOTOR
 -----------------------------------------------------------------------------------------------------------------------------------------
 RegisterServerEvent("trymotor")
-AddEventHandler("trymotor",function(nveh)
-	TriggerClientEvent("syncmotor",-1,nveh)
+AddEventHandler("trymotor",function(nveh, iscivil)
+	TriggerClientEvent("syncmotor",-1,nveh, iscivil)
 end)
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- SAVELIVERY

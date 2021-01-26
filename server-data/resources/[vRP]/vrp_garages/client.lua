@@ -1554,6 +1554,13 @@ AddEventHandler('reparar',function()
 		TriggerServerEvent("tryreparar",VehToNet(vehicle))
 	end
 end)
+RegisterNetEvent('reparar2')
+AddEventHandler('reparar2',function()
+	local vehicle = vRP.getNearestVehicle(3)
+	if IsEntityAVehicle(vehicle) then
+		TriggerServerEvent("tryreparar2",VehToNet(vehicle))
+	end
+end)
 
 RegisterNetEvent('syncreparar')
 AddEventHandler('syncreparar',function(index)
@@ -1562,12 +1569,56 @@ AddEventHandler('syncreparar',function(index)
 		local fuel = GetVehicleFuelLevel(v)
 		if DoesEntityExist(v) then
 			if IsEntityAVehicle(v) then
+				local w1 = IsVehicleTyreBurst(v, 0, false)
+				local w2 = IsVehicleTyreBurst(v, 1, false)
+				local w3 = IsVehicleTyreBurst(v, 2, false)
+				local w4 = IsVehicleTyreBurst(v, 3, false)
+				local w5 = IsVehicleTyreBurst(v, 4, false)
+				local w6 = IsVehicleTyreBurst(v, 5, false)
+				local w1f = IsVehicleTyreBurst(v, 0, true)
+				local w2f = IsVehicleTyreBurst(v, 1, true)
+				local w3f = IsVehicleTyreBurst(v, 2, true)
+				local w4f = IsVehicleTyreBurst(v, 3, true)
+				local w5f = IsVehicleTyreBurst(v, 4, true)
+				local w6f = IsVehicleTyreBurst(v, 5, true)
 				SetVehicleFixed(v)
 				SetVehicleDirtLevel(v,0.0)
 				SetVehicleUndriveable(v,false)
 				Citizen.InvokeNative(0xAD738C3085FE7E11,v,true,true)
 				SetVehicleOnGroundProperly(v)
 				SetVehicleFuelLevel(v,fuel)
+				
+				if w1 then SetVehicleTyreBurst(v, 0, w1f, 1000.0) end
+				if w2 then SetVehicleTyreBurst(v, 1, w2f, 1000.0) end
+				if w3 then SetVehicleTyreBurst(v, 2, w3f, 1000.0) end
+				if w4 then SetVehicleTyreBurst(v, 3, w4f, 1000.0) end
+				if w5 then SetVehicleTyreBurst(v, 4, w5f, 1000.0) end
+				if w6 then SetVehicleTyreBurst(v, 5, w6f, 1000.0) end
+			end
+		end
+	end
+end)
+
+RegisterNetEvent('syncreparar2')
+AddEventHandler('syncreparar2',function(index)
+	if NetworkDoesNetworkIdExist(index) then
+		local v = NetToVeh(index)
+		local fuel = GetVehicleFuelLevel(v)
+		if DoesEntityExist(v) then
+			print("a")
+			if IsEntityAVehicle(v) then
+				SetVehicleFixed(v)
+				SetVehicleDirtLevel(v,0.0)
+				SetVehicleUndriveable(v,false)
+				Citizen.InvokeNative(0xAD738C3085FE7E11,v,true,true)
+				SetVehicleOnGroundProperly(v)
+				SetVehicleFuelLevel(v,fuel)
+				SetVehicleTyreFixed(v, 0)
+				SetVehicleTyreFixed(v, 1)
+				SetVehicleTyreFixed(v, 2)
+				SetVehicleTyreFixed(v, 3)
+				SetVehicleTyreFixed(v, 4)
+				SetVehicleTyreFixed(v, 5)
 			end
 		end
 	end
@@ -1576,15 +1627,14 @@ end)
 -- REPARAR MOTOR
 -----------------------------------------------------------------------------------------------------------------------------------------
 RegisterNetEvent('repararmotor')
-AddEventHandler('repararmotor',function()
-	local vehicle = vRP.getNearestVehicle(3)
+AddEventHandler('repararmotor',function(vehicle, iscivil)
 	if IsEntityAVehicle(vehicle) then
-		TriggerServerEvent("trymotor",VehToNet(vehicle))
+		TriggerServerEvent("trymotor",VehToNet(vehicle), iscivil)
 	end
 end)
 
 RegisterNetEvent('syncmotor')
-AddEventHandler('syncmotor',function(index)
+AddEventHandler('syncmotor',function(index, iscivil)
 	if NetworkDoesNetworkIdExist(index) then
 		local v = NetToVeh(index)
 		if DoesEntityExist(v) then

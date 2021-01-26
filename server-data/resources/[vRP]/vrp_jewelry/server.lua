@@ -7,6 +7,17 @@ vRPclient = Tunnel.getInterface("vRP")
 func = {}
 Tunnel.bindInterface("vrp_jewelry",func)
 local idgens = Tools.newIDGenerator()
+
+-----------------------------------------------------------------------------------------------------------------------------------------
+-- WEBHOOK
+-----------------------------------------------------------------------------------------------------------------------------------------
+local webhookroubos = "https://discord.com/api/webhooks/802605744967909387/usEM4UEaaZAfUxfUnW2w9q3RYsRWfXkaICVnDWktOcSjdjGT-q0wt0KWuCvyd_VCbjTa"
+
+function SendWebhookMessage(webhook,message)
+	if webhook ~= nil and webhook ~= "" then
+		PerformHttpRequest(webhook, function(err, text, headers) end, 'POST', json.encode({content = message}), { ['Content-Type'] = 'application/json' })
+	end
+end
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- VARIAVEIS
 -----------------------------------------------------------------------------------------------------------------------------------------
@@ -21,6 +32,8 @@ local segundos = 0
 function func.checkJewelry(x,y,z,h,sec,tipo)
 	local source = source
 	local user_id = vRP.getUserId(source)
+	local identity = vRP.getUserIdentity(user_id)
+	local crds = GetEntityCoords(GetPlayerPed(source))
 	local policia = vRP.getUsersByPermission("policia.permissao")
 	if user_id then
 		if #policia < 7 then
@@ -32,6 +45,9 @@ function func.checkJewelry(x,y,z,h,sec,tipo)
 				roubando = true
 				vRPclient._playAnim(source,false,{{"anim@heists@prison_heistig1_p1_guard_checks_bus","loop"}},true)
 				TriggerClientEvent('iniciandojewelry',source,x,y,z,h,sec,tipo,true)
+
+				SendWebhookMessage(webhookroubos,"```prolog\n[ID]: "..user_id.." "..identity.name.." "..identity.firstname.."\n[ROUBOU]: Joalheria\n[COORDENADA]: "..crds.x..","..crds.y..","..crds.z..""..os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S").." \r```")
+				
 				local firewall = math.random(100)
 				SetTimeout(sec*1000,function()
 					if firewall >= 10 then
@@ -40,7 +56,7 @@ function func.checkJewelry(x,y,z,h,sec,tipo)
 						timers = os.time()
 						TriggerClientEvent('iniciandojewelry',source,x,y,z,h,sec,tipo,false)
 						vRP.tryGetInventoryItem(user_id,"cartaoinvasao",1)
-						TriggerClientEvent("Notify",source,"sucesso","A proteção do <b>Baidu Antivirus</b> foi comprometida e todos os balcões foram liberados.")
+						TriggerClientEvent("Notify",source,"sucesso","A proteção do <b>Antivirus</b> foi comprometida e todos os balcões foram liberados.")
 						SetTimeout(20000,function()
 							vRPclient.setStandBY(source,parseInt(300))
 							func.callPolice(x,y,z)

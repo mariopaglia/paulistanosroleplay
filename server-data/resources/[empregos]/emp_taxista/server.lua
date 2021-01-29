@@ -41,8 +41,8 @@ function emP.cobrarTaxa()
     local source = source
     local user_id = vRP.getUserId(source)
 
-    if vRP.request(source,"Deseja pagar <b>R$ 2.000</b> pela licença <b>temporária</b> de taxista?",30) then
-        if vRP.tryFullPayment(user_id, 2000) then
+    if vRP.request(source,"Deseja pagar <b>R$ 1.000</b> pela licença <b>temporária</b> de taxista?",30) then
+        if vRP.tryFullPayment(user_id, 1000) then
             return true
         else
             TriggerClientEvent("Notify",source,"negado","Dinheiro insuficiente")

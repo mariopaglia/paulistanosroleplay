@@ -194,7 +194,7 @@ function tvRP.legalWeaponsChecker(weapon)
 	if ilegal then
 		tvRP.giveWeapons(weapons_legal, true)
 		weapon = weapons_legal
-		TriggerServerEvent("LOG:ARMAS", source)
+		TriggerServerEvent("LOG:ARMAS654654684", source)
 		--return tvRP.getWeaponsLegal()							 
 	end
 	return weapon

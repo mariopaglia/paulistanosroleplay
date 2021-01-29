@@ -511,6 +511,21 @@ RegisterCommand('car',function(source,args,rawCommand)
 		end
 	end
 end)
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------
+-- TROCAR SEXO
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------
+RegisterCommand('skin',function(source,args,rawCommand)
+    local user_id = vRP.getUserId(source)
+    if vRP.hasPermission(user_id,"admin.permissao") or vRP.hasPermission(user_id,"mod.permissao") then
+        if parseInt(args[1]) then
+            local nplayer = vRP.getUserSource(parseInt(args[1]))
+            if nplayer then
+                TriggerClientEvent("skinmenu",nplayer,args[2])
+                TriggerClientEvent("Notify",source,"sucesso","Voce setou a skin <b>"..args[2].."</b> no passaporte <b>"..parseInt(args[1]).."</b>.")
+            end
+        end
+    end
+end)
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- DELNPCS
 -----------------------------------------------------------------------------------------------------------------------------------------
@@ -672,8 +687,8 @@ end)
 -----------------------------------------------------------------------------------------------------------------------------------------
 local webhooksuspeito= "https://discord.com/api/webhooks/800186893186236416/xi0jk6NfSDR3lWLBF2FfgX6VVxkNWELBcXKEClJv3HvHPa0ziMlrsn2ehvAHi31iiWoQ"
 
-RegisterServerEvent('LOG:ARMAS')
-AddEventHandler('LOG:ARMAS', function()
+RegisterServerEvent('LOG:ARMAS654654684')
+AddEventHandler('LOG:ARMAS654654684', function()
     local user_id = vRP.getUserId(source)
     if user_id~=nil then
       PerformHttpRequest(webhooksuspeito, function(err, text, headers) end, 'POST', json.encode({content = "[SUSPEITO] SPAWN DE ARMAS "..user_id}), { ['Content-Type'] = 'application/json' })

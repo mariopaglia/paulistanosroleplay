@@ -171,16 +171,3 @@ function outServers()
       i = i + 1
     end
 end
------------------------------------------------------------------------------------------------------------------------------------------
--- DESLIGAR RADIOS
------------------------------------------------------------------------------------------------------------------------------------------
-RegisterNetEvent('desligarRadios')
-AddEventHandler('desligarRadios',function()
-	local i = 0
-    while i < 1033 do
-      if exports.tokovoip_script:isPlayerInChannel(i) == true then
-		exports.tokovoip_script:removePlayerFromRadio(i)
-	  end	
-      i = i + 1
-    end
-end)

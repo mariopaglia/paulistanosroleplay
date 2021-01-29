@@ -286,35 +286,68 @@ function vRP.computeItemsWeight(items)
 	return weight
 end
 
+-- function vRP.giveInventoryItem(user_id,idname,amount)
+-- 	local amount = parseInt(amount)
+-- 	local data = vRP.getUserDataTable(user_id)
+-- 	if data and amount > 0 then
+-- 		local entry = data.inventory[idname]
+-- 		if entry then
+-- 			entry.amount = entry.amount + amount
+-- 		else
+-- 			data.inventory[idname] = { amount = amount }
+-- 		end
+-- 	end
+-- end
+
+-- function vRP.tryGetInventoryItem(user_id,idname,amount)
+-- 	local amount = parseInt(amount)
+-- 	local data = vRP.getUserDataTable(user_id)
+-- 	if data and amount > 0 then
+-- 		local entry = data.inventory[idname]
+-- 		if entry and entry.amount >= amount then
+-- 			entry.amount = entry.amount - amount
+
+-- 			if entry.amount <= 0 then
+-- 				data.inventory[idname] = nil
+-- 			end
+-- 			return true
+-- 		end
+-- 	end
+-- 	return false
+-- end
+
 function vRP.giveInventoryItem(user_id,idname,amount)
-	local amount = parseInt(amount)
-	local data = vRP.getUserDataTable(user_id)
-	if data and amount > 0 then
-		local entry = data.inventory[idname]
-		if entry then
-			entry.amount = entry.amount + amount
-		else
-			data.inventory[idname] = { amount = amount }
-		end
-	end
+    local source = vRP.getUserSource(parseInt(user_id))
+    local amount = parseInt(amount)
+    local data = vRP.getUserDataTable(user_id)
+    if data and amount > 0 then
+        local entry = data.inventory[idname]
+        if entry then
+            entry.amount = entry.amount + amount
+        else
+            data.inventory[idname] = { amount = amount }
+        end
+    end 
+    TriggerClientEvent("itensNotify",source,"sucesso",""..vRP.format(parseInt(amount)).."x "..idname.."",""..vRP.itemIndexList(idname).."") 
 end
 
-
 function vRP.tryGetInventoryItem(user_id,idname,amount)
-	local amount = parseInt(amount)
-	local data = vRP.getUserDataTable(user_id)
-	if data and amount > 0 then
-		local entry = data.inventory[idname]
-		if entry and entry.amount >= amount then
-			entry.amount = entry.amount - amount
+    local source = vRP.getUserSource(parseInt(user_id))
+    local amount = parseInt(amount)
+    local data = vRP.getUserDataTable(user_id)
+    if data and amount > 0 then
+        TriggerClientEvent("itensNotify",source,"negado",""..vRP.format(parseInt(amount)).."x "..idname.."",""..vRP.itemIndexList(idname).."") 
+        local entry = data.inventory[idname]
+        if entry and entry.amount >= amount then
+            entry.amount = entry.amount - amount
 
-			if entry.amount <= 0 then
-				data.inventory[idname] = nil
-			end
-			return true
-		end
-	end
-	return false
+            if entry.amount <= 0 then
+                data.inventory[idname] = nil
+            end
+            return true
+        end
+    end
+    return false
 end
 
 function vRP.getInventoryItemAmount(user_id,idname)
@@ -626,106 +659,105 @@ end)
 -----------------------------------------------------------------------------------------------------------------------------------------
 local vehglobal = {
 	-- CARROS CONCE
-	["panto"] = { ['name'] = "Panto", ['price'] = 20000, ['tipo'] = "carros" },
-	["rhapsody"] = { ['name'] = "Rhapsody", ['price'] = 30000, ['tipo'] = "carros" },
-	["blista"] = { ['name'] = "blista", ['price'] = 40000, ['tipo'] = "carros" },
-	["prairie"] = { ['name'] = "Prairie", ['price'] = 40000, ['tipo'] = "carros" },
-	["brioso"] = { ['name'] = "Brioso", ['price'] = 45000, ['tipo'] = "carros" },
-	["issi2"] = { ['name'] = "Issi2", ['price'] = 45000, ['tipo'] = "carros" },
-	["cogcabrio"] = { ['name'] = "Cogcabrio", ['price'] = 45000, ['tipo'] = "carros" },
-	["f620"] = { ['name'] = "F620", ['price'] = 50000, ['tipo'] = "carros" },
-	["faction2"] = { ['name'] = "Faction2", ['price'] = 50000, ['tipo'] = "carros" },
-	["zion"] = { ['name'] = "Zion", ['price'] = 50000, ['tipo'] = "carros" },
-	["dukes"] = { ['name'] = "Dukes", ['price'] = 50000, ['tipo'] = "carros" },
-	["oracle2"] = { ['name'] = "Oracle2", ['price'] = 55000, ['tipo'] = "carros" },
-	["dominator"] = { ['name'] = "Dominator", ['price'] = 55000, ['tipo'] = "carros" },
-	["buccaneer2"] = { ['name'] = "Buccaneer2", ['price'] = 55000, ['tipo'] = "carros" },
-	["ellie"] = { ['name'] = "Ellie", ['price'] = 55000, ['tipo'] = "carros" },
-	["tampa"] = { ['name'] = "Tampa", ['price'] = 55000, ['tipo'] = "carros" },
-	["tulip"] = { ['name'] = "Tulip", ['price'] = 55000, ['tipo'] = "carros" },
-	["jackal"] = { ['name'] = "Jackal", ['price'] = 65000, ['tipo'] = "carros" },
-	["gauntlet"] = { ['name'] = "Gauntlet", ['price'] = 65000, ['tipo'] = "carros" },
-	["buccaneer"] = { ['name'] = "Buccaneer", ['price'] = 65000, ['tipo'] = "carros" },
-	["exemplar"] = { ['name'] = "Exemplar", ['price'] = 70000, ['tipo'] = "carros" },
-	["blade"] = { ['name'] = "Blade", ['price'] = 70000, ['tipo'] = "carros" },
-	["hustler"] = { ['name'] = "hustler", ['price'] = 70000, ['tipo'] = "carros" },
-	["vigero"] = { ['name'] = "Vigero", ['price'] = 75000, ['tipo'] = "carros" },
-	["asterope"] = { ['name'] = "asterope", ['price'] = 75000, ['tipo'] = "carros" },
-	["ruston"] = { ['name'] = "Ruston", ['price'] = 75000, ['tipo'] = "carros" },
-	["sultan2"] = { ['name'] = "Sultan2", ['price'] = 75000, ['tipo'] = "carros" },
-	["sugoi"] = { ['name'] = "Sugoi", ['price'] = 75000, ['tipo'] = "carros" },
-	["furia"] = { ['name'] = "Furia", ['price'] = 75000, ['tipo'] = "carros" },
-	["chino2"] = { ['name'] = "Chino2", ['price'] = 85000, ['tipo'] = "carros" },
-	["picador"] = { ['name'] = "Picador", ['price'] = 85000, ['tipo'] = "carros" },
-	["coquette3"] = { ['name'] = "Coquette3", ['price'] = 85000, ['tipo'] = "carros" },
-	["ratloader2"] = { ['name'] = "Ratloader2", ['price'] = 85000, ['tipo'] = "carros" },
-	["slamvan3"] = { ['name'] = "Slamvan3", ['price'] = 85000, ['tipo'] = "carros" },
-	["dominator3"] = { ['name'] = "Dominator3", ['price'] = 100000, ['tipo'] = "carros" },
-	["futo"] = { ['name'] = "Futo", ['price'] = 100000, ['tipo'] = "carros" },
-	["stafford"] = { ['name'] = "Stafford", ['price'] = 100000, ['tipo'] = "carros" },
-	["sentinel3"] = { ['name'] = "Sentinel3", ['price'] = 100000, ['tipo'] = "carros" },
-	["alpha"] = { ['name'] = "Alpha", ['price'] = 125000, ['tipo'] = "carros" },
-	["cognoscenti"] = { ['name'] = "Cognoscenti", ['price'] = 135000, ['tipo'] = "carros" },
-	["revolter"] = { ['name'] = "revolter", ['price'] = 150000, ['tipo'] = "carros" },
-	["khamelion"] = { ['name'] = "Khamelion", ['price'] = 165000, ['tipo'] = "carros" },
-	["buffalo2"] = { ['name'] = "Buffalo2", ['price'] = 170000, ['tipo'] = "carros" },
-	["rapidgt"] = { ['name'] = "Rapidgt", ['price'] = 180000, ['tipo'] = "carros" },
-	["furoregt"] = { ['name'] = "Furoregt", ['price'] = 200000, ['tipo'] = "carros" },
-	["kuruma"] = { ['name'] = "Kuruma", ['price'] = 220000, ['tipo'] = "carros" },
-	["elegy"] = { ['name'] = "Elegy", ['price'] = 270000, ['tipo'] = "carros" },
-	["bullet"] = { ['name'] = "Bullet", ['price'] = 280000, ['tipo'] = "carros" },
-	["carbonizzare"] = { ['name'] = "Carbonizzare", ['price'] = 290000, ['tipo'] = "carros" },
-	["lynx"] = { ['name'] = "Lynx", ['price'] = 300000, ['tipo'] = "carros" },
-	["banshee"] = { ['name'] = "Banshee", ['price'] = 300000, ['tipo'] = "carros" },
-	["rocoto"] = { ['name'] = "Rocoto", ['price'] = 300000, ['tipo'] = "carros" },
-	["huntley"] = { ['name'] = "Huntley", ['price'] = 300000, ['tipo'] = "carros" },
-	["xls"] = { ['name'] = "Xls", ['price'] = 300000, ['tipo'] = "carros" },
-	["bestiagts"] = { ['name'] = "Bestiagts", ['price'] = 300000, ['tipo'] = "carros" },
-	["raiden"] = { ['name'] = "Raiden", ['price'] = 300000, ['tipo'] = "carros" },
-	["surano"] = { ['name'] = "Surano", ['price'] = 315000, ['tipo'] = "carros" },
-	["ninef"] = { ['name'] = "Ninef", ['price'] = 325000, ['tipo'] = "carros" },
-	["cyclone"] = { ['name'] = "Cyclone", ['price'] = 335000, ['tipo'] = "carros" },
-	["seven70"] = { ['name'] = "Seven70", ['price'] = 340000, ['tipo'] = "carros" },
-	["flashgt"] = { ['name'] = "Flashgt", ['price'] = 350000, ['tipo'] = "carros" },
-	["coquette"] = { ['name'] = "Coquette", ['price'] = 370000, ['tipo'] = "carros" },
-	["elegy2"] = { ['name'] = "Elegy2", ['price'] = 370000, ['tipo'] = "carros" },
-	["italigtb"] = { ['name'] = "Italigtb", ['price'] = 390000, ['tipo'] = "carros" },
-	["mesa3"] = { ['name'] = "Mesa3", ['price'] = 400000, ['tipo'] = "carros" },
-	["baller4"] = { ['name'] = "Baller4", ['price'] = 400000, ['tipo'] = "carros" },
-	["dubsta2"] = { ['name'] = "Dubsta2", ['price'] = 400000, ['tipo'] = "carros" },
-	["banshee2"] = { ['name'] = "Banshee2", ['price'] = 400000, ['tipo'] = "carros" },
-	["vacca"] = { ['name'] = "Vacca", ['price'] = 400000, ['tipo'] = "carros" },
-	["visione"] = { ['name'] = "Visione", ['price'] = 400000, ['tipo'] = "carros" },
-	["massacro"] = { ['name'] = "Massacro", ['price'] = 410000, ['tipo'] = "carros" },
-	["jester"] = { ['name'] = "Jester", ['price'] = 420000, ['tipo'] = "carros" },
-	["sultanrs"] = { ['name'] = "Sultan RS", ['price'] = 450000, ['tipo'] = "carros" },
-	["comet2"] = { ['name'] = "Comet2", ['price'] = 460000, ['tipo'] = "carros" },
-	["neon"] = { ['name'] = "Neon", ['price'] = 465000, ['tipo'] = "carros" },
-	["taipan"] = { ['name'] = "Taipan", ['price'] = 470000, ['tipo'] = "carros" },
-	["tempesta"] = { ['name'] = "Tempesta", ['price'] = 490000, ['tipo'] = "carros" },
-	["patriot"] = { ['name'] = "Patriot", ['price'] = 500000, ['tipo'] = "carros" },
-	["toros"] = { ['name'] = "Toros", ['price'] = 500000, ['tipo'] = "carros" },
-	["reaper"] = { ['name'] = "Reaper", ['price'] = 500000, ['tipo'] = "carros" },
-	["turismor"] = { ['name'] = "Turismor", ['price'] = 500000, ['tipo'] = "carros" },
-	["specter"] = { ['name'] = "Specter", ['price'] = 500000, ['tipo'] = "carros" },
-	["tyrant"] = { ['name'] = "Tyrant", ['price'] = 540000, ['tipo'] = "carros" },
-	["pariah"] = { ['name'] = "Pariah", ['price'] = 550000, ['tipo'] = "carros" },
-	["deveste"] = { ['name'] = "Deveste", ['price'] = 570000, ['tipo'] = "carros" },
-	["cheetah"] = { ['name'] = "Cheetah", ['price'] = 575000, ['tipo'] = "carros" },
-	["sheava"] = { ['name'] = "Sheava", ['price'] = 580000, ['tipo'] = "carros" },
-	["xa21"] = { ['name'] = "Xa21", ['price'] = 600000, ['tipo'] = "carros" },
-	["entityxf"] = { ['name'] = "Entityxf", ['price'] = 610000, ['tipo'] = "carros" },
-	["gp1"] = { ['name'] = "Gp1", ['price'] = 630000, ['tipo'] = "carros" },
-	["entity2"] = { ['name'] = "Entity2", ['price'] = 640000, ['tipo'] = "carros" },
-	["nero"] = { ['name'] = "Nero", ['price'] = 665000, ['tipo'] = "carros" },
-	["prototipo"] = { ['name'] = "Prototipo", ['price'] = 685000, ['tipo'] = "carros" },
-	["vagner"] = { ['name'] = "Vagner", ['price'] = 690000, ['tipo'] = "carros" },
-	["t20"] = { ['name'] = "T20", ['price'] = 700000, ['tipo'] = "carros" },
-	["adder"] = { ['name'] = "Adder", ['price'] = 700000, ['tipo'] = "carros" },
-	["pfister811"] = { ['name'] = "Pfister811", ['price'] = 715000, ['tipo'] = "carros" },
-	["italigto"] = { ['name'] = "Italigto", ['price'] = 730000, ['tipo'] = "carros" },
-	["zentorno"] = { ['name'] = "Zentorno", ['price'] = 800000, ['tipo'] = "carros" },
-	["osiris"] = { ['name'] = "Osiris", ['price'] = 825000, ['tipo'] = "carros" },
+	["panto"] = { ['name'] = "Panto", ['price'] = 50000, ['tipo'] = "carros" },
+	["rhapsody"] = { ['name'] = "Rhapsody", ['price'] = 80000, ['tipo'] = "carros" },
+	["prairie"] = { ['name'] = "Prairie", ['price'] = 100000, ['tipo'] = "carros" },
+	["brioso"] = { ['name'] = "Brioso", ['price'] = 120000, ['tipo'] = "carros" },
+	["issi2"] = { ['name'] = "Issi2", ['price'] = 120000, ['tipo'] = "carros" },
+	["cogcabrio"] = { ['name'] = "Cogcabrio", ['price'] = 120000, ['tipo'] = "carros" },
+	["f620"] = { ['name'] = "F620", ['price'] = 130000, ['tipo'] = "carros" },
+	["faction2"] = { ['name'] = "Faction2", ['price'] = 130000, ['tipo'] = "carros" },
+	["zion"] = { ['name'] = "Zion", ['price'] = 130000, ['tipo'] = "carros" },
+	["dukes"] = { ['name'] = "Dukes", ['price'] = 130000, ['tipo'] = "carros" },
+	["oracle2"] = { ['name'] = "Oracle2", ['price'] = 140000, ['tipo'] = "carros" },
+	["dominator"] = { ['name'] = "Dominator", ['price'] = 140000, ['tipo'] = "carros" },
+	["buccaneer2"] = { ['name'] = "Buccaneer2", ['price'] = 140000, ['tipo'] = "carros" },
+	["ellie"] = { ['name'] = "Ellie", ['price'] = 140000, ['tipo'] = "carros" },
+	["tampa"] = { ['name'] = "Tampa", ['price'] = 140000, ['tipo'] = "carros" },
+	["tulip"] = { ['name'] = "Tulip", ['price'] = 140000, ['tipo'] = "carros" },
+	["jackal"] = { ['name'] = "Jackal", ['price'] = 170000, ['tipo'] = "carros" },
+	["gauntlet"] = { ['name'] = "Gauntlet", ['price'] = 170000, ['tipo'] = "carros" },
+	["buccaneer"] = { ['name'] = "Buccaneer", ['price'] = 170000, ['tipo'] = "carros" },
+	["exemplar"] = { ['name'] = "Exemplar", ['price'] = 180000, ['tipo'] = "carros" },
+	["blade"] = { ['name'] = "Blade", ['price'] = 180000, ['tipo'] = "carros" },
+	["hustler"] = { ['name'] = "hustler", ['price'] = 180000, ['tipo'] = "carros" },
+	["vigero"] = { ['name'] = "Vigero", ['price'] = 190000, ['tipo'] = "carros" },
+	["asterope"] = { ['name'] = "asterope", ['price'] = 190000, ['tipo'] = "carros" },
+	["ruston"] = { ['name'] = "Ruston", ['price'] = 190000, ['tipo'] = "carros" },
+	["sultan2"] = { ['name'] = "Sultan2", ['price'] = 0, ['tipo'] = "carros" },
+	["sugoi"] = { ['name'] = "Sugoi", ['price'] = 0, ['tipo'] = "carros" },
+	["furia"] = { ['name'] = "Furia", ['price'] = 0, ['tipo'] = "carros" },
+	["chino2"] = { ['name'] = "Chino2", ['price'] = 220000, ['tipo'] = "carros" },
+	["picador"] = { ['name'] = "Picador", ['price'] = 220000, ['tipo'] = "carros" },
+	["coquette3"] = { ['name'] = "Coquette3", ['price'] = 220000, ['tipo'] = "carros" },
+	["ratloader2"] = { ['name'] = "Ratloader2", ['price'] = 220000, ['tipo'] = "carros" },
+	["slamvan3"] = { ['name'] = "Slamvan3", ['price'] = 220000, ['tipo'] = "carros" },
+	["dominator3"] = { ['name'] = "Dominator3", ['price'] = 250000, ['tipo'] = "carros" },
+	["futo"] = { ['name'] = "Futo", ['price'] = 250000, ['tipo'] = "carros" },
+	["stafford"] = { ['name'] = "Stafford", ['price'] = 250000, ['tipo'] = "carros" },
+	["sentinel3"] = { ['name'] = "Sentinel3", ['price'] = 250000, ['tipo'] = "carros" },
+	["alpha"] = { ['name'] = "Alpha", ['price'] = 320000, ['tipo'] = "carros" },
+	["cognoscenti"] = { ['name'] = "Cognoscenti", ['price'] = 340000, ['tipo'] = "carros" },
+	["revolter"] = { ['name'] = "revolter", ['price'] = 380000, ['tipo'] = "carros" },
+	["khamelion"] = { ['name'] = "Khamelion", ['price'] = 420000, ['tipo'] = "carros" },
+	["buffalo2"] = { ['name'] = "Buffalo2", ['price'] = 430000, ['tipo'] = "carros" },
+	["rapidgt"] = { ['name'] = "Rapidgt", ['price'] = 450000, ['tipo'] = "carros" },
+	["furoregt"] = { ['name'] = "Furoregt", ['price'] = 500000, ['tipo'] = "carros" },
+	["kuruma"] = { ['name'] = "Kuruma", ['price'] = 550000, ['tipo'] = "carros" },
+	["elegy"] = { ['name'] = "Elegy", ['price'] = 680000, ['tipo'] = "carros" },
+	["bullet"] = { ['name'] = "Bullet", ['price'] = 700000, ['tipo'] = "carros" },
+	["carbonizzare"] = { ['name'] = "Carbonizzare", ['price'] = 730000, ['tipo'] = "carros" },
+	["lynx"] = { ['name'] = "Lynx", ['price'] = 750000, ['tipo'] = "carros" },
+	["banshee"] = { ['name'] = "Banshee", ['price'] = 750000, ['tipo'] = "carros" },
+	["rocoto"] = { ['name'] = "Rocoto", ['price'] = 750000, ['tipo'] = "carros" },
+	["huntley"] = { ['name'] = "Huntley", ['price'] = 750000, ['tipo'] = "carros" },
+	["xls"] = { ['name'] = "Xls", ['price'] = 750000, ['tipo'] = "carros" },
+	["bestiagts"] = { ['name'] = "Bestiagts", ['price'] = 750000, ['tipo'] = "carros" },
+	["raiden"] = { ['name'] = "Raiden", ['price'] = 750000, ['tipo'] = "carros" },
+	["surano"] = { ['name'] = "Surano", ['price'] = 790000, ['tipo'] = "carros" },
+	["ninef"] = { ['name'] = "Ninef", ['price'] = 820000, ['tipo'] = "carros" },
+	["cyclone"] = { ['name'] = "Cyclone", ['price'] = 840000, ['tipo'] = "carros" },
+	["seven70"] = { ['name'] = "Seven70", ['price'] = 850000, ['tipo'] = "carros" },
+	["flashgt"] = { ['name'] = "Flashgt", ['price'] = 880000, ['tipo'] = "carros" },
+	["coquette"] = { ['name'] = "Coquette", ['price'] = 930000, ['tipo'] = "carros" },
+	["elegy2"] = { ['name'] = "Elegy2", ['price'] = 930000, ['tipo'] = "carros" },
+	["italigtb"] = { ['name'] = "Italigtb", ['price'] = 980000, ['tipo'] = "carros" },
+	["mesa3"] = { ['name'] = "Mesa3", ['price'] = 1000000, ['tipo'] = "carros" },
+	["baller4"] = { ['name'] = "Baller4", ['price'] = 1000000, ['tipo'] = "carros" },
+	["dubsta2"] = { ['name'] = "Dubsta2", ['price'] = 1000000, ['tipo'] = "carros" },
+	["banshee2"] = { ['name'] = "Banshee2", ['price'] = 1000000, ['tipo'] = "carros" },
+	["vacca"] = { ['name'] = "Vacca", ['price'] = 1000000, ['tipo'] = "carros" },
+	["visione"] = { ['name'] = "Visione", ['price'] = 1000000, ['tipo'] = "carros" },
+	["massacro"] = { ['name'] = "Massacro", ['price'] = 1030000, ['tipo'] = "carros" },
+	["jester"] = { ['name'] = "Jester", ['price'] = 1050000, ['tipo'] = "carros" },
+	["sultanrs"] = { ['name'] = "Sultan RS", ['price'] = 1130000, ['tipo'] = "carros" },
+	["comet2"] = { ['name'] = "Comet2", ['price'] = 1150000, ['tipo'] = "carros" },
+	["neon"] = { ['name'] = "Neon", ['price'] = 1170000, ['tipo'] = "carros" },
+	["taipan"] = { ['name'] = "Taipan", ['price'] = 1180000, ['tipo'] = "carros" },
+	["tempesta"] = { ['name'] = "Tempesta", ['price'] = 1230000, ['tipo'] = "carros" },
+	["patriot"] = { ['name'] = "Patriot", ['price'] = 1250000, ['tipo'] = "carros" },
+	["toros"] = { ['name'] = "Toros", ['price'] = 1250000, ['tipo'] = "carros" },
+	["reaper"] = { ['name'] = "Reaper", ['price'] = 1250000, ['tipo'] = "carros" },
+	["turismor"] = { ['name'] = "Turismor", ['price'] = 1250000, ['tipo'] = "carros" },
+	["specter"] = { ['name'] = "Specter", ['price'] = 1250000, ['tipo'] = "carros" },
+	["tyrant"] = { ['name'] = "Tyrant", ['price'] = 1350000, ['tipo'] = "carros" },
+	["pariah"] = { ['name'] = "Pariah", ['price'] = 1380000, ['tipo'] = "carros" },
+	["deveste"] = { ['name'] = "Deveste", ['price'] = 1430000, ['tipo'] = "carros" },
+	["cheetah"] = { ['name'] = "Cheetah", ['price'] = 1440000, ['tipo'] = "carros" },
+	["sheava"] = { ['name'] = "Sheava", ['price'] = 1450000, ['tipo'] = "carros" },
+	["xa21"] = { ['name'] = "Xa21", ['price'] = 1500000, ['tipo'] = "carros" },
+	["entityxf"] = { ['name'] = "Entityxf", ['price'] = 1500000, ['tipo'] = "carros" },
+	["gp1"] = { ['name'] = "Gp1", ['price'] = 1500000, ['tipo'] = "carros" },
+	["entity2"] = { ['name'] = "Entity2", ['price'] = 1500000, ['tipo'] = "carros" },
+	["nero"] = { ['name'] = "Nero", ['price'] = 1500000, ['tipo'] = "carros" },
+	["prototipo"] = { ['name'] = "Prototipo", ['price'] = 1500000, ['tipo'] = "carros" },
+	["vagner"] = { ['name'] = "Vagner", ['price'] = 1500000, ['tipo'] = "carros" },
+	["t20"] = { ['name'] = "T20", ['price'] = 1500000, ['tipo'] = "carros" },
+	["adder"] = { ['name'] = "Adder", ['price'] = 1500000, ['tipo'] = "carros" },
+	["pfister811"] = { ['name'] = "Pfister811", ['price'] = 1500000, ['tipo'] = "carros" },
+	["italigto"] = { ['name'] = "Italigto", ['price'] = 1500000, ['tipo'] = "carros" },
+	["zentorno"] = { ['name'] = "Zentorno", ['price'] = 1500000, ['tipo'] = "carros" },
+	["osiris"] = { ['name'] = "Osiris", ['price'] = 1500000, ['tipo'] = "carros" },
 
 	-- MOTOS CONCE
 	["faggio"] = { ['name'] = "Faggio", ['price'] = 10000, ['tipo'] = "motos" },
@@ -796,6 +828,54 @@ local vehglobal = {
 	["nissangtr"] = { ['name'] = "Nissan GTR", ['price'] = 500000, ['tipo'] = "import" },
 	["nissangtrnismo"] = { ['name'] = "Nissan GTR Nismo", ['price'] = 500000, ['tipo'] = "import" },
 	["nissanskyliner34"] = { ['name'] = "Nissan Skyline R34", ['price'] = 500000, ['tipo'] = "import" },
+	["71gtx"] = { ['name'] = "Plymouth GTX", ['price'] = 1000000, ['tipo'] = "import" },
+	["nissantitan17"] = { ['name'] = "Nissan Titan", ['price'] = 0, ['tipo'] = "import" },
+	["porsche992"] = { ['name'] = "Porsche 992", ['price'] = 0, ['tipo'] = "import" },
+	["180sx"] = { ['name'] = "Nissan 180SX", ['price'] = 3200000, ['tipo'] = "import" },
+	["911r"] = { ['name'] = "Porsche 911R", ['price'] = 5000000, ['tipo'] = "import" },
+	["2018zl1"] = { ['name'] = "Camaro ZL1", ['price'] = 2500000, ['tipo'] = "import" },
+	["19ftype"] = { ['name'] = "Jaguar F-type", ['price'] = 3000000, ['tipo'] = "import" },
+	["msohs"] = { ['name'] = "McLaren MSOHS", ['price'] = 0, ['tipo'] = "import" },
+	["amggtr"] = { ['name'] = "Mercedes AMG GTR", ['price'] = 0, ['tipo'] = "import" },
+	["db11"] = { ['name'] = "Aston Martin DB11", ['price'] = 2500000, ['tipo'] = "import" },
+	["defiant"] = { ['name'] = "Dodge Charger", ['price'] = 2200000, ['tipo'] = "import" },
+	["fc15"] = { ['name'] = "Ferrari California", ['price'] = 5000000, ['tipo'] = "import" },
+	["fxxkevo"] = { ['name'] = "Ferrari FXX-K Evo", ['price'] = 0, ['tipo'] = "import" },
+	["eclipse"] = { ['name'] = "Mitsubishi Eclipse", ['price'] = 1800000, ['tipo'] = "import" },
+	["gt17"] = { ['name'] = "Ford GT", ['price'] = 4500000, ['tipo'] = "import" },
+	["i8"] = { ['name'] = "BMW I8", ['price'] = 0, ['tipo'] = "import" },
+	["aperta"] = { ['name'] = "Ferrari Italia", ['price'] = 0, ['tipo'] = "import" },
+	["lp700r"] = { ['name'] = "Lamborghini Aventador", ['price'] = 0, ['tipo'] = "import" },
+	["bc"] = { ['name'] = "Pagani Zonda", ['price'] = 0, ['tipo'] = "import" },
+	["palameila"] = { ['name'] = "Porsche Panamera", ['price'] = 2500000, ['tipo'] = "import" },
+	["rmodamgc63"] = { ['name'] = "Mercedes AMG C63-S", ['price'] = 2500000, ['tipo'] = "import" },
+	["slsamg"] = { ['name'] = "Mercedes AMG SLS", ['price'] = 0, ['tipo'] = "import" },
+	["veneno"] = { ['name'] = "Lamborghini Veneno", ['price'] = 0, ['tipo'] = "import" },
+	["audirs7"] = { ['name'] = "AUDI RS7", ['price'] = 3000000, ['tipo'] = "import" },
+	["bugatti"] = { ['name'] = "Bugatti", ['price'] = 0, ['tipo'] = "import" },
+	["hondafk8"] = { ['name'] = "Honda Civic Type R", ['price'] = 2700000, ['tipo'] = "import" },
+	["lancerevolution9"] = { ['name'] = "Lancer Evolution 9", ['price'] = 3700000, ['tipo'] = "import" },
+	["lancerevolutionx"] = { ['name'] = "Lancer Evolution 10", ['price'] = 0, ['tipo'] = "import" },
+	["mazdarx7"] = { ['name'] = "Mazda RX-7", ['price'] = 3400000, ['tipo'] = "import" },
+	["mercedesa45"] = { ['name'] = "Mercedes AMG A45", ['price'] = 2000000, ['tipo'] = "import" },
+	["mustangmach1"] = { ['name'] = "Mustang Mach 1", ['price'] = 1000000, ['tipo'] = "import" },
+	["porsche930"] = { ['name'] = "Porsche 930", ['price'] = 2000000, ['tipo'] = "import" },
+	["raptor2017"] = { ['name'] = "Ford Raptor 2017", ['price'] = 3500000, ['tipo'] = "import" },
+	["teslaprior"] = { ['name'] = "Tesla Prior", ['price'] = 2500000, ['tipo'] = "import" },
+	["toyotasupra"] = { ['name'] = "Toyota Supra", ['price'] = 2500000, ['tipo'] = "import" },
+
+	-- BRASILEIROS
+	["blista"] = { ['name'] = "GOL S 86", ['price'] = 400000, ['tipo'] = "carros" },
+	["blista3"] = { ['name'] = "Voyage 86", ['price'] = 350000, ['tipo'] = "carros" },
+	["fugitive"] = { ['name'] = "FIAT Palio", ['price'] = 350000, ['tipo'] = "carros" },
+	["celta"] = { ['name'] = "Celta", ['price'] = 400000, ['tipo'] = "carros" },
+	["amarok"] = { ['name'] = "Amarok", ['price'] = 2500000, ['tipo'] = "carros" },
+	["civic2010"] = { ['name'] = "Civic 2010", ['price'] = 800000, ['tipo'] = "carros" },
+	["civic2016"] = { ['name'] = "Civic 2016", ['price'] = 1200000, ['tipo'] = "carros" },
+	["focusrs"] = { ['name'] = "Ford Focus RS", ['price'] = 1800000, ['tipo'] = "carros" },
+	["fusca"] = { ['name'] = "Fusca", ['price'] = 300000, ['tipo'] = "carros" },
+	["vwgolf"] = { ['name'] = "Golf", ['price'] = 500000, ['tipo'] = "carros" },
+	["vwsava"] = { ['name'] = "Saveiro", ['price'] = 500000, ['tipo'] = "carros" },
 
 	-- ADDONS MOTO
 	["150"] = { ['name'] = "Honda 150", ['price'] = 70000, ['tipo'] = "motos" },
@@ -986,7 +1066,6 @@ local vehglobal = {
 	["warrener"] = { ['name'] = "Warrener", ['price'] = 90000, ['tipo'] = "carros" },
 	["washington"] = { ['name'] = "Washington", ['price'] = 130000, ['tipo'] = "carros" },
 	["blista2"] = { ['name'] = "Blista2", ['price'] = 55000, ['tipo'] = "carros" },
-	["blista3"] = { ['name'] = "Blista3", ['price'] = 80000, ['tipo'] = "carros" },
 	["buffalo"] = { ['name'] = "Buffalo", ['price'] = 300000, ['tipo'] = "carros" },
 	["buffalo3"] = { ['name'] = "Buffalo3", ['price'] = 300000, ['tipo'] = "carros" },
 	["comet3"] = { ['name'] = "Comet3", ['price'] = 290000, ['tipo'] = "carros" },
@@ -1072,11 +1151,11 @@ local vehglobal = {
 	["issi3"] = { ['name'] = "Issi3", ['price'] = 190000, ['tipo'] = "carros" },
 	["gb200"] = { ['name'] = "Gb200", ['price'] = 195000, ['tipo'] = "carros" },
 	["stretch"] = { ['name'] = "Stretch", ['price'] = 520000, ['tipo'] = "carros" },
-	["guardian"] = { ['name'] = "Guardian", ['price'] = 540000, ['tipo'] = "carros" },
+	["guardian"] = { ['name'] = "Guardian", ['price'] = 1500000, ['tipo'] = "carros" },
 	["kamacho"] = { ['name'] = "Kamacho", ['price'] = 460000, ['tipo'] = "carros" },
 	["italigtb2"] = { ['name'] = "Italigtb2", ['price'] = 610000, ['tipo'] = "carros" },
 	["tezeract"] = { ['name'] = "Tezeract", ['price'] = 920000, ['tipo'] = "carros" },
-	["patriot2"] = { ['name'] = "Patriot2", ['price'] = 550000, ['tipo'] = "carros" },
+	["patriot2"] = { ['name'] = "Patriot2", ['price'] = 1500000, ['tipo'] = "carros" },
 	["swinger"] = { ['name'] = "Swinger", ['price'] = 250000, ['tipo'] = "carros" },
 	["clique"] = { ['name'] = "Clique", ['price'] = 360000, ['tipo'] = "carros" },
 	["deviant"] = { ['name'] = "Deviant", ['price'] = 370000, ['tipo'] = "carros" },
@@ -1084,7 +1163,6 @@ local vehglobal = {
 	["schlagen"] = { ['name'] = "Schlagen", ['price'] = 690000, ['tipo'] = "carros" },
 	["vamos"] = { ['name'] = "Vamos", ['price'] = 320000, ['tipo'] = "carros" },
 	["freecrawler"] = { ['name'] = "Freecrawler", ['price'] = 350000, ['tipo'] = "carros" },
-	["fugitive"] = { ['name'] = "Fugitive", ['price'] = 50000, ['tipo'] = "carros" },
 	["glendale"] = { ['name'] = "Glendale", ['price'] = 70000, ['tipo'] = "carros" },
 	["intruder"] = { ['name'] = "Intruder", ['price'] = 60000, ['tipo'] = "carros" },
 	["le7b"] = { ['name'] = "Le7b", ['price'] = 700000, ['tipo'] = "carros" },

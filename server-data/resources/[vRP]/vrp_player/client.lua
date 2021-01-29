@@ -4,9 +4,6 @@ vRP = Proxy.getInterface("vRP")
 
 emP = Tunnel.getInterface("vrp_player")
 -----------------------------------------------------------------------------------------------------------------------------------------
--- SALÁRIO
------------------------------------------------------------------------------------------------------------------------------------------
------------------------------------------------------------------------------------------------------------------------------------------
 -- NOCARJACK
 -----------------------------------------------------------------------------------------------------------------------------------------
 Citizen.CreateThread(
@@ -40,104 +37,6 @@ Citizen.CreateThread(function()
         NetworkSetTalkerProximity(8.0)
 	end
 end)
-
------------------------------------------------------------------------------------------------------------------------------------------
--- /CARREGARN
------------------------------------------------------------------------------------------------------------------------------------------
-
-carryingBackInProgress = false
-
-RegisterCommand("carregar",function(source, args)
-	print("carrying")
-	if not carryingBackInProgress then
-		carryingBackInProgress = true
-		local player = PlayerPedId()	
-		lib = 'missfinale_c2mcs_1'
-		anim1 = 'fin_c2_mcs_1_camman'
-		lib2 = 'nm'
-		anim2 = 'firemans_carry'
-		distans = 0.15
-		distans2 = 0.27
-		height = 0.63
-		spin = 0.0		
-		length = 100000
-		controlFlagMe = 49
-		controlFlagTarget = 33
-		animFlagTarget = 1
-		local closestPlayer = GetClosestPlayer(3)
-		target = GetPlayerServerId(closestPlayer)
-		if closestPlayer ~= nil then
-			print("triggering cmg2_animations:sync")
-			TriggerServerEvent('cmg2_animations:sync', closestPlayer, lib,lib2, anim1, anim2, distans, distans2, height,target,length,spin,controlFlagMe,controlFlagTarget,animFlagTarget)
-		else
-			print("[CMG Anim] No player nearby")
-		end
-	else
-		carryingBackInProgress = false
-		ClearPedSecondaryTask(GetPlayerPed(-1))
-		DetachEntity(GetPlayerPed(-1), true, false)
-		local closestPlayer = GetClosestPlayer(3)
-		target = GetPlayerServerId(closestPlayer)
-		TriggerServerEvent("cmg2_animations:stop",target)
-	end
-end,false)
-
-RegisterNetEvent('cmg2_animations:syncTarget')
-AddEventHandler('cmg2_animations:syncTarget', function(target, animationLib, animation2, distans, distans2, height, length,spin,controlFlag)
-	local playerPed = GetPlayerPed(-1)
-	local targetPed = GetPlayerPed(GetPlayerFromServerId(target))
-	carryingBackInProgress = true
-	print("triggered cmg2_animations:syncTarget")
-	RequestAnimDict(animationLib)
-
-	while not HasAnimDictLoaded(animationLib) do
-		Citizen.Wait(10)
-	end
-	if spin == nil then spin = 180.0 end
-	AttachEntityToEntity(GetPlayerPed(-1), targetPed, 0, distans2, distans, height, 0.5, 0.5, spin, false, false, false, false, 2, false)
-	if controlFlag == nil then controlFlag = 0 end
-	TaskPlayAnim(playerPed, animationLib, animation2, 8.0, -8.0, length, controlFlag, 0, false, false, false)
-end)
-
-RegisterNetEvent('cmg2_animations:syncMe')
-AddEventHandler('cmg2_animations:syncMe', function(animationLib, animation,length,controlFlag,animFlag)
-	local playerPed = GetPlayerPed(-1)
-	print("triggered cmg2_animations:syncMe")
-	RequestAnimDict(animationLib)
-
-	while not HasAnimDictLoaded(animationLib) do
-		Citizen.Wait(10)
-	end
-	Wait(500)
-	if controlFlag == nil then controlFlag = 0 end
-	TaskPlayAnim(playerPed, animationLib, animation, 8.0, -8.0, length, controlFlag, 0, false, false, false)
-
-	Citizen.Wait(length)
-end)
-
-RegisterNetEvent('cmg2_animations:cl_stop')
-AddEventHandler('cmg2_animations:cl_stop', function()
-	carryingBackInProgress = false
-	ClearPedSecondaryTask(GetPlayerPed(-1))
-	DetachEntity(GetPlayerPed(-1), true, false)
-end)
-
-function GetPlayers()
-    local players = {}
-
-	for _, player in ipairs(GetActivePlayers()) do
-        table.insert(players, player)
-	end
-	
-	--[[for i = 0, 255 do
-        if NetworkIsPlayerActive(i) then
-            table.insert(players, i)
-        end
-    end]]
-
-    return players
-end
-
 
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- EMPURRAR
@@ -277,7 +176,7 @@ Citizen.CreateThread(function()
 end)
 
 -----------------------------------------------------------------------------------------------------------------------------------------
--- CORONHADA
+-- REMOVE A CORONHADA
 -----------------------------------------------------------------------------------------------------------------------------------------
 Citizen.CreateThread(
 	function()
@@ -292,7 +191,9 @@ Citizen.CreateThread(
 		end
 	end
 )
-
+-----------------------------------------------------------------------------------------------------------------------------------------
+-- /COR
+-----------------------------------------------------------------------------------------------------------------------------------------
 RegisterCommand("cor",function(source,args)
     local tinta = tonumber(args[1])
     local ped = PlayerPedId()
@@ -404,19 +305,6 @@ RegisterCommand(
 	end
 )
 -----------------------------------------------------------------------------------------------------------------------------------------
--- QTH
------------------------------------------------------------------------------------------------------------------------------------------
-Citizen.CreateThread(
-	function()
-		while true do
-			Citizen.Wait(1)
-			if IsControlJustReleased(1, 118) then
-				TriggerServerEvent("offred:qthPolice")
-			end
-		end
-	end
-)
------------------------------------------------------------------------------------------------------------------------------------------
 --  ESTOURAR OS PNEUS QUANDO CAPOTA + FOGO NO TANQUE
 -----------------------------------------------------------------------------------------------------------------------------------------
 Citizen.CreateThread(function()
@@ -497,44 +385,91 @@ Citizen.CreateThread(function()
         end
     end
 end)
-----------------------------------------------------------------------------------------------------------------------------------------
--- REMOVE DANO
------------------------------------------------------------------------------------------------------------------------------------------
-Citizen.CreateThread(
-	function()
-		local ped = PlayerPedId()
-		local pedId = PlayerId()
-		while true do
-			Citizen.Wait(1)
-			N_0x4757f00bc6323cfe(GetHashKey("WEAPON_SNOWBALL"), 0.00)
-			N_0x4757f00bc6323cfe(GetHashKey("WEAPON_SMOKEGRENADE"), 0.01)
-			N_0x4757f00bc6323cfe(GetHashKey("WEAPON_RAYPISTOL"), 0.01)
-			--N_0x4757f00bc6323cfe(GetHashKey("WEAPON_NIGHTSTICK"), 0.01)
-			--N_0x4757f00bc6323cfe(GetHashKey("weapon_knuckle"), 0.01)
-			--N_0x4757f00bc6323cfe(GetHashKey("WEAPON_BAT"), 0.01)
-			--N_0x4757f00bc6323cfe(GetHashKey("WEAPON_UNARMED"), 0.40)
-			N_0x4757f00bc6323cfe(GetHashKey("WEAPON_MOLOTOV"), 0.01)
-			N_0x4757f00bc6323cfe(GetHashKey("WEAPON_BZGAS"), 0.20)
-		end
-	end
-)
 
-----------------------------------------------------------------------------------------------------------------------------------------
--- CONTROLE DE VELOCIDADE
-------------------------
--- RegisterCommand("cr",function(source,args)
--- 	local veh = GetVehiclePedIsIn(PlayerPedId(),false)
--- 	local maxspeed = GetVehicleMaxSpeed(GetEntityModel(veh))
--- 	local vehspeed = GetEntitySpeed(veh)*2.236936
--- 	if GetPedInVehicleSeat(veh,-1) == PlayerPedId() and math.ceil(vehspeed) >= 1 then
--- 		if args[1] == nil then
--- 			SetEntityMaxSpeed(veh,maxspeed)
--- 		else
--- 			SetEntityMaxSpeed(veh,0.45*args[1]-0.45)
--- 			TriggerEvent("Notify","sucesso","Velocidade máxima travada em <b>"..args[1].." mp/h</b>.")
--- 		end
--- 	end
--- end)
+----------------------------------------------------------------------------
+-- AUMENTAR E REMOVER DANO DE ARMAS
+----------------------------------------------------------------------------
+--------------------------
+-- FUZIS = 3.5 DE DANO  --
+-- SMGS = 2.5 DE DANO   --
+-- PISTOLAS 3.0 DE DANO --
+--------------------------
+Citizen.CreateThread(function()
+	while true do
+		N_0x4757f00bc6323cfe(GetHashKey("WEAPON_SNOWBALL"), 0.00)
+		Wait(0)
+		N_0x4757f00bc6323cfe(GetHashKey("WEAPON_SMOKEGRENADE"), 0.01)
+		Wait(0)
+		N_0x4757f00bc6323cfe(GetHashKey("WEAPON_RAYPISTOL"), 0.01)
+		Wait(0)
+		N_0x4757f00bc6323cfe(GetHashKey("WEAPON_MOLOTOV"), 0.01)
+		Wait(0)
+		N_0x4757f00bc6323cfe(GetHashKey("WEAPON_BZGAS"), 0.20)
+		Wait(0)
+	    N_0x4757f00bc6323cfe(GetHashKey("WEAPON_UNARMED"), 0.2) 
+    	Wait(0)
+    	N_0x4757f00bc6323cfe(GetHashKey("WEAPON_NIGHTSTICK"), 0.2) 
+    	Wait(0)
+		N_0x4757f00bc6323cfe(GetHashKey("WEAPON_PUMPSHOTGUN_MK2"), 0.0) 
+    	Wait(0)
+		N_0x4757f00bc6323cfe(GetHashKey("WEAPON_HEAVYSHOTGUN"), 0.0) 
+    	Wait(0)
+		N_0x4757f00bc6323cfe(GetHashKey("WEAPON_ASSAULTRIFLE"), 0.0)
+    	Wait(0)
+		N_0x4757f00bc6323cfe(GetHashKey("WEAPON_BULLPUPRIFLE"), 0.0)
+    	Wait(0)
+		N_0x4757f00bc6323cfe(GetHashKey("WEAPON_SPECIALCARBINE"), 0.0)
+    	Wait(0)
+		N_0x4757f00bc6323cfe(GetHashKey("WEAPON_ASSAULTRIFLE_MK2"), 3.5) -- AK-47
+    	Wait(0)
+		N_0x4757f00bc6323cfe(GetHashKey("WEAPON_CARBINERIFLE_MK2"), 3.5) -- M4A1
+    	Wait(0)
+		N_0x4757f00bc6323cfe(GetHashKey("WEAPON_SPECIAlCARBINE_MK2"), 3.5) -- G36
+    	Wait(0)
+		N_0x4757f00bc6323cfe(GetHashKey("WEAPON_CARBINERIFLE"), 3.5) -- AR-15
+    	Wait(0)
+		N_0x4757f00bc6323cfe(GetHashKey("WEAPON_COMBATPISTOL"), 3.0) -- GLOCK
+    	Wait(0)
+		N_0x4757f00bc6323cfe(GetHashKey("WEAPON_MACHINEPISTOL"), 0.0)
+    	Wait(0)
+		N_0x4757f00bc6323cfe(GetHashKey("WEAPON_COMBATPDW"), 2.5) -- SIGSAUER
+    	Wait(0)
+		N_0x4757f00bc6323cfe(GetHashKey("WEAPON_SMOKEGRENADE"), 0.0)
+    	Wait(0)
+		N_0x4757f00bc6323cfe(GetHashKey("WEAPON_APPISTOL"), 0.0)
+    	Wait(0)
+		N_0x4757f00bc6323cfe(GetHashKey("WEAPON_PISTOL"), 0.0)
+    	Wait(0)
+		N_0x4757f00bc6323cfe(GetHashKey("WEAPON_REVOLVER"), 0.0)
+    	Wait(0)
+		N_0x4757f00bc6323cfe(GetHashKey("WEAPON_VINTAGEPISTOL"), 0.0)
+		Wait(0)
+		N_0x4757f00bc6323cfe(GetHashKey("WEAPON_SMG_MK2"), 2.5) -- MP5-MK2
+    	Wait(0)
+		N_0x4757f00bc6323cfe(GetHashKey("WEAPON_SMG"), 0.0)
+    	Wait(0)
+		N_0x4757f00bc6323cfe(GetHashKey("WEAPON_ASSAULTSMG"), 0.0)
+    	Wait(0)
+		N_0x4757f00bc6323cfe(GetHashKey("WEAPON_MICROSMG"), 0.0)
+    	Wait(0)
+		N_0x4757f00bc6323cfe(GetHashKey("WEAPON_MG"), 3.0)
+    	Wait(0)
+		N_0x4757f00bc6323cfe(GetHashKey("WEAPON_HEAVYSNIPER"), 0.0)
+    	Wait(0)
+		N_0x4757f00bc6323cfe(GetHashKey("WEAPON_SNIPERRIFLE"), 0.0)
+    	Wait(0)
+		N_0x4757f00bc6323cfe(GetHashKey("WEAPON_SAWNOFFSHOTGUN"), 0.0)
+    	Wait(0)
+		N_0x4757f00bc6323cfe(GetHashKey("WEAPON_DBSHOTGUN"), 0.0)
+    	Wait(0)
+		N_0x4757f00bc6323cfe(GetHashKey("WEAPON_PISTOL_MK2"), 3.0) -- FIVE-SEVEN
+    	Wait(0)
+		N_0x4757f00bc6323cfe(GetHashKey("WEAPON_PISTOL50"), 0.0)
+    	Wait(0)
+		N_0x4757f00bc6323cfe(GetHashKey("WEAPON_RAYPISTOL"), 0.0)
+    	Wait(0)
+    end
+end)
 
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- /ATTACHS
@@ -627,19 +562,7 @@ Citizen.CreateThread(
 	end
 )
 -----------------------------------------------------------------------------------------------------------------------------------------
--- INVENTÁRIO
------------------------------------------------------------------------------------------------------------------------------------------
-
---Citizen.CreateThread(function()
---  while true do
---    Citizen.Wait(0)
---  if IsControlJustReleased(0, 289) then
---    TriggerServerEvent("aztec:inventory")
---end
---end
---end)
------------------------------------------------------------------------------------------------------------------------------------------
--- CANCELANDO O F6
+-- CLONAR PLACAS
 -----------------------------------------------------------------------------------------------------------------------------------------
 RegisterNetEvent("cloneplates")
 AddEventHandler(
@@ -699,7 +622,7 @@ Citizen.CreateThread(
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- AFKSYSTEM
 -----------------------------------------------------------------------------------------------------------------------------------------
---[[Citizen.CreateThread(function()
+Citizen.CreateThread(function()
 	while true do
 		Citizen.Wait(1000)
 		local x,y,z = table.unpack(GetEntityCoords(PlayerPedId()))
@@ -715,7 +638,7 @@ Citizen.CreateThread(
 		px = x
 		py = y
 	end
-end)]]
+end)
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- ABRIR PORTA-MALAS DO VEICULO
 -----------------------------------------------------------------------------------------------------------------------------------------
@@ -1028,7 +951,7 @@ AddEventHandler(
 	end
 )
 -----------------------------------------------------------------------------------------------------------------------------------------
--- /acess
+-- /acessorios
 -----------------------------------------------------------------------------------------------------------------------------------------
 RegisterNetEvent("acessorios")
 AddEventHandler(
@@ -1047,7 +970,7 @@ AddEventHandler(
 	end
 )
 -----------------------------------------------------------------------------------------------------------------------------------------
--- /acess
+-- /sapatos
 -----------------------------------------------------------------------------------------------------------------------------------------
 RegisterNetEvent("sapatos")
 AddEventHandler(
@@ -1122,19 +1045,6 @@ AddEventHandler(
 		end
 	end
 )
------------------------------------------------------------------------------------------------------------------------------------------
--- /ME
------------------------------------------------------------------------------------------------------------------------------------------
--- RegisterNetEvent('chatME')
--- AddEventHandler('chatME',function(id,name,message)
--- 	local myId = PlayerId()
--- 	local pid = GetPlayerFromServerId(id)
--- 	if pid == myId then
--- 		TriggerEvent('chatMessage',"",{},"* "..name.." "..message)
--- 	elseif GetDistanceBetweenCoords(GetEntityCoords(GetPlayerPed(myId)),GetEntityCoords(GetPlayerPed(pid))) < 3.999 then
--- 		TriggerEvent('chatMessage',"",{},"* "..name.." "..message)
--- 	end
--- end)
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- /TOW
 -----------------------------------------------------------------------------------------------------------------------------------------
@@ -1253,23 +1163,7 @@ AddEventHandler(
 	end
 )
 -----------------------------------------------------------------------------------------------------------------------------------------
--- BANDAGEM
------------------------------------------------------------------------------------------------------------------------------------------
-RegisterNetEvent("bandagem")
-AddEventHandler(
-	"bandagem",
-	function()
-		local bandagem = 0
-		repeat
-			bandagem = bandagem + 1
-			SetEntityHealth(PlayerPedId(), GetEntityHealth(PlayerPedId()) + 1)
-			Citizen.Wait(600)
-		until GetEntityHealth(PlayerPedId()) >= 400 or GetEntityHealth(PlayerPedId()) <= 100 or bandagem == 100
-		TriggerEvent("Notify", "sucesso", "Tratamento concluido.")
-	end
-)
------------------------------------------------------------------------------------------------------------------------------------------
--- BANDAGEM
+-- TRATAMENTO
 -----------------------------------------------------------------------------------------------------------------------------------------
 RegisterNetEvent("tratamento")
 AddEventHandler(
@@ -1282,57 +1176,7 @@ AddEventHandler(
 		TriggerEvent("Notify", "sucesso", "Tratamento concluido.")
 	end
 )
------------------------------------------------------------------------------------------------------------------------------------------
--- /CARTAS
------------------------------------------------------------------------------------------------------------------------------------------
-local card = {
-	[1] = "A",
-	[2] = "2",
-	[3] = "3",
-	[4] = "4",
-	[5] = "5",
-	[6] = "6",
-	[7] = "7",
-	[8] = "8",
-	[9] = "9",
-	[10] = "10",
-	[11] = "J",
-	[12] = "Q",
-	[13] = "K"
-}
-
-local tipos = {
-	[1] = "^8♣",
-	[2] = "^8♠",
-	[3] = "^9♦",
-	[4] = "^9♥"
-}
-
-RegisterNetEvent("CartasMe")
-AddEventHandler(
-	"CartasMe",
-	function(id, name, cd, naipe)
-		local monid = PlayerId()
-		local sonid = GetPlayerFromServerId(id)
-		if sonid == monid then
-			TriggerEvent(
-				"chatMessage",
-				"",
-				{},
-				"^3* " .. name .. " tirou do baralho a carta: " .. card[cd] .. "" .. tipos[naipe]
-			)
-		elseif
-			GetDistanceBetweenCoords(GetEntityCoords(GetPlayerPed(monid)), GetEntityCoords(GetPlayerPed(sonid)), true) < 5.999
-		 then
-			TriggerEvent(
-				"chatMessage",
-				"",
-				{},
-				"^3* " .. name .. " tirou do baralho a carta: " .. card[cd] .. "" .. tipos[naipe]
-			)
-		end
-	end
-)---------------------------------------------------------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------------------------------------------------
 -- /sequestro2
 -----------------------------------------------------------------------------------------------------------------------------------------
 local sequestrado = nil
@@ -1405,7 +1249,7 @@ RegisterCommand(
 	end
 )
 -----------------------------------------------------------------------------------------------------------------------------------------
--- EMPURRAR
+-- EMPURRAR CARRO
 -----------------------------------------------------------------------------------------------------------------------------------------
 local entityEnumerator = {
 	__gc = function(enum)
@@ -1651,20 +1495,6 @@ Citizen.CreateThread(
 		end
 	end
 )
-
--- ALTERAR O DANO DAS ARMAS
---------------------------------------------------------------------------------------------------
--- Citizen.CreateThread(
--- 	function()
--- 		while true do
--- 			N_0x4757f00bc6323cfe(GetHashKey("WEAPON_UNARMED"), 3.0)
--- 			Wait(0)
--- 			N_0x4757f00bc6323cfe(GetHashKey("weapon_assaultrifle"), 3.0)
-
--- 		end
--- 	end
--- )
-
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- SCRIPT DE HS
 -----------------------------------------------------------------------------------------------------------------------------------------
@@ -1683,9 +1513,9 @@ local hurt = false
 Citizen.CreateThread(function()
     while true do
         Wait(0)
-        if GetEntityHealth(GetPlayerPed(-1)) <= 200 then
+        if GetEntityHealth(GetPlayerPed(-1)) <= 249 then
             setHurt()
-        elseif hurt and GetEntityHealth(GetPlayerPed(-1)) > 200 then
+        elseif hurt and GetEntityHealth(GetPlayerPed(-1)) >= 250 then
             setNotHurt()
         end
     end
@@ -2007,3 +1837,46 @@ Citizen.CreateThread(function()
 		end
 	end
 end)
+
+-----------------------------------------------------------------------------------------------------------------------------------------
+-- DRIFT
+-----------------------------------------------------------------------------------------------------------------------------------------
+local kmh = 3.6
+local mph = 2.23693629
+local carspeed = 0
+-- Editável
+local driftmode = true -- on/off speed
+local speed = kmh -- or mph
+local drift_speed_limit = 100.0 
+local toggle = 118 -- Numpad 9
+
+Citizen.CreateThread(function()
+	while true do
+		Citizen.Wait(1)
+		-- if IsControlJustPressed(1, 118) then
+		-- 	driftmode = not driftmode
+		-- 	if driftmode then
+		-- 		TriggerEvent("chatMessage", 'DRIFT', { 255,255,255}, '^2ON')
+		-- 	else
+		-- 		TriggerEvent("chatMessage", 'DRIFT', { 255,255,255}, '^1OFF')
+		-- 	end
+		-- end
+		if driftmode then
+			if IsPedInAnyVehicle(GetPed(), false) then
+				CarSpeed = GetEntitySpeed(GetCar()) * speed
+				if GetPedInVehicleSeat(GetCar(), -1) == GetPed() then
+					if CarSpeed <= drift_speed_limit then
+						if IsControlPressed(1, 21) then
+							SetVehicleReduceGrip(GetCar(), true)
+						else
+							SetVehicleReduceGrip(GetCar(), false)
+						end
+					end
+				end
+			end
+		end
+	end
+end)
+
+function GetPed() return GetPlayerPed(-1) end
+function GetCar() return GetVehiclePedIsIn(GetPlayerPed(-1),false) end

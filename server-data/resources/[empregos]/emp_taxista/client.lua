@@ -1,6 +1,7 @@
 local Tunnel = module("vrp","lib/Tunnel")
 local Proxy = module("vrp","lib/Proxy")
 emP = Tunnel.getInterface("emp_taxista")
+vRP = Proxy.getInterface("vRP")
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- VARIAVEIS
 -----------------------------------------------------------------------------------------------------------------------------------------
@@ -13,6 +14,7 @@ local CoordenadaZ = 74.70
 local passageiro = nil
 local lastpassageiro = nil
 local checkped = true
+local nveh = nil
 local timers = 0
 local payment = 1 --10
 -- 896.48, -177.45, 74.70
@@ -41,7 +43,7 @@ local meterActive = false
 local locs = {
 	[1] = { ['x'] = 151.30, ['y'] = -1028.63, ['z'] = 28.84, ['xp'] = 152.45, ['yp'] = -1041.24, ['zp'] = 29.37, ['h'] = 252.0 },
 	[2] = { ['x'] = 423.84, ['y'] = -959.30, ['z'] = 28.81, ['xp'] = 437.37, ['yp'] = -979.03, ['zp'] = 30.68, ['h'] = 271.0 },
-	[3] = { ['x'] = 1.03, ['y'] = -1510.86, ['z'] = 29.40, ['xp'] = 21.45, ['yp'] = -1505.35, ['zp'] = 31.85, ['h'] = 261.83 },
+	[3] = { ['x'] = -289.29, ['y'] = -1335.47, ['z'] = 31.17, ['xp'] = -297.89, ['yp'] = -1332.9, ['zp'] = 31.3, ['h'] = 300.84 },
 	[4] = { ['x'] = -188.07, ['y'] = -1612.28, ['z'] = 33.39, ['xp'] = -189.55, ['yp'] = -1585.80, ['zp'] = 34.76, ['h'] = 178.0 },
 	[5] = { ['x'] = 98.88, ['y'] = -1927.16, ['z'] = 20.25, ['xp'] = 101.02, ['yp'] = -1912.35, ['zp'] = 21.40, ['h'] = 70.0 },
 	[6] = { ['x'] = 320.98, ['y'] = -2022.02, ['z'] = 20.40, ['xp'] = 335.73, ['yp'] = -2010.77, ['zp'] = 22.31, ['h'] = 321.0 },
@@ -66,7 +68,23 @@ local locs = {
 	[25] = { ['x'] = -829.38, ['y'] = -1218.09, ['z'] = 6.54, ['xp'] = -822.50, ['yp'] = -1223.35, ['zp'] = 7.36, ['h'] = 319.0 },
 	[26] = { ['x'] = -334.47, ['y'] = -1418.13, ['z'] = 29.71, ['xp'] = -320.10, ['yp'] = -1389.73, ['zp'] = 36.50, ['h'] = 91.0 },
 	[27] = { ['x'] = 135.28, ['y'] = -1306.46, ['z'] = 28.65, ['xp'] = 132.91, ['yp'] = -1293.90, ['zp'] = 29.26, ['h'] = 119.0 },
-	[28] = { ['x'] = -34.00, ['y'] = -1079.86, ['z'] = 26.26, ['xp'] = -41.98, ['yp'] = -1081.73, ['zp'] = 26.67, ['h'] = 69.0 }
+	[28] = { ['x'] = -34.00, ['y'] = -1079.86, ['z'] = 26.26, ['xp'] = -41.98, ['yp'] = -1081.73, ['zp'] = 26.67, ['h'] = 69.0 },
+	[29] = { ['x'] = -640.85, ['y'] = -307.74, ['z'] = 34.91, ['xp'] = -628.61, ['yp'] = -300.71, ['zp'] = 35.35, ['h'] = 114.76 },
+	[30] = { ['x'] = -759.8, ['y'] = -36.5, ['z'] = 37.69, ['xp'] = -766.83, ['yp'] = -23.29, ['zp'] = 41.09, ['h'] = 205.39 },
+	[31] = { ['x'] = -1526.64, ['y'] = -280.03, ['z'] = 49.32, ['xp'] = -1533.03, ['yp'] = -275.61, ['zp'] = 49.74, ['h'] = 229.84 },
+	[32] = { ['x'] = -1144.51, ['y'] = 550.49, ['z'] = 101.48, ['xp'] = -1146.74, ['yp'] = 546.13, ['zp'] = 101.53, ['h'] = 4.26 },
+	[33] = { ['x'] = -772.92, ['y'] = 293.94, ['z'] = 85.6, ['xp'] = -772.66, ['yp'] = 312.77, ['zp'] = 85.7, ['h'] = 177.94 },
+	[34] = { ['x'] = -476.41, ['y'] = 222.77, ['z'] = 83.15, ['xp'] = -478.8, ['yp'] = 218.34, ['zp'] = 83.7, ['h'] = 346.69 },
+	[35] = { ['x'] = -269.47, ['y'] = 27.17, ['z'] = 54.76, ['xp'] = -273.9, ['yp'] = 28.2, ['zp'] = 54.76, ['h'] = 247.55 },
+	[36] = { ['x'] = 997.49, ['y'] = -538.98, ['z'] = 59.93, ['xp'] = 987.9, ['yp'] = -526.01, ['zp'] = 60.7, ['h'] = 198.51 },
+	[37] = { ['x'] = 1150.99, ['y'] = -1002.83, ['z'] = 44.92, ['xp'] = 1143.75, ['yp'] = -1000.54, ['zp'] = 45.3, ['h'] = 273.69 },
+	[38] = { ['x'] = 1357.28, ['y'] = -1544.78, ['z'] = 54.49, ['xp'] = 1360.54, ['yp'] = -1556.07, ['zp'] = 56.35, ['h'] = 10.97 },
+	[39] = { ['x'] = 930.52, ['y'] = -1771.9, ['z'] = 31.05, ['xp'] = 914.87, ['yp'] = -1785.57, ['zp'] = 30.71, ['h'] = 336.56 },
+	[40] = { ['x'] = 564.99, ['y'] = -1768.0, ['z'] = 29.15, ['xp'] = 561.71, ['yp'] = -1751.74, ['zp'] = 29.29, ['h'] = 242.64 },
+	[41] = { ['x'] = 222.56, ['y'] = -1739.86, ['z'] = 28.82, ['xp'] = 226.3, ['yp'] = -1746.93, ['zp'] = 29.23, ['h'] = 27.92 },
+	[42] = { ['x'] = 45.65, ['y'] = -1883.98, ['z'] = 21.98, ['xp'] = 54.63, ['yp'] = -1873.52, ['zp'] = 22.81, ['h'] = 134.03 },
+	[43] = { ['x'] = -1236.84, ['y'] = -1067.09, ['z'] = 8.29, ['xp'] = -1232.19, ['yp'] = -1063.41, ['zp'] = 8.41, ['h'] = 101.68 },
+	[44] = { ['x'] = -1200.04, ['y'] = -876.61, ['z'] = 13.28, ['xp'] = -1198.11, ['yp'] = -883.78, ['zp'] = 13.64, ['h'] = 25.69 },
 }
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- PEDLIST
@@ -115,6 +133,7 @@ Citizen.CreateThread(function()
 							emP.addGroup()
 							emservico = true
 							selecionado = math.random(#locs)
+							spawnCarro()
 							CriandoBlip(locs,selecionado)
 							TriggerEvent("Notify","sucesso","Você entrou no serviço de <b>taxista</b>")
 						end
@@ -231,11 +250,44 @@ end)
 -- REMOVENPCS
 -----------------------------------------------------------------------------------------------------------------------------------------
 function removePeds()
-	SetTimeout(20000,function()
+	SetTimeout(3000,function()
 		if emservico and lastpassageiro and passageiro == nil then
 			TriggerServerEvent("trydeleteped",PedToNet(lastpassageiro))
 		end
 	end)
+end
+-----------------------------------------------------------------------------------------------------------------------------------------
+-- REMOVENPCS FORÇADO
+-----------------------------------------------------------------------------------------------------------------------------------------
+function removePedsForce()
+	SetTimeout(3000,function()
+			TriggerServerEvent("trydeleteped",PedToNet(lastpassageiro))
+	end)
+end
+-----------------------------------------------------------------------------------------------------------------------------------------
+-- GERANDO CARRO
+-----------------------------------------------------------------------------------------------------------------------------------------
+function spawnCarro()
+	local mhash = "taxi"
+	if not nveh then
+	 while not HasModelLoaded(mhash) do
+	  RequestModel(mhash)
+	    Citizen.Wait(10)
+	 end
+		local ped = PlayerPedId()
+		local x,y,z = vRP.getPosition()
+		nveh = CreateVehicle(mhash,899.59,-180.53,73.59,239.85,true,false)
+		SetVehicleIsStolen(nveh,false)
+		SetVehicleOnGroundProperly(nveh)
+		SetEntityInvincible(nveh,false)
+		SetVehicleNumberPlateText(nveh,vRP.getRegistrationNumber())
+		Citizen.InvokeNative(0xAD738C3085FE7E11,nveh,true,true)
+		SetVehicleHasBeenOwnedByPlayer(nveh,true)
+		SetVehicleDirtLevel(nveh,0.0)
+		SetVehRadioStation(nveh,"OFF")
+		SetVehicleEngineOn(GetVehiclePedIsIn(ped,false),true)
+		SetModelAsNoLongerNeeded(mhash)
+	end
 end
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- CANCELAR
@@ -246,20 +298,25 @@ Citizen.CreateThread(function()
 		if emservico then
 			kswait = 4
 			local vehicle = GetVehiclePedIsIn(PlayerPedId())
-			if IsControlJustPressed(0,168) then
+			if IsControlJustPressed(0,168) and (nveh) then
 				RemoveBlip(blips)
+				removePedsForce()
 				if DoesEntityExist(passageiro) then
 					TaskLeaveVehicle(passageiro,vehicle,262144)
 					TaskWanderStandard(passageiro,10.0,10)
 					Citizen.Wait(1100)
 					SetVehicleDoorShut(vehicle,3,0)
-					FreezeEntityPosition(vehicle,false)					
+					FreezeEntityPosition(vehicle,false)	
 				end
 				blips = nil
 				selecionado = 0
 				passageiro = nil
 				checkped = true
 				emservico = false
+				if nveh then
+				DeleteVehicle(nveh)
+				nveh = nil
+				end
 				emP.removeGroup()
 				TriggerEvent("Notify","aviso","Você saiu do serviço de <b>taxista</b>")
 			end

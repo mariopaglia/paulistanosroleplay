@@ -11,12 +11,12 @@ local inrace = false
 local timerace = 0
 local racepoint = 1
 local racepos = 0
-local CoordenadaX = 385.29
+local CoordenadaX = 385.29 -- 385.29, -1657.45, 27.30
 local CoordenadaY = -1657.45
 local CoordenadaZ = 27.30
 local PlateIndex = nil
 local bomba = nil
-local explosive = 0
+
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- VARIAVEIS
 -----------------------------------------------------------------------------------------------------------------------------------------
@@ -311,7 +311,7 @@ Citizen.CreateThread(function()
 					DrawMarker(23,CoordenadaX,CoordenadaY,CoordenadaZ-0.96,0,0,0,0,0,0,10.0,10.0,1.0,255,0,0,50,0,0,0,0)
 					if distance <= 5.9 then
 						drawTxt("PRESSIONE  ~r~E~w~  PARA INICIAR A CORRIDA",4,0.5,0.93,0.50,255,255,255,180)
-						if IsControlJustPressed(0,38) and emP.checkPermission()	then
+						if IsControlJustPressed(0,38) and emP.checkPermission() and emP.checkPolice() then
 							emP.setSearchTimer()
 							inrace = true
 							racepos = 1
@@ -320,15 +320,14 @@ Citizen.CreateThread(function()
 							PlateIndex = GetVehicleNumberPlateText(vehicle)
 							SetVehicleNumberPlateText(vehicle,"CORREDOR")
 							CriandoBlip(races,racepoint,racepos)
-							explosive = math.random(100)
-							if explosive >= 70 then
+
 								emP.startBombRace()
 								bomba = CreateObject(GetHashKey("prop_c4_final_green"),x,y,z,true,true,true)
 								AttachEntityToEntity(bomba,vehicle,GetEntityBoneIndexByName(vehicle,"exhaust"),0.0,0.0,0.0,180.0,-90.0,180.0,false,false,false,true,2,true)
 								PlaySoundFrontend(-1,"Oneshot_Final","MP_MISSION_COUNTDOWN_SOUNDSET",false)
 								TriggerEvent("Notify","importante","Você começou uma corrida <b>Explosiva</b>, não saia do veículo e termine no tempo estimado, ou então seu veículo vai explodir com você dentro.",8000)
 								end
-							end
+
 						end
 					end
 				end
@@ -359,14 +358,12 @@ Citizen.CreateThread(function()
 							SetVehicleNumberPlateText(GetPlayersLastVehicle(),PlateIndex)
 							PlateIndex = nil
 							PlaySoundFrontend(-1,"RACE_PLACED","HUD_AWARDS",false)
-							if explosive >= 70 then
-								explosive = 0
+
+
 								DeleteObject(bomba)
 								emP.removeBombRace()
 								emP.paymentCheck(racepoint,2)
-							else
-								emP.paymentCheck(racepoint,1)
-							end
+
 						else
 							racepos = racepos + 1
 							CriandoBlip(races,racepoint,racepos)
@@ -402,14 +399,14 @@ Citizen.CreateThread(function()
 				RemoveBlip(blips)
 				SetVehicleNumberPlateText(GetPlayersLastVehicle(),PlateIndex)
 				PlateIndex = nil
-				if explosive >= 70 then
+
 					SetTimeout(3000,function()
-						explosive = 0
+
 						DeleteObject(bomba)
 						emP.removeBombRace()
 						AddExplosion(GetEntityCoords(GetPlayersLastVehicle()),1,1.0,true,true,true)
 					end)
-				end
+
 			end
 		end
 	end
@@ -423,12 +420,12 @@ AddEventHandler("emp_race:unbomb",function()
 	SetVehicleNumberPlateText(GetPlayersLastVehicle(),PlateIndex)
 	PlateIndex = nil
 	RemoveBlip(blips)
-	if explosive >= 70 then
-		explosive = 0
+
+
 		DeleteObject(bomba)
 		emP.removeBombRace()
 		TriggerEvent("Notify","importante","A <b>Bomba</b> foi desarmada com sucesso.")
-	end
+
 end)
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- FUNÇÕES

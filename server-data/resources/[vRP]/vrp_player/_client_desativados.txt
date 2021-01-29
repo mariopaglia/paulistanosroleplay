@@ -1,0 +1,110 @@
+-----------------------------------------------------------------------------------------------------------------------------------------
+-- QTH
+-----------------------------------------------------------------------------------------------------------------------------------------
+-- Citizen.CreateThread(
+-- 	function()
+-- 		while true do
+-- 			Citizen.Wait(1)
+-- 			if IsControlJustReleased(1, 118) then
+-- 				TriggerServerEvent("offred:qthPolice")
+-- 			end
+-- 		end
+-- 	end
+-- )
+
+----------------------------------------------------------------------------------------------------------------------------------------
+-- CONTROLE DE VELOCIDADE
+----------------------------------------------------------------------------------------------------------------------------------------
+-- RegisterCommand("cr",function(source,args)
+-- 	local veh = GetVehiclePedIsIn(PlayerPedId(),false)
+-- 	local maxspeed = GetVehicleMaxSpeed(GetEntityModel(veh))
+-- 	local vehspeed = GetEntitySpeed(veh)*2.236936
+-- 	if GetPedInVehicleSeat(veh,-1) == PlayerPedId() and math.ceil(vehspeed) >= 1 then
+-- 		if args[1] == nil then
+-- 			SetEntityMaxSpeed(veh,maxspeed)
+-- 		else
+-- 			SetEntityMaxSpeed(veh,0.45*args[1]-0.45)
+-- 			TriggerEvent("Notify","sucesso","Velocidade máxima travada em <b>"..args[1].." mp/h</b>.")
+-- 		end
+-- 	end
+-- end)
+
+-----------------------------------------------------------------------------------------------------------------------------------------
+-- INVENTÁRIO
+-----------------------------------------------------------------------------------------------------------------------------------------
+
+--Citizen.CreateThread(function()
+--  while true do
+--    Citizen.Wait(0)
+--  if IsControlJustReleased(0, 289) then
+--    TriggerServerEvent("aztec:inventory")
+--end
+--end
+--end)
+
+-----------------------------------------------------------------------------------------------------------------------------------------
+-- /ME
+-----------------------------------------------------------------------------------------------------------------------------------------
+-- RegisterNetEvent('chatME')
+-- AddEventHandler('chatME',function(id,name,message)
+-- 	local myId = PlayerId()
+-- 	local pid = GetPlayerFromServerId(id)
+-- 	if pid == myId then
+-- 		TriggerEvent('chatMessage',"",{},"* "..name.." "..message)
+-- 	elseif GetDistanceBetweenCoords(GetEntityCoords(GetPlayerPed(myId)),GetEntityCoords(GetPlayerPed(pid))) < 3.999 then
+-- 		TriggerEvent('chatMessage',"",{},"* "..name.." "..message)
+-- 	end
+-- end)
+
+-----------------------------------------------------------------------------------------------------------------------------------------
+-- /CARTAS
+-----------------------------------------------------------------------------------------------------------------------------------------
+-- local card = {
+-- 	[1] = "A",
+-- 	[2] = "2",
+-- 	[3] = "3",
+-- 	[4] = "4",
+-- 	[5] = "5",
+-- 	[6] = "6",
+-- 	[7] = "7",
+-- 	[8] = "8",
+-- 	[9] = "9",
+-- 	[10] = "10",
+-- 	[11] = "J",
+-- 	[12] = "Q",
+-- 	[13] = "K"
+-- }
+
+-- local tipos = {
+-- 	[1] = "^8♣",
+-- 	[2] = "^8♠",
+-- 	[3] = "^9♦",
+-- 	[4] = "^9♥"
+-- }
+
+-- RegisterNetEvent("CartasMe")
+-- AddEventHandler(
+-- 	"CartasMe",
+-- 	function(id, name, cd, naipe)
+-- 		local monid = PlayerId()
+-- 		local sonid = GetPlayerFromServerId(id)
+-- 		if sonid == monid then
+-- 			TriggerEvent(
+-- 				"chatMessage",
+-- 				"",
+-- 				{},
+-- 				"^3* " .. name .. " tirou do baralho a carta: " .. card[cd] .. "" .. tipos[naipe]
+-- 			)
+-- 		elseif
+-- 			GetDistanceBetweenCoords(GetEntityCoords(GetPlayerPed(monid)), GetEntityCoords(GetPlayerPed(sonid)), true) < 5.999
+-- 		 then
+-- 			TriggerEvent(
+-- 				"chatMessage",
+-- 				"",
+-- 				{},
+-- 				"^3* " .. name .. " tirou do baralho a carta: " .. card[cd] .. "" .. tipos[naipe]
+-- 			)
+-- 		end
+-- 	end
+-- )
+

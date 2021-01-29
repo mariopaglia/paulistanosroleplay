@@ -1,0 +1,778 @@
+-- -----------------------------------------------------------------------------------------------------------------------------------------
+-- -- JOGAR FORA O COLETE
+-- -----------------------------------------------------------------------------------------------------------------------------------------
+-- RegisterCommand('jcolete',function(source,args,rawCommand)
+-- 	local user_id = vRP.getUserId(source)
+-- 	local player = vRP.getUserSource(user_id)
+-- 	local armour = vRPclient.getArmour(player)
+-- 	if armour < 95 then
+--        vRPclient.setArmour(source,0)
+--        TriggerClientEvent("tirandocolete",player)
+--        TriggerClientEvent("Notify",source,"sucesso","Você jogou fora o seu <b>Colete</b>.")
+--        vRPclient._playAnim(player,true,{{"pickup_object","pickup_low",1}},false)
+--     else
+--        TriggerClientEvent("Notify",source,"negado","Seu <b>Colete</b> nao está <b>Danificado</b>.")
+--     end
+-- end)
+
+-- -----------------------------------------------------------------------------------------------------------------------------------------
+-- -- /EQUIPAR
+-- -----------------------------------------------------------------------------------------------------------------------------------------
+-- RegisterCommand('equipar',function(source,args,rawCommand)
+-- 	for k,v in pairs(itemlist) do
+-- 		if args[1] == v.index and args[1] ~= "mochila" then
+-- 			local user_id = vRP.getUserId(source)
+-- 			if vRP.tryGetInventoryItem(user_id,k,1) then
+-- 				local weapons = {}
+-- 				weapons[string.gsub(k,"wbody|","")] = { ammo = 0 }
+-- 				vRPclient._giveWeapons(source,weapons)
+-- 				vRP.logs("savedata/armamento.txt","[ID]: "..user_id.." / [FUNÇÃO]: Equipar / [ARMA]: "..v.index)
+-- 			else
+-- 				TriggerClientEvent("Notify",source,"negado","Armamento não encontrado.")
+-- 			end
+-- 		end
+-- 	end
+-- end)
+
+-- -----------------------------------------------------------------------------------------------------------------------------------------
+-- -- /RECARREGAR
+-- -----------------------------------------------------------------------------------------------------------------------------------------
+-- RegisterCommand('recarregar',function(source,args,rawCommand)
+-- 	for k,v in pairs(itemlist) do
+-- 		if args[1] == v.index and args[1] ~= "mochila" then
+-- 			local uweapons = vRPclient.getWeapons(source)
+-- 			local weaponuse = string.gsub(k,"wbody|","")
+-- 			if uweapons[weaponuse] then
+-- 				local user_id = vRP.getUserId(source)
+-- 				if vRP.tryGetInventoryItem(user_id,"wammo|"..weaponuse,parseInt(args[2])) then
+-- 					local weapons = {}
+-- 					weapons[weaponuse] = { ammo = parseInt(args[2]) }
+-- 					vRPclient._giveWeapons(source,weapons,false)
+-- 					vRP.logs("savedata/armamento.txt","[ID]: "..user_id.." / [FUNÇÃO]: Recarregar / [ARMA]: "..v.index)
+-- 				else
+-- 					TriggerClientEvent("Notify",source,"negado","Munição não encontrada.")
+-- 				end
+-- 			else
+-- 				TriggerClientEvent("Notify",source,"importante","Equipe o armamento antes.")
+-- 			end
+-- 		end
+-- 	end
+-- end)
+
+-- -----------------------------------------------------------------------------------------------------------------------------------------
+-- -- /MOC
+-- -----------------------------------------------------------------------------------------------------------------------------------------
+-- RegisterCommand('moc',function(source,args,rawCommand)
+-- 	local user_id = vRP.getUserId(source)
+-- 	if user_id then
+-- 		local data = vRP.getUserDataTable(user_id)
+-- 		if data then
+-- 			TriggerClientEvent('chatMessage',source,"",{},"^4- -  ^5M O C H I L A^4  - - - - - - - - - - - - - - - - - - - - - - - - - - -  [  ^3"..string.format("%.2f",vRP.getInventoryWeight(user_id)).."kg^4  /  ^3"..string.format("%.2f",vRP.getInventoryMaxWeight(user_id)).."kg^4  ]  - -")
+-- 			for k,v in pairs(data.inventory) do
+-- 				if k and v then
+-- 					TriggerClientEvent('chatMessage',source,"",{},"     "..vRP.format(parseInt(v.amount)).."x "..itemlist[k].nome.."^2    |    "..itemlist[k].index)
+-- 				end
+-- 			end
+-- 		end
+-- 	end
+-- end)
+-- -----------------------------------------------------------------------------------------------------------------------------------------
+-- -- /DROPAR
+-- -----------------------------------------------------------------------------------------------------------------------------------------
+-- RegisterCommand('dropar',function(source,args,rawCommand)
+-- 	local user_id = vRP.getUserId(source)
+-- 	if user_id and args[1] then
+-- 		local px,py,pz = vRPclient.getPosition(source)
+-- 		for k,v in pairs(itemlist) do
+-- 			if args[1] == v.index then
+-- 				if args[2] and parseInt(args[2]) > 0 then
+-- 					if vRP.tryGetInventoryItem(user_id,k,parseInt(args[2])) then
+-- 						TriggerEvent("DropSystem:create",k,parseInt(args[2]),px,py,pz)
+-- 						vRPclient._playAnim(source,true,{{"pickup_object","pickup_low"}},false)
+-- 						vRP.logs("savedata/dropar.txt","[ID]: "..user_id.." / [ITEM]: "..k.." / [QTD]: "..parseInt(args[2]))
+-- 					end
+-- 				else
+-- 					local data = vRP.getUserDataTable(user_id)
+-- 					for i,o in pairs(data.inventory) do
+-- 						if itemlist[i].index == args[1] then
+-- 							if vRP.tryGetInventoryItem(user_id,k,parseInt(o.amount)) then
+-- 								TriggerEvent("DropSystem:create",k,parseInt(o.amount),px,py,pz)
+-- 								vRPclient._playAnim(source,true,{{"pickup_object","pickup_low"}},false)
+-- 								vRP.logs("savedata/dropar.txt","[ID]: "..user_id.." / [ITEM]: "..k.." / [QTD]: "..parseInt(o.amount))
+-- 							end
+-- 						end
+-- 					end
+-- 				end
+-- 			end
+-- 		end
+-- 	end
+-- end)
+
+-----------------------------------------------------------------------------------------------------------------------------------------
+-- CASAS
+-----------------------------------------------------------------------------------------------------------------------------------------
+-- RegisterCommand('casas',function(source,args,rawCommand)
+-- 	local user_id = vRP.getUserId(source)
+-- 	if args[1] and vRP.hasPermission(user_id,"policia.permissao") then
+-- 		local nplayer = vRP.getUserSource(parseInt(args[1]))
+-- 		if nplayer == nil then
+-- 			return
+-- 		end
+-- 		user_id = vRP.getUserId(nplayer)
+-- 	end
+-- 	if user_id then
+-- 		local address = vRP.getUserAddress(user_id)
+-- 		local casas = ""
+-- 		if args[1] then
+-- 			if #address > 0 then
+-- 				for k,v in pairs(address) do
+-- 					casas = casas..v.home.." - Nº"..v.number
+-- 					if k ~= #address then
+-- 						casas = casas..", "
+-- 					end
+-- 				end
+-- 				TriggerClientEvent("Notify",source,"importante","Residências possuidas pelo passaporte <b>"..vRP.format(parseInt(args[1])).."</b>: "..casas)
+-- 			else
+-- 				TriggerClientEvent("Notify",source,"negado","Passaporte <b>"..vRP.format(parseInt(args[1])).."</b> não possui residências.")
+-- 			end
+-- 		else
+-- 			if #address > 0 then
+-- 				for k,v in pairs(address) do
+-- 					casas = casas..v.home.." - Nº"..v.number
+-- 					if k ~= #address then
+-- 						casas = casas..", "
+-- 					end
+-- 				end
+-- 				TriggerClientEvent("Notify",source,"importante","Residências possuidas: "..casas)
+-- 			else
+-- 				TriggerClientEvent("Notify",source,"importante","Não possui residências em seu nome.")
+-- 			end
+-- 		end
+-- 	end
+-- end)
+
+-----------------------------------------------------------------------------------------------------------------------------------------
+-- MOTOR
+-----------------------------------------------------------------------------------------------------------------------------------------
+-- RegisterCommand('motor',function(source,args,rawCommand)
+-- 	local user_id = vRP.getUserId(source)
+-- 	if not vRPclient.isInVehicle(source) then
+-- 		local vehicle = vRPclient.getNearestVehicle(source,7)
+-- 		if vRP.hasPermission(user_id,"mecanico.permissao") then
+-- 			TriggerClientEvent('cancelando',source,true)
+-- 			vRPclient._playAnim(source,false,{{"mini@repair","fixing_a_player"}},true)
+-- 			TriggerClientEvent("progress",source,30000,"reparando")
+-- 			SetTimeout(30000,function()
+-- 				TriggerClientEvent('cancelando',source,false)
+-- 				TriggerClientEvent('repararmotor',source,vehicle)
+-- 				vRPclient._stopAnim(source,false)
+-- 			end)
+-- 		else
+-- 			if vRP.tryGetInventoryItem(user_id,"militec",1) then
+-- 				TriggerClientEvent('cancelando',source,true)
+-- 				vRPclient._playAnim(source,false,{{"mini@repair","fixing_a_player"}},true)
+-- 				TriggerClientEvent("progress",source,30000,"reparando")
+-- 				SetTimeout(30000,function()
+-- 					TriggerClientEvent('cancelando',source,false)
+-- 					TriggerClientEvent('repararmotor',source,vehicle)
+-- 					vRPclient._stopAnim(source,false)
+-- 				end)
+-- 			else
+-- 				TriggerClientEvent("Notify",source,"negado","Precisa de um <b>Militec-1</b> para reparar o motor.")
+-- 			end
+-- 		end
+-- 	else
+-- 		TriggerClientEvent("Notify",source,"negado","Precisa estar próximo ou fora do veículo para efetuar os reparos.")
+-- 	end
+-- end)
+
+-- RegisterServerEvent("trymotor")
+-- AddEventHandler("trymotor",function(nveh)
+-- 	TriggerClientEvent("syncmotor",-1,nveh)
+-- end)
+-----------------------------------------------------------------------------------------------------------------------------------------
+-- REPARAR
+-----------------------------------------------------------------------------------------------------------------------------------------
+-- RegisterCommand('reparar',function(source,args,rawCommand)
+-- 	local user_id = vRP.getUserId(source)
+-- 	if not vRPclient.isInVehicle(source) then
+-- 		local vehicle = vRPclient.getNearestVehicle(source,7)
+-- 		if vRP.hasPermission(user_id,"mecanico.permissao") then
+			
+-- 			TriggerClientEvent('cancelando',source,true)
+-- 			vRPclient._playAnim(source,false,{{"mini@repair","fixing_a_player"}},true)
+-- 			TriggerClientEvent("progress",source,30000,"reparando")
+-- 			SetTimeout(30000,function()
+-- 				TriggerClientEvent('cancelando',source,false)
+-- 				TriggerClientEvent('reparar',source,vehicle)
+-- 				vRPclient._stopAnim(source,false)
+-- 			end)
+-- 		else
+-- 			TriggerClientEvent("Notify",source,"negado","Somente mecanicos podem utilizar <b>Kit de Reparo</b>, chame um através do <b>/call mec</b>")
+-- 		end
+-- 	else
+-- 		TriggerClientEvent("Notify",source,"negado","Precisa estar próximo ou fora do veículo para efetuar os reparos.")
+-- 	end
+-- end)
+
+-- RegisterServerEvent("tryreparar")
+-- AddEventHandler("tryreparar",function(nveh)
+-- 	TriggerClientEvent("syncreparar",-1,nveh)
+-- end)
+
+-----------------------------------------------------------------------------------------------------------------------------------------
+-- GARMAS
+-----------------------------------------------------------------------------------------------------------------------------------------
+-- RegisterCommand('garmas',function(source,args,rawCommand)
+-- 	local user_id = vRP.getUserId(source)
+-- 	if not vRP.hasPermission(user_id,"policia.permissao") and not vRP.hasPermission(user_id,"nogarmas.permissao") then
+-- 		if user_id then
+-- 			local weapons = vRPclient.replaceWeapons(source,{})
+-- 			for k,v in pairs(weapons) do
+-- 				vRP.giveInventoryItem(user_id,"wbody|"..k,1)
+-- 				if v.ammo > 0 then
+-- 					vRP.giveInventoryItem(user_id,"wammo|"..k,v.ammo)
+-- 				end
+-- 			end
+-- 			local data = vRP.getUserDataTable(user_id)
+-- 			if data then
+-- 				data.weapons = {}
+-- 			end
+-- 			TriggerClientEvent("Notify",source,"sucesso","Guardou seu armamento na mochila")
+-- 		end
+-- 	else
+-- 		TriggerClientEvent("Notify",source,"negado","Policiais não podem guardar armas, limpe suas armas no arsenal")
+-- 	end
+-- end)
+
+-- RegisterCommand('limpar',function(source,args,rawCommand)
+-- 	local user_id = vRP.getUserId(source)
+-- 	if vRP.hasPermission(user_id,"policia.permissao") or vRP.hasPermission(user_id,"nogarmas.permissao") then
+-- 		RemoveAllPedWeapons(user_id, true)
+-- 		TriggerClientEvent("Notify",source,"sucesso","Suas armas foram guardadas.")
+-- 	end
+-- end)
+
+-- -----------------------------------------------------------------------------------------------------------------------------------------
+-- -- CLONEPLATE
+-- -----------------------------------------------------------------------------------------------------------------------------------------
+-- RegisterCommand('cloneplate',function(source,args,rawCommand)
+-- 	local user_id = vRP.getUserId(source)
+-- 	if user_id then
+-- 		if vRPclient.isInVehicle(source) and vRP.tryGetInventoryItem(user_id,"placa",1) then
+-- 			TriggerClientEvent("cloneplates",source)
+-- 		end
+-- 	end
+-- end)
+
+-----------------------------------------------------------------------------------------------------------------------------------------
+-- /INVENTÁRIO
+-----------------------------------------------------------------------------------------------------------------------------------------
+-- local itemSelected = nil
+
+-- function match(string, type, weapon)
+--     local string = string:match('^('..type..')(.)('..weapon..')')
+--     if string then
+--        return true
+--     else
+--        return false
+--     end
+-- end
+
+-- function buildInventory(source)
+-- 	local user_id = vRP.getUserId(source)
+-- 	if user_id then
+-- 		local data = vRP.getUserDataTable(user_id)
+-- 		if data.inventory then			
+-- 			local close_count = 0
+
+-- 			local use = function(player, choice)
+-- 				if itemlist[itemSelected].index == "bandagem" then
+-- 					vida = vRPclient.getHealth(source)
+-- 					if vida > 100 and vida < 400 then
+-- 						if bandagem[user_id] == 0 or not bandagem[user_id] then
+-- 							if vRP.tryGetInventoryItem(user_id,"bandagem",1) then
+-- 								TriggerClientEvent('cancelando',source,true)
+-- 								TriggerClientEvent("progress",source,10000,"bandagem")
+-- 								SetTimeout(10000,function()
+-- 									bandagem[user_id] = 60
+-- 									TriggerClientEvent('bandagem',source)
+-- 									TriggerClientEvent('cancelando',source,false)
+-- 									TriggerClientEvent("Notify",source,"sucesso","Bandagem utilizada com sucesso.")
+-- 								end)
+-- 							else
+-- 								TriggerClientEvent("Notify",source,"negado","Bandagem não encontrada na mochila.")
+-- 							end
+-- 						else
+-- 							TriggerClientEvent("Notify",source,"importante","Você precisa aguardar <b>"..bandagem[user_id].." segundos</b> para utilizar outra Bandagem.")
+-- 						end
+-- 					else
+-- 						TriggerClientEvent("Notify",source,"importante","Você não pode utilizar de vida cheia ou nocauteado.")
+-- 					end
+-- 				elseif itemlist[itemSelected].index == "cerveja" or itemlist[itemSelected].index == "tequila" or itemlist[itemSelected].index == "vodka" or itemlist[itemSelected].index == "agua" or itemlist[itemSelected].index == "conhaque" or itemlist[itemSelected].index == "absinto" then
+-- 					if vRP.tryGetInventoryItem(user_id,itemlist[itemSelected].index,1) then
+-- 						TriggerClientEvent('cancelando',source,true)
+-- 						vRPclient._CarregarObjeto(source,"amb@world_human_drinking@beer@male@idle_a","idle_a","prop_amb_beer_bottle",49,28422)
+-- 						TriggerClientEvent("progress",source,10000,"bebendo")
+-- 						SetTimeout(10000,function()
+-- 							vRPclient.playScreenEffect(source,"RaceTurbo",180)
+-- 							vRPclient.playScreenEffect(source,"DrugsTrevorClownsFight",180)
+-- 							TriggerClientEvent('cancelando',source,false)
+-- 							vRPclient._DeletarObjeto(source)
+-- 							TriggerClientEvent("Notify", source, "sucesso", itemlist[itemSelected].nome.." utilizado com sucesso.")	
+-- 						end)
+-- 					else
+-- 						TriggerClientEvent("Notify", source, "negado", itemlist[itemSelected].nome.." utilizado com sucesso.")	
+-- 					end
+-- 				elseif itemlist[itemSelected].index == "whisky" then
+-- 					if vRP.tryGetInventoryItem(user_id,"whisky",1) then
+-- 						TriggerClientEvent('cancelando',source,true)
+-- 						vRPclient._CarregarObjeto(source,"amb@world_human_drinking@beer@male@idle_a","idle_a","p_whiskey_notop",49,28422)
+-- 						TriggerClientEvent("progress",source,10000,"bebendo")
+-- 						SetTimeout(10000,function()
+-- 							vRPclient.playScreenEffect(source,"RaceTurbo",180)
+-- 							vRPclient.playScreenEffect(source,"DrugsTrevorClownsFight",180)
+-- 							TriggerClientEvent('cancelando',source,false)
+-- 							vRPclient._DeletarObjeto(source)
+-- 							TriggerClientEvent("Notify", source,"sucesso", itemlist[itemSelected].nome.." utilizado com sucesso.")	
+-- 						end)
+-- 					else
+-- 						TriggerClientEvent("Notify", source, "negado", itemlist[itemSelected].nome.." utilizado com sucesso.")	
+-- 					end
+-- 				elseif itemlist[itemSelected].index == "maconha" then
+-- 					if vRP.tryGetInventoryItem(user_id,"maconha",1) then
+-- 						vRPclient._playAnim(source,true,{{"mp_player_int_uppersmoke","mp_player_int_smoke"}},true)
+-- 						TriggerClientEvent("progress",source,10000,"fumando")
+-- 						SetTimeout(10000,function()
+-- 							vRPclient._stopAnim(source,false)
+-- 							vRPclient.playScreenEffect(source,"RaceTurbo",180)
+-- 							vRPclient.playScreenEffect(source,"DrugsTrevorClownsFight",180)
+-- 							TriggerClientEvent("Notify",source,"sucesso","Maconha utilizada com sucesso.")
+-- 						end)
+-- 					else
+-- 						TriggerClientEvent("Notify",source,"negado","Maconha não encontrada na mochila.")
+-- 					end
+-- 				elseif itemlist[itemSelected].index == "rebite" or itemlist[itemSelected].index == "energetico" then
+-- 					if vRP.tryGetInventoryItem(user_id,itemlist[itemSelected].index,1) then
+-- 						TriggerClientEvent('cancelando',source,true)
+-- 						vRPclient._CarregarObjeto(source,"amb@world_human_drinking@beer@male@idle_a","idle_a","prop_energy_drink",49,28422)
+-- 						TriggerClientEvent("progress",source,10000,"bebendo")
+-- 						SetTimeout(10000,function()
+-- 							vRPclient.playScreenEffect(source,"RaceTurbo",180)
+-- 							vRPclient.playScreenEffect(source,"DrugsTrevorClownsFight",180)
+-- 							TriggerClientEvent('energeticos',source,true)
+-- 							TriggerClientEvent('cancelando',source,false)
+-- 							vRPclient._DeletarObjeto(source)
+-- 							TriggerClientEvent("Notify",source,"sucesso", itemlist[itemSelected].nome.." utilizado com sucesso.")
+-- 						end)
+-- 						SetTimeout(60000,function()
+-- 							TriggerClientEvent('energeticos',source,false)
+-- 							TriggerClientEvent("Notify",source,"importante","O efeito do "..itemlist[itemSelected].nome.." passou e o coração voltou a bater normalmente.")
+-- 						end)
+-- 					else
+-- 						TriggerClientEvent("Notify",source,"negado","Rebite não encontrado na mochila.")
+-- 					end
+-- 				elseif itemlist[itemSelected].index == "capuz" then
+-- 					if vRP.getInventoryItemAmount(user_id,"capuz") >= 1 then
+-- 						local nplayer = vRPclient.getNearestPlayer(source,2)
+-- 						if nplayer then
+-- 							vRPclient.setCapuz(nplayer)
+-- 							vRP.closeMenu(nplayer)
+-- 							TriggerClientEvent("Notify",source,"sucesso","Capuz utilizado com sucesso.")
+-- 						end
+-- 					else
+-- 						TriggerClientEvent("Notify",source,"negado","Capuz não encontrado na mochila.")
+-- 					end
+-- 				elseif itemlist[itemSelected].index == "lockpick" then
+-- 					local mPlaca,mName,mNet,mPrice,mBanido,mLock,mModel,mStreet = vRPclient.ModelName(source,7)
+-- 					local mPlacaUser = vRP.getUserByRegistration(mPlaca)
+-- 					if vRP.getInventoryItemAmount(user_id,"lockpick") >= 1 and mName then
+-- 						if vRP.hasPermission(user_id,"policia.permissao") then
+-- 							TriggerClientEvent("syncLock",-1,mNet)
+-- 							return
+-- 						end
+-- 						TriggerClientEvent('cancelando',source,true)
+-- 						vRPclient._playAnim(source,false,{{"amb@prop_human_parking_meter@female@idle_a","idle_a_female"}},true)
+-- 						TriggerClientEvent("progress",source,30000,"roubando")
+-- 						SetTimeout(30000,function()
+-- 							TriggerClientEvent('cancelando',source,false)
+-- 							vRPclient._stopAnim(source,false)
+-- 							if not mPlacaUser then
+-- 								TriggerClientEvent("syncLock",-1,mNet)
+-- 								TriggerClientEvent("vrp_sound:source",source,'lock',0.1)
+-- 							else
+-- 								if math.random(100) >= 80 then
+-- 									TriggerClientEvent("syncLock",-1,mNet)
+-- 									TriggerClientEvent("vrp_sound:source",source,'lock',0.1)
+-- 								else
+-- 									TriggerClientEvent("Notify",source,"negado","Roubo do veículo falhou e as autoridades foram acionadas.")
+-- 									local policia = vRP.getUsersByPermission("policia.permissao")
+-- 									for k,v in pairs(policia) do
+-- 										local player = vRP.getUserSource(parseInt(v))
+-- 										if player then
+-- 											async(function()
+-- 												local id = idgens:gen()
+-- 												TriggerClientEvent('chatMessage',player,"911",{65,130,255},"Roubo na ^1"..mStreet.."^0 do veículo ^1"..mModel.."^0 de placa ^1"..mPlaca.."^0 verifique o ocorrido.")
+-- 												pick[id] = vRPclient.addBlip(player,x,y,z,153,84,"Ocorrência",0.5,false)
+-- 												SetTimeout(60000,function() vRPclient.removeBlip(player,pick[id]) idgens:free(id) end)
+-- 											end)
+-- 										end
+-- 									end
+-- 								end
+-- 							end
+-- 						end)
+-- 					else
+-- 						TriggerClientEvent("Notify",source,"negado","Precisa de uma <b>Lockpick</b> para iniciar o roubo do veículo.")
+-- 					end
+-- 				elseif itemlist[itemSelected].index == "masterpick" then
+-- 					local mPlaca,mName,mNet,mPrice,mBanido,mLock,mModel,mStreet = vRPclient.ModelName(source,7)
+-- 					local mPlacaUser = vRP.getUserByRegistration(mPlaca)
+-- 					if vRP.getInventoryItemAmount(user_id,"masterpick") >= 1 and mName then			
+-- 						if vRP.hasPermission(user_id,"policia.permissao") then
+-- 							TriggerClientEvent("syncLock",-1,mNet)
+-- 							return
+-- 						end			
+-- 						TriggerClientEvent('cancelando',source,true)
+-- 						vRPclient._playAnim(source,false,{{"amb@prop_human_parking_meter@female@idle_a","idle_a_female"}},true)
+-- 						TriggerClientEvent("progress",source,60000,"roubando")			
+-- 						SetTimeout(60000,function()
+-- 							TriggerClientEvent("vrp_sound:source",source,'lock',0.1)
+-- 							TriggerClientEvent('cancelando',source,false)
+-- 							TriggerClientEvent("syncLock",-1,mNet)
+-- 							vRPclient._stopAnim(source,false)			
+-- 							local policia = vRP.getUsersByPermission("policia.permissao")
+-- 							for k,v in pairs(policia) do
+-- 								local player = vRP.getUserSource(parseInt(v))
+-- 								if player then
+-- 									async(function()
+-- 										local id = idgens:gen()
+-- 										TriggerClientEvent('chatMessage',player,"911",{65,130,255},"Roubo na ^1"..mStreet.."^0 do veículo ^1"..mModel.."^0 de placa ^1"..mPlaca.."^0 verifique o ocorrido.")
+-- 										pick[id] = vRPclient.addBlip(player,x,y,z,153,84,"Ocorrência",0.5,false)
+-- 										SetTimeout(60000,function() vRPclient.removeBlip(player,pick[id]) idgens:free(id) end)
+-- 									end)
+-- 								end
+-- 							end
+-- 						end)
+-- 					else
+-- 						TriggerClientEvent("Notify",source,"negado","Precisa de uma <b>Masterpick</b> para iniciar o roubo do veículo.")
+-- 					end
+-- 				end
+-- 			end
+	
+-- 			local drop = function(player, choice)
+-- 				local user_id = vRP.getUserId(source)
+-- 				local px,py,pz = vRPclient.getPosition(source)
+-- 				local quantity = vRP.prompt(source, "Quantidade:","")
+-- 				if quantity == "" or tonumber(quantity) <= 0 then
+-- 					TriggerClientEvent("Notify", source, "importante", "Quantidade invalida!")
+-- 					vRP.closeMenu(player, submenu)
+-- 				else
+-- 					if match(itemSelected, "wammo", string.gsub(itemSelected, "wammo|", "")) then
+-- 						if vRP.getInventoryItemAmount(user_id, "wammo|"..string.gsub(itemSelected,"wammo|","")) >= tonumber(quantity) then
+-- 							if vRP.tryGetInventoryItem(user_id, "wammo|"..string.gsub(itemSelected,"wammo|",""), tonumber(quantity)) then
+-- 								TriggerEvent("DropSystem:create", "wammo|"..string.gsub(itemSelected,"wammo|",""), tonumber(quantity), px, py, pz)
+-- 								vRPclient._playAnim(source,true,{{"pickup_object","pickup_low"}},false)
+-- 							end
+-- 						else
+-- 							TriggerClientEvent("Notify", source, "negado", "Você não tem essa quantidade do item "..itemlist[itemSelected].nome..".")
+-- 						end
+-- 					elseif match(itemSelected, "wbody", string.gsub(itemSelected, "wbody|", "")) then
+-- 						if vRP.getInventoryItemAmount(user_id, "wbody|"..string.gsub(itemSelected,"wbody|","")) >= tonumber(quantity) then
+-- 							if vRP.tryGetInventoryItem(user_id, "wbody|"..string.gsub(itemSelected,"wbody|",""), tonumber(quantity)) then
+-- 								TriggerEvent("DropSystem:create", "wbody|"..string.gsub(itemSelected,"wbody|",""), tonumber(quantity), px, py, pz)
+-- 								vRPclient._playAnim(source,true,{{"pickup_object","pickup_low"}},false)
+-- 							end
+-- 						else
+-- 							TriggerClientEvent("Notify", source, "negado", "Você não tem essa quantidade do item "..itemlist[itemSelected].nome..".")
+-- 						end
+-- 					else
+-- 						if vRP.getInventoryItemAmount(user_id, itemlist[itemSelected].index) >= tonumber(quantity) then
+-- 							if vRP.tryGetInventoryItem(user_id, itemlist[itemSelected].index, tonumber(quantity)) then
+-- 								TriggerEvent("DropSystem:create", itemlist[itemSelected].index, tonumber(quantity), px, py, pz)
+-- 								vRPclient._playAnim(source,true,{{"pickup_object","pickup_low"}},false)
+-- 							end
+-- 						else
+-- 							TriggerClientEvent("Notify", source, "negado", "Você não tem essa quantidade do item "..itemlist[itemSelected].nome..".")
+-- 						end
+-- 					end
+-- 					vRP.closeMenu(player, submenu)
+-- 				end
+-- 			end
+			
+			
+-- 			local equip = function(player, choice)				
+-- 				local weapon = string.gsub(itemSelected,"wbody|","") 
+-- 				local ammo = vRP.getInventoryItemAmount(user_id, "wammo|"..string.gsub(itemSelected,"wbody|",""))				
+-- 				if ammo >= 0 then
+-- 					local question = vRP.prompt(source, "Deseja equipar as munições também ? (Sim ou Não)","")
+-- 				else
+-- 					question = nil				
+-- 				end
+-- 				if question == "Sim" or question == "sim" then
+-- 					if ammo >= 1 then
+-- 						if vRP.tryGetInventoryItem(user_id,"wammo|"..string.gsub(itemSelected,"wbody|",""), ammo) then
+-- 							ammoset = ammo
+-- 							TriggerClientEvent("Notify", source, "sucesso", "Munições coletadas com sucesso.")
+-- 						end
+-- 					else
+-- 						TriggerClientEvent("Notify", source, "negado", "Você não possui munição!")
+-- 					end
+-- 				elseif question == "Não" or question == "Nao" or question == "nao" or question == "não" then
+-- 					ammoset = 0
+-- 				else
+-- 					ammoset = 0
+-- 				end
+-- 				local weapons = {}
+-- 				if vRP.tryGetInventoryItem(user_id,itemSelected,1) then
+-- 					weapons[string.gsub(itemSelected,"wbody|","")] = { ammo = ammoset }
+-- 					vRPclient._giveWeapons(player,weapons)
+-- 					vRP.logs("savedata/armamento.txt","[ID]: "..user_id.." / [FUNÇÃO]: Equipar / [ARMA]: "..itemlist[itemSelected].index)
+-- 					TriggerClientEvent("Notify", source, "sucesso", itemlist[itemSelected].nome.." equipado com sucesso.")	
+-- 				end				
+-- 				vRP.closeMenu(player, submenu)
+-- 			end
+			
+-- 			local send = function(player, choice)
+-- 				local user_id = vRP.getUserId(source)
+-- 				local nplayer = vRPclient.getNearestPlayer(source, 2)
+-- 				local nuser_id = vRP.getUserId(nplayer)
+-- 				local quantity = vRP.prompt(source, "Quantidade:","")
+-- 				if nuser_id and itemlist[itemSelected].index and parseInt(quantity) > 0 then
+-- 					for k,v in pairs(itemlist) do
+-- 						if itemlist[itemSelected].index == v.index then
+-- 							if vRP.getInventoryWeight(nuser_id)+vRP.getItemWeight(k)*parseInt(quantity) <= vRP.getInventoryMaxWeight(nuser_id) then
+-- 								if vRP.tryGetInventoryItem(user_id,k,parseInt(quantity)) then
+-- 									vRP.giveInventoryItem(nuser_id,k,parseInt(quantity))
+-- 									vRPclient._playAnim(source,true,{{"mp_common","givetake1_a"}},false)
+-- 									TriggerClientEvent("Notify",source,"sucesso","Enviou <b>"..parseInt(quantity).."x "..v.nome.."</b>.")
+-- 									TriggerClientEvent("Notify",nplayer,"sucesso","Recebeu <b>"..parseInt(quantity).."x "..v.nome.."</b>.")
+-- 									vRP.logs("savedata/enviar.txt","[ID]: "..user_id.." / [NID]: "..nuser_id.." / [ITEM]: "..k)
+-- 								end
+-- 							end
+-- 						end
+-- 					end			
+-- 				end
+-- 			end
+
+-- 			local reload = function(player, choice)
+-- 				local uweapons = vRPclient.getWeapons(source)
+-- 				local weaponuse = string.gsub(itemSelected,"wammo|","")
+-- 				if uweapons[weaponuse] then
+-- 					local user_id = vRP.getUserId(source)
+-- 					local ammo = vRP.getInventoryItemAmount(user_id, itemSelected)
+-- 					local quantity = vRP.prompt(source, "Quantidade:","")
+-- 					if tonumber(quantity) == nil or quantity == "" then
+-- 						if vRP.tryGetInventoryItem(user_id, itemSelected, ammo) then
+-- 							local weapons = {}
+-- 							weapons[weaponuse] = {ammo = ammo}
+-- 							vRPclient._giveWeapons(source,weapons,false)
+-- 							vRP.logs("savedata/armamento.txt", "[ID]: "..user_id.." / [FUNÇÃO]: Recarregar / [ARMA]: "..itemSelected)
+-- 						else
+-- 							TriggerClientEvent("Notify",source,"negado","Munição não encontrada.")
+-- 						end
+-- 					elseif ammo < tonumber(quantity) or tonumber(quantity) <= 0 then
+-- 						TriggerClientEvent("Notify",source,"negado","Você tem apenas <b>"..ammo.."</b> balas.")
+-- 					else					
+-- 						if vRP.tryGetInventoryItem(user_id, itemSelected, parseInt(quantity)) then
+-- 							local weapons = {}
+-- 							weapons[weaponuse] = {ammo = parseInt(quantity)}
+-- 							vRPclient._giveWeapons(source,weapons, false)
+-- 							vRP.logs("savedata/armamento.txt", "[ID]: "..user_id.." / [FUNÇÃO]: Recarregar / [ARMA]: "..itemSelected)
+-- 						else
+-- 							TriggerClientEvent("Notify",source,"negado","Munição não encontrada.")
+-- 						end
+-- 					end
+-- 				else
+-- 					TriggerClientEvent("Notify",source,"importante","Equipe o armamento antes.")
+-- 				end
+-- 				vRP.closeMenu(player, submenu)
+-- 			end
+
+-- 			local bag = function(player, choice)
+-- 				if vRP.tryGetInventoryItem(user_id,"mochila",1) then
+-- 					vRP.varyExp(user_id,"physical","strength",650)
+-- 					TriggerClientEvent("Notify",source,"sucesso","Mochila utilizada com sucesso.")
+-- 				else
+-- 					TriggerClientEvent("Notify",source,"negado","Mochila não encontrada na mochila.")
+-- 				end
+-- 				vRP.closeMenu(player, submenu)
+-- 			end
+
+-- 			local item = function(player, choice)
+-- 				itemSelected = choice
+-- 				for key,value in pairs(itemlist) do
+-- 					if value.nome == choice then
+-- 						itemSelected = key
+-- 						label = value.nome
+-- 						local submenu = {}
+-- 						if match(key, "wbody", string.gsub(key, "wbody|", "")) then
+-- 							submenu = {name=value.nome}	
+-- 							submenu["Equipar"] = {equip, "<text01 style='width: 200px;'>Equipar item</text01>"}
+-- 						elseif match(key, "wammo", string.gsub(key,"wammo|","")) then
+-- 							submenu = {name="Munição"}		
+-- 							submenu["Recarregar"] = {reload, "<text01 style='width: 200px;'>Recarregar arma</text01>"}
+-- 						elseif value.index == "mochila" then
+-- 							submenu["Colocar"] = {bag, "<text01 style='width: 200px;'>Colocar mochila</text01>"}
+-- 						else
+-- 							submenu = {name=label.." ["..data.inventory[key].amount.."]"}
+-- 							submenu["Usar"] = {use, "<text01 style='width: 200px;'>Utilizar item</text01>"}
+-- 						end						
+-- 						submenu["Enviar"] = {send, "<text01 style='width: 200px;'>Enviar a um jogador proximo</text01>"}
+-- 						submenu["Dropar"] = {drop, "<text01 style='width: 200px;'>Jogar no chão</text01>"}
+-- 						submenu.onclose = function()
+-- 							vRP.closeMenu(player, submenu)
+-- 							buildInventory(player)
+-- 						end
+-- 						vRP.openMenu(player, submenu)
+-- 						break
+-- 					end
+-- 				end
+-- 			end
+			
+-- 			local menu = {name="Inventário"}
+-- 			local count = 0
+-- 			for k,v in pairs(data.inventory) do count = count + 1
+-- 				if menu[k] then menu[k] = nil end	
+-- 				local weight = 0	
+-- 				local iweight = vRP.getItemWeight(k)
+-- 				weight = weight+iweight*data.inventory[k].amount
+-- 				menu[itemlist[k].nome] = { item, "<text01>Quantidade:</text01> <text02> "..data.inventory[k].amount.."</text02><text01>Peso:</text01> <text02>"..weight.."</text02><text01 style='color:gray;background:#000;width:174px;'><center>"..string.format("%.2f",vRP.getInventoryWeight(user_id)).."KG / "..string.format("%.2f",vRP.getInventoryMaxWeight(user_id)).."KG</center></text01>" }
+-- 			end
+-- 			menu.onclose = function()
+-- 				if close_count == 0 then
+-- 					if cb_close then
+-- 						cb_close()
+-- 					end
+-- 				end
+-- 			end
+-- 			if count <= 0 then
+-- 				TriggerClientEvent("Notify", source, "negado", "Seu <b>inventário</b> está vazio.")
+-- 				return
+-- 			end
+-- 			vRP.openMenu(source, menu)
+-- 		end
+-- 	end
+-- end
+
+-- function inventoryPlayer(id, source)
+-- 	local identity = vRP.getUserIdentity(id)
+-- 	local data = vRP.getUserDataTable(id)
+-- 	if data.inventory then
+-- 		local item = function(player, choice)
+-- 		end	
+-- 		local menu = {name="Inventário"}
+-- 		local count = 0
+-- 		for k,v in pairs(data.inventory) do count = count + 1
+-- 			if menu[k] then menu[k] = nil end	
+-- 			local weight = 0	
+-- 			local iweight = vRP.getItemWeight(k)
+-- 			weight = weight+iweight*data.inventory[k].amount
+-- 			menu[itemlist[k].nome] = { item, "<text01>Quantidade:</text01> <text02> "..data.inventory[k].amount.."</text02><text01>Peso:</text01> <text02>"..weight.."</text02><text01 style='color:white;background:#000;width:174px;'><center>Cidadão: "..identity.name.." "..identity.firstname.."</center></text01><text01 style='color:gray;background:#000;width:174px;'><center>"..string.format("%.2f",vRP.getInventoryWeight(id)).."KG / "..string.format("%.2f",vRP.getInventoryMaxWeight(id)).."KG</center></text01>" }
+-- 		end
+-- 		menu.onclose = function()
+-- 			vRP.closeMenu(source, menu)
+-- 		end
+-- 		if count <= 0 then
+-- 			TriggerClientEvent("Notify", source, "negado", "O <b>inventário</b> dele está vazio.")
+-- 			return
+-- 		end
+-- 		vRP.openMenu(source, menu)
+-- 	end
+-- end
+
+-- RegisterCommand('moc', function(source,args,rawCommand)
+-- 	local source = source
+-- 	local user_id = vRP.getUserId(source)
+-- 	if user_id ~= nil then
+-- 		if args[1] then
+-- 			local player = vRP.getUserSource(parseInt(args[1]))
+-- 			inventoryPlayer(parseInt(args[1]), source)			
+-- 		else
+-- 			buildInventory(source)
+-- 		end		
+-- 	end
+-- end)
+
+-- RegisterServerEvent("aztec:inventory")
+-- AddEventHandler("aztec:inventory", function()
+-- 	buildInventory(source)
+-- end)
+-- -----------------------------------------------------------------------------------------------------------------------------------------
+-- -- PR
+-- -----------------------------------------------------------------------------------------------------------------------------------------
+-- RegisterCommand('pr',function(source,args,rawCommand)
+-- 	if args[1] then
+-- 		local user_id = vRP.getUserId(source)
+-- 		local identity = vRP.getUserIdentity(user_id)
+-- 		local permission = "policia.permissao"
+-- 		if vRP.hasPermission(user_id,permission) then
+-- 			local soldado = vRP.getUsersByPermission(permission)
+-- 			for l,w in pairs(soldado) do
+-- 				local player = vRP.getUserSource(parseInt(w))
+-- 				if player then
+-- 					async(function()
+-- 						TriggerClientEvent('chatMessage',player,identity.name.." "..identity.firstname,{255,175,175},rawCommand:sub(3))
+-- 					end)
+-- 				end
+-- 			end
+-- 		end
+-- 	end
+-- end)
+-- -----------------------------------------------------------------------------------------------------------------------------------------
+-- -- HR
+-- -----------------------------------------------------------------------------------------------------------------------------------------
+-- RegisterCommand('mr',function(source,args,rawCommand)
+-- 	if args[1] then
+-- 		local user_id = vRP.getUserId(source)
+-- 		local identity = vRP.getUserIdentity(user_id)
+-- 		local permission = "paramedico.permissao"
+-- 		if vRP.hasPermission(user_id,permission) then
+-- 			local soldado = vRP.getUsersByPermission(permission)
+-- 			for l,w in pairs(soldado) do
+-- 				local player = vRP.getUserSource(parseInt(w))
+-- 				if player then
+-- 					async(function()
+-- 						TriggerClientEvent('chatMessage',player,identity.name.." "..identity.firstname,{255,175,175},rawCommand:sub(3))
+-- 					end)
+-- 				end
+-- 			end
+-- 		end
+-- 	end
+-- end)
+-----------------------------------------------------------------------------------------------------------------------------------------
+-- ME
+-----------------------------------------------------------------------------------------------------------------------------------------
+-- RegisterCommand('me',function(source,args,rawCommand)
+-- 	if args[1] then
+-- 		local user_id = vRP.getUserId(source)
+-- 		local identity = vRP.getUserIdentity(user_id)
+-- 		TriggerClientEvent('chatME',-1,source,identity.name,rawCommand:sub(3))
+-- 		vRP.logs("savedata/me.txt","[ID]: "..user_id.." / [MENSAGEM]: "..rawCommand:sub(3))
+-- 	end
+-- end)
+
+-----------------------------------------------------------------------------------------------------------------------------------------
+-- /STATUSADM (PESSOAS ONLINE POR PROFISSÃO)
+-----------------------------------------------------------------------------------------------------------------------------------------
+-- RegisterCommand('status2',function(source,args,rawCommand)
+-- 	local user_id = vRP.getUserId(source)        
+-- 	if vRP.hasPermission(user_id,"admin.permissao") or vRP.hasPermission(user_id,"mod.permissao") or vRP.hasPermission(user_id,"sup.permissao") then
+--     	local onlinePlayers2 = GetNumPlayerIndices()
+--     	local policia2 = vRP.getUsersByPermission("policia.permissao")
+--     	local paramedico2 = vRP.getUsersByPermission("paramedico.permissao")
+--     	local mec2 = vRP.getUsersByPermission("mecanico.permissao")
+--     	local staff2 = vRP.getUsersByPermission("admin.permissao")
+-- 		local taxista2 = vRP.getUsersByPermission("taxista.permissao")
+-- 		local conce2 = vRP.getUsersByPermission("concessionaria.permissao")
+-- 		TriggerClientEvent("Notify",source,"importante","<bold><b>Jogadores</b>: <b>"..onlinePlayers2.."<br>Staff</b>: <b>"..#staff2.."<br>Policiais</b>: <b>"..#policia2.."<br>Taxistas</b>: <b>"..#taxista2.."<br>Paramédicos</b>: <b>"..#paramedico2.."<br>Concessionária</b>: <b>"..#conce2.."<br>Mecânicos</b>: <b>"..#mec2.."</b></bold>",9000)
+-- 	end
+-- end)
+	
+-----------------------------------------------------------------------------------------------------------------------------------------
+-- /STAFF
+-----------------------------------------------------------------------------------------------------------------------------------------
+-- RegisterCommand('staff',function(source,args,rawCommand)
+--     local staff = vRP.getUsersByPermission("admin.permissao")
+--     local user_id = vRP.getUserId(source)        
+--         TriggerClientEvent("Notify",source,"importante","Staffs Online: <b>"..#staff.."</b>",9000)
+-- 	end)

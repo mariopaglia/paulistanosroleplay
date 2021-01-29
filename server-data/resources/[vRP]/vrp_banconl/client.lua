@@ -12,7 +12,7 @@ local displayBankBlips = true
 local enableBankingGui = true 
 
 local banks = {
-  {name="Banco", id=108, x=150.266, y=-1040.203, z=29.374},
+  {name="Banco", id=108, x=149.94, y=-1040.74, z=29.38},
   {name="Banco", id=108, x=-1212.980, y=-330.841, z=37.787},
   {name="Banco", id=108, x=-2962.582, y=482.627, z=15.703},
   {name="Banco", id=108, x=-112.202, y=6469.295, z=31.626},

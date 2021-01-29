@@ -93,6 +93,7 @@ function TokoVoip.updateConfig(self)
 	self:updatePlugin("updateConfig", data);
 end
 
+local radioprop
 function TokoVoip.initialize(self)
 	self:updateConfig();
 	self:updatePlugin("initializeSocket", nil);
@@ -143,6 +144,10 @@ function TokoVoip.initialize(self)
 				end
 				if (not getPlayerData(self.serverId, "radio:talking")) then
 					setPlayerData(self.serverId, "radio:talking", true, true);
+					radioprop = CreateObject(GetHashKey('prop_cs_hand_radio'),0.0,0.0,0.0,true,true,true)
+					local bone = GetPedBoneIndex(PlayerPedId(), 60309)
+					AttachEntityToEntity(radioprop, PlayerPedId(), bone, 0.05, 0.03, 0.0, 90.0, 140.0, 0.0, true, false, false, false, 2, true)
+					TaskPlayAnim(PlayerPedId(),"random@arrests","generic_radio_chatter", 8.0, 0.0, -1, 49, 0, 0, 0, 0);
 				end
 				self:updateTokoVoipInfo();
 				if (lastTalkState == false and self.myChannels[self.plugin_data.radioChannel]) then
@@ -159,6 +164,9 @@ function TokoVoip.initialize(self)
 				self.plugin_data.radioTalking = false;
 				if (getPlayerData(self.serverId, "radio:talking")) then
 					setPlayerData(self.serverId, "radio:talking", false, true);
+					StopAnimTask(PlayerPedId(), "random@arrests","generic_radio_chatter", -4.0);
+					DetachEntity(radioprop, true, false)
+					DeleteEntity(radioprop)
 				end
 				self:updateTokoVoipInfo();
 				

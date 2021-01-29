@@ -21,6 +21,7 @@ local scriptVersion = "1.3.4";
 local animStates = {}
 local displayingPluginScreen = false;
 local HeadBone = 0x796e;
+local muteme = false
 
 --------------------------------------------------------------------------------
 --	Plugin functions
@@ -112,11 +113,13 @@ local function clientProcessing()
 			--
 
 			-- Process proximity
-			if (dist >= voip.distance[mode]) then
-				tbl.muted = 1;
-			else
-				tbl.volume = volume;
-				tbl.muted = 0;
+			if not muteme then
+				if (dist >= voip.distance[mode]) then
+					tbl.muted = 1;
+				else
+					tbl.volume = volume;
+					tbl.muted = 0;
+				end
 			end
 			--
 			-- Process channels
@@ -146,6 +149,10 @@ local function clientProcessing()
 	voip.plugin_data.posZ = voip.plugin_data.enableStereoAudio and localPos.z or 0;
 end
 
+RegisterNetEvent("tokovoip:toggleMute")
+AddEventHandler("tokovoip:toggleMute", function(status)
+	muteme = status
+end)
 RegisterNetEvent("initializeVoip");
 AddEventHandler("initializeVoip", function()
 	if (isRunning) then return Citizen.Trace("TokoVOIP is already running\n"); end

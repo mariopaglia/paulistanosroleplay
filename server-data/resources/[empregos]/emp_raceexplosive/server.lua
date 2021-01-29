@@ -19,16 +19,16 @@ end
 -- FUNÇÕES
 -----------------------------------------------------------------------------------------------------------------------------------------
 local pay = {
-	[1] = { ['min'] = 2000, ['max'] = 2500 },
-	[2] = { ['min'] = 1000, ['max'] = 1500 },
-	[3] = { ['min'] = 1000, ['max'] = 1500 },
-	[4] = { ['min'] = 1000, ['max'] = 2000 },
-	[5] = { ['min'] = 800, ['max'] = 1300 },
-	[6] = { ['min'] = 1000, ['max'] = 1500 },
-	[7] = { ['min'] = 1100, ['max'] = 1600 },
-	[8] = { ['min'] = 800, ['max'] = 1300 },
-	[9] = { ['min'] = 1200, ['max'] = 1800 },
-	[10] = { ['min'] = 2300, ['max'] = 3300 }
+	[1] = { ['min'] = 10000, ['max'] = 20000 },
+	[2] = { ['min'] = 10000, ['max'] = 20000 },
+	[3] = { ['min'] = 10000, ['max'] = 20000 },
+	[4] = { ['min'] = 10000, ['max'] = 20000 },
+	[5] = { ['min'] = 10000, ['max'] = 20000 },
+	[6] = { ['min'] = 10000, ['max'] = 20000 },
+	[7] = { ['min'] = 10000, ['max'] = 20000 },
+	[8] = { ['min'] = 10000, ['max'] = 20000 },
+	[9] = { ['min'] = 10000, ['max'] = 20000 },
+	[10] = { ['min'] = 10000, ['max'] = 20000 }
 }
 
 function emP.paymentCheck(check,status)
@@ -37,11 +37,8 @@ function emP.paymentCheck(check,status)
 	if user_id then
 		local random = math.random(pay[check].min,pay[check].max)
 		local policia = vRP.getUsersByPermission("policia.permissao")
-		if parseInt(#policia) == 0 then
-			vRP.giveInventoryItem(user_id,"dinheirosujo",parseInt(random*status))
-		else
-			vRP.giveInventoryItem(user_id,"dinheirosujo",parseInt((random*#policia)*status))
-		end
+		vRP.giveInventoryItem(user_id,"dinheirosujo",parseInt(random))
+		TriggerClientEvent("Notify",source,"sucesso","Você recebeu "..vRP.format(parseInt(random)).."x em <b>Dinheiro Sujo</b>")
 	end
 end
 
@@ -66,7 +63,7 @@ function emP.startBombRace()
 		if player then
 			async(function()
 				vRPclient.playSound(player,"Oneshot_Final","MP_MISSION_COUNTDOWN_SOUNDSET")
-				TriggerClientEvent('chatMessage',player,"911",{64,64,255},"Encontramos um corredor ilegal na cidade, intercepte-o.")
+				TriggerClientEvent('chatMessage',player,"190",{64,64,255},"Encontramos um corredor ilegal na cidade, intercepte-o.")
 			end)
 			
 		end
@@ -103,4 +100,16 @@ end)
 function emP.removeBombRace()
 	local source = source
 	TriggerEvent('eblips:remove',source)
+end
+
+function emP.checkPolice()
+	local source = source
+	local policia = vRP.getUsersByPermission("policia.permissao")
+
+	if parseInt(#policia) >= 4 then
+		return true
+	else
+		TriggerClientEvent("Notify",source,"negado","Policiais insuficientes para iniciar <b>corrida ilegal</b>")
+		return false
+	end
 end

@@ -12,7 +12,6 @@ vRPNclient = Tunnel.getInterface("vrp_inventory","vrp_inventory")
 local idgens = Tools.newIDGenerator()
 
 vGARAGE = Tunnel.getInterface("vrp_garages")
-vDIAGNOSTIC = Tunnel.getInterface("vrp_diagnostic")
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- WEBHOOK
 -----------------------------------------------------------------------------------------------------------------------------------------
@@ -146,18 +145,13 @@ end)
 local pick = {}
 local blips = {}
 function vRPN.useItem(itemName,type,ramount)
-	local source = source
-	local user_id = vRP.getUserId(source)
+local source = source
+local user_id = vRP.getUserId(source)
+
 	if user_id and ramount ~= nil and parseInt(ramount) >= 0 and not actived[user_id] and actived[user_id] == nil then
 		if type == "usar" then
 				if itemName == "bandagem" then
-					if vRPclient.getHealth(source) > 101 and vRPclient.getHealth(source) < 250 then
-		
-						if vDIAGNOSTIC.getBleeding(source) >= 4 then
-							TriggerClientEvent("Notify",source,"importante","Você está com um sangramento grave, você não pode utilizar a <b>Bandagem</b>, chame um paramédico ou vá até o <b>Hospital</b> mais próximo receber atendimento.",8000)
-							return
-						end
-		
+					if vRPclient.getHealth(source) > 101 and vRPclient.getHealth(source) < 250 then		
 						if bandagem[user_id] == 0 or not bandagem[user_id] then
 							if vRP.tryGetInventoryItem(user_id,"bandagem",1) then
 								bandagem[user_id] = 120
@@ -176,319 +170,15 @@ function vRPN.useItem(itemName,type,ramount)
 									--TriggerClientEvent("resetBleeding",source)
 								end)
 							end
-						else
-							TriggerClientEvent("Notify",source,"importante","Aguarde "..vRPclient.getTimeFunction(source,parseInt(bandagem[user_id]))..".",8000)
 						end
 					else
 					TriggerClientEvent("Notify",source,"importante","Você não pode utilizar de vida cheia ou nocauteado.",8000)
 				end
-            elseif itemName == "xerelto" then
-                if vRP.tryGetInventoryItem(user_id,"xerelto",1) then
-                	vRPclient._CarregarObjeto(source,"mp_player_intdrink","loop_bottle","ng_proc_drug01a002",49,60309)
-                	TriggerClientEvent('Creative:Update',source,'updateMochila')
-                	TriggerClientEvent('cancelando',source,true)
-                    TriggerClientEvent("progress",source,20500,"xerelto")
-                    SetTimeout(20500,function()
-                        TriggerClientEvent('cancelando',source,false)
-                        TriggerClientEvent("resetBleeding",source)
-                        vRPclient._DeletarObjeto(source)
-                        TriggerClientEvent("Notify",source,"sucesso","xerelto utilizado com sucesso.",8000)
-                    end)
-                end
-            elseif itemName == "coumadin" then
-                if vRP.tryGetInventoryItem(user_id,"coumadin",1) then
-                	vRPclient._CarregarObjeto(source,"mp_player_intdrink","loop_bottle","ng_proc_drug01a002",49,60309)
-                	TriggerClientEvent('Creative:Update',source,'updateMochila')	
-					TriggerClientEvent('cancelando',source,true)
-                    TriggerClientEvent("progress",source,20500,"coumadin")
-                    SetTimeout(20500,function()
-                        TriggerClientEvent('cancelando',source,false)
-                        TriggerClientEvent("resetBleeding",source)
-                        vRPclient._DeletarObjeto(source)
-                        TriggerClientEvent("Notify",source,"sucesso","Coumadin utilizado com sucesso.",8000)
-                    end)
-                end
-			elseif itemName == "dorflex" or itemName == "cicatricure" or itemName == "dipiroca" or itemName == "nocucedin" or itemName == "paracetanal" or itemName == "decupramim" or itemName == "buscopau" or itemName == "navagina" or itemName == "analdor" or itemName == "sefodex" or itemName == "nokusin" or itemName == "glicoanal" then
-				if (vRP.tryGetInventoryItem(user_id,"dorflex",1) or vRP.tryGetInventoryItem(user_id,"cicatricure",1) or vRP.tryGetInventoryItem(user_id,"dipiroca",1) or vRP.tryGetInventoryItem(user_id,"nocucedin",1) or vRP.tryGetInventoryItem(user_id,"paracetanal",1) or vRP.tryGetInventoryItem(user_id,"decupramim",1) or vRP.tryGetInventoryItem(user_id,"buscopau",1) or vRP.tryGetInventoryItem(user_id,"navagina",1) or vRP.tryGetInventoryItem(user_id,"analdor",1) or vRP.tryGetInventoryItem(user_id,"sefodex",1) or vRP.tryGetInventoryItem(user_id,"nokusin",1) or vRP.tryGetInventoryItem(user_id,"glicoanal",1)) then
-					TriggerClientEvent('Creative:Update',source,'updateMochila')
-					vRPclient._playAnim(source,true,{{"mp_player_intdrink","loop_bottle"}},true)	
-					TriggerClientEvent('cancelando',source,true)
-					TriggerClientEvent("progress",source,5000,"remedio")
-					SetTimeout(5000,function()
-						vRPclient._stopAnim(source,false)
-						TriggerClientEvent('cancelando',source,false)
-						TriggerClientEvent("Notify",source,"sucesso","Remédio utilizado com sucesso.",8000)
-					end)
-				end	
 			elseif itemName == "mochila" then
 				if vRP.tryGetInventoryItem(user_id,"mochila",1) then
 					TriggerClientEvent('Creative:Update',source,'updateMochila')
 					vRP.varyExp(user_id,"physical","strength",650)
 					TriggerClientEvent("Notify",source,"sucesso","Mochila utilizada com sucesso.",8000)
-				end
-			elseif itemName == "cerveja" then
-				if vRP.tryGetInventoryItem(user_id,"cerveja",1) then
-					actived[user_id] = true
-					TriggerClientEvent('Creative:Update',source,'updateMochila')
-					TriggerClientEvent('cancelando',source,true)
-					vRPclient._CarregarObjeto(source,"amb@world_human_drinking@beer@male@idle_a","idle_a","prop_amb_beer_bottle",49,28422)
-					TriggerClientEvent("progress",source,30000,"bebendo")
-					SetTimeout(30000,function()
-						actived[user_id] = nil
-						vRPclient.playScreenEffect(source,"RaceTurbo",180)
-						vRPclient.playScreenEffect(source,"DrugsTrevorClownsFight",180)
-						TriggerClientEvent('cancelando',source,false)
-						vRPclient._DeletarObjeto(source)
-						TriggerClientEvent("Notify",source,"sucesso","Cerveja utilizada com sucesso.",8000)
-					end)
-				end
-			elseif itemName == "agua" then
-				if vRP.tryGetInventoryItem(user_id,"agua",1) then
-					actived[user_id] = true
-					TriggerClientEvent('Creative:Update',source,'updateMochila')
-					TriggerClientEvent('cancelando',source,true)
-					vRPclient._CarregarObjeto(source,"amb@world_human_drinking@beer@male@idle_a","idle_a","prop_energy_drink",49,28422)
-					TriggerClientEvent("progress",source,15000,"bebendo")
-					SetTimeout(15000,function()
-						actived[user_id] = nil
-						if varyHunger ~= 0 then vRP.varyHunger(user_id,varyHunger) end
-						if varyThirst ~= 0 then vRP.varyThirst(user_id,varyThirst) end
-						TriggerClientEvent('cancelando',source,false)
-						vRPclient._DeletarObjeto(source)
-						TriggerClientEvent("Notify",source,"sucesso","Água utilizada com sucesso.",8000)
-					end)
-				end
-			elseif itemName == "cafe" then
-				if vRP.tryGetInventoryItem(user_id,"cafe",1) then
-					actived[user_id] = true
-					TriggerClientEvent('Creative:Update',source,'updateMochila')
-					TriggerClientEvent('cancelando',source,true)
-					vRPclient._CarregarObjeto(source,"amb@world_human_drinking@beer@male@idle_a","idle_a","p_ing_coffeecup_01",49,28422)
-					TriggerClientEvent("progress",source,13000,"bebendo")
-					SetTimeout(13000,function()
-						actived[user_id] = nil
-						if varyHunger ~= 0 then vRP.varyHunger(user_id,varyHunger) end
-						if varyThirst ~= 0 then vRP.varyThirst(user_id,varyThirst) end
-						TriggerClientEvent('cancelando',source,false)
-						vRPclient._DeletarObjeto(source)
-						TriggerClientEvent("Notify",source,"sucesso","Café utilizada com sucesso.",8000)
-					end)
-				end
-			elseif itemName == "limonada" then
-				if vRP.tryGetInventoryItem(user_id,"limonada",1) then
-					actived[user_id] = true
-					TriggerClientEvent('Creative:Update',source,'updateMochila')
-					TriggerClientEvent('cancelando',source,true)
-					vRPclient._CarregarObjeto(source,"amb@world_human_drinking@beer@male@idle_a","idle_a","ng_proc_sodacup_01b",49,28422)
-					TriggerClientEvent("progress",source,13000,"bebendo")
-					SetTimeout(13000,function()
-						actived[user_id] = nil
-						if varyHunger ~= 0 then vRP.varyHunger(user_id,varyHunger) end
-						if varyThirst ~= 0 then vRP.varyThirst(user_id,varyThirst) end
-						TriggerClientEvent('cancelando',source,false)
-						vRPclient._DeletarObjeto(source)
-						TriggerClientEvent("Notify",source,"sucesso","Limonada utilizada com sucesso.",8000)
-					end)
-				end
-			elseif itemName == "refrigerante" then
-				if vRP.tryGetInventoryItem(user_id,"refrigerante",1) then
-					actived[user_id] = true
-					TriggerClientEvent('Creative:Update',source,'updateMochila')
-					TriggerClientEvent('cancelando',source,true)
-					vRPclient._CarregarObjeto(source,"amb@world_human_drinking@beer@male@idle_a","idle_a","prop_cs_bs_cup",49,28422)
-					TriggerClientEvent("progress",source,13000,"bebendo")
-					SetTimeout(13000,function()
-						actived[user_id] = nil
-						if varyHunger ~= 0 then vRP.varyHunger(user_id,varyHunger) end
-						if varyThirst ~= 0 then vRP.varyThirst(user_id,varyThirst) end
-						TriggerClientEvent('cancelando',source,false)
-						vRPclient._DeletarObjeto(source)
-						TriggerClientEvent("Notify",source,"sucesso","Refrigerante utilizada com sucesso.",8000)
-					end)
-				end
-			elseif itemName == "chocolate" then
-				if vRP.tryGetInventoryItem(user_id,"chocolate",1) then
-					actived[user_id] = true
-					TriggerClientEvent('Creative:Update',source,'updateMochila')
-					TriggerClientEvent('cancelando',source,true)
-					vRPclient._CarregarObjeto(source,"amb@code_human_wander_eating_donut@male@idle_a","idle_c","ng_proc_candy01a",49,28422)
-					TriggerClientEvent("progress",source,10000,"comendo")
-					SetTimeout(10000,function()
-						actived[user_id] = nil
-						if varyHunger ~= 0 then vRP.varyHunger(user_id,varyHunger) end
-						if varyThirst ~= 0 then vRP.varyThirst(user_id,varyThirst) end
-						TriggerClientEvent('cancelando',source,false)
-						vRPclient._DeletarObjeto(source)
-						TriggerClientEvent("Notify",source,"sucesso","Chocolate utilizado com sucesso.",8000)
-					end)
-				end
-			elseif itemName == "rosquinha" then
-				if vRP.tryGetInventoryItem(user_id,"rosquinha",1) then
-					actived[user_id] = true
-					TriggerClientEvent('Creative:Update',source,'updateMochila')
-					TriggerClientEvent('cancelando',source,true)
-					vRPclient._CarregarObjeto(source,"amb@code_human_wander_eating_donut@male@idle_a","idle_c","prop_donut_02b",49,28422)
-					TriggerClientEvent("progress",source,10000,"comendo")
-					SetTimeout(10000,function()
-						actived[user_id] = nil
-						if varyHunger ~= 0 then vRP.varyHunger(user_id,varyHunger) end
-						if varyThirst ~= 0 then vRP.varyThirst(user_id,varyThirst) end
-						TriggerClientEvent('cancelando',source,false)
-						vRPclient._DeletarObjeto(source)
-						TriggerClientEvent("Notify",source,"sucesso","Rosquinha utilizado com sucesso.",8000)
-					end)
-				end
-			elseif itemName == "sanduiche" then
-				if vRP.tryGetInventoryItem(user_id,"sanduiche",1) then
-					actived[user_id] = true
-					TriggerClientEvent('Creative:Update',source,'updateMochila')
-					TriggerClientEvent('cancelando',source,true)
-					vRPclient._CarregarObjeto(source,"amb@code_human_wander_eating_donut@male@idle_a","idle_c","prop_cs_burger_01",49,28422)
-					TriggerClientEvent("progress",source,10000,"comendo")
-					SetTimeout(10000,function()
-						actived[user_id] = nil
-						if varyHunger ~= 0 then vRP.varyHunger(user_id,varyHunger) end
-						if varyThirst ~= 0 then vRP.varyThirst(user_id,varyThirst) end
-						TriggerClientEvent('cancelando',source,false)
-						vRPclient._DeletarObjeto(source)
-						TriggerClientEvent("Notify",source,"sucesso","Sanduiche utilizado com sucesso.",8000)
-					end)
-				end
-			elseif itemName == "salgadinho" then
-				if vRP.tryGetInventoryItem(user_id,"salgadinho",1) then
-					actived[user_id] = true
-					TriggerClientEvent('Creative:Update',source,'updateMochila')
-					TriggerClientEvent('cancelando',source,true)
-					vRPclient._CarregarObjeto(source,"amb@code_human_wander_eating_donut@male@idle_a","idle_c","ng_proc_food_chips01b",49,28422)
-					TriggerClientEvent("progress",source,10000,"comendo")
-					SetTimeout(10000,function()
-						actived[user_id] = nil
-						if varyHunger ~= 0 then vRP.varyHunger(user_id,varyHunger) end
-						if varyThirst ~= 0 then vRP.varyThirst(user_id,varyThirst) end
-						TriggerClientEvent('cancelando',source,false)
-						vRPclient._DeletarObjeto(source)
-						TriggerClientEvent("Notify",source,"sucesso","Salgadinho utilizado com sucesso.",8000)
-					end)
-				end
-			elseif itemName == "pizza" then
-				if vRP.tryGetInventoryItem(user_id,"pizza",1) then
-					actived[user_id] = true
-					TriggerClientEvent('Creative:Update',source,'updateMochila')
-					TriggerClientEvent('cancelando',source,true)
-					vRPclient._CarregarObjeto(source,"amb@code_human_wander_eating_donut@male@idle_a","idle_c","v_res_tt_pizzaplate",49,28422)
-					TriggerClientEvent("progress",source,10000,"comendo")
-					SetTimeout(10000,function()
-						actived[user_id] = nil
-						if varyHunger ~= 0 then vRP.varyHunger(user_id,varyHunger) end
-						if varyThirst ~= 0 then vRP.varyThirst(user_id,varyThirst) end
-						TriggerClientEvent('cancelando',source,false)
-						vRPclient._DeletarObjeto(source)
-						TriggerClientEvent("Notify",source,"sucesso","Pizza utilizado com sucesso.",8000)
-					end)
-				end
-			elseif itemName == "pao" then
-				if vRP.tryGetInventoryItem(user_id,"pao",1) then
-					actived[user_id] = true
-					TriggerClientEvent('Creative:Update',source,'updateMochila')
-					TriggerClientEvent('cancelando',source,true)
-					vRPclient._CarregarObjeto(source,"amb@code_human_wander_eating_donut@male@idle_a","idle_c","v_ret_247_bread1",49,28422)
-					TriggerClientEvent("progress",source,10000,"comendo")
-					SetTimeout(10000,function()
-						actived[user_id] = nil
-						if varyHunger ~= 0 then vRP.varyHunger(user_id,varyHunger) end
-						if varyThirst ~= 0 then vRP.varyThirst(user_id,varyThirst) end
-						TriggerClientEvent('cancelando',source,false)
-						vRPclient._DeletarObjeto(source)
-						TriggerClientEvent("Notify",source,"sucesso","Pão utilizado com sucesso.",8000)
-					end)
-				end
-			elseif itemName == "tequila" then
-				if vRP.tryGetInventoryItem(user_id,"tequila",1) then
-					actived[user_id] = true
-					TriggerClientEvent('Creative:Update',source,'updateMochila')
-					TriggerClientEvent('cancelando',source,true)
-					vRPclient._CarregarObjeto(source,"amb@world_human_drinking@beer@male@idle_a","idle_a","prop_amb_beer_bottle",49,28422)
-					TriggerClientEvent("progress",source,30000,"bebendo")
-					SetTimeout(30000,function()
-						actived[user_id] = nil
-						vRPclient.playScreenEffect(source,"RaceTurbo",180)
-						vRPclient.playScreenEffect(source,"DrugsTrevorClownsFight",180)
-						TriggerClientEvent('cancelando',source,false)
-						vRPclient._DeletarObjeto(source)
-						TriggerClientEvent("Notify",source,"sucesso","Tequila utilizada com sucesso.",8000)
-					end)
-				end
-			elseif itemName == "vodka" then
-				if vRP.tryGetInventoryItem(user_id,"vodka",1) then
-					actived[user_id] = true
-					TriggerClientEvent('Creative:Update',source,'updateMochila')
-					TriggerClientEvent('cancelando',source,true)
-					vRPclient._CarregarObjeto(source,"amb@world_human_drinking@beer@male@idle_a","idle_a","prop_amb_beer_bottle",49,28422)
-					TriggerClientEvent("progress",source,30000,"bebendo")
-					SetTimeout(30000,function()
-						actived[user_id] = nil
-						vRPclient.playScreenEffect(source,"RaceTurbo",180)
-						vRPclient.playScreenEffect(source,"DrugsTrevorClownsFight",180)
-						TriggerClientEvent('cancelando',source,false)
-						vRPclient._DeletarObjeto(source)
-						TriggerClientEvent("Notify",source,"sucesso","Vodka utilizada com sucesso.",8000)
-					end)
-				end
-			elseif itemName == "whisky" then
-				if vRP.tryGetInventoryItem(user_id,"whisky",1) then
-					actived[user_id] = true
-					TriggerClientEvent('Creative:Update',source,'updateMochila')
-					TriggerClientEvent('cancelando',source,true)
-					vRPclient._CarregarObjeto(source,"amb@world_human_drinking@beer@male@idle_a","idle_a","p_whiskey_notop",49,28422)
-					TriggerClientEvent("progress",source,30000,"bebendo")
-					SetTimeout(30000,function()
-						actived[user_id] = nil
-						vRPclient.playScreenEffect(source,"RaceTurbo",180)
-						vRPclient.playScreenEffect(source,"DrugsTrevorClownsFight",180)
-						TriggerClientEvent('cancelando',source,false)
-						vRPclient._DeletarObjeto(source)
-						TriggerClientEvent("Notify",source,"sucesso","Whisky utilizado com sucesso.",8000)
-					end)
-				end
-			elseif itemName == "conhaque" then
-				if vRP.tryGetInventoryItem(user_id,"conhaque",1) then
-					actived[user_id] = true
-					TriggerClientEvent('Creative:Update',source,'updateMochila')
-					TriggerClientEvent('cancelando',source,true)
-					vRPclient._CarregarObjeto(source,"amb@world_human_drinking@beer@male@idle_a","idle_a","prop_amb_beer_bottle",49,28422)
-					TriggerClientEvent("progress",source,30000,"bebendo")
-					SetTimeout(30000,function()
-						actived[user_id] = nil
-						vRPclient.playScreenEffect(source,"RaceTurbo",180)
-						vRPclient.playScreenEffect(source,"DrugsTrevorClownsFight",180)
-						TriggerClientEvent('cancelando',source,false)
-						vRPclient._DeletarObjeto(source)
-						TriggerClientEvent("Notify",source,"sucesso","Conhaque utilizado com sucesso.",8000)
-					end)
-				end
-			elseif itemName == "absinto" then
-				if vRP.tryGetInventoryItem(user_id,"absinto",1) then
-					actived[user_id] = true
-					TriggerClientEvent('Creative:Update',source,'updateMochila')
-					TriggerClientEvent('cancelando',source,true)
-					vRPclient._CarregarObjeto(source,"amb@world_human_drinking@beer@male@idle_a","idle_a","prop_amb_beer_bottle",49,28422)
-					TriggerClientEvent("progress",source,30000,"bebendo")
-					SetTimeout(30000,function()
-						actived[user_id] = nil
-						vRPclient.playScreenEffect(source,"RaceTurbo",180)
-						vRPclient.playScreenEffect(source,"DrugsTrevorClownsFight",180)
-						TriggerClientEvent('cancelando',source,false)
-						vRPclient._DeletarObjeto(source)
-						TriggerClientEvent("Notify",source,"sucesso","Absinto utilizado com sucesso.",8000)
-					end)
-				end
-			elseif itemName == "identidade" then
-				local nplayer = vRPclient.getNearestPlayer(source,2)
-				if nplayer then
-					local identity = vRP.getUserIdentity(user_id)
-					if identity then
-						TriggerClientEvent("Identity2",nplayer,identity.name,identity.firstname,identity.user_id,identity.registration)
-					end
 				end
 			elseif itemName == "maconha" then
 				if vRP.tryGetInventoryItem(user_id,"maconha",1) then
@@ -535,41 +225,6 @@ function vRPN.useItem(itemName,type,ramount)
 						TriggerClientEvent("Notify",source,"sucesso","Metanfetamina utilizada com sucesso.",8000)
 					end)
 				end	
-			elseif itemName == "lsd" then
-				if vRP.tryGetInventoryItem(user_id,"lsd",1) then
-					actived[user_id] = true
-					TriggerClientEvent('Creative:Update',source,'updateMochila')
-					vRPclient._playAnim(source,true,{{"mp_player_int_uppersmoke","mp_player_int_smoke"}},true)
-					TriggerClientEvent("progress",source,10000,"tomando")
-					SetTimeout(10000,function()
-						actived[user_id] = nil
-						vRPclient._stopAnim(source,false)
-						vRPclient.playScreenEffect(source,"RaceTurbo",180)
-						vRPclient.playScreenEffect(source,"DrugsTrevorClownsFight",180)
-						TriggerClientEvent("Notify",source,"sucesso","LSD utilizado com sucesso.",8000)
-					end)
-				end		
-			elseif itemName == "rebite" then
-				if vRP.tryGetInventoryItem(user_id,"rebite",1) then
-					actived[user_id] = true
-					TriggerClientEvent('Creative:Update',source,'updateMochila')
-					TriggerClientEvent('cancelando',source,true)
-					vRPclient._CarregarObjeto(source,"amb@world_human_drinking@beer@male@idle_a","idle_a","prop_energy_drink",49,28422)
-					TriggerClientEvent("progress",source,10000,"bebendo")
-					SetTimeout(10000,function()
-						actived[user_id] = nil
-						vRPclient.playScreenEffect(source,"RaceTurbo",90)
-						vRPclient.playScreenEffect(source,"DrugsTrevorClownsFight",90)
-						TriggerClientEvent('energeticos',source,true)
-						TriggerClientEvent('cancelando',source,false)
-						vRPclient._DeletarObjeto(source)
-						TriggerClientEvent("Notify",source,"sucesso","Rebite utilizado com sucesso.",8000)
-					end)
-					SetTimeout(90000,function()
-						TriggerClientEvent('energeticos',source,false)
-						TriggerClientEvent("Notify",source,"importante","O efeito do rebite passou e o coração voltou a bater normalmente.",8000)
-					end)
-				end
 			elseif itemName == "capuz" then
 				if vRP.getInventoryItemAmount(user_id,"capuz") >= 1 then
 					local nplayer = vRPclient.getNearestPlayer(source,2)
@@ -760,7 +415,7 @@ function vRPN.useItem(itemName,type,ramount)
 					local vehicle = vRPclient.getNearestVehicle(source,3.5)
 					if vehicle then
 						if vRP.hasPermission(user_id,"mecanico.permissao") then
-							if vRPNclient.isNearCds(source, vector3(-211.1,-1324.73,30.9), 25) or vRPNclient.isNearCds(source, vector3(928.35,-968.11,39.76), 25) then
+							if vRPNclient.isNearCds(source, vector3(-211.1,-1324.73,30.9), 25) or vRPNclient.isNearCds(source, vector3(934.52,-951.64,39.76), 40) then
 								if vRP.tryGetInventoryItem(user_id,"repairkit",1) then
 									actived[user_id] = true
 									TriggerClientEvent('cancelando',source,true)
@@ -794,9 +449,9 @@ function vRPN.useItem(itemName,type,ramount)
 								SetTimeout(10000,function()
 									actived[user_id] = nil
 									TriggerClientEvent('cancelando',source,false)
-									local tyre = vRPNclient.ityrerepair(source, vehicle)
+									local tyre, car = vRPNclient.ityrerepair(source, vehicle)
 									if tyre ~= -1 then
-										vRPNclient._syncTyreRepair(-1, vehicle, tyre)
+										vRPNclient._syncTyreRepair(-1, car, tyre)
 									end
 									vRPclient._stopAnim(source,false)
 								end)
@@ -809,9 +464,9 @@ function vRPN.useItem(itemName,type,ramount)
 								SetTimeout(30000,function()
 									actived[user_id] = nil
 									TriggerClientEvent('cancelando',source,false)
-									local tyre = vRPNclient.ityrerepair(source, vehicle)
+									local tyre, car = vRPNclient.ityrerepair(source, vehicle)
 									if tyre ~= -1 then
-										vRPNclient._syncTyreRepair(-1, vehicle, tyre)
+										vRPNclient._syncTyreRepair(-1, car, tyre)
 									end
 									vRPclient._stopAnim(source,false)
 									vRPclient._stopAnim(source,true)
@@ -820,27 +475,6 @@ function vRPN.useItem(itemName,type,ramount)
 						end
 					end
 				end	
-			elseif itemName == "notebook" then
-				if vRPclient.isInVehicle(source) then
-					local vehicle,vnetid,placa,vname,lock,banned = vRPclient.vehList(source,7)
-					if vehicle and placa then
-						actived[user_id] = true
-						vGARAGE.freezeVehicleNotebook(source,vehicle)
-						TriggerClientEvent('cancelando',source,true)
-						TriggerClientEvent("progress",source,59500,"removendo rastreador")
-						SetTimeout(60000,function()
-							actived[user_id] = nil
-							TriggerClientEvent('cancelando',source,false)
-							local placa_user_id = vRP.getUserByRegistration(placa)
-							if placa_user_id then
-								local player = vRP.getUserSource(placa_user_id)
-								if player then
-									vGARAGE.removeGpsVehicle(player,vname)
-								end
-							end
-						end)
-					end
-				end
 			elseif itemName == "placa" then
                 if vRPclient.GetVehicleSeat(source) then
                     if vRP.tryGetInventoryItem(user_id,"placa",1) then
@@ -861,29 +495,8 @@ function vRPN.useItem(itemName,type,ramount)
 				if vRP.tryGetInventoryItem(user_id,"colete",1) then
 					vRPclient.setArmour(source,100)
 					TriggerClientEvent('Creative:Update',source,'updateMochila')
-				end	
-			elseif itemName == "morfina" then
-				local paramedico = vRP.getUsersByPermission("polpar.permissao")
-				if parseInt(#paramedico) < 1 then
-					local nplayer = vRPclient.getNearestPlayer(source,2)
-					if nplayer then
-						if vRPclient.isComa(nplayer) then
-							if vRP.tryGetInventoryItem(user_id,"morfina",1) then
-								TriggerClientEvent('cancelando',source,true)
-								vRPclient._playAnim(source,false,{{"amb@medic@standing@tendtodead@base","base"},{"mini@cpr@char_a@cpr_str","cpr_pumpchest"}},true)
-								TriggerClientEvent("progress",source,30000,"reanimando")
-								SetTimeout(30000,function()
-									vRPclient.networkRessurection(nplayer)
-									vRPclient._stopAnim(source,false)
-									TriggerClientEvent('cancelando',source,false)
-								end)
-							end
-						else
-							TriggerClientEvent("Notify",source,"importante","A pessoa precisa estar em coma para prosseguir.",8000)
-						end
-					end
 				end
-			end
+		end
 		elseif type == "equipar" then
 			if vRP.tryGetInventoryItem(user_id,itemName,1) then
 				local weapons = {}

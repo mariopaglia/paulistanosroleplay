@@ -16,15 +16,13 @@ Citizen.CreateThread(function()
 
         local distance = GetDistanceBetweenCoords(
                              GetEntityCoords(GetPlayerPed(-1)),
-                             -54.98, -1095.81,
-                             26.43 - 0.97, true)
+                            -32.41,-1112.84,26.49 - 0.97, true)
 
         if distance <= 100 then
-            DrawMarker(21, -54.98, -1095.81,
-            26.43 -0.5, 0, 0, 0, 0, 0, 0, 0.5, 0.5, 0.4,
-                       0, 255, 255, 50, 0, 0, 0, 1)
-                       --DrawMarker(21,v.x,v.y,v.z-0.6,0,0,0,0.0,0,0,0.5,0.5,0.4,255,0,0,50,0,0,0,1)
-            if distance <= 2 then
+            --DrawMarker(21,v.x,v.y,v.z-0.6,0,0,0,0.0,0,0,0.5,0.5,0.4,255,0,0,50,0,0,0,1)
+            DrawMarker(21, -32.41,-1112.84,26.49-0.5, 0, 0, 0, 0, 0, 0, 0.5, 0.5, 0.4, 255, 0, 0, 100, 0, 0, 0, 1)
+            -- DrawMarker(25,-32.41,-1112.84,26.49-0.99,0,0,0,0.0,0,0,3.0,3.0,0.4,255,0,0,80,0,0,0,1)
+            if distance <= 3 then
                 if not open then
                     if IsControlJustPressed(1, 38) then
                         open = true

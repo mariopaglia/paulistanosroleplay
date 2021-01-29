@@ -40,7 +40,7 @@ AddEventHandler("vrp_skinshop:Comprar", function(preco)
         end
 
         
-        if vRP.tryPayment(user_id,parseInt(pagamento)) then
+        if vRP.tryFullPayment(user_id,parseInt(pagamento)) then
             TriggerClientEvent("Notify",source,"sucesso","Você pagou <b>R$ "..vRP.format(parseInt(pagamento)).." </b> ("..off.."% OFF) em roupas e acessórios")
             TriggerClientEvent('vrp_skinshop:ReceberCompra', source, true)
         else

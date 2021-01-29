@@ -81,14 +81,14 @@ function vRPNclient.ityrerepair(car)
 		end
 	end
 	if d ~= 5 then
-		return bone
+		return bone, VehToNet(car)
 	else
 		return -1
 	end
-end)
+end
 
 function vRPNclient.syncTyreRepair(car, tyre)
-	SetVehicleTyreFixed(car, tyre)
+	SetVehicleTyreFixed(NetToVeh(car), tyre)
 end
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- VEHICLEANCHOR
@@ -168,3 +168,19 @@ end)
 function vRPNclient.isNearCds(cds, dist)
 	return GetDistanceBetweenCoords(GetEntityCoords(PlayerPedId()), cds) <= dist
 end
+-----------------------------------------------------------------------------------------------------------------------------------------
+-- BANDAGEM
+-----------------------------------------------------------------------------------------------------------------------------------------
+RegisterNetEvent("bandagem")
+AddEventHandler(
+	"bandagem",
+	function()
+		-- local bandagem = 0
+		repeat
+			-- bandagem = bandagem + 1
+			SetEntityHealth(PlayerPedId(), GetEntityHealth(PlayerPedId()) + 1)
+			Citizen.Wait(1000)
+		until GetEntityHealth(PlayerPedId()) >= 250 or GetEntityHealth(PlayerPedId()) <= 100
+		TriggerEvent("Notify", "sucesso", "Tratamento concluido, procure um médico para receber <b>tratamento completo</b>")
+	end
+)

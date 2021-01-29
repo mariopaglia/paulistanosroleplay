@@ -43,12 +43,15 @@ Citizen.CreateThread(function()
             if morto == 0 then
                 ToggleActionMenu()
                 morto = 1
+				TriggerEvent("tokovoip:toggleMute", true)
+				TriggerEvent("radio:outServers")
             end
 			DisableControlAction(1, 244, true)
         else 
         if GetEntityHealth(ped) >= 101 then
             if morto == 1 then
                 ToggleActionMenu()
+				TriggerEvent("tokovoip:toggleMute", false)
                 morto = 0
             end
 				DisableControlAction(1, 244, false)
@@ -108,6 +111,7 @@ function tvRP.killGod()
 	SetEntityInvincible(PlayerPedId(),false)
 	SetEntityHealth(PlayerPedId(),120)
 	vRPserver._updateHealth(120)
+	TriggerEvent("tokovoip:toggleMute", false)
 	SetTimeout(5000,function()
 		timedeath = 600
 	end)
@@ -136,6 +140,7 @@ Citizen.CreateThread(function()
 			nocauteado = false
 			SetEntityInvincible(PlayerPedId(),false)
 			SetEntityHealth(PlayerPedId(),0)
+			TriggerEvent("tokovoip:toggleMute", false)
 			SetTimeout(5000,function()
 				timedeath = 600
 			end)

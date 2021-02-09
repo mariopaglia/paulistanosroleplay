@@ -37,82 +37,82 @@ RegisterNUICallback("ButtonClick",function(data,cb)
 	if data == "policia1" then
 		if emP.checkPermission2("policia.permissao","Polícia Militar - C1") then
 			outServers()
-			exports.tokovoip_script:addPlayerToRadio(190)
+			exports.tokovoip_script:addPlayerToRadio(1000)
 		end
 	elseif data == "policia2" then
 		if emP.checkPermission2("policia.permissao","Polícia Militar - C2") then
 			outServers()
-			exports.tokovoip_script:addPlayerToRadio(189)
+			exports.tokovoip_script:addPlayerToRadio(1001)
 		end
 	elseif data == "rota" then
 		if emP.checkPermission2("policia.permissao","ROTA") then
 			outServers()
-			exports.tokovoip_script:addPlayerToRadio(188)
+			exports.tokovoip_script:addPlayerToRadio(1002)
 		end
 	elseif data == "pcsp" then
 		if emP.checkPermission2("pcivil.permissao","Polícia Civil") then
 			outServers()
-			exports.tokovoip_script:addPlayerToRadio(187)
+			exports.tokovoip_script:addPlayerToRadio(1003)
 		end	
 	elseif data == "prf" then
 		if emP.checkPermission2("policia.permissao","Polícia Rodoviária Federal") then
 			outServers()
-			exports.tokovoip_script:addPlayerToRadio(186)
+			exports.tokovoip_script:addPlayerToRadio(1004)
 		end
 	elseif data == "samu" then
 		if emP.checkPermission2("paramedico.permissao","Hospital (SAMU)") then
 			outServers()
-			exports.tokovoip_script:addPlayerToRadio(192)
+			exports.tokovoip_script:addPlayerToRadio(1005)
 		end
 	elseif data == "bennys" then
 		if emP.checkPermission2("mecanico.permissao","Bennys (Mecânicos)") then
 			outServers()
-			exports.tokovoip_script:addPlayerToRadio(185)
+			exports.tokovoip_script:addPlayerToRadio(1006)
 		end	
 	elseif data == "sportrace" then
 		if emP.checkPermission2("mecanico.permissao","SportRace (Mêcanicos)") then
 			outServers()
-			exports.tokovoip_script:addPlayerToRadio(184)
+			exports.tokovoip_script:addPlayerToRadio(1007)
 		end		
 	elseif data == "verdes" then
 		if emP.checkPermission2("verdes.permissao","Verdes") then
 			outServers()
-			exports.tokovoip_script:addPlayerToRadio(110)
+			exports.tokovoip_script:addPlayerToRadio(1008)
 		end	
 	elseif data == "vermelhos" then
 		if emP.checkPermission2("vermelhos.permissao","Vermelhos") then
 			outServers()
-			exports.tokovoip_script:addPlayerToRadio(120)
+			exports.tokovoip_script:addPlayerToRadio(1009)
 		end	
 	elseif data == "roxos" then
 		if emP.checkPermission2("roxos.permissao","Roxos") then
 			outServers()
-			exports.tokovoip_script:addPlayerToRadio(130)
+			exports.tokovoip_script:addPlayerToRadio(1010)
 		end
 	elseif data == "motoclub" then
 		if emP.checkPermission2("motoclub.permissao","Motoclub") then
 			outServers()
-			exports.tokovoip_script:addPlayerToRadio(140)
+			exports.tokovoip_script:addPlayerToRadio(1011)
 		end		
 	elseif data == "cosanostra" then
 		if emP.checkPermission2("cn.permissao","Cosanostra") then
 			outServers()
-			exports.tokovoip_script:addPlayerToRadio(150)
+			exports.tokovoip_script:addPlayerToRadio(1012)
 		end		
 	elseif data == "yakuza" then
 		if emP.checkPermission2("yakuza.permissao","Yakuza") then
 			outServers()
-			exports.tokovoip_script:addPlayerToRadio(160)
+			exports.tokovoip_script:addPlayerToRadio(1013)
 		end
 	elseif data == "bratva" then
 		if emP.checkPermission2("bratva.permissao","Bratva") then
 			outServers()
-			exports.tokovoip_script:addPlayerToRadio(170)
+			exports.tokovoip_script:addPlayerToRadio(1014)
 		end			
 	elseif data == "taxista" then
 		if emP.checkPermission2("taxista.permissao","Taxistas") then
 			outServers()
-			exports.tokovoip_script:addPlayerToRadio(191)
+			exports.tokovoip_script:addPlayerToRadio(1015)
 		end	
 	elseif data == "desconectar" then
 		outServers()

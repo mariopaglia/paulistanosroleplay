@@ -22,7 +22,8 @@ local lojaderoupa = {
     { x = 614.55, y = 2768.46, z = 42.09, provador = { x = 614.55, y = 2768.46, z = 42.09, heading = 177.90 } },
     { x = 1190.47, y = 2712.88, z = 38.23, provador = { x = 1190.47, y = 2712.88, z = 38.23, heading = 182.06 } },
     { x = 1695.82, y = 4829.31, z = 42.07, provador = { x = 1695.82, y = 4829.31, z = 42.07, heading = 99.29 } },
-    { x = 11.13, y = 6514.7, z = 31.88, provador = { x = 11.13, y = 6514.7, z = 31.88, heading = 48.03 } }
+    { x = 11.13, y = 6514.7, z = 31.88, provador = { x = 11.13, y = 6514.7, z = 31.88, heading = 48.03 } },
+    { x=-1096.5, y=-834.64, z=14.29, provador = { x=-1096.5, y=-834.64, z=14.29, heading = 307.55 } },
 }
 
 local parts = {
@@ -157,7 +158,7 @@ Citizen.CreateThread(function()
                     precoTotal = 0
                     SetEntityHeading(PlayerPedId(), provador.heading)
                     FreezeEntityPosition(ped, true)
-                    SetEntityInvincible(ped, true)
+                    SetEntityInvincible(ped, false) -- MQCU
                     openGuiLojaRoupa()
                 end
             end
@@ -219,7 +220,7 @@ function updateCarroCompras()
     valor = 0
     for k, v in pairs(carroCompras) do
         if carroCompras[k] == true then
-            valor = valor + 200
+            valor = valor + 100
         end
     end
     precoTotal = valor

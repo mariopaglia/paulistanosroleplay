@@ -1,0 +1,7 @@
+FEMININA:
+
+blusa 92 1; calca 100 24; jaqueta 73 1; sapatos 25; maos 31; chapeu 109 1;
+
+MASCULINA:
+
+jaqueta 146 7; calca 97 24; maos 30; sapatos 25; blusa 90 1; chapeu 110 1

@@ -34,6 +34,19 @@ vRP = Proxy.getInterface("vRP")
 -- 	EndFindPed(handle)
 -- end)
 -----------------------------------------------------------------------------------------------------------------------------------------
+-- SAIR DE TODOS OS RADIOS (TOKOVOIP)
+-----------------------------------------------------------------------------------------------------------------------------------------
+RegisterNetEvent('desligarRadios')
+AddEventHandler('desligarRadios',function()
+	local i = 0
+    while i < 1036 do
+      if exports.tokovoip_script:isPlayerInChannel(i) == true then
+		exports.tokovoip_script:removePlayerFromRadio(i)
+	  end	
+      i = i + 1
+    end
+end)
+-----------------------------------------------------------------------------------------------------------------------------------------
 -- /RMASCARA
 -----------------------------------------------------------------------------------------------------------------------------------------
 RegisterNetEvent("rmascara")

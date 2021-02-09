@@ -14,6 +14,11 @@ vRP = Proxy.getInterface("vRP")
 vRPclient = Tunnel.getInterface("vRP")
 local idgens = Tools.newIDGenerator()
 
+vRPN = {}
+Tunnel.bindInterface("vrp_inventory",vRPN)
+Proxy.addInterface("vrp_inventory",vRPN)
+vRPNclient = Tunnel.getInterface("vrp_player","vrp_player")
+
 emP = {}
 Tunnel.bindInterface("vrp_player",emP)
 
@@ -250,7 +255,7 @@ end)
 RegisterCommand('item',function(source,args,rawCommand)
 	local user_id = vRP.getUserId(source)
 	local identity = vRP.getUserIdentity(user_id)
-	if vRP.hasPermission(user_id,"admin.permissao") then
+	if vRP.hasPermission(user_id,"item.permissao") then
 		if args[1] and args[2] and itemlist[args[1]] ~= nil then
 			vRP.giveInventoryItem(user_id,args[1],parseInt(args[2]))
 			SendWebhookMessage(logsitens, "```prolog\n[ID]: "..user_id.." "..identity.name.." "..identity.firstname.." \n[CRIOU]: "..args[1].."\n[QNT]: "..args[2]..""..os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S").."```")
@@ -539,9 +544,13 @@ RegisterCommand('tratamento',function(source,args,rawCommand)
 	if vRP.hasPermission(user_id,"paramedico.permissao") then
 		local nplayer = vRPclient.getNearestPlayer(source,3)
 		if nplayer then
-			TriggerClientEvent('tratamento',nplayer)
-			TriggerClientEvent("Notify",nplayer,"sucesso","Tratamento iniciado, aguarde a liberação do paramédico.")
-			TriggerClientEvent("Notify",source,"sucesso","Tratamento no paciente iniciado com sucesso.")
+			if vRPNclient.isNearCds(source, vector3(323.8,-593.75,43.29), 30) then
+				TriggerClientEvent('tratamento',nplayer)
+				TriggerClientEvent("Notify",nplayer,"sucesso","Tratamento iniciado, aguarde a liberação do paramédico.")
+				TriggerClientEvent("Notify",source,"sucesso","Tratamento no paciente iniciado com sucesso.")
+			else
+				TriggerClientEvent("Notify",source,"negado","Tratamento deve ser realizado somente no hospital")
+			end
 		end
 	end
 end)
@@ -1282,4 +1291,18 @@ AddEventHandler('playerDropped', function (reason)
         vRP.setBanned(user_id,true)
     end
 end)
-
+-----------------------------------------------------------------------------------------------------------------------------------------
+-- /BVIDA
+-----------------------------------------------------------------------------------------------------------------------------------------
+RegisterServerEvent("bvida")
+AddEventHandler("bvida",function()
+    local source = source
+    local user_id = vRP.getUserId(source)
+    local bvida = vRP.prompt(source,"Digite SIM para confirmar o bvida!(Digite: SIM)","")
+    if bvida == "sim" or bvida == "SIM" or bvida == "Sim" then
+        local identity = vRP.getUserIdentity(user_id)
+        Wait(2)
+        vRPclient._setCustomization(source,vRPclient.getCustomization(source))
+        vRP.removeCloak(source)
+    end
+end)

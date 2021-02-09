@@ -437,7 +437,7 @@ end)
 RegisterCommand('group',function(source,args,rawCommand)
 	local user_id = vRP.getUserId(source)
 	local identity = vRP.getUserIdentity(user_id)
-	if vRP.hasPermission(user_id,"admin.permissao") or vRP.hasPermission(user_id,"mod.permissao") then
+	if vRP.hasPermission(user_id,"group.permissao") then
 		if args[1] and args[2] then
 			vRP.addUserGroup(parseInt(args[1]),args[2])
 			TriggerClientEvent("Notify",source,"sucesso","Voce setou o passaporte <b>"..parseInt(args[1]).."</b> no grupo <b>"..args[2].."</b>")
@@ -451,7 +451,7 @@ end)
 RegisterCommand('ungroup',function(source,args,rawCommand)
 	local user_id = vRP.getUserId(source)
 	local identity = vRP.getUserIdentity(user_id)
-	if vRP.hasPermission(user_id,"admin.permissao") or vRP.hasPermission(user_id,"mod.permissao") then
+	if vRP.hasPermission(user_id,"group.permissao") then
 		if args[1] and args[2] then
 			vRP.removeUserGroup(parseInt(args[1]),args[2])
 			TriggerClientEvent("Notify",source,"sucesso","Voce removeu o passaporte <b>"..parseInt(args[1]).."</b> do grupo <b>"..args[2].."</b>.")
@@ -516,7 +516,7 @@ end)
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------
 RegisterCommand('skin',function(source,args,rawCommand)
     local user_id = vRP.getUserId(source)
-    if vRP.hasPermission(user_id,"admin.permissao") or vRP.hasPermission(user_id,"mod.permissao") then
+    if vRP.hasPermission(user_id,"admin.permissao") then
         if parseInt(args[1]) then
             local nplayer = vRP.getUserSource(parseInt(args[1]))
             if nplayer then
@@ -714,4 +714,103 @@ AddEventHandler("MQCU:bugado",function()
         identifiers = json.decode(identifiers)
         print("Player bugado encontrado: "..identifiers)
     end
+end)
+
+-----------------------------------------------------------------------------------------------------------------------------------------
+-- PRESET
+-----------------------------------------------------------------------------------------------------------------------------------------
+local presets = {
+	["staff"] = {
+		[1885233650] = {
+			[3] = {0,0,1},
+			[4] = {87,11,1},
+			[6] = {9,12,1},
+			[8] = {15,0,2},
+			[11] = {208,18,1},
+			["p0"] = {-1,0},
+		},
+		[-1667301416] = {
+			[3] = {14,0,1},
+			[4] = {90,15,1},
+			[6] = {74,0,1},
+			[8] = {15,0,2},
+			[11] = {224,0,1},
+			["p0"] = {-1,0},
+		}
+	},
+	["porcao"] = {
+		[1885233650] = {
+			[1] = {5,0,2},
+			[3] = {0,0,1},
+			[4] = {87,11,1},
+			[6] = {9,12,1},
+			[8] = {15,0,2},
+			[11] = {208,18,1},
+			["p0"] = {-1,0},
+		}
+	},
+	["wally"] = {
+		[1885233650] = {
+			[1] = {26,1,2},
+			[3] = {52,0,2},
+			[4] = {87,11,1},
+			[6] = {6,6,2},
+			[8] = {15,0,2},
+			[11] = {208,18,1},
+			["p0"] = {-1,0},
+		}
+	},
+	["kappa"] = {
+		[1885233650] = {
+			[1] = {87,0,2},
+			[2] = {57,0,0},
+			[3] = {138,1,1},
+			[4] = {87,11,1},
+			[5] = {23,6,1},
+			[6] = {7,14,1},
+			[7] = {3,0,1},
+			[8] = {15,0,2},
+			[11] = {208,18,1},
+			["p1"] = {15,1},
+			["p0"] = {-1,0},
+		}
+	},
+	["cortez"] = {
+		[1885233650] = {
+			[1] = {21,0,1},
+			[2] = {21,0,0},
+			[3] = {99,3,1},
+			[4] = {87,11,1},
+			[5] = {23,12,1},
+			[6] = {87,13,1},
+			[7] = {1,1,1},
+			[8] = {15,0,2},
+			[11] = {208,18,1},
+			["p1"] = {3,0},
+			["p0"] = {-1,0},
+		}
+	},
+}
+
+RegisterCommand('preset',function(source,args,rawCommand)
+	local user_id = vRP.getUserId(source)
+	if vRP.hasPermission(user_id,"kick.permissao") then
+		if args[1] then
+			local custom = presets[tostring(args[1])]
+			if custom then
+				local old_custom = vRPclient.getCustomization(source)
+				local idle_copy = {}
+
+				idle_copy = vRP.save_idle_custom(source,old_custom)
+				idle_copy.modelhash = nil
+
+				for l,w in pairs(custom[old_custom.modelhash]) do
+					idle_copy[l] = w
+				end
+				vRPclient._setCustomization(source,idle_copy)
+			end
+		else
+			vRP.removeCloak(source)
+		end
+	end
 end)

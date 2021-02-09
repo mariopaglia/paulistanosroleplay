@@ -17,11 +17,11 @@
 local targetPed;
 local useLocalPed = true;
 local isRunning = false;
-local scriptVersion = "1.3.4";
+local scriptVersion = "1.3.5";
 local animStates = {}
 local displayingPluginScreen = false;
 local HeadBone = 0x796e;
-local muteme = false
+local dead = false
 
 --------------------------------------------------------------------------------
 --	Plugin functions
@@ -82,6 +82,7 @@ local function clientProcessing()
 	for i=1, #playerList do
 		local player = playerList[i];
 		local playerServerId = GetPlayerServerId(player);
+
 		if (GetPlayerPed(player) and voip.serverId ~= playerServerId) then
 			local playerPos = GetPedBoneCoords(GetPlayerPed(player), HeadBone);
 			local dist = #(localPos - playerPos);
@@ -92,7 +93,7 @@ local function clientProcessing()
 
 			--	Process the volume for proximity voip
 			local mode = tonumber(getPlayerData(playerServerId, "voip:mode"));
-			if (not mode or (mode ~= 1 and mode ~= 2 and mode ~= 3)) then mode = 1 end;
+			if (not mode or (mode ~= 1 and mode ~= 2 and mode ~= 3 and mode ~= 4)) then mode = 1 end;
 			local volume = -30 + (30 - dist / voip.distance[mode] * 30);
 			if (volume >= 0) then
 				volume = 0;
@@ -113,46 +114,99 @@ local function clientProcessing()
 			--
 
 			-- Process proximity
-			if not muteme then
-				if (dist >= voip.distance[mode]) then
-					tbl.muted = 1;
-				else
-					tbl.volume = volume;
-					tbl.muted = 0;
-				end
+			tbl.forceUnmuted = 0
+			if (dist >= voip.distance[mode]) then
+				tbl.muted = 1;
+			else
+				tbl.volume = volume;
+				tbl.muted = 0;
+				tbl.forceUnmuted = 1
 			end
-			--
-			-- Process channels
-			local remotePlayerUsingRadio = getPlayerData(playerServerId, "radio:talking");
-			local remotePlayerChannel = getPlayerData(playerServerId, "radio:channel");
 
-			for _, channel in pairs(voip.myChannels) do
-				if (channel.subscribers[voip.serverId] and channel.subscribers[playerServerId] and voip.myChannels[remotePlayerChannel] and remotePlayerUsingRadio) then
-					if (remotePlayerChannel <= 1034) then
-						tbl.radioEffect = true;
-					end
-					tbl.volume = 0;
-					tbl.muted = 0;
-					tbl.posX = 0;
-					tbl.posY = 0;
-					tbl.posZ = voip.plugin_data.enableStereoAudio and localPos.z or 0;
+			local ped = PlayerPedId()
+			local health = GetEntityHealth(ped) 
+
+			-- If player is Dead Mute phone and trigger event to c_TokoVoip
+			-- to change user to channel 4 where don't have audio in mic
+			if health <= 101 then
+				tbl.volume = 0;
+				tbl.muted = 1;
+				tbl.forceUnmuted = 0
+				TriggerEvent("playerDead");
+				--TriggerServerEvent("TokoVoip:removePlayerFromAllRadio", playerServerId)
+				dead = true
+			else
+				-- Player Live again and change voice to mode 1 in c_TokoVoip
+				if dead then
+					TriggerEvent("playerLive");
+					dead = false
 				end
 			end
-			--
+
 			usersdata[#usersdata + 1] = tbl
 			setPlayerTalkingState(player, playerServerId);
 		end
 	end
+	
+	-- Process channels
+	for _, channel in pairs(voip.myChannels) do
+		for _, subscriber in pairs(channel.subscribers) do
+			if (subscriber ~= voip.serverId) then
+				local remotePlayerUsingRadio = getPlayerData(subscriber, "radio:talking");
+				local remotePlayerChannel = getPlayerData(subscriber, "radio:channel");
+					local remotePlayerUuid = getPlayerData(subscriber, "voip:pluginUUID");
+
+					local founduserData = nil
+					for k, v in pairs(usersdata) do
+						if(v.uuid == remotePlayerUuid) then
+							founduserData = v
+						end
+					end
+
+					if not founduserData then
+						founduserData = {
+							uuid = getPlayerData(subscriber, "voip:pluginUUID"),
+							radioEffect = false,
+							resave = true,
+							volume = 0,
+							muted = 1
+						}
+					end
+
+
+					if (remotePlayerChannel <= voip.config.radioClickMaxChannel) then
+						founduserData.radioEffect = true;
+					end
+
+					if(not remotePlayerUsingRadio or remotePlayerChannel ~= channel.id) then
+						founduserData.radioEffect = false;
+						founduserData.posX = 0;
+						founduserData.posY = 0;
+						founduserData.posZ = voip.plugin_data.enableStereoAudio and localPos.z or 0;
+						-- setPlayerTalkingState(player, playerServerId);
+						if not founduserData.forceUnmuted then
+							founduserData.muted = true;
+						end
+					else
+						founduserData.muted = false
+						founduserData.volume = 0;
+						founduserData.posX = 0;
+						founduserData.posY = 0;
+						founduserData.posZ = voip.plugin_data.enableStereoAudio and localPos.z or 0;
+				 	end
+					if(founduserData.resave) then
+						usersdata[#usersdata + 1] = founduserData
+					end
+				end
+		end
+	end
+
 	voip.plugin_data.Users = usersdata; -- Update TokoVoip's data
 	voip.plugin_data.posX = 0;
 	voip.plugin_data.posY = 0;
 	voip.plugin_data.posZ = voip.plugin_data.enableStereoAudio and localPos.z or 0;
 end
 
-RegisterNetEvent("tokovoip:toggleMute")
-AddEventHandler("tokovoip:toggleMute", function(status)
-	muteme = status
-end)
 RegisterNetEvent("initializeVoip");
 AddEventHandler("initializeVoip", function()
 	if (isRunning) then return Citizen.Trace("TokoVOIP is already running\n"); end
@@ -165,7 +219,7 @@ AddEventHandler("initializeVoip", function()
 	voip.plugin_data.radioTalking = false;
 	voip.plugin_data.radioChannel = -1;
 	voip.plugin_data.localRadioClicks = false;
-	voip.mode = 2;
+	voip.mode = 1;
 	voip.talking = false;
 	voip.pluginStatus = -1;
 	voip.pluginVersion = "0";
@@ -202,8 +256,8 @@ AddEventHandler("initializeVoip", function()
 		while true do
 			Wait(5)
 
-			if (IsControlPressed(0, 83)) then
-				if (IsControlJustPressed(1, 163) or IsDisabledControlJustPressed(1, 163)) then
+			if (IsControlPressed(0, Keys["LEFTSHIFT"])) then
+				if (IsControlJustPressed(1, Keys["9"]) or IsDisabledControlJustPressed(1, Keys["9"])) then
 					debugData = not debugData;
 				end
 			end
@@ -251,6 +305,21 @@ function removePlayerFromRadio(channel)
 end
 RegisterNetEvent("TokoVoip:removePlayerFromRadio");
 AddEventHandler("TokoVoip:removePlayerFromRadio", removePlayerFromRadio);
+
+function removePlayerFromAllRadio()
+    TriggerServerEvent("TokoVoip:removePlayerFromAllRadio", voip.serverId);
+end
+
+RegisterNetEvent("TokoVoip:removePlayerFromAllRadio");
+AddEventHandler("TokoVoip:removePlayerFromAllRadio", removePlayerFromAllRadio);
+
+
+function removeAllPlayerFromRadio(channelId)
+    TriggerServerEvent("TokoVoip:removeAllPlayerFromRadio", channelId);
+end
+
+RegisterNetEvent("TokoVoip:removeAllPlayerFromRadio");
+AddEventHandler("TokoVoip:removeAllPlayerFromRadio", removeAllPlayerFromRadio);
 
 RegisterNetEvent("TokoVoip:onPlayerLeaveChannel");
 AddEventHandler("TokoVoip:onPlayerLeaveChannel", function(channelId, playerServerId)
@@ -329,3 +398,9 @@ AddEventHandler("updateVoipTargetPed", function(newTargetPed, useLocal)
 	targetPed = newTargetPed
 	useLocalPed = useLocal
 end)
+
+-- Make exports available on first tick
+exports("addPlayerToRadio", addPlayerToRadio);
+exports("removePlayerFromRadio", removePlayerFromRadio);
+exports("isPlayerInChannel", isPlayerInChannel);
+exports("removeAllPlayerFromRadio", removeAllPlayerFromRadio)

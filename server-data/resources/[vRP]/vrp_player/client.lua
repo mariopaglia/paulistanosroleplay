@@ -1,6 +1,8 @@
 local Tunnel = module("vrp", "lib/Tunnel")
 local Proxy = module("vrp", "lib/Proxy")
 vRP = Proxy.getInterface("vRP")
+vRPNclient = {}
+Tunnel.bindInterface("vrp_player",vRPNclient)
 
 emP = Tunnel.getInterface("vrp_player")
 -----------------------------------------------------------------------------------------------------------------------------------------
@@ -398,17 +400,21 @@ Citizen.CreateThread(function()
 	while true do
 		N_0x4757f00bc6323cfe(GetHashKey("WEAPON_SNOWBALL"), 0.00)
 		Wait(0)
-		N_0x4757f00bc6323cfe(GetHashKey("WEAPON_SMOKEGRENADE"), 0.01)
+		N_0x4757f00bc6323cfe(GetHashKey("WEAPON_SMOKEGRENADE"), 0.00)
 		Wait(0)
-		N_0x4757f00bc6323cfe(GetHashKey("WEAPON_RAYPISTOL"), 0.01)
+		N_0x4757f00bc6323cfe(GetHashKey("WEAPON_RAYPISTOL"), 0.00)
 		Wait(0)
-		N_0x4757f00bc6323cfe(GetHashKey("WEAPON_MOLOTOV"), 0.01)
+		N_0x4757f00bc6323cfe(GetHashKey("WEAPON_MOLOTOV"), 0.00)
 		Wait(0)
 		N_0x4757f00bc6323cfe(GetHashKey("WEAPON_BZGAS"), 0.20)
 		Wait(0)
 	    N_0x4757f00bc6323cfe(GetHashKey("WEAPON_UNARMED"), 0.2) 
     	Wait(0)
-    	N_0x4757f00bc6323cfe(GetHashKey("WEAPON_NIGHTSTICK"), 0.2) 
+    	N_0x4757f00bc6323cfe(GetHashKey("WEAPON_NIGHTSTICK"), 0.0) -- Cassetete
+    	Wait(0)
+    	N_0x4757f00bc6323cfe(GetHashKey("WEAPON_FLASHLIGHT"), 0.0) -- Lanterna
+    	Wait(0)
+    	N_0x4757f00bc6323cfe(GetHashKey("WEAPON_STUNGUN"), 0.0) -- Tazer
     	Wait(0)
 		N_0x4757f00bc6323cfe(GetHashKey("WEAPON_PUMPSHOTGUN_MK2"), 0.0) 
     	Wait(0)
@@ -1055,6 +1061,7 @@ RegisterCommand(
 	function(source, args)
 		local vehicle = GetPlayersLastVehicle()
 		local vehicletow = IsVehicleModel(vehicle, GetHashKey("flatbed"))
+		local vehicletow = IsVehicleModel(vehicle, GetHashKey("flatbed3"))
 
 		if vehicletow and not IsPedInAnyVehicle(PlayerPedId()) then
 			rebocado =
@@ -1837,46 +1844,22 @@ Citizen.CreateThread(function()
 		end
 	end
 end)
-
 -----------------------------------------------------------------------------------------------------------------------------------------
--- DRIFT
+-- /BVIDA
 -----------------------------------------------------------------------------------------------------------------------------------------
-local kmh = 3.6
-local mph = 2.23693629
-local carspeed = 0
--- Editável
-local driftmode = true -- on/off speed
-local speed = kmh -- or mph
-local drift_speed_limit = 100.0 
-local toggle = 118 -- Numpad 9
-
-Citizen.CreateThread(function()
-	while true do
-		Citizen.Wait(1)
-		-- if IsControlJustPressed(1, 118) then
-		-- 	driftmode = not driftmode
-		-- 	if driftmode then
-		-- 		TriggerEvent("chatMessage", 'DRIFT', { 255,255,255}, '^2ON')
-		-- 	else
-		-- 		TriggerEvent("chatMessage", 'DRIFT', { 255,255,255}, '^1OFF')
-		-- 	end
-		-- end
-		if driftmode then
-			if IsPedInAnyVehicle(GetPed(), false) then
-				CarSpeed = GetEntitySpeed(GetCar()) * speed
-				if GetPedInVehicleSeat(GetCar(), -1) == GetPed() then
-					if CarSpeed <= drift_speed_limit then
-						if IsControlPressed(1, 21) then
-							SetVehicleReduceGrip(GetCar(), true)
-						else
-							SetVehicleReduceGrip(GetCar(), false)
-						end
-					end
-				end
-			end
-		end
-	end
+RegisterCommand('bvida', function(source, args, rawCommand)
+    local ped = PlayerPedId()
+    if not IsEntityPlayingAnim(ped, "anim@heists@ornate_bank@grab_cash_heels","grab", 3)  then
+        if not IsEntityPlayingAnim(ped, "oddjobs@shop_robbery@rob_till","loop", 3) then
+            if not IsEntityPlayingAnim(ped, "amb@world_human_sunbathe@female@back@idle_a","idle_a", 3) then
+                TriggerServerEvent('bvida')
+            end
+        end
+    end
 end)
-
-function GetPed() return GetPlayerPed(-1) end
-function GetCar() return GetVehiclePedIsIn(GetPlayerPed(-1),false) end
+-----------------------------------------------------------------------------------------------------------------------------------------
+-- FUNÇÃO PARA CHECAR DISTANCIA
+-----------------------------------------------------------------------------------------------------------------------------------------
+function vRPNclient.isNearCds(cds, dist)
+	return GetDistanceBetweenCoords(GetEntityCoords(PlayerPedId()), cds) <= dist
+end

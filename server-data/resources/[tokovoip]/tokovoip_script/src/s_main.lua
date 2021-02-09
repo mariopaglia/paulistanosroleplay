@@ -18,14 +18,14 @@ local channels = TokoVoipConfig.channels;
 
 function addPlayerToRadio(channelId, playerServerId)
 	if (not channels[channelId]) then
-		channels[channelId] = {id = channelId, name = "Call with " .. channelId, subscribers = {}};
+		channels[channelId] = {id = channelId, name = "In Call", subscribers = {}};
 	end
 	if (not channels[channelId].id) then
 		channels[channelId].id = channelId;
 	end
 
 	channels[channelId].subscribers[playerServerId] = playerServerId;
-	-- print("Added [" .. playerServerId .. "] " .. (GetPlayerName(playerServerId) or "") .. " to channel " .. channelId);
+	print("Added [" .. playerServerId .. "] " .. (GetPlayerName(playerServerId) or "") .. " to channel " .. channelId);
 	--SendWebhookMessage(webhookradio,"```css\n[ID]: " .. playerServerId .. " "..GetPlayerName(playerServerId).." \n[Entrou na Frequência]: "..channelId.." \nData: "..Time.dia.."/"..Time.mes.." Hora: "..Time.hora..":"..Time.min.." \r```")
 	
 
@@ -49,7 +49,7 @@ function removePlayerFromRadio(channelId, playerServerId)
 				channels[channelId] = nil;
 			end
 		end
-		-- print("Removed [" .. playerServerId .. "] " .. (GetPlayerName(playerServerId) or "") .. " from channel " .. channelId);
+		print("Removed [" .. playerServerId .. "] " .. (GetPlayerName(playerServerId) or "") .. " from channel " .. channelId);
 		--SendWebhookMessage(webhookradio,"```css\n[ID]: " .. playerServerId .. " "..GetPlayerName(playerServerId).." \n[Removido da Frequência]: "..channelId.." \nData: "..Time.dia.."/"..Time.mes.." Hora: "..Time.hora..":"..Time.min.." \r```")
 
 		-- Tell unsubscribed player he's left the channel as well
@@ -73,8 +73,24 @@ function removePlayerFromAllRadio(playerServerId)
 		end
 	end
 end
+
 RegisterServerEvent("TokoVoip:removePlayerFromAllRadio");
 AddEventHandler("TokoVoip:removePlayerFromAllRadio", removePlayerFromAllRadio);
+
+function removeAllPlayerFromRadio(channelIdPlayers)
+	print(channelIdPlayers)
+	print('channelId')
+	for channelId, channel in pairs(channels) do
+		if (channelId == channelIdPlayers) then
+			for playerServerId, subs in pairs(channel.subscribers) do
+				removePlayerFromRadio(channelIdPlayers, playerServerId);
+			end
+		end
+	end
+end
+
+RegisterServerEvent("TokoVoip:removeAllPlayerFromRadio");
+AddEventHandler("TokoVoip:removeAllPlayerFromRadio", removeAllPlayerFromRadio);
 
 AddEventHandler("playerDropped", function()
 	removePlayerFromAllRadio(source);

@@ -69,21 +69,21 @@ end)
 -- GARAGES
 -----------------------------------------------------------------------------------------------------------------------------------------
 local garages = {
-	[1] = { ['name'] = "Garagem", ['payment'] = false, ['public'] = true },
-	[2] = { ['name'] = "Garagem", ['payment'] = false, ['public'] = true },
-	[3] = { ['name'] = "Garagem", ['payment'] = false, ['public'] = true },
-	[4] = { ['name'] = "Garagem", ['payment'] = false, ['public'] = true },
-	[5] = { ['name'] = "Garagem", ['payment'] = false, ['public'] = true },
-	[6] = { ['name'] = "Garagem", ['payment'] = false, ['public'] = true },
-	[7] = { ['name'] = "Garagem", ['payment'] = false, ['public'] = true },
-	[8] = { ['name'] = "Garagem", ['payment'] = false, ['public'] = true },
-	[9] = { ['name'] = "Garagem", ['payment'] = false, ['public'] = true },
-	[10] = { ['name'] = "Garagem", ['payment'] = false, ['public'] = true },
-	[11] = { ['name'] = "Garagem", ['payment'] = false, ['public'] = true },
-	[12] = { ['name'] = "Garagem", ['payment'] = false, ['public'] = true },
-	[13] = { ['name'] = "Garagem", ['payment'] = false, ['public'] = true },
-	[14] = { ['name'] = "Garagem", ['payment'] = false, ['public'] = true },
-	[15] = { ['name'] = "Garagem", ['payment'] = false, ['public'] = true },
+	[1] = { ['name'] = "Garagem", ['payment'] = true, ['public'] = true },
+	[2] = { ['name'] = "Garagem", ['payment'] = true, ['public'] = true },
+	[3] = { ['name'] = "Garagem", ['payment'] = true, ['public'] = true },
+	[4] = { ['name'] = "Garagem", ['payment'] = true, ['public'] = true },
+	[5] = { ['name'] = "Garagem", ['payment'] = true, ['public'] = true },
+	[6] = { ['name'] = "Garagem", ['payment'] = true, ['public'] = true },
+	[7] = { ['name'] = "Garagem", ['payment'] = true, ['public'] = true },
+	[8] = { ['name'] = "Garagem", ['payment'] = true, ['public'] = true },
+	[9] = { ['name'] = "Garagem", ['payment'] = true, ['public'] = true },
+	[10] = { ['name'] = "Garagem", ['payment'] = true, ['public'] = true },
+	[11] = { ['name'] = "Garagem", ['payment'] = true, ['public'] = true },
+	[12] = { ['name'] = "Garagem", ['payment'] = true, ['public'] = true },
+	[13] = { ['name'] = "Garagem", ['payment'] = true, ['public'] = true },
+	[14] = { ['name'] = "Garagem", ['payment'] = true, ['public'] = true },
+	[15] = { ['name'] = "Garagem", ['payment'] = true, ['public'] = true },
 
 	[23] = { ['name'] = "Paramedico", ['payment'] = false, ['perm'] = "paramedico.permissao" },
 	[26] = { ['name'] = "ParamedicoH", ['payment'] = false, ['perm'] = "paramedico.permissao" },
@@ -106,7 +106,7 @@ local garages = {
 	[45] = { ['name'] = "WeazelH", ['payment'] = false, ['perm'] = "weazel.permissao" },
 
 
-	[53] = { ['name'] = "HeliPC", ['payment'] = true, ['perm'] = "pcivil.permissao" },
+	[53] = { ['name'] = "HeliPC", ['payment'] = false, ['perm'] = "pcivil.permissao" },
 	[52] = { ['name'] = "Bicicletario", ['payment'] = false, ['perm'] = "livre" },
 	[54] = { ['name'] = "Bicicletario", ['payment'] = false, ['perm'] = "livre" },
 	[55] = { ['name'] = "Concessionaria", ['payment'] = false, ['public'] = true },
@@ -118,315 +118,315 @@ local garages = {
 -----------------------------------------------------------------------------------------------------------------------------------------
 ---------------------------------------------------------FORTHILLS-----------------------------------------------------------------------
 -----------------------------------------------------------------------------------------------------------------------------------------
-	[145] = { ['name'] = "FH01", ['payment'] = false, ['public'] = false },
-	[148] = { ['name'] = "FH04", ['payment'] = false, ['public'] = false },
-	[155] = { ['name'] = "FH11", ['payment'] = false, ['public'] = false },
-	[159] = { ['name'] = "FH15", ['payment'] = false, ['public'] = false },
-	[163] = { ['name'] = "FH19", ['payment'] = false, ['public'] = false },
-	[167] = { ['name'] = "FH23", ['payment'] = false, ['public'] = false },
-	[168] = { ['name'] = "FH24", ['payment'] = false, ['public'] = false },
-	[170] = { ['name'] = "FH26", ['payment'] = false, ['public'] = false },
-	[173] = { ['name'] = "FH29", ['payment'] = false, ['public'] = false },
-	[175] = { ['name'] = "FH31", ['payment'] = false, ['public'] = false },
-	[176] = { ['name'] = "FH32", ['payment'] = false, ['public'] = false },
-	[189] = { ['name'] = "FH45", ['payment'] = false, ['public'] = false },
-	[192] = { ['name'] = "FH48", ['payment'] = false, ['public'] = false },
-	[193] = { ['name'] = "FH49", ['payment'] = false, ['public'] = false },
-	[196] = { ['name'] = "FH52", ['payment'] = false, ['public'] = false },
-	[198] = { ['name'] = "FH54", ['payment'] = false, ['public'] = false },
-	[199] = { ['name'] = "FH55", ['payment'] = false, ['public'] = false },
-	[202] = { ['name'] = "FH58", ['payment'] = false, ['public'] = false },
-	[203] = { ['name'] = "FH59", ['payment'] = false, ['public'] = false },
-	[212] = { ['name'] = "FH68", ['payment'] = false, ['public'] = false },
-	[225] = { ['name'] = "FH81", ['payment'] = false, ['public'] = false },
-	[235] = { ['name'] = "FH91", ['payment'] = false, ['public'] = false },
-	[236] = { ['name'] = "FH92", ['payment'] = false, ['public'] = false },
-	[237] = { ['name'] = "FH93", ['payment'] = false, ['public'] = false },
-	[238] = { ['name'] = "FH94", ['payment'] = false, ['public'] = false },
+	[145] = { ['name'] = "FH01", ['payment'] = true, ['public'] = false },
+	[148] = { ['name'] = "FH04", ['payment'] = true, ['public'] = false },
+	[155] = { ['name'] = "FH11", ['payment'] = true, ['public'] = false },
+	[159] = { ['name'] = "FH15", ['payment'] = true, ['public'] = false },
+	[163] = { ['name'] = "FH19", ['payment'] = true, ['public'] = false },
+	[167] = { ['name'] = "FH23", ['payment'] = true, ['public'] = false },
+	[168] = { ['name'] = "FH24", ['payment'] = true, ['public'] = false },
+	[170] = { ['name'] = "FH26", ['payment'] = true, ['public'] = false },
+	[173] = { ['name'] = "FH29", ['payment'] = true, ['public'] = false },
+	[175] = { ['name'] = "FH31", ['payment'] = true, ['public'] = false },
+	[176] = { ['name'] = "FH32", ['payment'] = true, ['public'] = false },
+	[189] = { ['name'] = "FH45", ['payment'] = true, ['public'] = false },
+	[192] = { ['name'] = "FH48", ['payment'] = true, ['public'] = false },
+	[193] = { ['name'] = "FH49", ['payment'] = true, ['public'] = false },
+	[196] = { ['name'] = "FH52", ['payment'] = true, ['public'] = false },
+	[198] = { ['name'] = "FH54", ['payment'] = true, ['public'] = false },
+	[199] = { ['name'] = "FH55", ['payment'] = true, ['public'] = false },
+	[202] = { ['name'] = "FH58", ['payment'] = true, ['public'] = false },
+	[203] = { ['name'] = "FH59", ['payment'] = true, ['public'] = false },
+	[212] = { ['name'] = "FH68", ['payment'] = true, ['public'] = false },
+	[225] = { ['name'] = "FH81", ['payment'] = true, ['public'] = false },
+	[235] = { ['name'] = "FH91", ['payment'] = true, ['public'] = false },
+	[236] = { ['name'] = "FH92", ['payment'] = true, ['public'] = false },
+	[237] = { ['name'] = "FH93", ['payment'] = true, ['public'] = false },
+	[238] = { ['name'] = "FH94", ['payment'] = true, ['public'] = false },
 -----------------------------------------------------------------------------------------------------------------------------------------
 ---------------------------------------------------------LUXURY--------------------------------------------------------------------------
 -----------------------------------------------------------------------------------------------------------------------------------------
-	[245] = { ['name'] = "LX01", ['payment'] = false, ['public'] = false },
-	[246] = { ['name'] = "LX02", ['payment'] = false, ['public'] = false },
-	[247] = { ['name'] = "LX03", ['payment'] = false, ['public'] = false },
-	[248] = { ['name'] = "LX04", ['payment'] = false, ['public'] = false },
-	[249] = { ['name'] = "LX05", ['payment'] = false, ['public'] = false },
-	[250] = { ['name'] = "LX06", ['payment'] = false, ['public'] = false },
-	[251] = { ['name'] = "LX07", ['payment'] = false, ['public'] = false },
-	[252] = { ['name'] = "LX08", ['payment'] = false, ['public'] = false },
-	[253] = { ['name'] = "LX09", ['payment'] = false, ['public'] = false },
-	[254] = { ['name'] = "LX10", ['payment'] = false, ['public'] = false },
-	[255] = { ['name'] = "LX11", ['payment'] = false, ['public'] = false },
-	[256] = { ['name'] = "LX12", ['payment'] = false, ['public'] = false },
-	[257] = { ['name'] = "LX13", ['payment'] = false, ['public'] = false },
-	[258] = { ['name'] = "LX14", ['payment'] = false, ['public'] = false },
-	[259] = { ['name'] = "LX15", ['payment'] = false, ['public'] = false },
-	[260] = { ['name'] = "LX16", ['payment'] = false, ['public'] = false },
-	[261] = { ['name'] = "LX17", ['payment'] = false, ['public'] = false },
-	[262] = { ['name'] = "LX18", ['payment'] = false, ['public'] = false },
-	[263] = { ['name'] = "LX19", ['payment'] = false, ['public'] = false },
-	[264] = { ['name'] = "LX20", ['payment'] = false, ['public'] = false },
-	[265] = { ['name'] = "LX21", ['payment'] = false, ['public'] = false },
-	[266] = { ['name'] = "LX22", ['payment'] = false, ['public'] = false },
-	[267] = { ['name'] = "LX23", ['payment'] = false, ['public'] = false },
-	[268] = { ['name'] = "LX24", ['payment'] = false, ['public'] = false },
-	[269] = { ['name'] = "LX25", ['payment'] = false, ['public'] = false },
-	[270] = { ['name'] = "LX26", ['payment'] = false, ['public'] = false },
-	[271] = { ['name'] = "LX27", ['payment'] = false, ['public'] = false },
-	[272] = { ['name'] = "LX28", ['payment'] = false, ['public'] = false },
-	[273] = { ['name'] = "LX29", ['payment'] = false, ['public'] = false },
-	[276] = { ['name'] = "LX32", ['payment'] = false, ['public'] = false },
-	[278] = { ['name'] = "LX34", ['payment'] = false, ['public'] = false },
-	[279] = { ['name'] = "LX35", ['payment'] = false, ['public'] = false },
-	[280] = { ['name'] = "LX36", ['payment'] = false, ['public'] = false },
-	[281] = { ['name'] = "LX37", ['payment'] = false, ['public'] = false },
-	[282] = { ['name'] = "LX38", ['payment'] = false, ['public'] = false },
-	[283] = { ['name'] = "LX39", ['payment'] = false, ['public'] = false },
-	[284] = { ['name'] = "LX40", ['payment'] = false, ['public'] = false },
-	[285] = { ['name'] = "LX41", ['payment'] = false, ['public'] = false },
-	[286] = { ['name'] = "LX42", ['payment'] = false, ['public'] = false },
-	[287] = { ['name'] = "LX43", ['payment'] = false, ['public'] = false },
-	[288] = { ['name'] = "LX44", ['payment'] = false, ['public'] = false },
-	[289] = { ['name'] = "LX45", ['payment'] = false, ['public'] = false },
-	[290] = { ['name'] = "LX46", ['payment'] = false, ['public'] = false },
-	[291] = { ['name'] = "LX47", ['payment'] = false, ['public'] = false },
-	[292] = { ['name'] = "LX48", ['payment'] = false, ['public'] = false },
-	[294] = { ['name'] = "LX50", ['payment'] = false, ['public'] = false },
-	[295] = { ['name'] = "LX51", ['payment'] = false, ['public'] = false },
-	[296] = { ['name'] = "LX52", ['payment'] = false, ['public'] = false },
-	[297] = { ['name'] = "LX53", ['payment'] = false, ['public'] = false },
-	[298] = { ['name'] = "LX54", ['payment'] = false, ['public'] = false },
-	[299] = { ['name'] = "LX55", ['payment'] = false, ['public'] = false },
-	[302] = { ['name'] = "LX58", ['payment'] = false, ['public'] = false },
-	[303] = { ['name'] = "LX59", ['payment'] = false, ['public'] = false },
-	[304] = { ['name'] = "LX60", ['payment'] = false, ['public'] = false },
-	[305] = { ['name'] = "LX61", ['payment'] = false, ['public'] = false },
-	[306] = { ['name'] = "LX62", ['payment'] = false, ['public'] = false },
-	[307] = { ['name'] = "LX63", ['payment'] = false, ['public'] = false },
-	[308] = { ['name'] = "LX64", ['payment'] = false, ['public'] = false },
-	[309] = { ['name'] = "LX65", ['payment'] = false, ['public'] = false },
-	[310] = { ['name'] = "LX66", ['payment'] = false, ['public'] = false },
-	[311] = { ['name'] = "LX67", ['payment'] = false, ['public'] = false },
-	[312] = { ['name'] = "LX68", ['payment'] = false, ['public'] = false },
-	[313] = { ['name'] = "LX69", ['payment'] = false, ['public'] = false },
-	[314] = { ['name'] = "LX70", ['payment'] = false, ['public'] = false },
+	[245] = { ['name'] = "LX01", ['payment'] = true, ['public'] = false },
+	[246] = { ['name'] = "LX02", ['payment'] = true, ['public'] = false },
+	[247] = { ['name'] = "LX03", ['payment'] = true, ['public'] = false },
+	[248] = { ['name'] = "LX04", ['payment'] = true, ['public'] = false },
+	[249] = { ['name'] = "LX05", ['payment'] = true, ['public'] = false },
+	[250] = { ['name'] = "LX06", ['payment'] = true, ['public'] = false },
+	[251] = { ['name'] = "LX07", ['payment'] = true, ['public'] = false },
+	[252] = { ['name'] = "LX08", ['payment'] = true, ['public'] = false },
+	[253] = { ['name'] = "LX09", ['payment'] = true, ['public'] = false },
+	[254] = { ['name'] = "LX10", ['payment'] = true, ['public'] = false },
+	[255] = { ['name'] = "LX11", ['payment'] = true, ['public'] = false },
+	[256] = { ['name'] = "LX12", ['payment'] = true, ['public'] = false },
+	[257] = { ['name'] = "LX13", ['payment'] = true, ['public'] = false },
+	[258] = { ['name'] = "LX14", ['payment'] = true, ['public'] = false },
+	[259] = { ['name'] = "LX15", ['payment'] = true, ['public'] = false },
+	[260] = { ['name'] = "LX16", ['payment'] = true, ['public'] = false },
+	[261] = { ['name'] = "LX17", ['payment'] = true, ['public'] = false },
+	[262] = { ['name'] = "LX18", ['payment'] = true, ['public'] = false },
+	[263] = { ['name'] = "LX19", ['payment'] = true, ['public'] = false },
+	[264] = { ['name'] = "LX20", ['payment'] = true, ['public'] = false },
+	[265] = { ['name'] = "LX21", ['payment'] = true, ['public'] = false },
+	[266] = { ['name'] = "LX22", ['payment'] = true, ['public'] = false },
+	[267] = { ['name'] = "LX23", ['payment'] = true, ['public'] = false },
+	[268] = { ['name'] = "LX24", ['payment'] = true, ['public'] = false },
+	[269] = { ['name'] = "LX25", ['payment'] = true, ['public'] = false },
+	[270] = { ['name'] = "LX26", ['payment'] = true, ['public'] = false },
+	[271] = { ['name'] = "LX27", ['payment'] = true, ['public'] = false },
+	[272] = { ['name'] = "LX28", ['payment'] = true, ['public'] = false },
+	[273] = { ['name'] = "LX29", ['payment'] = true, ['public'] = false },
+	[276] = { ['name'] = "LX32", ['payment'] = true, ['public'] = false },
+	[278] = { ['name'] = "LX34", ['payment'] = true, ['public'] = false },
+	[279] = { ['name'] = "LX35", ['payment'] = true, ['public'] = false },
+	[280] = { ['name'] = "LX36", ['payment'] = true, ['public'] = false },
+	[281] = { ['name'] = "LX37", ['payment'] = true, ['public'] = false },
+	[282] = { ['name'] = "LX38", ['payment'] = true, ['public'] = false },
+	[283] = { ['name'] = "LX39", ['payment'] = true, ['public'] = false },
+	[284] = { ['name'] = "LX40", ['payment'] = true, ['public'] = false },
+	[285] = { ['name'] = "LX41", ['payment'] = true, ['public'] = false },
+	[286] = { ['name'] = "LX42", ['payment'] = true, ['public'] = false },
+	[287] = { ['name'] = "LX43", ['payment'] = true, ['public'] = false },
+	[288] = { ['name'] = "LX44", ['payment'] = true, ['public'] = false },
+	[289] = { ['name'] = "LX45", ['payment'] = true, ['public'] = false },
+	[290] = { ['name'] = "LX46", ['payment'] = true, ['public'] = false },
+	[291] = { ['name'] = "LX47", ['payment'] = true, ['public'] = false },
+	[292] = { ['name'] = "LX48", ['payment'] = true, ['public'] = false },
+	[294] = { ['name'] = "LX50", ['payment'] = true, ['public'] = false },
+	[295] = { ['name'] = "LX51", ['payment'] = true, ['public'] = false },
+	[296] = { ['name'] = "LX52", ['payment'] = true, ['public'] = false },
+	[297] = { ['name'] = "LX53", ['payment'] = true, ['public'] = false },
+	[298] = { ['name'] = "LX54", ['payment'] = true, ['public'] = false },
+	[299] = { ['name'] = "LX55", ['payment'] = true, ['public'] = false },
+	[302] = { ['name'] = "LX58", ['payment'] = true, ['public'] = false },
+	[303] = { ['name'] = "LX59", ['payment'] = true, ['public'] = false },
+	[304] = { ['name'] = "LX60", ['payment'] = true, ['public'] = false },
+	[305] = { ['name'] = "LX61", ['payment'] = true, ['public'] = false },
+	[306] = { ['name'] = "LX62", ['payment'] = true, ['public'] = false },
+	[307] = { ['name'] = "LX63", ['payment'] = true, ['public'] = false },
+	[308] = { ['name'] = "LX64", ['payment'] = true, ['public'] = false },
+	[309] = { ['name'] = "LX65", ['payment'] = true, ['public'] = false },
+	[310] = { ['name'] = "LX66", ['payment'] = true, ['public'] = false },
+	[311] = { ['name'] = "LX67", ['payment'] = true, ['public'] = false },
+	[312] = { ['name'] = "LX68", ['payment'] = true, ['public'] = false },
+	[313] = { ['name'] = "LX69", ['payment'] = true, ['public'] = false },
+	[314] = { ['name'] = "LX70", ['payment'] = true, ['public'] = false },
 -----------------------------------------------------------------------------------------------------------------------------------------
 -----------------------------------------------------SAMIR-------------------------------------------------------------------------------
 -----------------------------------------------------------------------------------------------------------------------------------------
-	[315] = { ['name'] = "LS01", ['payment'] = false, ['public'] = false },
-	[316] = { ['name'] = "LS02", ['payment'] = false, ['public'] = false },
-	[317] = { ['name'] = "LS03", ['payment'] = false, ['public'] = false },
-	[318] = { ['name'] = "LS04", ['payment'] = false, ['public'] = false },
-	[319] = { ['name'] = "LS05", ['payment'] = false, ['public'] = false },
-	[320] = { ['name'] = "LS06", ['payment'] = false, ['public'] = false },
-	[321] = { ['name'] = "LS07", ['payment'] = false, ['public'] = false },
-	[322] = { ['name'] = "LS08", ['payment'] = false, ['public'] = false },
-	[323] = { ['name'] = "LS09", ['payment'] = false, ['public'] = false },
-	[324] = { ['name'] = "LS10", ['payment'] = false, ['public'] = false },
-	[325] = { ['name'] = "LS11", ['payment'] = false, ['public'] = false },
-	[326] = { ['name'] = "LS12", ['payment'] = false, ['public'] = false },
-	[327] = { ['name'] = "LS13", ['payment'] = false, ['public'] = false },
-	[328] = { ['name'] = "LS14", ['payment'] = false, ['public'] = false },
-	[329] = { ['name'] = "LS15", ['payment'] = false, ['public'] = false },
-	[330] = { ['name'] = "LS16", ['payment'] = false, ['public'] = false },
-	[331] = { ['name'] = "LS17", ['payment'] = false, ['public'] = false },
-	[332] = { ['name'] = "LS18", ['payment'] = false, ['public'] = false },
-	[333] = { ['name'] = "LS19", ['payment'] = false, ['public'] = false },
-	[334] = { ['name'] = "LS20", ['payment'] = false, ['public'] = false },
-	[335] = { ['name'] = "LS21", ['payment'] = false, ['public'] = false },
-	[336] = { ['name'] = "LS22", ['payment'] = false, ['public'] = false },
-	[337] = { ['name'] = "LS23", ['payment'] = false, ['public'] = false },
-	[338] = { ['name'] = "LS24", ['payment'] = false, ['public'] = false },
-	[339] = { ['name'] = "LS25", ['payment'] = false, ['public'] = false },
-	[340] = { ['name'] = "LS26", ['payment'] = false, ['public'] = false },
-	[341] = { ['name'] = "LS27", ['payment'] = false, ['public'] = false },
-	[342] = { ['name'] = "LS28", ['payment'] = false, ['public'] = false },
-	[343] = { ['name'] = "LS29", ['payment'] = false, ['public'] = false },
-	[344] = { ['name'] = "LS30", ['payment'] = false, ['public'] = false },
-	[345] = { ['name'] = "LS31", ['payment'] = false, ['public'] = false },
-	[346] = { ['name'] = "LS32", ['payment'] = false, ['public'] = false },
-	[347] = { ['name'] = "LS33", ['payment'] = false, ['public'] = false },
-	[348] = { ['name'] = "LS34", ['payment'] = false, ['public'] = false },
-	[349] = { ['name'] = "LS35", ['payment'] = false, ['public'] = false },
-	[350] = { ['name'] = "LS36", ['payment'] = false, ['public'] = false },
-	[351] = { ['name'] = "LS37", ['payment'] = false, ['public'] = false },
-	[352] = { ['name'] = "LS38", ['payment'] = false, ['public'] = false },
-	[353] = { ['name'] = "LS39", ['payment'] = false, ['public'] = false },
-	[354] = { ['name'] = "LS40", ['payment'] = false, ['public'] = false },
-	[355] = { ['name'] = "LS41", ['payment'] = false, ['public'] = false },
-	[356] = { ['name'] = "LS42", ['payment'] = false, ['public'] = false },
-	[357] = { ['name'] = "LS43", ['payment'] = false, ['public'] = false },
-	[358] = { ['name'] = "LS44", ['payment'] = false, ['public'] = false },
-	[359] = { ['name'] = "LS45", ['payment'] = false, ['public'] = false },
-	[360] = { ['name'] = "LS46", ['payment'] = false, ['public'] = false },
-	[361] = { ['name'] = "LS47", ['payment'] = false, ['public'] = false },
-	[362] = { ['name'] = "LS48", ['payment'] = false, ['public'] = false },
-	[363] = { ['name'] = "LS49", ['payment'] = false, ['public'] = false },
-	[364] = { ['name'] = "LS50", ['payment'] = false, ['public'] = false },
-	[365] = { ['name'] = "LS51", ['payment'] = false, ['public'] = false },
-	[366] = { ['name'] = "LS52", ['payment'] = false, ['public'] = false },
-	[367] = { ['name'] = "LS53", ['payment'] = false, ['public'] = false },
-	[368] = { ['name'] = "LS54", ['payment'] = false, ['public'] = false },
-	[369] = { ['name'] = "LS55", ['payment'] = false, ['public'] = false },
-	[370] = { ['name'] = "LS56", ['payment'] = false, ['public'] = false },
-	[371] = { ['name'] = "LS57", ['payment'] = false, ['public'] = false },
-	[372] = { ['name'] = "LS58", ['payment'] = false, ['public'] = false },
-	[373] = { ['name'] = "LS59", ['payment'] = false, ['public'] = false },
-	[374] = { ['name'] = "LS60", ['payment'] = false, ['public'] = false },
-	[375] = { ['name'] = "LS61", ['payment'] = false, ['public'] = false },
-	[376] = { ['name'] = "LS62", ['payment'] = false, ['public'] = false },
-	[377] = { ['name'] = "LS63", ['payment'] = false, ['public'] = false },
-	[378] = { ['name'] = "LS64", ['payment'] = false, ['public'] = false },
-	[379] = { ['name'] = "LS65", ['payment'] = false, ['public'] = false },
-	[380] = { ['name'] = "LS66", ['payment'] = false, ['public'] = false },
-	[381] = { ['name'] = "LS67", ['payment'] = false, ['public'] = false },
-	[382] = { ['name'] = "LS68", ['payment'] = false, ['public'] = false },
-	[383] = { ['name'] = "LS69", ['payment'] = false, ['public'] = false },
-	[384] = { ['name'] = "LS70", ['payment'] = false, ['public'] = false },
-	[385] = { ['name'] = "LS71", ['payment'] = false, ['public'] = false },
-	[386] = { ['name'] = "LS72", ['payment'] = false, ['public'] = false },
+	[315] = { ['name'] = "LS01", ['payment'] = true, ['public'] = false },
+	[316] = { ['name'] = "LS02", ['payment'] = true, ['public'] = false },
+	[317] = { ['name'] = "LS03", ['payment'] = true, ['public'] = false },
+	[318] = { ['name'] = "LS04", ['payment'] = true, ['public'] = false },
+	[319] = { ['name'] = "LS05", ['payment'] = true, ['public'] = false },
+	[320] = { ['name'] = "LS06", ['payment'] = true, ['public'] = false },
+	[321] = { ['name'] = "LS07", ['payment'] = true, ['public'] = false },
+	[322] = { ['name'] = "LS08", ['payment'] = true, ['public'] = false },
+	[323] = { ['name'] = "LS09", ['payment'] = true, ['public'] = false },
+	[324] = { ['name'] = "LS10", ['payment'] = true, ['public'] = false },
+	[325] = { ['name'] = "LS11", ['payment'] = true, ['public'] = false },
+	[326] = { ['name'] = "LS12", ['payment'] = true, ['public'] = false },
+	[327] = { ['name'] = "LS13", ['payment'] = true, ['public'] = false },
+	[328] = { ['name'] = "LS14", ['payment'] = true, ['public'] = false },
+	[329] = { ['name'] = "LS15", ['payment'] = true, ['public'] = false },
+	[330] = { ['name'] = "LS16", ['payment'] = true, ['public'] = false },
+	[331] = { ['name'] = "LS17", ['payment'] = true, ['public'] = false },
+	[332] = { ['name'] = "LS18", ['payment'] = true, ['public'] = false },
+	[333] = { ['name'] = "LS19", ['payment'] = true, ['public'] = false },
+	[334] = { ['name'] = "LS20", ['payment'] = true, ['public'] = false },
+	[335] = { ['name'] = "LS21", ['payment'] = true, ['public'] = false },
+	[336] = { ['name'] = "LS22", ['payment'] = true, ['public'] = false },
+	[337] = { ['name'] = "LS23", ['payment'] = true, ['public'] = false },
+	[338] = { ['name'] = "LS24", ['payment'] = true, ['public'] = false },
+	[339] = { ['name'] = "LS25", ['payment'] = true, ['public'] = false },
+	[340] = { ['name'] = "LS26", ['payment'] = true, ['public'] = false },
+	[341] = { ['name'] = "LS27", ['payment'] = true, ['public'] = false },
+	[342] = { ['name'] = "LS28", ['payment'] = true, ['public'] = false },
+	[343] = { ['name'] = "LS29", ['payment'] = true, ['public'] = false },
+	[344] = { ['name'] = "LS30", ['payment'] = true, ['public'] = false },
+	[345] = { ['name'] = "LS31", ['payment'] = true, ['public'] = false },
+	[346] = { ['name'] = "LS32", ['payment'] = true, ['public'] = false },
+	[347] = { ['name'] = "LS33", ['payment'] = true, ['public'] = false },
+	[348] = { ['name'] = "LS34", ['payment'] = true, ['public'] = false },
+	[349] = { ['name'] = "LS35", ['payment'] = true, ['public'] = false },
+	[350] = { ['name'] = "LS36", ['payment'] = true, ['public'] = false },
+	[351] = { ['name'] = "LS37", ['payment'] = true, ['public'] = false },
+	[352] = { ['name'] = "LS38", ['payment'] = true, ['public'] = false },
+	[353] = { ['name'] = "LS39", ['payment'] = true, ['public'] = false },
+	[354] = { ['name'] = "LS40", ['payment'] = true, ['public'] = false },
+	[355] = { ['name'] = "LS41", ['payment'] = true, ['public'] = false },
+	[356] = { ['name'] = "LS42", ['payment'] = true, ['public'] = false },
+	[357] = { ['name'] = "LS43", ['payment'] = true, ['public'] = false },
+	[358] = { ['name'] = "LS44", ['payment'] = true, ['public'] = false },
+	[359] = { ['name'] = "LS45", ['payment'] = true, ['public'] = false },
+	[360] = { ['name'] = "LS46", ['payment'] = true, ['public'] = false },
+	[361] = { ['name'] = "LS47", ['payment'] = true, ['public'] = false },
+	[362] = { ['name'] = "LS48", ['payment'] = true, ['public'] = false },
+	[363] = { ['name'] = "LS49", ['payment'] = true, ['public'] = false },
+	[364] = { ['name'] = "LS50", ['payment'] = true, ['public'] = false },
+	[365] = { ['name'] = "LS51", ['payment'] = true, ['public'] = false },
+	[366] = { ['name'] = "LS52", ['payment'] = true, ['public'] = false },
+	[367] = { ['name'] = "LS53", ['payment'] = true, ['public'] = false },
+	[368] = { ['name'] = "LS54", ['payment'] = true, ['public'] = false },
+	[369] = { ['name'] = "LS55", ['payment'] = true, ['public'] = false },
+	[370] = { ['name'] = "LS56", ['payment'] = true, ['public'] = false },
+	[371] = { ['name'] = "LS57", ['payment'] = true, ['public'] = false },
+	[372] = { ['name'] = "LS58", ['payment'] = true, ['public'] = false },
+	[373] = { ['name'] = "LS59", ['payment'] = true, ['public'] = false },
+	[374] = { ['name'] = "LS60", ['payment'] = true, ['public'] = false },
+	[375] = { ['name'] = "LS61", ['payment'] = true, ['public'] = false },
+	[376] = { ['name'] = "LS62", ['payment'] = true, ['public'] = false },
+	[377] = { ['name'] = "LS63", ['payment'] = true, ['public'] = false },
+	[378] = { ['name'] = "LS64", ['payment'] = true, ['public'] = false },
+	[379] = { ['name'] = "LS65", ['payment'] = true, ['public'] = false },
+	[380] = { ['name'] = "LS66", ['payment'] = true, ['public'] = false },
+	[381] = { ['name'] = "LS67", ['payment'] = true, ['public'] = false },
+	[382] = { ['name'] = "LS68", ['payment'] = true, ['public'] = false },
+	[383] = { ['name'] = "LS69", ['payment'] = true, ['public'] = false },
+	[384] = { ['name'] = "LS70", ['payment'] = true, ['public'] = false },
+	[385] = { ['name'] = "LS71", ['payment'] = true, ['public'] = false },
+	[386] = { ['name'] = "LS72", ['payment'] = true, ['public'] = false },
 -----------------------------------------------------------------------------------------------------------------------------------------
 ---------------------------------------------------------KRONDORS------------------------------------------------------------------------
 -----------------------------------------------------------------------------------------------------------------------------------------
-	[387] = { ['name'] = "KR01", ['payment'] = false, ['public'] = false },
-	[388] = { ['name'] = "KR02", ['payment'] = false, ['public'] = false },
-	[389] = { ['name'] = "KR03", ['payment'] = false, ['public'] = false },
-	[390] = { ['name'] = "KR04", ['payment'] = false, ['public'] = false },
-	[391] = { ['name'] = "KR05", ['payment'] = false, ['public'] = false },
-	[392] = { ['name'] = "KR06", ['payment'] = false, ['public'] = false },
-	[393] = { ['name'] = "KR07", ['payment'] = false, ['public'] = false },
-	[394] = { ['name'] = "KR08", ['payment'] = false, ['public'] = false },
-	[395] = { ['name'] = "KR09", ['payment'] = false, ['public'] = false },
-	[396] = { ['name'] = "KR10", ['payment'] = false, ['public'] = false },
-	[397] = { ['name'] = "KR11", ['payment'] = false, ['public'] = false },
-	[398] = { ['name'] = "KR12", ['payment'] = false, ['public'] = false },
-	[399] = { ['name'] = "KR13", ['payment'] = false, ['public'] = false },
-	[400] = { ['name'] = "KR14", ['payment'] = false, ['public'] = false },
-	[401] = { ['name'] = "KR15", ['payment'] = false, ['public'] = false },
-	[402] = { ['name'] = "KR16", ['payment'] = false, ['public'] = false },
-	[403] = { ['name'] = "KR17", ['payment'] = false, ['public'] = false },
-	[404] = { ['name'] = "KR18", ['payment'] = false, ['public'] = false },
-	[405] = { ['name'] = "KR19", ['payment'] = false, ['public'] = false },
-	[406] = { ['name'] = "KR20", ['payment'] = false, ['public'] = false },
-	[407] = { ['name'] = "KR21", ['payment'] = false, ['public'] = false },
-	[408] = { ['name'] = "KR22", ['payment'] = false, ['public'] = false },
-	[409] = { ['name'] = "KR23", ['payment'] = false, ['public'] = false },
-	[410] = { ['name'] = "KR24", ['payment'] = false, ['public'] = false },
-	[411] = { ['name'] = "KR25", ['payment'] = false, ['public'] = false },
-	[412] = { ['name'] = "KR26", ['payment'] = false, ['public'] = false },
-	[413] = { ['name'] = "KR27", ['payment'] = false, ['public'] = false },
-	[414] = { ['name'] = "KR28", ['payment'] = false, ['public'] = false },
-	[415] = { ['name'] = "KR29", ['payment'] = false, ['public'] = false },
-	[416] = { ['name'] = "KR30", ['payment'] = false, ['public'] = false },
-	[417] = { ['name'] = "KR31", ['payment'] = false, ['public'] = false },
-	[418] = { ['name'] = "KR32", ['payment'] = false, ['public'] = false },
-	[419] = { ['name'] = "KR33", ['payment'] = false, ['public'] = false },
-	[420] = { ['name'] = "KR34", ['payment'] = false, ['public'] = false },
-	[421] = { ['name'] = "KR35", ['payment'] = false, ['public'] = false },
-	[422] = { ['name'] = "KR36", ['payment'] = false, ['public'] = false },
-	[423] = { ['name'] = "KR37", ['payment'] = false, ['public'] = false },
-	[424] = { ['name'] = "KR38", ['payment'] = false, ['public'] = false },
-	[425] = { ['name'] = "KR39", ['payment'] = false, ['public'] = false },
-	[426] = { ['name'] = "KR40", ['payment'] = false, ['public'] = false },
-	[427] = { ['name'] = "KR41", ['payment'] = false, ['public'] = false },
+	[387] = { ['name'] = "KR01", ['payment'] = true, ['public'] = false },
+	[388] = { ['name'] = "KR02", ['payment'] = true, ['public'] = false },
+	[389] = { ['name'] = "KR03", ['payment'] = true, ['public'] = false },
+	[390] = { ['name'] = "KR04", ['payment'] = true, ['public'] = false },
+	[391] = { ['name'] = "KR05", ['payment'] = true, ['public'] = false },
+	[392] = { ['name'] = "KR06", ['payment'] = true, ['public'] = false },
+	[393] = { ['name'] = "KR07", ['payment'] = true, ['public'] = false },
+	[394] = { ['name'] = "KR08", ['payment'] = true, ['public'] = false },
+	[395] = { ['name'] = "KR09", ['payment'] = true, ['public'] = false },
+	[396] = { ['name'] = "KR10", ['payment'] = true, ['public'] = false },
+	[397] = { ['name'] = "KR11", ['payment'] = true, ['public'] = false },
+	[398] = { ['name'] = "KR12", ['payment'] = true, ['public'] = false },
+	[399] = { ['name'] = "KR13", ['payment'] = true, ['public'] = false },
+	[400] = { ['name'] = "KR14", ['payment'] = true, ['public'] = false },
+	[401] = { ['name'] = "KR15", ['payment'] = true, ['public'] = false },
+	[402] = { ['name'] = "KR16", ['payment'] = true, ['public'] = false },
+	[403] = { ['name'] = "KR17", ['payment'] = true, ['public'] = false },
+	[404] = { ['name'] = "KR18", ['payment'] = true, ['public'] = false },
+	[405] = { ['name'] = "KR19", ['payment'] = true, ['public'] = false },
+	[406] = { ['name'] = "KR20", ['payment'] = true, ['public'] = false },
+	[407] = { ['name'] = "KR21", ['payment'] = true, ['public'] = false },
+	[408] = { ['name'] = "KR22", ['payment'] = true, ['public'] = false },
+	[409] = { ['name'] = "KR23", ['payment'] = true, ['public'] = false },
+	[410] = { ['name'] = "KR24", ['payment'] = true, ['public'] = false },
+	[411] = { ['name'] = "KR25", ['payment'] = true, ['public'] = false },
+	[412] = { ['name'] = "KR26", ['payment'] = true, ['public'] = false },
+	[413] = { ['name'] = "KR27", ['payment'] = true, ['public'] = false },
+	[414] = { ['name'] = "KR28", ['payment'] = true, ['public'] = false },
+	[415] = { ['name'] = "KR29", ['payment'] = true, ['public'] = false },
+	[416] = { ['name'] = "KR30", ['payment'] = true, ['public'] = false },
+	[417] = { ['name'] = "KR31", ['payment'] = true, ['public'] = false },
+	[418] = { ['name'] = "KR32", ['payment'] = true, ['public'] = false },
+	[419] = { ['name'] = "KR33", ['payment'] = true, ['public'] = false },
+	[420] = { ['name'] = "KR34", ['payment'] = true, ['public'] = false },
+	[421] = { ['name'] = "KR35", ['payment'] = true, ['public'] = false },
+	[422] = { ['name'] = "KR36", ['payment'] = true, ['public'] = false },
+	[423] = { ['name'] = "KR37", ['payment'] = true, ['public'] = false },
+	[424] = { ['name'] = "KR38", ['payment'] = true, ['public'] = false },
+	[425] = { ['name'] = "KR39", ['payment'] = true, ['public'] = false },
+	[426] = { ['name'] = "KR40", ['payment'] = true, ['public'] = false },
+	[427] = { ['name'] = "KR41", ['payment'] = true, ['public'] = false },
 -----------------------------------------------------------------------------------------------------------------------------------------
 ---------------------------------------------------------LOSVAGOS------------------------------------------------------------------------
 -----------------------------------------------------------------------------------------------------------------------------------------
-	[428] = { ['name'] = "LV01", ['payment'] = false, ['public'] = false },
-	[429] = { ['name'] = "LV02", ['payment'] = false, ['public'] = false },
-	[430] = { ['name'] = "LV03", ['payment'] = false, ['public'] = false },
-	[431] = { ['name'] = "LV04", ['payment'] = false, ['public'] = false },
-	[432] = { ['name'] = "LV05", ['payment'] = false, ['public'] = false },
-	[433] = { ['name'] = "LV06", ['payment'] = false, ['public'] = false },
-	[434] = { ['name'] = "LV07", ['payment'] = false, ['public'] = false },
-	[435] = { ['name'] = "LV08", ['payment'] = false, ['public'] = false },
-	[436] = { ['name'] = "LV09", ['payment'] = false, ['public'] = false },
-	[437] = { ['name'] = "LV10", ['payment'] = false, ['public'] = false },
-	[438] = { ['name'] = "LV11", ['payment'] = false, ['public'] = false },
-	[439] = { ['name'] = "LV12", ['payment'] = false, ['public'] = false },
-	[440] = { ['name'] = "LV13", ['payment'] = false, ['public'] = false },
-	[441] = { ['name'] = "LV14", ['payment'] = false, ['public'] = false },
-	[442] = { ['name'] = "LV15", ['payment'] = false, ['public'] = false },
-	[443] = { ['name'] = "LV16", ['payment'] = false, ['public'] = false },
-	[444] = { ['name'] = "LV17", ['payment'] = false, ['public'] = false },
-	[445] = { ['name'] = "LV18", ['payment'] = false, ['public'] = false },
-	[446] = { ['name'] = "LV19", ['payment'] = false, ['public'] = false },
-	[447] = { ['name'] = "LV20", ['payment'] = false, ['public'] = false },
-	[448] = { ['name'] = "LV21", ['payment'] = false, ['public'] = false },
-	[449] = { ['name'] = "LV22", ['payment'] = false, ['public'] = false },
-	[450] = { ['name'] = "LV23", ['payment'] = false, ['public'] = false },
-	[451] = { ['name'] = "LV24", ['payment'] = false, ['public'] = false },
-	[452] = { ['name'] = "LV25", ['payment'] = false, ['public'] = false },
-	[453] = { ['name'] = "LV26", ['payment'] = false, ['public'] = false },
-	[454] = { ['name'] = "LV27", ['payment'] = false, ['public'] = false },
-	[455] = { ['name'] = "LV28", ['payment'] = false, ['public'] = false },
-	[456] = { ['name'] = "LV29", ['payment'] = false, ['public'] = false },
-	[457] = { ['name'] = "LV30", ['payment'] = false, ['public'] = false },
-	[458] = { ['name'] = "LV31", ['payment'] = false, ['public'] = false },
-	[459] = { ['name'] = "LV32", ['payment'] = false, ['public'] = false },
-	[460] = { ['name'] = "LV33", ['payment'] = false, ['public'] = false },
-	[461] = { ['name'] = "LV34", ['payment'] = false, ['public'] = false },
-	[462] = { ['name'] = "LV35", ['payment'] = false, ['public'] = false },
+	[428] = { ['name'] = "LV01", ['payment'] = true, ['public'] = false },
+	[429] = { ['name'] = "LV02", ['payment'] = true, ['public'] = false },
+	[430] = { ['name'] = "LV03", ['payment'] = true, ['public'] = false },
+	[431] = { ['name'] = "LV04", ['payment'] = true, ['public'] = false },
+	[432] = { ['name'] = "LV05", ['payment'] = true, ['public'] = false },
+	[433] = { ['name'] = "LV06", ['payment'] = true, ['public'] = false },
+	[434] = { ['name'] = "LV07", ['payment'] = true, ['public'] = false },
+	[435] = { ['name'] = "LV08", ['payment'] = true, ['public'] = false },
+	[436] = { ['name'] = "LV09", ['payment'] = true, ['public'] = false },
+	[437] = { ['name'] = "LV10", ['payment'] = true, ['public'] = false },
+	[438] = { ['name'] = "LV11", ['payment'] = true, ['public'] = false },
+	[439] = { ['name'] = "LV12", ['payment'] = true, ['public'] = false },
+	[440] = { ['name'] = "LV13", ['payment'] = true, ['public'] = false },
+	[441] = { ['name'] = "LV14", ['payment'] = true, ['public'] = false },
+	[442] = { ['name'] = "LV15", ['payment'] = true, ['public'] = false },
+	[443] = { ['name'] = "LV16", ['payment'] = true, ['public'] = false },
+	[444] = { ['name'] = "LV17", ['payment'] = true, ['public'] = false },
+	[445] = { ['name'] = "LV18", ['payment'] = true, ['public'] = false },
+	[446] = { ['name'] = "LV19", ['payment'] = true, ['public'] = false },
+	[447] = { ['name'] = "LV20", ['payment'] = true, ['public'] = false },
+	[448] = { ['name'] = "LV21", ['payment'] = true, ['public'] = false },
+	[449] = { ['name'] = "LV22", ['payment'] = true, ['public'] = false },
+	[450] = { ['name'] = "LV23", ['payment'] = true, ['public'] = false },
+	[451] = { ['name'] = "LV24", ['payment'] = true, ['public'] = false },
+	[452] = { ['name'] = "LV25", ['payment'] = true, ['public'] = false },
+	[453] = { ['name'] = "LV26", ['payment'] = true, ['public'] = false },
+	[454] = { ['name'] = "LV27", ['payment'] = true, ['public'] = false },
+	[455] = { ['name'] = "LV28", ['payment'] = true, ['public'] = false },
+	[456] = { ['name'] = "LV29", ['payment'] = true, ['public'] = false },
+	[457] = { ['name'] = "LV30", ['payment'] = true, ['public'] = false },
+	[458] = { ['name'] = "LV31", ['payment'] = true, ['public'] = false },
+	[459] = { ['name'] = "LV32", ['payment'] = true, ['public'] = false },
+	[460] = { ['name'] = "LV33", ['payment'] = true, ['public'] = false },
+	[461] = { ['name'] = "LV34", ['payment'] = true, ['public'] = false },
+	[462] = { ['name'] = "LV35", ['payment'] = true, ['public'] = false },
 -----------------------------------------------------------------------------------------------------------------------------------------
 -------------------------------------------------------------PALETOBAY-------------------------------------------------------------------
 -----------------------------------------------------------------------------------------------------------------------------------------
-	[463] = { ['name'] = "PB01", ['payment'] = false, ['public'] = false },
-	[464] = { ['name'] = "PB02", ['payment'] = false, ['public'] = false },
-	[465] = { ['name'] = "PB03", ['payment'] = false, ['public'] = false },
-	[466] = { ['name'] = "PB04", ['payment'] = false, ['public'] = false },
-	[467] = { ['name'] = "PB05", ['payment'] = false, ['public'] = false },
-	[468] = { ['name'] = "PB06", ['payment'] = false, ['public'] = false },
-	[469] = { ['name'] = "PB07", ['payment'] = false, ['public'] = false },
-	[470] = { ['name'] = "PB08", ['payment'] = false, ['public'] = false },
-	[471] = { ['name'] = "PB09", ['payment'] = false, ['public'] = false },
-	[472] = { ['name'] = "PB10", ['payment'] = false, ['public'] = false },
-	[473] = { ['name'] = "PB11", ['payment'] = false, ['public'] = false },
-	[474] = { ['name'] = "PB12", ['payment'] = false, ['public'] = false },
-	[475] = { ['name'] = "PB13", ['payment'] = false, ['public'] = false },
-	[476] = { ['name'] = "PB14", ['payment'] = false, ['public'] = false },
-	[477] = { ['name'] = "PB15", ['payment'] = false, ['public'] = false },
-	[478] = { ['name'] = "PB16", ['payment'] = false, ['public'] = false },
-	[479] = { ['name'] = "PB17", ['payment'] = false, ['public'] = false },
-	[480] = { ['name'] = "PB18", ['payment'] = false, ['public'] = false },
-	[481] = { ['name'] = "PB19", ['payment'] = false, ['public'] = false },
-	[482] = { ['name'] = "PB20", ['payment'] = false, ['public'] = false },
-	[483] = { ['name'] = "PB21", ['payment'] = false, ['public'] = false },
-	[484] = { ['name'] = "PB22", ['payment'] = false, ['public'] = false },
-	[485] = { ['name'] = "PB23", ['payment'] = false, ['public'] = false },
-	[486] = { ['name'] = "PB24", ['payment'] = false, ['public'] = false },
-	[487] = { ['name'] = "PB25", ['payment'] = false, ['public'] = false },
-	[488] = { ['name'] = "PB26", ['payment'] = false, ['public'] = false },
-	[489] = { ['name'] = "PB27", ['payment'] = false, ['public'] = false },
-	[490] = { ['name'] = "PB28", ['payment'] = false, ['public'] = false },
-	[491] = { ['name'] = "PB29", ['payment'] = false, ['public'] = false },
-	[492] = { ['name'] = "PB30", ['payment'] = false, ['public'] = false },
-	[493] = { ['name'] = "PB31", ['payment'] = false, ['public'] = false },
+	[463] = { ['name'] = "PB01", ['payment'] = true, ['public'] = false },
+	[464] = { ['name'] = "PB02", ['payment'] = true, ['public'] = false },
+	[465] = { ['name'] = "PB03", ['payment'] = true, ['public'] = false },
+	[466] = { ['name'] = "PB04", ['payment'] = true, ['public'] = false },
+	[467] = { ['name'] = "PB05", ['payment'] = true, ['public'] = false },
+	[468] = { ['name'] = "PB06", ['payment'] = true, ['public'] = false },
+	[469] = { ['name'] = "PB07", ['payment'] = true, ['public'] = false },
+	[470] = { ['name'] = "PB08", ['payment'] = true, ['public'] = false },
+	[471] = { ['name'] = "PB09", ['payment'] = true, ['public'] = false },
+	[472] = { ['name'] = "PB10", ['payment'] = true, ['public'] = false },
+	[473] = { ['name'] = "PB11", ['payment'] = true, ['public'] = false },
+	[474] = { ['name'] = "PB12", ['payment'] = true, ['public'] = false },
+	[475] = { ['name'] = "PB13", ['payment'] = true, ['public'] = false },
+	[476] = { ['name'] = "PB14", ['payment'] = true, ['public'] = false },
+	[477] = { ['name'] = "PB15", ['payment'] = true, ['public'] = false },
+	[478] = { ['name'] = "PB16", ['payment'] = true, ['public'] = false },
+	[479] = { ['name'] = "PB17", ['payment'] = true, ['public'] = false },
+	[480] = { ['name'] = "PB18", ['payment'] = true, ['public'] = false },
+	[481] = { ['name'] = "PB19", ['payment'] = true, ['public'] = false },
+	[482] = { ['name'] = "PB20", ['payment'] = true, ['public'] = false },
+	[483] = { ['name'] = "PB21", ['payment'] = true, ['public'] = false },
+	[484] = { ['name'] = "PB22", ['payment'] = true, ['public'] = false },
+	[485] = { ['name'] = "PB23", ['payment'] = true, ['public'] = false },
+	[486] = { ['name'] = "PB24", ['payment'] = true, ['public'] = false },
+	[487] = { ['name'] = "PB25", ['payment'] = true, ['public'] = false },
+	[488] = { ['name'] = "PB26", ['payment'] = true, ['public'] = false },
+	[489] = { ['name'] = "PB27", ['payment'] = true, ['public'] = false },
+	[490] = { ['name'] = "PB28", ['payment'] = true, ['public'] = false },
+	[491] = { ['name'] = "PB29", ['payment'] = true, ['public'] = false },
+	[492] = { ['name'] = "PB30", ['payment'] = true, ['public'] = false },
+	[493] = { ['name'] = "PB31", ['payment'] = true, ['public'] = false },
 -----------------------------------------------------------------------------------------------------------------------------------------
 -----------------------------------------------------MANSAO------------------------------------------------------------------------------
 -----------------------------------------------------------------------------------------------------------------------------------------
-	[600] = { ['name'] = "MS01", ['payment'] = false, ['public'] = false },
-	[601] = { ['name'] = "MS02", ['payment'] = false, ['public'] = false },
-	[602] = { ['name'] = "MS03", ['payment'] = false, ['public'] = false },
-	[603] = { ['name'] = "MS04", ['payment'] = false, ['public'] = false },
-	[604] = { ['name'] = "MS05", ['payment'] = false, ['public'] = false },
-	[605] = { ['name'] = "MS09", ['payment'] = false, ['public'] = false },
-	[606] = { ['name'] = "SS01", ['payment'] = false, ['public'] = false },
+	[600] = { ['name'] = "MS01", ['payment'] = true, ['public'] = false },
+	[601] = { ['name'] = "MS02", ['payment'] = true, ['public'] = false },
+	[602] = { ['name'] = "MS03", ['payment'] = true, ['public'] = false },
+	[603] = { ['name'] = "MS04", ['payment'] = true, ['public'] = false },
+	[604] = { ['name'] = "MS05", ['payment'] = true, ['public'] = false },
+	[605] = { ['name'] = "MS09", ['payment'] = true, ['public'] = false },
+	[606] = { ['name'] = "SS01", ['payment'] = true, ['public'] = false },
 
-	[607] = { ['name'] = "MS08", ['payment'] = false, ['public'] = false },
+	[607] = { ['name'] = "MS08", ['payment'] = true, ['public'] = false },
 
-	[608] = { ['name'] = "ADM", ['payment'] = false, ['perm'] = "admin.permissao" },
-	-- [609] = { ['name'] = "Garagem", ['payment'] = false, ['public'] = true }, -- Cosanostra (Fazenda)
-	[610] = { ['name'] = "Piloto", ['payment'] = false, ['perm'] = "piloto.permissao" },	
-	[611] = { ['name'] = "Fotos", ['payment'] = false, ['perm'] = "admin.permissao" },
+	[608] = { ['name'] = "ADM", ['payment'] = true, ['perm'] = "admin.permissao" },
+	-- [609] = { ['name'] = "Garagem", ['payment'] = true, ['public'] = true }, -- Cosanostra (Fazenda)
+	[610] = { ['name'] = "Piloto", ['payment'] = true, ['perm'] = "piloto.permissao" },	
+	[611] = { ['name'] = "Fotos", ['payment'] = true, ['perm'] = "admin.permissao" },
 -----------------------------------------------------------------------------------------------------------------------------------------
 --													POLICIA
 -----------------------------------------------------------------------------------------------------------------------------------------
 	[612] = { ['name'] = "PMESP", ['payment'] = false, ['perm'] = "pmesp.permissao" },
 	[613] = { ['name'] = "PMESPH", ['payment'] = false, ['perm'] = "pmesp.permissao" },
 	[618] = { ['name'] = "PCESPH", ['payment'] = false, ['perm'] = "pcivil.permissao" },
-	[614] = { ['name'] = "ROTA", ['payment'] = false, ['perm'] = "rota.permissao" },
+	-- [614] = { ['name'] = "ROTA", ['payment'] = false, ['perm'] = "pmesp.permissao" },
 	[615] = { ['name'] = "PCESP", ['payment'] = false, ['perm'] = "pcivil.permissao" },
-	[616] = { ['name'] = "PRF", ['payment'] = false, ['perm'] = "prf.permissao" },
+	[616] = { ['name'] = "PRF", ['payment'] = false, ['perm'] = "pmesp.permissao" },
 --	[] = { ['name'] = "", ['payment'] = false, ['perm'] = "suapermissao" },
 -----------------------------------------------------------------------------------------------------------------------------------------
 --													TAXISTA
@@ -436,25 +436,28 @@ local garages = {
 --													HELICOPTEROS VIP
 -----------------------------------------------------------------------------------------------------------------------------------------
 	[619] = { ['name'] = "Garagem", ['payment'] = false, ['perm'] = "carrosvip.permissao" },
-	[620] = { ['name'] = "Garagem", ['payment'] = false, ['public'] = true },
+	-- [620] = { ['name'] = "Garagem", ['payment'] = false, ['public'] = true },
 -----------------------------------------------------------------------------------------------------------------------------------------
 --													MECANICAS
 -----------------------------------------------------------------------------------------------------------------------------------------
-	[621] = { ['name'] = "Mecanica", ['payment'] = false, ['perm'] = "mecanico.permissao" },
-	[622] = { ['name'] = "Mecanica", ['payment'] = false, ['perm'] = "mecanico.permissao" },
+	[621] = { ['name'] = "Bennys", ['payment'] = false, ['perm'] = "mecanico.permissao" }, -- Bennys
+	[622] = { ['name'] = "SportRace", ['payment'] = false, ['perm'] = "mecanico.permissao" }, -- SportRace
 }
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- GARAGEMS
 -----------------------------------------------------------------------------------------------------------------------------------------
 local workgarage = {
-	["Mecanica"] = {
+	["Bennys"] = {
+		"flatbed3",
+	},
+	["SportRace"] = {
 		"flatbed",
-		"towtruck"
 	},
 	["PRF"] = {
 		"cruzeprf2",
 		"l200prf",
-		"trailprf"
+		"trailprf",
+		"ec130PRF"
 	},
 	["PCESP"] = {
 		"sw4pc1",
@@ -479,7 +482,9 @@ local workgarage = {
 		"spin19rp",
 		"trail19cfp",
 		"xrerpm",
-		"xtrocam"
+		"xtrocam",
+		"sw4revrota1",
+		"trailrota2"
 	},
 	["PMESPH"] = {
 		"as350",
@@ -634,12 +639,12 @@ function src.myVehicles(work)
 			local address = vRP.query("homes/get_homeuserid",{ user_id = parseInt(user_id) })
 			if #address > 0 then
 				for k,v in pairs(address) do
-					if v.home == work then
+					if v.home == work then -- CARROS DE TRABALHO
 						for k2,v2 in pairs(vehicle) do
 							if parseInt(os.time()) <= parseInt(vehicle[k2].time+24*60*60) then
-								status = "<span class=\"red\">R$ "..vRP.format(parseInt(vRP.vehiclePrice(vehicle[k2].vehicle)*0.5)).."</span>"
+								status = "<span class=\"red\">R$ "..vRP.format(parseInt(vRP.vehiclePrice(vehicle[k2].vehicle)*0.2)).."</span>"
 							elseif vehicle[k2].detido == 1 then
-								status = "<span class=\"orange\">R$ "..vRP.format(parseInt(vRP.vehiclePrice(vehicle[k2].vehicle)*0.1)).."</span>"
+								status = "<span class=\"orange\">R$ "..vRP.format(parseInt(vRP.vehiclePrice(vehicle[k2].vehicle)*0.15)).."</span>"
 							else
 								status = "<span class=\"green\">Gratuita</span>"
 							end
@@ -652,12 +657,12 @@ function src.myVehicles(work)
 							table.insert(myvehicles,{ name = vehicle[k2].vehicle, name2 = vRP.vehicleName(vehicle[k2].vehicle), engine = parseInt(vehicle[k2].engine*0.1), body = parseInt(vehicle[k2].body*0.1), fuel = parseInt(vehicle[k2].fuel), status = status, ipva = ipva })
 						end
 						return myvehicles
-					else
+					else -- CARROS NORMAIS
 						for k2,v2 in pairs(vehicle) do
 							if parseInt(os.time()) <= parseInt(vehicle[k2].time+24*60*60) then
-								status = "<span class=\"red\">R$ "..vRP.format(parseInt(vRP.vehiclePrice(vehicle[k2].vehicle)*0.5)).."</span>"
+								status = "<span class=\"red\">R$ "..vRP.format(parseInt(vRP.vehiclePrice(vehicle[k2].vehicle)*0.2)).."</span>"
 							elseif vehicle[k2].detido == 1 then
-								status = "<span class=\"orange\">R$ "..vRP.format(parseInt(vRP.vehiclePrice(vehicle[k2].vehicle)*0.1)).."</span>"
+								status = "<span class=\"orange\">R$ "..vRP.format(parseInt(vRP.vehiclePrice(vehicle[k2].vehicle)*0.15)).."</span>"
 							else
 								status = "<span class=\"green\">R$ "..vRP.format(parseInt(vRP.vehiclePrice(vehicle[k2].vehicle)*0.005)).."</span>"
 							end
@@ -675,9 +680,9 @@ function src.myVehicles(work)
 			else
 				for k,v in pairs(vehicle) do
 					if parseInt(os.time()) <= parseInt(vehicle[k].time+24*60*60) then
-						status = "<span class=\"red\">R$ "..vRP.format(parseInt(vRP.vehiclePrice(vehicle[k].vehicle)*0.5)).."</span>"
+						status = "<span class=\"red\">R$ "..vRP.format(parseInt(vRP.vehiclePrice(vehicle[k].vehicle)*0.2)).."</span>"
 					elseif vehicle[k].detido == 1 then
-						status = "<span class=\"orange\">R$ "..vRP.format(parseInt(vRP.vehiclePrice(vehicle[k].vehicle)*0.1)).."</span>"
+						status = "<span class=\"orange\">R$ "..vRP.format(parseInt(vRP.vehiclePrice(vehicle[k].vehicle)*0.15)).."</span>"
 					else
 						status = "<span class=\"green\">R$ "..vRP.format(parseInt(vRP.vehiclePrice(vehicle[k].vehicle)*0.005)).."</span>"
 					end
@@ -711,7 +716,7 @@ function src.spawnVehicles(name,use)
 				local custom = json.decode(tuning) or {}
 				if vehicle[1] ~= nil then
 					if parseInt(os.time()) <= parseInt(vehicle[1].time+24*60*60) then
-						local ok = vRP.request(source,"Veículo na retenção, deseja acionar o seguro pagando <b>R$ "..vRP.format(parseInt(vRP.vehiclePrice(name)*0.5)).."</b> reais ?",60)
+						local ok = vRP.request(source,"Veículo na retenção, deseja acionar o seguro pagando <b>R$ "..vRP.format(parseInt(vRP.vehiclePrice(name)*0.2)).."</b> reais ?",60)
 						if ok then
 							if vRP.tryFullPayment(user_id,parseInt(vRP.vehiclePrice(name)*0.5)) then
 								vRP.execute("creative/set_detido",{ user_id = parseInt(user_id), vehicle = name, detido = 0, time = 0 })
@@ -721,7 +726,7 @@ function src.spawnVehicles(name,use)
 							end
 						end
 					elseif parseInt(vehicle[1].detido) >= 1 then
-						local ok = vRP.request(source,"Veículo na detenção, deseja acionar o seguro pagando <b>R$ "..vRP.format(parseInt(vRP.vehiclePrice(name)*0.3)).."</b> reais ?",60)
+						local ok = vRP.request(source,"Veículo na detenção, deseja acionar o seguro pagando <b>R$ "..vRP.format(parseInt(vRP.vehiclePrice(name)*0.15)).."</b> reais ?",60)
 						if ok then
 							if vRP.tryFullPayment(user_id,parseInt(vRP.vehiclePrice(name)*0.3)) then
 								vRP.execute("creative/set_detido",{ user_id = parseInt(user_id), vehicle = name, detido = 0, time = 0 })
@@ -757,25 +762,25 @@ function src.spawnVehicles(name,use)
 							end
 						else
 							if vRP.vehicleType(tostring(name)) == "exclusive" or vRP.vehicleType(tostring(name)) == "rental" then
-								local ok = vRP.request(source,"Deseja pagar o <b>Vehicle Tax</b> do veículo <b>"..vRP.vehicleName(name).."</b> por <b>R$ "..vRP.format(parseInt(vRP.vehiclePrice(name)*0.00)).."</b> reais?",60)
+								local ok = vRP.request(source,"Deseja pagar a <b>Taxa</b> do veículo <b>"..vRP.vehicleName(name).."</b> por <b>R$ "..vRP.format(parseInt(vRP.vehiclePrice(name)*0.00)).."</b> reais?",60)
 								if ok then
 									if vRP.tryFullPayment(user_id,parseInt(vRP.vehiclePrice(name)*0.00)) then
 										vRP.execute("creative/set_ipva",{ user_id = parseInt(user_id), vehicle = name, ipva = parseInt(os.time()) })
-										TriggerClientEvent("Notify",source,"sucesso","Pagamento do <b>Vehicle Tax</b> conclúido com sucesso.",10000)
+										TriggerClientEvent("Notify",source,"sucesso","Pagamento da <b>Taxa</b> conclúido com sucesso.",10000)
 									else
 										TriggerClientEvent("Notify",source,"negado","Dinheiro insuficiente.",10000)
 									end
 								end
 							else
 								local price_tax = parseInt(vRP.vehiclePrice(name)*0.10)
-								if price_tax > 100000 then
-									price_tax = 100000
-								end
-								local ok = vRP.request(source,"Deseja pagar o <b>Vehicle Tax</b> do veículo <b>"..vRP.vehicleName(name).."</b> por <b>R$ "..vRP.format(price_tax).."</b> reais?",60)
+								-- if price_tax > 100000 then
+								-- 	price_tax = 100000
+								-- end
+								local ok = vRP.request(source,"Deseja pagar a <b>Taxa</b> do veículo <b>"..vRP.vehicleName(name).."</b> por <b>R$ "..vRP.format(price_tax).."</b> reais?",60)
 								if ok then
 									if vRP.tryFullPayment(user_id,price_tax) then
 										vRP.execute("creative/set_ipva",{ user_id = parseInt(user_id), vehicle = name, ipva = parseInt(os.time()) })
-										TriggerClientEvent("Notify",source,"sucesso","Pagamento do <b>Vehicle Tax</b> conclúido com sucesso.",10000)
+										TriggerClientEvent("Notify",source,"sucesso","Pagamento da <b>Taxa</b> conclúido com sucesso.",10000)
 									else
 										TriggerClientEvent("Notify",source,"negado","Dinheiro insuficiente.",10000)
 									end
@@ -823,11 +828,11 @@ AddEventHandler("desmancheVehicles",function()
 			local puser_id = vRP.getUserByRegistration(placa)
 			if puser_id then
 				vRP.execute("creative/set_detido",{ user_id = parseInt(puser_id), vehicle = vname, detido = 1, time = parseInt(os.time()) })
-				vRP.giveInventoryItem(user_id,"dinheirosujo",parseInt(vRP.vehiclePrice(vname)*0.5))
-				TriggerClientEvent("Notify",source,"sucesso","Veículo <b>desmanchado</b> com sucesso, você recebeu <b>"..vRP.format(parseInt(vRP.vehiclePrice(vname)*0.5)).."x em Dinheiro Sujo</b>",8000)
+				vRP.giveInventoryItem(user_id,"dinheirosujo",parseInt(vRP.vehiclePrice(vname)*0.2))
+				TriggerClientEvent("Notify",source,"sucesso","Veículo <b>desmanchado</b> com sucesso, você recebeu <b>"..vRP.format(parseInt(vRP.vehiclePrice(vname)*0.2)).."x em Dinheiro Sujo</b>",8000)
 				vCLIENT.deleteVehicle(source,vehicle)
 				local identity = vRP.getUserIdentity(user_id)
-				SendWebhookMessage(webhookdesmanche,"```prolog\n[ID]: "..user_id.." "..identity.name.." "..identity.firstname.." \n[DESMANCHOU]: "..vname.." [ID]: "..puser_id.." \n[VALOR]: R$ "..vRP.format(parseInt(vRP.vehiclePrice(vname)*0.1)).." "..os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S").." \r```")
+				SendWebhookMessage(webhookdesmanche,"```prolog\n[ID]: "..user_id.." "..identity.name.." "..identity.firstname.." \n[DESMANCHOU]: "..vname.." [ID]: "..puser_id.." \n[VALOR]: R$ "..vRP.format(parseInt(vRP.vehiclePrice(vname)*0.2)).." "..os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S").." \r```")
 			end
 		end
 	end
@@ -837,7 +842,7 @@ end)
 -----------------------------------------------------------------------------------------------------------------------------------------
 RegisterCommand('dv',function(source,args,rawCommand)
 	local user_id = vRP.getUserId(source)
-	if vRP.hasPermission(user_id,"admin.permissao") or vRP.hasPermission(user_id,"dv.permissao") then
+	if vRP.hasPermission(user_id,"dv.permissao") then
 		local vehicle = vRPclient.getNearestVehicle(source,7)
 		local vnetid,placa,vname,nome,banned = vRPclient.vehList(source,7)
 		if vehicle then

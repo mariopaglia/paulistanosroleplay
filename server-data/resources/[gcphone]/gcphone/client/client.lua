@@ -27,7 +27,7 @@ local lastFrameIsOpen = false
 local PhoneInCall = {}
 local currentPlaySound = false
 
-local  TokoVoipID = nil
+local TokoVoipID = nil
 
 function hasPhone(cb)
     if func.checkItemPhone() then
@@ -181,30 +181,47 @@ AddEventHandler("gcPhone:waitingCall",function(infoCall,initiator)
 end)
 
 RegisterNetEvent("gcPhone:acceptCall")
-AddEventHandler("gcPhone:acceptCall",function(infoCall,initiator)
-	if inCall == false and USE_RTC == false then
-		inCall = true
-
-		NetworkSetVoiceChannel(infoCall.id+1)
-		NetworkSetTalkerProximity(0.0)
-	end
-	if menuIsOpen == false then 
-		TooglePhone()
-	end
-	PhonePlayCall()
-	SendNUIMessage({ event = 'acceptCall', infoCall = infoCall, initiator = initiator })
+AddEventHandler("gcPhone:acceptCall", function(infoCall, initiator)
+  if inCall == false and USE_RTC == false then
+    inCall = true
+    exports['tokovoip_script']:setPlayerData(GetPlayerName(PlayerId()), "call:channel", infoCall.id + 1500, true)
+    exports.tokovoip_script:addPlayerToRadio(infoCall.id + 1500)
+    TokoVoipID = infoCall.id + 1500
+  end
+  if menuIsOpen == false then 
+    TooglePhone()
+  end
+  PhonePlayCall()
+  SendNUIMessage({event = 'acceptCall', infoCall = infoCall, initiator = initiator})
 end)
+
 
 RegisterNetEvent("gcPhone:rejectCall")
-AddEventHandler("gcPhone:rejectCall",function(infoCall)
-	if inCall == true then
-		inCall = false
-		Citizen.InvokeNative(0xE036A705F989E049)
-		NetworkSetTalkerProximity(2.5)
-	end
-	PhonePlayText()
-	SendNUIMessage({ event = 'rejectCall', infoCall = infoCall })
+AddEventHandler("gcPhone:rejectCall", function(infoCall)
+  if inCall == true then
+    if TokoVoipID then
+      inCall = false
+      Citizen.InvokeNative(0xE036A705F989E049)
+      exports['tokovoip_script']:setPlayerData(GetPlayerName(PlayerId()), "call:channel", 'nil', true)
+      exports.tokovoip_script:removePlayerFromRadio(TokoVoipID)
+      TokoVoipID = nil
+	  declinecall()
+      SetTimeout(2000, function() 
+        declinecall()
+      end)
+    end
+  end
+  PhonePlayText()
+  SendNUIMessage({event = 'rejectCall', infoCall = infoCall})
 end)
+
+function declinecall()
+  for i = 1500,2200 do
+    if exports.tokovoip_script:isPlayerInChannel(i) == true then
+      exports.tokovoip_script:removePlayerFromRadio(i)
+    end
+  end
+end
 
 
 RegisterNetEvent("gcPhone:historiqueCall")
@@ -261,15 +278,17 @@ RegisterNUICallback('ignoreCall',function(data,cb)
 	cb()
 end)
 
-RegisterNUICallback('notififyUseRTC',function(use,cb)
+RegisterNUICallback('notififyUseRTC', function (use, cb)
 	USE_RTC = use
 	if USE_RTC == true and inCall == true then
-		inCall = false
-		Citizen.InvokeNative(0xE036A705F989E049)
-		NetworkSetTalkerProximity(2.5)
+	  inCall = false
+	  Citizen.InvokeNative(0xE036A705F989E049)
+	  exports.tokovoip_script:removePlayerFromRadio(TokoVoipID)
+	  TokoVoipID = nil
 	end
 	cb()
-end)
+  end)
+  
 
 RegisterNUICallback('onCandidates',function(data,cb)
 	TriggerServerEvent('gcPhone:candidates',data.id,data.candidates)

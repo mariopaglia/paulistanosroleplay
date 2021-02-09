@@ -1,6 +1,30 @@
 local cfg = {}
 
 cfg.groups = {
+	["founder"] = {
+		"founder.permissao",
+		"admin.permissao",
+		"item.permissao",
+		"group.permissao",
+		"fix.permissao",
+		"dv.permissao",
+		"god.permissao",
+		"wl.permissao",
+		"kick.permissao",
+		"ban.permissao",
+		"noclip.permissao",
+		"tp.permissao",
+		"polpar.permissao",
+		"placa.permissao",
+		"player.blips",
+		"player.noclip",
+		"player.teleport",
+		"player.secret",
+		"player.spec", -- Comando /spec
+		"player.wall", -- Comando /wall
+		"mqcu.permissao", -- Acesso ao menu MQCU
+		"anuncio.permissao"
+	},
 	["admin"] = {
 		"admin.permissao",
 		"fix.permissao",
@@ -12,6 +36,7 @@ cfg.groups = {
 		"noclip.permissao",
 		"tp.permissao",
 		"polpar.permissao",
+		"placa.permissao",
 		"player.blips",
 		"player.noclip",
 		"player.teleport",
@@ -23,12 +48,24 @@ cfg.groups = {
 	},
 	["mod"] = {
 		"mod.permissao",
-		"fix.permissao",
 		"dv.permissao",
-		"god.permissao",
 		"wl.permissao",
 		"kick.permissao",
 		"ban.permissao",
+		"noclip.permissao",
+		"tp.permissao",
+		"polpar.permissao",
+		"placa.permissao",
+		"player.blips",
+		"player.noclip",
+		"player.teleport",
+		"player.secret",
+		"anuncio.permissao"
+	},
+	["sup"] = {
+		"sup.permissao",
+		"wl.permissao",
+		"kick.permissao",
 		"noclip.permissao",
 		"tp.permissao",
 		"polpar.permissao",
@@ -36,26 +73,6 @@ cfg.groups = {
 		"player.noclip",
 		"player.teleport",
 		"player.secret",
-		"player.spec", -- Comando /spec
-		"player.wall", -- Comando /wall
-		"mqcu.permissao", -- Acesso ao menu MQCU
-		"anuncio.permissao"
-	},
-	["helper"] = {
-		"helper.permissao",
-		"dv.permissao",
-		"wl.permissao",
-		"kick.permissao",
-		"noclip.permissao",
-		"polpar.permissao",
-		"player.blips",
-		"player.noclip",
-		"player.teleport",
-		"player.secret",
-		"player.spec", -- Comando /spec
-		"player.wall", -- Comando /wall
-		"mqcu.permissao", -- Acesso ao menu MQCU
-		"anuncio.permissao"
 	},
 	["aprovadorwl"] = {
 		"wl.permissao"
@@ -135,140 +152,6 @@ cfg.groups = {
 		"boost.permissao",
 		"corarma.permissao"
 	},
-		---------------------------------------------------
-	--					ROTA
-	---------------------------------------------------
-	["RecrutaR"] = {
-		_config = {
-			title = "ROTA Recruta",
-			gtype = "job"
-		},
-		"policia.permissao",
-		"pmesp.permissao",
-		"rota.permissao",
-		"recrutar.permissao",
-		"player.blips",
-		"polpar.permissao"
-	},
-	["RecrutaRP"] = {
-		_config = {
-			title = "ROTA Paisana",
-			gtype = "job"
-		},
-		"tooglerecr.permissao",
-		"player.blips",
-		"nogarmas.permissao"
-	},
-
-	["SoldadoR"] = {
-		_config = {
-			title = "ROTA Soldado",
-			gtype = "job"
-		},
-		"policia.permissao",
-		"pmesp.permissao",
-		"rota.permissao",
-		"soldador.permissao",
-		"player.blips",
-		"polpar.permissao"
-	},
-	["SoldadoRP"] = {
-		_config = {
-			title = "ROTA Paisana",
-			gtype = "job"
-		},
-		"tooglesolr.permissao",
-		"player.blips",
-		"nogarmas.permissao"
-	},
-
-	["TenenteR"] = {
-		_config = {
-			title = "ROTA Tenente",
-			gtype = "job"
-		},
-		"policia.permissao",
-		"pmesp.permissao",
-		"rota.permissao",
-		"tenenter.permissao",
-		"player.blips",
-		"polpar.permissao"
-	},
-	["TenenteRP"] = {
-		_config = {
-			title = "ROTA Paisana",
-			gtype = "job"
-		},
-		"toogletenr.permissao",
-		"player.blips",
-		"nogarmas.permissao"
-	},
-
-	["CapitaoR"] = {
-		_config = {
-			title = "ROTA Capitao",
-			gtype = "job"
-		},
-		"policia.permissao",
-		"pmesp.permissao",
-		"rota.permissao",
-		"capitaor.permissao",
-		"player.blips",
-		"polpar.permissao"
-	},
-	["CapitaoRP"] = {
-		_config = {
-			title = "ROTA Paisana",
-			gtype = "job"
-		},
-		"tooglecapr.permissao",
-		"player.blips",
-		"nogarmas.permissao"
-	},
-
-	["CoronelR"] = {
-		_config = {
-			title = "ROTA Coronel",
-			gtype = "job"
-		},
-		"policia.permissao",
-		"pmesp.permissao",
-		"rota.permissao",
-		"coronelr.permissao",
-		"player.blips",
-		"polpar.permissao"
-	},
-	["CoronelRP"] = {
-		_config = {
-			title = "ROTA Paisana",
-			gtype = "job"
-		},
-		"tooglecorr.permissao",
-		"player.blips",
-		"nogarmas.permissao"
-	},
-
-	["ComandanteR"] = {
-		_config = {
-			title = "ROTA Comandante",
-			gtype = "job"
-		},
-		"policia.permissao",
-		"pmesp.permissao",
-		"rota.permissao",
-		"comandanter.permissao",
-		"player.blips",
-		"polpar.permissao"
-	},
-	["ComandanteRP"] = {
-		_config = {
-			title = "ROTA Paisana",
-			gtype = "job"
-		},
-		"tooglecmdr.permissao",
-		"player.blips",
-		"nogarmas.permissao"
-	},
 
 	---------------------------------------------------
 	--					PMESP
@@ -293,7 +176,6 @@ cfg.groups = {
 		"player.blips",
 		"nogarmas.permissao"
 	},
-
 	["Soldado"] = {
 		_config = {
 			title = "PMESP Soldado",
@@ -314,28 +196,146 @@ cfg.groups = {
 		"player.blips",
 		"nogarmas.permissao"
 	},
-
-	["Tenente"] = {
+	["Cabo"] = {
 		_config = {
-			title = "PMESP Tenente",
+			title = "PMESP Cabo",
 			gtype = "job"
 		},
 		"policia.permissao",
 		"pmesp.permissao",
-		"tenente.permissao",
+		"cabo.permissao",
 		"player.blips",
 		"polpar.permissao"
 	},
-	["TenenteP"] = {
+	["CaboP"] = {
 		_config = {
 			title = "PMESP Paisana",
 			gtype = "job"
 		},
-		"toogleten.permissao",
+		"tooglecabo.permissao",
 		"player.blips",
 		"nogarmas.permissao"
 	},
-
+	["Sargento1"] = {
+		_config = {
+			title = "PMESP Sargento I",
+			gtype = "job"
+		},
+		"policia.permissao",
+		"pmesp.permissao",
+		"sargentoi.permissao",
+		"player.blips",
+		"polpar.permissao"
+	},
+	["Sargento1P"] = {
+		_config = {
+			title = "PMESP Paisana",
+			gtype = "job"
+		},
+		"tooglesargentoi.permissao",
+		"player.blips",
+		"nogarmas.permissao"
+	},
+	["Sargento2"] = {
+		_config = {
+			title = "PMESP Sargento II",
+			gtype = "job"
+		},
+		"policia.permissao",
+		"pmesp.permissao",
+		"sargentoii.permissao",
+		"player.blips",
+		"polpar.permissao"
+	},
+	["Sargento2P"] = {
+		_config = {
+			title = "PMESP Paisana",
+			gtype = "job"
+		},
+		"tooglesargentoii.permissao",
+		"player.blips",
+		"nogarmas.permissao"
+	},
+	["Sargento3"] = {
+		_config = {
+			title = "PMESP Sargento III",
+			gtype = "job"
+		},
+		"policia.permissao",
+		"pmesp.permissao",
+		"sargentoiii.permissao",
+		"player.blips",
+		"polpar.permissao"
+	},
+	["Sargento3P"] = {
+		_config = {
+			title = "PMESP Paisana",
+			gtype = "job"
+		},
+		"tooglesargentoiii.permissao",
+		"player.blips",
+		"nogarmas.permissao"
+	},
+	["Tenente1"] = {
+		_config = {
+			title = "PMESP Tenente I",
+			gtype = "job"
+		},
+		"policia.permissao",
+		"pmesp.permissao",
+		"tenentei.permissao",
+		"player.blips",
+		"polpar.permissao"
+	},
+	["Tenente1P"] = {
+		_config = {
+			title = "PMESP Paisana",
+			gtype = "job"
+		},
+		"toogletenentei.permissao",
+		"player.blips",
+		"nogarmas.permissao"
+	},
+	["Tenente2"] = {
+		_config = {
+			title = "PMESP Tenente II",
+			gtype = "job"
+		},
+		"policia.permissao",
+		"pmesp.permissao",
+		"tenenteii.permissao",
+		"player.blips",
+		"polpar.permissao"
+	},
+	["Tenente2P"] = {
+		_config = {
+			title = "PMESP Paisana",
+			gtype = "job"
+		},
+		"toogletenenteii.permissao",
+		"player.blips",
+		"nogarmas.permissao"
+	},
+	["Tenente3"] = {
+		_config = {
+			title = "PMESP Tenente III",
+			gtype = "job"
+		},
+		"policia.permissao",
+		"pmesp.permissao",
+		"tenenteiii.permissao",
+		"player.blips",
+		"polpar.permissao"
+	},
+	["Tenente3P"] = {
+		_config = {
+			title = "PMESP Paisana",
+			gtype = "job"
+		},
+		"toogletenenteiii.permissao",
+		"player.blips",
+		"nogarmas.permissao"
+	},
 	["Capitao"] = {
 		_config = {
 			title = "PMESP Capitao",
@@ -356,7 +356,6 @@ cfg.groups = {
 		"player.blips",
 		"nogarmas.permissao"
 	},
-
 	["Coronel"] = {
 		_config = {
 			title = "PMESP Coronel",
@@ -377,7 +376,86 @@ cfg.groups = {
 		"player.blips",
 		"nogarmas.permissao"
 	},
-
+	["General"] = {
+		_config = {
+			title = "PMESP General",
+			gtype = "job"
+		},
+		"policia.permissao",
+		"pmesp.permissao",
+		"general.permissao",
+		"player.blips",
+		"polpar.permissao"
+	},
+	["GeneralP"] = {
+		_config = {
+			title = "PMESP Paisana",
+			gtype = "job"
+		},
+		"tooglegeneral.permissao",
+		"player.blips",
+		"nogarmas.permissao"
+	},
+	["Instrutor"] = {
+		_config = {
+			title = "PMESP Instrutor",
+			gtype = "job"
+		},
+		"policia.permissao",
+		"pmesp.permissao",
+		"instrutor.permissao",
+		"player.blips",
+		"polpar.permissao"
+	},
+	["InstrutorP"] = {
+		_config = {
+			title = "PMESP Paisana",
+			gtype = "job"
+		},
+		"toogleinstrutor.permissao",
+		"player.blips",
+		"nogarmas.permissao"
+	},
+	["Suplente"] = {
+		_config = {
+			title = "PMESP Suplente",
+			gtype = "job"
+		},
+		"policia.permissao",
+		"pmesp.permissao",
+		"suplente.permissao",
+		"player.blips",
+		"polpar.permissao"
+	},
+	["SuplenteP"] = {
+		_config = {
+			title = "PMESP Paisana",
+			gtype = "job"
+		},
+		"tooglesuplente.permissao",
+		"player.blips",
+		"nogarmas.permissao"
+	},
+	["Subcomando"] = {
+		_config = {
+			title = "PMESP Sub-Comando",
+			gtype = "job"
+		},
+		"policia.permissao",
+		"pmesp.permissao",
+		"subcomando.permissao",
+		"player.blips",
+		"polpar.permissao"
+	},
+	["SubcomandoP"] = {
+		_config = {
+			title = "PMESP Paisana",
+			gtype = "job"
+		},
+		"tooglesubcomando.permissao",
+		"player.blips",
+		"nogarmas.permissao"
+	},
 	["Comandante"] = {
 		_config = {
 			title = "PMESP Comandante",

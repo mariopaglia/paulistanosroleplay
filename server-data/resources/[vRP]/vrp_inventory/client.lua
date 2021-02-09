@@ -164,7 +164,9 @@ AddEventHandler("Creative:Update",function(action)
 	SendNUIMessage({ action = action })
 end)
 
-
+-----------------------------------------------------------------------------------------------------------------------------------------
+-- FUNÇÃO PARA CHECAR DISTANCIA
+-----------------------------------------------------------------------------------------------------------------------------------------
 function vRPNclient.isNearCds(cds, dist)
 	return GetDistanceBetweenCoords(GetEntityCoords(PlayerPedId()), cds) <= dist
 end

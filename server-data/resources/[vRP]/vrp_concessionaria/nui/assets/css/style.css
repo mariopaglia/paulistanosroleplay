@@ -291,6 +291,7 @@ html,body{
     -ms-transition: 0.5s ease-in-out;
     -o-transition: 0.5s ease-in-out;
     transition: 0.5s ease-in-out;
+	display: flex;
 }
 .about-view {
 	display: flex;
@@ -408,6 +409,10 @@ html,body{
     -o-transition:.5s;
     transition: .5s;
 
+}
+
+.about-view.packages-btn:first-child{
+	margin-right: 5px;
 }
 .about-view.packages-btn:hover{
     box-shadow: 0 5px 20px rgba(14,15,18,.3);

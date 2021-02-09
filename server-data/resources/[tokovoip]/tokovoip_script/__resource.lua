@@ -15,6 +15,7 @@ ui_page "nui/index.html"
 files({
     "nui/index.html",
     "nui/script.js",
+    "nui/microphone.png",
 })
 
 export "setPlayerData"
@@ -24,3 +25,4 @@ export "addPlayerToRadio"
 export "removePlayerFromRadio"
 export "clientRequestUpdateChannels"
 export "isPlayerInChannel"
+export "removeAllPlayerFromRadio"

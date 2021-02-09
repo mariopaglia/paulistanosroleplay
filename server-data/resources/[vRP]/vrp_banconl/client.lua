@@ -150,45 +150,40 @@ function closeGui()
   atmOpen = false
 end
 
-Citizen.CreateThread(function()
-	while true do
-		Citizen.Wait(2)
-		local pos = GetEntityCoords(PlayerPedId(), true)
-		for k, j in pairs(banks) do
-			if(Vdist(pos.x, pos.y, pos.z, j.x, j.y, j.z) < 150.0) then
-				if(Vdist(pos.x, pos.y, pos.z, j.x, j.y, j.z) < 5.0) then
-					draw3DText(j.x, j.y, j.z, "Pressione [~g~E~w~] para acessar o banco")
+if enableBankingGui then
+	Citizen.CreateThread(function()
+		while true do
+			Citizen.Wait(50)
+			local nb, dist = IsNearBank()
+			if nb then
+				while dist < 5 do
+					nb, dist = IsNearBank(nb)
+					if nb then
+						draw3DText(banks[nb].x, banks[nb].y, banks[nb].z, "Pressione [~g~E~w~] para acessar o banco")
+						atBank = true
+						if IsControlJustPressed(1, 51) and not vRP.isHandcuffed()  then 
+							if bankOpen then
+								closeGui()
+								bankOpen = false
+							else
+								TriggerServerEvent("bank:update128317")
+								TriggerServerEvent("get:banco")
+								bankOpen = true
+							end
+						else
+							if(bankOpen) then
+								closeGui()
+							end
+							atBank = false
+							bankOpen = false
+						end
+					end
+					Citizen.Wait(5)
 				end
 			end
+			Citizen.Wait(500)
 		end
-	end
-end)
-
-if enableBankingGui then
-  Citizen.CreateThread(function()
-    while true do
-      Citizen.Wait(0)
-      if(IsNearBank()) then
-        atBank = true
-        if IsControlJustPressed(1, 51) and not vRP.isHandcuffed()  then 
-            if bankOpen then
-              closeGui()
-              bankOpen = false
-            else
-              TriggerServerEvent("bank:update128317")
-              TriggerServerEvent("get:banco")
-              bankOpen = true
-          end
-      	end
-      else
-        if(bankOpen) then
-          closeGui()
-        end
-        atBank = false
-        bankOpen = false
-      end
-    end
-  end)
+	end)
 end
 
 Citizen.CreateThread(function()
@@ -202,8 +197,9 @@ Citizen.CreateThread(function()
       DisablePlayerFiring(ply, true) 
       DisableControlAction(0, 142, active)
       DisableControlAction(0, 106, active) 
+	  Citizen.Wait(5)
     end
-    Citizen.Wait(0)
+    Citizen.Wait(200)
   end
 end)
 
@@ -275,15 +271,24 @@ RegisterNUICallback('transferSubmit', function(data, cb)
   TriggerServerEvent("bank:transfer128317", toPlayer, tonumber(amount))
 end)
 
-function IsNearBank()
-  local ply = PlayerPedId()
-  local plyCoords = GetEntityCoords(ply, 0)
-  for _, item in pairs(banks) do
-    local distance = GetDistanceBetweenCoords(item.x, item.y, item.z,  plyCoords["x"], plyCoords["y"], plyCoords["z"], true)
-    if (distance <= 0.5) then
-      return true
-    end
-  end
+function IsNearBank(bank)
+	local ply = PlayerPedId()
+	local plyCoords = GetEntityCoords(ply, 0)
+	if bank then
+		local distance = Vdist2(banks[bank].x, banks[bank].y, banks[bank].z,  plyCoords["x"], plyCoords["y"], plyCoords["z"])
+		if (distance <= 5) then
+			return bank, distance
+		end
+	else
+		for _, item in pairs(banks) do
+			local distance = Vdist2(item.x, item.y, item.z,  plyCoords["x"], plyCoords["y"], plyCoords["z"])
+			if (distance <= 5) then
+				return _, distance
+			end
+			Citizen.Wait(5)
+		end
+	end
+	return false, 500
 end
 
 function IsNearPlayer(player)

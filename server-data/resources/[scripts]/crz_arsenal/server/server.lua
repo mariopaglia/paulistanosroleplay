@@ -4,6 +4,18 @@ local Tools = module("vrp","lib/Tools")
 vRP = Proxy.getInterface("vRP")
 vRPclient = Tunnel.getInterface("vRP")
 
+-----------------------------------------------------------------------------------------------------------------------------------------
+-- WEBHOOK
+-----------------------------------------------------------------------------------------------------------------------------------------
+local webhookarsenal = "https://discord.com/api/webhooks/808411223833182218/IVVL1jdarDhdXkULG9VEPcs_o5FeshCU7g7nNsmLvZ3wT6YDyb43769D-iZtGOW9VWL4"
+local webhookarsenalpcesp = "https://discord.com/api/webhooks/808417701722062848/9L0lqOVxOHQb4FDZZ2CXxe2bE_laATQUOWIG1_CpM1CLWp18uTdQtwc2BJuIsIqR6RwO"
+
+function SendWebhookMessage(webhook,message)
+	if webhook ~= nil and webhook ~= "" then
+		PerformHttpRequest(webhook, function(err, text, headers) end, 'POST', json.encode({content = message}), { ['Content-Type'] = 'application/json' })
+	end
+end
+
 local armas = {
 }
 
@@ -25,4 +37,20 @@ AddEventHandler('crz_arsenal:colete', function()
 		vRPclient.setArmour(src,100)
 		vRP.setUData(user_id,"vRP:colete", json.encode(colete))
 	end
+end)
+
+RegisterServerEvent('crz_arsenal:logs')
+AddEventHandler('crz_arsenal:logs', function(arma)
+	local source = source
+	local user_id = vRP.getUserId(source)
+	local identity = vRP.getUserIdentity(user_id)
+	SendWebhookMessage(webhookarsenal,"```prolog\n[ID]: "..user_id.." "..identity.name.." "..identity.firstname.." \n[RETIROU]: "..arma.." "..os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S").." \r```")
+end)
+
+RegisterServerEvent('crz_arsenal:logspcesp')
+AddEventHandler('crz_arsenal:logspcesp', function(arma)
+	local source = source
+	local user_id = vRP.getUserId(source)
+	local identity = vRP.getUserIdentity(user_id)
+	SendWebhookMessage(webhookarsenalpcesp,"```prolog\n[ID]: "..user_id.." "..identity.name.." "..identity.firstname.." \n[RETIROU]: "..arma.." "..os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S").." \r```")
 end)

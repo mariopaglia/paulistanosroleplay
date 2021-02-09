@@ -2,7 +2,7 @@ local Tunnel = module("vrp","lib/Tunnel")
 local Proxy = module("vrp","lib/Proxy")
 vRP = Proxy.getInterface("vRP")
 
-inMenu                      = true
+inMenu = true
 local Menu = true
 local player = PlayerPedId()
 
@@ -23,6 +23,9 @@ if Menu then
 			if distance <= 2 then
 				if IsControlJustPressed(0, 51) then
 					TriggerServerEvent('crz_arsenal:permissao')
+					if x == 459.99 then
+						dp = "PCESP"
+					end
 				end
 			end
 		end
@@ -57,25 +60,49 @@ RegisterNUICallback('Cerveja', function()
 	local ped = PlayerPedId()
 	-- GiveWeaponToPed(ped,GetHashKey("WEAPON_STUNGUN"),0,0,0)
 	vRP.giveWeapons({["WEAPON_STUNGUN"] = { ammo = 0 }})
+	if dp == "PCESP" then
+		TriggerServerEvent('crz_arsenal:logspcesp',"Taser")
+	elseif dp == nil then
+		TriggerServerEvent('crz_arsenal:logs',"Taser")
+	end
 end)
 RegisterNUICallback('Vodka', function()
 	local ped = PlayerPedId()
 	-- GiveWeaponToPed(ped,GetHashKey("WEAPON_NIGHTSTICK"),0,0,0)
 	vRP.giveWeapons({["WEAPON_NIGHTSTICK"] = { ammo = 0 }})
+	if dp == "PCESP" then
+		TriggerServerEvent('crz_arsenal:logspcesp',"Cassetete")
+	elseif dp == nil then
+		TriggerServerEvent('crz_arsenal:logs',"Cassetete")
+	end
 end)
 RegisterNUICallback('Conhaque', function()
 	TriggerServerEvent('crz_arsenal:colete')
-	print('a')
+	if dp == "PCESP" then
+		TriggerServerEvent('crz_arsenal:logspcesp',"Colete")
+	elseif dp == nil then
+		TriggerServerEvent('crz_arsenal:logs',"Colete")
+	end
 end)
 RegisterNUICallback('Whisky', function()
 	local ped = PlayerPedId()
 	-- GiveWeaponToPed(ped,GetHashKey("WEAPON_FIREEXTINGUISHER"),25000,0,1)
 	vRP.giveWeapons({["WEAPON_FIREEXTINGUISHER"] = { ammo = 25000 }})
+	if dp == "PCESP" then
+		TriggerServerEvent('crz_arsenal:logspcesp',"Extintor")
+	elseif dp == nil then
+		TriggerServerEvent('crz_arsenal:logs',"Extintor")
+	end
 end)
 RegisterNUICallback('Tequila', function()
 	local ped = PlayerPedId()
 	-- GiveWeaponToPed(ped,GetHashKey("WEAPON_FLASHLIGHT"),0,0,0)
 	vRP.giveWeapons({["WEAPON_FLASHLIGHT"] = { ammo = 0 }})
+	if dp == "PCESP" then
+		TriggerServerEvent('crz_arsenal:logspcesp',"Lanterna")
+	elseif dp == nil then
+		TriggerServerEvent('crz_arsenal:logs',"Lanterna")
+	end
 end)
 RegisterNUICallback('Leite', function()
 	local ped = PlayerPedId()
@@ -87,6 +114,11 @@ RegisterNUICallback('Dourado', function() -- OK: GLOCK
 		RemoveWeaponFromPed(ped,GetHashKey("WEAPON_COMBATPISTOL"))
 		-- GiveWeaponToPed(ped,GetHashKey("WEAPON_COMBATPISTOL"),200,0,1)
 		vRP.giveWeapons({["WEAPON_COMBATPISTOL"] = { ammo = 200 }})
+		if dp == "PCESP" then
+			TriggerServerEvent('crz_arsenal:logspcesp',"Glock")
+		elseif dp == nil then
+			TriggerServerEvent('crz_arsenal:logs',"Glock")
+		end
 end)
 RegisterNUICallback('Taco', function() -- OK: M4A1
 	local ped = PlayerPedId()
@@ -94,6 +126,11 @@ RegisterNUICallback('Taco', function() -- OK: M4A1
 		RemoveWeaponFromPed(ped,GetHashKey("WEAPON_CARBINERIFLE_MK2"))
 		-- GiveWeaponToPed(ped,GetHashKey("WEAPON_CARBINERIFLE_MK2"),200,0,1)
 		vRP.giveWeapons({["WEAPON_CARBINERIFLE_MK2"] = { ammo = 200 }})
+		if dp == "PCESP" then
+			TriggerServerEvent('crz_arsenal:logspcesp',"M4A1")
+		elseif dp == nil then
+			TriggerServerEvent('crz_arsenal:logs',"M4A1")
+		end
 end)
 RegisterNUICallback('Donut', function() -- OK: SIG-SAUER
 	local ped = PlayerPedId()
@@ -101,6 +138,11 @@ RegisterNUICallback('Donut', function() -- OK: SIG-SAUER
 		RemoveWeaponFromPed(ped,GetHashKey("WEAPON_COMBATPDW"))
 		-- GiveWeaponToPed(ped,GetHashKey("WEAPON_COMBATPDW"),200,0,1)
 		vRP.giveWeapons({["WEAPON_COMBATPDW"] = { ammo = 200 }})
+		if dp == "PCESP" then
+			TriggerServerEvent('crz_arsenal:logspcesp',"Sigsauer")
+		elseif dp == nil then
+			TriggerServerEvent('crz_arsenal:logs',"Sigsauer")
+		end
 end)
 -- RegisterNUICallback('DonutX', function()
 -- 	local ped = PlayerPedId()
@@ -114,6 +156,11 @@ RegisterNUICallback('Hamburguer', function() -- OK: AR-15
 		RemoveWeaponFromPed(ped,GetHashKey("WEAPON_CARBINERIFLE"))
 		-- GiveWeaponToPed(ped,GetHashKey("WEAPON_CARBINERIFLE"),200,0,1)
 		vRP.giveWeapons({["WEAPON_CARBINERIFLE"] = { ammo = 200 }})
+		if dp == "PCESP" then
+			TriggerServerEvent('crz_arsenal:logspcesp',"AR-15")
+		elseif dp == nil then
+			TriggerServerEvent('crz_arsenal:logs',"AR-15")
+	end
 end)
 -- RegisterNUICallback('HotDog', function()
 -- 	local ped = PlayerPedId()

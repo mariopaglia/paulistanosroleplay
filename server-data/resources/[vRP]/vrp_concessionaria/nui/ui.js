@@ -61,32 +61,31 @@ function criarCatalogo(veiculos, totalTipo, aberto, isVendedor) {
                         preco = "R$ " + addCommas(parseInt(dataV.preco * 0.9))
                     }
                 }
+				
+				function visualize(iv){
+					if(iv){
+						return `<button class="about-view packages-btn" onclick="visualizar(\'${i}\',\'${i2}\')">VISUALIZAR</button>`;
+					}
+					return "";
+				}
 
-                var htmlCarro = '<div class="col-md-3 col-sm-4">';
-                htmlCarro += '<div class="single-package-item">';
-                htmlCarro += '<img src="img/carros/' + dataV.model + '.png" alt="package-place">';
-                htmlCarro += '<div class="single-package-item-txt">';
-                htmlCarro += '<h3>' + dataV.title + ' <span class="pull-right">' + preco + '</span></h3>';
-                htmlCarro += '<div class="packages-para">';
-                htmlCarro += '<p>';
-                htmlCarro += '<span><B> DISPONÍVEL</B></span>';
-                htmlCarro += '<B>' + total + '</B>';
-                htmlCarro += '</p>';
-                htmlCarro += '<p>';
-                htmlCarro += '<span> <B> PORTA MALAS </B> </span>';
-                htmlCarro += '<B>' + dataV.mala + 'Kg</B>';
-                htmlCarro += '</p>';
-                htmlCarro += '</div>';
-                htmlCarro += '<div class="about-btn">';
-                htmlCarro += '<button class="about-view packages-btn" onclick="comprar(\'' + i + '\',\'' + i2 + '\')">';
-                htmlCarro += 'COMPRAR';
-                htmlCarro += '</button>';
-                htmlCarro += '</div>';
-                htmlCarro += '</div>';
-                htmlCarro += '</div>';
-                htmlCarro += '</div>';
-
-                // var htmlCarro = '<div class="carro"><img src="img/carros/' + dataV.model + '.png" /><h1>' + dataV.title + ' - ' + preco + '</h1><h2>P. Malas: ' + dataV.mala + 'kg</h2><h2>Estoque: ' + total + '</h2><button type="button" onclick="comprar(\'' + i + '\',\'' + i2 + '\')">COMPRAR</button></div>';
+                var htmlCarro = `
+					<div class="col-md-3 col-sm-4">
+						<div class="single-package-item">
+							<img src="img/carros/${dataV.model}.png" alt="package-place">
+							<div class="single-package-item-txt">
+								<h3>${dataV.title}<span class="pull-right">${preco}</span></h3>
+								<div class="packages-para">
+									<p><span><B> DISPONÍVEL</B></span><B>${total}</B></p>
+									<p><span> <B> PORTA MALAS </B> </span><B>${dataV.mala}Kg</B></p>
+								</div>
+								<div class="about-btn">
+									<button class="about-view packages-btn" onclick="comprar(\'${i}\',\'${i2}\')">COMPRAR</button>
+									${visualize(isVendedor)}
+								</div>
+							</div>
+						</div>
+					</div>`;
 
                 $(".packages-content #div_" + data.categoria.id).append(htmlCarro);
             });

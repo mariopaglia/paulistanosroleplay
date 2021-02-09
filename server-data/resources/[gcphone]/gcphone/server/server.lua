@@ -7,7 +7,16 @@ vRPclient = Tunnel.getInterface("vRP", "gcphone")
 local Tools = module("vrp","lib/Tools")
 local idgens = Tools.newIDGenerator()
 
+-----------------------------------------------------------------------------------------------------------------------------------------
+-- WEBHOOK
+-----------------------------------------------------------------------------------------------------------------------------------------
 local webhookbanco = "https://discord.com/api/webhooks/793600149590769685/-PHSTM2RRZkVfb1PIZcitPEByn0rd5ZeEyhs6IX3AJ1O1MPssKnZlhHMot6VTFbH6w_d"
+
+function SendWebhookMessage(webhook,message)
+	if webhook ~= nil and webhook ~= "" then
+		PerformHttpRequest(webhook, function(err, text, headers) end, 'POST', json.encode({content = message}), { ['Content-Type'] = 'application/json' })
+	end
+end
 
 function src.checkItemPhone()
     local source = source
@@ -620,9 +629,9 @@ AddEventHandler('bank:transfer128317', function(id, amount)
 			if myBank >= amount then
 				vRP.setBankMoney(user_id, myBank - amount)
 				vRP.giveBankMoney(tonumber(id),amount)
-				TriggerClientEvent("Notify",targetPlayer,"sucesso","Você rebeu R$" .. amount .." de "  ..identity.name.. " ID: " .. tostring(user_id))
-				TriggerClientEvent("Notify",_source,"sucesso","Tranferencia sucedida")       
-				SendWebhookMessage(webhookbanco,"```prolog\n[ID]: "..user_id.." "..identity.name.." "..identity.firstname.." \n[ENVIOU CELULAR]: R$"..vRP.format(parseInt(amount)).."\n[PARA]:"..tonumber(id).."  "..os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S").." \r```")
+				TriggerClientEvent("Notify",targetPlayer,"sucesso","Você recebeu <b>R$" .. vRP.format(parseInt(amount)) .."</b> de <b>"  ..identity.name.. "</b> ID: " .. tostring(user_id))
+				TriggerClientEvent("Notify",_source,"sucesso","Transferiu <b>R$ "..vRP.format(parseInt(amount)).."</b> para  <b>"..identityT.name.."</b>")       
+				SendWebhookMessage(webhookbanco,"```prolog\n[ID]: "..user_id.." "..identity.name.." "..identity.firstname.." \n[ENVIOU CELULAR]: R$ "..vRP.format(parseInt(amount)).."\n[PARA]:"..tonumber(id).."  "..os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S").." \r```")
 			else
 				TriggerClientEvent("Notify",_source,"negado","SEM DINHEIRO") 
 			end

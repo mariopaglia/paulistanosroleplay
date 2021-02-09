@@ -147,7 +147,6 @@ local itemlist = {
 	["wbody|GADGET_PARACHUTE"] = { index = "paraquedas", nome = "Paraquedas", type = "equipar" },
 	["wbody|WEAPON_FIREEXTINGUISHER"] = { index = "extintor", nome = "Extintor", type = "equipar" },
 	["wbody|WEAPON_MICROSMG"] = { index = "uzi", nome = "Uzi", type = "equipar" },
-	-- ["wbody|WEAPON_SMG"] = { index = "mp5", nome = "MP5", type = "equipar" },
 	["wbody|WEAPON_ASSAULTSMG"] = { index = "mtar21", nome = "MTAR-21", type = "equipar" },
 	["wbody|WEAPON_PUMPSHOTGUN_MK2"] = { index = "remington", nome = "Remington 870", type = "equipar" },
 	["wbody|WEAPON_SPECIALCARBINE"] = { index = "parafall", nome = "Parafall", type = "equipar" },
@@ -168,7 +167,6 @@ local itemlist = {
 	["wammo|WEAPON_FLARE"] = { index = "m-sinalizador", nome = "M.Sinalizador", type = "recarregar" },
 	["wammo|GADGET_PARACHUTE"] = { index = "m-paraquedas", nome = "M.Paraquedas", type = "recarregar" },
 	["wammo|WEAPON_FIREEXTINGUISHER"] = { index = "m-extintor", nome = "M.Extintor", type = "recarregar" },
-	-- ["wammo|WEAPON_SMG"] = { index = "m-mp5", nome = "M.MP5", type = "recarregar" },
 	["wammo|WEAPON_PUMPSHOTGUN"] = { index = "m-shotgun", nome = "M.Shotgun", type = "recarregar" },
 	["wammo|WEAPON_PUMPSHOTGUN_MK2"] = { index = "m-remington", nome = "M.Remington 870", type = "recarregar" },
 	["wammo|WEAPON_SPECIALCARBINE"] = { index = "m-parafall", nome = "M.Parafall", type = "recarregar" },
@@ -328,7 +326,7 @@ function vRP.giveInventoryItem(user_id,idname,amount)
             data.inventory[idname] = { amount = amount }
         end
     end 
-    TriggerClientEvent("itensNotify",source,"sucesso",""..vRP.format(parseInt(amount)).."x "..idname.."",""..vRP.itemIndexList(idname).."") 
+    TriggerClientEvent("itensNotify",source,"sucesso",""..vRP.format(parseInt(amount)).."x "..vRP.itemNameList(idname).."",""..vRP.itemIndexList(idname).."") 
 end
 
 function vRP.tryGetInventoryItem(user_id,idname,amount)
@@ -336,7 +334,7 @@ function vRP.tryGetInventoryItem(user_id,idname,amount)
     local amount = parseInt(amount)
     local data = vRP.getUserDataTable(user_id)
     if data and amount > 0 then
-        TriggerClientEvent("itensNotify",source,"negado",""..vRP.format(parseInt(amount)).."x "..idname.."",""..vRP.itemIndexList(idname).."") 
+        TriggerClientEvent("itensNotify",source,"negado",""..vRP.format(parseInt(amount)).."x "..vRP.itemNameList(idname).."",""..vRP.itemIndexList(idname).."") 
         local entry = data.inventory[idname]
         if entry and entry.amount >= amount then
             entry.amount = entry.amount - amount
@@ -760,37 +758,37 @@ local vehglobal = {
 	["osiris"] = { ['name'] = "Osiris", ['price'] = 1500000, ['tipo'] = "carros" },
 
 	-- MOTOS CONCE
-	["faggio"] = { ['name'] = "Faggio", ['price'] = 10000, ['tipo'] = "motos" },
-	["pcj"] = { ['name'] = "Pcj", ['price'] = 30000, ['tipo'] = "motos" },
-	["ruffian"] = { ['name'] = "Ruffian", ['price'] = 50000, ['tipo'] = "motos" },
-	["vader"] = { ['name'] = "Vader", ['price'] = 55000, ['tipo'] = "motos" },
-	["nemesis"] = { ['name'] = "Nemesis", ['price'] = 60000, ['tipo'] = "motos" },
-	["lectro"] = { ['name'] = "Lectro", ['price'] = 65000, ['tipo'] = "motos" },
-	["defiler"] = { ['name'] = "Defiler", ['price'] = 100000, ['tipo'] = "motos" },
-	["vortex"] = { ['name'] = "Vortex", ['price'] = 110000, ['tipo'] = "motos" },
-	["ratbike"] = { ['name'] = "Ratbike", ['price'] = 120000, ['tipo'] = "motos" },
-	["diablous"] = { ['name'] = "Diablous", ['price'] = 160000, ['tipo'] = "motos" },
-	["enduro"] = { ['name'] = "Enduro", ['price'] = 180000, ['tipo'] = "motos" },
-	["esskey"] = { ['name'] = "Esskey", ['price'] = 180000, ['tipo'] = "motos" },
-	["cliffhanger"] = { ['name'] = "Cliffhanger", ['price'] = 210000, ['tipo'] = "motos" },
-	["zombiea"] = { ['name'] = "Zombiea", ['price'] = 270000, ['tipo'] = "motos" },
-	["nightblade"] = { ['name'] = "Nightblade", ['price'] = 240000, ['tipo'] = "motos" },
-	["diablous2"] = { ['name'] = "Diablous2", ['price'] = 250000, ['tipo'] = "motos" },
-	["hakuchou"] = { ['name'] = "Hakuchou", ['price'] = 260000, ['tipo'] = "motos" },
-	["carbonrs"] = { ['name'] = "Carbonrs", ['price'] = 270000, ['tipo'] = "motos" },
-	["manchez"] = { ['name'] = "Manchez", ['price'] = 280000, ['tipo'] = "motos" },
-	["double"] = { ['name'] = "Double", ['price'] = 280000, ['tipo'] = "motos" },
-	["gargoyle"] = { ['name'] = "Gargoyle", ['price'] = 300000, ['tipo'] = "motos" },
-	["daemon"] = { ['name'] = "Daemon", ['price'] = 310000, ['tipo'] = "motos" },
-	["sanchez2"] = { ['name'] = "Sanchez2", ['price'] = 330000, ['tipo'] = "motos" },
-	["sanchez"] = { ['name'] = "Sanchez", ['price'] = 350000, ['tipo'] = "motos" },
-	["chimera"] = { ['name'] = "Chimera", ['price'] = 350000, ['tipo'] = "motos" },
-	["bf400"] = { ['name'] = "Bf400", ['price'] = 400000, ['tipo'] = "motos" },
-	["bati"] = { ['name'] = "Bati", ['price'] = 400000, ['tipo'] = "motos" },
-	["bati2"] = { ['name'] = "Bati2", ['price'] = 450000, ['tipo'] = "motos" },
-	["akuma"] = { ['name'] = "Akuma", ['price'] = 470000, ['tipo'] = "motos" },
-	["hakuchou2"] = { ['name'] = "Hakuchou2", ['price'] = 500000, ['tipo'] = "motos" },
-	["sanctus"] = { ['name'] = "Sanctus", ['price'] = 500000, ['tipo'] = "motos" },
+	["faggio"] = { ['name'] = "Faggio", ['price'] = 20000, ['tipo'] = "motos" },
+	["pcj"] = { ['name'] = "Pcj", ['price'] = 60000, ['tipo'] = "motos" },
+	["ruffian"] = { ['name'] = "Ruffian", ['price'] = 100000, ['tipo'] = "motos" },
+	["vader"] = { ['name'] = "Vader", ['price'] = 110000, ['tipo'] = "motos" },
+	["nemesis"] = { ['name'] = "Nemesis", ['price'] = 120000, ['tipo'] = "motos" },
+	["lectro"] = { ['name'] = "Lectro", ['price'] = 130000, ['tipo'] = "motos" },
+	["defiler"] = { ['name'] = "Defiler", ['price'] = 200000, ['tipo'] = "motos" },
+	["vortex"] = { ['name'] = "Vortex", ['price'] = 220000, ['tipo'] = "motos" },
+	["ratbike"] = { ['name'] = "Ratbike", ['price'] = 240000, ['tipo'] = "motos" },
+	["diablous"] = { ['name'] = "Diablous", ['price'] = 320000, ['tipo'] = "motos" },
+	["enduro"] = { ['name'] = "Enduro", ['price'] = 360000, ['tipo'] = "motos" },
+	["esskey"] = { ['name'] = "Esskey", ['price'] = 360000, ['tipo'] = "motos" },
+	["cliffhanger"] = { ['name'] = "Cliffhanger", ['price'] = 420000, ['tipo'] = "motos" },
+	["zombiea"] = { ['name'] = "Zombiea", ['price'] = 480000, ['tipo'] = "motos" },
+	["nightblade"] = { ['name'] = "Nightblade", ['price'] = 500000, ['tipo'] = "motos" },
+	["diablous2"] = { ['name'] = "Diablous2", ['price'] = 520000, ['tipo'] = "motos" },
+	["hakuchou"] = { ['name'] = "Hakuchou", ['price'] = 540000, ['tipo'] = "motos" },
+	["carbonrs"] = { ['name'] = "Carbonrs", ['price'] = 540000, ['tipo'] = "motos" },
+	["manchez"] = { ['name'] = "Manchez", ['price'] = 560000, ['tipo'] = "motos" },
+	["double"] = { ['name'] = "Double", ['price'] = 560000, ['tipo'] = "motos" },
+	["gargoyle"] = { ['name'] = "Gargoyle", ['price'] = 600000, ['tipo'] = "motos" },
+	["daemon"] = { ['name'] = "Daemon", ['price'] = 620000, ['tipo'] = "motos" },
+	["sanchez2"] = { ['name'] = "Sanchez2", ['price'] = 660000, ['tipo'] = "motos" },
+	["sanchez"] = { ['name'] = "Sanchez", ['price'] = 700000, ['tipo'] = "motos" },
+	["chimera"] = { ['name'] = "Chimera", ['price'] = 700000, ['tipo'] = "motos" },
+	["bf400"] = { ['name'] = "Bf400", ['price'] = 800000, ['tipo'] = "motos" },
+	["bati"] = { ['name'] = "Bati", ['price'] = 800000, ['tipo'] = "motos" },
+	["bati2"] = { ['name'] = "Bati2", ['price'] = 900000, ['tipo'] = "motos" },
+	["akuma"] = { ['name'] = "Akuma", ['price'] = 940000, ['tipo'] = "motos" },
+	["hakuchou2"] = { ['name'] = "Hakuchou2", ['price'] = 1000000, ['tipo'] = "motos" },
+	["sanctus"] = { ['name'] = "Sanctus", ['price'] = 1000000, ['tipo'] = "motos" },
 
 	--MOTOS
 	["deathbike"] = { ['name'] = "deathbike", ['price'] = 500000, ['tipo'] = "motos" },
@@ -844,7 +842,7 @@ local vehglobal = {
 	["eclipse"] = { ['name'] = "Mitsubishi Eclipse", ['price'] = 1800000, ['tipo'] = "import" },
 	["gt17"] = { ['name'] = "Ford GT", ['price'] = 4500000, ['tipo'] = "import" },
 	["i8"] = { ['name'] = "BMW I8", ['price'] = 0, ['tipo'] = "import" },
-	["aperta"] = { ['name'] = "Ferrari Italia", ['price'] = 0, ['tipo'] = "import" },
+	["aperta"] = { ['name'] = "LaFerrari", ['price'] = 0, ['tipo'] = "import" },
 	["lp700r"] = { ['name'] = "Lamborghini Aventador", ['price'] = 0, ['tipo'] = "import" },
 	["bc"] = { ['name'] = "Pagani Zonda", ['price'] = 0, ['tipo'] = "import" },
 	["palameila"] = { ['name'] = "Porsche Panamera", ['price'] = 2500000, ['tipo'] = "import" },
@@ -910,6 +908,7 @@ local vehglobal = {
 	["cruzeprf2"] = { ['name'] = "Cruze PRF 2020", ['price'] = 1000, ['tipo'] = "work" },
 	["l200prf"] = { ['name'] = "L200 PRF", ['price'] = 1000, ['tipo'] = "work" },
 	["trailprf"] = { ['name'] = "Trailblazer PRF", ['price'] = 1000, ['tipo'] = "work" },
+	["ec130PRF"] = { ['name'] = "Helicoptero PRF", ['price'] = 1000, ['tipo'] = "work" },
 	["sw4pc1"] = { ['name'] = "SW4 P.C.", ['price'] = 1000, ['tipo'] = "work" },
 	["traildesc"] = { ['name'] = "Trail Desc. P.C.", ['price'] = 1000, ['tipo'] = "work" },
 	["frogger2"] = { ['name'] = "Fogger Heli P.C.", ['price'] = 1000, ['tipo'] = "work" },
@@ -925,7 +924,8 @@ local vehglobal = {
 	["seasparrow"] = { ['name'] = "Paramédico Helicóptero Água", ['price'] = 1000, ['tipo'] = "work" },
 	["coach"] = { ['name'] = "Ônibus", ['price'] = 1000, ['tipo'] = "work" },
 	["bus"] = { ['name'] = "Bus", ['price'] = 1000, ['tipo'] = "work" },
-	["flatbed"] = { ['name'] = "Reboque Prancha", ['price'] = 1000, ['tipo'] = "work" },
+	["flatbed"] = { ['name'] = "Reboque SportRace", ['price'] = 1000, ['tipo'] = "work" },
+	["flatbed3"] = { ['name'] = "Reboque Bennys", ['price'] = 1000, ['tipo'] = "work" },
 	["towtruck"] = { ['name'] = "Reboque Guincho", ['price'] = 1000, ['tipo'] = "work" },
 	["towtruck2"] = { ['name'] = "Towtruck2", ['price'] = 1000, ['tipo'] = "work" },
 	["ratloader"] = { ['name'] = "Caminhão", ['price'] = 1000, ['tipo'] = "work" },
@@ -980,7 +980,6 @@ local vehglobal = {
 	["btype"] = { ['name'] = "Btype", ['price'] = 200000, ['tipo'] = "work" },
 	["tractor2"] = { ['name'] = "Tractor2", ['price'] = 1000, ['tipo'] = "work" },
 	["rebel"] = { ['name'] = "Rebel", ['price'] = 1000, ['tipo'] = "work" },
-	["flatbed"] = { ['name'] = "Reboque", ['price'] = 1000, ['tipo'] = "work" },
 	["volatus"] = { ['name'] = "Volatus", ['price'] = 1000000, ['tipo'] = "work" },
 	["cargobob2"] = { ['name'] = "Cargo Bob", ['price'] = 1000000, ['tipo'] = "work" },		
 	["hauler"] = { ['name'] = "Caminhão", ['price'] = 1000, ['tipo'] = "work" },	

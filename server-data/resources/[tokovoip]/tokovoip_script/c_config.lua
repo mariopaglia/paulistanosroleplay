@@ -5,29 +5,33 @@ TokoVoipConfig = {
 	minVersion = "1.2.4", -- Version of the TS plugin required to play on the server
 
 	distance = {
-		5, -- Whisper speech distance in gta distance units
-		10, -- Normal speech distance in gta distance units
-		40, -- Shout speech distance in gta distance units
+		5, -- Normal speech distance in gta distance units
+		2, -- Whisper speech distance in gta distance units
+		15, -- Shout speech distance in gta distance units
+		0,
 	},
-	headingType = 1, -- headingType 0 uses GetGameplayCamRot, basing heading on the camera's heading, to match how other GTA sounds work. headingType 1 uses GetEntityHeading which is based on the character's direction
+	headingType = 0, -- headingType 0 uses GetGameplayCamRot, basing heading on the camera's heading, to match how other GTA sounds work. headingType 1 uses GetEntityHeading which is based on the character's direction
 	radioKey = 137, -- Keybind used to talk on the radio
 	keySwitchChannels = 212, -- Keybind used to switch the radio channels
 	keySwitchChannelsSecondary = 118, -- If set, both the keySwitchChannels and keySwitchChannelsSecondary keybinds must be pressed to switch the radio channels
 	keyProximity = 212, -- Keybind used to switch the proximity mode
-
+	radioClickMaxChannel = 1100, -- Set the max amount of radio channels that will have local radio clicks enabled
+	radioAnim = true, -- Enable or disable the radio animation
+	radioEnabled = true, -- Enable or disable using the radio
+	
 	plugin_data = {
 		-- TeamSpeak channel name used by the voip
 		-- If the TSChannelWait is enabled, players who are currently in TSChannelWait will be automatically moved
 		-- to the TSChannel once everything is running
-		TSChannel = "JOGANDO", --CANAL ONDE O PLAYER VAI FICAR DURENTE O JOGO!!!
+		TSChannel = "JOGANDO",
 		TSPassword = "Jr061193", -- TeamSpeak channel password (can be empty)
 
 		-- Optional: TeamSpeak waiting channel name, players wait in this channel and will be moved to the TSChannel automatically
 		-- If the TSChannel is public and people can join directly, you can leave this empty and not use the auto-move
-		TSChannelWait = "AGUARDANDO", --CANAL ONDE O PLAYER FICARA AGUARDANDO PARA ENTRAR NO JOGO!!!
-		
+		TSChannelWait = "AGUARDANDO",
+
 		-- Blocking screen informations
-		TSServer = "ts.paulistanosrp.com", -- IP DO TS
+		TSServer = "ts.paulistanosrp.com", -- TeamSpeak server address to be displayed on blocking screen
 		TSChannelSupport = "", -- TeamSpeak support channel name displayed on blocking screen
 		TSDownload = "", -- Download link displayed on blocking screen
 		TSChannelWhitelist = { -- Black screen will not be displayed when users are in those TS channels
@@ -40,7 +44,7 @@ TokoVoipConfig = {
 		local_click_off = true, -- Is local click off sound active
 		remote_click_on = true, -- Is remote click on sound active
 		remote_click_off = true, -- Is remote click off sound active
-		enableStereoAudio = false, -- If set to true, positional audio will be stereo (you can hear people more on the left or the right around you)
+		enableStereoAudio = true, -- If set to true, positional audio will be stereo (you can hear people more on the left or the right around you)
 
 		localName = "Individuo Indigente", -- If set, this name will be used as the user's teamspeak display name
 		localNamePrefix = "[" .. GetPlayerServerId(PlayerId()) .. "] ", -- If set, this prefix will be added to the user's teamspeak display name
@@ -55,3 +59,21 @@ AddEventHandler("onClientResourceStart", function(resource)
 		TriggerEvent("initializeVoip"); -- Trigger this event whenever you want to start the voip
 	end
 end)
+
+-- Update config properties from another script
+function SetTokoProperty(key, value)
+	if TokoVoipConfig[key] ~= nil and TokoVoipConfig[key] ~= "plugin_data" then
+		TokoVoipConfig[key] = value
+
+		if voip then
+			if voip.config then
+				if voip.config[key] ~= nil then
+					voip.config[key] = value
+				end
+			end
+		end
+	end
+end
+
+-- Make exports available on first tick
+exports("SetTokoProperty", SetTokoProperty)

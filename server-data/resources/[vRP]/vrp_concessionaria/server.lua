@@ -144,6 +144,22 @@ function func.comprarVeiculo(categoria, modelo)
 
 end
 
+local carsv = {}
+function func.registerCars(car, rt)
+	local source = source
+    local user_id = vRP.getUserId(source)
+	if vRP.hasPermission(user_id, "concessionaria.permissao") then
+		if not rt then
+			table.insert(carsv, car)
+		else
+			local v = carsv
+			carsv = {}
+			return v
+		end
+	end
+	return {}
+end
+
 function func.venderVeiculo(categoria, modelo)
     local source = source
     local user_id = vRP.getUserId(source)

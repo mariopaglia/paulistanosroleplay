@@ -52,8 +52,8 @@ cfg.items = {
 	["mola"] = { "Mola",0.2 },
 	
 	-- Farm de Munição
-	["capsula"] = { "Cápsula",0.2 },
-	["polvora"] = { "Pólvora",0.5 },
+	["capsula"] = { "Cápsula",0.15 },
+	["polvora"] = { "Pólvora",0.08 },
 	
 	-- Farm de Desmanche
 	["ferramenta"] = { "Ferramenta",3 },

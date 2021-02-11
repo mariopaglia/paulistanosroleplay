@@ -915,6 +915,7 @@ local vehglobal = {
 	["pbus"] = { ['name'] = "Onibus PMESP", ['price'] = 1000, ['tipo'] = "work" },
 	["riot"] = { ['name'] = "Blindado PMESP", ['price'] = 1000, ['tipo'] = "work" },
 	["polmav"] = { ['name'] = "Heli Polmav PMESP", ['price'] = 1000, ['tipo'] = "work" },
+	["samumav"] = { ['name'] = "Helicoptero SAMU", ['price'] = 1000, ['tipo'] = "work" },
 	["ambulance"] = { ['name'] = "Ambulância SAMU", ['price'] = 1000, ['tipo'] = "work" },
 	["policeb"] = { ['name'] = "Moto SAMU", ['price'] = 1000, ['tipo'] = "work" },
 

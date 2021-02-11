@@ -105,21 +105,21 @@ function setVoice()
 	NetworkClearVoiceChannel()
 end
 
-RegisterKeyMapping('voice:change', '[V] voice change', 'keyboard', 'HOME')
+-- RegisterKeyMapping('voice:change', '[V] voice change', 'keyboard', 'HOME')
 
-RegisterCommand('voice:change',function(source, args, rawCommand)
-	if proximity == 3.0 then
-		-- voiceDisplay = "<span style='color:white'><img class='microfone' src='img/mic2.png'> Sussurro</span>"
-		proximity = 30.0
-	elseif proximity == 30.0 then
-		-- voiceDisplay = "<span style='color:white'><img class='microfone' src='img/mic3.png'>Gritando</span>"
-		proximity = 10.0
-	elseif proximity == 10.0 then
-		-- voiceDisplay = "<span style='color:white'><img class='microfone' src='img/mic.png'> Normal</span>"
-		proximity = 3.0
-	end
-	setVoice()
-end)
+-- RegisterCommand('voice:change',function(source, args, rawCommand)
+-- 	if proximity == 3.0 then
+-- 		-- voiceDisplay = "<span style='color:white'><img class='microfone' src='img/mic2.png'> Sussurro</span>"
+-- 		proximity = 30.0
+-- 	elseif proximity == 30.0 then
+-- 		-- voiceDisplay = "<span style='color:white'><img class='microfone' src='img/mic3.png'>Gritando</span>"
+-- 		proximity = 10.0
+-- 	elseif proximity == 10.0 then
+-- 		-- voiceDisplay = "<span style='color:white'><img class='microfone' src='img/mic.png'> Normal</span>"
+-- 		proximity = 3.0
+-- 	end
+-- 	setVoice()
+-- end)
 
 Citizen.CreateThread(function()
     local currSpeed = 0.0
@@ -279,13 +279,13 @@ IsCar = function(veh)
 			TriggerEvent("cancelando",true)
 			if CintoSeguranca then
 			  TriggerEvent("vrp_sound:source",'unbelt',0.5)
-			  SetTimeout(2000,function()
+			  SetTimeout(500,function()
 				CintoSeguranca = false
 				TriggerEvent("cancelando",false)
 			  end)
 			else
 			  TriggerEvent("vrp_sound:source",'belt',0.5)
-				SetTimeout(3000,function()
+				SetTimeout(500,function()
 				  CintoSeguranca = true
 				  TriggerEvent("cancelando",false)
 				end)

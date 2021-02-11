@@ -9,6 +9,12 @@ local open = false
 local categoriaSelecionada = nil
 local carroSelecionado = nil
 
+local spawncds = {
+    {['x'] = -47.52, ['y'] = -1093.53, ['z'] = 25.89, ['h'] = 70.36},
+    {['x'] = -49.11, ['y'] = -1097.83, ['z'] = 25.89, ['h'] = 69.35},
+    {['x'] = -40.91, ['y'] = -1098.43, ['z'] = 25.89, ['h'] = 69.24},
+}
+
 Citizen.CreateThread(function()
     SetNuiFocus(false, false)
     while true do
@@ -16,12 +22,12 @@ Citizen.CreateThread(function()
 
         local distance = GetDistanceBetweenCoords(
                              GetEntityCoords(GetPlayerPed(-1)),
-                            -32.41,-1112.84,26.49 - 0.97, true)
+                            -55.36,-1093.73,26.43 - 0.97, true)
 
-        if distance <= 100 then
+        if distance <= 20 then
             --DrawMarker(21,v.x,v.y,v.z-0.6,0,0,0,0.0,0,0,0.5,0.5,0.4,255,0,0,50,0,0,0,1)
-            DrawMarker(21, -32.41,-1112.84,26.49-0.5, 0, 0, 0, 0, 0, 0, 0.5, 0.5, 0.4, 255, 0, 0, 100, 0, 0, 0, 1)
-            -- DrawMarker(25,-32.41,-1112.84,26.49-0.99,0,0,0,0.0,0,0,3.0,3.0,0.4,255,0,0,80,0,0,0,1)
+            DrawMarker(21, -55.36,-1093.73,26.43-0.5, 0, 0, 0, 0, 0, 0, 0.5, 0.5, 0.4, 255, 0, 0, 100, 0, 0, 0, 1)
+            -- DrawMarker(25,-55.36,-1093.73,26.43-0.99,0,0,0,0.0,0,0,3.0,3.0,0.4,255,0,0,80,0,0,0,1)
             if distance <= 3 then
                 if not open then
                     if IsControlJustPressed(1, 38) then
@@ -146,6 +152,63 @@ RegisterNUICallback("ButtonClick", function(data, cb)
             })
         end
     end
+	
+	if data.action == "visualizarCarro" then
+		local sp = false;
+		for k, v in pairs(spawncds) do
+			if not sp then
+				local checkPos = GetClosestVehicle(v.x,v.y,v.z,2.001,0,71)
+				if checkPos == 0 then
+					sp = k
+				end
+			end
+		end
+		if not sp then
+			TriggerEvent("Notify","importante","Todas as vagas estão ocupadas no momento.",10000)
+		else
+			local car = Config.Veiculos[data.categoria+1].veiculos[data.model+1]
+			local mhash = GetHashKey(car.model)
+			while not HasModelLoaded(mhash) do
+				RequestModel(mhash)
+				Citizen.Wait(1)
+			end
+
+			local nveh = CreateVehicle(mhash,spawncds[sp].x,spawncds[sp].y,spawncds[sp].z+0.5,spawncds[sp].h,true,false)
+			SetVehicleOnGroundProperly(nveh)
+			SetVehicleEngineOn(nveh, 1, 1, 1)
+			SetVehicleNumberPlateText(nveh,"SHOWROOM")
+			SetEntityAsMissionEntity(nveh,true,true)
+			SetVehRadioStation(nveh,"OFF")
+
+			SetVehicleEngineHealth(nveh,1000.0)
+			SetVehicleBodyHealth(nveh,100.0)
+            SetVehicleFuelLevel(nveh,1000.0)
+            SetVehicleDirtLevel(nveh,0.0)
+            
+			SetEntityInvincible(nveh, true)
+			SetEntityLights(nveh, true)
+			FreezeEntityPosition(nveh, true)
+			SetVehicleDoorsLockedForAllPlayers(nveh, false)
+			func.registerCars(VehToNet(nveh))
+
+			SetModelAsNoLongerNeeded(mhash)
+		end
+	end
+end)
+
+RegisterCommand("lm",function(source,args)
+	local cars = func.registerCars("",1)
+	for k, vs in pairs(cars) do
+		local v = NetToVeh(vs)
+		Citizen.InvokeNative(0xAD738C3085FE7E11,v,true,true)
+		SetEntityAsMissionEntity(v,true,true)
+		SetVehicleHasBeenOwnedByPlayer(v,true)
+		NetworkRequestControlOfEntity(v)
+		Citizen.InvokeNative(0xEA386986E786A54F,Citizen.PointerValueIntInitialized(v))
+		DeleteEntity(v)
+		DeleteVehicle(v)
+		SetEntityAsNoLongerNeeded(v)
+	end
 end)
 
 RegisterNetEvent('vrp_concessionaria:closeAll')
@@ -153,26 +216,6 @@ AddEventHandler('vrp_concessionaria:closeAll', function()
     open = false
     SetNuiFocus(false, false)
     SendNUIMessage({type = 'closeAll'})
-end)
-
-RegisterNetEvent("vrp_concessionaria:deletarveiculo")
-AddEventHandler('vrp_concessionaria:deletarveiculo', function(distance)
-    local vehicle = vRP.getNearestVehicle(distance)
-    if IsEntityAVehicle(vehicle) then
-        -- local veh = VehToNet(vehicle)
-
-        local vehicleLabel = GetDisplayNameFromVehicleModel(
-                                 GetEntityModel(vehicle))
-        local placa = GetVehicleNumberPlateText(vehicle)
-        if carros[string.lower(vehicleLabel)] == placa then
-            carros[string.lower(vehicleLabel)] = nil
-        end
-        TriggerServerEvent("vrp_adv_garages_id", veh,
-                           GetVehicleEngineHealth(vehicle),
-                           GetVehicleBodyHealth(vehicle),
-                           GetVehicleFuelLevel(vehicle))
-        TriggerServerEvent("trydeleteentity", VehToNet(vehicle))
-    end
 end)
 
 RegisterNetEvent("vrp_concessionaria:notify")

@@ -46,7 +46,7 @@ Citizen.CreateThread(function()
 				TriggerEvent("tokovoip:toggleMute", true)
 				TriggerEvent("radio:outServers")
             end
-			DisableControlAction(1, 244, true)
+			-- DisableControlAction(1, 244, true)
         else 
         if GetEntityHealth(ped) >= 101 then
             if morto == 1 then
@@ -54,7 +54,7 @@ Citizen.CreateThread(function()
 				TriggerEvent("tokovoip:toggleMute", false)
                 morto = 0
             end
-				DisableControlAction(1, 244, false)
+				-- DisableControlAction(1, 244, false)
             end
         end
         Citizen.Wait(500)

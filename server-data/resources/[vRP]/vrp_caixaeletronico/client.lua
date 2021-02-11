@@ -49,7 +49,7 @@ Citizen.CreateThread(function()
 				if distance <= 1.2 then
 					esperar = 4
 					drawTxt("PRESSIONE  ~r~G~w~  PARA INICIAR O ROUBO",4,0.5,0.93,0.50,255,255,255,180)
-					if IsControlJustPressed(0,58) and not IsPedInAnyVehicle(ped) then
+					if IsControlJustPressed(0,47) and not IsPedInAnyVehicle(ped) then
 						if GetEntityModel(ped) == GetHashKey("mp_m_freemode_01") or GetEntityModel(ped) == GetHashKey("mp_f_freemode_01") then
 							func.checkRobbery(v.id,v.x,v.y,v.z,v.h)
 						end

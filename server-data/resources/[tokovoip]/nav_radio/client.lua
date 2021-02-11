@@ -65,12 +65,12 @@ RegisterNUICallback("ButtonClick",function(data,cb)
 			exports.tokovoip_script:addPlayerToRadio(1005)
 		end
 	elseif data == "bennys" then
-		if emP.checkPermission2("mecanico.permissao","Bennys (Mecânicos)") then
+		if emP.checkPermission2("bennys.permissao","Bennys (Mecânicos)") then
 			outServers()
 			exports.tokovoip_script:addPlayerToRadio(1006)
 		end	
 	elseif data == "sportrace" then
-		if emP.checkPermission2("mecanico.permissao","SportRace (Mêcanicos)") then
+		if emP.checkPermission2("sportrace.permissao","SportRace (Mêcanicos)") then
 			outServers()
 			exports.tokovoip_script:addPlayerToRadio(1007)
 		end		
@@ -130,16 +130,10 @@ RegisterCommand("radio",function(source,args)
 	end
 end)
 
-local blacklist = {
-  [188] = { ['perm'] = "permisao" },
-  [189] = { ['perm'] = "permisao" },
-  [190] = { ['perm'] = "policia.permissao" }
-}
-
 RegisterCommand("radiof",function(source,args)
     if args[1] then
         local radio = parseInt(args[1])
-        if radio < 1017 then
+        if radio <= 999 then
             if emP.checkRadio() then
                 outServers()
                     exports.tokovoip_script:addPlayerToRadio(radio)

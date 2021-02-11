@@ -443,6 +443,7 @@ local vehList = {
 	{ ['name'] = "shotaro", ['hash'] = -405626514, ['banned'] = false },
 	{ ['name'] = "ratbike", ['hash'] = 1873600305, ['banned'] = false },
 	{ ['name'] = "polmav", ['hash'] = 353883353, ['banned'] = false },
+	{ ['name'] = "samumav", ['hash'] = 1084099044, ['banned'] = false },
 	{ ['name'] = "fbi2", ['hash'] = -1647941228, ['banned'] = false },
 	{ ['name'] = "policeb", ['hash'] = -34623805, ['banned'] = false },
 	{ ['name'] = "pbus", ['hash'] = -2007026063, ['banned'] = false },

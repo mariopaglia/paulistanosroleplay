@@ -10,6 +10,9 @@ vRP = Proxy.getInterface("vRP")
 src = {}
 Tunnel.bindInterface("vrp_homes",src)
 vSERVER = Tunnel.getInterface("vrp_homes")
+
+vRPNclient = {}
+Tunnel.bindInterface("vrp_homes",vRPNclient)
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- VARIAVEIS
 -----------------------------------------------------------------------------------------------------------------------------------------
@@ -2953,4 +2956,10 @@ function src.setBlipsHomes(status)
 			end
 		end)
 	end
+end
+-----------------------------------------------------------------------------------------------------------------------------------------
+-- FUNÇÃO PARA CHECAR DISTANCIA
+-----------------------------------------------------------------------------------------------------------------------------------------
+function vRPNclient.isNearCds(cds, dist)
+	return GetDistanceBetweenCoords(GetEntityCoords(PlayerPedId()), cds) <= dist
 end

@@ -440,8 +440,8 @@ local garages = {
 -----------------------------------------------------------------------------------------------------------------------------------------
 --													MECANICAS
 -----------------------------------------------------------------------------------------------------------------------------------------
-	[621] = { ['name'] = "Bennys", ['payment'] = false, ['perm'] = "mecanico.permissao" }, -- Bennys
-	[622] = { ['name'] = "SportRace", ['payment'] = false, ['perm'] = "mecanico.permissao" }, -- SportRace
+	[621] = { ['name'] = "Bennys", ['payment'] = false, ['perm'] = "bennys.permissao" }, -- Bennys
+	[622] = { ['name'] = "SportRace", ['payment'] = false, ['perm'] = "sportrace.permissao" }, -- SportRace
 }
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- GARAGEMS
@@ -534,7 +534,7 @@ local workgarage = {
 		"policeb"
 	},
 	["ParamedicoH"] = {
-		"polmav"
+		"samumav"
 	},
 	["Mecanico"] = {
 		"flatbed3",

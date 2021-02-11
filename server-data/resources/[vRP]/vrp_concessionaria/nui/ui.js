@@ -193,6 +193,14 @@ function vender(categoria, model) {
     })
 }
 
+function visualizar(cat, m){
+	sendData("ButtonClick", {
+		action: "visualizarCarro",
+		categoria: cat,
+		model: m
+	});
+}
+
 function addCommas(nStr) {
     nStr += '';
     x = nStr.split('.');

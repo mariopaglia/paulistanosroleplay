@@ -36,14 +36,13 @@ AddEventHandler("vrp_skinshop:Comprar", function(preco)
             desconto = math.floor(preco*off/100)
             pagamento = math.floor(preco-desconto)
         else
-            pagamento = math.floor(preco)
+            off = 0
+            desconto = math.floor(preco*off/100)
+            pagamento = math.floor(preco-desconto)
         end
 
         local valortotal = vRP.format(parseInt(pagamento))
 
-        if valortotal == 0 then
-            valortotal = 0
-        end
         if vRP.tryFullPayment(user_id,parseInt(pagamento)) then
             TriggerClientEvent("Notify",source,"sucesso","Você pagou <b>R$ "..valortotal.." </b> ("..off.."% OFF) em roupas e acessórios")
             TriggerClientEvent('vrp_skinshop:ReceberCompra', source, true)

@@ -23,7 +23,8 @@ local lojaderoupa = {
     { x = 1190.47, y = 2712.88, z = 38.23, provador = { x = 1190.47, y = 2712.88, z = 38.23, heading = 182.06 } },
     { x = 1695.82, y = 4829.31, z = 42.07, provador = { x = 1695.82, y = 4829.31, z = 42.07, heading = 99.29 } },
     { x = 11.13, y = 6514.7, z = 31.88, provador = { x = 11.13, y = 6514.7, z = 31.88, heading = 48.03 } },
-    { x=-1096.5, y=-834.64, z=14.29, provador = { x=-1096.5, y=-834.64, z=14.29, heading = 307.55 } },
+    { x=-1096.5, y=-834.64, z=14.29, provador = { x=-1096.5, y=-834.64, z=14.29, heading = 302.45 } },
+    { x=297.53, y=-594.33, z=43.29, provador = { x=297.53, y=-594.33, z=43.29, heading = 156.37 } },
 }
 
 local parts = {
@@ -147,12 +148,14 @@ Citizen.CreateThread(function()
                     old = {}
                     cor = 0
 		            dados, tipo = nil
-                    TaskGoToCoordAnyMeans(ped, provador.x, provador.y, provador.z, 1.0, 0, 0, 786603, 0xbf800000)
+					if GetDistanceBetweenCoords(GetEntityCoords(ped), provador.x, provador.y, provador.z, true ) > 1 then
+						TaskGoToCoordAnyMeans(ped, provador.x, provador.y, provador.z, 1.0, 0, 0, 786603, 0xbf800000)
+					end
                 end
             end
 
             if noProvador then
-                if GetDistanceBetweenCoords(GetEntityCoords(ped), provador.x, provador.y, provador.z, true ) < 0.5 and not chegou then
+                if GetDistanceBetweenCoords(GetEntityCoords(ped), provador.x, provador.y, provador.z, true ) < 1.0 and not chegou then
                     chegou = true
                     valor = 0
                     precoTotal = 0

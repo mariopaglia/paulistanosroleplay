@@ -148,6 +148,7 @@ AddEventHandler("MCU:Load",function(cb)
 		giveBankMoney = vRP.giveBankMoney,
 		getUserIdentity = vRP.getUserIdentity,
 		Log = RegistraLog,
+		placas = {"SHOWROOM", "STAFFMOD"},
 		getPlacas = getAllPlacas
 	}	
 	cb(vrpobj)

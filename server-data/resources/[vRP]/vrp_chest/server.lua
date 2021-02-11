@@ -13,8 +13,8 @@ vCLIENT = Tunnel.getInterface("vrp_chest")
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- WEBHOOK
 -----------------------------------------------------------------------------------------------------------------------------------------
-local webhookbaupoliciamilitar = "https://discord.com/api/webhooks/795762882079621141/7h_4P3DQJZChx-AOZzrXT46bLPboKVfqqtFOaj8unpA6qkd20hAAEpUgQAFa8JctOJsF"
-local webhookbaupoliciacivil = "https://discord.com/api/webhooks/797904481252540456/1bhRkcfzWvL6QjdpimPevcmLwk_95r0QZ-bg-nWgWVYAm4XxOWgGily-WKQQ1ejiMBCw"
+local webhookbaupoliciamilitar = "https://discord.com/api/webhooks/809192959135973378/Bmjn-R-2oQaEVr55_U_Xa5IGWBt8EfXOLvKhe60jOcahA-Zw42XBCzbeIL01EId1sVQY"
+local webhookbaupoliciacivil = "https://discord.com/api/webhooks/809193051602812938/iOhraA-UCLXhhudukIO_e9Bj6hvvBF1JTHaXWk_e-jRNneRJpJRIgpXGESKxwz-bpPVB"
 local webhookbaugangues = "https://discord.com/api/webhooks/795762921128984577/BUdK4PSye4EoV6laclhYGKGSQCSm2q-vPGHcEx_ySynnGKGKAKfln5A2awNprfAZRsDl"
 
 function SendWebhookMessage(webhook,message)

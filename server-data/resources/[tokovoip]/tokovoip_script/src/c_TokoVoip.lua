@@ -81,7 +81,7 @@ function TokoVoip.updateTokoVoipInfo(self, forceUpdate) -- Update the top-left i
 	end
 	if (info == self.screenInfo and not forceUpdate) then return end
 	self.screenInfo = info;
-	self:updatePlugin("updateTokovoipInfo", "" .. info);
+	self:updatePlugin("updateTokovoipInfo", "[Voz] " .. info);
 end
 
 function TokoVoip.updatePlugin(self, event, payload)
@@ -153,7 +153,7 @@ function TokoVoip.initialize(self)
 			end
 			local inCall = nil
 			if self.myChannels[self.plugin_data.radioChannel] then
-				if self.myChannels[self.plugin_data.radioChannel].name == "In Call" then
+				if self.myChannels[self.plugin_data.radioChannel].name == "Em Chamada" then
 					inCall = true
 				else
 					inCall = nil

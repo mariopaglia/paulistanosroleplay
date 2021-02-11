@@ -12,6 +12,8 @@ vRPclient = Tunnel.getInterface("vRP")
 src = {}
 Tunnel.bindInterface("vrp_homes",src)
 vCLIENT = Tunnel.getInterface("vrp_homes")
+
+vRPNclient = Tunnel.getInterface("vrp_homes","vrp_homes")
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- PREPARES
 -----------------------------------------------------------------------------------------------------------------------------------------
@@ -737,15 +739,19 @@ RegisterCommand('homes',function(source,args,rawCommand)
 				end
 			end
 		elseif args[1] == "tax" and homes[tostring(args[2])] then
-			local ownerHomes = vRP.query("homes/get_homeuseridowner",{ home = tostring(args[2]) })
-			if ownerHomes[1] then
-				if vRP.tryFullPayment(user_id,parseInt(homes[tostring(args[2])][1]*0.10)) then
-					vRP.execute("homes/rem_permissions",{ home = tostring(args[2]), user_id = parseInt(ownerHomes[1].user_id) })
-					vRP.execute("homes/buy_permissions",{ home = tostring(args[2]), user_id = parseInt(ownerHomes[1].user_id), tax = parseInt(os.time()) })
-					TriggerClientEvent("Notify",source,"sucesso","Pagamento de <b>$"..vRP.format(parseInt(homes[tostring(args[2])][1]*0.1)).." dólares</b> efetuado com sucesso.",10000)
-				else
-					TriggerClientEvent("Notify",source,"negado","Dinheiro insuficiente.",10000)
+			if vRPNclient.isNearCds(source, vector3(-552.88,-192.14,38.23), 13) then -- Pagar somente na prefeitura
+				local ownerHomes = vRP.query("homes/get_homeuseridowner",{ home = tostring(args[2]) })
+				if ownerHomes[1] then
+					if vRP.tryFullPayment(user_id,parseInt(homes[tostring(args[2])][1]*0.10)) then
+						vRP.execute("homes/rem_permissions",{ home = tostring(args[2]), user_id = parseInt(ownerHomes[1].user_id) })
+						vRP.execute("homes/buy_permissions",{ home = tostring(args[2]), user_id = parseInt(ownerHomes[1].user_id), tax = parseInt(os.time()) })
+						TriggerClientEvent("Notify",source,"sucesso","Pagamento de <b>R$ "..vRP.format(parseInt(homes[tostring(args[2])][1]*0.1)).."</b> efetuado com sucesso.",10000)
+					else
+						TriggerClientEvent("Notify",source,"negado","Dinheiro insuficiente.",10000)
+					end
 				end
+			else
+				TriggerClientEvent("Notify",source,"negado","O pagamento deve ser realizado dentro da prefeitura",10000)
 			end
 		else
 	
@@ -757,13 +763,22 @@ RegisterCommand('homes',function(source,args,rawCommand)
 					local ownerHomes = vRP.query("homes/get_homeuseridowner",{ home = tostring(v.home) })
 					
 					if ownerHomes[1] then
+						local house_price = parseInt(homes[tostring(v.home)][1])
+						local house_tax = 0.10
+						-- if house_price >= 7000000 then
+						-- 	house_tax = 0.00
+						-- end
+						
+						-- if parseInt(os.time()) >= parseInt(ownerHomes[1].tax+24*15*60*60) then
+						-- 	TriggerClientEvent("Notify",source,"negado","<b>Residência:</b> "..v.home.."<br><b>Property Tax:</b> Atrasado",20000)
+						-- else
+						-- 	TriggerClientEvent("Notify",source,"importante","<b>Residência:</b> "..v.home.."",20000)
+						-- end						
 
 						if parseInt(os.time()) >= parseInt(ownerHomes[1].tax+24*15*60*60) then
-
-							TriggerClientEvent("Notify",source,"negado","<b>Residência:</b> "..v.home.."<br><b>Property Tax:</b> Atrasado",20000)
+							TriggerClientEvent("Notify",source,"negado","<b>Residência:</b> "..v.home.."<br><b>Taxa:</b> Atrasada<br><b>Valor:</b> R$ "..vRP.format(parseInt(house_price * house_tax)).."",20000)
 						else
-
-							TriggerClientEvent("Notify",source,"importante","<b>Residência:</b> "..v.home.."",20000)
+							TriggerClientEvent("Notify",source,"importante","<b>Residência:</b> "..v.home.."<br><b>Taxa em:</b> "..vRP.getDayHours(parseInt(86400*15-(os.time()-ownerHomes[1].tax))).."<br><b>Valor:</b> R$ "..vRP.format(parseInt(house_price * house_tax)).."",20000)
 						end
 						Citizen.Wait(10)
 					end
@@ -872,7 +887,7 @@ function src.checkPermissions(homeName)
 						end
 					end
 				else
-					local ok = vRP.request(source,"Deseja efetuar a compra da residência <b>"..tostring(homeName).."</b> por <b>$"..vRP.format(parseInt(homes[tostring(homeName)][1])).."</b>?",30)
+					local ok = vRP.request(source,"Deseja efetuar a compra da residência <b>"..tostring(homeName).."</b> por <b>R$ "..vRP.format(parseInt(homes[tostring(homeName)][1])).."</b>?",30)
 					if ok then
 						if vRP.tryFullPayment(user_id,parseInt(homes[tostring(homeName)][1])) then
 							vRP.execute("homes/buy_permissions",{ home = tostring(homeName), user_id = parseInt(user_id), tax = parseInt(os.time()) })
@@ -1112,4 +1127,18 @@ function src.checkPolice()
 		end
 		return false
 	end
+end
+-----------------------------------------------------------------------------------------------------------------------------------------
+-- FUNÇÃO PARA CÁLCULO DE DIAS
+-----------------------------------------------------------------------------------------------------------------------------------------
+function vRP.getDayHours(seconds)
+    local days = math.floor(seconds/86400)
+    seconds = seconds - days * 86400
+    local hours = math.floor(seconds/3600)
+
+    if days > 0 then
+        return string.format("%d Dias e %d Horas",days,hours)
+    else
+        return string.format("%d Horas",hours)
+    end
 end

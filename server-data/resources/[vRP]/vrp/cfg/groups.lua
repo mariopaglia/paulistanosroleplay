@@ -78,9 +78,9 @@ cfg.groups = {
 		"wl.permissao"
 	},
 
-	----------------------------------------------------------------------------------------------
-	--------------------		VIPS							---------------------------
-	----------------------------------------------------------------------------------------------
+	---------------------------------------------------
+	-- PLANOS VIPS
+	---------------------------------------------------
 	["Bronze"] = {
 		_config = {
 			title = "Bronze",
@@ -154,7 +154,7 @@ cfg.groups = {
 	},
 
 	---------------------------------------------------
-	--					PMESP
+	-- POLÍCIA MILITAR
 	---------------------------------------------------
 	["Recruta"] = {
 		_config = {
@@ -478,9 +478,8 @@ cfg.groups = {
 	},
 
 	---------------------------------------------------
-	--					Policia Civil
+	-- POLÍCIA CÍVIL
 	---------------------------------------------------
-	
 	["Agente"] = {
 		_config = {
 			title = "Policia Civil Agente",
@@ -564,8 +563,9 @@ cfg.groups = {
 		"player.blips",
 		"nogarmas.permissao"
 	},
+	
 	---------------------------------------------------
-	--					PRF
+	-- POLÍCIA RODOVIÁRIA FEDERAL
 	---------------------------------------------------
 	["PRF"] = {
 		_config = {
@@ -586,8 +586,9 @@ cfg.groups = {
 		"player.blips",
 		"nogarmas.permissao"
 	},
+
 	---------------------------------------------------
-	--					SAMU
+	-- SAMU
 	---------------------------------------------------
 	["Enfermeiro"] = {
 		_config = {
@@ -653,46 +654,49 @@ cfg.groups = {
 	},
 
 	---------------------------------------------------
-	--------           MECANICA                   ----------
+	-- BENNYS
 	---------------------------------------------------
-	["LIDERMecanico"] = {
+	["Bennys"] = {
 		_config = {
-			title = "Lider Mecânico",
+			title = "Mecânico(a) Bennys",
 			gtype = "job"
 		},
 		"mecanico.permissao",
+		"bennys.permissao",
 		"player.blips",
-		"lidermecanico.permissao"
 	},
-	["PaisanaLiderMecanico"] = {
-		_config = {
-			title = "Mecanico Paisana",
-			gtype = "job"
-		},
-		"player.blips",
-		"paisanamecanicolider.permissao"
-	},
-
-	---------------------------------------------------
-	["Mecanico"] = {
-		_config = {
-			title = "Mecânico(a)",
-			gtype = "job"
-		},
-		"mecanico.permissao",
-		"funcmecanico.permissao",
-		"player.blips",
-		"salariomecanico.permissao",
-	},
-	["PaisanaMecanico"] = {
+	["BennysP"] = {
 		_config = {
 			title = "Paisana Mecanico",
 			gtype = "job"
 		},
 		"player.blips",
-		"paisanamecanico.permissao"
+		"paisanabennys.permissao"
 	},
+
 	---------------------------------------------------
+	-- SPORTRACE
+	---------------------------------------------------
+	["SportRace"] = {
+		_config = {
+			title = "Mecânico(a) SportRace",
+			gtype = "job"
+		},
+		"mecanico.permissao",
+		"sportrace.permissao",
+		"player.blips",
+	},
+	["SportRaceP"] = {
+		_config = {
+			title = "Paisana Mecanico",
+			gtype = "job"
+		},
+		"player.blips",
+		"paisanasportrace.permissao"
+	},
+	
+	---------------------------------------------------
+	-- CÍVIL
 	---------------------------------------------------
 	["Civil"] = {
 		_config = {
@@ -701,7 +705,9 @@ cfg.groups = {
 		},
 		"civil.permissao"
 	},
+
 	---------------------------------------------------
+	-- TAXISTA
 	---------------------------------------------------
 	["Taxista"] = {
 		_config = {
@@ -711,8 +717,9 @@ cfg.groups = {
 		"paisanataxista.permissao",
 		"taxista.permissao"
 	},
+
 	---------------------------------------------------
-	--					Concessionária
+	-- CONCESSIONÁRIA
 	---------------------------------------------------
 	["CONCE"] = {
 		_config = {
@@ -721,8 +728,17 @@ cfg.groups = {
 		},
 		"concessionaria.permissao"
 	},
-	----------------------------------------------------------------------------------------------
-	----------------------------------------------------------------------------------------------
+	["CONCEP"] = {
+		_config = {
+			title = "Vendedor Paisana",
+			gtype = "job"
+		},
+		"vendedorpaisana.permissao"
+	},
+	
+	---------------------------------------------------
+	-- MOTOCLUB
+	---------------------------------------------------
 	["Motoclub"] = {
 		_config = {
 			title = "Motoclub",
@@ -730,7 +746,10 @@ cfg.groups = {
 		},
 		"motoclub.permissao",
 	},
-	----------------------------------------
+	
+	---------------------------------------------------
+	-- VERDES
+	---------------------------------------------------
 	["Verdes"] = {
 		_config = {
 			title = "Verdes",
@@ -738,7 +757,10 @@ cfg.groups = {
 		},
 		"verdes.permissao",
 	},
-	----------------------------------------
+
+	---------------------------------------------------
+	-- VERMELHOS
+	---------------------------------------------------
 	["Vermelhos"] = {
 		_config = {
 			title = "Vermelhos",
@@ -746,7 +768,10 @@ cfg.groups = {
 		},
 		"vermelhos.permissao",
 	},
-	-------------------------------------------
+
+	---------------------------------------------------
+	-- ROXOS
+	---------------------------------------------------
 	["Roxos"] = {
 		_config = {
 			title = "Roxos",
@@ -754,7 +779,10 @@ cfg.groups = {
 		},
 		"roxos.permissao",
 	},
-	----------------------------------------
+
+	---------------------------------------------------
+	-- COSANOSTRA
+	---------------------------------------------------
 	["CN"] = {
 		_config = {
 			title = "CosaNostra",
@@ -762,7 +790,10 @@ cfg.groups = {
 		},
 		"cn.permissao",
 	},
-	---------------------------------------
+
+	---------------------------------------------------
+	-- BRATVA
+	---------------------------------------------------
 	["Bratva"] = {
 		_config = {
 			title = "Bratva",
@@ -770,6 +801,10 @@ cfg.groups = {
 		},
 		"bratva.permissao",
 	},
+
+	---------------------------------------------------
+	-- YAKUZA
+	---------------------------------------------------
 	["Yakuza"] = {
 		_config = {
 			title = "Yakuza",

@@ -1,6 +1,7 @@
 local Tunnel = module("vrp","lib/Tunnel")
 local Proxy = module("vrp","lib/Proxy")
 vRP = Proxy.getInterface("vRP")
+vRPNclient = Tunnel.getInterface("vrp_changename","vrp_changename")
 
 vRPN = {}
 Tunnel.bindInterface("vrp_changename",vRPN)
@@ -15,17 +16,43 @@ AddEventHandler("hoppe:changename",function(characterNome,characterSobrenome,cha
 	local source = source
 	local user_id = vRP.getUserId(source)
 	if user_id then
-		if checkregister() then
-			vRP.execute("vRP/update_user_first_spawn",{ user_id = user_id, firstname = characterSobrenome, name = characterNome, age = characterAge })
-			TriggerClientEvent("Notify",source, "sucesso", "Nome alterado para "..characterNome.." "..characterSobrenome)
-			TriggerClientEvent("Notify",source, "importante", "Você não pagou pois é a primeira vez!")
-		elseif vRP.tryFullPayment(user_id,300000) then
-			vRP.execute("vRP/update_user_first_spawn",{ user_id = user_id, firstname = characterSobrenome, name = characterNome, age = characterAge })
-			TriggerClientEvent("Notify",source, "sucesso", "Nome alterado para <b>"..characterNome.." "..characterSobrenome.."</b>, <b>"..characterAge.."</b> anos")
-		else
-			TriggerClientEvent("Notify",source, "negado", "Você não possui dinheiro.")
-		end	
+		if vRP.request(source,"Deseja mesmo trocar seus dados por um valor de R$ 300.000?",30) then
+			if characterNome and characterSobrenome and characterAge then
+				if vRP.tryFullPayment(user_id,300000) then
+					vRP.execute("vRP/update_user_first_spawn",{ user_id = user_id, firstname = characterSobrenome, name = characterNome, age = characterAge })
+					TriggerClientEvent("Notify",source, "sucesso", "Nome alterado para <b>"..characterNome.." "..characterSobrenome.."</b>, <b>"..characterAge.."</b> anos")
+				else
+					TriggerClientEvent("Notify",source, "negado", "Você não possui dinheiro.")
+				end
+			else
+				TriggerClientEvent("Notify",source, "negado", "Formato inválido, use o exemplo: <b>/identidade Roberto Nascimento 28</b>")
+			end
+		end
 	end
+end)
+-----------------------------------------------------------------------------------------------------------------------------------------
+-- RESETAR O PERSONAGEM
+-----------------------------------------------------------------------------------------------------------------------------------------
+RegisterCommand('resetplayer',function(source,args,rawCommand)
+    local user_id = vRP.getUserId(source)
+	if user_id then
+		if vRPNclient.isNearCds(source, vector3(-552.88,-192.14,38.23), 13) then
+			if vRP.request(source,"Deseja mesmo resetar sua aparência por um valor de R$ 500.000?",30) then
+				if vRP.tryFullPayment(user_id,500000) then
+					local nplayer = vRP.getUserSource(parseInt(user_id))
+                	local id = vRP.getUserId(nplayer)
+        	    	vRP.kick(nplayer,"Aparência resetada, entre novamente!")
+        	    	vRP.setUData(id,"vRP:spawnController",json.encode(1))
+        	    	vRP.setUData(id,"vRP:currentCharacterMode",json.encode(1))
+					vRP.setUData(id,"vRP:tattoos",json.encode(1))
+				else
+					TriggerClientEvent("Notify",source, "negado", "Dinheiro insuficiente!")
+				end
+			end
+		else
+			TriggerClientEvent("Notify",source, "negado", "Vá até a prefeitura para resetar sua aparência")
+		end
+    end
 end)
 
 function checkregister()

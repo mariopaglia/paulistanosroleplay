@@ -2,6 +2,8 @@ local Tunnel = module("vrp","lib/Tunnel")
 local Proxy = module("vrp","lib/Proxy")
 vRP = Proxy.getInterface("vRP")
 vRPNserver = Tunnel.getInterface("vrp_changename")
+vRPNclient = {}
+Tunnel.bindInterface("vrp_changename",vRPNclient)
 
 RegisterCommand("identidade",function(source,args)
 	if checkDistance() then	
@@ -31,8 +33,10 @@ Citizen.CreateThread(function()
 			DrawMarker(23,-551.03857421875,-192.28303527832,38.223083496094-0.99,1,1,0,0,0,0,1.0,1.0,1.0,255,255,255,50,0,1,0,0)
 			DrawText3D(-551.03857421875,-192.28303527832,38.223083496094, "Mudar Nome - R$ 300.000", 2.0, 7, 100)
 			DrawText3D(-551.03857421875,-192.28303527832,38.223083496094-0.2, "/identidade [nome] [sobrenome] [idade]", 2.0, 1, 100)
-			DrawText3D(-551.03857421875,-192.28303527832,38.223083496094-0.4, "Pagar IPTU (Casas)", 2.0, 7, 100)
-			DrawText3D(-551.03857421875,-192.28303527832,38.223083496094-0.6, "/homes tax [nomedacasa]", 2.0, 1, 100)
+			DrawText3D(-551.03857421875,-192.28303527832,38.223083496094-0.4, "Resetar Aparência - R$ 500.000", 2.0, 7, 100)
+			DrawText3D(-551.03857421875,-192.28303527832,38.223083496094-0.6, "/resetplayer", 2.0, 1, 100)
+			DrawText3D(-551.03857421875,-192.28303527832,38.223083496094-0.8, "Pagar IPTU (Casas)", 2.0, 7, 100)
+			DrawText3D(-551.03857421875,-192.28303527832,38.223083496094-1.0, "/homes tax [nomedacasa]", 2.0, 1, 100)
 		end	 
 	end
 end)
@@ -61,4 +65,11 @@ function DrawText3D(x,y,z, text, scl, font, opacity)
         AddTextComponentString(text)
         DrawText(_x,_y)
 	end
+end
+
+-----------------------------------------------------------------------------------------------------------------------------------------
+-- FUNÇÃO PARA CHECAR DISTANCIA
+-----------------------------------------------------------------------------------------------------------------------------------------
+function vRPNclient.isNearCds(cds, dist)
+	return GetDistanceBetweenCoords(GetEntityCoords(PlayerPedId()), cds) <= dist
 end

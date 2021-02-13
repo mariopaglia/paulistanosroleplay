@@ -18,7 +18,7 @@ local channels = TokoVoipConfig.channels;
 
 function addPlayerToRadio(channelId, playerServerId)
 	if (not channels[channelId]) then
-		channels[channelId] = {id = channelId, name = "In Call", subscribers = {}};
+		channels[channelId] = {id = channelId, name = "Em Chamada", subscribers = {}};
 	end
 	if (not channels[channelId].id) then
 		channels[channelId].id = channelId;

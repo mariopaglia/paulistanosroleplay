@@ -590,14 +590,31 @@ cfg.groups = {
 	---------------------------------------------------
 	-- SAMU
 	---------------------------------------------------
-	["Enfermeiro"] = {
+	["AuxEnfermeiro"] = {
 		_config = {
-			title = "Enfermeiro SAMU",
+			title = "Aux. Enfermagem SAMU",
 			gtype = "job"
 		},
 		"paramedico.permissao",
-		"portahospital.permissao",
-		"reviver.permissao",
+		"auxenf.permissao",
+		"player.blips",
+		"polpar.permissao"
+	},
+	["AuxEnfermeiroP"] = {
+		_config = {
+			title = "SAMU Paisana",
+			gtype = "job"
+		},
+		"player.blips",
+		"toogleauxenf.permissao"
+	},
+
+	["Enfermeiro"] = {
+		_config = {
+			title = "Enfermeiro(a) SAMU",
+			gtype = "job"
+		},
+		"paramedico.permissao",
 		"enfermeiro.permissao",
 		"player.blips",
 		"polpar.permissao"
@@ -613,12 +630,10 @@ cfg.groups = {
 
 	["Medico"] = {
 		_config = {
-			title = "Medico SAMU",
+			title = "Medico(a) SAMU",
 			gtype = "job"
 		},
 		"paramedico.permissao",
-		"portahospital.permissao",
-		"reviver.permissao",
 		"medico.permissao",
 		"player.blips",
 		"polpar.permissao"
@@ -631,6 +646,25 @@ cfg.groups = {
 		"player.blips",
 		"tooglemed.permissao"
 	},
+	
+	["Cirurgiao"] = {
+		_config = {
+			title = "Cirugiã(o) SAMU",
+			gtype = "job"
+		},
+		"paramedico.permissao",
+		"cirurgiao.permissao",
+		"player.blips",
+		"polpar.permissao"
+	},
+	["CirurgiaoP"] = {
+		_config = {
+			title = "SAMU Paisana",
+			gtype = "job"
+		},
+		"player.blips",
+		"tooglecirurgiao.permissao"
+	},
 
 	["Diretor"] = {
 		_config = {
@@ -638,7 +672,6 @@ cfg.groups = {
 			gtype = "job"
 		},
 		"paramedico.permissao",
-		"portahospital.permissao",
 		"reviver.permissao",
 		"diretor.permissao",
 		"player.blips",
@@ -739,6 +772,14 @@ cfg.groups = {
 	---------------------------------------------------
 	-- MOTOCLUB
 	---------------------------------------------------
+	["MotoclubL"] = {
+		_config = {
+			title = "Líder Motoclub",
+			gtype = "job"
+		},
+		"lidermotoclub.permissao",
+		"motoclub.permissao",
+	},
 	["Motoclub"] = {
 		_config = {
 			title = "Motoclub",
@@ -750,6 +791,14 @@ cfg.groups = {
 	---------------------------------------------------
 	-- VERDES
 	---------------------------------------------------
+	["VerdesL"] = {
+		_config = {
+			title = "Líder Verdes",
+			gtype = "job"
+		},
+		"liderverdes.permissao",
+		"verdes.permissao",
+	},
 	["Verdes"] = {
 		_config = {
 			title = "Verdes",
@@ -761,6 +810,14 @@ cfg.groups = {
 	---------------------------------------------------
 	-- VERMELHOS
 	---------------------------------------------------
+	["VermelhosL"] = {
+		_config = {
+			title = "Líder Vermelhos",
+			gtype = "job"
+		},
+		"lidervermelhos.permissao",
+		"vermelhos.permissao",
+	},
 	["Vermelhos"] = {
 		_config = {
 			title = "Vermelhos",
@@ -772,6 +829,14 @@ cfg.groups = {
 	---------------------------------------------------
 	-- ROXOS
 	---------------------------------------------------
+	["RoxosL"] = {
+		_config = {
+			title = "Líder Roxos",
+			gtype = "job"
+		},
+		"liderroxos.permissao",
+		"roxos.permissao",
+	},
 	["Roxos"] = {
 		_config = {
 			title = "Roxos",
@@ -783,6 +848,14 @@ cfg.groups = {
 	---------------------------------------------------
 	-- COSANOSTRA
 	---------------------------------------------------
+	["CNL"] = {
+		_config = {
+			title = "Líder CosaNostra",
+			gtype = "job"
+		},
+		"lidercn.permissao",
+		"cn.permissao",
+	},
 	["CN"] = {
 		_config = {
 			title = "CosaNostra",
@@ -794,6 +867,14 @@ cfg.groups = {
 	---------------------------------------------------
 	-- BRATVA
 	---------------------------------------------------
+	["BratvaL"] = {
+		_config = {
+			title = "Líder Bratva",
+			gtype = "job"
+		},
+		"liderbratva.permissao",
+		"bratva.permissao",
+	},
 	["Bratva"] = {
 		_config = {
 			title = "Bratva",
@@ -805,6 +886,14 @@ cfg.groups = {
 	---------------------------------------------------
 	-- YAKUZA
 	---------------------------------------------------
+	["YakuzaL"] = {
+		_config = {
+			title = "Líder Yakuza",
+			gtype = "job"
+		},
+		"lideryakuza.permissao",
+		"yakuza.permissao",
+	},
 	["Yakuza"] = {
 		_config = {
 			title = "Yakuza",

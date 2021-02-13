@@ -6,7 +6,7 @@ vRPclient = Tunnel.getInterface("vRP")
 -- WEBHOOK
 -----------------------------------------------------------------------------------------------------------------------------------------
 local webhookpmesp = "https://discord.com/api/webhooks/809191725490110465/p7pfd4VTGWwP9d-oIHJvMGw6kzviuLJcESLYe2u3kr3_pwGFw-jiRk2OOz9uMW_4Tbcr"
-local webhookpcesp = "https://discord.com/api/webhooks/809191389471571969/oITfjNkmG3YhfCxr8iPMqEOsRqgK6vsf-Rq2JKuP0SiFku2EAZ1qU_FeWFOa7lON4tOZ"
+local webhookpcesp = "https://discord.com/api/webhooks/809892713758851092/wMGCoBzvyLhAJM2k2_gTKfIMWGNgLoGtqhEp3oJEgCd7ChsAdr67zsGSaDBo4p-Gy9Ig"
 local webhookapreender = "https://discord.com/api/webhooks/809195069248372756/RHFtPdKE1vNSUSAeYA7sF1qMJHSE8XRU0-Z6fStQ9c1Yhv7I5Ud8bkxMyjIXFfTkKzAK"
 local webhookmultas = "https://discord.com/api/webhooks/809195388212478053/muZa0KZ_0MPzOSHdf9DQTWG3CE-i4hovfs1e3MlwP78CUbH6IuYNWBu93KRTEdL6eYJN"
 local webhookparamedico = "https://discord.com/api/webhooks/793597683155599380/ql-y4081JzoLAv-KwjKVFmDZLMvfVmFNSFnig6NKSyxCvsfzN51lJuui9S0rsrm8doKk"
@@ -43,7 +43,7 @@ RegisterCommand('placa',function(source,args,rawCommand)
 				local identity = vRP.getUserIdentity(user_id)
 				if identity then
 					vRPclient.playSound(source,"Event_Message_Purple","GTAO_FM_Events_Soundset")
-					TriggerClientEvent('chatMessage',source,"911",{64,64,255},"^1Passaporte: ^0"..identity.user_id.."   ^2|   ^1Placa: ^0"..identity.registration.."   ^2|   ^1Proprietário: ^0"..identity.name.." "..identity.firstname.."   ^2|   ^1Idade: ^0"..identity.age.." anos   ^2|   ^1Telefone: ^0"..identity.phone)
+					TriggerClientEvent('chatMessage',source,"190",{64,64,255},"^1Passaporte: ^0"..identity.user_id.."   ^2|   ^1Placa: ^0"..identity.registration.."   ^2|   ^1Proprietário: ^0"..identity.name.." "..identity.firstname.."   ^2|   ^1Idade: ^0"..identity.age.." anos   ^2|   ^1Telefone: ^0"..identity.phone)
 				end
 			else
 				TriggerClientEvent("Notify",source,"importante","Placa inválida ou veículo de americano.")
@@ -403,6 +403,20 @@ RegisterCommand('toogle',function(source,args,rawCommand)
 -----------------------------------------------------------------------------------------------------------------------------------------
 
 ---------------------
+-- AUXILIAR ENFERMAGEM
+---------------------
+	elseif vRP.hasPermission(user_id,"auxenf.permissao") then
+		TriggerEvent('eblips:remove',source)
+		vRP.addUserGroup(user_id,"AuxEnfermeiroP")
+		TriggerClientEvent("Notify",source,"sucesso","Você saiu de serviço.")
+		SendWebhookMessage(webhookparamedico,"```prolog\n[SAMU]: "..user_id.." "..identity.name.." "..identity.firstname.." \n[===========SAIU DE SERVICO==========] "..os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S").." \r```")
+		TriggerClientEvent('desligarRadios',source)
+	elseif vRP.hasPermission(user_id,"toogleauxenf.permissao") then
+		TriggerEvent('eblips:add',{ name = "SAMU", src = source, color = 49 })
+		vRP.addUserGroup(user_id,"AuxEnfermeiro")
+		TriggerClientEvent("Notify",source,"sucesso","Você entrou em serviço.")
+		SendWebhookMessage(webhookparamedico,"```prolog\n[SAMU]: "..user_id.." "..identity.name.." "..identity.firstname.." \n[==========ENTROU EM SERVICO=========] "..os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S").." \r```")
+---------------------
 -- ENFERMEIRO
 ---------------------
 	elseif vRP.hasPermission(user_id,"enfermeiro.permissao") then
@@ -428,6 +442,20 @@ RegisterCommand('toogle',function(source,args,rawCommand)
 	elseif vRP.hasPermission(user_id,"tooglemed.permissao") then
 		TriggerEvent('eblips:add',{ name = "SAMU", src = source, color = 49 })
 		vRP.addUserGroup(user_id,"Medico")
+		TriggerClientEvent("Notify",source,"sucesso","Você entrou em serviço.")
+		SendWebhookMessage(webhookparamedico,"```prolog\n[SAMU]: "..user_id.." "..identity.name.." "..identity.firstname.." \n[==========ENTROU EM SERVICO=========] "..os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S").." \r```")
+---------------------
+-- CIRURGIÃO
+---------------------
+	elseif vRP.hasPermission(user_id,"cirurgiao.permissao") then
+		TriggerEvent('eblips:remove',source)
+		vRP.addUserGroup(user_id,"CirurgiaoP")
+		TriggerClientEvent("Notify",source,"sucesso","Você saiu de serviço.")
+		SendWebhookMessage(webhookparamedico,"```prolog\n[SAMU]: "..user_id.." "..identity.name.." "..identity.firstname.." \n[===========SAIU DE SERVICO==========] "..os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S").." \r```")
+		TriggerClientEvent('desligarRadios',source)
+	elseif vRP.hasPermission(user_id,"tooglecirurgiao.permissao") then
+		TriggerEvent('eblips:add',{ name = "SAMU", src = source, color = 49 })
+		vRP.addUserGroup(user_id,"Cirurgiao")
 		TriggerClientEvent("Notify",source,"sucesso","Você entrou em serviço.")
 		SendWebhookMessage(webhookparamedico,"```prolog\n[SAMU]: "..user_id.." "..identity.name.." "..identity.firstname.." \n[==========ENTROU EM SERVICO=========] "..os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S").." \r```")
 ---------------------
@@ -534,7 +562,7 @@ end)
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- RegisterCommand('reanimar',function(source,args,rawCommand)
 -- 	local user_id = vRP.getUserId(source)
--- 	if vRP.hasPermission(user_id,"reviver.permissao") then
+-- 	if vRP.hasPermission(user_id,"paramedico.permissao") then
 -- 		TriggerClientEvent('reanimar',source)
 -- 	end
 -- end)
@@ -799,7 +827,7 @@ RegisterCommand('vida',function(source,args,rawCommand)
 	local user_id = vRP.getUserId(source)
 	local nplayer = vRPclient.getNearestPlayer(source,2)
 	local nuser_id = vRP.getUserId(nplayer)
-	if vRP.hasPermission(user_id,"reviver.permissao") then
+	if vRP.hasPermission(user_id,"paramedico.permissao") then
 		if nuser_id and vRPclient.isInComa(nplayer) then
 			if upulso ~= nuser_id then
 				upulso = nuser_id
@@ -824,7 +852,7 @@ end)
 -----------------------------------------------------------------------------------------------------------------------------------------
 RegisterCommand('re',function(source,args,rawCommand)
 	local user_id = vRP.getUserId(source)
-	if vRP.hasPermission(user_id,"reviver.permissao") then
+	if vRP.hasPermission(user_id,"paramedico.permissao") then
 		local nplayer = vRPclient.getNearestPlayer(source,2)
 		local nuser_id = vRP.getUserId(nplayer)
 		if nplayer then

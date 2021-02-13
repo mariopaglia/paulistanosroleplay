@@ -861,6 +861,7 @@ local vehglobal = {
 	["raptor2017"] = { ['name'] = "Ford Raptor 2017", ['price'] = 3500000, ['tipo'] = "import" },
 	["teslaprior"] = { ['name'] = "Tesla Prior", ['price'] = 2500000, ['tipo'] = "import" },
 	["toyotasupra"] = { ['name'] = "Toyota Supra", ['price'] = 2500000, ['tipo'] = "import" },
+	["italirsx"] = { ['name'] = "Itali RSX", ['price'] = 2500000, ['tipo'] = "import" },
 
 	-- BRASILEIROS
 	["blista"] = { ['name'] = "GOL S 86", ['price'] = 400000, ['tipo'] = "carros" },
@@ -874,6 +875,9 @@ local vehglobal = {
 	["fusca"] = { ['name'] = "Fusca", ['price'] = 300000, ['tipo'] = "carros" },
 	["vwgolf"] = { ['name'] = "Golf", ['price'] = 500000, ['tipo'] = "carros" },
 	["vwsava"] = { ['name'] = "Saveiro", ['price'] = 500000, ['tipo'] = "carros" },
+	["brioso2"] = { ['name'] = "Fiat 500", ['price'] = 400000, ['tipo'] = "carros" },
+	["weevil"] = { ['name'] = "Fusca", ['price'] = 400000, ['tipo'] = "carros" },
+	["chevette"] = { ['name'] = "Chevette", ['price'] = 400000, ['tipo'] = "carros" },
 
 	-- ADDONS MOTO
 	["150"] = { ['name'] = "Honda 150", ['price'] = 70000, ['tipo'] = "motos" },
@@ -922,6 +926,7 @@ local vehglobal = {
 	--TRABALHO
 	["youga2"] = { ['name'] = "Youga2", ['price'] = 1000, ['tipo'] = "work" },
 	["felon2"] = { ['name'] = "Felon2", ['price'] = 1000, ['tipo'] = "work" },
+	["slamtruck"] = { ['name'] = "Slam Truck", ['price'] = 1000, ['tipo'] = "work" },
 	["seasparrow"] = { ['name'] = "Paramédico Helicóptero Água", ['price'] = 1000, ['tipo'] = "work" },
 	["coach"] = { ['name'] = "Ônibus", ['price'] = 1000, ['tipo'] = "work" },
 	["bus"] = { ['name'] = "Bus", ['price'] = 1000, ['tipo'] = "work" },

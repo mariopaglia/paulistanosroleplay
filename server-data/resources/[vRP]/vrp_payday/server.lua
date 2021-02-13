@@ -36,8 +36,11 @@ salarii = {
   {"investigador.permissao", 6000, "Investigador Policia Civil"},
   {"delegado.permissao", 8000, "Delegado Policia Civil"},
   -- SAMU
-  {"paramedico.permissao", 5000, "Médico/Paramédico"},
-  {"diretor.permissao", 3000, "Diretor SAMU"},
+  {"auxenf.permissao", 3000, "Aux. Enfermagem"},
+  {"enfermeiro.permissao", 4000, "Enfermeiro(a)"},
+  {"medico.permissao", 5000, "Médico(a)"},
+  {"cirurgiao.permissao", 6000, "Cirurgiã(o)"},
+  {"diretor.permissao", 8000, "Diretor SAMU"},
   -- Mecanico
   -- {"funcmecanico.permissao", 2000, "Mecanico"},
   -- {"lidermecanico.permissao", 3000, "Lider Mecanico"},

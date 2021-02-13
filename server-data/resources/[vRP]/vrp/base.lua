@@ -26,7 +26,7 @@ local db_initialized = false
 -- WEBHOOK
 
 local webhookpmesp = "https://discord.com/api/webhooks/809191725490110465/p7pfd4VTGWwP9d-oIHJvMGw6kzviuLJcESLYe2u3kr3_pwGFw-jiRk2OOz9uMW_4Tbcr"
-local webhookpcesp = "https://discord.com/api/webhooks/809191389471571969/oITfjNkmG3YhfCxr8iPMqEOsRqgK6vsf-Rq2JKuP0SiFku2EAZ1qU_FeWFOa7lON4tOZ"
+local webhookpcesp = "https://discord.com/api/webhooks/809892713758851092/wMGCoBzvyLhAJM2k2_gTKfIMWGNgLoGtqhEp3oJEgCd7ChsAdr67zsGSaDBo4p-Gy9Ig"
 local webhookhospitalbase = "https://discord.com/api/webhooks/793597683155599380/ql-y4081JzoLAv-KwjKVFmDZLMvfVmFNSFnig6NKSyxCvsfzN51lJuui9S0rsrm8doKk"
 local webhookbennys = "https://discord.com/api/webhooks/793597828386521108/UsgyanaAIxAXtNuDuP8Cbf67cauDpARltO9RxIAsGioYKolylf3TWyJl_CtTRyK5sA3O"
 local webhooksportrace = "https://discord.com/api/webhooks/809191208429158421/aeVf8HgBwbKprnhaz4Za3HSirDrp6U1-ANqZUtvVlo4L_BFYvx-Jih6vPT3kSkOcJBpg"
@@ -348,12 +348,20 @@ function vRP.dropPlayer(source)
 			---------------------------------------------------
 			-- HOSPITAL
 			---------------------------------------------------
+			elseif vRP.hasGroup(user_id,"AuxEnfermeiro") then
+				vRP.addUserGroup(user_id,"AuxEnfermeiroP")
+				SendWebhookMessage(webhookhospitalbase,"```prolog\n[PARAMEDICO]: "..user_id.." "..identity.name.." "..identity.firstname.." \n[===========SAIU DE SERVICO==========] "..os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S").." \r```")
+
 			elseif vRP.hasGroup(user_id,"Enfermeiro") then
 				vRP.addUserGroup(user_id,"PaisanaEnfermeiro")
 				SendWebhookMessage(webhookhospitalbase,"```prolog\n[PARAMEDICO]: "..user_id.." "..identity.name.." "..identity.firstname.." \n[===========SAIU DE SERVICO==========] "..os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S").." \r```")
 			
 			elseif vRP.hasGroup(user_id,"Medico") then
 				vRP.addUserGroup(user_id,"PaisanaMedico")
+				SendWebhookMessage(webhookhospitalbase,"```prolog\n[PARAMEDICO]: "..user_id.." "..identity.name.." "..identity.firstname.." \n[===========SAIU DE SERVICO==========] "..os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S").." \r```")	
+
+			elseif vRP.hasGroup(user_id,"Cirurgiao") then
+				vRP.addUserGroup(user_id,"CirurgiaoP")
 				SendWebhookMessage(webhookhospitalbase,"```prolog\n[PARAMEDICO]: "..user_id.." "..identity.name.." "..identity.firstname.." \n[===========SAIU DE SERVICO==========] "..os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S").." \r```")	
 			
 			elseif vRP.hasGroup(user_id,"Diretor") then

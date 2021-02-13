@@ -63,7 +63,7 @@ function TokoVoip.updateTokoVoipInfo(self, forceUpdate) -- Update the top-left i
 	elseif (self.mode == 3) then
 		info = "Gritando";
 	elseif (self.mode == 4) then
-		info = "Dead";
+		info = "Morto";
 	end
 
 	if (self.plugin_data.radioTalking) then

@@ -71,7 +71,7 @@ function src.checkPayment()
 						local ids = idgens:gen()
 						vRPclient.playSound(player,"Oneshot_Final","MP_MISSION_COUNTDOWN_SOUNDSET")
 						blips[ids] = vRPclient.addBlip(player,x,y,z,1,61,"Roubo em andamento",0.5,true)
-						TriggerClientEvent('chatMessage',player,"911",{64,64,255},"Recebemos uma denuncia de roubo, verifique o ocorrido.")
+						TriggerClientEvent('chatMessage',player,"190",{64,64,255},"Recebemos uma denuncia de roubo, verifique o ocorrido.")
 						SetTimeout(30000,function() vRPclient.removeBlip(player,blips[ids]) idgens:free(ids) end)
 					end
 				end

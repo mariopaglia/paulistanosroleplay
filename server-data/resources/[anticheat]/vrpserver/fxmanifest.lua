@@ -13,7 +13,7 @@
 --Qualquer alteração neste arquivo irá bloquear automaticamente sua key!
 --E NÃO SERÁ DESBLOQUEADO EM HIPOTESE ALGUMA.
 --MarqCU#4374
-
+clr_disable_task_scheduler 'yes'
 fx_version "adamant"
 game "gta5"
 

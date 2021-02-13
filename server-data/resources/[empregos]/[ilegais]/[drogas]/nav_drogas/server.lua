@@ -8,9 +8,9 @@ Tunnel.bindInterface("nav_drogas",emP)
 -- ARRAY
 -----------------------------------------------------------------------------------------------------------------------------------------
 local valores = {
-	{ item = "embalagem", quantidade = 10, compra = 1000, venda = 500 },
-	{ item = "frasco", quantidade = 10, compra = 1000, venda = 500 },
-	{ item = "pino", quantidade = 10, compra = 1000, venda = 500 },
+	{ item = "embalagem", quantidade = 10, compra = 100, venda = 1 },
+	{ item = "frasco", quantidade = 10, compra = 100, venda = 1 },
+	{ item = "pino", quantidade = 10, compra = 100, venda = 1 },
 }
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- COMPRAR

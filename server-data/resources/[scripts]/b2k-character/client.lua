@@ -156,34 +156,34 @@ function refreshDefaultCharacter()
 	ClearAllPedProps(PlayerPedId())
 	if GetEntityModel(PlayerPedId()) == GetHashKey("mp_m_freemode_01") then
 		-- Roupa inicial masculina
-		SetPedComponentVariation(PlayerPedId(),1,-1,0,2)
-		SetPedComponentVariation(PlayerPedId(),5,-1,0,2)
-		SetPedComponentVariation(PlayerPedId(),7,-1,0,2)
-		SetPedComponentVariation(PlayerPedId(),3,15,0,2)
-		SetPedComponentVariation(PlayerPedId(),4,61,0,2)
-		SetPedComponentVariation(PlayerPedId(),8,15,0,2)
-		SetPedComponentVariation(PlayerPedId(),6,16,0,2)
-		SetPedComponentVariation(PlayerPedId(),11,104,0,2)
-		SetPedComponentVariation(PlayerPedId(),9,-1,0,2)
-		SetPedComponentVariation(PlayerPedId(),10,-1,0,2)
-		SetPedPropIndex(PlayerPedId(),2,-1,0,2)
-		SetPedPropIndex(PlayerPedId(),6,-1,0,2)
-		SetPedPropIndex(PlayerPedId(),7,-1,0,2)
+		SetPedComponentVariation(PlayerPedId(),1,-1,0,2) -- Mascara
+		SetPedComponentVariation(PlayerPedId(),5,-1,0,2) -- Mochila
+		SetPedComponentVariation(PlayerPedId(),7,37,0,1) -- Gravata
+		SetPedComponentVariation(PlayerPedId(),3,11,0,1) -- Mãos
+		SetPedComponentVariation(PlayerPedId(),4,0,1,1) -- Calça
+		SetPedComponentVariation(PlayerPedId(),8,15,0,2) -- Camisa
+		SetPedComponentVariation(PlayerPedId(),6,9,12,1) -- Sapato
+		SetPedComponentVariation(PlayerPedId(),11,13,0,1) -- Jaqueta
+		SetPedComponentVariation(PlayerPedId(),9,-1,0,2) -- Colete
+		SetPedComponentVariation(PlayerPedId(),10,-1,0,2) -- ??
+		SetPedPropIndex(PlayerPedId(),2,-1,0,2) -- Brinco
+		SetPedPropIndex(PlayerPedId(),6,-1,0,2) -- Relógio
+		SetPedPropIndex(PlayerPedId(),7,-1,0,2) -- Bracelete
 	else
 		-- Roupa inicial feminina
-		SetPedComponentVariation(PlayerPedId(),1,-1,0,2)
-		SetPedComponentVariation(PlayerPedId(),5,-1,0,2)
-		SetPedComponentVariation(PlayerPedId(),7,-1,0,2)
-		SetPedComponentVariation(PlayerPedId(),3,15,0,2)
-		SetPedComponentVariation(PlayerPedId(),4,15,0,2)
-		SetPedComponentVariation(PlayerPedId(),8,7,0,2)
-		SetPedComponentVariation(PlayerPedId(),6,5,0,2)
-		SetPedComponentVariation(PlayerPedId(),11,5,0,2)
-		SetPedComponentVariation(PlayerPedId(),9,-1,0,2)
-		SetPedComponentVariation(PlayerPedId(),10,-1,0,2)
-		SetPedPropIndex(PlayerPedId(),2,-1,0,2)
-		SetPedPropIndex(PlayerPedId(),6,-1,0,2)
-		SetPedPropIndex(PlayerPedId(),7,-1,0,2)
+		SetPedComponentVariation(PlayerPedId(),1,-1,0,2) -- Mascara
+		SetPedComponentVariation(PlayerPedId(),5,20,0,1) -- Mochila
+		SetPedComponentVariation(PlayerPedId(),7,-1,0,2) -- Gravata
+		SetPedComponentVariation(PlayerPedId(),3,0,0,1) -- Mãos
+		SetPedComponentVariation(PlayerPedId(),4,0,0,1) -- Calça
+		SetPedComponentVariation(PlayerPedId(),8,6,0,2) -- Camisa
+		SetPedComponentVariation(PlayerPedId(),6,4,0,1) -- Sapato
+		SetPedComponentVariation(PlayerPedId(),11,27,0,1) -- Jaqueta
+		SetPedComponentVariation(PlayerPedId(),9,-1,0,2) -- Colete
+		SetPedComponentVariation(PlayerPedId(),10,-1,0,2) -- ??
+		SetPedPropIndex(PlayerPedId(),2,-1,0,2) -- Brinco
+		SetPedPropIndex(PlayerPedId(),6,-1,0,2) -- Relógio
+		SetPedPropIndex(PlayerPedId(),7,-1,0,2) -- Bracelete
 	end
 end
 
@@ -243,37 +243,35 @@ RegisterNUICallback('cDoneSave',function(data,cb)
 	SetNuiFocus(isInCharacterMode,isInCharacterMode)
 	SendNUIMessage({ CharacterMode = isInCharacterMode, CharacterMode2 = isInCharacterMode, CharacterMode3 = isInCharacterMode })
 	if GetEntityModel(PlayerPedId()) == GetHashKey("mp_m_freemode_01") then
-		SetPedComponentVariation(PlayerPedId(),1,-1,0,2)
-		SetPedComponentVariation(PlayerPedId(),5,-1,0,2)
-		SetPedComponentVariation(PlayerPedId(),7,-1,0,2)
-		SetPedComponentVariation(PlayerPedId(),3,15,0,2)
-		SetPedComponentVariation(PlayerPedId(),4,61,0,2)
-		SetPedComponentVariation(PlayerPedId(),8,15,0,2)
-		SetPedComponentVariation(PlayerPedId(),6,16,0,2)
-		SetPedComponentVariation(PlayerPedId(),11,104,0,2)
-		SetPedComponentVariation(PlayerPedId(),9,-1,0,2)
-		SetPedComponentVariation(PlayerPedId(),10,-1,0,2)
-		SetPedPropIndex(PlayerPedId(),0,-1,0,2)
-		SetPedPropIndex(PlayerPedId(),1,7,0,2)
-		SetPedPropIndex(PlayerPedId(),2,-1,0,2)
-		SetPedPropIndex(PlayerPedId(),6,-1,0,2)
-		SetPedPropIndex(PlayerPedId(),7,-1,0,2)
+		-- Roupa inicial masculina
+		SetPedComponentVariation(PlayerPedId(),1,-1,0,2) -- Mascara
+		SetPedComponentVariation(PlayerPedId(),5,-1,0,2) -- Mochila
+		SetPedComponentVariation(PlayerPedId(),7,37,0,1) -- Gravata
+		SetPedComponentVariation(PlayerPedId(),3,11,0,1) -- Mãos
+		SetPedComponentVariation(PlayerPedId(),4,0,1,1) -- Calça
+		SetPedComponentVariation(PlayerPedId(),8,15,0,2) -- Camisa
+		SetPedComponentVariation(PlayerPedId(),6,9,12,1) -- Sapato
+		SetPedComponentVariation(PlayerPedId(),11,13,0,1) -- Jaqueta
+		SetPedComponentVariation(PlayerPedId(),9,-1,0,2) -- Colete
+		SetPedComponentVariation(PlayerPedId(),10,-1,0,2) -- ??
+		SetPedPropIndex(PlayerPedId(),2,-1,0,2) -- Brinco
+		SetPedPropIndex(PlayerPedId(),6,-1,0,2) -- Relógio
+		SetPedPropIndex(PlayerPedId(),7,-1,0,2) -- Bracelete
 	else
-		SetPedComponentVariation(PlayerPedId(),1,-1,0,2)
-		SetPedComponentVariation(PlayerPedId(),5,-1,0,2)
-		SetPedComponentVariation(PlayerPedId(),7,-1,0,2)
-		SetPedComponentVariation(PlayerPedId(),3,0,0,2)
-		SetPedComponentVariation(PlayerPedId(),4,57,0,2)
-		SetPedComponentVariation(PlayerPedId(),8,7,0,2)
-		SetPedComponentVariation(PlayerPedId(),6,16,0,2)
-		SetPedComponentVariation(PlayerPedId(),11,105,0,2)
-		SetPedComponentVariation(PlayerPedId(),9,-1,0,2)
-		SetPedComponentVariation(PlayerPedId(),10,-1,0,2)
-		SetPedPropIndex(PlayerPedId(),0,-1,0,2)
-		SetPedPropIndex(PlayerPedId(),1,24,0,2)
-		SetPedPropIndex(PlayerPedId(),2,-1,0,2)
-		SetPedPropIndex(PlayerPedId(),6,-1,0,2)
-		SetPedPropIndex(PlayerPedId(),7,-1,0,2)
+		-- Roupa inicial feminina
+		SetPedComponentVariation(PlayerPedId(),1,-1,0,2) -- Mascara
+		SetPedComponentVariation(PlayerPedId(),5,20,0,1) -- Mochila
+		SetPedComponentVariation(PlayerPedId(),7,-1,0,2) -- Gravata
+		SetPedComponentVariation(PlayerPedId(),3,0,0,1) -- Mãos
+		SetPedComponentVariation(PlayerPedId(),4,0,0,1) -- Calça
+		SetPedComponentVariation(PlayerPedId(),8,6,0,2) -- Camisa
+		SetPedComponentVariation(PlayerPedId(),6,4,0,1) -- Sapato
+		SetPedComponentVariation(PlayerPedId(),11,27,0,1) -- Jaqueta
+		SetPedComponentVariation(PlayerPedId(),9,-1,0,2) -- Colete
+		SetPedComponentVariation(PlayerPedId(),10,-1,0,2) -- ??
+		SetPedPropIndex(PlayerPedId(),2,-1,0,2) -- Brinco
+		SetPedPropIndex(PlayerPedId(),6,-1,0,2) -- Relógio
+		SetPedPropIndex(PlayerPedId(),7,-1,0,2) -- Bracelete
 	end
 
 	SetEntityCoordsNoOffset(PlayerPedId(),-1038.71,-2736.25,13.77,true,true,true)

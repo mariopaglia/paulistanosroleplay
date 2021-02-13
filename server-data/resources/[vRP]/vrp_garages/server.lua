@@ -1007,7 +1007,7 @@ function src.policeAlert()
 					if player then
 						async(function()
 							local id = idgens:gen()
-							TriggerClientEvent('chatMessage',player,"911",{64,64,255},"Roubo na ^1"..street.."^0 do veículo ^1"..model.."^0 de placa ^1"..placa.."^0 verifique o ocorrido.")
+							TriggerClientEvent('chatMessage',player,"190",{64,64,255},"Roubo na ^1"..street.."^0 do veículo ^1"..model.."^0 de placa ^1"..placa.."^0 verifique o ocorrido.")
 							police[id] = vRPclient.addBlip(player,x,y,z,304,3,"Ocorrência",0.6,false)
 							SetTimeout(60000,function() vRPclient.removeBlip(player,police[id]) idgens:free(id) end)
 						end)

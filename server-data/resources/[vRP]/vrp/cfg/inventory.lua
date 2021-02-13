@@ -2,6 +2,9 @@ local cfg = {}
 
 cfg.chestweight = {
 	["deathbike"] = 10,
+	["brioso2"] = 10,
+	["weevil"] = 5,
+	["chevette"] = 10,
 	["deathbike3"] = 10,
 	["stryder"] = 10,
 	["brioso"] = 20,
@@ -316,7 +319,6 @@ cfg.chestweight = {
 
 	["astra"] = 50,
 	["celta"] = 25,
-	["chevette"] = 30,
 	["corsa98"] = 25,
 	["cronos"] = 40,
 	["escort"] = 30,

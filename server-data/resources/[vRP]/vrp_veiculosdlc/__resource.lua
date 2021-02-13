@@ -7,7 +7,6 @@ files {
 'carcols.meta', 
 'handling.meta', 
 'vehiclelayouts.meta',
---Animations
 'clip_sets.xml',
 } 
 

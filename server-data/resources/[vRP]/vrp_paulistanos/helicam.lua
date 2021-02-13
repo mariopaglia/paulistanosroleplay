@@ -1,8 +1,8 @@
 local fov_max = 80.0
 local fov_min = 10.0
-local zoomspeed = 2.0
-local speed_lr = 3.0
-local speed_ud = 3.0
+local zoomspeed = 10.0
+local speed_lr = 7.0
+local speed_ud = 7.0
 local helicam = false
 local fov = (fov_max+fov_min)*0.5
 
@@ -74,7 +74,7 @@ end)
 
 function IsPlayerInPolmav()
 	local vehicle = GetVehiclePedIsIn(PlayerPedId())
-	return IsVehicleModel(vehicle,GetHashKey("paramedicoheli")) or IsVehicleModel(vehicle,GetHashKey("polmav"))
+	return IsVehicleModel(vehicle,GetHashKey("samumav")) or IsVehicleModel(vehicle,GetHashKey("polmav"))
 end
 
 function IsHeliHighEnough(heli)

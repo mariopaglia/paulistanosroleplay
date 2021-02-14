@@ -643,6 +643,30 @@ RegisterCommand('prender',function(source,args,rawCommand)
 		prison_lock(parseInt(args[1]))
 	end
 end)
+
+-----------------------------------------------------------------------------------------------------------------------------------------
+-- PRENDER POR ADV (SOMENTE ADM)
+-----------------------------------------------------------------------------------------------------------------------------------------
+RegisterCommand('prenderadv',function(source,args,rawCommand)
+	local user_id = vRP.getUserId(source)
+	if vRP.hasPermission(user_id,"admin.permissao") then
+		local player = vRP.getUserSource(parseInt(args[1]))
+		vRP.setUData(parseInt(args[1]),"vRP:prisao",json.encode(parseInt(args[2])))
+		vRPclient.setHandcuffed(player,false)
+		local crimes = vRP.prompt(source,"Crimes:","")
+		if crimes == "" then
+			return
+		end
+		TriggerClientEvent('prisioneiro',player,true)
+		vRPclient._playSound(source,"Hack_Success","DLC_HEIST_BIOLAB_PREP_HACKING_SOUNDS")
+		TriggerClientEvent("vrp_sound:source",player,'jaildoor',1)
+		vRPclient.teleport(player,1680.1,2513.0,45.5)
+
+		TriggerClientEvent("Notify",source,"sucesso","Prisão efetuada com sucesso!")
+		TriggerClientEvent("Notify",player,"importante","Você foi preso pelos seguintes crimes: <b>"..crimes.."</b>")
+		prison_lock(parseInt(args[1]))
+	end
+end)
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- ID
 -----------------------------------------------------------------------------------------------------------------------------------------
@@ -1178,6 +1202,7 @@ AddEventHandler("vRP:playerSpawn",function(user_id,source,first_spawn)
 			if tempo > 0 then
 				TriggerClientEvent('prisioneiro',player,true)
 				vRPclient.teleport(player,1680.1,2513.0,46.5)
+				TriggerClientEvent("Notify",player,"importante","Você está preso e ainda vai passar <b>"..parseInt(tempo).." meses</b> na cadeia")
 				prison_lock(parseInt(user_id))
 			end
 		end)

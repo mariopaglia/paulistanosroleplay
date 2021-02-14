@@ -128,6 +128,7 @@ AddEventHandler('bank:pagarmulta128317', function(amount)
 end)
 RegisterServerEvent('bank:deposit128317')
 AddEventHandler('bank:deposit128317', function(amount)
+  print("1")
   local source = source
   local user_id = vRP.getUserId(source)
   if user_id then

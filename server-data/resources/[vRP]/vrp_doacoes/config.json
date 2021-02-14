@@ -5,8 +5,8 @@
     "host": "localhost",
     "port": 3306,
     "database": "vrp",
-    "user": "tindusbot",
-    "password": "Jr061193"
+    "user": "yellowbuzz",
+    "password": "MN0h$b@aJnYTU91#"
   },
   "snowflake": {
     "database_prefix": "vrp",

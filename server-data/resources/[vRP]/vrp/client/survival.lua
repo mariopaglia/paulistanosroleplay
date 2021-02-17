@@ -135,23 +135,28 @@ end)
 
 Citizen.CreateThread(function()
 	while true do
-		Citizen.Wait(1)
-		if nocauteado and timedeath <= 0 and IsControlJustPressed(0,38) then
-			nocauteado = false
-			SetEntityInvincible(PlayerPedId(),false)
-			SetEntityHealth(PlayerPedId(),0)
-			TriggerEvent("tokovoip:toggleMute", false)
-			SetTimeout(5000,function()
-				timedeath = 600
-			end)
+		local idle = 1000
+		if nocauteado then
+			idle = 5
+			if nocauteado and timedeath <= 0 and IsControlJustPressed(0,38) then
+				nocauteado = false
+				SetEntityInvincible(PlayerPedId(),false)
+				SetEntityHealth(PlayerPedId(),0)
+				TriggerEvent("tokovoip:toggleMute", false)
+				SetTimeout(5000,function()
+					timedeath = 600
+				end)
+			end
 		end
+		Citizen.Wait(idle)
 	end
 end)
 
 Citizen.CreateThread(function()
 	while true do
-		Citizen.Wait(1)
+		local idle = 1000
 		if nocauteado then
+			idle = 5
 			if timedeath > 0 then
 				drawTxt("VOCE TEM ~r~"..timedeath.." ~w~SEGUNDOS DE VIDA, AGUARDE POR SOCORRO MÉDICO",4,0.5,0.93,0.50,255,255,255,255)
 			else
@@ -198,6 +203,7 @@ Citizen.CreateThread(function()
 			DisableControlAction(0,190,true)
 			DisableControlAction(0,188,true)
 		end
+		Citizen.Wait(idle)
 	end
 end)
 

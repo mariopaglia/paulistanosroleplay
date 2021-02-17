@@ -5,6 +5,9 @@ vRPNclient = {}
 Tunnel.bindInterface("vrp_player",vRPNclient)
 
 emP = Tunnel.getInterface("vrp_player")
+
+
+
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- NOCARJACK
 -----------------------------------------------------------------------------------------------------------------------------------------
@@ -31,6 +34,21 @@ AddEventHandler(
 )
 
 -----------------------------------------------------------------------------------------------------------------------------------------
+-- DESABILITAR A CORONHADA
+-----------------------------------------------------------------------------------------------------------------------------------------
+Citizen.CreateThread(function()
+    while true do
+        Citizen.Wait(5)
+        local ped = PlayerPedId()
+        if IsPedArmed(ped,6) then
+            DisableControlAction(0,140,true)
+            DisableControlAction(0,141,true)
+            DisableControlAction(0,142,true)
+        end
+    end
+end)
+
+-----------------------------------------------------------------------------------------------------------------------------------------
 -- RESOLVER ERRO DE VAZAMENTO DE AUDIO NA CITY
 -----------------------------------------------------------------------------------------------------------------------------------------
 Citizen.CreateThread(function()
@@ -39,23 +57,6 @@ Citizen.CreateThread(function()
         NetworkSetTalkerProximity(8.0)
 	end
 end)
-
------------------------------------------------------------------------------------------------------------------------------------------
--- REMOVE A CORONHADA
------------------------------------------------------------------------------------------------------------------------------------------
-Citizen.CreateThread(
-	function()
-		while true do
-			Citizen.Wait(0)
-			local ped = PlayerPedId()
-			if IsPedArmed(ped, 6) then
-				DisableControlAction(1, 140, true)
-				DisableControlAction(1, 141, true)
-				DisableControlAction(1, 142, true)
-			end
-		end
-	end
-)
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- /COR
 -----------------------------------------------------------------------------------------------------------------------------------------
@@ -1245,6 +1246,8 @@ function setHurt()
     hurt = true
     RequestAnimSet("move_m@injured")
     SetPedMovementClipset(GetPlayerPed(-1), "move_m@injured", true)
+	DisableControlAction(1, 21, true) -- Desabilita o SHIFT (Correr)
+	DisableControlAction(1, 22, true) -- Desabilita o Spacebar (Pular)
 end
 
 function setNotHurt()

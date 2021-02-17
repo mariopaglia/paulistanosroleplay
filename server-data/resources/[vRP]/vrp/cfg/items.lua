@@ -2,7 +2,7 @@ local cfg = {}
 
 cfg.items = {
 	-- Gerais
-	["sacodelixo"] = { "Saco de Lixo",2 },
+	["sacodelixo"] = { "Saco de Lixo",1 },
 	["garrafavazia"] = { "Garrafa Vazia",0.2 },
 	["garrafadeleite"] = { "Garrafa de Leite",0.5 },
 	["alianca"] = { "Aliança",0.5 },
@@ -24,6 +24,12 @@ cfg.items = {
 	["placa"] = { "Placa",5.0 },
 	["pneu"] = { "Pneu",15.0 },
 	["cartaoinvasao"] = { "Cartão de Invasão",0.5 },
+	["gps"] = { "GPS",0.5 },
+
+	-- Farm Contrabando
+	["componentemetal"] = { "Componentes de Metais",0.5 },
+	["componenteeletronico"] = { "Componentes Eletrônicos",0.5 },
+	["componenteplastico"] = { "Componentes de Plásticos",0.5 },
 	
 	-- Pesca
 	["isca"] = { "Isca",0.6 },

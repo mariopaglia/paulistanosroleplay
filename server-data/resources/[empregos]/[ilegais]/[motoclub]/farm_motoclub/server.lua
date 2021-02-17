@@ -30,6 +30,7 @@ function emP.checkPayment()
 	local source = source
 	local user_id = vRP.getUserId(source)
 	if user_id then
+		vRP.antiflood(source,"motoclub",4)
 		if vRP.getInventoryWeight(user_id)+vRP.getItemWeight("serra")*quantidade[source] <= vRP.getInventoryMaxWeight(user_id) then
 		TriggerClientEvent("Notify",source,"sucesso","Você coletou <b> "..quantidade[source].."x Serra</b>.")
 		vRP.giveInventoryItem(user_id,"serra",quantidade[source])

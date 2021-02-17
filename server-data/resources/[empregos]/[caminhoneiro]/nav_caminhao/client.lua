@@ -100,9 +100,10 @@ end
 Citizen.CreateThread(function()
 	SetNuiFocus(false,false)
 	while true do
-		Citizen.Wait(1)
+		local idle = 1000
 		local distance = GetDistanceBetweenCoords(GetEntityCoords(PlayerPedId()),1197.25,-3253.47,7.09,true)
 		if distance <= 2 then
+			idle = 5
 			DrawMarker(21,1197.25,-3253.47,7.09-0.6,0,0,0,0.0,0,0,0.5,0.5,0.4,255,230,100,100,0,0,0,1)
 			if distance <= 2 then
 				drawTxt("PRESSIONE  ~r~E~w~ PARA O ~y~ESCOLHER O SERVIÇO",4,0.5,0.90,0.50,255,255,255,200)
@@ -111,6 +112,7 @@ Citizen.CreateThread(function()
 				end
 			end
 		end
+		Citizen.Wait(idle)
 	end
 end)
 

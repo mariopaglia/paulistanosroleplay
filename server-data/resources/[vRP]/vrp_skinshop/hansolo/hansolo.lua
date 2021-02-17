@@ -390,7 +390,9 @@ end
 
 Citizen.CreateThread(function()
     while true do
+        local idle = 1000
         if noProvador then
+            idle = 5
             PlayerInstancia()
             DisableControlAction(1, 1, true)
             DisableControlAction(1, 2, true)
@@ -400,7 +402,7 @@ Citizen.CreateThread(function()
             DisableControlAction(1, 106, true)
             DisableControlAction(1, 37, true)
         end
-        Citizen.Wait(1)
+        Citizen.Wait(idle)
     end
 end)
 

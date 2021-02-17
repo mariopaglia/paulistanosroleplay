@@ -107,6 +107,7 @@ function rob.IniciandoRoubo1(id,x,y,z,head)
 							end
 						end
 						TriggerClientEvent('removerblip',-1)
+						vRP.antiflood(source,"roubos",3)
 						vRP.giveInventoryItem(user_id,"dinheirosujo",item.recompensa,false)
 						assaltante1 = false
 					end
@@ -161,6 +162,7 @@ function rob.IniciandoRoubo2(id,x,y,z,head)
 							end
 						end
 						TriggerClientEvent('removerblip',-1)
+						vRP.antiflood(source,"roubos",3)
 						vRP.giveInventoryItem(user_id,"dinheirosujo",item.recompensa,false)
 						assaltante2 = false
 					end
@@ -215,6 +217,7 @@ function rob.IniciandoRoubo3(id,x,y,z,head)
 							end
 						end
 						TriggerClientEvent('removerblip',-1)
+						vRP.antiflood(source,"roubos",3)
 						vRP.giveInventoryItem(user_id,"dinheirosujo",item.recompensa,false)
 						assaltante3 = false
 					end

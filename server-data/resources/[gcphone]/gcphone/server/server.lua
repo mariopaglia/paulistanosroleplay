@@ -1,15 +1,16 @@
 local Tunnel = module("vrp","lib/Tunnel")
 local Proxy = module("vrp","lib/Proxy")
+local Tools = module("vrp","lib/Tools")
 vRP = Proxy.getInterface("vRP")
+vRPclient = Tunnel.getInterface("vRP")
+
 src = {}
 Tunnel.bindInterface("gcphone",src)
 vRPclient = Tunnel.getInterface("vRP", "gcphone")
-local Tools = module("vrp","lib/Tools")
-local idgens = Tools.newIDGenerator()
 
------------------------------------------------------------------------------------------------------------------------------------------
--- WEBHOOK
------------------------------------------------------------------------------------------------------------------------------------------
+local idgens = Tools.newIDGenerator()
+local plan = {}
+
 local webhookbanco = "https://discord.com/api/webhooks/793600149590769685/-PHSTM2RRZkVfb1PIZcitPEByn0rd5ZeEyhs6IX3AJ1O1MPssKnZlhHMot6VTFbH6w_d"
 
 function SendWebhookMessage(webhook,message)
@@ -22,10 +23,10 @@ function src.checkItemPhone()
     local source = source
     local user_id = vRP.getUserId(source)
     if user_id then
-        if vRP.getInventoryItemAmount(user_id,"celular") >= 1 then
+        if vRP.getInventoryItemAmount(user_id,"celular") >= 1 or vRP.getInventoryItemAmount(user_id,"celular-pro") >= 1 then
             return true 
         else
-            TriggerClientEvent("Notify",source,"negado","Você não possui um celular em sua mochila") 
+            TriggerClientEvent("Notify",source,"negado","Você não possui um celular em sua mochila.") 
             return false
         end
     end
@@ -136,7 +137,6 @@ end
 
 RegisterServerEvent('gcPhone:addContact')
 AddEventHandler('gcPhone:addContact',function(display,phoneNumber)
-	vRP.antiflood(source,"gcPhone:addContact",5)
 	local sourcePlayer = tonumber(source)
 	local identifier = getPlayerID(source)
 	addContact(sourcePlayer,identifier,phoneNumber,display)
@@ -568,12 +568,21 @@ end)
 AddEventHandler("vRP:playerSpawn",function(user_id,source,first_spawn)
 	local sourcePlayer = tonumber(source)
 	local identifier = getPlayerID(source)
+	
 	getOrGeneratePhoneNumber(sourcePlayer,identifier,function(myPhoneNumber)
 		TriggerClientEvent("gcPhone:myPhoneNumber",sourcePlayer,myPhoneNumber)
 		TriggerClientEvent("vRP:updateBalanceGc", source, bmoney)
 		TriggerClientEvent("gcPhone:contactList",sourcePlayer,getContacts(identifier))
 		TriggerClientEvent("gcPhone:allMessage",sourcePlayer,getMessages(identifier))
 	end)
+
+	local consulta = vRP.getUData(user_id,"vRP:plano")
+	local resultado = json.decode(consulta) or {}
+	vRP.setUData(vRP.getUserId(source), "vRP:plano", json.encode(resultado))
+	resultado = resultado.tempo or 0
+	if tonumber(resultado) > 0 then
+		plan[user_id] = resultado
+	end
 end)
 
 RegisterServerEvent('gcPhone:allUpdate')
@@ -581,10 +590,16 @@ AddEventHandler('gcPhone:allUpdate',function()
 	local sourcePlayer = tonumber(source)
 	local identifier = getPlayerID(source)
 	local num = getNumberPhone(identifier)
+
+	local _source = source
+    local user_id = vRP.getUserId(_source)
+	local getbankmoney = vRP.getBankMoney(user_id)
+
 	TriggerClientEvent("gcPhone:myPhoneNumber",sourcePlayer,num)
-		TriggerClientEvent("vRP:updateBalanceGc", source, bmoney)
-		TriggerClientEvent("gcPhone:contactList",sourcePlayer,getContacts(identifier))
+	TriggerClientEvent("vRP:updateBalanceGc",_source,getbankmoney)
+	TriggerClientEvent("gcPhone:contactList",sourcePlayer,getContacts(identifier))
 	TriggerClientEvent("gcPhone:allMessage",sourcePlayer,getMessages(identifier))
+
 	sendHistoriqueCall(sourcePlayer,num)
 end)
 
@@ -594,20 +609,19 @@ end)
 
 RegisterNetEvent("vRP/update_gc_phone")
 AddEventHandler("vRP/update_gc_phone", function()
-    if source ~= nil then
-        local user_id = vRP.getUserId(source)
-        if user_id ~= nil then
-            local bmoney = vRP.getBankMoney(user_id)
-            TriggerClientEvent("vRP:updateBalanceGc", source, bmoney)
-        end
-    end
+	local _source = source
+    local user_id = vRP.getUserId(_source)
+	local getbankmoney = vRP.getBankMoney(user_id)
+
+	TriggerClientEvent("vRP:updateBalanceGc",_source,getbankmoney)
 end)
 
 AddEventHandler("vRP:playerSpawn", function(user_id, source, first_spawn)
-    if user_id ~= nil then
-        local money = vRP.getBankMoney(user_id)
-        TriggerClientEvent("vRP:updateBalanceGc", source, money)
-    end
+	local _source = source
+    local user_id = vRP.getUserId(_source)
+	local getbankmoney = vRP.getBankMoney(user_id)
+	
+    TriggerClientEvent("vRP:updateBalanceGc",_source,getbankmoney)
 end)
 
 RegisterServerEvent('bank:transfer128317')
@@ -638,3 +652,42 @@ AddEventHandler('bank:transfer128317', function(id, amount)
 		end
     end
 end)
+
+AddEventHandler("vRP:playerLeave", function(user_id, group, gtype)
+	if plan[user_id] then
+		plan[user_id] = nil
+	end
+end)
+
+Citizen.CreateThread(function()
+	while true do
+		for k, v in pairs(plan) do
+			plan[k] = v-1
+			if plan[k] <= 0 then
+				plan[k] = nil
+				vRP.setUData(k, "vRP:plano", json.encode({}))
+			else
+				local vl = {}
+				vl.tempo = v
+				vRP.setUData(k, "vRP:plano", json.encode(vl))
+			end
+		end
+		Citizen.Wait(10000)
+	end
+end)
+
+function src.planoCheck()
+	local source = source
+	local user_id = vRP.getUserId(source)
+	local consulta = vRP.getUData(user_id,"vRP:plano")
+	local resultado = json.decode(consulta) or {}
+	
+	resultado = resultado.tempo or 0
+
+	if tonumber(resultado) <= 0 then
+		TriggerClientEvent("Notify",source,"negado","Você não possui plano de celular disponivel.") 
+		return false
+	else
+		return true
+	end
+end

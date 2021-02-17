@@ -128,7 +128,6 @@ AddEventHandler('bank:pagarmulta128317', function(amount)
 end)
 RegisterServerEvent('bank:deposit128317')
 AddEventHandler('bank:deposit128317', function(amount)
-  print("1")
   local source = source
   local user_id = vRP.getUserId(source)
   if user_id then
@@ -202,8 +201,8 @@ AddEventHandler('bank:quickCash128317', function()
   end
 end)
 
-RegisterServerEvent('bank:transfer')
-AddEventHandler('bank:transfer', function(toPlayer, amount)
+RegisterServerEvent('bank:transfer128317')
+AddEventHandler('bank:transfer128317', function(toPlayer, amount)
   local source = source
   local user_id = vRP.getUserId(source)
   local nuser_id = tonumber(toPlayer)

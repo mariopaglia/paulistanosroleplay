@@ -46,6 +46,12 @@ local itemlist = {
 	["placa"] = { index = "placa", nome = "Placa", type = "usar" },
 	["pneu"] = { index = "pneu", nome = "Pneu", type = "usar" },
 	["cartaoinvasao"] = { index = "cartaoinvasao", nome = "Cartão de Invasão", type = "usar" },
+	["gps"] = { index = "gps", nome = "GPS", type = "usar" },
+
+	-- Farm Contrabandop
+	["componentemetal"] = { index = "componentemetal", nome = "Componentes de Metais", type = "usar" },
+	["componenteeletronico"] = { index = "componenteeletronico", nome = "Componentes Eletrônicos", type = "usar" },
+	["componenteplastico"] = { index = "componenteplastico", nome = "Componentes de Plásticos", type = "usar" },
 	
 	-- Pesca
 	["isca"] = { index = "isca", nome = "Isca", type = "usar" },

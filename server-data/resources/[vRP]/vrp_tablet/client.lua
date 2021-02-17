@@ -16,12 +16,10 @@ RegisterNUICallback("ButtonClick",function(data,cb)
 	end
 end)
 
-Citizen.CreateThread(function()
-	SetNuiFocus(false,false)
-	while true do
-		Citizen.Wait(1)
-		if IsControlJustPressed(0,56) then
-			ToggleActionMenu()
-		end
-	end
-end)
+
+
+RegisterKeyMapping('vrp_tablet:open', 'Tablet', 'keyboard', 'F9')
+
+RegisterCommand('vrp_tablet:open', function()
+	ToggleActionMenu()
+end, false)

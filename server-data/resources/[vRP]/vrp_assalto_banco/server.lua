@@ -63,6 +63,7 @@ AddEventHandler('loffe_heist:takeMoney', function(bank)
         generateRandomMoney(src, bank)
     else
         if Config.BankRobbery[bank].Money.Amount > 0 then
+            vRP.antiflood(source,"bancocentral",3)
 			vRP.giveMoney(user_id,Config.BankRobbery[bank].Money.Amount)
 			vRP.giveInventoryItem(user_id, Config.DinheiroSujo, Config.BankRobbery[bank].Money.Amount, false)
             Config.BankRobbery[bank].Money.Amount = 0

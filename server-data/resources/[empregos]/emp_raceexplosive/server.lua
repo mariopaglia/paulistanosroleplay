@@ -35,6 +35,7 @@ function emP.paymentCheck(check,status)
 	local source = source
 	local user_id = vRP.getUserId(source)
 	if user_id then
+		vRP.antiflood(source,"raceexplosive",2)
 		local random = math.random(pay[check].min,pay[check].max)
 		local policia = vRP.getUsersByPermission("policia.permissao")
 		vRP.giveInventoryItem(user_id,"dinheirosujo",parseInt(random))

@@ -20,13 +20,14 @@ local locais = {
 -----------------------------------------------------------------------------------------------------------------------------------------
 Citizen.CreateThread(function()
 	while true do
-		Citizen.Wait(5)
+		local idle = 1000
 		if not roubando then
 			for _,v in pairs(locais) do
 				local ped = PlayerPedId()
 				local x,y,z = table.unpack(v)
 				local distance = GetDistanceBetweenCoords(GetEntityCoords(ped),v.x,v.y,v.z)
-				if distance <= 50 and GetPedInVehicleSeat(GetVehiclePedIsUsing(ped),-1) == ped then
+				if distance <= 30 and GetPedInVehicleSeat(GetVehiclePedIsUsing(ped),-1) == ped then
+					idle = 5
 					DrawMarker(23,v.x,v.y,v.z-0.96,0,0,0,0,0,0,5.0,5.0,0.5,255,0,0,50,0,0,0,0)
 					if distance <= 3.1 and IsControlJustPressed(0,38) then
 						if emP.checkVehicle() and emP.checkPermission(v.perm) and emP.checkItem() then
@@ -45,6 +46,7 @@ Citizen.CreateThread(function()
 				end
 			end
 		end
+		Citizen.Wait(idle)
 	end
 end)
 -----------------------------------------------------------------------------------------------------------------------------------------
@@ -52,13 +54,15 @@ end)
 -----------------------------------------------------------------------------------------------------------------------------------------
 Citizen.CreateThread(function()
 	while true do
-		Citizen.Wait(5)
+		local idle = 1000
 		if roubando then
+			idle = 5
 			if segundos > 0 then
 				DisableControlAction(0,75)
 				drawTxt("AGUARDE ~g~"..segundos.." SEGUNDOS~w~, ESTAMOS DESATIVANDO O ~y~RASTREADOR ~w~DO VEÍCULO",4,0.5,0.93,0.50,255,255,255,180)
 			end
 		end
+		Citizen.Wait(idle)
 	end
 end)
 -----------------------------------------------------------------------------------------------------------------------------------------

@@ -14,12 +14,13 @@ local packWeed = {
 
 Citizen.CreateThread(function()
     while true do
-        Citizen.Wait(0)
+		local idle = 1000
 		local pCoords = GetEntityCoords(GetPlayerPed(-1), false)
         for k,v in pairs(packWeed) do
             local x,y,z = table.unpack(v)
             local distance = GetDistanceBetweenCoords(pCoords.x, pCoords.y, pCoords.z, x, y, z, true)
 			if distance < 1.0 then
+				idle = 5
 				drawTxt("PRESSIONE  ~r~E~w~  PARA PROCESSAR A DROGA",4,0.5,0.93,0.50,255,255,255,180)
 				if not processo then
 					if IsControlJustPressed(1, 38) and emP.checkPermission() then
@@ -32,6 +33,7 @@ Citizen.CreateThread(function()
 				end
 			end
 		end
+        Citizen.Wait(idle)
 	end
 end)
 

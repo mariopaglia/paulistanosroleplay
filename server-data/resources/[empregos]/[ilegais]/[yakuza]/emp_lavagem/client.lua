@@ -18,13 +18,14 @@ local locais = {
 ---------------------------------------------wd--------------------------------------------------------------------------------------------
 Citizen.CreateThread(function()
 	while true do
-		Citizen.Wait(1)
+		local idle = 1000
 		for _,v in pairs(locais) do
 			local ped = PlayerPedId()
 			local x,y,z = table.unpack(GetEntityCoords(ped))
 			local bowz,cdz = GetGroundZFor_3dCoord(v.x,v.y,v.z)
 			local distance = GetDistanceBetweenCoords(v.x,v.y,cdz,x,y,z,true)
 			if distance <= 1.2 and not andamento then
+				idle = 5
 				drawTxt("PRESSIONE  ~r~E~w~  PARA INICIAR A INVASÃO AO SISTEMA DO BANCO",4,0.5,0.93,0.50,255,255,255,180)
 				if IsControlJustPressed(0,38) and lav.checkpermission() and lav.checkDinheiro() and not IsPedInAnyVehicle(ped) then
 					lav.lavagemPolicia(v.id,v.x,v.y,v.z,v.h)
@@ -32,6 +33,7 @@ Citizen.CreateThread(function()
 				end
 			end
 		end
+		Citizen.Wait(idle)
 	end
 end)
 -----------------------------------------------------------------------------------------------------------------------------------------

@@ -14,7 +14,7 @@ local PlayerData = {}
 
 Citizen.CreateThread(function()
 	while true do
-		Citizen.Wait(0)
+		Citizen.Wait(5)
 		loadAnimDict("rcmjosh4")
 		loadAnimDict("reaction@intimidation@cop@unarmed")
 		local ped = PlayerPedId()
@@ -101,21 +101,6 @@ Citizen.CreateThread(function()
 	end
 end)]]
 
-Citizen.CreateThread(function()
-	while true do
-		Citizen.Wait(0)
-
-		if blocked then
-			DisableControlAction(1, 25, true )
-			DisableControlAction(1, 140, true)
-			DisableControlAction(1, 141, true)
-			DisableControlAction(1, 142, true)
-			DisableControlAction(1, 23, true)
-			DisableControlAction(1, 37, true) -- Disables INPUT_SELECT_WEAPON (TAB)
-			DisablePlayerFiring(ped, true) -- Disable weapon firing
-		end
-	end
-end)
 
 function CheckWeapon(ped)
 	--[[if IsPedArmed(ped, 4) then

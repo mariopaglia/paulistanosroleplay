@@ -54,13 +54,14 @@ local locs = {
 -----------------------------------------------------------------------------------------------------------------------------------------
 Citizen.CreateThread(function()
 	while true do
-		Citizen.Wait(5)
+		local idle = 1000
 		if not servico then
 			local ped = PlayerPedId()
 			local vehicle = GetPlayersLastVehicle()
 			local distance = GetDistanceBetweenCoords(locs[selecionado].x,locs[selecionado].y,locs[selecionado].z,GetEntityCoords(ped),true)
 
-			if distance <= 100.0 then
+			if distance <= 30.0 then
+				idle = 5
 				DrawMarker(21,locs[selecionado].x,locs[selecionado].y,locs[selecionado].z-0.3,0,0,0,0,180.0,130.0,0.6,0.8,0.5,0,255,0,250,1,0,0,1)
 				if distance <= 1.2 and IsControlJustPressed(0,38) and not IsPedInAnyVehicle(ped) and emP.checkWeight() and GetEntityModel(vehicle) == 48339065 then
 					servico = true
@@ -88,5 +89,6 @@ Citizen.CreateThread(function()
 				end
 			end
 		end
+		Citizen.Wait(idle)
 	end
 end)

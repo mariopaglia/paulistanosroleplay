@@ -1,6 +1,6 @@
 {
-  "reseau": "SP",
-  "warningMessageCount": 250,
+  "reseau": "TIM",
+  "warningMessageCount": 700,
   "themeColor": "#007aff",
   "themeColorTitle": "#f7f7f7",
   "colors": [
@@ -23,29 +23,27 @@
     "#78909C"
   ],
 
-
   "useFormatNumberFrance": true,
-  "useWebRTCVocal": false,
-  "RTCConfig": {
-    "iceServers": [{
-      "urls": ["turn:numb.viagenie.ca"],
-      "username": "webrtc@live.com",
-      "credential": "muazkh"
-    }]
-  },
+	"useWebRTCVocal": false,
+	"RTCConfig": {
+		"iceServers": [{
+			"urls": [""],
+			"username": "",
+			"credential": ""
+		}]
+	},
+	
 
-
-
-  "//": "REQUIRE https://github.com/citizenfx/screenshot-basic or set false",
-  "enableTakePhoto": false,
-  "fileUploadService_Url": "https://wew.wtf/upload.php",
+"//": "REQUIRE https://github.com/citizenfx/screenshot-basic or set false",
+"enableTakePhoto": false,
+"fileUploadService_Url": "https://wew.wtf/upload.php",
   "fileUploadService_Field": "files[]",
 
   "background": {
-    "Paulistanos Roleplay": "paulistanos.jpg",
     "White desert": "back001.jpg",
     "Palms": "back002.jpg",
-    "Santa Mónica Beach": "back003.jpg",
+    "Default": "back003.jpg",
+    "Paulistanos": "paulistanos.jpg",
 
     "Route 66": "color.jpg",
     "Classic tokyo": "humo.jpg",
@@ -59,7 +57,7 @@
     "Custom URL": "URL"
   },
   "background_default": {
-    "label": "Paulistanos Roleplay",
+    "label": "Paulistanos",
     "value": "paulistanos.jpg"
   },
 
@@ -74,25 +72,19 @@
   },
 
   "sonido": {
-    "Astronomia": "ring.ogg",
-    "Safaera": "safaera.ogg",
-    "Bella Ciao": "bella_ciao.ogg",
-    "Casa Papel": "casa_papel.ogg",
-    "Iphone 11": "iphone_11.ogg",
-    "Tusa": "tusa.ogg",
-    "XXXTentacion": "xtentacion.ogg"
+    "Casa de Papel": "casa_papel.ogg"
   },
 
   "coque_default": {
-    "label": "Red",
-    "value": "red.png"
+    "label": "Mint",
+    "value": "s8.png"
   },
 
   "sonido_default": {
-    "label": "Casa Papel",
+    "label": "Casa de Papel",
     "value": "casa_papel.ogg"
   },
-
+ 
   "defaultContacts": [{
       "number": "adm",
       "display": "STAFF",

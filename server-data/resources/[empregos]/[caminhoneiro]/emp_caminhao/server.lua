@@ -65,6 +65,7 @@ function emP.checkPayment(id,mod,health)
 	local source = source
 	local user_id = vRP.getUserId(source)
 	if user_id then
+		vRP.antiflood(source,"caminhoneiro",3)
 		vRP.giveMoney(user_id,parseInt(paylist[mod][id].pay+(health-700)))
 		TriggerClientEvent("vrp_sound:source",source,'coins',0.5)
 		TriggerClientEvent("Notify",source,"sucesso","Você recebeu <b>$"..vRP.format(parseInt(paylist[mod][id].pay+(health-700))).." dólares</b>.")

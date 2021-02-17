@@ -58,7 +58,7 @@ end)
 -------------------------------------------------------------------------------------------------
 Citizen.CreateThread(function()
 	while true do
-		Citizen.Wait(1)
+		local idle = 1000
 
 		for k,v in pairs(prodMachine) do
 			local ped = PlayerPedId()
@@ -72,6 +72,7 @@ Citizen.CreateThread(function()
 				DrawText3D(prodMachine.x, prodMachine.y, prodMachine.z, "[~r~E~w~] Para acessar a ~r~BANCADA~w~")
 			end
 			if distance <= 15 then
+				idle = 5
 				DrawMarker(23, prodMachine.x, prodMachine.y, prodMachine.z-0.97,0,0,0,0,0,0,0.7,0.7,0.5,214,29,0,100,0,0,0,0)
 				if distance <= 4.0 then
 					if IsControlJustPressed(0,38) and oC.checkPermissao() then
@@ -81,6 +82,7 @@ Citizen.CreateThread(function()
 				end
 			end
 		end
+		Citizen.Wait(idle)
 	end
 end)
 -------------------------------------------------------------------------------------------------

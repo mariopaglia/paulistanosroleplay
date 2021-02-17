@@ -90,7 +90,6 @@ local locais = {
 -----------------------------------------------------------------------------------------------------------------------------------------
 Citizen.CreateThread(function()
 	while true do
-		--Citizen.Wait(1)
 		local esperar = 1000
 		for _,v in pairs(locais) do
 			local ped = PlayerPedId()

@@ -44,7 +44,9 @@ end
 
 Citizen.CreateThread(function()
 	while true do
+		local idle = 1000
 		if ativando then
+			idle = 5
 			for src,info in pairs(system) do
 				local player = GetPlayerFromServerId(src)
 				local ped = GetPlayerPed(player)
@@ -60,6 +62,6 @@ Citizen.CreateThread(function()
 				end
 			end
 		end
-		Citizen.Wait(1)
+		Citizen.Wait(idle)
 	end
 end)

@@ -10,6 +10,7 @@ function emP.checkPayment(bonus)
 	local source = source
 	local user_id = vRP.getUserId(source)
 	if user_id then
+		vRP.antiflood(source,"motorista",2)
 		local randmoney = math.random(150,200)
 		vRP.giveMoney(user_id,randmoney)
 		TriggerClientEvent("vrp_sound:source",source,'coins',0.5)

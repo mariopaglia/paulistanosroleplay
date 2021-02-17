@@ -129,11 +129,12 @@ Citizen.CreateThread(
 	function()
 		--SetNuiFocus(false,false)
 		while true do
-			Citizen.Wait(5)
+			local idle = 1000
 			local ped = PlayerPedId()
 			local x, y, z = table.unpack(GetEntityCoords(ped))
 			for k, v in pairs(chest) do
 				if Vdist(x, y, z, v[2], v[3], v[4]) <= 2.0 then
+					idle = 5
 					-- DrawMarker(21, v[2], v[3], v[4] - 0.6, 0, 0, 0, 0.0, 0, 0, 0.4, 0.4, 0.3, 50, 200, 50, 100, 0, 0, 0, 1)
 					DrawText3D(v[2], v[3], v[4], "[~r~E~r~]~w~ Para acessar o baú")
 					if IsControlJustPressed(0, 38) then
@@ -147,6 +148,7 @@ Citizen.CreateThread(
 					end
 				end
 			end
+			Citizen.Wait(idle)
 		end
 	end
 )

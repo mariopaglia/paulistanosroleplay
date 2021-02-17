@@ -28,8 +28,9 @@ end
 
 Citizen.CreateThread(function()
 	while true do
-		Citizen.Wait(0)
+		local idle = 1000
 		if checkDistance() then
+			idle = 5
 			DrawMarker(23,-551.03857421875,-192.28303527832,38.223083496094-0.99,1,1,0,0,0,0,1.0,1.0,1.0,255,255,255,50,0,1,0,0)
 			DrawText3D(-551.03857421875,-192.28303527832,38.223083496094, "Mudar Nome - R$ 300.000", 2.0, 7, 100)
 			DrawText3D(-551.03857421875,-192.28303527832,38.223083496094-0.2, "/identidade [nome] [sobrenome] [idade]", 2.0, 1, 100)
@@ -38,6 +39,7 @@ Citizen.CreateThread(function()
 			DrawText3D(-551.03857421875,-192.28303527832,38.223083496094-0.8, "Pagar IPTU (Casas)", 2.0, 7, 100)
 			DrawText3D(-551.03857421875,-192.28303527832,38.223083496094-1.0, "/homes tax [nomedacasa]", 2.0, 1, 100)
 		end	 
+		Citizen.Wait(idle)
 	end
 end)
 

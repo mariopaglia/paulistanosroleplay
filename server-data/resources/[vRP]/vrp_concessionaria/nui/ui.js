@@ -54,11 +54,13 @@ function criarCatalogo(veiculos, totalTipo, aberto, isVendedor) {
                         return false;
                     }
                 });
-                var preco = "Consulte"
+                // var preco = "Consulte"
+                var preco = "R$ " + addCommas(parseInt(dataV.preco))
                 if (aberto || isVendedor) {
                     preco = "R$ " + addCommas(parseInt(dataV.preco))
                     if (isVendedor) {
-                        preco = "R$ " + addCommas(parseInt(dataV.preco * 0.9))
+                        // preco = "R$ " + addCommas(parseInt(dataV.preco * 0.9))
+                        preco = "R$ " + addCommas(parseInt(dataV.preco))
                     }
                 }
 				

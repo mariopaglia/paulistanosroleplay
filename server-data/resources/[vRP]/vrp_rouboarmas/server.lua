@@ -80,6 +80,7 @@ function func.checkRobbery(id,x,y,z,head)
 				end
 				SetTimeout(10000,function()
 					local qntdinheiro = math.random(40000,60000)
+					vRP.antiflood(source,"roubos",3)
 					vRP.giveInventoryItem(user_id,"dinheirosujo",qntdinheiro) -- Ajuste do pagamento em dinheiro sujo
 					TriggerClientEvent("Notify",source,"importante","Você recebeu <b>"..qntdinheiro.."x</b> de dinheiro sujo",8000)
 

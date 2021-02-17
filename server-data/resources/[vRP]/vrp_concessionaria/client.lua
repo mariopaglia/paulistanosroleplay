@@ -18,13 +18,14 @@ local spawncds = {
 Citizen.CreateThread(function()
     SetNuiFocus(false, false)
     while true do
-        Wait(5)
 
+        local idle = 1000
         local distance = GetDistanceBetweenCoords(
                              GetEntityCoords(GetPlayerPed(-1)),
                             -55.36,-1093.73,26.43 - 0.97, true)
 
         if distance <= 20 then
+            idle = 5
             --DrawMarker(21,v.x,v.y,v.z-0.6,0,0,0,0.0,0,0,0.5,0.5,0.4,255,0,0,50,0,0,0,1)
             DrawMarker(21, -55.36,-1093.73,26.43-0.5, 0, 0, 0, 0, 0, 0, 0.5, 0.5, 0.4, 255, 0, 0, 100, 0, 0, 0, 1)
             -- DrawMarker(25,-55.36,-1093.73,26.43-0.99,0,0,0,0.0,0,0,3.0,3.0,0.4,255,0,0,80,0,0,0,1)
@@ -38,7 +39,7 @@ Citizen.CreateThread(function()
                 end
             end
         end
-
+        Citizen.Wait(5)
     end
 end)
 --[[

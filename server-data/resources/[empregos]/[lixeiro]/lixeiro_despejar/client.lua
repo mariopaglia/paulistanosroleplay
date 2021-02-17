@@ -12,11 +12,12 @@ local segundos = 0
 -----------------------------------------------------------------------------------------------------------------------------------------
 Citizen.CreateThread(function()
 	while true do
-		Citizen.Wait(1)
+		local idle = 1000
 		if not processo then
 			local ped = PlayerPedId()
 			local distancia = GetDistanceBetweenCoords(GetEntityCoords(ped),-329.38,-1567.74,25.24)
 			if distancia <= 2.1 then
+				idle = 5
 				drawTxt("PRESSIONE  ~r~E~w~  PARA DESPEJAR LIXO",4,0.5,0.93,0.50,255,255,255,180)
 				if IsControlJustPressed(0,38) then
 					if emP.checkPayment() then
@@ -33,8 +34,10 @@ Citizen.CreateThread(function()
 			end
 		end
 		if processo then
+			idle = 5
 			drawTxt("AGUARDE ~r~"..segundos.."~w~ SEGUNDOS ATÉ FINALIZAR O DESPEJO DO LIXO",4,0.5,0.93,0.50,255,255,255,180)
 		end
+		Citizen.Wait(idle)
 	end
 end)
 

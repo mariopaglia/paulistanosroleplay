@@ -187,6 +187,7 @@ if enableBankingGui then
 end
 
 Citizen.CreateThread(function()
+	SetNuiFocus(false)
   while true do
     if bankOpen then
       local ply = PlayerPedId()
@@ -304,7 +305,7 @@ end
 
 RegisterNetEvent('bank:pagarmulta128317')
 AddEventHandler('bank:pagarmulta128317', function(amount)
-  if(IsNearBank() == true or depositAnywhere == true ) then
+  if(IsNearBank() or depositAnywhere == true ) then
     TriggerServerEvent("bank:pagarmulta128317", tonumber(amount))
   else
     vRP.notifyError("Você só pode pagar multa em um banco!")
@@ -313,7 +314,7 @@ end)
 
 RegisterNetEvent('bank:deposit128317')
 AddEventHandler('bank:deposit128317', function(amount)
-  if(IsNearBank() == true or depositAnywhere == true ) then
+  if(IsNearBank() or depositAnywhere == true ) then
     TriggerServerEvent("bank:deposit128317", tonumber(amount))
   else
     vRP.notifyError("Você só pode depositar em um banco!")
@@ -322,7 +323,7 @@ end)
 
 RegisterNetEvent('bank:withdraw128317')
 AddEventHandler('bank:withdraw128317', function(amount)
-  if (IsNearBank() == true or withdraWAnywhere == true) then
+  if (IsNearBank() or withdraWAnywhere == true) then
     TriggerServerEvent("bank:withdraw128317", tonumber(amount))
   else
     vRP.notifyError("Você só pode sacar em um banco!")

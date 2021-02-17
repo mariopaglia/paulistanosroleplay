@@ -45,7 +45,7 @@ local locs = {
 -----------------------------------------------------------------------------------------------------------------------------------------
 Citizen.CreateThread(function()
 	while true do
-		Citizen.Wait(5)
+		local idle = 1000
 		if not servico then
 			local ped = PlayerPedId()
 			local x,y,z = table.unpack(GetEntityCoords(ped))
@@ -53,6 +53,7 @@ Citizen.CreateThread(function()
 			local distance = GetDistanceBetweenCoords(CoordenadaX,CoordenadaY,cdz,x,y,z,true)
 
 			if distance <= 3 then
+				idle = 5
 				DrawMarker(21,CoordenadaX,CoordenadaY,CoordenadaZ-0.6,0,0,0,0.0,0,0,0.5,0.5,0.4,255,0,0,50,0,0,0,1)
 				if distance <= 1.2 then
 					drawTxt("PRESSIONE  ~r~E~w~  PARA INICIAR A COLETA",4,0.5,0.93,0.50,255,255,255,180)
@@ -65,6 +66,7 @@ Citizen.CreateThread(function()
 				end
 			end
 		end
+		Citizen.Wait(idle)
 	end
 end)
 -----------------------------------------------------------------------------------------------------------------------------------------
@@ -72,7 +74,7 @@ end)
 -----------------------------------------------------------------------------------------------------------------------------------------
 Citizen.CreateThread(function()
 	while true do
-		Citizen.Wait(5)
+		local idle = 1000
 		if servico then
 			local ped = PlayerPedId()
 			local x,y,z = table.unpack(GetEntityCoords(ped))
@@ -80,6 +82,7 @@ Citizen.CreateThread(function()
 			local distance = GetDistanceBetweenCoords(locs[selecionado].x,locs[selecionado].y,cdz,x,y,z,true)
 			
 			if distance <= 3 then
+				idle = 5
 				DrawMarker(25,locs[selecionado].x,locs[selecionado].y,locs[selecionado].z-0.99,0,0,0,0.0,0,0,3.0,3.0,0.4,0,180,0,80,0,0,0,1)
 				if distance <= 2.0 then
 					local vehicle = GetPlayersLastVehicle()
@@ -106,23 +109,22 @@ Citizen.CreateThread(function()
 				end
 			end
 		end
+		Citizen.Wait(idle)
 	end
 end)
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- CANCELAR
 -----------------------------------------------------------------------------------------------------------------------------------------
-Citizen.CreateThread(function()
-	while true do
-		Citizen.Wait(5)
-		if servico then
-			if IsControlJustPressed(0,168) then
-				servico = false
-				RemoveBlip(blips)
-				TriggerEvent("Notify","importante","Você saiu de serviço.")
-			end
-		end
+
+RegisterKeyMapping('emp:rotacancelar41', 'cancelarrota41', 'keyboard', 'F7')
+
+RegisterCommand('emp:rotacancelar41', function()
+	if servico then
+		servico = false
+		RemoveBlip(blips)
+		TriggerEvent("Notify","importante","Você saiu de serviço.")
 	end
-end)
+end, false)
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- TIMERS
 -----------------------------------------------------------------------------------------------------------------------------------------

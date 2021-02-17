@@ -11,11 +11,11 @@
   "snowflake": {
     "database_prefix": "vrp",
     "vehicles": "vrp_user_vehicles",
-    "priority": "vrp_priority",
+    "priority": "vrp_prioridade",
     "homes": "vrp_homes_permissions",
     "esx": {
       "admin_group": "admin",
-      "default_group": "unemployed",
+      "default_group": "Civil",
       "vehicle_plate": "AAA 000"
     }
   },

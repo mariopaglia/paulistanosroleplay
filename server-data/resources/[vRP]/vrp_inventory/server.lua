@@ -157,7 +157,7 @@ local user_id = vRP.getUserId(source)
 					if vRPclient.getHealth(source) > 101 and vRPclient.getHealth(source) < 250 then		
 						if bandagem[user_id] == 0 or not bandagem[user_id] then
 							if vRP.tryGetInventoryItem(user_id,"bandagem",1) then
-								bandagem[user_id] = 120
+								bandagem[user_id] = 300
 								actived[user_id] = true
 								vRPclient._CarregarObjeto(source,"amb@world_human_clipboard@male@idle_a","idle_c","v_ret_ta_firstaid",49,60309)
 								TriggerClientEvent('Creative:Update',source,'updateMochila')
@@ -173,6 +173,8 @@ local user_id = vRP.getUserId(source)
 									--TriggerClientEvent("resetBleeding",source)
 								end)
 							end
+						else
+							TriggerClientEvent("Notify",source,"negado","Só pode utilizar outra bandagem em <b>"..bandagem[user_id].." segundos</b>",8000)
 						end
 					else
 					TriggerClientEvent("Notify",source,"importante","Você não pode utilizar de vida cheia ou nocauteado.",8000)
@@ -259,7 +261,7 @@ local user_id = vRP.getUserId(source)
 			elseif itemName == "lockpick" then
 				local vehicle,vnetid,placa,vname,lock,banned,trunk,model,street = vRPclient.vehList(source,7)
 				local policia = vRP.getUsersByPermission("policia.permissao")
-				if #policia < 0 then
+				if #policia < 2 then
 					TriggerClientEvent("Notify",source,"importante","Número insuficiente de policiais no momento para iniciar o roubo.")
 					return true
 				end
@@ -316,7 +318,7 @@ local user_id = vRP.getUserId(source)
 									async(function()
 										local id = idgens:gen()
 										vRPclient._playSound(player,"CONFIRM_BEEP","HUD_MINI_GAME_SOUNDSET")
-										TriggerClientEvent('chatMessage',player,"190",{64,64,255},"Roubo na ^1"..street.."^0 do veículo ^1"..model.."^0 de placa ^1"..placa.."^0 verifique o ocorrido.")
+										TriggerClientEvent('chatMessage',player,"190",{64,64,255},"Tentativa de Roubo na ^1"..street.."^0 do veículo ^1"..model.."^0 de placa ^1"..placa.."^0 verifique o ocorrido.")
 										pick[id] = vRPclient.addBlip(player,x,y,z,10,5,"Ocorrência",0.5,false)
 										SetTimeout(20000,function() vRPclient.removeBlip(player,pick[id]) idgens:free(id) end)
 									end)

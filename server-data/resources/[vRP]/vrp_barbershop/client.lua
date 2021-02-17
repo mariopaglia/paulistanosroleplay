@@ -137,10 +137,11 @@ end
 
 Citizen.CreateThread(function()
 	while true do
-		Citizen.Wait(100)
+		local idle = 1000
 		if canStartTread then
+			idle = 1000
 			while not IsPedModel(PlayerPedId(),"mp_m_freemode_01") and not IsPedModel(PlayerPedId(),"mp_f_freemode_01") do
-				Citizen.Wait(1)
+				Citizen.Wait(idle)
 			end
 			if custom then
 				TaskUpdateSkinOptions()
@@ -148,6 +149,7 @@ Citizen.CreateThread(function()
 				TaskUpdateHeadOptions()
 			end
 		end
+		Citizen.Wait(idle)
 	end
 end)
 

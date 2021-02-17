@@ -44,8 +44,3 @@ local disconnect = {
 
     PerformHttpRequest(logs, function(err, text, headers) end, 'POST', json.encode({username = "Log de Saída", embeds = disconnect}), { ['Content-Type'] = 'application/json' })
 end)
-
-RegisterCommand('teste',function(source,args,rawCommand)
-    local user_id = vRP.getUserId(source)
-        TriggerClientEvent("Notify",source,"importante","Coordenada: "..x..","..y..","..z.."")
-end)

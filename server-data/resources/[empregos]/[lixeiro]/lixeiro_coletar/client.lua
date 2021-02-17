@@ -47,7 +47,7 @@ local locs = {
 	[31] = { ['x'] = -1208.72, ['y'] = -1411.40, ['z'] = 3.89 },
 	[32] = { ['x'] = -1111.55, ['y'] = -1549.99, ['z'] = 4.08 },
 	[33] = { ['x'] = -574.54, ['y'] = -857.53, ['z'] = 25.97 },
-	[34] = { ['x'] = -352.88, ['y'] = -959.45, ['z'] = 30.79 },
+	[34] = { ['x'] = -372.62, ['y'] = -911.55, ['z'] = 35.55 },
 	[35] = { ['x'] = 49.47, ['y'] = -1240.88, ['z'] = 28.94 },
 	[36] = { ['x'] = -148.22, ['y'] = -1296.49, ['z'] = 30.78 },
 	[37] = { ['x'] = -333.68, ['y'] = -1366.33, ['z'] = 31.01 },
@@ -58,7 +58,7 @@ local locs = {
 -----------------------------------------------------------------------------------------------------------------------------------------
 Citizen.CreateThread(function()
 	while true do
-		Citizen.Wait(1)
+		local idle = 1000
 		if not servico then
 			local ped = PlayerPedId()
 			local x,y,z = table.unpack(GetEntityCoords(ped))
@@ -66,6 +66,7 @@ Citizen.CreateThread(function()
 			local distance = GetDistanceBetweenCoords(CoordenadaX,CoordenadaY,cdz,x,y,z,true)
 
 			if distance <= 10.0 then
+				idle = 5
 				DrawMarker(21,CoordenadaX,CoordenadaY,CoordenadaZ-0.6,0,0,0,0.0,0,0,0.5,0.5,0.4,255,230,100,100,0,0,0,1)
 				if distance <= 1.2 then
 					drawTxt("PRESSIONE  ~r~E~w~  PARA INICIAR O SERVIÇO",4,0.5,0.93,0.50,255,255,255,180)
@@ -78,6 +79,7 @@ Citizen.CreateThread(function()
 				end
 			end
 		end
+		Citizen.Wait(idle)
 	end
 end)
 -----------------------------------------------------------------------------------------------------------------------------------------
@@ -85,7 +87,7 @@ end)
 -----------------------------------------------------------------------------------------------------------------------------------------
 Citizen.CreateThread(function()
 	while true do
-		Citizen.Wait(1)
+		local idle = 1000
 		if servico then
 			local ped = PlayerPedId()
 			local x,y,z = table.unpack(GetEntityCoords(ped))
@@ -93,6 +95,7 @@ Citizen.CreateThread(function()
 			local distance = GetDistanceBetweenCoords(locs[selecionado].x,locs[selecionado].y,cdz,x,y,z,true)
 
 			if distance <= 30.0 then
+				idle = 5
 				DrawMarker(21,locs[selecionado].x,locs[selecionado].y,locs[selecionado].z+0.30,0,0,0,0,180.0,130.0,2.0,2.0,1.0,240,200,80,200,1,0,0,1)
 				if distance <= 2.5 then
 					drawTxt("PRESSIONE  ~r~E~w~  PARA COLETAR ~y~SACO DE LIXO~w~",4,0.5,0.93,0.50,255,255,255,180)
@@ -112,23 +115,23 @@ Citizen.CreateThread(function()
 				end
 			end
 		end
+		Citizen.Wait(idle)
 	end
 end)
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- CANCELAR
 -----------------------------------------------------------------------------------------------------------------------------------------
-Citizen.CreateThread(function()
-	while true do
-		Citizen.Wait(1)
-		if servico then
-			if IsControlJustPressed(0,168) then
-				servico = false
-				TriggerEvent("Notify","aviso","Você saiu do serviço de <b>lixeiro</b>")
-				RemoveBlip(blips)
-			end
-		end
+
+RegisterKeyMapping('vrp_lixeiro:cancel', 'Cancelar Lixeiro', 'keyboard', 'F7')
+
+RegisterCommand('vrp_lixeiro:cancel', function()
+	if servico then
+		servico = false
+		TriggerEvent("Notify","aviso","Você saiu do serviço de <b>lixeiro</b>")
+		RemoveBlip(blips)
 	end
-end)
+end, false)
+
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- FUNÇÕES
 -----------------------------------------------------------------------------------------------------------------------------------------

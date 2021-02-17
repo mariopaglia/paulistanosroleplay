@@ -15,28 +15,37 @@ local arsenal = {
 if Menu then
 	Citizen.CreateThread(function()
 	while true do
-		Wait(0)
+		local idle = 1000
 		for _,lugares in pairs(arsenal) do
 			local x,y,z = table.unpack(lugares)
 			local distance = GetDistanceBetweenCoords(GetEntityCoords(GetPlayerPed(-1)),x,y,z,true)
-			DrawMarker(25,x,y+0.33,z-0.90,0,0,0,0,180.0,130.0,2.0,2.0,1.0,25,25,122,50,0,0,0,0)
-			if distance <= 2 then
-				if IsControlJustPressed(0, 51) then
-					TriggerServerEvent('crz_arsenal:permissao')
-					if x == 459.99 then
-						dp = "PCESP"
-					end
-				end
+			
+			if distance <= 3 then
+				DrawMarker(25,x,y+0.33,z-0.90,0,0,0,0,180.0,130.0,2.0,2.0,1.0,25,25,122,50,0,0,0,0)
+				idle = 5
 			end
 		end
+	Citizen.Wait(idle)
 	end
-		if IsControlJustPressed(1, 3) then
-		  inMenu = false
-		  SetNuiFocus(false)
-		  SendNUIMessage({type = 'close'})
-		end
+
 	end)
 end
+
+RegisterKeyMapping('vrp_arsenal:open', 'Arsenal', 'keyboard', 'E')
+
+RegisterCommand('vrp_arsenal:open', function()
+	for _,lugares in pairs(arsenal) do
+		local x,y,z = table.unpack(lugares)
+		local distance = GetDistanceBetweenCoords(GetEntityCoords(GetPlayerPed(-1)),x,y,z,true)
+	if distance <= 1 then
+		TriggerServerEvent('crz_arsenal:permissao')
+		if x == 459.99 then
+			dp = "PCESP"
+		end
+	end
+end
+end, false)
+
 
 RegisterNetEvent('crz_arsenal:permissao')
 AddEventHandler('crz_arsenal:permissao',function()

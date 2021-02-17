@@ -21,13 +21,14 @@ local contador = 0
 -------------------------------------------------------------------------------------------------------------------------------------
 Citizen.CreateThread(function()
 	while true do
-		Citizen.Wait(1)
+		local idle = 1000
 		for k, v in ipairs(cfg.lavagem) do
 			local x,y,z = table.unpack(v)
 			local player = PlayerPedId()
 			local Coordenadas = GetEntityCoords(player)
 			local Distancia = GetDistanceBetweenCoords(Coordenadas.x, Coordenadas.y, Coordenadas.z, x,y,z, true)
 			if Distancia < 6.0 then
+				idle = 5
 				Opacidade = math.floor(255 - (Distancia * 40))
 				TextoMarker(x,y,z+0.4, "APERTE ~r~[ F ]~w~ PARA LAVAR O DINHEIRO", Opacidade)
 					DrawMarker(cfg.marker.idmarker, x,y,z-0.99, 0, 0, 0, 0, 0, 0, cfg.marker.x1,cfg.marker.y1,cfg.marker.z1,cfg.marker.r,cfg.marker.g,cfg.marker.b,cfg.marker.a, cfg.marker.pula, 0, 0, cfg.marker.gira)
@@ -55,6 +56,7 @@ Citizen.CreateThread(function()
 				end
 			end
 		end
+		Citizen.Wait(idle)
 	end
 end)
 

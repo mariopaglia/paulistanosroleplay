@@ -298,7 +298,7 @@ local races = {
 -----------------------------------------------------------------------------------------------------------------------------------------
 Citizen.CreateThread(function()
 	while true do
-		Citizen.Wait(5)
+		local idle = 1000
 		if not inrace then
 			local ped = PlayerPedId()
 			local vehicle = GetVehiclePedIsUsing(ped)
@@ -307,6 +307,7 @@ Citizen.CreateThread(function()
 			local distance = GetDistanceBetweenCoords(CoordenadaX,CoordenadaY,cdz,x,y,z,true)
 
 			if distance <= 30.0 then
+				idle = 5
 				if IsEntityAVehicle(vehicle) and GetVehicleClass(vehicle) ~= 8 and GetPedInVehicleSeat(vehicle,-1) == ped then
 					DrawMarker(23,CoordenadaX,CoordenadaY,CoordenadaZ-0.96,0,0,0,0,0,0,10.0,10.0,1.0,255,0,0,50,0,0,0,0)
 					if distance <= 5.9 then
@@ -332,6 +333,7 @@ Citizen.CreateThread(function()
 					end
 				end
 			end
+			Citizen.Wait(idle)
 		end
 	end)
 -----------------------------------------------------------------------------------------------------------------------------------------
@@ -339,7 +341,7 @@ Citizen.CreateThread(function()
 -----------------------------------------------------------------------------------------------------------------------------------------
 Citizen.CreateThread(function()
 	while true do
-		Citizen.Wait(5)
+		local idle = 1000
 		if inrace then
 			local ped = PlayerPedId()
 			local vehicle = GetVehiclePedIsUsing(ped)
@@ -348,6 +350,7 @@ Citizen.CreateThread(function()
 			local distance = GetDistanceBetweenCoords(races[racepoint][racepos].x,races[racepoint][racepos].y,cdz,x,y,z,true)
 
 			if distance <= 100.0 then
+				idle = 5
 				if IsEntityAVehicle(vehicle) and GetVehicleClass(vehicle) ~= 8 then
 					DrawMarker(1,races[racepoint][racepos].x,races[racepoint][racepos].y,races[racepoint][racepos].z-3,0,0,0,0,0,0,12.0,12.0,8.0,255,255,255,25,0,0,0,0)
 					DrawMarker(21,races[racepoint][racepos].x,races[racepoint][racepos].y,races[racepoint][racepos].z+1,0,0,0,0,180.0,130.0,3.0,3.0,2.0,255,0,0,50,1,0,0,1)
@@ -372,6 +375,7 @@ Citizen.CreateThread(function()
 				end
 			end
 		end
+		Citizen.Wait(idle)
 	end
 end)
 -----------------------------------------------------------------------------------------------------------------------------------------
@@ -379,11 +383,15 @@ end)
 -----------------------------------------------------------------------------------------------------------------------------------------
 Citizen.CreateThread(function()
 	while true do
-		Citizen.Wait(5)
-		if inrace and timerace > 0 and GetVehiclePedIsUsing(PlayerPedId()) then
-			drawTxt("RESTAM ~g~"..timerace.." SEGUNDOS ~w~PARA CHEGAR AO DESTINO FINAL DA CORRIDA",4,0.5,0.905,0.45,255,255,255,100)
-			drawTxt("VENÇA A CORRIDA E SUPERE SEUS PROPRIOS RECORDES ANTES DO TEMPO ACABAR",4,0.5,0.93,0.38,255,255,255,50)
+		local idle = 1000
+		if inrace then
+			idle = 5
+			if inrace and timerace > 0 and GetVehiclePedIsUsing(PlayerPedId()) then
+				drawTxt("RESTAM ~g~"..timerace.." SEGUNDOS ~w~PARA CHEGAR AO DESTINO FINAL DA CORRIDA",4,0.5,0.905,0.45,255,255,255,100)
+				drawTxt("VENÇA A CORRIDA E SUPERE SEUS PROPRIOS RECORDES ANTES DO TEMPO ACABAR",4,0.5,0.93,0.38,255,255,255,50)
+			end
 		end
+		Citizen.Wait(idle)
 	end
 end)
 -----------------------------------------------------------------------------------------------------------------------------------------

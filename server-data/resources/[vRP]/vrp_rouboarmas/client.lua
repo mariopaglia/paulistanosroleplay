@@ -27,12 +27,13 @@ local locais = {
 -----------------------------------------------------------------------------------------------------------------------------------------
 Citizen.CreateThread(function()
 	while true do
-		Citizen.Wait(5)
+		local idle = 1000
 		local ped = PlayerPedId()
 		local x,y,z = GetEntityCoords(ped)
 		if GetSelectedPedWeapon(ped) == GetHashKey("WEAPON_UNARMED") and not IsPedInAnyVehicle(ped) then
 			for k,v in pairs(locais) do
 				if Vdist(v.x,v.y,v.z,x,y,z) <= 1 and not andamento then
+					idle = 5
 				 drawTxt("PRESSIONE  ~r~G~w~  PARA INICIAR O ROUBO",4,0.5,0.93,0.50,255,255,255,180)
 				 DrawMarker(21,v.x,v.y,v.z-0.3,0,0,0,0,180.0,130.0,0.6,0.8,0.5,255,0,0,50,1,0,0,1)
 				 if IsControlJustPressed(0,47) and func.checkPermission() then
@@ -41,6 +42,7 @@ Citizen.CreateThread(function()
 			end
 		end
 	end
+	Citizen.Wait(idle)
 end
 end)
 -----------------------------------------------------------------------------------------------------------------------------------------

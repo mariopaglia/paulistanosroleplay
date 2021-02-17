@@ -11,12 +11,13 @@ end)
 -----------------------------------------------------------------------------------------------------------------------------------------
 Citizen.CreateThread(function()
 	while true do
-		Citizen.Wait(1)
+		local idle = 1000
 		local ped = PlayerPedId()
 		local vehicle = GetVehiclePedIsIn(ped)
 		if IsEntityAVehicle(vehicle) then
 			local speed = GetEntitySpeed(vehicle)*3.6
 			if GetPedInVehicleSeat(vehicle,-1) == ped then
+				idle = 5
 				if speed >= 100 then
 					SetPlayerCanDoDriveBy(PlayerId(),false)
 				else
@@ -24,6 +25,7 @@ Citizen.CreateThread(function()
 				end
 			end
 		end
+		Citizen.Wait(idle)
 	end
 end)
 
@@ -61,14 +63,16 @@ end)
 -----------------------------------------------------------------------------------------------------------------------------------------
 local isBlackout = false
 local oldSpeed = 0
+
 Citizen.CreateThread(function()
 	while true do
-		Citizen.Wait(1)
+		local idle = 1000
 		local vehicle = GetVehiclePedIsIn(PlayerPedId())
 		if IsEntityAVehicle(vehicle) and GetPedInVehicleSeat(vehicle,-1) == PlayerPedId() then
-			local currentSpeed = GetEntitySpeed(vehicle)*3.6
+			idle = 100
+			local currentSpeed = GetEntitySpeed(vehicle)*2.236936
 			if currentSpeed ~= oldSpeed then
-				if not isBlackout and (currentSpeed < oldSpeed) and ((oldSpeed - currentSpeed) >= 100) then
+				if not isBlackout and (currentSpeed < oldSpeed) and ((oldSpeed - currentSpeed) >= 50) then
 					blackout()
 				end
 				oldSpeed = currentSpeed
@@ -86,6 +90,7 @@ Citizen.CreateThread(function()
 			DisableControlAction(0,72,true)
 			DisableControlAction(0,75,true)
 		end
+		Citizen.Wait(idle)
 	end
 end)
 
@@ -105,6 +110,7 @@ function blackout()
 		end)
 	end
 end
+
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- BLIPS
 -----------------------------------------------------------------------------------------------------------------------------------------

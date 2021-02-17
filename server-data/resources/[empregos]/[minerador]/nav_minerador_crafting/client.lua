@@ -46,9 +46,10 @@ end)
 Citizen.CreateThread(function()
 	SetNuiFocus(false,false)
 	while true do
-		Citizen.Wait(5)
+		local idle = 1000
 		local distance = GetDistanceBetweenCoords(GetEntityCoords(PlayerPedId()),1085.06,-2002.56,31.38,true)
 		if distance <= 3 then
+			idle = 5
 			DrawMarker(21,1085.06,-2002.56,31.38-0.6,0,0,0,0.0,0,0,0.5,0.5,0.4,255,230,100,100,0,0,0,1)
 			if distance <= 1.2 then
 				if IsControlJustPressed(0,38) then
@@ -56,5 +57,6 @@ Citizen.CreateThread(function()
 				end
 			end
 		end
+		Citizen.Wait(idle)
 	end
 end)

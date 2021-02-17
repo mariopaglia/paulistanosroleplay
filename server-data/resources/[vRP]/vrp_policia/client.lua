@@ -61,9 +61,8 @@ RegisterNetEvent("rchapeu")
 AddEventHandler("rchapeu",function()
 	ClearPedProp(PlayerPedId(),0)
 end)
---------------------------------------------------------------------------------------------------------------------------------------------------
--- CARREGAR
---------------------------------------------------------------------------------------------------------------------------------------------------
+--[ CARREGAR ]---------------------------------------------------------------------------------------------------------------------------
+
 other = nil
 drag = false
 carregado = false
@@ -75,19 +74,23 @@ end)
 
 Citizen.CreateThread(function()
     while true do
-    	Citizen.Wait(1)
+    	local idle = 300
 		if drag and other then
+			idle = 5
 			local ped = GetPlayerPed(GetPlayerFromServerId(other))
 			Citizen.InvokeNative(0x6B9BBD38AB0796DF,PlayerPedId(),ped,4103,11816,0.48,0.0,0.0,0.0,0.0,0.0,false,false,false,false,2,true)
 			carregado = true
-        else
+		else
+			idle = 5
         	if carregado then
 				DetachEntity(PlayerPedId(),true,false)
 				carregado = false
 			end
-        end
+		end
+		Citizen.Wait(idle)
 	end
 end)
+
 --------------------------------------------------------------------------------------------------------------------------------------------------
 -- DISPAROS
 --------------------------------------------------------------------------------------------------------------------------------------------------
@@ -118,7 +121,7 @@ local blacklistedWeapons = {
 
 Citizen.CreateThread(function()
 	while true do
-		Citizen.Wait(1)
+		Citizen.Wait(5)
 		local ped = PlayerPedId()
 		local blacklistweapon = false
 		local x,y,z = table.unpack(GetEntityCoords(PlayerPedId()))
@@ -236,11 +239,12 @@ end)
 
 Citizen.CreateThread(function()
 	while true do
-		Citizen.Wait(1)
+		local idle = 1000
 		local veh = GetVehiclePedIsIn(PlayerPedId(),false)
 		local vcoord = GetEntityCoords(veh)
 		local coord = GetOffsetFromEntityInWorldCoords(PlayerPedId(),0.0,1.0,-0.94)
 		if IsPedInAnyVehicle(PlayerPedId()) then
+			idle = 5
 			if DoesObjectOfTypeExistAtCoords(vcoord.x,vcoord.y,vcoord.z,0.9,GetHashKey("p_ld_stinger_s"),true) then
 				SetVehicleTyreBurst(veh,0,true,1000.0)
 				SetVehicleTyreBurst(veh,1,true,1000.0)
@@ -256,6 +260,7 @@ Citizen.CreateThread(function()
 				end
 			end
 		end
+		Citizen.Wait(idle)
 	end
 end)
 -----------------------------------------------------------------------------------------------------------------------------------------
@@ -296,8 +301,9 @@ end)
 
 Citizen.CreateThread(function()
 	while true do
-		Citizen.Wait(1)
+		local idle = 1000
 		if prisioneiro then
+			idle = 5
 			local distance01 = GetDistanceBetweenCoords(GetEntityCoords(PlayerPedId()),1691.59,2566.05,45.56,true)
 			local distance02 = GetDistanceBetweenCoords(GetEntityCoords(PlayerPedId()),1669.51,2487.71,45.82,true)
 
@@ -331,13 +337,15 @@ Citizen.CreateThread(function()
 				end
 			end
 		end
+		Citizen.Wait(idle)
 	end
 end)
 
 Citizen.CreateThread(function()
 	while true do
-		Citizen.Wait(1)
+		local idle = 1000
 		if reducaopenal then
+			idle = 5
 			BlockWeaponWheelThisFrame()
 			DisableControlAction(0,21,true)
 			DisableControlAction(0,24,true)
@@ -379,6 +387,7 @@ Citizen.CreateThread(function()
 			DisableControlAction(0,190,true)
 			DisableControlAction(0,188,true)
 		end
+		Citizen.Wait(idle)
 	end
 end)
 
@@ -393,19 +402,24 @@ function drawTxt(text,font,x,y,scale,r,g,b,a)
 	DrawText(x,y)
 end
 
-Citizen.CreateThread(function()
-	while true do
-		Citizen.Wait(1)
-		if not IsPedInAnyVehicle(PlayerPedId()) then
-			if IsControlJustPressed(0,47) then
-				TriggerServerEvent("vrp_policia:algemar")
-			end
-			if IsControlJustPressed(0,74) then
-				TriggerServerEvent("vrp_policia:carregar")
-			end
-		end
+
+RegisterKeyMapping('vrp:algema', 'Algemar', 'keyboard', 'G')
+
+RegisterCommand('vrp:algema', function()
+	if not IsPedInAnyVehicle(PlayerPedId()) then
+		TriggerServerEvent("vrp_policia:algemar")
 	end
-end)
+end, false)
+
+RegisterKeyMapping('vrp:carregar', 'Carregar', 'keyboard', 'H')
+
+RegisterCommand('vrp:carregar', function()
+	if not IsPedInAnyVehicle(PlayerPedId()) then
+		TriggerServerEvent("vrp_policia:carregar")
+	end
+end, false)
+
+
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- ANDAR
 -----------------------------------------------------------------------------------------------------------------------------------------

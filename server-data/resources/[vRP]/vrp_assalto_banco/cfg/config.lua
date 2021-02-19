@@ -3,14 +3,14 @@ Config = {}
 Config.SafeMinimum = 0				-- Minimo que dá ao furar um caixa
 Config.SafeMax = 0				-- Maximo que dá ao furar um caixa
 
-Config.Solda = "bombaadesiva" 					-- Item solda
+Config.Solda = "c4" 					-- Item solda
 Config.Furadeira = "Furadeira" 			-- Item furadeira
 Config.DinheiroSujo = "dinheirosujo" 	-- Item de dinheiro sujo
-Config.Cops = 6					-- Quantidade minima de PMS
+Config.Cops = 10				-- Quantidade minima de PMS
 Config.PermCops = "policia.permissao" 	-- Permissao para os policiais
 Config.MinPegar = 2500 					-- Valor minimo que o personagem pega do dinheiro
 Config.MaxPegar = 5000 					-- Valor maximo que o personagem pega do dinheiro
-Config.Tempo = 1600						-- Tempo (em segundos) pro roubo resetar
+Config.Tempo = 21600						-- Tempo (em segundos) pro roubo resetar
 
 Config.AllowedBags = {40, 41, 44, 45}
 
@@ -37,8 +37,8 @@ Config.BankRobbery = {
             {Looted = false, Coords = vector3(256.83, 215.12, 100.8), Heading = 137.47, Cam = {From = {x = 256.3, y = 216.4, z = 102.5, rx = -25.0, ry = 0.0, rz = 200.0, r = 0}, To = {x = 260.92, y = 214.7, z = 102.5, rx = -25.0, ry = 0.0, rz = 123.0, r = 0}}},
         },
         Money = {
-            StartMoney = 690000,
-            Amount = 720000,
+            StartMoney = 0,
+            Amount = 800000,
             BoxPosition = vector3(264.31, 213.77, 101.54),
             --Coords = vector3(263.4, 214.08, 100.8),
             --Heading = 253.62,

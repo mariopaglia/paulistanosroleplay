@@ -634,7 +634,7 @@ local function build_client_static_chests(source)
 		for k,v in pairs(cfg.static_chests) do
 			local mtype,x,y,z = table.unpack(v)
 			local schest = cfg.static_chest_types[mtype]
-
+			
 			if schest then
 				local function schest_enter(source)
 					local user_id = vRP.getUserId(source)
@@ -642,11 +642,11 @@ local function build_client_static_chests(source)
 						vRP.openChest(source,"static:"..k,schest.weight or 0)
 					end
 				end
-
+				
 				local function schest_leave(source)
 					vRP.closeMenu(source)
 				end
-
+				
 				vRP.setArea(source,"vRP:static_chest:"..k,x,y,z,1,1,schest_enter,schest_leave)
 			end
 		end
@@ -688,9 +688,6 @@ local vehglobal = {
 	["vigero"] = { ['name'] = "Vigero", ['price'] = 190000, ['tipo'] = "carros" },
 	["asterope"] = { ['name'] = "asterope", ['price'] = 190000, ['tipo'] = "carros" },
 	["ruston"] = { ['name'] = "Ruston", ['price'] = 190000, ['tipo'] = "carros" },
-	["sultan2"] = { ['name'] = "Sultan2", ['price'] = 0, ['tipo'] = "carros" },
-	["sugoi"] = { ['name'] = "Sugoi", ['price'] = 0, ['tipo'] = "carros" },
-	["furia"] = { ['name'] = "Furia", ['price'] = 0, ['tipo'] = "carros" },
 	["chino2"] = { ['name'] = "Chino2", ['price'] = 220000, ['tipo'] = "carros" },
 	["picador"] = { ['name'] = "Picador", ['price'] = 220000, ['tipo'] = "carros" },
 	["coquette3"] = { ['name'] = "Coquette3", ['price'] = 220000, ['tipo'] = "carros" },
@@ -762,10 +759,12 @@ local vehglobal = {
 	["italigto"] = { ['name'] = "Italigto", ['price'] = 1500000, ['tipo'] = "carros" },
 	["zentorno"] = { ['name'] = "Zentorno", ['price'] = 1500000, ['tipo'] = "carros" },
 	["osiris"] = { ['name'] = "Osiris", ['price'] = 1500000, ['tipo'] = "carros" },
-
+	
 	-- MOTOS CONCE
-	["faggio"] = { ['name'] = "Faggio", ['price'] = 20000, ['tipo'] = "motos" },
+	["faggio"] = { ['name'] = "Faggio", ['price'] = 40000, ['tipo'] = "motos" },
+	["biz25"] = { ['name'] = "Biz", ['price'] = 50000, ['tipo'] = "motos" },
 	["pcj"] = { ['name'] = "Pcj", ['price'] = 60000, ['tipo'] = "motos" },
+	["150"] = { ['name'] = "Honda 150", ['price'] = 80000, ['tipo'] = "motos" },
 	["ruffian"] = { ['name'] = "Ruffian", ['price'] = 100000, ['tipo'] = "motos" },
 	["vader"] = { ['name'] = "Vader", ['price'] = 110000, ['tipo'] = "motos" },
 	["nemesis"] = { ['name'] = "Nemesis", ['price'] = 120000, ['tipo'] = "motos" },
@@ -785,6 +784,7 @@ local vehglobal = {
 	["manchez"] = { ['name'] = "Manchez", ['price'] = 560000, ['tipo'] = "motos" },
 	["double"] = { ['name'] = "Double", ['price'] = 560000, ['tipo'] = "motos" },
 	["gargoyle"] = { ['name'] = "Gargoyle", ['price'] = 600000, ['tipo'] = "motos" },
+	["xt66"] = { ['name'] = "XT66", ['price'] = 600000, ['tipo'] = "motos" },
 	["daemon"] = { ['name'] = "Daemon", ['price'] = 620000, ['tipo'] = "motos" },
 	["sanchez2"] = { ['name'] = "Sanchez2", ['price'] = 660000, ['tipo'] = "motos" },
 	["sanchez"] = { ['name'] = "Sanchez", ['price'] = 700000, ['tipo'] = "motos" },
@@ -795,7 +795,15 @@ local vehglobal = {
 	["akuma"] = { ['name'] = "Akuma", ['price'] = 940000, ['tipo'] = "motos" },
 	["hakuchou2"] = { ['name'] = "Hakuchou2", ['price'] = 1000000, ['tipo'] = "motos" },
 	["sanctus"] = { ['name'] = "Sanctus", ['price'] = 1000000, ['tipo'] = "motos" },
+	["cbrr"] = { ['name'] = "CBR 1000RR", ['price'] = 1500000, ['tipo'] = "motos" },
+	["bros60"] = { ['name'] = "Bros 160", ['price'] = 1500000, ['tipo'] = "motos" },
+	["hornet"] = { ['name'] = "Hornet", ['price'] = 1600000, ['tipo'] = "motos" },
+	["r6"] = { ['name'] = "Yamaha R6", ['price'] = 1700000, ['tipo'] = "motos" },
+	["z1000"] = { ['name'] = "Z1000", ['price'] = 2000000, ['tipo'] = "motos" },
+	["dm1200"] = { ['name'] = "Ducati 1200", ['price'] = 2500000, ['tipo'] = "motos" },
 
+	
+	
 	--MOTOS
 	["deathbike"] = { ['name'] = "deathbike", ['price'] = 500000, ['tipo'] = "motos" },
 	["deathbike3"] = { ['name'] = "deathbike3", ['price'] = 500000, ['tipo'] = "motos" },
@@ -803,7 +811,6 @@ local vehglobal = {
 	["avarus"] = { ['name'] = "Avarus", ['price'] = 440000, ['tipo'] = "motos" },
 	["bagger"] = { ['name'] = "Bagger", ['price'] = 300000, ['tipo'] = "motos" },
 	["faggio2"] = { ['name'] = "Faggio2", ['price'] = 5000, ['tipo'] = "motos" },
-	["faggio3"] = { ['name'] = "Faggio3", ['price'] = 5000, ['tipo'] = "motos" },
 	["fcr"] = { ['name'] = "Fcr", ['price'] = 390000, ['tipo'] = "motos" },
 	["fcr2"] = { ['name'] = "Fcr2", ['price'] = 390000, ['tipo'] = "motos" },
 	["hexer"] = { ['name'] = "Hexer", ['price'] = 250000, ['tipo'] = "motos" },
@@ -817,49 +824,57 @@ local vehglobal = {
 	["blazer"] = { ['name'] = "Blazer", ['price'] = 230000, ['tipo'] = "motos" },
 	["blazer4"] = { ['name'] = "Blazer4", ['price'] = 370000, ['tipo'] = "motos" },
 	["daemon2"]  = { ['name'] = "Daemon2", ['price'] = 310000, ['tipo'] = "motos" },
+	
+	-- VEÍCULOS VIP
+	["lamborghinihuracan"] = { ['name'] = "Lamborghini Huracan", ['price'] = 1000000, ['tipo'] = "vip" },
+	["corvette"] = { ['name'] = "Corvette", ['price'] = 1000000, ['tipo'] = "vip" },
+	["nissangtrnismo"] = { ['name'] = "Nissan GTR Nismo", ['price'] = 1000000, ['tipo'] = "vip" },
+	["nissanskyliner34"] = { ['name'] = "Nissan Skyline R34", ['price'] = 1000000, ['tipo'] = "vip" },
+	["nissantitan17"] = { ['name'] = "Nissan Titan", ['price'] = 1000000, ['tipo'] = "vip" },
+	["porsche992"] = { ['name'] = "Porsche 992", ['price'] = 1000000, ['tipo'] = "vip" },
+	["msohs"] = { ['name'] = "McLaren MSOHS", ['price'] = 1000000, ['tipo'] = "vip" },
+	["amggtr"] = { ['name'] = "Mercedes AMG GTR", ['price'] = 1000000, ['tipo'] = "vip" },
+	["fxxkevo"] = { ['name'] = "Ferrari FXX-K Evo", ['price'] = 1000000, ['tipo'] = "vip" },
+	["aperta"] = { ['name'] = "LaFerrari", ['price'] = 1000000, ['tipo'] = "vip" },
+	["lp700r"] = { ['name'] = "Lamborghini Aventador", ['price'] = 1000000, ['tipo'] = "vip" },
+	["i8"] = { ['name'] = "BMW I8", ['price'] = 1000000, ['tipo'] = "vip" },
+	["bc"] = { ['name'] = "Pagani Zonda", ['price'] = 1000000, ['tipo'] = "vip" },
+	["slsamg"] = { ['name'] = "Mercedes AMG SLS", ['price'] = 1000000, ['tipo'] = "vip" },
+	["veneno"] = { ['name'] = "Lamborghini Veneno", ['price'] = 1000000, ['tipo'] = "vip" },
+	["bugatti"] = { ['name'] = "Bugatti", ['price'] = 1000000, ['tipo'] = "vip" },
+	["lancerevolutionx"] = { ['name'] = "Lancer Evolution 10", ['price'] = 1000000, ['tipo'] = "vip" },
+	["r1"] = { ['name'] = "Yamaha R1", ['price'] = 1000000, ['tipo'] = "vip" },
+	["bmws"] = { ['name'] = "BMW S1000", ['price'] = 1000000, ['tipo'] = "vip" },
+	["r1250"] = { ['name'] = "BMW R1250", ['price'] = 1000000, ['tipo'] = "vip" },
+	["ferrariitalia"] = { ['name'] = "Ferrari Italia 478", ['price'] = 1000000, ['tipo'] = "vip" },
 
+	-- VEICULOS ALUGADOS
+	["faggio3"] = { ['name'] = "Faggio3", ['price'] = 5000, ['tipo'] = "alugado" },
+	
 	-- ADDONS CARROS
-	["audirs6"] = { ['name'] = "Audi RS6", ['price'] = 500000, ['tipo'] = "import" },
+	["audirs6"] = { ['name'] = "Audi RS6", ['price'] = 2500000, ['tipo'] = "import" },
 	["bmwm3f80"] = { ['name'] = "BMW M3 F80", ['price'] = 500000, ['tipo'] = "import" },
 	["bmwm4gts"] = { ['name'] = "BMW M4 GTS", ['price'] = 500000, ['tipo'] = "import" },
-	["corvette"] = { ['name'] = "Corvette", ['price'] = 500000, ['tipo'] = "import" },
 	["dodgechargersrt"] = { ['name'] = "Dodge Charger SRT", ['price'] = 500000, ['tipo'] = "import" },
-	["ferrariitalia"] = { ['name'] = "Ferrari Italia 478", ['price'] = 500000, ['tipo'] = "import" },
-	["fordmustang"] = { ['name'] = "Ford Mustang", ['price'] = 500000, ['tipo'] = "import" },
-	["lamborghinihuracan"] = { ['name'] = "Lamborghini Huracan", ['price'] = 500000, ['tipo'] = "import" },
-	["mazdarx7"] = { ['name'] = "Mazda RX7", ['price'] = 500000, ['tipo'] = "import" },
-	["nissan370z"] = { ['name'] = "Nissan 370Z", ['price'] = 500000, ['tipo'] = "import" },
-	["nissangtr"] = { ['name'] = "Nissan GTR", ['price'] = 500000, ['tipo'] = "import" },
-	["nissangtrnismo"] = { ['name'] = "Nissan GTR Nismo", ['price'] = 500000, ['tipo'] = "import" },
-	["nissanskyliner34"] = { ['name'] = "Nissan Skyline R34", ['price'] = 500000, ['tipo'] = "import" },
+	["fordmustang"] = { ['name'] = "Ford Mustang", ['price'] = 2800000, ['tipo'] = "import" },
+	["mazdarx7"] = { ['name'] = "Mazda RX7", ['price'] = 3400000, ['tipo'] = "import" },
+	["nissan370z"] = { ['name'] = "Nissan 370Z", ['price'] = 2000000, ['tipo'] = "import" },
+	["nissangtr"] = { ['name'] = "Nissan GTR", ['price'] = 3500000, ['tipo'] = "import" },
 	["71gtx"] = { ['name'] = "Plymouth GTX", ['price'] = 1000000, ['tipo'] = "import" },
-	["nissantitan17"] = { ['name'] = "Nissan Titan", ['price'] = 0, ['tipo'] = "import" },
-	["porsche992"] = { ['name'] = "Porsche 992", ['price'] = 0, ['tipo'] = "import" },
 	["180sx"] = { ['name'] = "Nissan 180SX", ['price'] = 3200000, ['tipo'] = "import" },
 	["911r"] = { ['name'] = "Porsche 911R", ['price'] = 5000000, ['tipo'] = "import" },
 	["2018zl1"] = { ['name'] = "Camaro ZL1", ['price'] = 2500000, ['tipo'] = "import" },
 	["19ftype"] = { ['name'] = "Jaguar F-type", ['price'] = 3000000, ['tipo'] = "import" },
-	["msohs"] = { ['name'] = "McLaren MSOHS", ['price'] = 0, ['tipo'] = "import" },
-	["amggtr"] = { ['name'] = "Mercedes AMG GTR", ['price'] = 0, ['tipo'] = "import" },
 	["db11"] = { ['name'] = "Aston Martin DB11", ['price'] = 2500000, ['tipo'] = "import" },
 	["defiant"] = { ['name'] = "Dodge Charger", ['price'] = 2200000, ['tipo'] = "import" },
 	["fc15"] = { ['name'] = "Ferrari California", ['price'] = 5000000, ['tipo'] = "import" },
-	["fxxkevo"] = { ['name'] = "Ferrari FXX-K Evo", ['price'] = 0, ['tipo'] = "import" },
 	["eclipse"] = { ['name'] = "Mitsubishi Eclipse", ['price'] = 1800000, ['tipo'] = "import" },
 	["gt17"] = { ['name'] = "Ford GT", ['price'] = 4500000, ['tipo'] = "import" },
-	["i8"] = { ['name'] = "BMW I8", ['price'] = 0, ['tipo'] = "import" },
-	["aperta"] = { ['name'] = "LaFerrari", ['price'] = 0, ['tipo'] = "import" },
-	["lp700r"] = { ['name'] = "Lamborghini Aventador", ['price'] = 0, ['tipo'] = "import" },
-	["bc"] = { ['name'] = "Pagani Zonda", ['price'] = 0, ['tipo'] = "import" },
 	["palameila"] = { ['name'] = "Porsche Panamera", ['price'] = 2500000, ['tipo'] = "import" },
 	["rmodamgc63"] = { ['name'] = "Mercedes AMG C63-S", ['price'] = 2500000, ['tipo'] = "import" },
-	["slsamg"] = { ['name'] = "Mercedes AMG SLS", ['price'] = 0, ['tipo'] = "import" },
-	["veneno"] = { ['name'] = "Lamborghini Veneno", ['price'] = 0, ['tipo'] = "import" },
 	["audirs7"] = { ['name'] = "AUDI RS7", ['price'] = 3000000, ['tipo'] = "import" },
-	["bugatti"] = { ['name'] = "Bugatti", ['price'] = 0, ['tipo'] = "import" },
 	["hondafk8"] = { ['name'] = "Honda Civic Type R", ['price'] = 2700000, ['tipo'] = "import" },
 	["lancerevolution9"] = { ['name'] = "Lancer Evolution 9", ['price'] = 3700000, ['tipo'] = "import" },
-	["lancerevolutionx"] = { ['name'] = "Lancer Evolution 10", ['price'] = 0, ['tipo'] = "import" },
 	["mazdarx7"] = { ['name'] = "Mazda RX-7", ['price'] = 3400000, ['tipo'] = "import" },
 	["mercedesa45"] = { ['name'] = "Mercedes AMG A45", ['price'] = 2000000, ['tipo'] = "import" },
 	["mustangmach1"] = { ['name'] = "Mustang Mach 1", ['price'] = 1000000, ['tipo'] = "import" },
@@ -884,21 +899,6 @@ local vehglobal = {
 	["brioso2"] = { ['name'] = "Fiat 500", ['price'] = 400000, ['tipo'] = "carros" },
 	["weevil"] = { ['name'] = "Fusca", ['price'] = 400000, ['tipo'] = "carros" },
 	["chevette"] = { ['name'] = "Chevette", ['price'] = 400000, ['tipo'] = "carros" },
-
-	-- ADDONS MOTO
-	["150"] = { ['name'] = "Honda 150", ['price'] = 70000, ['tipo'] = "motos" },
-	["biz25"] = { ['name'] = "Biz", ['price'] = 40000, ['tipo'] = "motos" },
-	["cbrr"] = { ['name'] = "CBR 1000RR", ['price'] = 500000, ['tipo'] = "motos" },
-	["r1"] = { ['name'] = "Yamaha R1", ['price'] = 400000, ['tipo'] = "motos" },
-	["bmws"] = { ['name'] = "BMW S1000", ['price'] = 450000, ['tipo'] = "motos" },
-	["z1000"] = { ['name'] = "Z1000", ['price'] = 550000, ['tipo'] = "motos" },
-	["xt66"] = { ['name'] = "XT66", ['price'] = 110000, ['tipo'] = "motos" },
-	["xj"] = { ['name'] = "XJ", ['price'] = 270000, ['tipo'] = "motos" },
-	["r1250"] = { ['name'] = "BMW R1250", ['price'] = 600000, ['tipo'] = "motos" },
-	["hornet"] = { ['name'] = "Hornet", ['price'] = 270000, ['tipo'] = "motos" },
-	["bros60"] = { ['name'] = "Bros 160", ['price'] = 100000, ['tipo'] = "motos" },
-	["dm1200"] = { ['name'] = "Ducati 1200", ['price'] = 570000, ['tipo'] = "motos" },
-	["r6"] = { ['name'] = "Yamaha R6", ['price'] = 370000, ['tipo'] = "motos" },
 	
 	-- POLICIA
 	["paliopmrp1"] = { ['name'] = "Palio PMESP", ['price'] = 1000, ['tipo'] = "work" },
@@ -1004,6 +1004,10 @@ local vehglobal = {
 	["terbyte"] = { ['name'] = "Terbyte", ['price'] = 1500000, ['tipo'] = "caminhoes" },
 
 	-- NÃO USADOS
+	["xj"] = { ['name'] = "XJ", ['price'] = 270000, ['tipo'] = "motos" },
+	["sultan2"] = { ['name'] = "Sultan2", ['price'] = 5000, ['tipo'] = "carros" },
+	["sugoi"] = { ['name'] = "Sugoi", ['price'] = 5000, ['tipo'] = "carros" },
+	["furia"] = { ['name'] = "Furia", ['price'] = 5000, ['tipo'] = "carros" },
 	["emperor"] = { ['name'] = "Emperor", ['price'] = 50000, ['tipo'] = "carros" },
 	["emperor2"] = { ['name'] = "Emperor 2", ['price'] = 50000, ['tipo'] = "carros" },
 	["dilettante"] = { ['name'] = "Dilettante", ['price'] = 60000, ['tipo'] = "carros" },

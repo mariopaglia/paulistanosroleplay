@@ -7,9 +7,9 @@ Config = {
 
 	damageFactorEngine = 2.0,					-- Os valores são de 1 a 100. Valores mais altos significam mais danos ao veículo. Um bom ponto de partida é 10
 	damageFactorBody = 2.0,						-- Sane values are 1 to 100. Higher values means more damage to vehicle. A good starting point is 10
-	damageFactorPetrolTank = 35.0,				-- Sane values are 1 to 200. Higher values means more damage to vehicle. A good starting point is 64
+	damageFactorPetrolTank = 0.8,				-- Sane values are 1 to 200. Higher values means more damage to vehicle. A good starting point is 64
 	engineDamageExponent = 0.6,					-- Quanto a configuração de danos no mecanismo de manipulação de arquivos deve ser compactada em direção a 1.0. (Faça carros mais semelhantes). Um valor de 1 = sem alteração. Valores mais baixos irão comprimir mais, valores acima de 1 serão expandidos. Não defina a zero ou negativo.
-	weaponsDamageMultiplier = -1,				-- Quanto dano o veículo deve receber do fogo das armas. Faixa de 0,0 a 10,0, onde 0,0 não é dano e 10,0 é 10x dano. -1 = não toque
+	weaponsDamageMultiplier = 0.5,				-- Quanto dano o veículo deve receber do fogo das armas. Faixa de 0,0 a 10,0, onde 0,0 não é dano e 10,0 é 10x dano. -1 = não toque
 	degradingHealthSpeedFactor = 10,			-- Velocidade de degradação lenta da saúde, mas não falha. O valor de 10 significa que levará cerca de 0,25 segundo por ponto de integridade, de modo que a degradação de 800 a 305 levará cerca de 2 minutos de direção limpa. Valores mais altos significam degradação mais rápida
 	cascadingFailureSpeedFactor = 2.0,			-- Sane values are 1 to 100. When vehicle health drops below a certain point, cascading failure sets in, and the health drops rapidly until the vehicle dies. Higher values means faster failure. A good starting point is 8
 

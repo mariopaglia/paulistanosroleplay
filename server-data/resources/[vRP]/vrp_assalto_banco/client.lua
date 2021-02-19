@@ -650,14 +650,6 @@ Citizen.CreateThread(function()
                             if allowed then
                                 TriggerEvent('loffe_heist:helpTimed', '', 50)
                                 if IsControlPressed(0, 38) then
-                                    -- local police = nil
-                                    -- ESX.TriggerServerCallback('loffe_heist:getCops', function(cops)
-                                        -- police = 5
-                                    -- end)
-                                    -- while police == nil do
-                                        -- Wait(5)
-                                    -- end
-                                    -- if police >= v.Cops then
 									solda = nil
 									cops = nil
 									TriggerServerEvent('loffe_heist:getSolda')
@@ -719,10 +711,6 @@ Citizen.CreateThread(function()
                                         else
                                             TriggerEvent("Notify","aviso","Número de policiais é insuficiente")
 										end
-				  
-				 
-																							 
-				
                                     else
                                         TriggerEvent("Notify","importante","Precisa de uma <b>C4</b> para abrir as portas do banco.")
 									end

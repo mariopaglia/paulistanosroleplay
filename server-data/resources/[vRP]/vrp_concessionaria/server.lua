@@ -9,7 +9,7 @@ func = {}
 Tunnel.bindInterface("vrp_concessionaria", func)
 
 vRP._prepare("vRP/add_vehicle",
-             "INSERT IGNORE INTO vrp_user_vehicles(user_id,vehicle,ipva) VALUES(@user_id,@vehicle,1609546955)")
+             "INSERT IGNORE INTO vrp_user_vehicles(user_id,vehicle,ipva) VALUES(@user_id,@vehicle,@ipva)")
 vRP._prepare("vRP/remove_vehicle",
              "DELETE FROM vrp_user_vehicles WHERE user_id = @user_id AND vehicle = @vehicle")
 vRP._prepare("vRP/remove_vrp_srv_data",
@@ -57,7 +57,7 @@ function func.comprarVeiculo(categoria, modelo)
     local source = source
     local user_id = vRP.getUserId(source)
     local isVendedor = func.getPermissao()
-    if vRP.hasPermission(user_id, "concessionaria.permissao") then
+    if Config.AbertoAll or vRP.hasPermission(user_id, "concessionaria.permissao") then
 
         categoria = categoria + 1
         modelo = modelo + 1
@@ -111,7 +111,8 @@ function func.comprarVeiculo(categoria, modelo)
                     if vRP.tryFullPayment(user_id, valor) then
                         vRP.execute("vRP/add_vehicle", {
                             user_id = user_id,
-                            vehicle = veiculo.model
+                            vehicle = veiculo.model,
+                            ipva = parseInt(os.time())
                         })
                         TriggerClientEvent("vrp_concessionaria:notify", source,
                                            "Oba!", "Pagou <b>R$" ..
@@ -171,7 +172,7 @@ function func.venderVeiculo(categoria, modelo)
     local veiculo = Config.Veiculos[categoria].veiculos[modelo]
 
     if veiculo then
-        local price = math.ceil(veiculo.preco * 0.8)
+        local price = math.ceil(veiculo.preco * 0.7)
         
         if Config.AbertoAll == false then
            price = math.ceil(veiculo.preco*0.7)

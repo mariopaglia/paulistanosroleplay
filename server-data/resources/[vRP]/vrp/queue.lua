@@ -1,7 +1,18 @@
 local Config = {}
-vRP.prepare("vRP/get_prioridade","SELECT * FROM vrp_prioridade")
 
-Config.RequireSteam = false
+Config.Priority = {
+	['founder'] = 100,
+	['admin'] = 100,
+	['Boost'] = 5,
+	['Bronze'] = 15,
+	['Prata'] = 30,
+	['Ouro'] = 45,
+	['Platina'] = 60,
+	['Esmeralda'] = 75,
+	['Diamante'] = 100,
+}
+
+Config.RequireSteam = true
 Config.PriorityOnly = false
 
 Config.IsBanned = function(src,callback)
@@ -126,12 +137,22 @@ function Queue:AddToQueue(ids,connectTime,name,src,deferrals)
 		return
 	end
 
+	local user_id = vRP.getUserIdByIdentifiers(ids)
+  local datatable = vRP.getUData(user_id, 'vRP:datatable')
+  local priority = 0
+  if datatable ~= '' then
+    datatable = json.decode(datatable)
+    for k,v in pairs(datatable.groups or {}) do
+      priority = priority + (Config.Priority[k] or 0)
+    end
+  end
+
 	local tmp = {
 		source = src,
 		ids = ids,
 		name = name,
 		firstconnect = connectTime,
-		priority = self:IsPriority(ids) or (src == "debug" and math.random(0,15)),
+		priority = priority,
 		timeout = 0,
 		deferrals = deferrals
 	}
@@ -539,7 +560,7 @@ Citizen.CreateThread(function()
 					return
 				end
 
-				local msg = string_format("Paulistanos Roleplay\n\n"..Config.Language.pos.."%s\nhttps://discord.gg/F3Jp5J2.\nAtualizações frequentes, deixe sua sugestão em nosso Discord.",pos,Queue:GetSize(),dots)
+				local msg = string_format("Paulistanos Roleplay\n\n"..Config.Language.pos.."%s\ndiscord.gg/F3Jp5J2\nAtualizações frequentes, deixe sua sugestão em nosso discord.",pos,Queue:GetSize(),dots)
 				data.deferrals.update(msg)
 			end
 		end)

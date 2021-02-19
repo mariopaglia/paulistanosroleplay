@@ -1386,9 +1386,11 @@ end
 -----------------------------------------------------------------------------------------------------------------------------------------
 local vehicleanchor = false
 function src.vehicleAnchor(vehicle)
-	local distance = GetDistanceBetweenCoords(GetEntityCoords(PlayerPedId()),393.26,-1618.58,29.3,true)
+	local distance = GetDistanceBetweenCoords(GetEntityCoords(PlayerPedId()),-1078.76,-845.46,4.89,true) -- DP da Praia parte de baixo
+	local distance2 = GetDistanceBetweenCoords(GetEntityCoords(PlayerPedId()),-1125.86,-848.55,13.48,true) -- DP da praia parte de cima
+	local distance3 = GetDistanceBetweenCoords(GetEntityCoords(PlayerPedId()),438.78,-987.96,30.69,true) -- DP da Civil
 	if IsEntityAVehicle(vehicle) then
-		if distance <= 20 then
+		if distance <= 40 or distance2 <= 20 or distance3 <= 50 then
 			if vehicleanchor then
 				TriggerEvent("Notify","importante","Veículo destravado.",8000)
 				FreezeEntityPosition(vehicle,false)

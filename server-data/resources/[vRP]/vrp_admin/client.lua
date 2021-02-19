@@ -5,6 +5,38 @@ vRP = Proxy.getInterface("vRP")
 vADMC = {}
 Tunnel.bindInterface("vrp_admin",vADMC)
 -----------------------------------------------------------------------------------------------------------------------------------------
+-- ECONOMIA
+-----------------------------------------------------------------------------------------------------------------------------------------
+-- Citizen.CreateThread(function()
+-- 	while true do
+-- 		Citizen.Wait(1000)
+-- 		local x,y,z = table.unpack(GetEntityCoords(PlayerPedId()))
+-- 		if x == px and y == py then
+-- 			if tempo > 0 then
+-- 				tempo = tempo - 1
+-- 			else
+-- 				TriggerServerEvent("Economia")
+-- 				tempo = 3600
+-- 			end
+-- 		else
+-- 			tempo = 3600
+-- 		end
+-- 		px = x
+-- 		py = y
+-- 	end
+-- end)
+-- Citizen.CreateThread(function()
+--     while true do
+--         Citizen.Wait(30000)
+--         TriggerEvent('Economia')
+--     end
+-- end)
+
+-- RegisterNetEvent("Economia")
+-- AddEventHandler("SyncDoorsEveryone",function()
+
+-- end)
+-----------------------------------------------------------------------------------------------------------------------------------------
 -- Blips
 -----------------------------------------------------------------------------------------------------------------------------------------
 local blips = {}

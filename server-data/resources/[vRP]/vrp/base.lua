@@ -473,8 +473,8 @@ AddEventHandler("queue:playerConnecting",function(source,ids,name,setKickReason,
 						deferrals.done()
 					end
 				else
-					-- deferrals.done("Acesse nosso Discord (https://discord.gg/F3Jp5J2) para realizar a liberação. Seu ID: "..user_id)
-					deferrals.done("Inauguração em 19/02/2021 - Acesse nosso Discord (https://discord.gg/F3Jp5J2) e fique por dentro das novidades!  ID Temporário: "..user_id.."")
+					deferrals.done("Acesse nosso Discord (https://discord.gg/F3Jp5J2) e faça a Whitelist. Seu ID: "..user_id)
+					-- deferrals.done("Inauguração em 19/02/2021 - Acesse nosso Discord (https://discord.gg/F3Jp5J2) e fique por dentro das novidades!  ID Temporário: "..user_id.."")
 					TriggerEvent("queue:playerConnectingRemoveQueues",ids)
 				end
 			else

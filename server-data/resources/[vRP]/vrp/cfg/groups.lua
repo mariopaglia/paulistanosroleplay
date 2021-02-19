@@ -28,6 +28,8 @@ cfg.groups = {
 	["admin"] = {
 		"admin.permissao",
 		"fix.permissao",
+		"item.permissao",
+		"group.permissao",
 		"dv.permissao",
 		"god.permissao",
 		"wl.permissao",

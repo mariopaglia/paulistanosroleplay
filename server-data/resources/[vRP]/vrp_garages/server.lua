@@ -738,13 +738,13 @@ function src.spawnVehicles(name,use)
 					else
 						if parseInt(os.time()) <= parseInt(vehicle[1].ipva+24*15*60*60) then
 							if garages[use].payment then
-								if vRP.vehicleType(tostring(name)) == "exclusive" or vRP.vehicleType(tostring(name)) == "rental" then
+								if vRP.vehicleType(tostring(name)) == "vip" or vRP.vehicleType(tostring(name)) == "alugado" then
 									local spawnveh,vehid = vCLIENT.spawnVehicle(source,name,vehicle[1].engine,vehicle[1].body,vehicle[1].fuel,custom)
 									vehlist[vehid] = { parseInt(user_id),name }
 									TriggerEvent("setPlateEveryone",identity.registration)
-									TriggerClientEvent("Notify",source,"sucesso","Veículo <b>Exclusivo ou Alugado</b>, Não será cobrado a taxa de liberação.",10000)
+									TriggerClientEvent("Notify",source,"sucesso","Veículo <b>VIP ou Alugado</b>, não será cobrado a taxa de liberação.",10000)
 								end
-								if (vRP.getBankMoney(user_id)+vRP.getMoney(user_id)) >= parseInt(vRP.vehiclePrice(name)*0.005 and not vRP.vehicleType(tostring(name)) == "exclusive" or vRP.vehicleType(tostring(name)) == "rental") then
+								if (vRP.getBankMoney(user_id)+vRP.getMoney(user_id)) >= parseInt(vRP.vehiclePrice(name)*0.005 and not vRP.vehicleType(tostring(name)) == "vip" or vRP.vehicleType(tostring(name)) == "alugado") then
 									local spawnveh,vehid = vCLIENT.spawnVehicle(source,name,vehicle[1].engine,vehicle[1].body,vehicle[1].fuel,custom)
 									if spawnveh and vRP.tryFullPayment(user_id,parseInt(vRP.vehiclePrice(name)*0.005)) then
 										vehlist[vehid] = { parseInt(user_id),name }
@@ -761,7 +761,7 @@ function src.spawnVehicles(name,use)
 								end
 							end
 						else
-							if vRP.vehicleType(tostring(name)) == "exclusive" or vRP.vehicleType(tostring(name)) == "rental" then
+							if vRP.vehicleType(tostring(name)) == "vip" or vRP.vehicleType(tostring(name)) == "alugado" then
 								local ok = vRP.request(source,"Deseja pagar a <b>Taxa</b> do veículo <b>"..vRP.vehicleName(name).."</b> por <b>R$ "..vRP.format(parseInt(vRP.vehiclePrice(name)*0.00)).."</b> reais?",60)
 								if ok then
 									if vRP.tryFullPayment(user_id,parseInt(vRP.vehiclePrice(name)*0.00)) then
@@ -966,8 +966,8 @@ RegisterCommand('travar',function(source,args,rawCommand)
 			if vRPclient.isInVehicle(source) then
 				local vehicle,vnetid,placa,vname,lock,banned = vRPclient.vehList(source,7)
 				if vehicle then
-					TriggerClientEvent("progress",source,5000,"travar/destravar")
-					SetTimeout(5000,function()
+					TriggerClientEvent("progress",source,2000,"travar/destravar")
+					SetTimeout(2000,function()
 						vCLIENT.vehicleAnchor(source,vehicle)
 					end)
 				end
@@ -1043,8 +1043,8 @@ RegisterCommand('vehs',function(source,args,rawCommand)
 			local nplayer = vRP.getUserSource(parseInt(args[2]))
 			local myvehicles = vRP.query("creative/get_vehicles",{ user_id = parseInt(user_id), vehicle = tostring(args[1]) })
 			if myvehicles[1] then
-				if vRP.vehicleType(tostring(args[1])) == "exclusive" or vRP.vehicleType(tostring(args[1])) == "rental" and not vRP.hasPermission(user_id,"admin.permissao") then
-					TriggerClientEvent("Notify",source,"negado","<b>"..vRP.vehicleName(tostring(args[1])).."</b> não pode ser transferido por ser um veículo <b>Exclusivo ou Alugado</b>.",10000)
+				if vRP.vehicleType(tostring(args[1])) == "vip" or vRP.vehicleType(tostring(args[1])) == "alugado"then
+					TriggerClientEvent("Notify",source,"negado","<b>"..vRP.vehicleName(tostring(args[1])).."</b> não pode ser transferido por ser um veículo <b>VIP ou Alugado</b>",10000)
 				else
 					local identity = vRP.getUserIdentity(parseInt(args[2]))
 					local identity2 = vRP.getUserIdentity(user_id)

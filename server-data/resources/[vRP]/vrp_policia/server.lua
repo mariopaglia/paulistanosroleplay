@@ -973,6 +973,7 @@ local itemlist = {
 	"tecido",
 	"malha",
 	"linha",
+	"gps",
 	"colete",
 	"wbody|WEAPON_DAGGER",
 	"wbody|WEAPON_BAT",

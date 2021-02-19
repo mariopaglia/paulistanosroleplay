@@ -64,7 +64,7 @@ function src.checkIntPermissions(chestName)
 	local user_id = vRP.getUserId(source)
 	if user_id then
 		if not vRP.searchReturn(source,user_id) then
-			if vRP.hasPermission(user_id,chest[chestName][2]) then
+			if vRP.hasPermission(user_id,chest[chestName][2]) or vRP.hasPermission(user_id,"delegado.permissao") then
 				return true
 			end
 		end
@@ -134,7 +134,7 @@ function src.storeItem(chestName,itemName,amount)
 							actived[parseInt(user_id)] = 2
 						end
 					else
-						TriggerClientEvent("Notify",source,"negado","<b>Vault</b> cheio.",8000)
+						TriggerClientEvent("Notify",source,"negado","<b>Baú</b> cheio.",8000)
 					end
 				else
 					local inv = vRP.getInventory(parseInt(user_id))
@@ -161,7 +161,7 @@ function src.storeItem(chestName,itemName,amount)
 									actived[parseInt(user_id)] = 2
 								end
 							else
-								TriggerClientEvent("Notify",source,"negado","<b>Vault</b> cheio.",8000)
+								TriggerClientEvent("Notify",source,"negado","<b>Baú</b> cheio.",8000)
 							end
 						end
 					end

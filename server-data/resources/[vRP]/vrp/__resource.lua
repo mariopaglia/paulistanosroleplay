@@ -5,7 +5,7 @@ ui_page "gui/index.html"
 server_scripts { 
 	"lib/utils.lua",
 	"base.lua",
-	-- "queue.lua",
+	"queue.lua",
 	"modules/gui.lua",
 	"modules/group.lua",
 	"modules/player_state.lua",

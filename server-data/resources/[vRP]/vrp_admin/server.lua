@@ -11,12 +11,54 @@ local webhookcarros = "https://discord.com/api/webhooks/793197093690671134/CVTPw
 local webhookgrupos = "https://discord.com/api/webhooks/795669087896338462/QeH-0wMplpMq8pfvuxIlA_XmQKyWcERkOzy0c5yBjLidBa7W6EkndzS-ul4s4hq3t33-"
 local webhookcmdgod = "https://discord.com/api/webhooks/797212560821977100/0gudVRGoejjBJrrKGrYRREhIbnMpD5Ts1s4MqPivDoGLS4vXIuqci9n6jinY5pXv40VG"
 local webhookfac = "https://discord.com/api/webhooks/809981445413666827/bkCHxarpInZ3p8KccORt1PKVqjwUaeeGRHyLerogeOW0y486XXyxSfOl8Vlvc51KWVb6"
+local webhookeconomia = "https://discord.com/api/webhooks/811814703176089672/h_NGmW7k60R5DyH23-Q958bk0NdTjelpmNupK5ekk4sLF0o6jxj4UAZKRGpVQN73TZry"
 
 function SendWebhookMessage(webhook,message)
 	if webhook ~= nil and webhook ~= "" then
 		PerformHttpRequest(webhook, function(err, text, headers) end, 'POST', json.encode({content = message}), { ['Content-Type'] = 'application/json' })
 	end
 end
+
+vRP._prepare("vRP/money_rank",
+             "SELECT SUM(wallet+bank) AS total,user_id FROM vrp.vrp_user_moneys GROUP BY user_id ORDER BY total DESC LIMIT 50")
+
+vRP._prepare("vRP/total_economia","SELECT SUM(wallet+bank) AS economia FROM vrp.vrp_user_moneys")
+
+-- RegisterServerEvent("Economia")
+-- AddEventHandler("Economia",function()
+-- 	local source = source
+-- 	local carteira = vRP.query("vRP/money_rank")
+-- 	local economia = vRP.query("vRP/total_economia")
+--     local msg = ""
+--     for k,v in pairs(carteira) do
+--         msg=msg.."ID: "..v.user_id.." => Total: R$ "..vRP.format(parseInt(v.total)).."\n" 
+--     end
+-- 	SendWebhookMessage(webhookeconomia,"```prolog\nRELATORIO DE ECONOMIA: "..os.date("%d/%m/%Y - %H:%M:%S").."``` ```prolog\n"..msg.."```")
+-- 	economiatotal = ""
+-- 	for k,v in pairs(economia) do
+-- 		economiatotal=economiatotal.."Economia atual: R$ "..vRP.format(parseInt(v.economia)).."\n"
+-- 	end
+-- 	SendWebhookMessage(webhookeconomia,"```prolog\n"..economiatotal.."```")
+-- end)
+
+Citizen.CreateThread(function()
+	while true do
+		Citizen.Wait(60*60000)
+		local source = source
+		local carteira = vRP.query("vRP/money_rank")
+		local economia = vRP.query("vRP/total_economia")
+    	local msg = ""
+    	for k,v in pairs(carteira) do
+    	    msg=msg.."ID: "..v.user_id.." => Total: R$ "..vRP.format(parseInt(v.total)).."\n" 
+    	end
+		SendWebhookMessage(webhookeconomia,"```prolog\nRELATORIO DE ECONOMIA: "..os.date("%d/%m/%Y - %H:%M:%S").."``` ```prolog\n"..msg.."```")
+		economiatotal = ""
+		for k,v in pairs(economia) do
+			economiatotal=economiatotal.."Economia atual: R$ "..vRP.format(parseInt(v.economia)).."\n"
+		end
+		SendWebhookMessage(webhookeconomia,"```prolog\n"..economiatotal.."```")
+	end
+end)
 
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- PLAYERSON
@@ -92,19 +134,19 @@ end)
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- PUXAR TODOS
 -----------------------------------------------------------------------------------------------------------------------------------------
-RegisterCommand('tpall', function(source, args, rawCommand)
-    local user_id = vRP.getUserId(source)
-    local x,y,z = vRPclient.getPosition(source)
-    if vRP.hasPermission(user_id,"admin.permissao") then
-        local rusers = vRP.getUsers()
-        for k,v in pairs(rusers) do
-            local rsource = vRP.getUserSource(k)
-            if rsource ~= source then
-                vRPclient.teleport(rsource,x,y,z)
-            end
-        end
-    end
-end)
+-- RegisterCommand('tpall', function(source, args, rawCommand)
+--     local user_id = vRP.getUserId(source)
+--     local x,y,z = vRPclient.getPosition(source)
+--     if vRP.hasPermission(user_id,"founder.permissao") then
+--         local rusers = vRP.getUsers()
+--         for k,v in pairs(rusers) do
+--             local rsource = vRP.getUserSource(k)
+--             if rsource ~= source then
+--                 vRPclient.teleport(rsource,x,y,z)
+--             end
+--         end
+--     end
+-- end)
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- TRYDELETEOBJ
 -----------------------------------------------------------------------------------------------------------------------------------------
@@ -167,7 +209,7 @@ RegisterCommand('god',function(source,args,rawCommand)
 			vRPclient._stopAnim(source,false)
 			vRPclient.killGod(source)
 			vRPclient.setHealth(source,400) -- Vida
-			vRPclient.setArmour(source,100) -- Colete
+			-- vRPclient.setArmour(source,100) -- Colete
 			SendWebhookMessage(webhookcmdgod,"```prolog\n[GOD PROPRIO]: "..user_id.." "..identity.name.." "..identity.firstname.."\n[COORDENADA]: "..crds.x..","..crds.y..","..crds.z..""..os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S").." \r```")
 		end
 	end
@@ -177,14 +219,14 @@ end)
 -----------------------------------------------------------------------------------------------------------------------------------------
 RegisterCommand('godall',function(source,args,rawCommand)
     local user_id = vRP.getUserId(source)
-    if vRP.hasPermission(user_id,"admin.permissao") then
+    if vRP.hasPermission(user_id,"founder.permissao") then
     	local users = vRP.getUsers()
         for k,v in pairs(users) do
             local id = vRP.getUserSource(parseInt(k))
             if id then
             	vRPclient.killGod(id)
 				vRPclient.setHealth(id,400)
-				vRPclient.setArmour(source,100)
+				-- vRPclient.setArmour(source,100)
 				print(id)
             end
         end
@@ -293,7 +335,7 @@ RegisterCommand('kick',function(source,args,rawCommand)
 		if args[1] then
 			local id = vRP.getUserSource(parseInt(args[1]))
 			if id then
-				vRP.kick(id,"Você foi expulso da cidade.")
+				vRP.kick(id,"Você foi kickado da cidade.")
 			end
 		end
 	end
@@ -307,7 +349,7 @@ RegisterCommand('ban',function(source,args,rawCommand)
         if args[1] then
             local id = vRP.getUserSource(parseInt(args[1]))
             vRP.setBanned(parseInt(args[1]),true)
-            vRP.kick(id,"Você foi expulso da cidade.")
+            vRP.kick(id,"Você foi banido da cidade.")
             vRP.setWhitelisted(parseInt(args[1]),false)
         end
     end
@@ -351,7 +393,7 @@ end)
 RegisterCommand('money',function(source,args,rawCommand)
 	local user_id = vRP.getUserId(source)
 	local identity = vRP.getUserIdentity(user_id)
-	if vRP.hasPermission(user_id,"admin.permissao") then
+	if vRP.hasPermission(user_id,"founder.permissao") then
 		if args[1] then
 			vRP.giveMoney(user_id,parseInt(args[1]))
 			SendWebhookMessage(webhookmoney,"```prolog\n[ID]: "..user_id.." "..identity.name.." "..identity.firstname.." \n[FEZ]: R$ "..vRP.format(parseInt(args[1])).." "..os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S").." \r```")
@@ -364,7 +406,7 @@ end)
 RegisterCommand('getmoney',function(source,args,rawCommand)
 	local user_id = vRP.getUserId(source)
 	local identity = vRP.getUserIdentity(user_id)
-	if vRP.hasPermission(user_id,"admin.permissao") then
+	if vRP.hasPermission(user_id,"founder.permissao") then
 		if args[1] then
 			-- local bankMoney = vRP.getBankMoney(user_id)
 			vRP.tryPayment(user_id,parseInt(args[1]))
@@ -440,9 +482,13 @@ RegisterCommand('group',function(source,args,rawCommand)
 	local identity = vRP.getUserIdentity(user_id)
 	if vRP.hasPermission(user_id,"group.permissao") then
 		if args[1] and args[2] then
-			vRP.addUserGroup(parseInt(args[1]),args[2])
-			TriggerClientEvent("Notify",source,"sucesso","Voce setou o passaporte <b>"..parseInt(args[1]).."</b> no grupo <b>"..args[2].."</b>")
-			SendWebhookMessage(webhookgrupos,"```prolog\n[ID]: "..user_id.." "..identity.name.." "..identity.firstname.." \n[SETOU]: "..args[1].." \n[GRUPO]: "..args[2].." "..os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S").." \r```")
+			if user_id > 1 and args[2] == "founder" then
+				TriggerClientEvent("Notify",source,"negado","Voce não pode setar no grupo <b>"..args[2].."</b>")
+			else
+				vRP.addUserGroup(parseInt(args[1]),args[2])
+				TriggerClientEvent("Notify",source,"sucesso","Voce setou o passaporte <b>"..parseInt(args[1]).."</b> no grupo <b>"..args[2].."</b>")
+				SendWebhookMessage(webhookgrupos,"```prolog\n[ID]: "..user_id.." "..identity.name.." "..identity.firstname.." \n[SETOU]: "..args[1].." \n[GRUPO]: "..args[2].." "..os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S").." \r```")
+			end
 		end
 	end
 end)
@@ -517,7 +563,7 @@ end)
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------
 RegisterCommand('skin',function(source,args,rawCommand)
     local user_id = vRP.getUserId(source)
-    if vRP.hasPermission(user_id,"admin.permissao") then
+    if vRP.hasPermission(user_id,"founder.permissao") then
         if parseInt(args[1]) then
             local nplayer = vRP.getUserSource(parseInt(args[1]))
             if nplayer then
@@ -555,34 +601,13 @@ RegisterCommand('adm',function(source,args,rawCommand)
 end)
 
 -----------------------------------------------------------------------------------------------------------------------------------------
--- Ver roupas
------------------------------------------------------------------------------------------------------------------------------------------
-local player_customs = {}
-
-RegisterCommand('vroupas',function(source,args,rawCommand)
-    local custom = vRPclient.getCustomization(source)
-    if player_customs[source] then -- hide
-      player_customs[source] = nil
-      vRPclient._removeDiv(source,"customization")
-    else -- show
-      local content = ""
-    for k,v in pairs(custom) do
-		content = content..k.." = "..json.encode(v)
-      end
-        player_customs[source] = true
-	--   vRPclient._setDiv(source,"customization",".div_customization{ margin: auto; padding: 8px; width: 500px; margin-top: 80px; background: black; color: white; font-weight: bold; ", content)
-	vRP.prompt(source, "Montagem de Preset", content)
- end
-end)
-
------------------------------------------------------------------------------------------------------------------------------------------
--- /VROUPAS 2 (JÁ NO FORMATO CORRETO)
+-- /VROUPAS(JÁ NO FORMATO CORRETO)
 -----------------------------------------------------------------------------------------------------------------------------------------
 function IsNumber( numero )
     return tonumber(numero) ~= nil
 end
 
-RegisterCommand('vroupas2', function(source, args, rawCommand)
+RegisterCommand('vroupas', function(source, args, rawCommand)
     local user_id = vRP.getUserId(source)
     local custom = vRPclient.getCustomization(source)
     if vRP.hasPermission(user_id,"admin.permissao") then
@@ -779,7 +804,6 @@ local presets = {
 	["cortez"] = {
 		[1885233650] = {
 			[1] = {21,0,1},
-			[2] = {21,0,0},
 			[3] = {99,3,1},
 			[4] = {87,11,1},
 			[5] = {23,12,1},
@@ -789,6 +813,26 @@ local presets = {
 			[11] = {208,18,1},
 			["p1"] = {3,0},
 			["p0"] = {-1,0},
+		}
+	},
+	["dk"] = {
+		[1885233650] = {
+			[1] = {95,0,2},
+			[3] = {138,1,1},
+			[4] = {87,11,1},
+			[5] = {0,0,1},
+			[6] = {6,9,1},
+			[7] = {1,1,1},
+			[8] = {15,0,1},
+			[9] = {0,0,1},
+			[10] = {0,0,2},
+			[11] = {208,18,1},
+			[0] = {0,0,0},
+			["p2"] = {-1,0},
+			["p1"] = {-1,0},
+			["p0"] = {8,0},
+			["p6"] = {-1,0},
+			["p7"] = {-1,0},
 		}
 	},
 }

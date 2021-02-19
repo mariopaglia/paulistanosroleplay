@@ -76,7 +76,8 @@ RegisterServerEvent('loffe_heist:getSolda')
 AddEventHandler('loffe_heist:getSolda', function()
     local src = source
 	local user_id = vRP.getUserId(src)
-    if vRP.tryGetInventoryItem(user_id,Config.Solda,1,false) then
+    
+    if vRP.getInventoryItemAmount(user_id,"c4") >= 1 then
 		TriggerClientEvent('loffe_heist:getSolda', src, true)
 	else
 		TriggerClientEvent('loffe_heist:getSolda', src, false)
@@ -88,7 +89,7 @@ AddEventHandler('loffe_heist:getCops', function()
 	local src = source
     local cops = vRP.getUsersByPermission(Config.PermCops)
     if #cops >= Config.Cops then
-        TriggerClientEvent('chatMessage',-1,"190",{65,130,255},"O roubo começou na ^1Agência Central^0")
+        TriggerClientEvent('chatMessage',-1,"190",{65,130,255},"O roubo começou no ^1Banco Central^0")
         vRPclient.playSound(source,"Oneshot_Final","MP_MISSION_COUNTDOWN_SOUNDSET")
         TriggerClientEvent("vrp_sound:fixed",-1,source,256.59338378906,225.37237548828,107.77225494385,100,'alarm',0.7)
         TriggerClientEvent('loffe_heist:getCops', src, true)
@@ -187,8 +188,8 @@ Citizen.CreateThread(function()
     while true do
 		if Config.BankRobbery[1].Money.Amount == 0 then
 			Wait(1000*Config.Tempo)
-			Config.BankRobbery[1].Money.Amount = Config.BankRobbery[1].Money.StartMoney
-			TriggerClientEvent('loffe_heist:updateMoney', -1, 1, Config.BankRobbery[1].Money.StartMoney)
+			-- Config.BankRobbery[1].Money.Amount = Config.BankRobbery[1].Money.StartMoney
+			-- TriggerClientEvent('loffe_heist:updateMoney', -1, 1, Config.BankRobbery[1].Money.StartMoney)
 			
 			Config.BankRobbery[1].Doors[1].Frozen = true
 			Config.BankRobbery[1].Doors[2].Frozen = true

@@ -1,6 +1,6 @@
 Config = {}
 
-Config.AbertoAll = false
+Config.AbertoAll = true
 Config.TotalGaragem = 3
 Config.Veiculos = {
     {
@@ -40,7 +40,7 @@ Config.Veiculos = {
             {title = "futo", model="futo", mala=25, preco=250000, estoque = 15}, 
             {title = "stafford", model="stafford", mala=15, preco=250000, estoque = 15},                                                                      
             {title = "sentinel3", model="sentinel3", mala=25, preco=250000, estoque = 15},                                                                                                                                        
-            {title = "fusca", model="fusca", mala=10, preco=300000, estoque = 5},
+            {title = "fusca", model="weevil", mala=10, preco=300000, estoque = 5},
             {title = "alpha", model="alpha", mala=20, preco=320000, estoque = 10},                                                                      
             {title = "cognoscenti", model="cognoscenti", mala=40, preco=340000, estoque = 10},                                                                                                                                            
             {title = "Palio", model="fugitive", mala=10, preco=350000, estoque = 5},
@@ -146,12 +146,15 @@ Config.Veiculos = {
 	    {
         categoria = {title="Motos", id="motos"},
         veiculos = {
-            {title = "faggio", model = "faggio", mala = 0, preco = 20000, estoque = 15},
+            {title = "faggio", model = "faggio", mala = 0, preco = 40000, estoque = 15},
+            {title = "biz25", model = "biz25", mala = 15, preco = 50000, estoque = 10},
 			{title = "pcj", model = "pcj", mala = 10, preco = 60000, estoque = 15},
+            {title = "150", model = "150", mala = 10, preco = 80000, estoque = 10},
 			{title = "ruffian", model = "ruffian", mala = 10, preco = 100000, estoque = 15},
 			{title = "vader", model = "vader", mala = 10, preco = 110000, estoque = 15},
 			{title = "nemesis", model = "nemesis", mala = 10, preco = 120000, estoque = 15},
 			{title = "lectro", model = "lectro", mala = 10, preco = 130000, estoque = 15},
+            {title = "bros60", model = "bros60", mala = 0, preco = 150000, estoque = 10},
 			{title = "defiler", model = "defiler", mala = 0, preco = 200000, estoque = 15},
 			{title = "vortex", model = "vortex", mala = 05, preco = 220000, estoque = 15},
 			{title = "ratbike", model = "ratbike", mala = 15, preco = 240000, estoque = 15},
@@ -167,6 +170,7 @@ Config.Veiculos = {
 			{title = "manchez", model = "manchez", mala = 0, preco = 560000, estoque = 10},
 			{title = "double", model = "double", mala = 10, preco = 560000, estoque = 10},
 			{title = "gargoyle", model = "gargoyle", mala = 05, preco = 600000, estoque = 10},
+            {title = "xt66", model = "xt66", mala = 0, preco = 600000, estoque = 10},
 			{title = "daemon", model = "daemon", mala = 10, preco = 620000, estoque = 10},
 			{title = "sanchez2", model = "sanchez2", mala = 0, preco = 660000, estoque = 10},
 			{title = "sanchez", model = "sanchez", mala = 05, preco = 700000, estoque = 10},
@@ -177,6 +181,11 @@ Config.Veiculos = {
 			{title = "akuma", model = "akuma", mala = 10, preco = 940000, estoque = 5},
 			{title = "hakuchou2", model = "hakuchou2", mala = 05, preco = 1000000, estoque = 5},
 			{title = "sanctus", model = "sanctus", mala = 15, preco = 1000000, estoque = 5},
+            {title = "cbrr", model = "cbrr", mala = 0, preco = 1500000, estoque = 10},
+            {title = "hornet", model = "hornet", mala = 0, preco = 1600000, estoque = 10},
+            {title = "r6", model = "r6", mala = 0, preco = 1700000, estoque = 10},
+            {title = "z1000", model = "z1000", mala = 0, preco = 2000000, estoque = 10},
+            {title = "dm1200", model = "dm1200", mala = 0, preco = 2500000, estoque = 10},
         }
     },
 }

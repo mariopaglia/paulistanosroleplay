@@ -576,13 +576,13 @@ AddEventHandler("vRP:playerSpawn",function(user_id,source,first_spawn)
 		TriggerClientEvent("gcPhone:allMessage",sourcePlayer,getMessages(identifier))
 	end)
 
-	local consulta = vRP.getUData(user_id,"vRP:plano")
-	local resultado = json.decode(consulta) or {}
-	vRP.setUData(vRP.getUserId(source), "vRP:plano", json.encode(resultado))
-	resultado = resultado.tempo or 0
-	if tonumber(resultado) > 0 then
-		plan[user_id] = resultado
-	end
+	-- local consulta = vRP.getUData(user_id,"vRP:plano")
+	-- local resultado = json.decode(consulta) or {}
+	-- vRP.setUData(vRP.getUserId(source), "vRP:plano", json.encode(resultado))
+	-- resultado = resultado.tempo or 0
+	-- if tonumber(resultado) > 0 then
+	-- 	plan[user_id] = resultado
+	-- end
 end)
 
 RegisterServerEvent('gcPhone:allUpdate')
@@ -659,35 +659,35 @@ AddEventHandler("vRP:playerLeave", function(user_id, group, gtype)
 	end
 end)
 
-Citizen.CreateThread(function()
-	while true do
-		for k, v in pairs(plan) do
-			plan[k] = v-1
-			if plan[k] <= 0 then
-				plan[k] = nil
-				vRP.setUData(k, "vRP:plano", json.encode({}))
-			else
-				local vl = {}
-				vl.tempo = v
-				vRP.setUData(k, "vRP:plano", json.encode(vl))
-			end
-		end
-		Citizen.Wait(10000)
-	end
-end)
+-- Citizen.CreateThread(function()
+-- 	while true do
+-- 		for k, v in pairs(plan) do
+-- 			plan[k] = v-1
+-- 			if plan[k] <= 0 then
+-- 				plan[k] = nil
+-- 				vRP.setUData(k, "vRP:plano", json.encode({}))
+-- 			else
+-- 				local vl = {}
+-- 				vl.tempo = v
+-- 				vRP.setUData(k, "vRP:plano", json.encode(vl))
+-- 			end
+-- 		end
+-- 		Citizen.Wait(10000)
+-- 	end
+-- end)
 
-function src.planoCheck()
-	local source = source
-	local user_id = vRP.getUserId(source)
-	local consulta = vRP.getUData(user_id,"vRP:plano")
-	local resultado = json.decode(consulta) or {}
+-- function src.planoCheck()
+-- 	local source = source
+-- 	local user_id = vRP.getUserId(source)
+-- 	local consulta = vRP.getUData(user_id,"vRP:plano")
+-- 	local resultado = json.decode(consulta) or {}
 	
-	resultado = resultado.tempo or 0
+-- 	resultado = resultado.tempo or 0
 
-	if tonumber(resultado) <= 0 then
-		TriggerClientEvent("Notify",source,"negado","Você não possui plano de celular disponivel.") 
-		return false
-	else
-		return true
-	end
-end
+-- 	if tonumber(resultado) <= 0 then
+-- 		TriggerClientEvent("Notify",source,"negado","Você não possui plano de celular disponivel.") 
+-- 		return false
+-- 	else
+-- 		return true
+-- 	end
+-- end

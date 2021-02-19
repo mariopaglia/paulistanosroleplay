@@ -311,8 +311,8 @@ Citizen.CreateThread(function()
 				if IsEntityAVehicle(vehicle) and GetVehicleClass(vehicle) ~= 8 and GetPedInVehicleSeat(vehicle,-1) == ped then
 					DrawMarker(23,CoordenadaX,CoordenadaY,CoordenadaZ-0.96,0,0,0,0,0,0,10.0,10.0,1.0,255,0,0,50,0,0,0,0)
 					if distance <= 5.9 then
-						drawTxt("PRESSIONE  ~r~E~w~  PARA INICIAR A CORRIDA",4,0.5,0.93,0.50,255,255,255,180)
-						if IsControlJustPressed(0,38) and emP.checkPermission() and emP.checkPolice() then
+						drawTxt("PRESSIONE  ~r~E~w~  PARA INICIAR UMA CORRIDA ~r~EXPLOSIVA~w~",4,0.5,0.93,0.50,255,255,255,180)
+						if IsControlJustPressed(0,38) and emP.checkPermission() and emP.checkPolice() and emP.checkItem() then
 							emP.setSearchTimer()
 							inrace = true
 							racepos = 1
@@ -408,7 +408,7 @@ Citizen.CreateThread(function()
 				SetVehicleNumberPlateText(GetPlayersLastVehicle(),PlateIndex)
 				PlateIndex = nil
 
-					SetTimeout(3000,function()
+					SetTimeout(10000,function()
 
 						DeleteObject(bomba)
 						emP.removeBombRace()

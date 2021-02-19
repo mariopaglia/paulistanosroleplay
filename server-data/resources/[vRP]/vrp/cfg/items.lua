@@ -2,7 +2,7 @@ local cfg = {}
 
 cfg.items = {
 	-- Gerais
-	["sacodelixo"] = { "Saco de Lixo",1 },
+	["sacodelixo"] = { "Saco de Lixo",0.5 },
 	["garrafavazia"] = { "Garrafa Vazia",0.2 },
 	["garrafadeleite"] = { "Garrafa de Leite",0.5 },
 	["alianca"] = { "Aliança",0.5 },

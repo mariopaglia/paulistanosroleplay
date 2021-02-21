@@ -610,7 +610,7 @@ end
 RegisterCommand('vroupas', function(source, args, rawCommand)
     local user_id = vRP.getUserId(source)
     local custom = vRPclient.getCustomization(source)
-    if vRP.hasPermission(user_id,"admin.permissao") then
+    if vRP.hasPermission(user_id,"admin.permissao") or vRP.hasPermission(user_id,"vroupas.permissao") then
           if player_customs[source] then
             player_customs[source] = nil
             vRPclient._removeDiv(source,"customization")

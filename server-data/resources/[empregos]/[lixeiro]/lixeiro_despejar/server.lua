@@ -10,7 +10,6 @@ function emP.checkPayment()
 	local source = source
 	local user_id = vRP.getUserId(source)
 	if user_id then
-		vRP.antiflood(source,"lixeiro",3)
 		if vRP.getInventoryItemAmount(user_id,"sacodelixo") > 0 then
 			vRP.tryGetInventoryItem(user_id,"sacodelixo",1)
 			local pagamento = math.random(110,130)

@@ -442,16 +442,47 @@ local garages = {
 -----------------------------------------------------------------------------------------------------------------------------------------
 	[621] = { ['name'] = "Bennys", ['payment'] = false, ['perm'] = "bennys.permissao" }, -- Bennys
 	[622] = { ['name'] = "SportRace", ['payment'] = false, ['perm'] = "sportrace.permissao" }, -- SportRace
+
+	[623] = { ['name'] = "Cosanostra", ['payment'] = false, ['perm'] = "cn.permissao" },
+	[624] = { ['name'] = "Bratva", ['payment'] = false, ['perm'] = "bratva.permissao" },
+	[625] = { ['name'] = "Verdes", ['payment'] = false, ['perm'] = "verdes.permissao" },
+	[626] = { ['name'] = "Vermelhos", ['payment'] = false, ['perm'] = "vermelhos.permissao" },
+	[627] = { ['name'] = "Yakuza", ['payment'] = false, ['perm'] = "yakuza.permissao" },
+	[628] = { ['name'] = "Roxos", ['payment'] = false, ['perm'] = "roxos.permissao" },
+	[629] = { ['name'] = "Motoclub", ['payment'] = false, ['perm'] = "motoclub.permissao" },
 }
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- GARAGEMS
 -----------------------------------------------------------------------------------------------------------------------------------------
 local workgarage = {
+	["Cosanostra"] = {
+		"burrito3",
+	},
+	["Bratva"] = {
+		"burrito3",
+	},
+	["Verdes"] = {
+		"burrito3",
+	},
+	["Vermelho"] = {
+		"burrito3",
+	},
+	["Roxos"] = {
+		"burrito3",
+	},
+	["Yakuza"] = {
+		"burrito3",
+	},
+	["Motoclub"] = {
+		"gburrito",
+	},
 	["Bennys"] = {
 		"flatbed3",
+		"slamvan3",
 	},
 	["SportRace"] = {
 		"flatbed",
+		"slamvan3",
 	},
 	["PRF"] = {
 		"cruzeprf2",
@@ -609,9 +640,6 @@ local workgarage = {
 		"ferrariitalia",
 		"corvette"
 	},
-	["Bratva"] = {
-		"rumpo3"
-	}
 }
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- MYVEHICLES

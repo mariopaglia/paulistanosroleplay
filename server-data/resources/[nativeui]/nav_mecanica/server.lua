@@ -23,7 +23,7 @@ AddEventHandler("mecanica-comprar",function(item)
 		for k,v in pairs(valores) do
 			if item == v.item then
 				if vRP.getInventoryWeight(user_id)+vRP.getItemWeight(v.item)*v.quantidade <= vRP.getInventoryMaxWeight(user_id) then
-					if vRP.tryPayment(user_id,parseInt(v.compra)) then
+					if vRP.tryFullPayment(user_id,parseInt(v.compra)) then
 						vRP.giveInventoryItem(user_id,v.item,parseInt(v.quantidade))
 						TriggerClientEvent("Notify",source,"sucesso","Compra efetuada com sucesso!</b>")
 					else

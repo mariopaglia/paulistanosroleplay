@@ -162,7 +162,7 @@ LSC_Config.prices = {
 		price = 3000
 	},
 	neonlayout = {
-		{ name = "Front,Back and Sides", price = 3000 }
+		{ name = "Front,Back and Sides", price = 0 }
 	},
 	neoncolor = {
 		{ name = "White", neon = {255,255,255}, price = 3000 },

@@ -69,22 +69,22 @@ end)
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- PAYTOW
 -----------------------------------------------------------------------------------------------------------------------------------------
-RegisterCommand('paytow',function(source,args,rawCommand)
-	local user_id = vRP.getUserId(source)
-	if vRP.hasPermission(user_id,"policia.permissao") then
-		local nplayer = vRPclient.getNearestPlayer(source,2)
-		if nplayer then
-			local nuser_id = vRP.getUserId(nplayer)
-			if nuser_id then
-				vRP.giveMoney(nuser_id,500)
-				vRPclient._playAnim(source,true,{{"mp_common","givetake1_a"}},false)
-				TriggerClientEvent("Notify",source,"sucesso","Efetuou o pagamento pelo serviço do mecânico.")
-				TriggerClientEvent("Notify",nplayer,"sucesso","Recebeu <b>$500 dólares</b> pelo serviço de mecânico.")
-				vRP.logs("savedata/paytow.txt","[ID]: "..user_id.." / [NID]: "..nuser_id.." / [FUNÇÃO]: Paytow")
-			end
-		end
-	end
-end)
+-- RegisterCommand('paytow',function(source,args,rawCommand)
+-- 	local user_id = vRP.getUserId(source)
+-- 	if vRP.hasPermission(user_id,"policia.permissao") then
+-- 		local nplayer = vRPclient.getNearestPlayer(source,2)
+-- 		if nplayer then
+-- 			local nuser_id = vRP.getUserId(nplayer)
+-- 			if nuser_id then
+-- 				vRP.giveMoney(nuser_id,500)
+-- 				vRPclient._playAnim(source,true,{{"mp_common","givetake1_a"}},false)
+-- 				TriggerClientEvent("Notify",source,"sucesso","Efetuou o pagamento pelo serviço do mecânico.")
+-- 				TriggerClientEvent("Notify",nplayer,"sucesso","Recebeu <b>$500 dólares</b> pelo serviço de mecânico.")
+-- 				vRP.logs("savedata/paytow.txt","[ID]: "..user_id.." / [NID]: "..nuser_id.." / [FUNÇÃO]: Paytow")
+-- 			end
+-- 		end
+-- 	end
+-- end)
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- TOOGLE
 -----------------------------------------------------------------------------------------------------------------------------------------
@@ -467,7 +467,7 @@ RegisterCommand('toogle',function(source,args,rawCommand)
 		TriggerClientEvent("Notify",source,"sucesso","Você saiu de serviço.")
 		SendWebhookMessage(webhookparamedico,"```prolog\n[SAMU]: "..user_id.." "..identity.name.." "..identity.firstname.." \n[===========SAIU DE SERVICO==========] "..os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S").." \r```")
 		TriggerClientEvent('desligarRadios',source)
-	elseif vRP.hasPermission(user_id,"tooglemed.permissao") then
+	elseif vRP.hasPermission(user_id,"tooglediretor.permissao") then
 		TriggerEvent('eblips:add',{ name = "SAMU", src = source, color = 49 })
 		vRP.addUserGroup(user_id,"Diretor")
 		TriggerClientEvent("Notify",source,"sucesso","Você entrou em serviço.")
@@ -497,14 +497,14 @@ RegisterCommand('toogle',function(source,args,rawCommand)
 -- MECANICO
 ---------------------
 	elseif vRP.hasPermission(user_id,"bennys.permissao") then
-		TriggerEvent('eblips:remove',source)
+		-- TriggerEvent('eblips:remove',source)
 		vRP.addUserGroup(user_id,"BennysP")
 		TriggerClientEvent("Notify",source,"sucesso","Você saiu de serviço.")
 		SendWebhookMessage(webhookbennys,"```prolog\n[MECANICO]: "..user_id.." "..identity.name.." "..identity.firstname.." \n[===========SAIU DE SERVICO==========] "..os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S").." \r```")
 		TriggerClientEvent('desligarRadios',source)
 	elseif vRP.hasPermission(user_id,"paisanabennys.permissao") then
 		vRP.addUserGroup(user_id,"Bennys")
-		TriggerEvent('eblips:add',{ name = "Mecanico", src = source, color = 48 })
+		-- TriggerEvent('eblips:add',{ name = "Mecanico", src = source, color = 48 })
 		TriggerClientEvent("Notify",source,"sucesso","Você entrou em serviço.")
 		SendWebhookMessage(webhookbennys,"```prolog\n[MECANICO]: "..user_id.." "..identity.name.." "..identity.firstname.." \n[==========ENTROU EM SERVICO=========] "..os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S").." \r```")
 
@@ -515,14 +515,14 @@ RegisterCommand('toogle',function(source,args,rawCommand)
 -- MECANICO
 ---------------------
 	elseif vRP.hasPermission(user_id,"sportrace.permissao") then
-		TriggerEvent('eblips:remove',source)
+		-- TriggerEvent('eblips:remove',source)
 		vRP.addUserGroup(user_id,"SportRaceP")
 		TriggerClientEvent("Notify",source,"sucesso","Você saiu de serviço.")
 		SendWebhookMessage(webhooksportrace,"```prolog\n[MECANICO]: "..user_id.." "..identity.name.." "..identity.firstname.." \n[===========SAIU DE SERVICO==========] "..os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S").." \r```")
 		TriggerClientEvent('desligarRadios',source)
 	elseif vRP.hasPermission(user_id,"paisanasportrace.permissao") then
 		vRP.addUserGroup(user_id,"SportRace")
-		TriggerEvent('eblips:add',{ name = "Mecanico", src = source, color = 48 })
+		-- TriggerEvent('eblips:add',{ name = "Mecanico", src = source, color = 48 })
 		TriggerClientEvent("Notify",source,"sucesso","Você entrou em serviço.")
 		SendWebhookMessage(webhooksportrace,"```prolog\n[MECANICO]: "..user_id.." "..identity.name.." "..identity.firstname.." \n[==========ENTROU EM SERVICO=========] "..os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S").." \r```")
 	end
@@ -898,7 +898,7 @@ RegisterCommand('re',function(source,args,rawCommand)
 					SendWebhookMessage(webhookre,"```prolog\n[ID]: "..user_id.." "..identity.name.." "..identity.firstname.." \n[REVIVEU]: "..nuser_id.." "..identityu.name.." "..identityu.firstname.."\n[COORDENADA]: "..crds.x..","..crds.y..","..crds.z..""..os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S").." \r```")
 				end)
 			elseif pulso == nil then
-				TriggerClientEvent("Notify",source,"importante","Utilize /card para medir o pulso.")
+				TriggerClientEvent("Notify",source,"importante","Utilize /vida para medir o pulso.")
 			elseif pulso <= 29 then
 				TriggerClientEvent("Notify",source,"importante","A pessoa nao tem mais pulso.")
 			else

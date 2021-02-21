@@ -105,7 +105,7 @@ local banks = {
 	{name="Registradora", id=108, x=-258.84,y=-723.36,z=33.47 },
 	{name="Registradora", id=108, x=-256.22,y=-715.97,z=33.52 },
 	{name="Registradora", id=108, x=-254.41,y=-692.47,z=33.60 },
-	{name="Registradora", id=108, x=296.17,y=-591.52,z=43.27 },
+	{name="Registradora", id=108, x=315.07, y=-593.73, z=43.29 },
 	{name="Registradora", id=108, x=419.05,y=-986.33,z=29.38 },
 	{name="Registradora", id=108, x=-618.28,y=-708.93,z=30.05 },
 	{name="Registradora", id=108, x=-618.23,y=-706.90,z=30.05 },

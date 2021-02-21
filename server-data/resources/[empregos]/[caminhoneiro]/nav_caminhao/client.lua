@@ -2,7 +2,10 @@
 -- VRP
 -----------------------------------------------------------------------------------------------------------------------------------------
 local Tunnel = module("vrp","lib/Tunnel")
+local Proxy = module("vrp","lib/Proxy")
 emP = Tunnel.getInterface("nav_caminhao")
+
+vRP = Proxy.getInterface("vRP")
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- FUNCTION
 -----------------------------------------------------------------------------------------------------------------------------------------
@@ -70,6 +73,7 @@ function spawnVehicle(name,x,y,z)
 
 	if HasModelLoaded(mhash) then
 		local nveh = CreateVehicle(mhash,x,y,z+0.5,0,1594,true,false)
+		SetVehicleNumberPlateText(nveh,vRP.getRegistrationNumber())
 		local netveh = VehToNet(nveh)
 		local id = NetworkGetNetworkIdFromEntity(nveh)
 
@@ -87,7 +91,7 @@ function spawnVehicle(name,x,y,z)
 		end
 
 		SetNetworkIdCanMigrate(id,true)
-		SetVehicleNumberPlateText(NetToVeh(netveh),"CAMINHAO")
+		
 		Citizen.InvokeNative(0xAD738C3085FE7E11,NetToVeh(netveh),true,true)
 		SetVehicleHasBeenOwnedByPlayer(NetToVeh(netveh),true)
 		SetVehicleNeedsToBeHotwired(NetToVeh(netveh),false)

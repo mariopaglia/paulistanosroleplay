@@ -42,7 +42,7 @@ salarii = {
   {"cirurgiao.permissao", 6000, "Cirurgiã(o)"},
   {"diretor.permissao", 8000, "Diretor SAMU"},
   -- Mecanico
-  -- {"funcmecanico.permissao", 2000, "Mecanico"},
+  {"mecanico.permissao", 2000, "Mecanico"},
   -- {"lidermecanico.permissao", 3000, "Lider Mecanico"},
 }
 

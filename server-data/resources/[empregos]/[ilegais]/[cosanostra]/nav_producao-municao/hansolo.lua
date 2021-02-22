@@ -70,7 +70,7 @@ end)
 -------------------------------------------------------------------------------------------------
 Citizen.CreateThread(function()
 	while true do
-		local diel = 1000
+		local idle = 1000
 
 		for k,v in pairs(prodMachine) do
 			local ped = PlayerPedId()

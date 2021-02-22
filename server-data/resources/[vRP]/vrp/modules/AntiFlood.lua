@@ -62,7 +62,6 @@ function vRP.antiflood(source,key,limite)
             if(flood[key][source]==limite)then
                 local user_id = vRP.getUserId(source)
                 vRP.setBanned(user_id,true)    
-                DropPlayer(source, "Você foi banido da cidade!")
 				
 				mensagem = "[ID]: "..user_id.." \n[ANTI-FLOOD] "..os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S").."\n[FLOOD]: "..key
 				PerformHttpRequest(webhook_antiflood, function(err, text, headers) end, 'POST', json.encode({content = mensagem}), { ['Content-Type'] = 'application/json' })

@@ -65,6 +65,7 @@ RegisterNUICallback("ButtonClick",function(data,cb)
 end)
 
 function spawnVehicle(name,x,y,z)
+	
 	local mhash = GetHashKey(name)
 	while not HasModelLoaded(mhash) do
 		RequestModel(mhash)

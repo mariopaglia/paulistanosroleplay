@@ -27,11 +27,11 @@ function emP.checkPermission()
 end
 
 function emP.checkPayment(payment)
+  vRP.antiflood(source,"taxista",3)
     local source = source
     local user_id = vRP.getUserId(source)
     if user_id then
-       vRP.antiflood(source,"taxista",2)
-        randmoney = (math.random(500,1500)*payment)
+        randmoney = (math.random(1800,2800)*payment)
         vRP.giveMoney(user_id,parseInt(randmoney))
         TriggerClientEvent("vrp_sound:source",source,'coins',0.5)
         TriggerClientEvent("Notify",source,"sucesso","Você recebeu <b>R$ "..vRP.format(parseInt(randmoney)).."</b>.")

@@ -54,6 +54,7 @@ function func.getVeiculos()
 end
 
 function func.comprarVeiculo(categoria, modelo)
+    vRP.antiflood(source,"comprarcarro",2)
     local source = source
     local user_id = vRP.getUserId(source)
     local isVendedor = func.getPermissao()
@@ -162,6 +163,7 @@ function func.registerCars(car, rt)
 end
 
 function func.venderVeiculo(categoria, modelo)
+    vRP.antiflood(source,"vendercarro",2)
     local source = source
     local user_id = vRP.getUserId(source)
 

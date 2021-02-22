@@ -720,3 +720,12 @@ function tvRP.vehList(radius)
 		end
 	end
 end
+
+function tvRP.vehicleExist(name)
+	for k, v in pairs(vehList) do
+		if v.name == name then
+			return true
+		end
+	end
+	return false
+end

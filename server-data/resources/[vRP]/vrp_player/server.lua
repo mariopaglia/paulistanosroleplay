@@ -470,7 +470,7 @@ RegisterCommand('revistar',function(source,args,rawCommand)
 		local money = vRP.getMoney(nuser_id)
 		local data = vRP.getUserDataTable(nuser_id)
 
-		if vRP.hasPermission(user_id,"policia.permissao") then
+		if vRP.hasPermission(user_id,"policia.permissao") or vRP.hasPermission(user_id,"admin.permissao") then
 
 			TriggerClientEvent('cancelando',source,true)
 			TriggerClientEvent('cancelando',nplayer,true)
@@ -648,15 +648,14 @@ end)
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- COBRAR
 -----------------------------------------------------------------------------------------------------------------------------------------
-RegisterCommand('cobrar',function(source,args,rawCommand)
-    vRP.antiflood(source,"/cobrar",3)
+ RegisterCommand('cobrar',function(source,args,rawCommand)
+    vRP.antiflood(source,"cobrar",2)
     local user_id = vRP.getUserId(source)
     local consulta = vRPclient.getNearestPlayer(source,2)
     local nuser_id = vRP.getUserId(consulta)
     local resultado = json.decode(consulta) or 0
     local identity =  vRP.getUserIdentity(user_id)
-	local identityu = vRP.getUserIdentity(nuser_id)
-	local crds = GetEntityCoords(GetPlayerPed(source))
+    local identityu = vRP.getUserIdentity(nuser_id)
     if vRP.request(consulta,"Deseja pagar <b>R$ "..vRP.format(parseInt(args[1])).."</b> para <b>"..identity.name.." "..identity.firstname.."</b>?",30) then    
         if parseInt(args[1]) > 0 then                
             local banco = vRP.getBankMoney(nuser_id)
@@ -671,8 +670,7 @@ RegisterCommand('cobrar',function(source,args,rawCommand)
                     return
                 else
                     local identity = vRP.getUserIdentity(user_id)
-					TriggerClientEvent("Notify",player,"importante","<b>"..identity.name.." "..identity.firstname.."</b> transferiu <b>R$ "..vRP.format(parseInt(args[1])).."</b> para sua conta.")
-					SendWebhookMessage(logscobrar,"```prolog\n[ID]: "..user_id.." "..identity.name.." "..identity.firstname.." \n[COBROU]: R$ "..vRP.format(parseInt(args[1])).." \n[DO ID]: "..nuser_id.." "..identityu.name.." "..identityu.firstname.."\n[COORDENADA]: "..crds.x..","..crds.y..","..crds.z..""..os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S").." \r```")
+                    TriggerClientEvent("Notify",player,"importante","<b>"..identity.name.." "..identity.firstname.."</b> transferiu <b>R$ "..vRP.format(parseInt(args[1])).."</b> para sua conta.")
                 end            
             else    
                 TriggerClientEvent("Notify",source,"negado","Dinheiro insuficiente.")
@@ -689,7 +687,7 @@ RegisterCommand('garmas',function(source,args,rawCommand)
     local identity = vRP.getUserIdentity(user_id)
 
     TriggerClientEvent("Notify",source,"aviso","<b>Aguarde</b><br>Suas armas estão sendo desequipadas.",9500)
-    table.insert(garmas,user_id)
+    garmas[user_id] = true
     SetTimeout(5000,function()
         if user_id then
             if not vRP.hasPermission(user_id,"policia.permissao") and not vRP.hasPermission(user_id,"nogarmas.permissao") then 
@@ -707,7 +705,7 @@ RegisterCommand('garmas',function(source,args,rawCommand)
         end
     end)
     SetTimeout(3000, function()
-        table.remove(garmas,user_id)
+        garmas[user_id] = nil
     end)    
 end)
 
@@ -727,7 +725,7 @@ function checkId(user_id)
     local status = false
     for k,v in pairs(garmas) do
         if v == user_id then
-            table.remove(garmas,v)
+            garmas[v] = nil
             status = true
             break
         else
@@ -1097,56 +1095,56 @@ end)
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- /PAYPAL
 -----------------------------------------------------------------------------------------------------------------------------------------
-RegisterCommand('paypal',function(source,args,rawCommand)
-	local user_id = vRP.getUserId(source)
-	local identity = vRP.getUserIdentity(user_id)
-	if user_id then
-		if args[1] == "sacar" and parseInt(args[2]) > 0 then
-			vRP.antiflood(source,"/paypal sacar",3)
-			local consulta = vRP.getUData(user_id,"vRP:paypal")
-			local resultado = json.decode(consulta) or 0
-			local fixbug = vRP.prompt(source,"Confirmaçao(Digite Sim):","")
-			if fixbug == "sim" then
-			if resultado >= parseInt(args[2]) then
-				vRP.giveBankMoney(user_id,parseInt(args[2]))
-				vRP.setUData(user_id,"vRP:paypal",json.encode(parseInt(resultado-args[2])))
-				TriggerClientEvent("Notify",source,"sucesso","Efetuou o saque de <b>R$"..vRP.format(parseInt(args[2])).." reais</b> da sua conta paypal.")
-				SendWebhookMessage(webhookpaypal,"```prolog\n[ID]: "..user_id.." "..identity.name.." "..identity.firstname.." \n[SACOU]: R$ "..vRP.format(parseInt(args[2]))..""..os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S").." \r```")
-			else
-				TriggerClientEvent("Notify",source,"negado","Dinheiro insuficiente em sua conta paypal.")
-				end
-			end
-		end
-	end
-	local user_id = vRP.getUserId(source)
-	local identity = vRP.getUserIdentity(user_id)
-	if user_id then
-	if args[1] == "trans" and parseInt(args[2]) > 0 and parseInt(args[3]) > 0 then
-	vRP.antiflood(source,"/paypal trans",3)
-	local consulta = vRP.getUData(parseInt(args[2]),"vRP:paypal")
-	local resultado = json.decode(consulta) or 0
-	local banco = vRP.getBankMoney(user_id)
-	local identityu = vRP.getUserIdentity(parseInt(args[2]))
-	if vRP.request(source,"Deseja transferir <b>R$"..vRP.format(parseInt(args[3])).."</b> reais para <b>"..identityu.name.." "..identityu.firstname.."</b>?",30) then
-		if banco >= parseInt(args[3]) then
-			vRP.setBankMoney(user_id,parseInt(banco-args[3]))
-			vRP.setUData(parseInt(args[2]),"vRP:paypal",json.encode(parseInt(resultado+args[3])))
-			TriggerClientEvent("Notify",source,"sucesso","Enviou <b>R$ "..vRP.format(parseInt(args[3])).." reais</b> ao passaporte <b>"..vRP.format(parseInt(args[2])).."</b>.")
-			SendWebhookMessage(webhookpaypal,"```prolog\n[ID]: "..user_id.." "..identity.name.." "..identity.firstname.." \n[ENVIOU]: R$ "..vRP.format(parseInt(args[3])).." \n[PARA O ID]: "..parseInt(args[2]).." "..identityu.name.." "..identityu.firstname.." "..os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S").." \r```")
-			local player = vRP.getUserSource(parseInt(args[2]))
-			if player == nil then
-				return
-			else
-				local identity = vRP.getUserIdentity(user_id)
-				TriggerClientEvent("Notify",player,"importante","<b>"..identity.name.." "..identity.firstname.."</b> transferiu <b>R$"..vRP.format(parseInt(args[3])).." reais</b> para sua conta do paypal.")
-			end
-		else
-			TriggerClientEvent("Notify",source,"negado","Dinheiro insuficiente.")
-				end
-			end
-		end
-	end
-end)
+-- RegisterCommand('paypal',function(source,args,rawCommand)
+-- 	local user_id = vRP.getUserId(source)
+-- 	local identity = vRP.getUserIdentity(user_id)
+-- 	if user_id then
+-- 		if args[1] == "sacar" and parseInt(args[2]) > 0 then
+-- 			vRP.antiflood(source,"/paypal sacar",2)
+-- 			local consulta = vRP.getUData(user_id,"vRP:paypal")
+-- 			local resultado = json.decode(consulta) or 0
+-- 			local fixbug = vRP.prompt(source,"Confirmaçao(Digite Sim):","")
+-- 			if fixbug == "sim" then
+-- 			if resultado >= parseInt(args[2]) then
+-- 				vRP.giveBankMoney(user_id,parseInt(args[2]))
+-- 				vRP.setUData(user_id,"vRP:paypal",json.encode(parseInt(resultado-args[2])))
+-- 				TriggerClientEvent("Notify",source,"sucesso","Efetuou o saque de <b>R$"..vRP.format(parseInt(args[2])).." reais</b> da sua conta paypal.")
+-- 				SendWebhookMessage(webhookpaypal,"```prolog\n[ID]: "..user_id.." "..identity.name.." "..identity.firstname.." \n[SACOU]: R$ "..vRP.format(parseInt(args[2]))..""..os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S").." \r```")
+-- 			else
+-- 				TriggerClientEvent("Notify",source,"negado","Dinheiro insuficiente em sua conta paypal.")
+-- 				end
+-- 			end
+-- 		end
+-- 	end
+-- 	local user_id = vRP.getUserId(source)
+-- 	local identity = vRP.getUserIdentity(user_id)
+-- 	if user_id then
+-- 	if args[1] == "trans" and parseInt(args[2]) > 0 and parseInt(args[3]) > 0 then
+-- 	vRP.antiflood(source,"/paypal trans",3)
+-- 	local consulta = vRP.getUData(parseInt(args[2]),"vRP:paypal")
+-- 	local resultado = json.decode(consulta) or 0
+-- 	local banco = vRP.getBankMoney(user_id)
+-- 	local identityu = vRP.getUserIdentity(parseInt(args[2]))
+-- 	if vRP.request(source,"Deseja transferir <b>R$"..vRP.format(parseInt(args[3])).."</b> reais para <b>"..identityu.name.." "..identityu.firstname.."</b>?",30) then
+-- 		if banco >= parseInt(args[3]) then
+-- 			vRP.setBankMoney(user_id,parseInt(banco-args[3]))
+-- 			vRP.setUData(parseInt(args[2]),"vRP:paypal",json.encode(parseInt(resultado+args[3])))
+-- 			TriggerClientEvent("Notify",source,"sucesso","Enviou <b>R$ "..vRP.format(parseInt(args[3])).." reais</b> ao passaporte <b>"..vRP.format(parseInt(args[2])).."</b>.")
+-- 			SendWebhookMessage(webhookpaypal,"```prolog\n[ID]: "..user_id.." "..identity.name.." "..identity.firstname.." \n[ENVIOU]: R$ "..vRP.format(parseInt(args[3])).." \n[PARA O ID]: "..parseInt(args[2]).." "..identityu.name.." "..identityu.firstname.." "..os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S").." \r```")
+-- 			local player = vRP.getUserSource(parseInt(args[2]))
+-- 			if player == nil then
+-- 				return
+-- 			else
+-- 				local identity = vRP.getUserIdentity(user_id)
+-- 				TriggerClientEvent("Notify",player,"importante","<b>"..identity.name.." "..identity.firstname.."</b> transferiu <b>R$"..vRP.format(parseInt(args[3])).." reais</b> para sua conta do paypal.")
+-- 			end
+-- 		else
+-- 			TriggerClientEvent("Notify",source,"negado","Dinheiro insuficiente.")
+-- 				end
+-- 			end
+-- 		end
+-- 	end
+-- end)
 
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- /STATUS (PESSOAS ONLINE POR PROFISSÃO)
@@ -1160,15 +1158,15 @@ RegisterCommand('status',function(source,args,rawCommand)
     	local mec2 = vRP.getUsersByPermission("mecanico.permissao")
     	local staff2 = vRP.getUsersByPermission("admin.permissao")
 		local taxista2 = vRP.getUsersByPermission("taxista.permissao")
-		local conce2 = vRP.getUsersByPermission("concessionaria.permissao")
-		TriggerClientEvent("Notify",source,"importante","<bold><b>Jogadores</b>: <b>"..onlinePlayers2.."<br>Staff</b>: <b>"..#staff2.."<br>Policiais</b>: <b>"..#policia2.."<br>Taxistas</b>: <b>"..#taxista2.."<br>Paramédicos</b>: <b>"..#paramedico2.."<br>Concessionária</b>: <b>"..#conce2.."<br>Mecânicos</b>: <b>"..#mec2.."</b></bold>",9000)
+		-- local conce2 = vRP.getUsersByPermission("concessionaria.permissao")
+		TriggerClientEvent("Notify",source,"importante","<bold><b>Jogadores</b>: <b>"..onlinePlayers2.."<br>Staff</b>: <b>"..#staff2.."<br>Policiais</b>: <b>"..#policia2.."<br>Taxistas</b>: <b>"..#taxista2.."<br>Paramédicos</b>: <b>"..#paramedico2.."<br>Mecânicos</b>: <b>"..#mec2.."</b></bold>",9000)
 	else
     	local onlinePlayers = GetNumPlayerIndices()
     	local paramedico = vRP.getUsersByPermission("paramedico.permissao")
     	local mec = vRP.getUsersByPermission("mecanico.permissao")
     	local taxista = vRP.getUsersByPermission("taxista.permissao")
-    	local conce = vRP.getUsersByPermission("concessionaria.permissao")
-		TriggerClientEvent("Notify",source,"importante","<bold><b>Jogadores</b>: <b>"..onlinePlayers.."<br>Taxistas</b>: <b>"..#taxista.."<br>Paramédicos</b>: <b>"..#paramedico.."<br>Concessionária</b>: <b>"..#conce.."<br>Mecânicos</b>: <b>"..#mec.."</b></bold>",9000)
+    	-- local conce = vRP.getUsersByPermission("concessionaria.permissao")
+		TriggerClientEvent("Notify",source,"importante","<bold><b>Jogadores</b>: <b>"..onlinePlayers.."<br>Taxistas</b>: <b>"..#taxista.."<br>Paramédicos</b>: <b>"..#paramedico.."<br>Mecânicos</b>: <b>"..#mec.."</b></bold>",9000)
 	end
 end)	
 -----------------------------------------------------------------------------------------------------------------------------------------
@@ -1344,8 +1342,7 @@ AddEventHandler('cmg2_animations:sync654654654', function(target, animationLib,a
 			PerformHttpRequest(ac_webhook, function(err, text, headers) end, 'POST', json.encode({content = "ANTI HACK	[ID]: "..user_id.."		"..temp.."[BAN]		[MOTIVO:"..msg.."]	"..reason}), { ['Content-Type'] = 'application/json' }) 		
 			TriggerClientEvent("vrp_sound:source",source,"ban",1.0)
 			Citizen.Wait(4000)
-			source = vRP.getUserSource(user_id)
-			vRP.kick(source,"Tentativa de bug!")						
+			source = vRP.getUserSource(user_id)						
 		end
 	end
 end)
@@ -1398,13 +1395,16 @@ AddEventHandler('cmg2_animations:sync654654654_2', function(target, animationLib
 			PerformHttpRequest(ac_webhook, function(err, text, headers) end, 'POST', json.encode({content = "ANTI HACK	[ID]: "..user_id.."		"..temp.."[BAN]		[MOTIVO:"..msg.."]	"..reason}), { ['Content-Type'] = 'application/json' }) 		
 			TriggerClientEvent("vrp_sound:source",source,"ban",1.0)
 			Citizen.Wait(4000)
-			source = vRP.getUserSource(user_id)
-			vRP.kick(source,"Tentativa de bug!")						
+			source = vRP.getUserSource(user_id)						
 		end
 	end	
 end)
 
 RegisterServerEvent('cmg2_animations:stop654654654')
 AddEventHandler('cmg2_animations:stop654654654', function(targetSrc)
-	TriggerClientEvent('cmg2_animations:cl_stop654654654', targetSrc)
+	if targetSrc then
+		if vRP.getUserId(targetSrc) then
+			TriggerClientEvent('cmg2_animations:cl_stop654654654', targetSrc)
+		end
+	end
 end)

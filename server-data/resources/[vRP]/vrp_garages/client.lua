@@ -1538,7 +1538,7 @@ Citizen.CreateThread(function()
 			if not IsPedInAnyVehicle(ped) then
 				local x,y,z = table.unpack(GetEntityCoords(ped))
 				for k,v in pairs(spawn) do
-					if Vdist(x,y,z,v.x,v.y,v.z) <= 4 then
+					if Vdist(x,y,z,v.x,v.y,v.z) <= 10 then
 						idle = 5
 						DrawMarker(36,v.x,v.y,v.z-0.6,0,0,0,0.0,0,0,0.7,0.7,1.0,93,182,229,200,0,0,0,1)
 						if Vdist(x,y,z,v.x,v.y,v.z) <= 1 then

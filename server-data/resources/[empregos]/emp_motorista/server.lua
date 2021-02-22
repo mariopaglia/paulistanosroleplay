@@ -7,11 +7,11 @@ Tunnel.bindInterface("emp_motorista",emP)
 -- FUNÇÕES
 -----------------------------------------------------------------------------------------------------------------------------------------
 function emP.checkPayment(bonus)
+	vRP.antiflood(source,"motorista",3)
 	local source = source
 	local user_id = vRP.getUserId(source)
 	if user_id then
-		vRP.antiflood(source,"motorista",2)
-		local randmoney = math.random(150,200)
+		local randmoney = math.random(250,300)
 		vRP.giveMoney(user_id,randmoney)
 		TriggerClientEvent("vrp_sound:source",source,'coins',0.5)
         TriggerClientEvent("Notify",source,"sucesso","Você deixou um passageiro e ganhou <b>R$ "..vRP.format(parseInt(randmoney)).."</b>.")

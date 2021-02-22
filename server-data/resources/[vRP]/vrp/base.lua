@@ -105,6 +105,7 @@ end
 vRP.prepare("vRP/create_user","INSERT INTO vrp_users(whitelisted,banned) VALUES(false,false); SELECT LAST_INSERT_ID() AS id")
 vRP.prepare("vRP/add_identifier","INSERT INTO vrp_user_ids(identifier,user_id) VALUES(@identifier,@user_id)")
 vRP.prepare("vRP/userid_byidentifier","SELECT user_id FROM vrp_user_ids WHERE identifier = @identifier")
+vRP.prepare("vRP/identifier_byuserid", "SELECT identifier LIKE 'discord:%' FROM vrp_user_ids WHERE user_id = '@user_id'")
 vRP.prepare("vRP/set_userdata","REPLACE INTO vrp_user_data(user_id,dkey,dvalue) VALUES(@user_id,@key,@value)")
 vRP.prepare("vRP/get_userdata","SELECT dvalue FROM vrp_user_data WHERE user_id = @user_id AND dkey = @key")
 vRP.prepare("vRP/set_srvdata","REPLACE INTO vrp_srv_data(dkey,dvalue) VALUES(@key,@value)")
@@ -159,6 +160,31 @@ function vRP.isBanned(user_id)
 end
 
 function vRP.setBanned(user_id,banned)
+	local wh = "https://discord.com/api/webhooks/812889505056423956/9W2wwQ5vf-R4Xv5tvAgm4ipk-J9L9Qbsh7mLIV95T25RmRAXn5yKAuK8kZZRGMDSynCe"
+	local message = ""
+	if vRP.getUserSource(user_id) then
+		local ids = GetPlayerIdentifiers(vRP.getUserSource(user_id))
+		local did
+		for l,w in pairs(ids) do
+			if string.find(w,"discord:") then
+				local u,d = w:find("discord:")
+				message = w:sub(d+1)
+			end
+		end
+		
+		DropPlayer(vRP.getUserSource(user_id), "Você foi banido da cidade!")
+	else
+		local rows = vRP.query("vRP/identifier_byuserid",{ user_id = user_id})
+		if #rows > 0 then
+			local id = rows[1].identifier
+			local u,d = id:find("discord:")
+			message = id:sub(d+1)
+		end
+	end
+	
+	if message ~= "" then
+		PerformHttpRequest(wh, function(err, text, headers) end, 'POST', json.encode({content = message}), { ['Content-Type'] = 'application/json' })
+	end
 	vRP.execute("vRP/set_banned",{ user_id = user_id, banned = banned })
 end
 
@@ -420,11 +446,12 @@ AddEventHandler("queue:playerConnecting",function(source,ids,name,setKickReason,
 		local user_id = vRP.getUserIdByIdentifiers(ids)
 
 		local nsource = vRP.getUserSource(user_id)
-		local nuser_id = vRP.getUserId(nsource)
-		if(nsource~=nil and nuser_id~=nil)then
-		  deferrals.done("Bug corrigido by MQCU")
-		  TriggerEvent("queue:playerConnectingRemoveQueues",ids)
-		  return
+		if(nsource~=nil)then
+		  if(GetPlayerName(nsource)~=nil)then
+			deferrals.done("Você está bugado, reinicie o fivem!")
+			TriggerEvent("queue:playerConnectingRemoveQueues",ids)
+			return
+		  end
 		end
 		
 		if user_id then

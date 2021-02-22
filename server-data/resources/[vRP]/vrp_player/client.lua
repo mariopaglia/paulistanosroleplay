@@ -925,9 +925,8 @@ RegisterCommand(
 	function(source, args)
 		local vehicle = GetPlayersLastVehicle()
 		vehicletow = IsVehicleModel(vehicle, GetHashKey("flatbed"))
-		vehicletow2 = IsVehicleModel(vehicle, GetHashKey("flatbed3"))
 
-		if vehicletow or vehicletow2 and not IsPedInAnyVehicle(PlayerPedId()) then
+		if vehicletow and not IsPedInAnyVehicle(PlayerPedId()) then
 			rebocado =
 				getVehicleInDirection(
 				GetEntityCoords(PlayerPedId()),
@@ -1414,6 +1413,7 @@ end)
 RegisterNetEvent('cmg2_animations:cl_stop654654654')
 AddEventHandler('cmg2_animations:cl_stop654654654', function()
 	carryingBackInProgress = false
+	piggyBackInProgress = false
 	ClearPedSecondaryTask(GetPlayerPed(-1))
 	DetachEntity(GetPlayerPed(-1), true, false)
 end)
@@ -1525,13 +1525,6 @@ AddEventHandler('cmg2_animations:syncMe654654654', function(animationLib, animat
 	TaskPlayAnim(playerPed, animationLib, animation, 8.0, -8.0, length, controlFlag, 0, false, false, false)
 
 	Citizen.Wait(length)
-end)
-
-RegisterNetEvent('cmg2_animations:cl_stop654654654')
-AddEventHandler('cmg2_animations:cl_stop654654654', function()
-	piggyBackInProgress = false
-	ClearPedSecondaryTask(GetPlayerPed(-1))
-	DetachEntity(GetPlayerPed(-1), true, false)
 end)
 
 function GetPlayers()

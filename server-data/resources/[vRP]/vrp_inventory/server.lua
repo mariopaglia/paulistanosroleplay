@@ -421,7 +421,7 @@ local user_id = vRP.getUserId(source)
 					if vehicle then
 						if vRP.hasPermission(user_id,"mecanico.permissao") then
 							if vRPNclient.isNearCds(source, vector3(-211.1,-1324.73,30.9), 25) or vRPNclient.isNearCds(source, vector3(934.52,-951.64,39.76), 40) then
-								if vRP.tryGetInventoryItem(user_id,"repairkit",1) then
+								-- if vRP.tryGetInventoryItem(user_id,"repairkit",1) then -- Tirar o item do inventario
 									actived[user_id] = true
 									TriggerClientEvent('cancelando',source,true)
 									vRPclient._playAnim(source,false,{{"mini@repair","fixing_a_player"}},true)
@@ -432,7 +432,7 @@ local user_id = vRP.getUserId(source)
 										TriggerClientEvent('reparar',source)
 										vRPclient._stopAnim(source,false)
 									end)
-								end
+								-- end -- Tirar o item do inventário
 							else
 								TriggerClientEvent("Notify",source,"negado","<b>Kit de Reparo</b> só pode ser utilizado na mecânica")
 							end

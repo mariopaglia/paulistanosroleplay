@@ -464,7 +464,7 @@ local workgarage = {
 	["Verdes"] = {
 		"burrito3",
 	},
-	["Vermelho"] = {
+	["Vermelhos"] = {
 		"burrito3",
 	},
 	["Roxos"] = {
@@ -477,7 +477,7 @@ local workgarage = {
 		"gburrito",
 	},
 	["Bennys"] = {
-		"flatbed3",
+		"flatbed",
 		"slamvan3",
 	},
 	["SportRace"] = {
@@ -510,7 +510,6 @@ local workgarage = {
 		"paliopmrp1",
 		"spacerp",
 		"hilux15ft",
-		"spin19rp",
 		"trail19cfp",
 		"xrerpm",
 		"xtrocam",
@@ -740,7 +739,7 @@ function src.spawnVehicles(name,use)
 			local multas = json.decode(value) or 0
 			if not vCLIENT.returnVehicle(source,name) then
 				local vehicle = vRP.query("creative/get_vehicles",{ user_id = parseInt(user_id), vehicle = name })
-				local tuning = vRP.getSData("custom:u"..user_id.."veh_"..name) or {}
+				local tuning = vRP.getSData("custom:u"..user_id.."veh_"..name)
 				local custom = json.decode(tuning) or {}
 				if vehicle[1] ~= nil then
 					if parseInt(os.time()) <= parseInt(vehicle[1].time+24*60*60) then
@@ -850,6 +849,7 @@ AddEventHandler("desmancheVehicles",function()
 	vRP.antiflood(source,"desmancheVehicles",3)
 	local source = source
 	local user_id = vRP.getUserId(source)
+	vRP.antiflood(source,"DesmancheVehicles",3)
 	if user_id then
 		local vehicle,vnetid,placa,vname,lock,banned = vRPclient.vehList(source,7)
 		if vehicle and placa then

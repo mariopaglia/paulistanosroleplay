@@ -252,13 +252,17 @@ RegisterCommand('addcar',function(source,args,rawCommand)
     local nplayer = vRP.getUserId(parseInt(args[2]))
     if vRP.hasPermission(user_id,"admin.permissao") then
         if args[1] and args[2] then
-            local nuser_id = vRP.getUserId(nplayer)
-            local identity = vRP.getUserIdentity(user_id)
-            local identitynu = vRP.getUserIdentity(nuser_id)
-            vRP.execute("creative/add_vehicle",{ user_id = parseInt(args[2]), vehicle = args[1], ipva = parseInt(os.time()) }) 
-            vRP.execute("creative/set_ipva",{ user_id = parseInt(args[2]), vehicle = args[1], ipva = parseInt(os.time()) })
-            TriggerClientEvent("Notify",source,"sucesso","Voce adicionou o veículo <b>"..args[1].."</b> para o Passaporte: <b>"..parseInt(args[2]).."</b>.") 
-            SendWebhookMessage(webhookaddremcar,"```prolog\n[ID]: "..user_id.." "..identity.name.." "..identity.firstname.." \n[ADICIONOU]: "..args[1].." \n[PARA O ID]: "..nuser_id.." "..identitynu.name.." "..identitynu.firstname.." "..os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S").." \r```") 
+			if vRPclient.vehicleExist(source, args[1]) then
+				local nuser_id = vRP.getUserId(nplayer)
+				local identity = vRP.getUserIdentity(user_id)
+				local identitynu = vRP.getUserIdentity(nuser_id)
+				vRP.execute("creative/add_vehicle",{ user_id = parseInt(args[2]), vehicle = args[1], ipva = parseInt(os.time()) }) 
+				vRP.execute("creative/set_ipva",{ user_id = parseInt(args[2]), vehicle = args[1], ipva = parseInt(os.time()) })
+				TriggerClientEvent("Notify",source,"sucesso","Voce adicionou o veículo <b>"..args[1].."</b> para o Passaporte: <b>"..parseInt(args[2]).."</b>.") 
+				SendWebhookMessage(webhookaddremcar,"```prolog\n[ID]: "..user_id.." "..identity.name.." "..identity.firstname.." \n[ADICIONOU]: "..args[1].." \n[PARA O ID]: "..nuser_id.." "..identitynu.name.." "..identitynu.firstname.." "..os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S").." \r```") 
+			else
+				TriggerClientEvent("Notify",source,"negado","Nome incorreto para o veículo.") 
+			end
         end
     end
 end)
@@ -349,7 +353,6 @@ RegisterCommand('ban',function(source,args,rawCommand)
         if args[1] then
             local id = vRP.getUserSource(parseInt(args[1]))
             vRP.setBanned(parseInt(args[1]),true)
-            vRP.kick(id,"Você foi banido da cidade.")
             vRP.setWhitelisted(parseInt(args[1]),false)
         end
     end
@@ -610,7 +613,7 @@ end
 RegisterCommand('vroupas', function(source, args, rawCommand)
     local user_id = vRP.getUserId(source)
     local custom = vRPclient.getCustomization(source)
-    if vRP.hasPermission(user_id,"admin.permissao") or vRP.hasPermission(user_id,"vroupas.permissao") then
+    if vRP.hasPermission(user_id,"admin.permissao") then
           if player_customs[source] then
             player_customs[source] = nil
             vRPclient._removeDiv(source,"customization")

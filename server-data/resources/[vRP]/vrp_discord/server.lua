@@ -15,7 +15,7 @@ local connect = {
         {
             ["color"] = "65280",
             ["title"] = "Conectado no servidor",
-            ["description"] = "Player: **"..name.."**\nIP: **"..ip.."**",
+            ["description"] = "Player: **"..name.."**\nIP: **"..(ip or '0.0.0.0').."**",
 	        ["footer"] = {
                 ["text"] = communityname,
                 ["icon_url"] = communtiylogo,

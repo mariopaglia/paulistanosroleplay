@@ -15,47 +15,43 @@ local diesel = 1
 -- PAYLIST
 -----------------------------------------------------------------------------------------------------------------------------------------
 local paylist = {
+	-- 40 segundos para andar 1km
 	["diesel"] = {
-		[1] = { pay = math.random(6250,6750) },
-		[2] = { pay = math.random(6250,6750) },
-		[3] = { pay = math.random(6250,6750) },
-		[4] = { pay = math.random(6350,7000) },
-		[5] = { pay = math.random(9500,9700) },
-		[6] = { pay = math.random(5560,5850) }
+		[1] = { pay = math.random(5000,6000) }, -- (7.53km) x 2 = 15,06km = 10m
+		[2] = { pay = math.random(4400,5400) }, -- (7.20km) x 2 = 14,4km = 9m
+		[3] = { pay = math.random(4400,5400) }, -- (7.15km) x 2 = 14,3km = 9m
+		[4] = { pay = math.random(5600,6600) }, -- (8.29km) x 2 = 16,58km = 11m
+		[5] = { pay = math.random(8000,9000) }, -- (11.46km) x 2 = 22,92km = 15m
+		[6] = { pay = math.random(4400,5400) } -- (6.90km) x 2 = 13,8km = 9m
 	},
 	["gasolina"] = {
-		[1] = { pay = math.random(7500,7800) },
-		[2] = { pay = math.random(4800,5200) },
-		[3] = { pay = math.random(2900,3300) },
-		[4] = { pay = math.random(2550,2800) },
-		[5] = { pay = math.random(1900,2100) },
-		[6] = { pay = math.random(2500,2650) },
-		[7] = { pay = math.random(4800,4950) }
-		--[8] = { pay = math.random(360,460) },  -- Sem Valor Alterado
-		--[9] = { pay = math.random(430,500) },
-		--[10] = { pay = math.random(1040,1150) },
-		--[11] = { pay = math.random(1090,1190) },
-		--[12] = { pay = math.random(870,970) }
+		[1] = { pay = math.random(6200,7200) }, -- (9.11km) x 2 = 18,22km = 12m
+		[2] = { pay = math.random(3200,4200) }, -- (5.68km) x 2 = 11,36km = 7m
+		[3] = { pay = math.random(2600,3600) }, -- (4.88km) x 2 = 9,76km = 6m
+		[4] = { pay = math.random(1400,2400) }, -- (2.92km) x 2 = 5,84km = 4m
+		[5] = { pay = math.random(1400,2400) }, -- (2.75km) x 2 = 5,50km = 4m
+		[6] = { pay = math.random(2000,3000) }, -- (3.75km) x 2 = 7,50km = 5m
+		[7] = { pay = math.random(3200,4200) } -- (5.01km) x 2 = 10,02km = 7m
 	},
 	["carros"] = {
-		[1] = { pay = math.random(3600,3800) },
-		[2] = { pay = math.random(2600,2700) },
-		[3] = { pay = math.random(3300,3350) },
-		[4] = { pay = math.random(2800,2950) },
-		[5] = { pay = math.random(5750,5950) },
-		[6] = { pay = math.random(2600,2750) }
+		[1] = { pay = math.random(2600,3600) }, -- (4.51km) x 2 = 9,02km = 6m
+		[2] = { pay = math.random(1400,2400) }, -- (3.34km) x 2 = 6,68km = 4m
+		[3] = { pay = math.random(2000,3000) }, -- (4.08km) x 2 = 8,16km = 5m
+		[4] = { pay = math.random(2000,3000) }, -- (3.51km) x 2 = 7,02km = 5m
+		[5] = { pay = math.random(4400,5400) }, -- (7.05km) x 2 = 14,1km = 9m
+		[6] = { pay = math.random(1400,2400) } -- (3.28km) x 2 = 6,56km = 4m
 	},
 	["madeira"] = {
-		[1] = { pay = math.random(9250,9800) },
-		[2] = { pay = math.random(4320,4520) },
-		[3] = { pay = math.random(2250,2650) },
-		[4] = { pay = math.random(3300,3500) }
+		[1] = { pay = math.random(8000,9000) }, -- (11.05km) x 2 = 22,10km = 15m
+		[2] = { pay = math.random(5600,6600) }, -- (8.02km) x 2 = 16,04km = 11m
+		[3] = { pay = math.random(1400,2400) }, -- (2.84km) x 2 = 5,68km = 4m
+		[4] = { pay = math.random(2000,3000) } -- (4.08km) x 2 = 8,16km = 5m
 	},
 	["show"] = {
-		[1] = { pay = math.random(6400,6600) },
-		[2] = { pay = math.random(3700,3950) },
-		[3] = { pay = math.random(4000,4300) },
-		[4] = { pay = math.random(2300,2350) }
+		[1] = { pay = math.random(5000,6000) }, -- (7.80km) x 2 = 15,60km = 10m
+		[2] = { pay = math.random(2600,3600) }, -- (4.72km) x 2 = 9,44km = 6m
+		[3] = { pay = math.random(2600,3600) }, -- (4.94km) x 2 = 9,88km = 6m
+		[4] = { pay = math.random(1400,2400) } -- (2.69km) x 2 = 5,38km = 4m
 	}
 }
 -----------------------------------------------------------------------------------------------------------------------------------------
@@ -68,7 +64,7 @@ function emP.checkPayment(id,mod,health)
 		vRP.antiflood(source,"caminhoneiro",3)
 		vRP.giveMoney(user_id,parseInt(paylist[mod][id].pay+(health-700)))
 		TriggerClientEvent("vrp_sound:source",source,'coins',0.5)
-		TriggerClientEvent("Notify",source,"sucesso","Você recebeu <b>$"..vRP.format(parseInt(paylist[mod][id].pay+(health-700))).." dólares</b>.")
+		TriggerClientEvent("Notify",source,"sucesso","Você recebeu <b>R$ "..vRP.format(parseInt(paylist[mod][id].pay+(health-700))).."</b>.")
 		if mod == "carros" then
 			local value = vRP.getSData("meta:concessionaria")
 			local metas = json.decode(value) or 0

@@ -66,14 +66,10 @@ Citizen.CreateThread(function()
 				if distance <= 1.2 then
 					drawTxt("PRESSIONE  ~r~E~w~  PARA INICIAR AS ENTREGAS DE ~g~DROGAS~w~",4,0.5,0.93,0.50,255,255,255,180)
 					if IsControlJustPressed(0,38) then
-						if emP.checkPermission() or emP.checkPermission2() or emP.checkPermission3() then
-							TriggerEvent("Notify","negado","Você não pode realizar entregas de drogas")
-						else
-							servico = true
-							selecionado = math.random(30)
-							CriandoBlip(locs,selecionado)
-							TriggerEvent("Notify","sucesso","Você entrou em serviço.")
-						end
+						servico = true
+						selecionado = math.random(30)
+						CriandoBlip(locs,selecionado)
+						TriggerEvent("Notify","sucesso","Você entrou em serviço.")
 					end
 				end
 			end

@@ -58,7 +58,7 @@ function emP.checkPayment()
     end
 
 	if user_id then
-		vRP.antiflood(source,"drogas",3)
+		vRP.antiflood(source,"drogas",5)
 		if vRP.getInventoryItemAmount(user_id,"maconha") >= 1 then
 			vRP.tryGetInventoryItem(user_id,"maconha",1)
 			vRP.giveInventoryItem(user_id,"dinheirosujo", (parseInt(0) + bonus) * 1)

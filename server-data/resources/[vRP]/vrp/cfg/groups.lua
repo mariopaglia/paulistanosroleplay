@@ -446,7 +446,6 @@ cfg.groups = {
 		"policia.permissao",
 		"pmesp.permissao",
 		"subcomando.permissao",
-		"vroupas.permissao",
 		"player.blips",
 		"polpar.permissao"
 	},
@@ -467,7 +466,6 @@ cfg.groups = {
 		"policia.permissao",
 		"pmesp.permissao",
 		"comandante.permissao",
-		"vroupas.permissao",
 		"player.blips",
 		"polpar.permissao"
 	},
@@ -555,7 +553,6 @@ cfg.groups = {
 		"policia.permissao",
 		"pcivil.permissao",
 		"delegado.permissao",
-		"vroupas.permissao",
 		"player.blips",
 		"polpar.permissao"
 	},
@@ -679,7 +676,6 @@ cfg.groups = {
 		"paramedico.permissao",
 		"reviver.permissao",
 		"diretor.permissao",
-		"vroupas.permissao",
 		"player.blips",
 		"polpar.permissao"
 	},

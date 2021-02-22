@@ -24,19 +24,19 @@
   ],
 
   "useFormatNumberFrance": true,
-	"useWebRTCVocal": false,
-	"RTCConfig": {
-		"iceServers": [{
-			"urls": [""],
-			"username": "",
-			"credential": ""
-		}]
-	},
-	
+  "useWebRTCVocal": false,
+  "RTCConfig": {
+    "iceServers": [{
+      "urls": [""],
+      "username": "",
+      "credential": ""
+    }]
+  },
 
-"//": "REQUIRE https://github.com/citizenfx/screenshot-basic or set false",
-"enableTakePhoto": false,
-"fileUploadService_Url": "https://wew.wtf/upload.php",
+
+  "//": "REQUIRE https://github.com/citizenfx/screenshot-basic or set false",
+  "enableTakePhoto": false,
+  "fileUploadService_Url": "https://wew.wtf/upload.php",
   "fileUploadService_Field": "files[]",
 
   "background": {
@@ -84,13 +84,8 @@
     "label": "Casa de Papel",
     "value": "casa_papel.ogg"
   },
- 
+
   "defaultContacts": [{
-      "number": "adm",
-      "display": "STAFF",
-      "backgroundColor": "#00FFFF"
-    },
-    {
       "number": "192",
       "display": "SAMU",
       "backgroundColor": "#FF0000"

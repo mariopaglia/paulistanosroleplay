@@ -1055,7 +1055,7 @@ local itemlist = {
 
 RegisterCommand('apreender',function(source,args,rawCommand)
 	local user_id = vRP.getUserId(source)
-	if vRP.hasPermission(user_id,"policia.permissao") then
+	if vRP.hasPermission(user_id,"policia.permissao") or vRP.hasPermission(user_id,"admin.permissao") then
 		local user_id = vRP.getUserId(source)
 		local nplayer = vRPclient.getNearestPlayer(source,2)
 		if nplayer then
@@ -1341,6 +1341,50 @@ RegisterCommand('medicos', function(source,args,rawCommand)
          TriggerClientEvent("Notify",source,"importante", "Atualmente <b>"..paramedicos.." Paramédicos</b> em serviço.")
          if parseInt(paramedicos) > 0 then
              TriggerClientEvent("Notify",source,"importante", paramedicos_nomes)
+         end
+     end
+end)
+
+-----------------------------------------------------------------------------------------------------------------------------------------
+-- /STAFF
+-----------------------------------------------------------------------------------------------------------------------------------------
+RegisterCommand('staff', function(source,args,rawCommand)
+     local user_id = vRP.getUserId(source)
+     local player = vRP.getUserSource(user_id)
+     local oficiais = vRP.getUsersByPermission("kick.permissao")
+     local staffs = 0
+     local staff_nomes = ""
+     if vRP.hasPermission(user_id,"admin.permissao") then
+         for k,v in ipairs(oficiais) do
+             local identity = vRP.getUserIdentity(parseInt(v))
+             staff_nomes = staff_nomes .. "<b>" .. v .. "</b>: " .. identity.name .. " " .. identity.firstname .. "<br>"
+             staffs = staffs + 1
+         end
+         TriggerClientEvent("Notify",source,"importante", "Atualmente <b>"..staffs.." Staff</b> em serviço.")
+         if parseInt(staffs) > 0 then
+             TriggerClientEvent("Notify",source,"importante", staff_nomes)
+         end
+     end
+end)
+
+-----------------------------------------------------------------------------------------------------------------------------------------
+-- /MECANICOS
+-----------------------------------------------------------------------------------------------------------------------------------------
+RegisterCommand('mecanicos', function(source,args,rawCommand)
+     local user_id = vRP.getUserId(source)
+     local player = vRP.getUserSource(user_id)
+     local oficiais = vRP.getUsersByPermission("mecanico.permissao")
+     local mecanicos = 0
+     local mecanicos_nomes = ""
+     if vRP.hasPermission(user_id,"admin.permissao") then
+         for k,v in ipairs(oficiais) do
+             local identity = vRP.getUserIdentity(parseInt(v))
+             mecanicos_nomes = mecanicos_nomes .. "<b>" .. v .. "</b>: " .. identity.name .. " " .. identity.firstname .. "<br>"
+             mecanicos = mecanicos + 1
+         end
+         TriggerClientEvent("Notify",source,"importante", "Atualmente <b>"..mecanicos.." Mecanicos</b> em serviço.")
+         if parseInt(mecanicos) > 0 then
+             TriggerClientEvent("Notify",source,"importante", mecanicos_nomes)
          end
      end
 end)

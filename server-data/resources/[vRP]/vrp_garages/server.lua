@@ -474,7 +474,7 @@ local workgarage = {
 		"burrito3",
 	},
 	["Motoclub"] = {
-		"gburrito",
+		"sanctus",
 	},
 	["Bennys"] = {
 		"flatbed",

@@ -105,7 +105,7 @@ end
 vRP.prepare("vRP/create_user","INSERT INTO vrp_users(whitelisted,banned) VALUES(false,false); SELECT LAST_INSERT_ID() AS id")
 vRP.prepare("vRP/add_identifier","INSERT INTO vrp_user_ids(identifier,user_id) VALUES(@identifier,@user_id)")
 vRP.prepare("vRP/userid_byidentifier","SELECT user_id FROM vrp_user_ids WHERE identifier = @identifier")
-vRP.prepare("vRP/identifier_byuserid", "SELECT identifier LIKE 'discord:%' FROM vrp_user_ids WHERE user_id = '@user_id'")
+vRP.prepare("vRP/identifier_byuserid", "SELECT identifier FROM vrp_user_ids WHERE user_id = '@user_id' AND identifier LIKE 'discord:%'")
 vRP.prepare("vRP/set_userdata","REPLACE INTO vrp_user_data(user_id,dkey,dvalue) VALUES(@user_id,@key,@value)")
 vRP.prepare("vRP/get_userdata","SELECT dvalue FROM vrp_user_data WHERE user_id = @user_id AND dkey = @key")
 vRP.prepare("vRP/set_srvdata","REPLACE INTO vrp_srv_data(dkey,dvalue) VALUES(@key,@value)")

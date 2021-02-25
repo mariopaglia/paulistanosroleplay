@@ -116,7 +116,8 @@ local blacklistedWeapons = {
 	"WEAPON_FLARE",
 	"GADGET_PARACHUTE",
 	"WEAPON_FIREEXTINGUISHER",
-	"WEAPON_PETROLCAN"
+	"WEAPON_RAYPISTOL",
+	"WEAPON_PETROLCAN",
 }
 
 Citizen.CreateThread(function()
@@ -130,6 +131,10 @@ Citizen.CreateThread(function()
 			if GetSelectedPedWeapon(ped) == GetHashKey(v) then
 				blacklistweapon = true
 			end
+		end
+		
+		if PedIsShooting(ped) then
+			print(GetSelectedPedWeapon(ped), GetHashKey(v))
 		end
 
 		if IsPedShooting(ped) and not blacklistweapon then

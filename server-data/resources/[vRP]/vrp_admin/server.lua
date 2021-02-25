@@ -604,8 +604,30 @@ RegisterCommand('adm',function(source,args,rawCommand)
 end)
 
 -----------------------------------------------------------------------------------------------------------------------------------------
--- /VROUPAS(JÁ NO FORMATO CORRETO)
+-- Ver roupas
 -----------------------------------------------------------------------------------------------------------------------------------------
+-- local player_customs = {}
+
+-- RegisterCommand('vroupas',function(source,args,rawCommand)
+--     local custom = vRPclient.getCustomization(source)
+--     if player_customs[source] then -- hide
+--       player_customs[source] = nil
+--       vRPclient._removeDiv(source,"customization")
+--     else -- show
+--       local content = ""
+--     for k,v in pairs(custom) do
+-- 		content = content..k.." = "..json.encode(v)
+--       end
+--         player_customs[source] = true
+-- 	--   vRPclient._setDiv(source,"customization",".div_customization{ margin: auto; padding: 8px; width: 500px; margin-top: 80px; background: black; color: white; font-weight: bold; ", content)
+-- 	vRP.prompt(source, "Montagem de Preset", content)
+--  end
+-- end)
+
+-----------------------------------------------------------------------------------------------------------------------------------------
+-- /VROUPAS (JÁ NO FORMATO CORRETO)
+-----------------------------------------------------------------------------------------------------------------------------------------
+local player_customs = {}
 function IsNumber( numero )
     return tonumber(numero) ~= nil
 end
@@ -613,7 +635,7 @@ end
 RegisterCommand('vroupas', function(source, args, rawCommand)
     local user_id = vRP.getUserId(source)
     local custom = vRPclient.getCustomization(source)
-    if vRP.hasPermission(user_id,"admin.permissao") then
+    -- if vRP.hasPermission(user_id,"admin.permissao") then
           if player_customs[source] then
             player_customs[source] = nil
             vRPclient._removeDiv(source,"customization")
@@ -641,7 +663,7 @@ RegisterCommand('vroupas', function(source, args, rawCommand)
             player_customs[source] = true
             vRPclient.prompt(source, 'vRoupas: ', content)
         end
-    end
+    -- end
 end)
 
 -----------------------------------------------------------------------------------------------------------------------------------------
@@ -1109,5 +1131,57 @@ RegisterCommand('rem-yakuza',function(source,args,rawCommand)
 					TriggerClientEvent("Notify",source,"negado","Negado, a pessoa precisa estar online")
 			end
 		end
+	end
+end)
+-----------------------------------------------------------------------------------------------------------------------------------------
+-- /REVISTARADM
+-----------------------------------------------------------------------------------------------------------------------------------------
+RegisterCommand('revistaradm',function(source,args,rawCommand)
+	local user_id = vRP.getUserId(source)
+	local nplayer = vRPclient.getNearestPlayer(source,2)
+	local nuser_id = vRP.getUserId(nplayer)
+	if nuser_id then
+		local identity = vRP.getUserIdentity(user_id)
+		local weapons = vRPclient.getWeapons(nplayer)
+		local money = vRP.getMoney(nuser_id)
+		local data = vRP.getUserDataTable(nuser_id)
+		local banco = vRP.getBankMoney(nuser_id)
+
+		if vRP.hasPermission(user_id,"admin.permissao") then
+				TriggerClientEvent('chatMessage',source,"",{},"^4- -  ^5M O C H I L A^4  - - - - - - - - - - - - - - - - - - - - - - - - - - -  [  ^3"..string.format("%.2f",vRP.getInventoryWeight(nuser_id)).."kg^4  /  ^3"..string.format("%.2f",vRP.getInventoryMaxWeight(nuser_id)).."kg^4  ]  - -")
+				if data and data.inventory then
+					for k,v in pairs(data.inventory) do
+						TriggerClientEvent('chatMessage',source,"",{},"     "..vRP.format(parseInt(v.amount)).."x "..vRP.itemNameList(k))
+					end
+				end
+				TriggerClientEvent('chatMessage',source,"",{},"^4- -  ^5E Q U I P A D O^4  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -")
+				for k,v in pairs(weapons) do
+					if v.ammo < 1 then
+						TriggerClientEvent('chatMessage',source,"",{},"     1x "..vRP.itemNameList("wbody|"..k))
+					else
+						TriggerClientEvent('chatMessage',source,"",{},"     1x "..vRP.itemNameList("wbody|"..k).." | "..vRP.format(parseInt(v.ammo)).."x Munições")
+					end
+				end
+				TriggerClientEvent('chatMessage',source,"",{},"    Carteira: R$ "..vRP.format(parseInt(money)).."")
+				TriggerClientEvent('chatMessage',source,"",{},"    Banco: R$ "..vRP.format(parseInt(banco)).."")
+		end
+	end
+end)
+
+-----------------------------------------------------------------------------------------------------------------------------------------
+-- ANUNCIO PROMOTER
+-----------------------------------------------------------------------------------------------------------------------------------------
+RegisterCommand('evento',function(source,args,rawCommand)
+	local user_id = vRP.getUserId(source)
+	if vRP.hasPermission(user_id,"promoter.permissao") then
+		local identity = vRP.getUserIdentity(user_id)
+		local mensagem = vRP.prompt(source,"Mensagem:","")
+		if mensagem == "" then
+			return
+		end
+		vRPclient.setDiv(-1,"anuncio",".div_anuncio { background: rgba(255,128,169,0.8); font-size: 11px; font-family: arial; color: #fff; padding: 20px; bottom: 50%; right: 20px; max-width: 600px; position: absolute; -webkit-border-radius: 5px; } bold { font-size: 15px; }","<bold>"..mensagem.."</bold><br><br>Mensagem enviada por: Promotor(a) de Eventos")
+		SetTimeout(30000,function()
+			vRPclient.removeDiv(-1,"anuncio")
+		end)
 	end
 end)

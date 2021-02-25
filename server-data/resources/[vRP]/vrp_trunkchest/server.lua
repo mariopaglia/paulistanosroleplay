@@ -86,10 +86,10 @@ function vRPN.storeItem(itemName,amount)
 		local user_id = vRP.getUserId(source)
 		local identity = vRP.getUserIdentity(user_id)
 		if user_id and actived[user_id] == 0 or not actived[user_id] then
-			if string.match(itemName,"dinheirosujo") then
-				TriggerClientEvent("Notify",source,"importante","Não pode guardar este item em veículos.",8000)
-				return
-			end
+			-- if string.match(itemName,"dinheirosujo") then
+			-- 	TriggerClientEvent("Notify",source,"importante","Não pode guardar este item em veículos.",8000)
+			-- 	return
+			-- end
 
 			local data = vRP.getSData(uchests[user_id])
 			local items = json.decode(data) or {}

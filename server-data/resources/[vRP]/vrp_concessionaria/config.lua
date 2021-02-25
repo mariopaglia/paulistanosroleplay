@@ -182,7 +182,6 @@ Config.Veiculos = {
 			{title = "bati2", model = "bati2", mala = 10, preco = 900000, estoque = 5},
 			{title = "akuma", model = "akuma", mala = 10, preco = 940000, estoque = 5},
 			{title = "hakuchou2", model = "hakuchou2", mala = 05, preco = 1000000, estoque = 5},
-			{title = "sanctus", model = "sanctus", mala = 15, preco = 1000000, estoque = 5},
             {title = "cbrr", model = "cbrr", mala = 0, preco = 1500000, estoque = 10},
             {title = "hornet", model = "hornet", mala = 0, preco = 1600000, estoque = 10},
             {title = "r6", model = "r6", mala = 0, preco = 1700000, estoque = 10},

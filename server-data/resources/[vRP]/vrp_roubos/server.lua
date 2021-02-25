@@ -55,7 +55,7 @@ local lojas = {
 }
 
 local outros = {
-	{ id = 26 , nome = "Vanilla" , segundos = 120 , cops = 6 , recompensa = math.random(90000,150000) },
+	{ id = 26 , nome = "Açougue" , segundos = 120 , cops = 6 , recompensa = math.random(90000,150000) },
 	{ id = 27 , nome = "Yellow Jack" , segundos = 120 , cops = 5 , recompensa = math.random(90000,150000) },
 }
 -----------------------------------------------------------------------------------------------------------------------------------------

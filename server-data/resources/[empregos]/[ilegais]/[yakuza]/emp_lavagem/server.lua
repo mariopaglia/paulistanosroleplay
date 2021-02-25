@@ -35,6 +35,7 @@ function lav.checkDinheiro()
 	end
 end
 function lav.checkPayment()
+	vRP.antiflood(source,"emp_lavagem",3)
     local source = source
     local user_id = vRP.getUserId(source)
     local policia = vRP.getUsersByPermission("policia.permissao")

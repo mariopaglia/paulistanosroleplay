@@ -1371,9 +1371,10 @@ RegisterCommand("carregar",function(source, args)
 		carryingBackInProgress = false
 		ClearPedSecondaryTask(GetPlayerPed(-1))
 		DetachEntity(GetPlayerPed(-1), true, false)
-		local closestPlayer = GetClosestPlayer(3)
-		target = GetPlayerServerId(closestPlayer)
-		TriggerServerEvent("cmg2_animations:stop654654654",target)
+		local closestPlayer = vRP.getNearestPlayer(2)
+		if closestPlayer then
+			TriggerServerEvent("cmg2_animations:stop654654654",closestPlayer)
+		end
 	end
 end,false)
 
@@ -1397,7 +1398,6 @@ end)
 RegisterNetEvent('cmg2_animations:syncMe654654654')
 AddEventHandler('cmg2_animations:syncMe654654654', function(animationLib, animation,length,controlFlag,animFlag)
 	local playerPed = GetPlayerPed(-1)
-	--print("triggered cmg2_animations:syncMe654654654")
 	RequestAnimDict(animationLib)
 
 	while not HasAnimDictLoaded(animationLib) do
@@ -1488,9 +1488,10 @@ RegisterCommand("cavalinho",function(source, args)
 		piggyBackInProgress = false
 		ClearPedSecondaryTask(GetPlayerPed(-1))
 		DetachEntity(GetPlayerPed(-1), true, false)
-		local closestPlayer = GetClosestPlayer(3)
-		target = GetPlayerServerId(closestPlayer)
-		TriggerServerEvent("cmg2_animations:stop654654654",target)
+		local closestPlayer = vRP.getNearestPlayer(2)
+		if closestPlayer then
+			TriggerServerEvent("cmg2_animations:stop654654654",closestPlayer)
+		end
 	end
 end,false)
 
@@ -1499,7 +1500,6 @@ AddEventHandler('cmg2_animations:syncTarget654654654', function(target, animatio
 	local playerPed = GetPlayerPed(-1)
 	local targetPed = GetPlayerPed(GetPlayerFromServerId(target))
 	piggyBackInProgress = true
-	--print("triggered cmg2_animations:syncTarget654654654")
 	RequestAnimDict(animationLib)
 
 	while not HasAnimDictLoaded(animationLib) do
@@ -1510,60 +1510,6 @@ AddEventHandler('cmg2_animations:syncTarget654654654', function(target, animatio
 	if controlFlag == nil then controlFlag = 0 end
 	TaskPlayAnim(playerPed, animationLib, animation2, 8.0, -8.0, length, controlFlag, 0, false, false, false)
 end)
-
-RegisterNetEvent('cmg2_animations:syncMe654654654')
-AddEventHandler('cmg2_animations:syncMe654654654', function(animationLib, animation,length,controlFlag,animFlag)
-	local playerPed = GetPlayerPed(-1)
-	--print("triggered cmg2_animations:syncMe654654654")
-	RequestAnimDict(animationLib)
-
-	while not HasAnimDictLoaded(animationLib) do
-		Citizen.Wait(10)
-	end
-	Wait(500)
-	if controlFlag == nil then controlFlag = 0 end
-	TaskPlayAnim(playerPed, animationLib, animation, 8.0, -8.0, length, controlFlag, 0, false, false, false)
-
-	Citizen.Wait(length)
-end)
-
-function GetPlayers()
-    local players = {}
-
-    for i = 0, 255 do
-        if NetworkIsPlayerActive(i) then
-            table.insert(players, i)
-        end
-    end
-
-    return players
-end
-
-function GetClosestPlayer(radius)
-    local players = GetPlayers()
-    local closestDistance = -1
-    local closestPlayer = -1
-    local ply = GetPlayerPed(-1)
-    local plyCoords = GetEntityCoords(ply, 0)
-
-    for index,value in ipairs(players) do
-        local target = GetPlayerPed(value)
-        if(target ~= ply) then
-            local targetCoords = GetEntityCoords(GetPlayerPed(value), 0)
-            local distance = GetDistanceBetweenCoords(targetCoords['x'], targetCoords['y'], targetCoords['z'], plyCoords['x'], plyCoords['y'], plyCoords['z'], true)
-            if(closestDistance == -1 or closestDistance > distance) then
-                closestPlayer = value
-                closestDistance = distance
-            end
-        end
-    end
-	--print("closest player is dist: " .. tostring(closestDistance))
-	if closestDistance <= radius then
-		return closestPlayer
-	else
-		return nil
-	end
-end
 
 -----------------------------------------------------------------
 -- PEGAR DE REFEM
@@ -1725,32 +1671,6 @@ function GetPlayers()
     end
 
     return players
-end
-
-function GetClosestPlayer(radius)
-    local players = GetPlayers()
-    local closestDistance = -1
-    local closestPlayer = -1
-    local ply = GetPlayerPed(-1)
-    local plyCoords = GetEntityCoords(ply, 0)
-
-    for index,value in ipairs(players) do
-        local target = GetPlayerPed(value)
-        if(target ~= ply) then
-            local targetCoords = GetEntityCoords(GetPlayerPed(value), 0)
-            local distance = GetDistanceBetweenCoords(targetCoords['x'], targetCoords['y'], targetCoords['z'], plyCoords['x'], plyCoords['y'], plyCoords['z'], true)
-            if(closestDistance == -1 or closestDistance > distance) then
-                closestPlayer = value
-                closestDistance = distance
-            end
-        end
-    end
-	--print("closest player is dist: " .. tostring(closestDistance))
-	if closestDistance <= radius then
-		return closestPlayer
-	else
-		return nil
-	end
 end
 
 Citizen.CreateThread(function()

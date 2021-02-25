@@ -6,7 +6,7 @@ Tunnel.bindInterface("emp_motorista",emP)
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- FUNÇÕES
 -----------------------------------------------------------------------------------------------------------------------------------------
-function emP.checkPayment(bonus)
+function emP.checkPayment()
 	vRP.antiflood(source,"motorista",3)
 	local source = source
 	local user_id = vRP.getUserId(source)

@@ -42,6 +42,7 @@ end
 -- PAGAMENTO
 -----------------------------------------------------------------------------------------------------------------------------------------
 function emP.checkPayment()
+	vRP.antiflood(source,"entrega_drogas",3)
 	local source = source
 	local user_id = vRP.getUserId(source)
 	local policia = vRP.getUsersByPermission("policia.permissao")

@@ -9,7 +9,7 @@ server_scripts {
 	"modules/gui.lua",
 	"modules/group.lua",
 	"modules/player_state.lua",
-	"modules/business.lua",
+	-- "modules/business.lua",
 	"modules/map.lua",
 	"modules/money.lua",
 	"modules/inventory.lua",

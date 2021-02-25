@@ -330,11 +330,11 @@ local user_id = vRP.getUserId(source)
 			elseif itemName == "masterpick" then
 				local vehicle,vnetid,placa,vname,lock,banned,trunk,model,street = vRPclient.vehList(source,7)
 				local policia = vRP.getUsersByPermission("policia.permissao")
-				if #policia > 1 then
+				if #policia < 0 then
 					TriggerClientEvent("Notify",source,"importante","Número insuficiente de policiais no momento para iniciar o roubo.")
 					return true
 				end
-				if vRP.hasPermission(user_id,"policia.permissao") then
+				if vRP.hasPermission(user_id,"policia.permissao") or vRP.hasPermission(user_id,"admin.permissao") then
 					TriggerEvent("setPlateEveryone",placa)
 					vGARAGE.vehicleClientLock(-1,vnetid,lock)
 					TriggerClientEvent("vrp_sound:source",source,'lock',0.5)

@@ -85,7 +85,7 @@ AddEventHandler('tratamento-macas',function()
 	TriggerEvent("cancelando",true)
 	repeat
 		SetEntityHealth(PlayerPedId(),GetEntityHealth(PlayerPedId())+1)
-		Citizen.Wait(2000)
+		Citizen.Wait(1000)
 	until GetEntityHealth(PlayerPedId()) >= 400 or GetEntityHealth(PlayerPedId()) <= 100
 		TriggerEvent("Notify","importante","Tratamento concluido.")
 		TriggerEvent("cancelando",false)

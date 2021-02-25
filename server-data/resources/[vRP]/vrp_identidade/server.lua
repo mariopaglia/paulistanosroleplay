@@ -33,7 +33,24 @@ function vRPN.Identidade()
 		local bills = vRP.getBills(user_id)
 		local job = vRPN.getUserGroupByType(user_id,"job")
 		local cargo = vRPN.getUserGroupByType(user_id,"cargo")
-		local vip = vRPN.getUserGroupByType(user_id,"vip")
+		-- local vip = vRPN.getUserGroupByType(user_id,"vip2")
+
+		if vRPN.getUserGroupByType(user_id,"vip6") == "Diamante" then
+			vip = vRPN.getUserGroupByType(user_id,"vip6")
+		elseif vRPN.getUserGroupByType(user_id,"vip5") == "Esmeralda" then
+			vip = vRPN.getUserGroupByType(user_id,"vip5")
+		elseif vRPN.getUserGroupByType(user_id,"vip4") == "Platina" then
+			vip = vRPN.getUserGroupByType(user_id,"vip4")
+		elseif vRPN.getUserGroupByType(user_id,"vip3") == "Ouro" then
+			vip = vRPN.getUserGroupByType(user_id,"vip3")
+		elseif vRPN.getUserGroupByType(user_id,"vip2") == "Prata" then
+			vip = vRPN.getUserGroupByType(user_id,"vip2")
+		elseif vRPN.getUserGroupByType(user_id,"vip1") == "Bronze" then
+			vip = vRPN.getUserGroupByType(user_id,"vip1")
+		else
+			vip = ""
+		end
+		
 		if identity then
 			return vRP.format(parseInt(cash)),vRP.format(parseInt(banco)),vRP.format(parseInt(mypaypal)),identity.name,identity.firstname,identity.age,identity.user_id,identity.registration,identity.phone,job,cargo,vip,vRP.format(parseInt(mymultas)),vRP.format(parseInt(mybills)),identity.phone
 		end

@@ -35,12 +35,12 @@ end)
 -----------------------------------------------------------------------------------------------------------------------------------------
 RegisterNUICallback("ButtonClick",function(data,cb)
 	if data == "policia1" then
-		if emP.checkPermission2("policia.permissao","Polícia Militar - C1") then
+		if emP.checkPermission2("policia.permissao","Polícia Militar") then
 			outServers()
 			exports.tokovoip_script:addPlayerToRadio(1000)
 		end
-	elseif data == "policia2" then
-		if emP.checkPermission2("policia.permissao","Polícia Militar - C2") then
+	elseif data == "staff" then
+		if emP.checkPermission2("kick.permissao","STAFF") then
 			outServers()
 			exports.tokovoip_script:addPlayerToRadio(1001)
 		end

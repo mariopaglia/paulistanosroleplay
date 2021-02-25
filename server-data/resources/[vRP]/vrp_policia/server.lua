@@ -952,7 +952,6 @@ local itemlist = {
 	"placacircuito",
 	"chipset",
 	"pastadecoca",
-	"cocaina",
 	"pino",
 	"anfetamina",
 	"embalagem",

@@ -86,7 +86,7 @@ cfg.groups = {
 	["Bronze"] = {
 		_config = {
 			title = "Bronze",
-			gtype = "vip"
+			gtype = "vip1"
 		},
 		"bronze.permissao",
 		"carrosvip.permissao",
@@ -95,7 +95,7 @@ cfg.groups = {
 	["Prata"] = {
 		_config = {
 			title = "Prata",
-			gtype = "vip"
+			gtype = "vip2"
 		},
 		"prata.permissao",
 		"carrosvip.permissao",
@@ -105,7 +105,7 @@ cfg.groups = {
 	["Ouro"] = {
 		_config = {
 			title = "Ouro",
-			gtype = "vip"
+			gtype = "vip3"
 		},
 		"ouro.permissao",
 		"carrosvip.permissao",
@@ -116,7 +116,7 @@ cfg.groups = {
 	["Platina"] = {
 		_config = {
 			title = "Platina",
-			gtype = "vip"
+			gtype = "vip4"
 		},
 		"platina.permissao",
 		"carrosvip.permissao",
@@ -127,7 +127,7 @@ cfg.groups = {
 	["Esmeralda"] = {
 		_config = {
 			title = "Esmeralda",
-			gtype = "vip"
+			gtype = "vip5"
 		},
 		"esmeralda.permissao",
 		"carrosvip.permissao",
@@ -138,7 +138,7 @@ cfg.groups = {
 	["Diamante"] = {
 		_config = {
 			title = "Diamante",
-			gtype = "vip"
+			gtype = "vip6"
 		},
 		"diamante.permissao",
 		"carrosvip.permissao",
@@ -149,7 +149,7 @@ cfg.groups = {
 	["Boost"] = {
 		_config = {
 			title = "Nitro Boost",
-			gtype = "vip2"
+			gtype = "boost1"
 		},
 		"boost.permissao",
 		"corarma.permissao"
@@ -739,6 +739,17 @@ cfg.groups = {
 			gtype = "job"
 		},
 		"civil.permissao"
+	},
+
+	---------------------------------------------------
+	-- PROMOTER
+	---------------------------------------------------
+	["Promoter"] = {
+		_config = {
+			title = "Promoter",
+			gtype = "promoter"
+		},
+		"promoter.permissao"
 	},
 
 	---------------------------------------------------

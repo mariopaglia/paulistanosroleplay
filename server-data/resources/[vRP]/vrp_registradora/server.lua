@@ -45,7 +45,7 @@ function func.checkRobbery(id,x,y,z,head)
 		local policia = vRP.getUsersByPermission("policia.permissao")
 		if #policia >= 2 then
 			if timers[id] == 0 or not timers[id] then
-				timers[id] = 900				
+				timers[id] = 1800				
 				TriggerClientEvent('iniciandoregistradora',source,head,x,y,z)
 				vRPclient._playAnim(source,false,{{"oddjobs@shop_robbery@rob_till","loop"}},true)
 				local random = math.random(100)
@@ -63,7 +63,7 @@ function func.checkRobbery(id,x,y,z,head)
 						end
 					end
 				end
-				SetTimeout(10000,function()
+				SetTimeout(20000,function()
 					vRP.antiflood(source,"registradora",3)
 					local qntdinheiro = math.random(5000,8000)
 					vRP.giveInventoryItem(user_id,"dinheirosujo",qntdinheiro) -- Ajuste do pagamento em dinheiro sujo

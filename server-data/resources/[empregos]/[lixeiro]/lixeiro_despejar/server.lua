@@ -6,7 +6,8 @@ Tunnel.bindInterface("lixeiro_despejar",emP)
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- FUNÇÕES
 -----------------------------------------------------------------------------------------------------------------------------------------
-function emP.checkPayment()
+function emP.checkPayment()	
+	vRP.antiflood(source,"lixeiro_despejar",10)
 	local source = source
 	local user_id = vRP.getUserId(source)
 	if user_id then

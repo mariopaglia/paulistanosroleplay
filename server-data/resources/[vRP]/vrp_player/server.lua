@@ -1193,6 +1193,7 @@ RegisterCommand('idp',function(source,args,rawCommand)
     if nplayer then
         local nuser_id = vRP.getUserId(nplayer)
         TriggerClientEvent("Notify",source,"importante","Jogador próximo: "..nuser_id.."")
+		TriggerClientEvent("Notify",nplayer,"importante","O <b>ID "..user_id.."</b> está pegando o seu ID")
     else
         TriggerClientEvent("Notify",source,"aviso","Nenhum Jogador Próximo")
     end
@@ -1403,8 +1404,6 @@ end)
 RegisterServerEvent('cmg2_animations:stop654654654')
 AddEventHandler('cmg2_animations:stop654654654', function(targetSrc)
 	if targetSrc then
-		if vRP.getUserId(targetSrc) then
-			TriggerClientEvent('cmg2_animations:cl_stop654654654', targetSrc)
-		end
+		TriggerClientEvent('cmg2_animations:cl_stop654654654', targetSrc)
 	end
 end)

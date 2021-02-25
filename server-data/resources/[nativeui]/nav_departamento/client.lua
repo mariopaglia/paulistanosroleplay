@@ -30,6 +30,8 @@ RegisterNUICallback("ButtonClick",function(data,cb)
 		TriggerServerEvent("departamento-comprar","celular")
 	elseif data == "utilidades-comprar-radio" then
 		TriggerServerEvent("departamento-comprar","radio")
+	elseif data == "utilidades-comprar-militec" then
+		TriggerServerEvent("departamento-comprar","militec")
 
 	elseif data == "utilidades-vender-roupas" then
 		TriggerServerEvent("departamento-vender","roupas")	
@@ -43,6 +45,8 @@ RegisterNUICallback("ButtonClick",function(data,cb)
 		TriggerServerEvent("departamento-vender","celular")
 	elseif data == "utilidades-vender-radio" then
 		TriggerServerEvent("departamento-vender","radio")
+	elseif data == "utilidades-vender-militec" then
+		TriggerServerEvent("departamento-vender","militec")
 	elseif data == "fechar" then
 		ToggleActionMenu()
 	end

@@ -26,6 +26,7 @@ end
 -- PAGAMENTO
 -----------------------------------------------------------------------------------------------------------------------------------------
 function emP.checkPayment()
+	vRP.antiflood(source,"farm_motoclub",3)
 	emP.Quantidade()
 	local source = source
 	local user_id = vRP.getUserId(source)

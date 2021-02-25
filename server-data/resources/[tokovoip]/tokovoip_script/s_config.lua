@@ -999,8 +999,8 @@ TokoVoipConfig = {
 		{ name = "Freq. 997", subscribers = {} }, -- 997   
 		{ name = "Freq. 998", subscribers = {} }, -- 998   
 		{ name = "Freq. 999", subscribers = {} }, -- 999   
-		{ name = "PMESP 1", subscribers = {} }, -- 1000   
-		{ name = "PMESP 2", subscribers = {} }, -- 1001 
+		{ name = "PMESP", subscribers = {} }, -- 1000   
+		{ name = "STAFF", subscribers = {} }, -- 1001 
 		{ name = "PMESP ROTA", subscribers = {} }, -- 1002 
 		{ name = "Polícia Cívil", subscribers = {} }, -- 1003 
 		{ name = "PRF", subscribers = {} }, -- 1004 

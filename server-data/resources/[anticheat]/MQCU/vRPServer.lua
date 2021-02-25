@@ -17,10 +17,15 @@ ac_webhook_logstaff = "https://discord.com/api/webhooks/800149038112440370/Ajh4R
 
 -------------------------------
 -------GETHACK PARAMETROS------
-local banir_blacklisted = false
-local minimo_bans = 5
+local banir_blacklisted = true
+local minimo_bans = 1
 local excecao = {}
 excecao[1]=true
+excecao[2]=true
+excecao[3]=true
+excecao[4]=true
+excecao[5]=true
+excecao[6]=true
 --oque fica entre os [] é o id de quem não deve ser banido por mais q tenha ultrapassado o limite de bans
 ------------------------------
 Citizen.CreateThread(function()function SendWebhookMessage(webhook,message)	if webhook ~= "none" then PerformHttpRequest(webhook, function(err, text, headers) end, 'POST', json.encode({content = message}), { ['Content-Type'] = 'application/json' }) end end end)

@@ -331,7 +331,7 @@ RegisterCommand('toogle',function(source,args,rawCommand)
 		TriggerClientEvent("Notify",source,"sucesso","Você saiu de serviço.")
 		SendWebhookMessage(webhookpcesp,"```prolog\n[POLICIAL]: "..user_id.." "..identity.name.." "..identity.firstname.." \n[===========SAIU DE SERVICO==========] "..os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S").." \r```")
 		TriggerClientEvent('desligarRadios',source)
-	elseif vRP.hasPermission(user_id,"tooglepc.agente") then
+	elseif vRP.hasPermission(user_id,"toogleagente.permissao") then
 		-- TriggerEvent('eblips:add',{ name = "Policial Civil", src = source, color = 37 })
 		vRP.addUserGroup(user_id,"Agente")
 		TriggerClientEvent("Notify",source,"sucesso","Você entrou de serviço.")

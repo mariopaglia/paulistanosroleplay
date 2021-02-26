@@ -779,15 +779,15 @@ RegisterCommand('call',function(source,args,rawCommand)
 	local user_id = vRP.getUserId(source)
 	if user_id then
 		local players = {}
-		-- if args[1] == "190" then
-		-- 	players = vRP.getUsersByPermission("policia.permissao")
-		-- elseif args[1] == "192" then
-		-- 	players = vRP.getUsersByPermission("paramedico.permissao")
-		-- elseif args[1] == "mec" then
-		-- 	players = vRP.getUsersByPermission("mecanico.permissao")
-		-- elseif args[1] == "taxi" then
-		-- 	players = vRP.getUsersByPermission("taxista.permissao")
-		if args[1] == "adm" then
+		if args[1] == "190" then
+			players = vRP.getUsersByPermission("policia.permissao")
+		elseif args[1] == "192" then
+			players = vRP.getUsersByPermission("paramedico.permissao")
+		elseif args[1] == "mec" then
+			players = vRP.getUsersByPermission("mecanico.permissao")
+		elseif args[1] == "taxi" then
+			players = vRP.getUsersByPermission("taxista.permissao")
+		elseif args[1] == "adm" then
 			players = vRP.getUsersByPermission("admin.permissao")
 		else
 			TriggerClientEvent("Notify",source,"negado","Serviço inexistente ou disponível somente pelo <b>celular</b>")

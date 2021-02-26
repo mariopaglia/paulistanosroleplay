@@ -42,10 +42,10 @@ cfg.list = {
 	[34] = { text = true, hash = 0, ['x'] = 0, ['y'] = 0, ['z'] = 0, lock = true, perm = "" },
 	[35] = { text = true, hash = 0, ['x'] = 0, ['y'] = 0, ['z'] = 0, lock = true, perm = "" },
 	[36] = { text = true, hash = 0, ['x'] = 0, ['y'] = 0, ['z'] = 0, lock = true, perm = "" },
-	[37] = { text = true, hash = 0, ['x'] = 0, ['y'] = 0, ['z'] = 0, lock = true, perm = "" },
-	[38] = { text = true, hash = 0, ['x'] = 0, ['y'] = 0, ['z'] = 0, lock = true, perm = "" },
 	
 	-- HOSPITAL
+	[37] = { text = true, hash = 854291622, ['x'] = 339.87, ['y'] = -586.51, ['z'] = 43.29, lock = true, perm = "diretor.permissao" },
+	[38] = { text = true, hash = 854291622, ['x'] = 337.84, ['y'] = -592.48, ['z'] = 43.29, lock = true, perm = "diretor.permissao" },
 	[39] = { text = true, hash = -1700911976, ['x'] = 325.66, ['y'] = -590.2, ['z'] = 43.29, lock = false, perm = "paramedico.permissao", other = 40 },
 	[40] = { text = true, hash = -434783486, ['x'] = 325.0, ['y'] = -589.95, ['z'] = 43.29, lock = false, perm = "paramedico.permissao", other = 39 },
 	[41] = { text = true, hash = -1700911976, ['x'] = 304.66, ['y'] = -581.42, ['z'] = 43.28, lock = false, perm = "paramedico.permissao", other = 42 },
@@ -54,8 +54,8 @@ cfg.list = {
 	[44] = { text = true, hash = -434783486, ['x'] = 327.80, ['y'] = -593.59, ['z'] = 43.28, lock = false, perm = "paramedico.permissao", other = 43 },
 	[45] = { text = true, hash = 854291622, ['x'] = 361.03, ['y'] = -589.69, ['z'] = 43.29, lock = false, perm = "paramedico.permissao" },
 	[46] = { text = true, hash = 0, ['x'] = 0, ['y'] = 0, ['z'] = 0, lock = false, perm = "" },
-	[47] = { text = true, hash = 854291622, ['x'] = 308.34, ['y'] = -597.70, ['z'] = 43.28, lock = false, perm = "paramedico.permissao" },
-	[48] = { text = true, hash = 854291622, ['x'] = 313.42, ['y'] = -596.09, ['z'] = 43.28, lock = false, perm = "paramedico.permissao" },
+	[47] = { text = true, hash = 854291622, ['x'] = 308.34, ['y'] = -597.70, ['z'] = 43.28, lock = true, perm = "paramedico.permissao" },
+	[48] = { text = true, hash = 854291622, ['x'] = 313.42, ['y'] = -596.09, ['z'] = 43.28, lock = true, perm = "paramedico.permissao" },
 
 	-- 
 	[49] = { text = true, hash = -350181704, ['x'] = -1090.68, ['y'] = -809.29, ['z'] = 19.32, lock = true, perm = "policia.permissao", other = 50 },

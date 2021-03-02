@@ -12,6 +12,7 @@ local idgens = Tools.newIDGenerator()
 local plan = {}
 
 local webhookbanco = "https://discord.com/api/webhooks/793600149590769685/-PHSTM2RRZkVfb1PIZcitPEByn0rd5ZeEyhs6IX3AJ1O1MPssKnZlhHMot6VTFbH6w_d"
+local logcmdcall = "https://discord.com/api/webhooks/801616526405795881/MuVEYTGa-R2gQy_nO_9t7vH4wgtvS3ixcmZt5-O9aZqOcM5of15x2AJtcEE56YEJrbKM"
 
 function SendWebhookMessage(webhook,message)
 	if webhook ~= nil and webhook ~= "" then
@@ -285,11 +286,15 @@ function serviceMessage(phone, sourcePlayer, message, type)
 			TriggerClientEvent("Notify",source,"importante","Não há "..especialidade.." em serviço.")
 		else
 			local identitys = vRP.getUserIdentity(user_id)
+			local crds = GetEntityCoords(GetPlayerPed(source))
 			TriggerClientEvent("Notify",source,"sucesso","Chamado enviado com sucesso.")
+			SendWebhookMessage(logcmdcall, "```prolog\n[ID]: "..user_id.." "..identitys.name.." "..identitys.firstname.." \n[CHAMOU]: "..phone.."\n[MENSAGEM]: '"..descricao.."'\n[COORDENADA]: "..crds.x..","..crds.y..","..crds.z..""..os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S").."```")
 			inEmergency[user_id] = phone
 			for l,w in pairs(players) do
 				local player = vRP.getUserSource(parseInt(w))
 				local nuser_id = vRP.getUserId(player)
+
+
 				if player and player ~= source then
 					async(function()
 						vRPclient.playSound(player,"Out_Of_Area","DLC_Lowrider_Relay_Race_Sounds")
@@ -614,8 +619,8 @@ AddEventHandler("vRP:playerSpawn", function(user_id, source, first_spawn)
     TriggerClientEvent("vRP:updateBalanceGc",_source,getbankmoney)
 end)
 
-RegisterServerEvent('bank:transfer128317')
-AddEventHandler('bank:transfer128317', function(id, amount)
+RegisterServerEvent('bank:transfer128317547')
+AddEventHandler('bank:transfer128317547', function(id, amount)
     local _source = source
     local user_id = vRP.getUserId(source)
     local targetPlayer = vRP.getUserSource(tonumber(id))
@@ -624,7 +629,8 @@ AddEventHandler('bank:transfer128317', function(id, amount)
 		return TriggerClientEvent("Notify",_source,"negado","Você digitou uma quantia inválida")
 	end
     local identity = vRP.getUserIdentity(user_id)
-    local identityT = vRP.getUserIdentity(tonumber(id))    
+    local identityT = vRP.getUserIdentity(tonumber(id))
+	local identityu = vRP.getUserIdentity(nuser_id)
     if targetPlayer == nil then
         return TriggerClientEvent("Notify",_source,"negado","Conta inválida ou titular indisponível")
     else
@@ -635,7 +641,7 @@ AddEventHandler('bank:transfer128317', function(id, amount)
 				vRP.giveBankMoney(tonumber(id),amount)
 				TriggerClientEvent("Notify",targetPlayer,"sucesso","Você recebeu <b>R$" .. vRP.format(parseInt(amount)) .."</b> de <b>"  ..identity.name.. "</b> ID: " .. tostring(user_id))
 				TriggerClientEvent("Notify",_source,"sucesso","Transferiu <b>R$ "..vRP.format(parseInt(amount)).."</b> para  <b>"..identityT.name.."</b>")       
-				SendWebhookMessage(webhookbanco,"```prolog\n[ID]: "..user_id.." "..identity.name.." "..identity.firstname.." \n[ENVIOU CELULAR]: R$ "..vRP.format(parseInt(amount)).."\n[PARA]:"..tonumber(id).."  "..os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S").." \r```")
+				SendWebhookMessage(webhookbanco,"```prolog\n[ID]: "..user_id.." "..identity.name.." "..identity.firstname.." \n[ENVIOU CELULAR]: R$ "..vRP.format(parseInt(amount)).."\n[PARA]: "..nuser_id.." "..identityu.name.." "..identityu.firstname.."  "..os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S").." \r```")
 			else
 				TriggerClientEvent("Notify",_source,"negado","SEM DINHEIRO") 
 			end

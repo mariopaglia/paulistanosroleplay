@@ -745,7 +745,7 @@ function src.spawnVehicles(name,use)
 					if parseInt(os.time()) <= parseInt(vehicle[1].time+24*60*60) then
 						local ok = vRP.request(source,"Veículo na retenção, deseja acionar o seguro pagando <b>R$ "..vRP.format(parseInt(vRP.vehiclePrice(name)*0.2)).."</b> reais ?",60)
 						if ok then
-							if vRP.tryFullPayment(user_id,parseInt(vRP.vehiclePrice(name)*0.5)) then
+							if vRP.tryFullPayment(user_id,parseInt(vRP.vehiclePrice(name)*0.2)) then
 								vRP.execute("creative/set_detido",{ user_id = parseInt(user_id), vehicle = name, detido = 0, time = 0 })
 								TriggerClientEvent("Notify",source,"sucesso","Veículo liberado.",10000)
 							else
@@ -755,7 +755,7 @@ function src.spawnVehicles(name,use)
 					elseif parseInt(vehicle[1].detido) >= 1 then
 						local ok = vRP.request(source,"Veículo na detenção, deseja acionar o seguro pagando <b>R$ "..vRP.format(parseInt(vRP.vehiclePrice(name)*0.15)).."</b> reais ?",60)
 						if ok then
-							if vRP.tryFullPayment(user_id,parseInt(vRP.vehiclePrice(name)*0.3)) then
+							if vRP.tryFullPayment(user_id,parseInt(vRP.vehiclePrice(name)*0.15)) then
 								vRP.execute("creative/set_detido",{ user_id = parseInt(user_id), vehicle = name, detido = 0, time = 0 })
 								TriggerClientEvent("Notify",source,"sucesso","Veículo liberado.",10000)
 							else
@@ -1105,9 +1105,10 @@ RegisterCommand('vehs',function(source,args,rawCommand)
 										TriggerClientEvent("Notify",nplayer,"importante","Você recebeu as chaves do veículo <b>"..vRP.vehicleName(tostring(args[1])).."</b> de <b>"..identity2.name.." "..identity2.firstname.."</b> e pagou <b>R$ "..vRP.format(parseInt(price)).."</b> reais.",40000)
 											vRPclient.playSound(source,"Hack_Success","DLC_HEIST_BIOLAB_PREP_HACKING_SOUNDS")
 											vRPclient.playSound(nplayer,"Hack_Success","DLC_HEIST_BIOLAB_PREP_HACKING_SOUNDS")
-											local consulta = vRP.getUData(user_id,"vRP:paypal")
-											local resultado = json.decode(consulta) or 0
-											vRP.setUData(user_id,"vRP:paypal",json.encode(parseInt(resultado + price)))
+											-- local consulta = vRP.getUData(user_id,"vRP:paypal")
+											-- local resultado = json.decode(consulta) or 0
+											-- vRP.setUData(user_id,"vRP:paypal",json.encode(parseInt(resultado + price)))
+											vRP.giveMoney(user_id,parseInt(price))
 											SendWebhookMessage(webhookvehs,"```prolog\n[ID]: "..user_id.." "..identity2.name.." "..identity2.firstname.." \n[VENDEU]: "..vRP.vehicleName(tostring(args[1])).." \n[PARA]: "..(args[2]).." "..identity.name.." "..identity.firstname.." \n[VALOR]: R$ "..vRP.format(parseInt(price)).." "..os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S").." \r```")
 										end
 									else

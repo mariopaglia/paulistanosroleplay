@@ -172,6 +172,7 @@ Citizen.CreateThread(function()
 			DisableControlAction(0,25,true)
 			DisableControlAction(0,57,true)
 			DisableControlAction(0,58,true)
+			DisableControlAction(0, 137, true) -- Falar no rádio
 			DisableControlAction(0,263,true)
 			DisableControlAction(0,264,true)
 			DisableControlAction(0,257,true)

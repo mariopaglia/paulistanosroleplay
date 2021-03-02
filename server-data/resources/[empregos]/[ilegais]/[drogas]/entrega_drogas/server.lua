@@ -24,42 +24,39 @@ end
 function emP.checkPermission()
 	local source = source
 	local user_id = vRP.getUserId(source)
-	return vRP.hasPermission(user_id,"verdes.permissao")
+	return vRP.hasPermission(user_id,"verdes.permissao") or vRP.hasPermission(user_id,"vermelhos.permissao") or vRP.hasPermission(user_id,"roxos.permissao")
 end
 
-function emP.checkPermission2()
-	local source = source
-	local user_id = vRP.getUserId(source)
-	return vRP.hasPermission(user_id,"vermelhos.permissao")
-end
+-- function emP.checkPermission2()
+-- 	local source = source
+-- 	local user_id = vRP.getUserId(source)
+-- 	return vRP.hasPermission(user_id,"vermelhos.permissao")
+-- end
 
-function emP.checkPermission3()
-	local source = source
-	local user_id = vRP.getUserId(source)
-	return vRP.hasPermission(user_id,"roxos.permissao")
-end
+-- function emP.checkPermission3()
+-- 	local source = source
+-- 	local user_id = vRP.getUserId(source)
+-- 	return vRP.hasPermission(user_id,"roxos.permissao")
+-- end
 -----------------------------------------------------------------------------------------------------------------------------------------
--- PAGAMENTO
+-- PAGAMENTO CIVIL
 -----------------------------------------------------------------------------------------------------------------------------------------
 function emP.checkPayment()
 	vRP.antiflood(source,"entrega_drogas",3)
 	local source = source
 	local user_id = vRP.getUserId(source)
-	local policia = vRP.getUsersByPermission("policia.permissao")
+	local policia = vRP.getUsersByPermission("pmesp.permissao")
 	local bonus = 0
 
-	if #policia >= 0 and #policia <= 3 then
-        bonus = 800
-    elseif #policia >= 4 and #policia <= 6 then
-        bonus = 900
-    elseif #policia >= 7 and #policia <= 9 then
-        bonus = 1000
-    elseif #policia >= 10 then
-        bonus = 1100
+	if #policia >= 0 and #policia <= 2 then
+        bonus = 1600
+    elseif #policia >= 3 and #policia <= 6 then
+        bonus = 2000
+    elseif #policia >= 7 then
+        bonus = 2400
     end
 
 	if user_id then
-		vRP.antiflood(source,"drogas",5)
 		if vRP.getInventoryItemAmount(user_id,"maconha") >= 1 then
 			vRP.tryGetInventoryItem(user_id,"maconha",1)
 			vRP.giveInventoryItem(user_id,"dinheirosujo", (parseInt(0) + bonus) * 1)
@@ -74,6 +71,61 @@ function emP.checkPayment()
 		end
 		return true
 	end
+end
+-----------------------------------------------------------------------------------------------------------------------------------------
+-- PAGAMENTO FACÇÃO
+-----------------------------------------------------------------------------------------------------------------------------------------
+function emP.checkPayment2()
+	vRP.antiflood(source,"entrega_drogas",3)
+	local source = source
+	local user_id = vRP.getUserId(source)
+	local policia = vRP.getUsersByPermission("pmesp.permissao")
+	local bonus = 0
+
+	if #policia >= 0 and #policia <= 2 then
+        bonus = 1000
+    elseif #policia >= 3 and #policia <= 6 then
+        bonus = 1200
+    elseif #policia >= 7 then
+        bonus = 1400
+    end
+
+	if user_id then
+		if vRP.getInventoryItemAmount(user_id,"maconha") >= 1 then
+			vRP.tryGetInventoryItem(user_id,"maconha",1)
+			vRP.giveInventoryItem(user_id,"dinheirosujo", (parseInt(0) + bonus) * 1)
+		end
+		if vRP.getInventoryItemAmount(user_id,"cocaina") >= 1 then
+			vRP.tryGetInventoryItem(user_id,"cocaina",1)
+			vRP.giveInventoryItem(user_id,"dinheirosujo", (parseInt(0) + bonus) * 1)
+		end
+		if vRP.getInventoryItemAmount(user_id,"metanfetamina") >= 1 then
+			vRP.tryGetInventoryItem(user_id,"metanfetamina",1)
+			vRP.giveInventoryItem(user_id,"dinheirosujo", (parseInt(0) + bonus) * 1)
+		end
+		return true
+	end
+
+	-- if user_id then
+	-- 	if vRP.hasPermission(user_id,"verdes.permissao") then
+	-- 		if vRP.getInventoryItemAmount(user_id,"maconha") >= 1 then
+	-- 			vRP.tryGetInventoryItem(user_id,"maconha",1)
+	-- 			vRP.giveInventoryItem(user_id,"dinheirosujo", (parseInt(0) + bonus) * 1)
+	-- 		end
+	-- 	elseif vRP.hasPermission(user_id,"vermelhos.permissao") then
+	-- 		if vRP.getInventoryItemAmount(user_id,"cocaina") >= 1 then
+	-- 			vRP.tryGetInventoryItem(user_id,"cocaina",1)
+	-- 			vRP.giveInventoryItem(user_id,"dinheirosujo", (parseInt(0) + bonus) * 1)
+	-- 		end
+	-- 	elseif vRP.hasPermission(user_id,"roxos.permissao") then
+	-- 		if vRP.getInventoryItemAmount(user_id,"metanfetamina") >= 1 then
+	-- 			vRP.tryGetInventoryItem(user_id,"metanfetamina",1)
+	-- 			vRP.giveInventoryItem(user_id,"dinheirosujo", (parseInt(0) + bonus) * 1)
+	-- 		end
+	-- 	end
+	-- 	return true
+	-- end
+
 end
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- POLICIA

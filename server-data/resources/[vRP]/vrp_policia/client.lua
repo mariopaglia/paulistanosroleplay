@@ -117,12 +117,12 @@ local blacklistedWeapons = {
 	"GADGET_PARACHUTE",
 	"WEAPON_FIREEXTINGUISHER",
 	"WEAPON_RAYPISTOL",
-	"WEAPON_PETROLCAN",
+	"WEAPON_PETROLCAN"
 }
 
 Citizen.CreateThread(function()
 	while true do
-		Citizen.Wait(5)
+		Citizen.Wait(1)
 		local ped = PlayerPedId()
 		local blacklistweapon = false
 		local x,y,z = table.unpack(GetEntityCoords(PlayerPedId()))
@@ -131,10 +131,6 @@ Citizen.CreateThread(function()
 			if GetSelectedPedWeapon(ped) == GetHashKey(v) then
 				blacklistweapon = true
 			end
-		end
-		
-		if PedIsShooting(ped) then
-			print(GetSelectedPedWeapon(ped), GetHashKey(v))
 		end
 
 		if IsPedShooting(ped) and not blacklistweapon then

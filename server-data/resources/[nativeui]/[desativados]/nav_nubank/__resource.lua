@@ -1,3 +1,5 @@
+client_script "@vrp/lib/lib.lua" --Para remover esta pendencia de todos scripts, execute no console o comando "uninstall"
+
 ui_page('nui/index.html')
 
 dependency "vrp"
@@ -28,3 +30,4 @@ files {
     'nui/images/logo-big.png',
     'nui/images/logo-top.png'
 }
+              

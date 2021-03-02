@@ -12,15 +12,15 @@ local displayBankBlips = true
 local enableBankingGui = true 
 
 local banks = {
-  {name="Banco", id=108, x=149.94, y=-1040.74, z=29.38},
-  {name="Banco", id=108, x=-1212.980, y=-330.841, z=37.787},
-  {name="Banco", id=108, x=-2962.582, y=482.627, z=15.703},
-  {name="Banco", id=108, x=-112.202, y=6469.295, z=31.626},
-  {name="Banco", id=108, x=314.187, y=-278.621, z=54.170},
-  {name="Banco", id=108, x=-351.534, y=-49.529, z=49.042},
-  {name="Banco", id=106, x=241.727, y=220.706, z=106.286, principal = true},
-  {name="Banco", id=108, x=1175.0643310547, y=2706.6435546875, z=38.094036102295},
-  {name="Registradora", id=108, x=-31.49,y=-1121.44,z=26.55 },
+	{name="Banco", id=108, x=149.94, y=-1040.74, z=29.38},
+	{name="Banco", id=108, x=-1212.980, y=-330.841, z=37.787},
+	{name="Banco", id=108, x=-2962.582, y=482.627, z=15.703},
+	{name="Banco", id=108, x=-112.202, y=6469.295, z=31.626},
+	{name="Banco", id=108, x=314.187, y=-278.621, z=54.170},
+	{name="Banco", id=108, x=-351.534, y=-49.529, z=49.042},
+	{name="Banco", id=106, x=241.727, y=220.706, z=106.286, principal = true},
+	{name="Banco", id=108, x=1175.0643310547, y=2706.6435546875, z=38.094036102295},
+	{name="Registradora", id=108, x=-31.49,y=-1121.44,z=26.55 },
 	{name="Registradora", id=108, x=-1314.76,y=-835.98,z=16.96 },
 	{name="Registradora", id=108, x=-1315.72,y=-834.70,z=16.96 },
 	{name="Registradora", id=108, x=147.57,y=-1035.77,z=29.34 },
@@ -111,7 +111,8 @@ local banks = {
 	{name="Registradora", id=108, x=-618.23,y=-706.90,z=30.05 },
 	{name="Registradora", id=108, x=-614.59,y=-704.84,z=31.23 },
 	{name="Registradora", id=108, x=-611.94,y=-704.82,z=31.23 },
-	{name="Registradora", id=108, x=-3240.59,y=1008.60,z=12.83 }
+	{name="Registradora", id=108, x=-3240.59,y=1008.60,z=12.83 },
+	{name="Registradora", id=108, x=-1091.5, y=2708.67, z=18.96 },
 }
 
 -- Citizen.CreateThread(function()

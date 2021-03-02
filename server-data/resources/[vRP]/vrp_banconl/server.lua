@@ -5,6 +5,14 @@ vRP = Proxy.getInterface("vRP")
 vRPclient = Tunnel.getInterface("vRP","vrp_banco")
 isTransfer = false
 
+local webhookbanco = "https://discord.com/api/webhooks/793600149590769685/-PHSTM2RRZkVfb1PIZcitPEByn0rd5ZeEyhs6IX3AJ1O1MPssKnZlhHMot6VTFbH6w_d"
+
+function SendWebhookMessage(webhook,message)
+	if webhook ~= nil and webhook ~= "" then
+		PerformHttpRequest(webhook, function(err, text, headers) end, 'POST', json.encode({content = message}), { ['Content-Type'] = 'application/json' })
+	end
+end
+
 vRP._prepare("sRP/banco",[[
   CREATE TABLE IF NOT EXISTS vrp_banco(
     id INTEGER AUTO_INCREMENT,
@@ -118,10 +126,12 @@ AddEventHandler('bank:pagarmulta128317', function(amount)
     local newvalor = vRP.getUData(user_id,"vRP:multas")
     local bank = vRP.getBankMoney(user_id)
     local wallet = vRP.getMoney(user_id)
+    local identity = vRP.getUserIdentity(user_id)
     TriggerClientEvent("banking:updateBalance12691261", source, bank, wallet,novamulta)
     TriggerClientEvent("banking:removeMulta12691261", source, rounded)
     vRP.execute("sRP/inserir_table", {user_id = user_id, extrato = "Você pagou <strong>R$ "..addComma(math.floor(rounded)).."</strong> em multas, restando <strong>R$ "..addComma(math.floor(novamulta)).."</strong> de multas pendentes e seu novo saldo ficou em <strong>R$ "..addComma(math.floor(bank)).."</strong> e o valor na carteira é de <strong>R$ "..addComma(math.floor(wallet)).."</strong>"})
     TriggerClientEvent("Notify", source, "sucesso","Voce pagou <b>R$ "..vRP.format(parseInt(rounded)).." em multas </b>")
+    SendWebhookMessage(webhookbanco,"```prolog\n[ID]: "..user_id.." "..identity.name.." "..identity.firstname.." \n[MULTA NUBANK]: R$ "..vRP.format(parseInt(rounded))..""..os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S").." \r```")
   else
     TriggerClientEvent("Notify", source, "negado","<b>Dinheiro Insuficiente </b>")
   end
@@ -141,10 +151,12 @@ AddEventHandler('bank:deposit128317', function(amount)
           
           Depositar(user_id, rounded)
           local carteira = vRP.getMoney(user_id)
+          local identity = vRP.getUserIdentity(user_id)
           TriggerClientEvent("banking:updateBalance12691261", source, new_balance,carteira)
           TriggerClientEvent("banking:addBalance12691261", source, rounded)
           vRP.execute("sRP/inserir_table", {user_id = user_id, extrato = "Você depositou <strong>R$ "..addComma(math.floor(rounded)).."</strong>, seu saldo ficou em <strong>R$ "..addComma(math.floor(bankbalance + rounded)).."</strong> e seu novo valor na carteira é de <strong>R$ "..addComma(math.floor(carteira)).."</strong"})
           TriggerClientEvent("Notify", source, "sucesso","Você acabou de depositar <b>R$ " ..vRP.format(parseInt(amount)).."</b>")
+          SendWebhookMessage(webhookbanco,"```prolog\n[ID]: "..user_id.." "..identity.name.." "..identity.firstname.." \n[DEPOSITO NUBANK]: R$ "..vRP.format(parseInt(rounded))..""..os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S").." \r```")
         else
           TriggerClientEvent("Notify", source, "negado","<b>Dinheiro Insuficiente </b>")
         end
@@ -167,12 +179,14 @@ AddEventHandler('bank:withdraw128317', function(amount)
 
         vRP.tryWithdraw(user_id,rounded)
         local carteira = vRP.getMoney(user_id)
+        local identity = vRP.getUserIdentity(user_id)
         vRP.execute("sRP/inserir_table", {user_id = user_id, extrato = "Você fez um saque de <strong>R$ "..addComma(math.floor(rounded)).."</strong>, seu saldo ficou em <strong>R$ " .. addComma(math.floor(bankbalance - rounded)) .. "</strong> e seu novo valor na carteira é de <strong>R$ "..addComma(math.floor(carteira)).."</strong"})
         -- Update NUI
         TriggerClientEvent("banking:updateBalance12691261", source, new_balance, carteira)
         TriggerClientEvent("banking:removeBalance12691261", source, rounded)
         -- Salva o extrato
         TriggerClientEvent("Notify", source, "sucesso","Você acabou de sacar <b>R$ " ..vRP.format(parseInt(rounded)).."</b>")
+        SendWebhookMessage(webhookbanco,"```prolog\n[ID]: "..user_id.." "..identity.name.." "..identity.firstname.." \n[SAQUE NUBANK]: R$ "..vRP.format(parseInt(rounded))..""..os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S").." \r```")
       else
         TriggerClientEvent("Notify", source, "negado","<b>Dinheiro Insuficiente </b>")
       end
@@ -192,9 +206,11 @@ AddEventHandler('bank:quickCash128317', function()
     local new_balance = bankbalance - math.abs(quantia)
     vRP.tryWithdraw(user_id,quantia)
     local carteira = vRP.getMoney(user_id)
+    local identity = vRP.getUserIdentity(user_id)
     TriggerClientEvent("banking:updateBalance12691261", source, new_balance,carteira)
     TriggerClientEvent("banking:removeBalance12691261", source, quantia)
     TriggerClientEvent("Notify", source, "sucesso","Você acabou de sacar <b>R$ 1.000</b> via saque rapido")
+    SendWebhookMessage(webhookbanco,"```prolog\n[ID]: "..user_id.." "..identity.name.." "..identity.firstname.." \n[SAQUE NUBANK]: R$ "..vRP.format(parseInt(quantia))..""..os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S").." \r```")
     vRP.execute("sRP/inserir_table", {user_id = user_id, extrato = "Você fez um saque rapido de <strong>R$ " .. "1.000" .. "</strong>, seu saldo ficou em <strong>R$ " .. addComma(bankbalance - 1000) .. "</strong> e seu novo valor na carteira é de <strong>R$ "..addComma(math.floor(carteira)).."</strong"})
   else
     TriggerClientEvent("Notify", source, "negado","<b>Dinheiro Insuficiente </b>")
@@ -219,6 +235,9 @@ AddEventHandler('bank:transfer128317', function(toPlayer, amount)
           local player = vRP.getUserSource(nuser_id)
           local bank = vRP.getBankMoney(nuser_id)
           local newBalance_Player = bank + math.abs(amount)
+          if player == nil then
+            return TriggerClientEvent("Notify",source,"negado","Conta inválida ou titular indisponível")
+          end
           if player then -- Está online
             vRP.setBankMoney(user_id, newBalance)
             vRP.setBankMoney(nuser_id, newBalance_Player)
@@ -233,11 +252,14 @@ AddEventHandler('bank:transfer128317', function(toPlayer, amount)
           end
           -- Remove o dinheiro do player que enviou
           local carteira = vRP.getMoney(user_id)
+          local identity = vRP.getUserIdentity(user_id)
+          local identityu = vRP.getUserIdentity(nuser_id)
           TriggerClientEvent("banking:updateBalance12691261", source, newBalance, carteira)
           TriggerClientEvent("banking:removeBalance12691261", source, rounded)
           -- Extrato
           vRP.execute("sRP/inserir_table", {user_id = user_id, extrato = "Você Transferiu <strong>R$ "..addComma(math.floor(rounded)).."</strong> para o ID: "..toPlayer..", seu saldo ficou em <strong>R$ "..addComma(math.floor(bankbalance - rounded)).."</strong> comprovante <strong>NL"..aleatorio.."</strong> e seu novo valor na carteira é de <strong>R$ "..addComma(math.floor(carteira)).."</strong"})
           TriggerClientEvent("Notify", source, "sucesso","Você transferiu <b>R$ "..vRP.format(parseInt(rounded)).."</b> para o <b>ID: "..nuser_id.."</b>")
+          SendWebhookMessage(webhookbanco,"```prolog\n[ID]: "..user_id.." "..identity.name.." "..identity.firstname.." \n[TRANSF NUBANK]: R$ "..vRP.format(parseInt(rounded)).."\n[PARA]: "..nuser_id.." "..identityu.name.." "..identityu.firstname.."  "..os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S").." \r```")
         else
           TriggerClientEvent("Notify", source, "negado","<b>Dinheiro Insuficiente </b>")
         end

@@ -13,7 +13,6 @@ Config.Veiculos = {
             {title = "brioso", model="brioso", mala=20, preco=50000, estoque = 100},                                                                                                                                           
             {title = "issi2", model="issi2", mala=20, preco=80000, estoque = 100},                                                                      
             {title = "cogcabrio", model="cogcabrio", mala=30, preco=110000, estoque = 100},
-
             {title = "f620", model="f620", mala=25, preco=130000, estoque = 15},                                                                      
             {title = "faction2", model="faction2", mala=20, preco=130000, estoque = 15},                                                                      
             {title = "zion", model="zion", mala=30, preco=130000, estoque = 15},                                                                                                                                                                                                              
@@ -154,7 +153,6 @@ Config.Veiculos = {
 			{title = "ruffian", model = "ruffian", mala = 10, preco = 70000, estoque = 100},
 			{title = "vader", model = "vader", mala = 10, preco = 90000, estoque = 100},
 			{title = "nemesis", model = "nemesis", mala = 10, preco = 110000, estoque = 100},
-
 			{title = "lectro", model = "lectro", mala = 10, preco = 130000, estoque = 15},
             {title = "bros60", model = "bros60", mala = 0, preco = 150000, estoque = 10},
 			{title = "defiler", model = "defiler", mala = 0, preco = 200000, estoque = 15},

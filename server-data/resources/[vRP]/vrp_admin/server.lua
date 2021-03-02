@@ -596,7 +596,7 @@ RegisterCommand('adm',function(source,args,rawCommand)
 		if mensagem == "" then
 			return
 		end
-		vRPclient.setDiv(-1,"anuncio",".div_anuncio { background: rgba(255,0,0,0.8); font-size: 11px; font-family: arial; color: #fff; padding: 20px; bottom: 50%; right: 20px; max-width: 600px; position: absolute; -webkit-border-radius: 5px; } bold { font-size: 15px; }","<bold>"..mensagem.."</bold><br><br>Mensagem enviada pelo(a) Staff: "..identity.name.." "..identity.firstname)
+		vRPclient.setDiv(-1,"anuncio",".div_anuncio { background: rgba(255,0,0,0.8); font-size: 11px; font-family: arial; color: #fff; padding: 20px; bottom: 50%; right: 20px; max-width: 600px; position: absolute; -webkit-border-radius: 5px; } bold { font-size: 15px; }","<bold>"..mensagem.."</bold><br><br>Mensagem enviada por: Administração")
 		SetTimeout(60000,function()
 			vRPclient.removeDiv(-1,"anuncio")
 		end)

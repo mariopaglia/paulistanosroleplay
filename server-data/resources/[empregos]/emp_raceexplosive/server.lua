@@ -105,7 +105,7 @@ end
 
 function emP.checkPolice()
 	local source = source
-	local policia = vRP.getUsersByPermission("policia.permissao")
+	local policia = vRP.getUsersByPermission("pmesp.permissao")
 
 	if parseInt(#policia) >= 4 then
 		return true

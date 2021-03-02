@@ -2,6 +2,8 @@ local Tunnel = module("vrp","lib/Tunnel")
 local Proxy = module("vrp","lib/Proxy")
 vRP = Proxy.getInterface("vRP")
 vRPclient = Tunnel.getInterface("vRP")
+local Tools = module("vrp","lib/Tools")
+local idgens = Tools.newIDGenerator()
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- WEBHOOK
 -----------------------------------------------------------------------------------------------------------------------------------------
@@ -25,12 +27,12 @@ end
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- ARSENAL
 -----------------------------------------------------------------------------------------------------------------------------------------
-RegisterCommand('arsenal',function(source,args,rawCommand)
-	local user_id = vRP.getUserId(source)
-	if vRP.hasPermission(user_id,"policia.permissao") then
-		TriggerClientEvent('arsenal',source)
-	end
-end)
+-- RegisterCommand('arsenal',function(source,args,rawCommand)
+-- 	local user_id = vRP.getUserId(source)
+-- 	if vRP.hasPermission(user_id,"policia.permissao") then
+-- 		TriggerClientEvent('arsenal',source)
+-- 	end
+-- end)
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- PLACA
 -----------------------------------------------------------------------------------------------------------------------------------------
@@ -1265,7 +1267,7 @@ RegisterCommand('p',function(source,args,rawCommand)
 				if player and player ~= uplayer then
 					async(function()
 						local id = idgens:gen()
-						policia[id] = vRPclient.addBlip(player,x,y,z,153,84,"Localização de "..identity.name.." "..identity.firstname,0.5,false)
+						policia[id] = vRPclient.addBlip(player,x,y,z,161,84,"Localização de "..identity.name.." "..identity.firstname,0.5,false)
 						TriggerClientEvent("Notify",player,"importante","Localização recebida de <b>"..identity.name.." "..identity.firstname.."</b>.")
 						vRPclient._playSound(player,"Out_Of_Bounds_Timer","DLC_HEISTS_GENERAL_FRONTEND_SOUNDS")
 						SetTimeout(60000,function() vRPclient.removeBlip(player,policia[id]) idgens:free(id) end)

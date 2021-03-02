@@ -34,7 +34,7 @@ function func.checkJewelry(x,y,z,h,sec,tipo)
 	local user_id = vRP.getUserId(source)
 	local identity = vRP.getUserIdentity(user_id)
 	local crds = GetEntityCoords(GetPlayerPed(source))
-	local policia = vRP.getUsersByPermission("policia.permissao")
+	local policia = vRP.getUsersByPermission("pmesp.permissao")
 	if user_id then
 		if #policia < 7 then
 			TriggerClientEvent("Notify",source,"importante","Número insuficiente de policiais no momento.")

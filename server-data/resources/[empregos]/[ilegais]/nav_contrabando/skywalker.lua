@@ -150,8 +150,8 @@ AddEventHandler("produzir-contrabando",function(item)
                 ---------------------------
                 elseif item == "lockpick" then
                     if vRP.getInventoryWeight(user_id)+vRP.getItemWeight("lockpick") <= vRP.getInventoryMaxWeight(user_id) then
-                        if vRP.getInventoryItemAmount(user_id,"componentemetal") >= 20 and vRP.getInventoryItemAmount(user_id,"dinheirosujo") >= 22000 then
-                            if vRP.tryGetInventoryItem(user_id,"componentemetal",20) and vRP.tryGetInventoryItem(user_id,"dinheirosujo",22000) then
+                        if vRP.getInventoryItemAmount(user_id,"componentemetal") >= 10 and vRP.getInventoryItemAmount(user_id,"dinheirosujo") >= 15000 then
+                            if vRP.tryGetInventoryItem(user_id,"componentemetal",10) and vRP.tryGetInventoryItem(user_id,"dinheirosujo",15000) then
                                 TriggerClientEvent(nomesnui,source) --------- trocar quando duplicar
                                 TriggerClientEvent("progress",source,10000,"Montando "..itemupper.."")
                                 vRPclient._playAnim(source,false,{{"amb@prop_human_parking_meter@female@idle_a","idle_a_female"}},true)

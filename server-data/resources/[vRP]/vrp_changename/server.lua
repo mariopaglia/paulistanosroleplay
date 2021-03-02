@@ -16,9 +16,9 @@ AddEventHandler("hoppe:changename",function(characterNome,characterSobrenome,cha
 	local source = source
 	local user_id = vRP.getUserId(source)
 	if user_id then
-		if vRP.request(source,"Deseja mesmo trocar seus dados por um valor de R$ 300.000?",30) then
+		if vRP.request(source,"Deseja mesmo trocar seus dados por um valor de R$ 100.000?",30) then
 			if characterNome and characterSobrenome and characterAge then
-				if vRP.tryFullPayment(user_id,300000) then
+				if vRP.tryFullPayment(user_id,100000) then
 					vRP.execute("vRP/update_user_first_spawn",{ user_id = user_id, firstname = characterSobrenome, name = characterNome, age = characterAge })
 					TriggerClientEvent("Notify",source, "sucesso", "Nome alterado para <b>"..characterNome.." "..characterSobrenome.."</b>, <b>"..characterAge.."</b> anos")
 				else
@@ -37,8 +37,8 @@ RegisterCommand('resetplayer',function(source,args,rawCommand)
     local user_id = vRP.getUserId(source)
 	if user_id then
 		if vRPNclient.isNearCds(source, vector3(-552.88,-192.14,38.23), 13) then
-			if vRP.request(source,"Deseja mesmo resetar sua aparência por um valor de R$ 500.000?",30) then
-				if vRP.tryFullPayment(user_id,500000) then
+			if vRP.request(source,"Deseja mesmo resetar sua aparência por um valor de R$ 200.000?",30) then
+				if vRP.tryFullPayment(user_id,200000) then
 					local nplayer = vRP.getUserSource(parseInt(user_id))
                 	local id = vRP.getUserId(nplayer)
         	    	vRP.kick(nplayer,"Aparência resetada, entre novamente!")

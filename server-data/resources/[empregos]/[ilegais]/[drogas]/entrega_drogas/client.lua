@@ -95,33 +95,64 @@ Citizen.CreateThread(function()
 				if distance <= 1.2 then
 					drawTxt("PRESSIONE  ~r~E~w~  PARA ENTREGAR AS DROGAS",4,0.5,0.93,0.50,255,255,255,180)
 					if IsControlJustPressed(0,38) and not IsPedInAnyVehicle(ped) then
-						if emP.checkPayment() then
-							droga = CreateObject(GetHashKey("prop_meth_bag_01"),locs[selecionado].x,locs[selecionado].y,locs[selecionado].z-1,true,true,true)
-
-							emP.MarcarOcorrencia() -- Acionar a policia
-
-							TriggerEvent('cancelando',true)
-							RemoveBlip(blips)
-							backentrega = selecionado
-							processo = true
-							segundos = 5
-
-							vRP._playAnim(true,{{"pickup_object","pickup_low"}},false)
-							vRP._CarregarObjeto("pickup_object","pickup_low","hei_prop_heist_cash_pile",49,28422)
-
-							SetTimeout(9000,function()
-								DeleteObject(droga)
-							end)
-
-							while true do
-								if backentrega == selecionado then
-									selecionado = math.random(30)
-								else
-									break
+						if emP.checkPermission() then
+							if emP.checkPayment2() then
+								droga = CreateObject(GetHashKey("prop_meth_bag_01"),locs[selecionado].x,locs[selecionado].y,locs[selecionado].z-1,true,true,true)
+	
+								emP.MarcarOcorrencia() -- Acionar a policia
+	
+								TriggerEvent('cancelando',true)
+								RemoveBlip(blips)
+								backentrega = selecionado
+								processo = true
+								segundos = 5
+	
+								vRP._playAnim(true,{{"pickup_object","pickup_low"}},false)
+								vRP._CarregarObjeto("pickup_object","pickup_low","hei_prop_heist_cash_pile",49,28422)
+	
+								SetTimeout(9000,function()
+									DeleteObject(droga)
+								end)
+	
+								while true do
+									if backentrega == selecionado then
+										selecionado = math.random(30)
+									else
+										break
+									end
+									Citizen.Wait(1)
 								end
-								Citizen.Wait(1)
+								CriandoBlip(locs,selecionado)
 							end
-							CriandoBlip(locs,selecionado)
+						else
+							if emP.checkPayment() then
+								droga = CreateObject(GetHashKey("prop_meth_bag_01"),locs[selecionado].x,locs[selecionado].y,locs[selecionado].z-1,true,true,true)
+	
+								emP.MarcarOcorrencia() -- Acionar a policia
+	
+								TriggerEvent('cancelando',true)
+								RemoveBlip(blips)
+								backentrega = selecionado
+								processo = true
+								segundos = 5
+	
+								vRP._playAnim(true,{{"pickup_object","pickup_low"}},false)
+								vRP._CarregarObjeto("pickup_object","pickup_low","hei_prop_heist_cash_pile",49,28422)
+	
+								SetTimeout(9000,function()
+									DeleteObject(droga)
+								end)
+	
+								while true do
+									if backentrega == selecionado then
+										selecionado = math.random(30)
+									else
+										break
+									end
+									Citizen.Wait(1)
+								end
+								CriandoBlip(locs,selecionado)
+							end
 						end
 					end
 				end

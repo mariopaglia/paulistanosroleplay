@@ -54,7 +54,7 @@ function func.checkRobbery(id,x,y,z,head)
 	local user_id = vRP.getUserId(source)
 	local identity = vRP.getUserIdentity(user_id)
 	if user_id then
-		local policia = vRP.getUsersByPermission("policia.permissao")
+		local policia = vRP.getUsersByPermission("pmesp.permissao")
 		if #policia >= 2 then
 			if timers[id] == 0 or not timers[id] then
 				timers[id] = 1200

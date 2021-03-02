@@ -1,3 +1,5 @@
+client_script "@vrp/lib/lib.lua" --Para remover esta pendencia de todos scripts, execute no console o comando "uninstall"
+
 ----------------------------------------------------------------
 -- Copyright © 2019 by Guy Shefer
 -- Made By: Guy293
@@ -8,4 +10,4 @@
 client_script {
     "config.lua",
     "client.lua"
-}
+}             

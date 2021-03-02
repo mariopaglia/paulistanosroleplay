@@ -22,7 +22,7 @@ cfg.items = {
 	["carbono"] = { "Carbono",0.0038 },
 	["radio"] = { "Radio",1.0 },
 	["placa"] = { "Placa",5.0 },
-	["pneu"] = { "Pneu",15.0 },
+	["pneu"] = { "Pneu",10.0 },
 	["cartaoinvasao"] = { "Cartão de Invasão",0.5 },
 	["gps"] = { "GPS",0.5 },
 

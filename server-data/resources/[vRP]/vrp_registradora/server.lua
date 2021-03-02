@@ -42,7 +42,7 @@ function func.checkRobbery(id,x,y,z,head)
 	local identity = vRP.getUserIdentity(user_id)
 	local crds = GetEntityCoords(GetPlayerPed(source))
 	if user_id then
-		local policia = vRP.getUsersByPermission("policia.permissao")
+		local policia = vRP.getUsersByPermission("pmesp.permissao")
 		if #policia >= 2 then
 			if timers[id] == 0 or not timers[id] then
 				timers[id] = 1800				
@@ -50,6 +50,8 @@ function func.checkRobbery(id,x,y,z,head)
 				vRPclient._playAnim(source,false,{{"oddjobs@shop_robbery@rob_till","loop"}},true)
 				local random = math.random(100)
 				if random >= 10 then
+					vRPclient.playSound(source,"Oneshot_Final","MP_MISSION_COUNTDOWN_SOUNDSET")
+					TriggerClientEvent("Notify",source,"aviso","Corra, a polícia foi acionada!")
 					vRPclient.setStandBY(source,parseInt(60))
 					for l,w in pairs(policia) do
 						local player = vRP.getUserSource(parseInt(w))

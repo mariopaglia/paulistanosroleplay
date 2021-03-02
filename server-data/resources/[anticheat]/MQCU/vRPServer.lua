@@ -18,7 +18,7 @@ ac_webhook_logstaff = "https://discord.com/api/webhooks/800149038112440370/Ajh4R
 -------------------------------
 -------GETHACK PARAMETROS------
 local banir_blacklisted = true
-local minimo_bans = 1
+local minimo_bans = 2
 local excecao = {}
 excecao[1]=true
 excecao[2]=true

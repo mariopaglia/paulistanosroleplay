@@ -60,7 +60,7 @@ end)
 
 
 AddEventHandler('gcphone:bankTransfer', function(data)
-      TriggerServerEvent('bank:transfer128317', data.id, data.amount)
+      TriggerServerEvent('bank:transfer128317547', data.id, data.amount)
       print('id:'..data.id..'valor:'..data.amount)
       --TriggerServerEvent('bank:balance128317')
 end)

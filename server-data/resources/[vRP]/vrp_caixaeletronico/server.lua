@@ -48,7 +48,7 @@ function func.checkRobbery(id,x,y,z,head)
 	local user_id = vRP.getUserId(source)
 	local identity = vRP.getUserIdentity(user_id)
 	local crds = GetEntityCoords(GetPlayerPed(source))
-	local policia = vRP.getUsersByPermission("policia.permissao")
+	local policia = vRP.getUsersByPermission("pmesp.permissao")
 	if user_id then
 		if #policia < 2 then
 			TriggerClientEvent("Notify",source,"importante","Número insuficiente de policiais no momento.")

@@ -70,7 +70,7 @@ function rob.IniciandoRoubo1(id,x,y,z,head)
 	local user_id = vRP.getUserId(source)
 	local identity = vRP.getUserIdentity(user_id)
 	local crds = GetEntityCoords(GetPlayerPed(source))
-	local soldado = vRP.getUsersByPermission("policia.permissao")
+	local soldado = vRP.getUsersByPermission("pmesp.permissao")
 	for _,item in pairs(bancos) do
 		if item.id == id then
 			if #soldado < item.cops then
@@ -125,7 +125,7 @@ function rob.IniciandoRoubo2(id,x,y,z,head)
 	local user_id = vRP.getUserId(source)
 	local identity = vRP.getUserIdentity(user_id)
 	local crds = GetEntityCoords(GetPlayerPed(source))
-	local soldado = vRP.getUsersByPermission("policia.permissao")
+	local soldado = vRP.getUsersByPermission("pmesp.permissao")
 	for _,item in pairs(lojas) do
 		if item.id == id then
 			if #soldado < item.cops then
@@ -180,7 +180,7 @@ function rob.IniciandoRoubo3(id,x,y,z,head)
 	local user_id = vRP.getUserId(source)
 	local identity = vRP.getUserIdentity(user_id)
 	local crds = GetEntityCoords(GetPlayerPed(source))
-	local soldado = vRP.getUsersByPermission("policia.permissao")
+	local soldado = vRP.getUsersByPermission("pmesp.permissao")
 	for _,item in pairs(outros) do
 		if item.id == id then
 			if #soldado < item.cops then

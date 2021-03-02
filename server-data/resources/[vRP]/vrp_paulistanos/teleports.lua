@@ -29,7 +29,9 @@ Citizen.CreateThread(function()
 
 			if distance <= 15 then
 				esperar = 4
-				DrawMarker(40,j.positionFrom.x,j.positionFrom.y,j.positionFrom.z-0.5,0,0,0,0,0,0,1.0,1.0,1.0,255,255,255,100,0,0,0,0)
+				-- DrawMarker(40,j.positionFrom.x,j.positionFrom.y,j.positionFrom.z-0.5,0,0,0,0,0,0,1.0,1.0,1.0,255,255,255,100,0,0,0,0)
+				DrawMarker(1,j.positionFrom.x,j.positionFrom.y,j.positionFrom.z-1,0,0,0,0,0,0,1.0,1.0,1.0,255,255,255,50,0,0,0,0)
+				-- DrawMarker(1,j.positionTo.x,j.positionTo.y,j.positionTo.z-1,0,0,0,0,0,0,1.0,1.0,1.0,255,255,255,50,0,0,0,0)
 				if distance <= 1.5 then
 					if IsControlJustPressed(0,38) then
 						SetEntityCoords(PlayerPedId(),j.positionTo.x,j.positionTo.y,j.positionTo.z-0.50)

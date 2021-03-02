@@ -260,7 +260,7 @@ local user_id = vRP.getUserId(source)
 				end
 			elseif itemName == "lockpick" then
 				local vehicle,vnetid,placa,vname,lock,banned,trunk,model,street = vRPclient.vehList(source,7)
-				local policia = vRP.getUsersByPermission("policia.permissao")
+				local policia = vRP.getUsersByPermission("pmesp.permissao")
 				if #policia < 2 then
 					TriggerClientEvent("Notify",source,"importante","Número insuficiente de policiais no momento para iniciar o roubo.")
 					return true
@@ -329,7 +329,7 @@ local user_id = vRP.getUserId(source)
 				end
 			elseif itemName == "masterpick" then
 				local vehicle,vnetid,placa,vname,lock,banned,trunk,model,street = vRPclient.vehList(source,7)
-				local policia = vRP.getUsersByPermission("policia.permissao")
+				local policia = vRP.getUsersByPermission("pmesp.permissao")
 				if #policia < 0 then
 					TriggerClientEvent("Notify",source,"importante","Número insuficiente de policiais no momento para iniciar o roubo.")
 					return true

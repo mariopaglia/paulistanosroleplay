@@ -648,7 +648,7 @@ end)
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- COBRAR
 -----------------------------------------------------------------------------------------------------------------------------------------
- RegisterCommand('cobrar',function(source,args,rawCommand)
+RegisterCommand('cobrar',function(source,args,rawCommand)
     vRP.antiflood(source,"cobrar",2)
     local user_id = vRP.getUserId(source)
     local consulta = vRPclient.getNearestPlayer(source,2)
@@ -656,6 +656,7 @@ end)
     local resultado = json.decode(consulta) or 0
     local identity =  vRP.getUserIdentity(user_id)
     local identityu = vRP.getUserIdentity(nuser_id)
+	local crds = GetEntityCoords(GetPlayerPed(source))
     if vRP.request(consulta,"Deseja pagar <b>R$ "..vRP.format(parseInt(args[1])).."</b> para <b>"..identity.name.." "..identity.firstname.."</b>?",30) then    
         if parseInt(args[1]) > 0 then                
             local banco = vRP.getBankMoney(nuser_id)
@@ -671,6 +672,7 @@ end)
                 else
                     local identity = vRP.getUserIdentity(user_id)
                     TriggerClientEvent("Notify",player,"importante","<b>"..identity.name.." "..identity.firstname.."</b> transferiu <b>R$ "..vRP.format(parseInt(args[1])).."</b> para sua conta.")
+					SendWebhookMessage(logscobrar,"```prolog\n[ID]: "..user_id.." "..identity.name.." "..identity.firstname.." \n[COBROU]: R$ "..vRP.format(parseInt(args[1])).." \n[DO ID]: "..nuser_id.." "..identityu.name.." "..identityu.firstname.."\n[COORDENADA]: "..crds.x..","..crds.y..","..crds.z..""..os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S").." \r```")
                 end            
             else    
                 TriggerClientEvent("Notify",source,"negado","Dinheiro insuficiente.")
@@ -779,15 +781,15 @@ RegisterCommand('call',function(source,args,rawCommand)
 	local user_id = vRP.getUserId(source)
 	if user_id then
 		local players = {}
-		if args[1] == "190" then
-			players = vRP.getUsersByPermission("policia.permissao")
-		elseif args[1] == "192" then
-			players = vRP.getUsersByPermission("paramedico.permissao")
-		elseif args[1] == "mec" then
-			players = vRP.getUsersByPermission("mecanico.permissao")
-		elseif args[1] == "taxi" then
-			players = vRP.getUsersByPermission("taxista.permissao")
-		elseif args[1] == "adm" then
+		-- if args[1] == "190" then
+		-- 	players = vRP.getUsersByPermission("policia.permissao")
+		-- elseif args[1] == "192" then
+		-- 	players = vRP.getUsersByPermission("paramedico.permissao")
+		-- elseif args[1] == "mec" then
+		-- 	players = vRP.getUsersByPermission("mecanico.permissao")
+		-- elseif args[1] == "taxi" then
+		-- 	players = vRP.getUsersByPermission("taxista.permissao")
+		if args[1] == "adm" then
 			players = vRP.getUsersByPermission("admin.permissao")
 		else
 			TriggerClientEvent("Notify",source,"negado","Serviço inexistente ou disponível somente pelo <b>celular</b>")
@@ -800,20 +802,21 @@ RegisterCommand('call',function(source,args,rawCommand)
 		end
 
 		local identitys = vRP.getUserIdentity(user_id)
+		local crds = GetEntityCoords(GetPlayerPed(source))
 		TriggerClientEvent("Notify",source,"sucesso","Chamado enviado com sucesso.")
-		SendWebhookMessage(discordwebhook, "```prolog\n[====CHAMADOS====]\n[ID]: "..user_id.." \n[CHAMADO PARA]: "..args[1].."\n[MENSAGEM]: '"..descricao.."'```")
+		SendWebhookMessage(logcmdcall, "```prolog\n[ID]: "..user_id.." "..identitys.name.." "..identitys.firstname.." \n[CHAMOU]: "..args[1].."\n[MENSAGEM]: '"..descricao.."'\n[COORDENADA]: "..crds.x..","..crds.y..","..crds.z..""..os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S").."```")
+		-- SendWebhookMessage(discordwebhook, "```prolog\n[====CHAMADOS====]\n[ID]: "..user_id.." \n[CHAMADO PARA]: "..args[1].."\n[MENSAGEM]: '"..descricao.."'```")
 		for l,w in pairs(players) do
 			local player = vRP.getUserSource(parseInt(w))
 			local nuser_id = vRP.getUserId(player)
 			local x,y,z = vRPclient.getPosition(source)
 			local uplayer = vRP.getUserSource(user_id)
-			local crds = GetEntityCoords(GetPlayerPed(source))
+			
 
 			if player and player ~= uplayer then
 				async(function()
 					vRPclient.playSound(player,"Out_Of_Area","DLC_Lowrider_Relay_Race_Sounds")
 					TriggerClientEvent('chatMessage',player,"CHAMADO",{255,0,0},"Enviado por ^1"..identitys.name.." "..identitys.firstname.."^0 ["..user_id.."]: "..descricao)
-					SendWebhookMessage(logcmdcall, "```prolog\n[ID]: "..user_id.." "..identitys.name.." "..identitys.firstname.." \n[CHAMOU]: "..args[1].."\n[MENSAGEM]: '"..descricao.."'\n[COORDENADA]: "..crds.x..","..crds.y..","..crds.z..""..os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S").."```")
 					local ok = vRP.request(player,"Aceitar o chamado de <b>"..identitys.name.." "..identitys.firstname.."</b>?",30)
 					if ok then
 						if not answered then
@@ -1153,13 +1156,14 @@ RegisterCommand('status',function(source,args,rawCommand)
 	local user_id = vRP.getUserId(source)        
 	if vRP.hasPermission(user_id,"admin.permissao") or vRP.hasPermission(user_id,"mod.permissao") or vRP.hasPermission(user_id,"sup.permissao") then
 		local onlinePlayers2 = GetNumPlayerIndices()
-    	local policia2 = vRP.getUsersByPermission("policia.permissao")
+    	local policia2 = vRP.getUsersByPermission("pmesp.permissao")
+    	local policia3 = vRP.getUsersByPermission("pcivil.permissao")
     	local paramedico2 = vRP.getUsersByPermission("paramedico.permissao")
     	local mec2 = vRP.getUsersByPermission("mecanico.permissao")
     	local staff2 = vRP.getUsersByPermission("admin.permissao")
 		local taxista2 = vRP.getUsersByPermission("taxista.permissao")
 		-- local conce2 = vRP.getUsersByPermission("concessionaria.permissao")
-		TriggerClientEvent("Notify",source,"importante","<bold><b>Jogadores</b>: <b>"..onlinePlayers2.."<br>Staff</b>: <b>"..#staff2.."<br>Policiais</b>: <b>"..#policia2.."<br>Taxistas</b>: <b>"..#taxista2.."<br>Paramédicos</b>: <b>"..#paramedico2.."<br>Mecânicos</b>: <b>"..#mec2.."</b></bold>",9000)
+		TriggerClientEvent("Notify",source,"importante","<bold><b>Jogadores</b>: <b>"..onlinePlayers2.."<br>Staff</b>: <b>"..#staff2.."<br>Pol. Militar</b>: <b>"..#policia2.."<br>Pol. Civil</b>: <b>"..#policia3.."<br>Taxistas</b>: <b>"..#taxista2.."<br>Paramédicos</b>: <b>"..#paramedico2.."<br>Mecânicos</b>: <b>"..#mec2.."</b></bold>",9000)
 	else
     	local onlinePlayers = GetNumPlayerIndices()
     	local paramedico = vRP.getUsersByPermission("paramedico.permissao")
@@ -1250,7 +1254,7 @@ RegisterCommand('saquear',function(source,args,rawCommand)
 			local identity_user = vRP.getUserIdentity(user_id)
 			local nuser_id = vRP.getUserId(nplayer)
 			local nidentity = vRP.getUserIdentity(nuser_id)
-			local policia = vRP.getUsersByPermission("policia.permissao")
+			local policia = vRP.getUsersByPermission("pmesp.permissao")
 			local itens_saque = {}
 			if #policia >= 0 then
 				local vida = vRPclient.getHealth(nplayer)

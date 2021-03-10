@@ -28,8 +28,8 @@ vRP._prepare("sRP/get_banco_id","SELECT * FROM vrp_banco WHERE user_id = @user_i
 vRP._prepare("sRP/get_dinheiro","SELECT bank FROM vrp_user_moneys WHERE user_id = @user_id")
 vRP._prepare("sRP/set_banco","UPDATE vrp_user_moneys SET bank = @bank WHERE user_id = @user_id")
 
-async(function()
-  vRP.execute("sRP/banco")
+AddEventHandler('onMySQLReady', function()
+	vRP.execute("sRP/banco")
 end)
 
 RegisterServerEvent('get:banco')

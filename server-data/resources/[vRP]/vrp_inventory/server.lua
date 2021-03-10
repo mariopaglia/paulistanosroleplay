@@ -501,13 +501,20 @@ local user_id = vRP.getUserId(source)
 					vRPclient.setArmour(source,100)
 					TriggerClientEvent('Creative:Update',source,'updateMochila')
 				end
+			elseif itemName == "rosa" then
+				if vRP.tryGetInventoryItem(user_id,"rosa",1) then
+					local e = { nome = "rosa" , prop = "prop_single_rose" , flag = 50 , hand = 60309 , pos1 = 0.055 , pos2 = 0.05 , pos3 = 0.0 , pos4 = 240.0 , pos5 = 0.0 , pos6 = 0.0 }
+					vRPclient._CarregarObjeto(source,"","",e.prop,e.flag,e.hand,e.pos1,e.pos2,e.pos3,e.pos4,e.pos5,e.pos6)
+					Citizen.Wait(20000)
+					vRPclient._DeletarObjeto(source)
+				end
 		end
 		elseif type == "equipar" then
 			if vRP.tryGetInventoryItem(user_id,itemName,1) then
 				local weapons = {}
 				local identity = vRP.getUserIdentity(user_id)
 				weapons[string.gsub(itemName,"wbody|","")] = { ammo = 0 }
-				vRPclient._giveWeapons(source,weapons)
+				vRPclient._giveWeapons635168747(source,weapons)
 				SendWebhookMessage(webhookinventario,"```prolog\n[ID]: "..user_id.." "..identity.name.." "..identity.firstname.." \n[EQUIPOU]: "..vRP.itemNameList(itemName).." "..os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S").." \r```")
 				TriggerClientEvent('Creative:Update',source,'updateMochila')
 			end
@@ -531,7 +538,7 @@ local user_id = vRP.getUserId(source)
               local weapons = {}
               weapons[weaponuse] = { ammo = v.amount }
               itemAmount = v.amount
-              vRPclient._giveWeapons(source,weapons,false)
+              vRPclient._giveWeapons635168747(source,weapons,false)
               SendWebhookMessage(webhookinventario,"```prolog\n[ID]: "..user_id.." "..identity.name.." "..identity.firstname.." \n[RECARREGOU]: "..vRP.itemNameList(itemName).." \n[MUNICAO]: "..parseInt(v.amount).." "..os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S").." \r```")
               TriggerClientEvent('Creative:Update',source,'updateMochila')
             end

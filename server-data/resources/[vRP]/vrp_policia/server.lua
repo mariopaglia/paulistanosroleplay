@@ -1389,3 +1389,24 @@ RegisterCommand('mecanicos', function(source,args,rawCommand)
          end
      end
 end)
+-----------------------------------------------------------------------------------------------------------------------------------------
+-- /CIVIL
+-----------------------------------------------------------------------------------------------------------------------------------------
+RegisterCommand('civil', function(source,args,rawCommand)
+     local user_id = vRP.getUserId(source)
+     local player = vRP.getUserSource(user_id)
+     local oficiais = vRP.getUsersByPermission("pcivil.permissao")
+     local pcivil = 0
+     local pcivil_nomes = ""
+     if vRP.hasPermission(user_id,"admin.permissao") then
+         for k,v in ipairs(oficiais) do
+             local identity = vRP.getUserIdentity(parseInt(v))
+             pcivil_nomes = pcivil_nomes .. "<b>" .. v .. "</b>: " .. identity.name .. " " .. identity.firstname .. "<br>"
+             pcivil = pcivil + 1
+         end
+         TriggerClientEvent("Notify",source,"importante", "Atualmente <b>"..pcivil.." Pol. Civil</b> em serviço.")
+         if parseInt(pcivil) > 0 then
+             TriggerClientEvent("Notify",source,"importante", pcivil_nomes)
+         end
+     end
+end)

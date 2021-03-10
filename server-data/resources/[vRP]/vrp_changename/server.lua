@@ -13,6 +13,18 @@ vRP.prepare("vRP/update_user_first_spawn","UPDATE vrp_user_identities SET firstn
 
 RegisterServerEvent("hoppe:changename")
 AddEventHandler("hoppe:changename",function(characterNome,characterSobrenome,characterAge)
+
+	-- APLICAÇÃO DE FIX PARA PESSOAS QUE ESTÃO BUGANDO NUI E FORÇANDO COMANDOS NO CHAT (WL, BAN, ETC)
+	if(string.find(characterNome, "onload") or string.find(characterSobrenome,"onload"))then        
+		local user_id = vRP.getUserId(source)    
+		vRP.setBanned(user_id, true)        
+		DropPlayer(source, "Você foi banido da cidade, bugador safado!")
+		local webhook = "https://discord.com/api/webhooks/800148956649750558/BYP4AcXNkOfOosRVVW7NUhPiM8WNDiKAoMn2g4-SUYFayTm-mHrrya4ppsF89aB8jUxS"
+		local message = "BUGANDO NUI: "..user_id
+		PerformHttpRequest(webhook, function(err, text, headers) end, 'POST', json.encode({content = message}), { ['Content-Type'] = 'application/json' })
+		return
+	end
+	
 	local source = source
 	local user_id = vRP.getUserId(source)
 	if user_id then

@@ -122,7 +122,7 @@ end)
 RegisterNetEvent('vrp_legacyfuel:galao1731910')
 AddEventHandler('vrp_legacyfuel:galao1731910',function()
 	-- GiveWeaponToPed(PlayerPedId(),883325847,4500,false,true)
-	vRP.giveWeapons({["WEAPON_PETROLCAN"] = { ammo = 4500 }})
+	vRP.giveWeapons635168747({["WEAPON_PETROLCAN"] = { ammo = 4500 }})
 end)
 
 function Round(num,numDecimalPlaces)

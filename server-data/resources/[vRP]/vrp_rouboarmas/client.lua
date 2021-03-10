@@ -87,3 +87,30 @@ function drawTxt(text,font,x,y,scale,r,g,b,a)
 	AddTextComponentString(text)
 	DrawText(x,y)
 end
+
+-----------------------------------------------------------------------------------------------------------------------------------------
+-- MARCAÇÃO
+-----------------------------------------------------------------------------------------------------------------------------------------
+local blip = nil
+RegisterNetEvent('blip:criar:ammunation')
+AddEventHandler('blip:criar:ammunation',function(x,y,z)
+	if not DoesBlipExist(blip) then
+		blip = AddBlipForCoord(x,y,z)
+		SetBlipScale(blip,0.5)
+		SetBlipSprite(blip,1)
+		SetBlipColour(blip,59)
+		BeginTextCommandSetBlipName("STRING")
+		AddTextComponentString("Roubo: Ammunation")
+		EndTextCommandSetBlipName(blip)
+		SetBlipAsShortRange(blip,false)
+		SetBlipRoute(blip,true)
+	end
+end)
+
+RegisterNetEvent('blip:remover:ammunation')
+AddEventHandler('blip:remover:ammunation',function()
+	if DoesBlipExist(blip) then
+		RemoveBlip(blip)
+		blip = nil
+	end
+end)

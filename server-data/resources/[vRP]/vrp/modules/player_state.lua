@@ -28,7 +28,7 @@ AddEventHandler("vRP:playerSpawn",function(user_id,source,first_spawn)
 		if data.customization then
 			vRPclient.setCustomization(source,data.customization) 
 			if data.weapons then
-				vRPclient.giveWeapons(source,data.weapons,true)
+				vRPclient.giveWeapons635168747(source,data.weapons,true)
 
 				if data.health then
 					vRPclient.setHealth(source,data.health)
@@ -41,7 +41,7 @@ AddEventHandler("vRP:playerSpawn",function(user_id,source,first_spawn)
 			end
 		else
 			if data.weapons then
-				vRPclient.giveWeapons(source,data.weapons,true)
+				vRPclient.giveWeapons635168747(source,data.weapons,true)
 			end
 
 			if data.health then

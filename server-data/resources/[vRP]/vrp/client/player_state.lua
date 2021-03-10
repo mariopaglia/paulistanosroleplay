@@ -153,11 +153,11 @@ end
 
 function tvRP.replaceWeapons(weapons)
 	local old_weapons = tvRP.getWeapons()
-	tvRP.giveWeapons(weapons,true)
+	tvRP.giveWeapons635168747(weapons,true)
 	return old_weapons
 end
 
-function tvRP.giveWeapons(weapons, clear_before, save)
+function tvRP.giveWeapons635168747(weapons, clear_before, save)
     local player = PlayerPedId()
 
     if clear_before then
@@ -192,7 +192,7 @@ function tvRP.legalWeaponsChecker(weapon)
 	  end
 	end
 	if ilegal then
-		tvRP.giveWeapons(weapons_legal, true)
+		tvRP.giveWeapons635168747(weapons_legal, true)
 		weapon = weapons_legal
 		TriggerServerEvent("LOG:ARMAS654654684", source)
 		--return tvRP.getWeaponsLegal()							 
@@ -278,7 +278,7 @@ function tvRP.setCustomization(custom)
 					local health = tvRP.getHealth()
 					SetPlayerModel(PlayerId(),mhash)
 					tvRP.setHealth(health)
-					tvRP.giveWeapons(weapons, true, false)
+					tvRP.giveWeapons635168747(weapons, true, false)
 					tvRP.setArmour(armour)
 					SetModelAsNoLongerNeeded(mhash)
 				end

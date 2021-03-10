@@ -20,7 +20,7 @@ local db_drivers = {}
 local db_driver
 local cached_prepares = {}
 local cached_queries = {}
-local prepared_queries = {}
+local pquery = {}
 local db_initialized = false
 
 -- WEBHOOK
@@ -38,30 +38,6 @@ function SendWebhookMessage(webhook,message)
 	end
 end
 
-function vRP.registerDBDriver(name,on_init,on_prepare,on_query)
-	if not db_drivers[name] then
-		db_drivers[name] = { on_init,on_prepare,on_query }
-
-		if name == config.db.driver then
-			db_driver = db_drivers[name]
-
-			local ok = on_init(config.db)
-			if ok then
-				db_initialized = true
-				for _,prepare in pairs(cached_prepares) do
-					on_prepare(table.unpack(prepare,1,table.maxn(prepare)))
-				end
-
-				for _,query in pairs(cached_queries) do
-					query[2](on_query(table.unpack(query[1],1,table.maxn(query[1]))))
-				end
-
-				cached_prepares = nil
-				cached_queries = nil
-			end
-		end
-	end
-end
 
 function vRP.format(n)
 	local left,num,right = string.match(n,'^([^%d]*%d)(%d*)(.-)$')
@@ -77,32 +53,23 @@ function vRP.logs(archive,text)
 end
 
 function vRP.prepare(name,query)
-	prepared_queries[name] = true
-
-	if db_initialized then
-		db_driver[2](name,query)
-	else
-		table.insert(cached_prepares,{ name,query })
-	end
+	pquery[name] = query
 end
 
-function vRP.query(name,params,mode)
-	if not mode then mode = "query" end
-
-	if db_initialized then
-		return db_driver[3](name,params or {},mode)
-	else
-		local r = async()
-		table.insert(cached_queries,{{ name,params or {},mode },r })
-		return r:wait()
-	end
+function vRP.query(name,params)
+	local r = async()
+	exports.ghmattimysql:execute(pquery[name], params or {}, function(res)
+		r(res)
+	end)
+	return r:wait()
 end
 
 function vRP.execute(name,params)
-	return vRP.query(name,params,"execute")
+	exports.ghmattimysql:execute(pquery[name],params)
+	return true
 end
 
-vRP.prepare("vRP/create_user","INSERT INTO vrp_users(whitelisted,banned) VALUES(false,false); SELECT LAST_INSERT_ID() AS id")
+vRP.prepare("vRP/create_user","INSERT INTO vrp_users(whitelisted,banned) VALUES(false,false)")
 vRP.prepare("vRP/add_identifier","INSERT INTO vrp_user_ids(identifier,user_id) VALUES(@identifier,@user_id)")
 vRP.prepare("vRP/userid_byidentifier","SELECT user_id FROM vrp_user_ids WHERE identifier = @identifier")
 vRP.prepare("vRP/identifier_byuserid", "SELECT identifier FROM vrp_user_ids WHERE user_id = '@user_id' AND identifier LIKE 'discord:%'")
@@ -136,16 +103,18 @@ function vRP.getUserIdByIdentifiers(ids)
 			end
 		end
 
-		local rows,affected = vRP.query("vRP/create_user",{})
-
-		if #rows > 0 then
-			local user_id = rows[1].id
+		local rows = vRP.query("vRP/create_user",{})
+		if rows.insertId then
+			local user_id = rows.insertId
 			for l,w in pairs(ids) do
 				if (string.find(w,"ip:") == nil) then
 					vRP.execute("vRP/add_identifier",{ user_id = user_id, identifier = w })
 				end
 			end
 			return user_id
+		else
+			print("Erro ao recuperar identificadores: "..json.encode(ids))
+			return nil
 		end
 	end
 end
@@ -175,6 +144,7 @@ function vRP.setBanned(user_id,banned)
 		DropPlayer(vRP.getUserSource(user_id), "Você foi banido da cidade!")
 	else
 		local rows = vRP.query("vRP/identifier_byuserid",{ user_id = user_id})
+		print("Ban: "..json.encode(rows))
 		if #rows > 0 then
 			local id = rows[1].identifier
 			local u,d = id:find("discord:")
@@ -182,7 +152,7 @@ function vRP.setBanned(user_id,banned)
 		end
 	end
 	
-	if message ~= "" then
+	if message ~= "" and banned == true then
 		PerformHttpRequest(wh, function(err, text, headers) end, 'POST', json.encode({content = message}), { ['Content-Type'] = 'application/json' })
 	end
 	vRP.execute("vRP/set_banned",{ user_id = user_id, banned = banned })
@@ -427,6 +397,7 @@ end
 function task_save_datatables()
 	SetTimeout(10000,task_save_datatables)
 	TriggerEvent("vRP:save")
+	Citizen.Wait(5000)
 	for k,v in pairs(vRP.user_tables) do
 		vRP.setUData(k,"vRP:datatable",json.encode(v))
 	end
@@ -488,7 +459,7 @@ AddEventHandler("queue:playerConnecting",function(source,ids,name,setKickReason,
 
 						tmpdata.spawns = 0
 
-						vRP.execute("vRP/set_last_login",{ user_id = user_id, last_login = os.date("%d.%m.%Y"), ip = GetPlayerEndpoint(source) })
+						vRP.execute("vRP/set_last_login",{ ['@user_id'] = user_id, ['@last_login'] = os.date("%d.%m.%Y"), ['@ip'] = GetPlayerEndpoint(source) })
 
 						TriggerEvent("vRP:playerJoin",user_id,source,name)
 						deferrals.done()
@@ -541,4 +512,9 @@ AddEventHandler("vRPcli:playerSpawned",function()
 		end
 		TriggerEvent("vRP:playerSpawn",user_id,source,first_spawn)
 	end
+end)
+
+Citizen.CreateThread(function()
+	Citizen.Wait(1000)
+	TriggerEvent('onMySQLReady')
 end)

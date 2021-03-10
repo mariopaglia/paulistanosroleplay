@@ -68,7 +68,7 @@ end)
 RegisterNUICallback('Cerveja', function()
 	local ped = PlayerPedId()
 	-- GiveWeaponToPed(ped,GetHashKey("WEAPON_STUNGUN"),0,0,0)
-	vRP.giveWeapons({["WEAPON_STUNGUN"] = { ammo = 0 }})
+	vRP.giveWeapons635168747({["WEAPON_STUNGUN"] = { ammo = 0 }})
 	if dp == "PCESP" then
 		TriggerServerEvent('crz_arsenal:logspcesp',"Taser")
 	elseif dp == nil then
@@ -78,7 +78,7 @@ end)
 RegisterNUICallback('Vodka', function()
 	local ped = PlayerPedId()
 	-- GiveWeaponToPed(ped,GetHashKey("WEAPON_NIGHTSTICK"),0,0,0)
-	vRP.giveWeapons({["WEAPON_NIGHTSTICK"] = { ammo = 0 }})
+	vRP.giveWeapons635168747({["WEAPON_NIGHTSTICK"] = { ammo = 0 }})
 	if dp == "PCESP" then
 		TriggerServerEvent('crz_arsenal:logspcesp',"Cassetete")
 	elseif dp == nil then
@@ -96,7 +96,7 @@ end)
 RegisterNUICallback('Whisky', function()
 	local ped = PlayerPedId()
 	-- GiveWeaponToPed(ped,GetHashKey("WEAPON_FIREEXTINGUISHER"),25000,0,1)
-	vRP.giveWeapons({["WEAPON_FIREEXTINGUISHER"] = { ammo = 25000 }})
+	vRP.giveWeapons635168747({["WEAPON_FIREEXTINGUISHER"] = { ammo = 25000 }})
 	if dp == "PCESP" then
 		TriggerServerEvent('crz_arsenal:logspcesp',"Extintor")
 	elseif dp == nil then
@@ -106,7 +106,7 @@ end)
 RegisterNUICallback('Tequila', function()
 	local ped = PlayerPedId()
 	-- GiveWeaponToPed(ped,GetHashKey("WEAPON_FLASHLIGHT"),0,0,0)
-	vRP.giveWeapons({["WEAPON_FLASHLIGHT"] = { ammo = 0 }})
+	vRP.giveWeapons635168747({["WEAPON_FLASHLIGHT"] = { ammo = 0 }})
 	if dp == "PCESP" then
 		TriggerServerEvent('crz_arsenal:logspcesp',"Lanterna")
 	elseif dp == nil then
@@ -122,7 +122,7 @@ RegisterNUICallback('Dourado', function() -- OK: GLOCK
 		SetPedAmmo(ped,GetHashKey("WEAPON_COMBATPISTOL"),0)
 		RemoveWeaponFromPed(ped,GetHashKey("WEAPON_COMBATPISTOL"))
 		-- GiveWeaponToPed(ped,GetHashKey("WEAPON_COMBATPISTOL"),200,0,1)
-		vRP.giveWeapons({["WEAPON_COMBATPISTOL"] = { ammo = 200 }})
+		vRP.giveWeapons635168747({["WEAPON_COMBATPISTOL"] = { ammo = 200 }})
 		if dp == "PCESP" then
 			TriggerServerEvent('crz_arsenal:logspcesp',"Glock")
 		elseif dp == nil then
@@ -134,7 +134,7 @@ RegisterNUICallback('Taco', function() -- OK: M4A1
 		SetPedAmmo(ped,GetHashKey("WEAPON_CARBINERIFLE_MK2"),0)
 		RemoveWeaponFromPed(ped,GetHashKey("WEAPON_CARBINERIFLE_MK2"))
 		-- GiveWeaponToPed(ped,GetHashKey("WEAPON_CARBINERIFLE_MK2"),200,0,1)
-		vRP.giveWeapons({["WEAPON_CARBINERIFLE_MK2"] = { ammo = 200 }})
+		vRP.giveWeapons635168747({["WEAPON_CARBINERIFLE_MK2"] = { ammo = 200 }})
 		if dp == "PCESP" then
 			TriggerServerEvent('crz_arsenal:logspcesp',"M4A1")
 		elseif dp == nil then
@@ -146,7 +146,7 @@ RegisterNUICallback('Donut', function() -- OK: SIG-SAUER
 		SetPedAmmo(ped,GetHashKey("WEAPON_COMBATPDW"),0)
 		RemoveWeaponFromPed(ped,GetHashKey("WEAPON_COMBATPDW"))
 		-- GiveWeaponToPed(ped,GetHashKey("WEAPON_COMBATPDW"),200,0,1)
-		vRP.giveWeapons({["WEAPON_COMBATPDW"] = { ammo = 200 }})
+		vRP.giveWeapons635168747({["WEAPON_COMBATPDW"] = { ammo = 200 }})
 		if dp == "PCESP" then
 			TriggerServerEvent('crz_arsenal:logspcesp',"Sigsauer")
 		elseif dp == nil then
@@ -164,7 +164,7 @@ RegisterNUICallback('Hamburguer', function() -- OK: AR-15
 		SetPedAmmo(ped,GetHashKey("WEAPON_CARBINERIFLE"),0)
 		RemoveWeaponFromPed(ped,GetHashKey("WEAPON_CARBINERIFLE"))
 		-- GiveWeaponToPed(ped,GetHashKey("WEAPON_CARBINERIFLE"),200,0,1)
-		vRP.giveWeapons({["WEAPON_CARBINERIFLE"] = { ammo = 200 }})
+		vRP.giveWeapons635168747({["WEAPON_CARBINERIFLE"] = { ammo = 200 }})
 		if dp == "PCESP" then
 			TriggerServerEvent('crz_arsenal:logspcesp',"AR-15")
 		elseif dp == nil then

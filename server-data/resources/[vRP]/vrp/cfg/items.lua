@@ -25,6 +25,7 @@ cfg.items = {
 	["pneu"] = { "Pneu",10.0 },
 	["cartaoinvasao"] = { "Cartão de Invasão",0.5 },
 	["gps"] = { "GPS",0.5 },
+	["rosa"] = { "rosa",0.5 },
 
 	-- Farm Contrabando
 	["componentemetal"] = { "Componentes de Metais",0.5 },

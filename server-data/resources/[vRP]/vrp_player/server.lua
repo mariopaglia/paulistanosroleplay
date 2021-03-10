@@ -58,6 +58,7 @@ local itemlist = {
 	["pneu"] = { index = "pneu", nome = "Pneu" },
 	["cartaoinvasao"] = { index = "cartaoinvasao", nome = "Cartão de Invasão" },
 	["gps"] = { index = "gps", nome = "GPS" },
+	["rosa"] = { index = "rosa", nome = "Rosa" },
 
 	-- Farm Contrabando
 	["componentemetal"] = { index = "componentemetal", nome = "Componentes de Metais" },
@@ -718,7 +719,9 @@ AddEventHandler('playerDropped', function (reason)
 		if checkId(user_id) then
 			local identity = vRP.getUserIdentity(user_id)
 			local webhookbanimento = "https://discord.com/api/webhooks/800148956649750558/BYP4AcXNkOfOosRVVW7NUhPiM8WNDiKAoMn2g4-SUYFayTm-mHrrya4ppsF89aB8jUxS"
-			vRP.setBanned(user_id,true)
+			vRP.setBanned(parseInt(user_id),true)
+    		vRP.setWhitelisted(parseInt(user_id),false)
+			vRP.kick(user_id,"Você foi banido da cidade.")
 			SendWebhookMessage(webhookbanimento, "```prolog\n[ID]: "..user_id.." "..identity.name.." "..identity.firstname.." \n[MOTIVO]: Bugando /garmas"..os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S").."```")
         end
     end
@@ -1166,11 +1169,12 @@ RegisterCommand('status',function(source,args,rawCommand)
 		TriggerClientEvent("Notify",source,"importante","<bold><b>Jogadores</b>: <b>"..onlinePlayers2.."<br>Staff</b>: <b>"..#staff2.."<br>Pol. Militar</b>: <b>"..#policia2.."<br>Pol. Civil</b>: <b>"..#policia3.."<br>Taxistas</b>: <b>"..#taxista2.."<br>Paramédicos</b>: <b>"..#paramedico2.."<br>Mecânicos</b>: <b>"..#mec2.."</b></bold>",9000)
 	else
     	local onlinePlayers = GetNumPlayerIndices()
+		local policia = vRP.getUsersByPermission("pmesp.permissao")
     	local paramedico = vRP.getUsersByPermission("paramedico.permissao")
     	local mec = vRP.getUsersByPermission("mecanico.permissao")
     	local taxista = vRP.getUsersByPermission("taxista.permissao")
     	-- local conce = vRP.getUsersByPermission("concessionaria.permissao")
-		TriggerClientEvent("Notify",source,"importante","<bold><b>Jogadores</b>: <b>"..onlinePlayers.."<br>Taxistas</b>: <b>"..#taxista.."<br>Paramédicos</b>: <b>"..#paramedico.."<br>Mecânicos</b>: <b>"..#mec.."</b></bold>",9000)
+		TriggerClientEvent("Notify",source,"importante","<bold><b>Jogadores</b>: <b>"..onlinePlayers.."<br>Policiais</b>: <b>"..#policia.."<br>Taxistas</b>: <b>"..#taxista.."<br>Paramédicos</b>: <b>"..#paramedico.."<br>Mecânicos</b>: <b>"..#mec.."</b></bold>",9000)
 	end
 end)	
 -----------------------------------------------------------------------------------------------------------------------------------------
@@ -1226,6 +1230,8 @@ AddEventHandler('playerDropped', function (reason)
     -- print('Player ' .. GetPlayerName(source) ..' ['..vRP.getUserId(source).. '] dropped (Reason: ' .. reason .. ')')
     if reason == "Game crashed: gta-core-five.dll!CrashCommand (0x0)" then
         vRP.setBanned(user_id,true)
+		vRP.setWhitelisted(parseInt(user_id),false)
+		vRP.kick(user_id,"Você foi banido da cidade.")
     end
 end)
 -----------------------------------------------------------------------------------------------------------------------------------------
@@ -1323,40 +1329,40 @@ end)
 ------------------------------------------------------------
 --  CARREGAR NO OMBRO
 ----------------------------------------------------------------
-RegisterServerEvent('cmg2_animations:sync654654654')
-AddEventHandler('cmg2_animations:sync654654654', function(target, animationLib,animationLib2, animation, animation2, distans, distans2, height,targetSrc,length,spin,controlFlagSrc,controlFlagTarget,animFlagTarget)
-	vRP.antiflood(source,"cmg2_animations:sync654654654",3)
-	function getDistance(coords, ncoords) return #(vector3(coords.x, coords.y, coords.z) - vector3(ncoords.x, ncoords.y, ncoords.z))end
+-- RegisterServerEvent('cmg2_animations:sync654654654')
+-- AddEventHandler('cmg2_animations:sync654654654', function(target, animationLib,animationLib2, animation, animation2, distans, distans2, height,targetSrc,length,spin,controlFlagSrc,controlFlagTarget,animFlagTarget)
+-- 	vRP.antiflood(source,"cmg2_animations:sync654654654",3)
+-- 	function getDistance(coords, ncoords) return #(vector3(coords.x, coords.y, coords.z) - vector3(ncoords.x, ncoords.y, ncoords.z))end
 
-	local ped = GetPlayerPed(source) 
-	local loc = GetEntityCoords(ped) 
-	local nped = GetPlayerPed(targetSrc) 
-	local nloc = GetEntityCoords(nped)
+-- 	local ped = GetPlayerPed(source) 
+-- 	local loc = GetEntityCoords(ped) 
+-- 	local nped = GetPlayerPed(targetSrc) 
+-- 	local nloc = GetEntityCoords(nped)
 	
-	if(getDistance(nloc,loc)<8)then	
-		TriggerClientEvent('cmg2_animations:syncTarget654654654', targetSrc, source, animationLib2, animation2, distans, distans2, height, length,spin,controlFlagTarget,animFlagTarget)
-		TriggerClientEvent('cmg2_animations:syncMe654654654', source, animationLib, animation,length,controlFlagSrc,animFlagTarget)
-	else
-		local user_id = vRP.getUserId(source)
-		source = vRP.getUserSource(user_id)
-		if source ~= nil then
-			local reason = "ANTI HACK: 	localização:	"..loc.x..","..loc.y..","..loc.z
-			vRP.setBanned(user_id,true)					
-			local temp = os.date("%x  %X")
-			local msg = "Puxando todos players!"
-			PerformHttpRequest(ac_webhook, function(err, text, headers) end, 'POST', json.encode({content = "ANTI HACK	[ID]: "..user_id.."		"..temp.."[BAN]		[MOTIVO:"..msg.."]	"..reason}), { ['Content-Type'] = 'application/json' }) 		
-			TriggerClientEvent("vrp_sound:source",source,"ban",1.0)
-			Citizen.Wait(4000)
-			source = vRP.getUserSource(user_id)						
-		end
-	end
-end)
+-- 	if(getDistance(nloc,loc)<8)then	
+-- 		TriggerClientEvent('cmg2_animations:syncTarget654654654', targetSrc, source, animationLib2, animation2, distans, distans2, height, length,spin,controlFlagTarget,animFlagTarget)
+-- 		TriggerClientEvent('cmg2_animations:syncMe654654654', source, animationLib, animation,length,controlFlagSrc,animFlagTarget)
+-- 	else
+-- 		local user_id = vRP.getUserId(source)
+-- 		source = vRP.getUserSource(user_id)
+-- 		if source ~= nil then
+-- 			local reason = "ANTI HACK: 	localização:	"..loc.x..","..loc.y..","..loc.z
+-- 			vRP.setBanned(user_id,true)					
+-- 			local temp = os.date("%x  %X")
+-- 			local msg = "Puxando todos players!"
+-- 			PerformHttpRequest(ac_webhook, function(err, text, headers) end, 'POST', json.encode({content = "ANTI HACK	[ID]: "..user_id.."		"..temp.."[BAN]		[MOTIVO:"..msg.."]	"..reason}), { ['Content-Type'] = 'application/json' }) 		
+-- 			TriggerClientEvent("vrp_sound:source",source,"ban",1.0)
+-- 			Citizen.Wait(4000)
+-- 			source = vRP.getUserSource(user_id)						
+-- 		end
+-- 	end
+-- end)
 
 
-RegisterServerEvent('cmg2_animations:stop654654654')
-AddEventHandler('cmg2_animations:stop654654654', function(targetSrc)
-	TriggerClientEvent('cmg2_animations:cl_stop654654654', targetSrc)
-end)
+-- RegisterServerEvent('cmg2_animations:stop654654654')
+-- AddEventHandler('cmg2_animations:stop654654654', function(targetSrc)
+-- 	TriggerClientEvent('cmg2_animations:cl_stop654654654', targetSrc)
+-- end)
 
 ------------------------------------------------------------
 -- PEGAR DE REFEM
@@ -1376,38 +1382,38 @@ end)
 ------------------------------------------------------------
 -- CAVALINHO
 ----------------------------------------------------------------
-RegisterServerEvent('cmg2_animations:sync654654654_2')
-AddEventHandler('cmg2_animations:sync654654654_2', function(target, animationLib, animation, animation2, distans, distans2, height,targetSrc,length,spin,controlFlagSrc,controlFlagTarget,animFlagTarget)	
-	vRP.antiflood(source,"cmg2_animations:sync654654654",3)
-	function getDistance(coords, ncoords) return #(vector3(coords.x, coords.y, coords.z) - vector3(ncoords.x, ncoords.y, ncoords.z))end
+-- RegisterServerEvent('cmg2_animations:sync654654654_2')
+-- AddEventHandler('cmg2_animations:sync654654654_2', function(target, animationLib, animation, animation2, distans, distans2, height,targetSrc,length,spin,controlFlagSrc,controlFlagTarget,animFlagTarget)	
+-- 	vRP.antiflood(source,"cmg2_animations:sync654654654",3)
+-- 	function getDistance(coords, ncoords) return #(vector3(coords.x, coords.y, coords.z) - vector3(ncoords.x, ncoords.y, ncoords.z))end
 
-	local ped = GetPlayerPed(source) 
-	local loc = GetEntityCoords(ped) 
-	local nped = GetPlayerPed(targetSrc) 
-	local nloc = GetEntityCoords(nped)
+-- 	local ped = GetPlayerPed(source) 
+-- 	local loc = GetEntityCoords(ped) 
+-- 	local nped = GetPlayerPed(targetSrc) 
+-- 	local nloc = GetEntityCoords(nped)
 	
-	if(getDistance(nloc,loc)<8)then	
-		TriggerClientEvent('cmg2_animations:syncTarget654654654', targetSrc, source, animationLib, animation2, distans, distans2, height, length,spin,controlFlagTarget,animFlagTarget)
-		TriggerClientEvent('cmg2_animations:syncMe654654654', source, animationLib, animation,length,controlFlagSrc,animFlagTarget)
-	else
-		local user_id = vRP.getUserId(source)
-		source = vRP.getUserSource(user_id)
-		if source ~= nil then
-			local reason = "ANTI HACK: 	localização:	"..loc.x..","..loc.y..","..loc.z
-			vRP.setBanned(user_id,true)					
-			local temp = os.date("%x  %X")
-			local msg = "Puxando todos players!"
-			PerformHttpRequest(ac_webhook, function(err, text, headers) end, 'POST', json.encode({content = "ANTI HACK	[ID]: "..user_id.."		"..temp.."[BAN]		[MOTIVO:"..msg.."]	"..reason}), { ['Content-Type'] = 'application/json' }) 		
-			TriggerClientEvent("vrp_sound:source",source,"ban",1.0)
-			Citizen.Wait(4000)
-			source = vRP.getUserSource(user_id)						
-		end
-	end	
-end)
+-- 	if(getDistance(nloc,loc)<8)then	
+-- 		TriggerClientEvent('cmg2_animations:syncTarget654654654', targetSrc, source, animationLib, animation2, distans, distans2, height, length,spin,controlFlagTarget,animFlagTarget)
+-- 		TriggerClientEvent('cmg2_animations:syncMe654654654', source, animationLib, animation,length,controlFlagSrc,animFlagTarget)
+-- 	else
+-- 		local user_id = vRP.getUserId(source)
+-- 		source = vRP.getUserSource(user_id)
+-- 		if source ~= nil then
+-- 			local reason = "ANTI HACK: 	localização:	"..loc.x..","..loc.y..","..loc.z
+-- 			vRP.setBanned(user_id,true)					
+-- 			local temp = os.date("%x  %X")
+-- 			local msg = "Puxando todos players!"
+-- 			PerformHttpRequest(ac_webhook, function(err, text, headers) end, 'POST', json.encode({content = "ANTI HACK	[ID]: "..user_id.."		"..temp.."[BAN]		[MOTIVO:"..msg.."]	"..reason}), { ['Content-Type'] = 'application/json' }) 		
+-- 			TriggerClientEvent("vrp_sound:source",source,"ban",1.0)
+-- 			Citizen.Wait(4000)
+-- 			source = vRP.getUserSource(user_id)						
+-- 		end
+-- 	end	
+-- end)
 
-RegisterServerEvent('cmg2_animations:stop654654654')
-AddEventHandler('cmg2_animations:stop654654654', function(targetSrc)
-	if targetSrc then
-		TriggerClientEvent('cmg2_animations:cl_stop654654654', targetSrc)
-	end
-end)
+-- RegisterServerEvent('cmg2_animations:stop654654654')
+-- AddEventHandler('cmg2_animations:stop654654654', function(targetSrc)
+-- 	if targetSrc then
+-- 		TriggerClientEvent('cmg2_animations:cl_stop654654654', targetSrc)
+-- 	end
+-- end)

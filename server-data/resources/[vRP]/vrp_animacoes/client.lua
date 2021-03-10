@@ -597,6 +597,7 @@ AddEventHandler('emotes',function(nome)
 	end
 end)
 
+
 local morrer = false
 local animmorto = 0
 

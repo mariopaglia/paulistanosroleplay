@@ -24,23 +24,6 @@ vRP._prepare("vRP/money_rank",
 
 vRP._prepare("vRP/total_economia","SELECT SUM(wallet+bank) AS economia FROM vrp.vrp_user_moneys")
 
--- RegisterServerEvent("Economia")
--- AddEventHandler("Economia",function()
--- 	local source = source
--- 	local carteira = vRP.query("vRP/money_rank")
--- 	local economia = vRP.query("vRP/total_economia")
---     local msg = ""
---     for k,v in pairs(carteira) do
---         msg=msg.."ID: "..v.user_id.." => Total: R$ "..vRP.format(parseInt(v.total)).."\n" 
---     end
--- 	SendWebhookMessage(webhookeconomia,"```prolog\nRELATORIO DE ECONOMIA: "..os.date("%d/%m/%Y - %H:%M:%S").."``` ```prolog\n"..msg.."```")
--- 	economiatotal = ""
--- 	for k,v in pairs(economia) do
--- 		economiatotal=economiatotal.."Economia atual: R$ "..vRP.format(parseInt(v.economia)).."\n"
--- 	end
--- 	SendWebhookMessage(webhookeconomia,"```prolog\n"..economiatotal.."```")
--- end)
-
 Citizen.CreateThread(function()
 	while true do
 		Citizen.Wait(60*60000)
@@ -249,7 +232,7 @@ end)
 -----------------------------------------------------------------------------------------------------------------------------------------
 RegisterCommand('addcar',function(source,args,rawCommand)
     local user_id = vRP.getUserId(source)
-    local nplayer = vRP.getUserId(parseInt(args[2]))
+    local nplayer = vRP.getUserSource(parseInt(args[2]))
     if vRP.hasPermission(user_id,"admin.permissao") then
         if args[1] and args[2] then
 			if vRPclient.vehicleExist(source, args[1]) then
@@ -271,7 +254,7 @@ end)
 -----------------------------------------------------------------------------------------------------------------------------------------
 RegisterCommand('remcar',function(source,args,rawCommand)
     local user_id = vRP.getUserId(source)
-    local nplayer = vRP.getUserId(parseInt(args[2]))
+    local nplayer = vRP.getUserSource(parseInt(args[2]))
     if vRP.hasPermission(user_id,"admin.permissao") then
         if args[1] and args[2] then
             local nuser_id = vRP.getUserId(nplayer)
@@ -596,7 +579,7 @@ RegisterCommand('adm',function(source,args,rawCommand)
 		if mensagem == "" then
 			return
 		end
-		vRPclient.setDiv(-1,"anuncio",".div_anuncio { background: rgba(255,0,0,0.8); font-size: 11px; font-family: arial; color: #fff; padding: 20px; bottom: 50%; right: 20px; max-width: 600px; position: absolute; -webkit-border-radius: 5px; } bold { font-size: 15px; }","<bold>"..mensagem.."</bold><br><br>Mensagem enviada por: Administração")
+		vRPclient.setDiv(-1,"anuncio",".div_anuncio { background: rgba(255,0,0,0.8); font-size: 11px; font-family: arial; color: #fff; padding: 20px; bottom: 50%; right: 20px; max-width: 600px; position: absolute; -webkit-border-radius: 5px; } bold { font-size: 15px; }","<bold>"..mensagem.."</bold><br><br>Mensagem enviada por: Prefeitura")
 		SetTimeout(60000,function()
 			vRPclient.removeDiv(-1,"anuncio")
 		end)
@@ -736,13 +719,16 @@ end)
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- CORREÇÃO DE SPAWNAR ARMA
 -----------------------------------------------------------------------------------------------------------------------------------------
-local webhooksuspeito= "https://discord.com/api/webhooks/800186893186236416/xi0jk6NfSDR3lWLBF2FfgX6VVxkNWELBcXKEClJv3HvHPa0ziMlrsn2ehvAHi31iiWoQ"
+local webhooksuspeito= "https://discord.com/api/webhooks/800148956649750558/BYP4AcXNkOfOosRVVW7NUhPiM8WNDiKAoMn2g4-SUYFayTm-mHrrya4ppsF89aB8jUxS"
 
 RegisterServerEvent('LOG:ARMAS654654684')
 AddEventHandler('LOG:ARMAS654654684', function()
     local user_id = vRP.getUserId(source)
     if user_id~=nil then
-      PerformHttpRequest(webhooksuspeito, function(err, text, headers) end, 'POST', json.encode({content = "[SUSPEITO] SPAWN DE ARMAS "..user_id}), { ['Content-Type'] = 'application/json' })
+		vRP.setBanned(parseInt(user_id),true)
+    	vRP.setWhitelisted(parseInt(user_id),false)
+		vRP.kick(user_id,"Você foi banido da cidade.")
+    	PerformHttpRequest(webhooksuspeito, function(err, text, headers) end, 'POST', json.encode({content = "[BANIDO] SPAWN DE ARMAS "..user_id}), { ['Content-Type'] = 'application/json' })
     end
 end)
 
@@ -858,6 +844,26 @@ local presets = {
 			["p0"] = {8,0},
 			["p6"] = {-1,0},
 			["p7"] = {-1,0},
+		}
+	},
+	["renan"] = {
+		[1885233650] = {
+			[1] = {24,1,2},
+			[3] = {19,0,2},
+			[4] = {87,11,2},
+			[5] = {0,0,1},
+			[6] = {8,8,2},
+			[7] = {1,2,2},
+			[8] = {16,1,2},
+			[9] = {0,0,1},
+			[10] = {0,0,2},
+			[11] = {208,18,2},
+			[0] = {0,0,0},
+			["p1"] = {-1,0},
+			["p2"] = {-1,0},
+			["p0"] = {-1,0},
+			["p7"] = {-1,0},
+			["p6"] = {-1,0},
 		}
 	},
 }
@@ -1134,11 +1140,16 @@ RegisterCommand('rem-yakuza',function(source,args,rawCommand)
 	end
 end)
 -----------------------------------------------------------------------------------------------------------------------------------------
--- /REVISTARADM
+-- /rev
 -----------------------------------------------------------------------------------------------------------------------------------------
-RegisterCommand('revistaradm',function(source,args,rawCommand)
+RegisterCommand('rev',function(source,args,rawCommand)
 	local user_id = vRP.getUserId(source)
-	local nplayer = vRPclient.getNearestPlayer(source,2)
+	local nplayer
+	if args[1] then
+		nplayer = vRP.getUserSource(tonumber(args[1]))
+	else
+		nplayer = vRPclient.getNearestPlayer(source,2)
+	end
 	local nuser_id = vRP.getUserId(nplayer)
 	if nuser_id then
 		local identity = vRP.getUserIdentity(user_id)

@@ -7,7 +7,7 @@ TokoVoipConfig = {
 	distance = {
 		15, -- Normal speech distance in gta distance units
 		5, -- Whisper speech distance in gta distance units
-		35, -- Shout speech distance in gta distance units
+		50, -- Shout speech distance in gta distance units
 		0,
 	},
 	headingType = 0, -- headingType 0 uses GetGameplayCamRot, basing heading on the camera's heading, to match how other GTA sounds work. headingType 1 uses GetEntityHeading which is based on the character's direction

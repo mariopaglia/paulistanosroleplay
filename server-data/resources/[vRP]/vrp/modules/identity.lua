@@ -6,44 +6,23 @@ vRP.prepare("vRP/get_userbyphone","SELECT user_id FROM vrp_user_identities WHERE
 
 vRP.prepare("vRP/update_user_first_spawn","UPDATE vrp_user_identities SET firstname = @firstname, name = @name, age = @age WHERE user_id = @user_id")
 
-local identidades = {}
-function vRP.getUserIdentity(user_id,cbr)
-    local identidade = nil
-    if identidades[user_id] == nil then
-        local rows = vRP.query("vRP/get_user_identity",{ user_id = user_id })
-        identidades[user_id] = rows[1]
-    end
-    return identidades[user_id] 
+function vRP.getUserIdentity(user_id)
+	local rows = vRP.query("vRP/get_user_identity",{ user_id = user_id })
+	return rows[1]
 end
 
-local registros = {}
-function vRP.getUserByRegistration(registration, cbr)
-    local registro = nil 
-    if registros[registration] == nil then
-        local rows = vRP.query("vRP/get_userbyreg",{ registration = registration or "" })
-        if #rows > 0 then
-            registros[registration] = rows[1].user_id
-            registro = registros[registration] 
-        end
-    else 
-        registro = registros[registration] 
-    end
-    return registro
+function vRP.getUserByRegistration(registration)
+	local rows = vRP.query("vRP/get_userbyreg",{ registration = registration or "" })
+	if #rows > 0 then
+		return rows[1].user_id
+	end
 end
 
-local telefones = {}
-function vRP.getUserByPhone(phone, cbr)
-    local telefone = nil
-    if telefones[phone] == nil then
-        local rows = vRP.query("vRP/get_userbyphone",{ phone = phone or "" })
-        if #rows > 0 then
-            telefones[phone] = rows[1].user_id
-            telefone = telefones[phone]
-        end
-    else
-        telefone = telefones[phone]
-    end
-    return telefone
+function vRP.getUserByPhone(phone)
+	local rows = vRP.query("vRP/get_userbyphone",{ phone = phone or "" })
+	if #rows > 0 then
+		return rows[1].user_id
+	end
 end
 
 function vRP.generateStringNumber(format)
@@ -102,11 +81,4 @@ AddEventHandler("vRP:playerSpawn",function(user_id, source, first_spawn)
 	if identity then
 		vRPclient._setRegistrationNumber(source,identity.registration or "AA000AAA")
 	end
-end)
-
-AddEventHandler("identity:atualizar",function(user_id)
-    if user_id then    
-        local rows = vRP.query("vRP/get_user_identity",{ user_id = user_id })
-        identidades[user_id] = rows[1]
-    end
 end)

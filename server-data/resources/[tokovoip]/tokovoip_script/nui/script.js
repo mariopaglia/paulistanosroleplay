@@ -111,7 +111,6 @@ function init() {
 		else
 			reason = 'Unknown reason';
 
-		reason = ""
 		console.log('TokoVOIP: closed connection - ' + reason);
 		lastReconnect = getTickCount();
 		connected = false;
@@ -124,7 +123,7 @@ function sendData(message) {
 	if (websocket.readyState == websocket.OPEN) {
 		websocket.send(message);
 	}
-}
+	}
 
 function receivedClientCall(event) {
 	const eventName = event.data.type;
@@ -161,7 +160,7 @@ function receivedClientCall(event) {
 		checkPluginVersion();
 
 	if (voipStatus != OK) {
-		// Se não houver status Ok por mais de 5 segundos, a tela mostrará
+		// If no Ok status for more than 5 seconds, display screen
 		if (getTickCount() - lastOk > 5000) {
 			displayPluginScreen(true);
 		}
@@ -197,9 +196,9 @@ function checkPluginStatus() {
 
 function checkPluginVersion() {
 	if (isPluginVersionCorrect()) {
-		document.getElementById('pluginVersion').innerHTML = `Plugin Versão: <font color="green">${voip.pluginVersion}</font> (atualizado)`;
+		document.getElementById('pluginVersion').innerHTML = `Versão do Plugin: <font color="green">${voip.pluginVersion}</font> (up-to-date)`;
 	} else {
-		document.getElementById('pluginVersion').innerHTML = `Plugin Versão: <font color="red">${voip.pluginVersion}</font> (Required: ${voip.minVersion})`;
+		document.getElementById('pluginVersion').innerHTML = `Versão do Plugin: <font color="red">${voip.pluginVersion}</font> (Required: ${voip.minVersion})`;
 		voipStatus = INCORRECT_VERSION;
 	}
 }
@@ -225,28 +224,25 @@ function updateTokovoipInfo(msg) {
 
 	switch (voipStatus) {
 		case NOT_CONNECTED:
-			msg = 'Offline';
+			msg = 'OFFLINE';
 			color = 'red';
 			break;
 		case PLUGIN_INITIALIZING:
-			msg = 'Iniciando';
+			msg = 'INICIANDO';
 			color = 'red';
 			break;
 		case WRONG_SERVER:
 			msg = `Voz <b>desativada</b>. Conecte-se ao <b>TeamSpeak</b>.</font>`;
-			//msg = `Offline`;
 			screenMessage = 'TeamSpeak desconectado';
 			color = 'red';
 			break;
 		case WRONG_CHANNEL:
 			msg = `Voz <b>desativada</b>. Conecte-se ao <b>TeamSpeak</b>.</font>`;
-			//msg = `Offline`;
 			screenMessage = 'TeamSpeak desconectado';
 			color = 'red';
 			break;
 		case INCORRECT_VERSION:
-			//msg = 'Using incorrect plugin version';
-			msg = `Offline`;
+			msg = 'Using incorrect plugin version';
 			screenMessage = 'Versão incorreta do plugin';
 			color = 'red';
 			break;
@@ -254,7 +250,7 @@ function updateTokovoipInfo(msg) {
 			color = 'rgba(255,255,255,0.5)';
 			break;
 	}
-		if (msg) {
+	if (msg) {
 			document.getElementById('tokovoipInfo').innerHTML = `<font style="${color}">${msg}</font>`;
 		}
 

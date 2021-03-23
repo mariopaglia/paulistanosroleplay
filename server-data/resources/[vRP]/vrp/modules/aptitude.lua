@@ -79,6 +79,12 @@ function vRP.varyExp(user_id,group,aptitude,amount)
 	end
 end
 
+function vRP.setExp(user_id, group, aptitude, amount)
+	local uaptitudes = vRP.getUserAptitudes(user_id)
+	if amount < 0 then amount = 0 end
+	uaptitudes[group][aptitude] = amount
+end
+
 function vRP.getExp(user_id,group,aptitude)
 	local uaptitudes = vRP.getUserAptitudes(user_id)
 	if uaptitudes ~= nil then

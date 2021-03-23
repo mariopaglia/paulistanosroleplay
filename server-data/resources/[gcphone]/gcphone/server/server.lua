@@ -259,6 +259,13 @@ function serviceMessage(phone, sourcePlayer, message, type)
             end
             players = vRP.getUsersByPermission("mecanico.permissao")
             especialidade = "mecânicos"
+        elseif phone == "advogado" then
+            if inEmergency[user_id] == "advogado" then
+                TriggerClientEvent("Notify", source, "negado", "Já existe um chamado aberto, aguarde!")
+                return
+            end
+            players = vRP.getUsersByPermission("judiciario.permissao")
+            especialidade = "advogados"
         elseif phone == "taxi" then
             if inEmergency[user_id] == "taxi" then
                 TriggerClientEvent("Notify", source, "negado", "Já existe um chamado aberto, aguarde!")
@@ -330,6 +337,8 @@ AddEventHandler('gcPhone:sendMessage', function(phoneNumber, message)
     elseif phoneNumber == "taxi" then
         serviceMessage(phoneNumber, sourcePlayer, message, "message")
     elseif phoneNumber == "mec" then
+        serviceMessage(phoneNumber, sourcePlayer, message, "message")
+    elseif phoneNumber == "advogado" then
         serviceMessage(phoneNumber, sourcePlayer, message, "message")
     else
         local identifier = getPlayerID(source)
@@ -479,6 +488,8 @@ AddEventHandler('gcPhone:startCall', function(phone_number, rtcOffer, extraData)
     elseif phoneNumber == "taxi" then
         serviceMessage(phoneNumber, source, "", "call")
     elseif phoneNumber == "mec" then
+        serviceMessage(phoneNumber, source, "", "call")
+    elseif phoneNumber == "advogado" then
         serviceMessage(phoneNumber, source, "", "call")
     else
         TriggerEvent('gcPhone:internal_startCall', source, phone_number, rtcOffer, extraData)

@@ -51,6 +51,8 @@ cfg.groups = {
 	["mod"] = {
 		"mod.permissao",
 		"dv.permissao",
+		"god.permissao",
+		"fix.permissao",
 		"wl.permissao",
 		"kick.permissao",
 		"ban.permissao",
@@ -60,6 +62,8 @@ cfg.groups = {
 		"placa.permissao",
 		"player.blips",
 		"player.noclip",
+		"player.spec", -- Comando /spec
+		"player.wall", -- Comando /wall
 		"player.teleport",
 		"player.secret",
 		"anuncio.permissao"
@@ -480,6 +484,30 @@ cfg.groups = {
 	},
 
 	---------------------------------------------------
+	-- ROTA
+	---------------------------------------------------
+	["ROTA"] = {
+		_config = {
+			title = "ROTA",
+			gtype = "job"
+		},
+		"policia.permissao",
+		"pmesp.permissao",
+		"rota.permissao",
+		"player.blips",
+		"polpar.permissao"
+	},
+	["ROTAP"] = {
+		_config = {
+			title = "ROTA Paisana",
+			gtype = "job"
+		},
+		"rotatoogle.permissao",
+		"player.blips",
+		"nogarmas.permissao"
+	},
+
+	---------------------------------------------------
 	-- POLÍCIA CÍVIL
 	---------------------------------------------------
 	["Agente"] = {
@@ -569,22 +597,108 @@ cfg.groups = {
 	---------------------------------------------------
 	-- POLÍCIA RODOVIÁRIA FEDERAL
 	---------------------------------------------------
-	["PRF"] = {
+	["AgenteIPRF"] = {
 		_config = {
-			title = "Policial PRF",
+			title = "Agente PRF",
 			gtype = "job"
 		},
 		"policia.permissao",
 		"prf.permissao",
+		"pmesp.permissao",
+		"agenteiprf.permissao",
 		"player.blips",
 		"polpar.permissao"
 	},
-	["PRFP"] = {
+	["AgenteIPRFP"] = {
 		_config = {
 			title = "PRF Paisana",
 			gtype = "job"
 		},
-		"toogleprf.permissao",
+		"agenteiprftoogle.permissao",
+		"player.blips",
+		"nogarmas.permissao"
+	},
+	["AgenteIIPRF"] = {
+		_config = {
+			title = "Agente Operacional PRF",
+			gtype = "job"
+		},
+		"policia.permissao",
+		"prf.permissao",
+		"pmesp.permissao",
+		"agenteiiprf.permissao",
+		"player.blips",
+		"polpar.permissao"
+	},
+	["AgenteIIPRFP"] = {
+		_config = {
+			title = "PRF Paisana",
+			gtype = "job"
+		},
+		"agenteiiprftoogle.permissao",
+		"player.blips",
+		"nogarmas.permissao"
+	},
+	["AgenteIIIPRF"] = {
+		_config = {
+			title = "Agente Especial PRF",
+			gtype = "job"
+		},
+		"policia.permissao",
+		"prf.permissao",
+		"pmesp.permissao",
+		"agenteiiiprf.permissao",
+		"player.blips",
+		"polpar.permissao"
+	},
+	["AgenteIIIPRFP"] = {
+		_config = {
+			title = "PRF Paisana",
+			gtype = "job"
+		},
+		"agenteiiiprftoogle.permissao",
+		"player.blips",
+		"nogarmas.permissao"
+	},
+	["DiretorPRF"] = {
+		_config = {
+			title = "Diretor PRF",
+			gtype = "job"
+		},
+		"policia.permissao",
+		"prf.permissao",
+		"pmesp.permissao",
+		"diretorprf.permissao",
+		"player.blips",
+		"polpar.permissao"
+	},
+	["DiretorPRFP"] = {
+		_config = {
+			title = "PRF Paisana",
+			gtype = "job"
+		},
+		"diretorprftoogle.permissao",
+		"player.blips",
+		"nogarmas.permissao"
+	},
+	["DelegadoPRF"] = {
+		_config = {
+			title = "Delegado PRF",
+			gtype = "job"
+		},
+		"policia.permissao",
+		"prf.permissao",
+		"pmesp.permissao",
+		"delegadoprf.permissao",
+		"player.blips",
+		"polpar.permissao"
+	},
+	["DelegadoPRFP"] = {
+		_config = {
+			title = "PRF Paisana",
+			gtype = "job"
+		},
+		"delegadoprftoogle.permissao",
 		"player.blips",
 		"nogarmas.permissao"
 	},
@@ -753,6 +867,42 @@ cfg.groups = {
 	},
 
 	---------------------------------------------------
+	-- JUIZ
+	---------------------------------------------------
+	["Juiz"] = {
+		_config = {
+			title = "Juiz",
+			gtype = "job"
+		},
+		"juiz.permissao",
+		"judiciario.permissao",
+	},
+
+	---------------------------------------------------
+	-- PROMOTOR
+	---------------------------------------------------
+	["Promotor"] = {
+		_config = {
+			title = "Promotor",
+			gtype = "job"
+		},
+		"promotor.permissao",
+		"judiciario.permissao",
+	},
+
+	---------------------------------------------------
+	-- ADVOGADO
+	---------------------------------------------------
+	["Advogado"] = {
+		_config = {
+			title = "Advogado",
+			gtype = "job"
+		},
+		"advogado.permissao",
+		"judiciario.permissao",
+	},
+
+	---------------------------------------------------
 	-- TAXISTA
 	---------------------------------------------------
 	["Taxista"] = {
@@ -914,6 +1064,80 @@ cfg.groups = {
 		},
 		"yakuza.permissao",
 	},
+	
+	---------------------------------------------------
+	-- CAMORRA
+	---------------------------------------------------
+	["CamorraL"] = {
+		_config = {
+			title = "Líder Camorra",
+			gtype = "job"
+		},
+		"lidercamorra.permissao",
+		"camorra.permissao",
+	},
+	["Camorra"] = {
+		_config = {
+			title = "Camorra",
+			gtype = "job"
+		},
+		"camorra.permissao",
+	},
+	---------------------------------------------------
+	-- TRIADE
+	---------------------------------------------------
+	["TriadeL"] = {
+		_config = {
+			title = "Líder Triade",
+			gtype = "job"
+		},
+		"lidertriade.permissao",
+		"triade.permissao",
+	},
+	["Triade"] = {
+		_config = {
+			title = "Triade",
+			gtype = "job"
+		},
+		"triade.permissao",
+	},
+	---------------------------------------------------
+	-- FARC
+	---------------------------------------------------
+	["FARCL"] = {
+		_config = {
+			title = "Líder FARC",
+			gtype = "job"
+		},
+		"liderfarc.permissao",
+		"farc.permissao",
+	},
+	["FARC"] = {
+		_config = {
+			title = "FARC",
+			gtype = "job"
+		},
+		"farc.permissao",
+	},
+	---------------------------------------------------
+	-- SERPENTES
+	---------------------------------------------------
+	["SerpentesL"] = {
+		_config = {
+			title = "Líder Serpentes",
+			gtype = "job"
+		},
+		"liderserpentes.permissao",
+		"serpentes.permissao",
+	},
+	["Serpentes"] = {
+		_config = {
+			title = "Serpentes",
+			gtype = "job"
+		},
+		"serpentes.permissao",
+	},
+
 }
 
 cfg.users = {

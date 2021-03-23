@@ -11,7 +11,7 @@ local quantidade = {}
 function emP.Quantidade()
 	local source = source
 	if quantidade[source] == nil then
-		quantidade[source] = 1
+		quantidade[source] = math.random(1,2)
 	end
 end
 -----------------------------------------------------------------------------------------------------------------------------------------
@@ -20,7 +20,7 @@ end
 function emP.checkPermission()
 	local source = source
 	local user_id = vRP.getUserId(source)
-	return vRP.hasPermission(user_id,"motoclub.permissao")
+	return vRP.hasPermission(user_id,"motoclub.permissao") or vRP.hasPermission(user_id,"serpentes.permissao")
 end
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- PAGAMENTO

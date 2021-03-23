@@ -36,6 +36,8 @@ RegisterNUICallback("ButtonClick",function(data,cb)
 		TriggerServerEvent("armamentos-comprar","wbody|WEAPON_BAT")
 	elseif data == "armamentos-comprar-sinuca" then
 		TriggerServerEvent("armamentos-comprar","wbody|WEAPON_POOLCUE")
+	elseif data == "armamentos-comprar-colete" then
+		TriggerServerEvent("armamentos-comprar","colete")
 
 	elseif data == "armamentos-vender-faca" then
 		TriggerServerEvent("armamentos-vender","wbody|WEAPON_KNIFE")

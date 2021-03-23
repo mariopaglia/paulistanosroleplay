@@ -14,6 +14,7 @@ local valores = {
 	{ item = "corpodefiveseven", quantidade = 1, compra = 23000, venda = 10 }, -- Antigo valor R$ 83000
 	{ item = "mola", quantidade = 1, compra = 2000, venda = 10 },
 	{ item = "gatilho", quantidade = 1, compra = 5000, venda = 10 },
+	{ item = "capsula", quantidade = 25, compra = 2500, venda = 10 },
 }
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- COMPRAR
@@ -65,7 +66,7 @@ end)
 function emP.checkPermission1()
 	local source = source
 	local user_id = vRP.getUserId(source)
-	return vRP.hasPermission(user_id,"bratva.permissao")
+	return vRP.hasPermission(user_id,"bratva.permissao") or vRP.hasPermission(user_id,"cn.permissao")
 end
 
 function emP.checkPermission2()

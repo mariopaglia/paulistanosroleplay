@@ -96,6 +96,11 @@
       "backgroundColor": "#2CA8FD"
     },
     {
+      "number": "advogado",
+      "display": "ADVOGADO",
+      "backgroundColor": "#2CA8FD"
+    },
+    {
       "number": "taxi",
       "display": "TAXI/UBER",
       "backgroundColor": "#FFD700"

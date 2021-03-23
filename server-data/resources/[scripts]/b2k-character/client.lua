@@ -206,9 +206,9 @@ Citizen.CreateThread(function()
 	while true do 
 		Citizen.Wait(1)
 		if continuousFadeOutNetwork then 
-			for id = 0,255 do
-				if id ~= PlayerId() and NetworkIsPlayerActive(id) then
-					NetworkFadeOutEntity(GetPlayerPed(id),false)
+			for _, player in ipairs(GetActivePlayers()) do
+				if player ~= PlayerId() and NetworkIsPlayerActive(player) then
+					NetworkFadeOutEntity(GetPlayerPed(player),false)
 				end
 			end
 		else
@@ -278,9 +278,9 @@ RegisterNUICallback('cDoneSave',function(data,cb)
 	SetEntityHeading(PlayerPedId(),f(323.22))
 	continuousFadeOutNetwork = false
 
-	for id = 0,255 do
-		if id ~= PlayerId() and NetworkIsPlayerActive(id) then
-			NetworkFadeInEntity(GetPlayerPed(id),true)
+	for _, player in ipairs(GetActivePlayers()) do
+		if player ~= PlayerId() and NetworkIsPlayerActive(player) then
+			NetworkFadeInEntity(GetPlayerPed(player),true)
 		end
 	end
 

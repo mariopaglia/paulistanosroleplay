@@ -15,6 +15,10 @@ local Teleport = {
 		positionFrom = { ['x'] = -741.06, ['y'] = 5593.12, ['z'] = 41.65 },
 		positionTo = { ['x'] = 446.15, ['y'] = 5571.72, ['z'] = 781.18 }
 	},
+	["TRIBUNAL"] = {
+		positionFrom = { ['x'] = 232.34, ['y'] = -1095.12, ['z'] = 29.3 },
+		positionTo = { ['x'] = 244.17, ['y'] = -344.3, ['z'] = -118.79 }
+	},
 }
 
 Citizen.CreateThread(function()

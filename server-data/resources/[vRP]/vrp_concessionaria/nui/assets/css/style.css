@@ -347,6 +347,7 @@ html,body{
     -ms-transition:.5s; 
     -o-transition:.5s;
     transition: .5s;
+	position: relative;
 }
 .single-package-item-txt{
     padding: 0 25px;
@@ -372,6 +373,16 @@ html,body{
     height: 1px;
     background: #ebebeb;
 }
+
+.single-package-item .testdrive {
+	position: absolute;
+    width: 24px;
+    height: 24px;
+    top: 5px;
+    left: 5px;
+    filter: invert(0.9);
+}
+
 .packages-para{
     padding:17px 0 0;
     text-transform: capitalize;
@@ -460,3 +471,4 @@ html,body{
 #msg button#nao {
 	background: #ff1135;
 }
+

@@ -701,6 +701,11 @@ local vehList = {
 	{ ['name'] = "fusca", ['hash'] = 1924372706, ['banned'] = false },
 	{ ['name'] = "vwgolf", ['hash'] = 1473628167, ['banned'] = false },
 	{ ['name'] = "vwsava", ['hash'] = 131498600, ['banned'] = false },
+	{ ['name'] = "20blazer2", ['hash'] = -654604359, ['banned'] = false },
+	{ ['name'] = "police3", ['hash'] = 1912215274, ['banned'] = false },
+	{ ['name'] = "spacepm1", ['hash'] = 1416139207, ['banned'] = false },
+	{ ['name'] = "trailcfp", ['hash'] = 323426592, ['banned'] = false },
+	{ ['name'] = "trailpm1", ['hash'] = -405833116, ['banned'] = false },
 }
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- VEHLIST

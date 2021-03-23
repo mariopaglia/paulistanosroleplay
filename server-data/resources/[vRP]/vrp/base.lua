@@ -31,6 +31,8 @@ local webhookhospitalbase = "https://discord.com/api/webhooks/793597683155599380
 local webhookbennys = "https://discord.com/api/webhooks/793597828386521108/UsgyanaAIxAXtNuDuP8Cbf67cauDpARltO9RxIAsGioYKolylf3TWyJl_CtTRyK5sA3O"
 local webhooksportrace = "https://discord.com/api/webhooks/809191208429158421/aeVf8HgBwbKprnhaz4Za3HSirDrp6U1-ANqZUtvVlo4L_BFYvx-Jih6vPT3kSkOcJBpg"
 local webhookconce = "https://discord.com/api/webhooks/809187305267920968/wOE6E6i2qerRtu8P5rn2dIGgiFy9dDzdGzZ1DGORizXtZJEkZngwaKPcstQ6ARKpXJcZ"
+local webhookprf = "https://discord.com/api/webhooks/820696422675906560/elQ-WS7J7VEEVHXSMTIGNBUGdab-yYORqIxsooqhdj4ynwTYPK4AIwkPeT1VdAyOauB6"
+local webhookrota = "https://discord.com/api/webhooks/820698946245492766/kdCmczOoX3DVNvGsAhwxtrY5OR9wkTa3gSZFoib6HsGuXF7Oy8shcKc7UkEPsOIeApFK"
 
 function SendWebhookMessage(webhook,message)
 	if webhook ~= nil and webhook ~= "" then
@@ -318,10 +320,13 @@ function vRP.dropPlayer(source)
 				vRP.addUserGroup(user_id,"ComandanteP")
 				SendWebhookMessage(webhookpmesp,"```prolog\n[POLICIAL]: "..user_id.." "..identity.name.." "..identity.firstname.." \n[===========SAIU DE SERVICO==========] "..os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S").." \r```")
 
-			elseif vRP.hasGroup(user_id,"PRF") then
-				vRP.addUserGroup(user_id,"PRFP")
-				SendWebhookMessage(webhookpmesp,"```prolog\n[POLICIAL]: "..user_id.." "..identity.name.." "..identity.firstname.." \n[===========SAIU DE SERVICO==========] "..os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S").." \r```")
-
+			---------------------------------------------------
+			-- ROTA
+			---------------------------------------------------
+			elseif vRP.hasGroup(user_id,"ROTA") then
+				vRP.addUserGroup(user_id,"ROTAP")
+				SendWebhookMessage(webhookrota,"```prolog\n[POLICIAL]: "..user_id.." "..identity.name.." "..identity.firstname.." \n[===========SAIU DE SERVICO==========] "..os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S").." \r```")
+			
 			---------------------------------------------------
 			-- POLICIA CIVIL
 			---------------------------------------------------
@@ -340,6 +345,29 @@ function vRP.dropPlayer(source)
 			elseif vRP.hasGroup(user_id,"Delegado") then
 				vRP.addUserGroup(user_id,"DelegadoP")
 				SendWebhookMessage(webhookpcesp,"```prolog\n[POLICIAL]: "..user_id.." "..identity.name.." "..identity.firstname.." \n[===========SAIU DE SERVICO==========] "..os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S").." \r```")
+
+			---------------------------------------------------
+			-- PRF
+			---------------------------------------------------
+			elseif vRP.hasGroup(user_id,"AgenteIPRF") then
+				vRP.addUserGroup(user_id,"AgenteIPRFP")
+				SendWebhookMessage(webhookprf,"```prolog\n[POLICIAL]: "..user_id.." "..identity.name.." "..identity.firstname.." \n[===========SAIU DE SERVICO==========] "..os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S").." \r```")
+
+			elseif vRP.hasGroup(user_id,"AgenteIIPRF") then
+				vRP.addUserGroup(user_id,"AgenteIIPRFP")
+				SendWebhookMessage(webhookprf,"```prolog\n[POLICIAL]: "..user_id.." "..identity.name.." "..identity.firstname.." \n[===========SAIU DE SERVICO==========] "..os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S").." \r```")
+			
+			elseif vRP.hasGroup(user_id,"AgenteIIIPRF") then
+				vRP.addUserGroup(user_id,"AgenteIIIPRFP")
+				SendWebhookMessage(webhookprf,"```prolog\n[POLICIAL]: "..user_id.." "..identity.name.." "..identity.firstname.." \n[===========SAIU DE SERVICO==========] "..os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S").." \r```")
+			
+			elseif vRP.hasGroup(user_id,"DiretorPRF") then
+				vRP.addUserGroup(user_id,"DiretorPRFP")
+				SendWebhookMessage(webhookprf,"```prolog\n[POLICIAL]: "..user_id.." "..identity.name.." "..identity.firstname.." \n[===========SAIU DE SERVICO==========] "..os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S").." \r```")
+			
+			elseif vRP.hasGroup(user_id,"DelegadoPRF") then
+				vRP.addUserGroup(user_id,"DelegadoPRFP")
+				SendWebhookMessage(webhookprf,"```prolog\n[POLICIAL]: "..user_id.." "..identity.name.." "..identity.firstname.." \n[===========SAIU DE SERVICO==========] "..os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S").." \r```")
 			
 			---------------------------------------------------
 			-- HOSPITAL

@@ -32,12 +32,12 @@ end)
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- TREM NO MAPA
 -----------------------------------------------------------------------------------------------------------------------------------------
--- Citizen.CreateThread(function()
--- 	SwitchTrainTrack(0, true)
--- 	SwitchTrainTrack(3, true)
--- 	N_0x21973bbf8d17edfa(0, 120000)
--- 	SetRandomTrains(true)
---   end)
+Citizen.CreateThread(function()
+	SwitchTrainTrack(0, true)
+	SwitchTrainTrack(3, true)
+	N_0x21973bbf8d17edfa(0, 120000)
+	SetRandomTrains(true)
+  end)
 
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- STATUS DO DISCORD
@@ -57,6 +57,8 @@ Citizen.CreateThread(function()
         -- SetRichPresence("Jogadores Online: "..#players)
 
         SetDiscordRichPresenceAssetText('discord.gg/F3Jp5J2')
+		SetDiscordRichPresenceAction(0, "Entrar na Cidade", "fivem://connect/paulistanosrp.com") -- Botão 1
+		SetDiscordRichPresenceAction(1, "Discord", "https://discord.gg/F3Jp5J2") -- Botão 2
 	end
 end)
 -----------------------------------------------------------------------------------------------------------------------------------------
@@ -99,7 +101,7 @@ function blackout()
 	TriggerEvent("vrp_sound:source",'heartbeat',0.5)
 	if not isBlackout then
 		isBlackout = true
-		SetEntityHealth(PlayerPedId(),GetEntityHealth(PlayerPedId())-200)
+		SetEntityHealth(PlayerPedId(),GetEntityHealth(PlayerPedId())-50)
 		Citizen.CreateThread(function()
 			DoScreenFadeOut(500)
 			while not IsScreenFadedOut() do

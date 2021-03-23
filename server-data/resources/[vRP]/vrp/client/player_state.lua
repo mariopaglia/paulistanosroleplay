@@ -1,8 +1,13 @@
 local weapon_list = {}
 local state_ready = false
+local sp = false
 
 function tvRP.playerStateReady(state)
 	state_ready = state
+end
+
+function tvRP.blockSpawnSave()
+	sp = not sp
 end
 
 Citizen.CreateThread(function()
@@ -10,7 +15,9 @@ Citizen.CreateThread(function()
 		Citizen.Wait(10000)
 		if IsPlayerPlaying(PlayerId()) and state_ready then
 			local x,y,z = table.unpack(GetEntityCoords(PlayerPedId(),true))
-			vRPserver._updatePos(x,y,z)
+			if not sp then
+				vRPserver._updatePos(x,y,z)
+			end
 			vRPserver._updateHealth(tvRP.getHealth())
 			vRPserver._updateWeapons(tvRP.getWeapons())
 			vRPserver._updateCustomization(tvRP.getCustomization())

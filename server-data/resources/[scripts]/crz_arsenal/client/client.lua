@@ -7,9 +7,10 @@ local Menu = true
 local player = PlayerPedId()
 
 local arsenal = {
-	{ -1105.15,-823.82,14.29 }, -- PMESP/ROTA
+	{ -1105.15,-823.82,14.29 }, -- PMESP
 	{ 459.99,-981.08,30.69 }, -- PCESP
-	{ 2901.48,3830.69,54.61 } -- PRF
+	{ 2901.48,3830.69,54.61 }, -- PRF
+	{ -2051.39,-454.75,16.43 }, -- ROTA
 }
 
 if Menu then

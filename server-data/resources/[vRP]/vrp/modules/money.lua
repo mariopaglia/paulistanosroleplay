@@ -125,3 +125,28 @@ AddEventHandler("vRP:save",function()
 		end
 	end
 end)
+
+function vRP.injectMoneyLimpo(user_id,amount)
+    vRP.giveMoney(user_id,amount)
+    local source = vRP.getUserSource(user_id)
+    if(source~=nil)then
+        TriggerEvent("MQCU:InjectMoney",source,parseInt(amount),false)
+    end
+end
+
+function vRP.injectMoneySujo(user_id,item,amount)
+    vRP.giveInventoryItem(user_id,item,amount)
+    local source = vRP.getUserSource(user_id)
+    if(source~=nil)then
+        TriggerEvent("MQCU:InjectMoney",source,parseInt(amount),true)
+    end
+end
+
+
+function vRP.injectBankMoneyLimpo(user_id,amount)
+    vRP.giveBankMoney(user_id,amount)
+    local source = vRP.getUserSource(user_id)
+    if(source~=nil)then
+        TriggerEvent("MQCU:InjectMoney",source,parseInt(amount),false)
+    end
+end

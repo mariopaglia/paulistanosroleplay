@@ -83,11 +83,11 @@ function emP.checkPayment2()
 	local bonus = 0
 
 	if #policia >= 0 and #policia <= 2 then
-        bonus = 1000
-    elseif #policia >= 3 and #policia <= 6 then
-        bonus = 1200
-    elseif #policia >= 7 then
         bonus = 1400
+    elseif #policia >= 3 and #policia <= 6 then
+        bonus = 1600
+    elseif #policia >= 7 then
+        bonus = 1800
     end
 
 	if user_id then
@@ -137,6 +137,14 @@ function emP.MarcarOcorrencia()
 	local x,y,z = vRPclient.getPosition(source)
 	local identity = vRP.getUserIdentity(user_id)
 	local crds = GetEntityCoords(GetPlayerPed(source))
+
+	local chance = 0
+	local chance = math.random(1,100)
+
+	if chance >= 70 then
+		return
+	end
+	
 	if user_id then
 		local soldado = vRP.getUsersByPermission("policia.permissao")
 		for l,w in pairs(soldado) do

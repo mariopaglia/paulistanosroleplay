@@ -15,6 +15,15 @@ local CoordenadaZ = 30.78
 local selecionado = 0
 local processo = false
 local segundos = 0
+
+-----------------------------------------------------------------------------------------------------------------------------------------
+-- LOCAIS DOS BLIPS
+-----------------------------------------------------------------------------------------------------------------------------------------
+local pegarBlips = {
+	{ ['x'] = 884.33, ['y'] = -2107.17, ['z'] = 30.78 }, -- 884.33,-2107.17,30.78 (Motoclub)
+	{ ['x'] = 27.13, ['y'] = 3660.23, ['z'] = 40.44 }, -- 27.13,3660.23,40.44
+}
+
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- RESIDENCIAS
 -----------------------------------------------------------------------------------------------------------------------------------------
@@ -46,22 +55,25 @@ local locs = {
 Citizen.CreateThread(function()
 	while true do
 		local idle = 1000
-		if not servico then
-			local ped = PlayerPedId()
-			local x,y,z = table.unpack(GetEntityCoords(ped))
-			local bowz,cdz = GetGroundZFor_3dCoord(CoordenadaX,CoordenadaY,CoordenadaZ)
-			local distance = GetDistanceBetweenCoords(CoordenadaX,CoordenadaY,cdz,x,y,z,true)
+		for k,v in pairs(pegarBlips) do
+			if not servico then
+				local ped = PlayerPedId()
+				local x,y,z = table.unpack(GetEntityCoords(ped))
+				local bowz,cdz = GetGroundZFor_3dCoord(v.x,v.y,v.z)
+				local distance = GetDistanceBetweenCoords(v.x,v.y,cdz,x,y,z,true)
+				local pegarBlips = pegarBlips[k]
 
-			if distance <= 3 then
-				idle = 5
-				DrawMarker(21,CoordenadaX,CoordenadaY,CoordenadaZ-0.6,0,0,0,0.0,0,0,0.5,0.5,0.4,255,0,0,50,0,0,0,1)
-				if distance <= 1.2 then
-					drawTxt("PRESSIONE  ~r~E~w~  PARA INICIAR A COLETA",4,0.5,0.93,0.50,255,255,255,180)
-					if IsControlJustPressed(0,38) and emP.checkPermission() then
-						servico = true
-						selecionado = 1
-						CriandoBlip(locs,selecionado)
-						TriggerEvent("Notify","sucesso","Você entrou em serviço.")
+				if distance <= 3 then
+					idle = 5
+					DrawMarker(21,pegarBlips.x, pegarBlips.y, pegarBlips.z-0.6,0,0,0,0.0,0,0,0.5,0.5,0.4,255,0,0,50,0,0,0,1)
+					if distance <= 1.2 then
+						drawTxt("PRESSIONE  ~r~E~w~  PARA INICIAR A COLETA",4,0.5,0.93,0.50,255,255,255,180)
+						if IsControlJustPressed(0,38) and emP.checkPermission() then
+							servico = true
+							selecionado = 1
+							CriandoBlip(locs,selecionado)
+							TriggerEvent("Notify","sucesso","Você entrou em serviço")
+						end
 					end
 				end
 			end

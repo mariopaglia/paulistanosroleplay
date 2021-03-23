@@ -154,6 +154,50 @@ RegisterNUICallback("ButtonClick", function(data, cb)
         end
     end
 	
+	if data.action == "testdrive" then
+		if GetClosestVehicle(-855.66, -3226.67, 13.53,2.001,0,71) ~= 0 then
+			local pcoords = GetEntityCoords(PlayerPedId())
+			vRP.blockSpawnSave()
+			SetEntityCoords(PlayerPedId(), -855.66, -3226.67, 13.53)
+			local veh = Config.Veiculos[data.categoria+1].veiculos[data.model+1]
+			local mhash = GetHashKey(veh.model)
+			while not HasModelLoaded(mhash) do
+				RequestModel(mhash)
+				Citizen.Wait(1)
+			end
+
+			local nveh = CreateVehicle(mhash,-855.66, -3226.67, 13.53+0.5,60.84,true,false)
+			SetVehicleOnGroundProperly(nveh)
+			SetVehicleEngineOn(nveh, 1, 1, 1)
+			SetVehicleNumberPlateText(nveh,"SHOWROOM")
+			SetEntityAsMissionEntity(nveh,true,true)
+			SetVehRadioStation(nveh,"OFF")
+
+			SetVehicleEngineHealth(nveh,1000.0)
+			SetVehicleBodyHealth(nveh,100.0)
+			SetVehicleFuelLevel(nveh,1000.0)
+			SetVehicleDirtLevel(nveh,0.0)
+			
+			SetEntityInvincible(nveh, true)
+			SetEntityLights(nveh, true)
+			FreezeEntityPosition(nveh, true)
+			SetVehicleDoorsLockedForAllPlayers(nveh, false)
+			TaskEnterVehicle(PlayerPedId(), nveh, 0, -1, 1.0, 16, 0)
+			SetModelAsNoLongerNeeded(mhash)
+			Citizen.Wait(60000)
+			Citizen.InvokeNative(0xAD738C3085FE7E11,nveh,true,true)
+			SetEntityAsMissionEntity(nveh,true,true)
+			SetVehicleHasBeenOwnedByPlayer(nveh,true)
+			NetworkRequestControlOfEntity(nveh)
+			Citizen.InvokeNative(0xEA386986E786A54F,Citizen.PointerValueIntInitialized(nveh))
+			DeleteEntity(nveh)
+			DeleteVehicle(nveh)
+			SetEntityAsNoLongerNeeded(nveh)
+			SetEntityCoords(PlayerPedId(), pcoords.x,pcoords.y,pcoords.z)
+			vRP.blockSpawnSave()
+		end
+	end
+	
 	if data.action == "visualizarCarro" then
 		local sp = false;
 		for k, v in pairs(spawncds) do
@@ -190,7 +234,6 @@ RegisterNUICallback("ButtonClick", function(data, cb)
 			SetEntityLights(nveh, true)
 			FreezeEntityPosition(nveh, true)
 			SetVehicleDoorsLockedForAllPlayers(nveh, false)
-			func.registerCars(VehToNet(nveh))
 
 			SetModelAsNoLongerNeeded(mhash)
 		end

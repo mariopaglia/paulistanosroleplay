@@ -102,6 +102,7 @@ local garages = {
     [39] = {['name'] = "Embarcações", ['payment'] = false, ['perm'] = "livre"},
     [40] = {['name'] = "Embarcações", ['payment'] = false, ['perm'] = "livre"},
     [41] = {['name'] = "Embarcações", ['payment'] = false, ['perm'] = "livre"},
+    [42] = {['name'] = "ROTAHeli", ['payment'] = false, ['perm'] = "rota.permissao"},
     [43] = {['name'] = "Frete", ['payment'] = false, ['perm'] = "livre"},
     [44] = {['name'] = "Weazel", ['payment'] = false, ['perm'] = "weazel.permissao"},
     [45] = {['name'] = "WeazelH", ['payment'] = false, ['perm'] = "weazel.permissao"},
@@ -424,9 +425,9 @@ local garages = {
     [612] = {['name'] = "PMESP", ['payment'] = false, ['perm'] = "pmesp.permissao"},
     [613] = {['name'] = "PMESPH", ['payment'] = false, ['perm'] = "pmesp.permissao"},
     [618] = {['name'] = "PCESPH", ['payment'] = false, ['perm'] = "pcivil.permissao"},
-    -- [614] = { ['name'] = "ROTA", ['payment'] = false, ['perm'] = "pmesp.permissao" },
+    [614] = { ['name'] = "ROTA", ['payment'] = false, ['perm'] = "rota.permissao" },
     [615] = {['name'] = "PCESP", ['payment'] = false, ['perm'] = "pcivil.permissao"},
-    [616] = {['name'] = "PRF", ['payment'] = false, ['perm'] = "pmesp.permissao"},
+    [616] = {['name'] = "PRF", ['payment'] = false, ['perm'] = "prf.permissao"},
     --	[] = { ['name'] = "", ['payment'] = false, ['perm'] = "suapermissao" },
     -----------------------------------------------------------------------------------------------------------------------------------------
     --													TAXISTA
@@ -450,6 +451,13 @@ local garages = {
     [627] = {['name'] = "Yakuza", ['payment'] = false, ['perm'] = "yakuza.permissao"},
     [628] = {['name'] = "Roxos", ['payment'] = false, ['perm'] = "roxos.permissao"},
     [629] = {['name'] = "Motoclub", ['payment'] = false, ['perm'] = "motoclub.permissao"},
+    [630] = {['name'] = "Triade", ['payment'] = false, ['perm'] = "triade.permissao"},
+    [631] = {['name'] = "FARC", ['payment'] = false, ['perm'] = "farc.permissao"},
+    [632] = {['name'] = "Camorra", ['payment'] = false, ['perm'] = "camorra.permissao"},
+    [633] = {['name'] = "Serpentes", ['payment'] = false, ['perm'] = "serpentes.permissao"},
+    [633] = {['name'] = "Serpentes", ['payment'] = false, ['perm'] = "serpentes.permissao"},
+    [634] = {['name'] = "Embarcações", ['payment'] = false, ['perm'] = "livre"},
+    [635] = {['name'] = "Embarcações", ['payment'] = false, ['perm'] = "livre"},
 }
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- GARAGEMS
@@ -461,6 +469,10 @@ local workgarage = {
     ["Vermelhos"] = {"burrito3"},
     ["Roxos"] = {"burrito3"},
     ["Yakuza"] = {"burrito3"},
+    ["Triade"] = {"burrito3"},
+    ["FARC"] = {"burrito3"},
+    ["Camorra"] = {"burrito3"},
+    ["Serpentes"] = {"sanctus"},
     ["Motoclub"] = {"sanctus"},
     ["Bennys"] = {"flatbed", "slamvan3"},
     ["SportRace"] = {"flatbed", "slamvan3"},
@@ -468,7 +480,7 @@ local workgarage = {
     ["PCESP"] = {"sw4pc1", "trailcivileie", "traildesc", "trailgarra1"},
     ["PCESPH"] = {"buzzard2", "frogger2"},
     ["ROTA"] = {"sw4revrota1", "trailrota2"},
-    ["PMESP"] = {"pbus", "riot", "paliopmrp1", "spacerp", "hilux15ft", "trail19cfp", "xrerpm", "xtrocam", "sw4revrota1", "trailrota2"},
+    ["PMESP"] = {"pbus", "riot", "20blazer2", "police3", "spacepm1", "trailcfp", "trailpm1", "xrerpm", "xtrocam"},
     ["PMESPH"] = {"as350", "polmav"},
     ["PoliciaPC"] = {"sw4pc1", "trailcivileie", "traildesc", "trailgarra1"},
     ["RECOM"] = {"frontierrecom", "frontierrecom2"},
@@ -497,7 +509,7 @@ local workgarage = {
     ["Bicicletario"] = {"tribike3", "bmx"},
     ["Colheita"] = {"tractor2", "rebel"},
     ["Embarcações"] = {"dinghy", "jetmax", "marquis", "seashark3", "speeder", "speeder2", "surfboard", "squalo", "suntrap", "toro", "toro2", "tropic", "tropic2"},
-    ["PoliciaHeli"] = {"polmav", "maverick"},
+    ["ROTAHeli"] = {"polmav", "as350"},
     ["ADM"] = {"ferrariitalia", "corvette"},
 }
 -----------------------------------------------------------------------------------------------------------------------------------------
@@ -716,11 +728,11 @@ AddEventHandler("desmancheVehicles", function()
             local puser_id = vRP.getUserByRegistration(placa)
             if puser_id then
                 vRP.execute("creative/set_detido", {user_id = parseInt(puser_id), vehicle = vname, detido = 1, time = parseInt(os.time())})
-                vRP.giveInventoryItem(user_id, "dinheirosujo", parseInt(vRP.vehiclePrice(vname) * 0.2))
-                TriggerClientEvent("Notify", source, "sucesso", "Veículo <b>desmanchado</b> com sucesso, você recebeu <b>" .. vRP.format(parseInt(vRP.vehiclePrice(vname) * 0.2)) .. "x em Dinheiro Sujo</b>", 8000)
+                vRP.giveInventoryItem(user_id, "dinheirosujo", parseInt(vRP.vehiclePrice(vname) * 0.5))
+                TriggerClientEvent("Notify", source, "sucesso", "Veículo <b>desmanchado</b> com sucesso, você recebeu <b>" .. vRP.format(parseInt(vRP.vehiclePrice(vname) * 0.5)) .. "x em Dinheiro Sujo</b>", 8000)
                 vCLIENT.deleteVehicle(source, vehicle)
                 local identity = vRP.getUserIdentity(user_id)
-                SendWebhookMessage(webhookdesmanche, "```prolog\n[ID]: " .. user_id .. " " .. identity.name .. " " .. identity.firstname .. " \n[DESMANCHOU]: " .. vname .. " [ID]: " .. puser_id .. " \n[VALOR]: R$ " .. vRP.format(parseInt(vRP.vehiclePrice(vname) * 0.2)) .. " " .. os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S") .. " \r```")
+                SendWebhookMessage(webhookdesmanche, "```prolog\n[ID]: " .. user_id .. " " .. identity.name .. " " .. identity.firstname .. " \n[DESMANCHOU]: " .. vname .. " [ID]: " .. puser_id .. " \n[VALOR]: R$ " .. vRP.format(parseInt(vRP.vehiclePrice(vname) * 0.5)) .. " " .. os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S") .. " \r```")
             end
         end
     end

@@ -262,7 +262,6 @@ IsCar = function(veh)
   
 		  sBuffer[2] = sBuffer[1]
 		  sBuffer[1] = GetEntitySpeed(car)
-  
 		  if sBuffer[2] ~= nil and not CintoSeguranca and GetEntitySpeedVector(car,true).y > 1.0 and sBuffer[1] > 10.25 and (sBuffer[2] - sBuffer[1]) > (sBuffer[1] * 0.255) then
 			local co = GetEntityCoords(ped)
 			local fw = Fwv(ped)

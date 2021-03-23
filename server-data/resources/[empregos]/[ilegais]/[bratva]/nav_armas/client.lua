@@ -35,19 +35,9 @@ RegisterNUICallback("ButtonClick",function(data,cb)
 		TriggerServerEvent("armas-comprar","mola")
 	elseif data == "armas-comprar-gatilho" then
 		TriggerServerEvent("armas-comprar","gatilho")	
+	elseif data == "municao-comprar-capsula" then
+		TriggerServerEvent("armas-comprar","capsula")
 
-	elseif data == "armas-vender-corpodeak" then
-		TriggerServerEvent("armas-vender","corpodeak")
-	elseif data == "armas-vender-corpodeg36" then
-		TriggerServerEvent("armas-vender","corpodeg36")
-	elseif data == "armas-vender-corpodemp5" then
-		TriggerServerEvent("armas-vender","corpodemp5")
-	elseif data == "armas-vender-corpodefiveseven" then
-		TriggerServerEvent("armas-vender","corpodefiveseven")
-	elseif data == "armas-vender-mola" then
-		TriggerServerEvent("armas-vender","mola")
-	elseif data == "armas-vender-gatilho" then
-		TriggerServerEvent("armas-vender","gatilho")
 	elseif data == "fechar" then
 		ToggleActionMenu()
 	end

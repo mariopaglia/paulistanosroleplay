@@ -31,8 +31,13 @@ local lojaderoupa = {
     { x=1214.91, y=-165.34, z=75.26, provador = { x=1214.91, y=-165.34, z=75.26, heading = 323.92 } }, -- Verdes
     { x=-1636.56, y=-165.45, z=57.48, provador = { x=-1636.56, y=-165.45, z=57.48, heading = 301.6 } }, -- Vermelhos
     { x=1432.63, y=-2125.38, z=57.69, provador = { x=1432.63, y=-2125.38, z=57.69, heading = 21.55 } }, -- Roxos
-    { x=-877.02, y=-1442.25, z=7.53, provador = { x=885.25, y=-2101.34, z=35.6, heading = 263.21 } }, -- Motoclub
+    { x=884.66, y=-2102.92, z=35.6, provador = { x=884.66, y=-2102.92, z=35.6, heading = 267.78 } }, -- Motoclub
     { x=-877.02, y=-1442.25, z=7.53, provador = { x=-877.02, y=-1442.25, z=7.53, heading = 199.01 } }, -- Yakuza
+    { x=-620.1, y=-1618.3, z=33.02, provador = { x=-620.1, y=-1618.3, z=33.02, heading = 176.91 } }, -- Triade
+    { x=576.79, y=-3108.85, z=6.07, provador = { x=576.79, y=-3108.85, z=6.07, heading = 179.28 } }, -- FARC
+    { x=-1881.29, y=2068.57, z=145.58, provador = { x=-1881.29, y=2068.57, z=145.58, heading = 158.7 } }, -- Camorra
+    { x=90.26, y=3750.88, z=40.78, provador = { x=90.26, y=3750.88, z=40.78, heading = 247.35 } }, -- Serpentes
+    { x=-2039.13, y=-466.48, z=16.43, provador = { x=-2039.13, y=-466.48, z=16.43, heading = 46.82 } }, -- ROTA
 }
 
 local parts = {

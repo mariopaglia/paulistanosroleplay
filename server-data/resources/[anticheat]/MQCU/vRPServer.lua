@@ -17,7 +17,7 @@ ac_webhook_logstaff = "https://discord.com/api/webhooks/800149038112440370/Ajh4R
 
 -------------------------------
 -------GETHACK PARAMETROS------
-local banir_blacklisted = true
+local banir_blacklisted = false
 local minimo_bans = 2
 local excecao = {}
 excecao[1] = true
@@ -72,6 +72,13 @@ sistemas["[SPAWN_PROP]"] = true
 sistemas["[SPAWN_NPC]"] = true
 sistemas["[SPAWN_VEICULO]"] = true
 sistemas["[EXPLOSAO4]"] = true
+
+-- Adicionados manualmente
+sistemas["[MODMENU2]"] = true
+sistemas["[MODMENU3]"] = true
+sistemas["[MODMENU4]"] = true
+sistemas["[MODMENU5]"] = true
+
 
 local banidos = {}
 AddEventHandler("MQCU:LixoDetectado", function(user_id, msg, cb)

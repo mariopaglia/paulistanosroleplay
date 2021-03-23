@@ -38,7 +38,7 @@ Config.BankRobbery = {
         },
         Money = {
             StartMoney = 0,
-            Amount = 800000,
+            Amount = 1200000,
             BoxPosition = vector3(264.31, 213.77, 101.54),
             --Coords = vector3(263.4, 214.08, 100.8),
             --Heading = 253.62,

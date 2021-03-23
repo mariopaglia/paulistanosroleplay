@@ -194,9 +194,9 @@ local user_id = vRP.getUserId(source)
 					SetTimeout(10000,function()
 						actived[user_id] = nil
 						vRPclient._stopAnim(source,false)
-						vRPclient.playScreenEffect(source,"RaceTurbo",180)
-						vRPclient.playScreenEffect(source,"DrugsTrevorClownsFight",180)
-						TriggerClientEvent("Notify",source,"sucesso","Maconha utilizada com sucesso.",8000)
+						vRPclient.playScreenEffect(source,"RaceTurbo",10000)
+						vRPclient.playScreenEffect(source,"DrugsTrevorClownsFight",10000)
+						TriggerClientEvent("Notify",source,"sucesso","Maconha utilizada com sucesso.",10000)
 					end)
 				end
 			elseif itemName == "cocaina" then

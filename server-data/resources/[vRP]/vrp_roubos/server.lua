@@ -29,7 +29,7 @@ local assaltante3 = false
 -- GERANDO RECOMPENSA
 -----------------------------------------------------------------------------------------------------------------------------------------
 local bancos = {
-	{ id = 1 , nome = "Banco Paleto" , segundos = 120 , cops = 9 , recompensa = math.random(500000,600000) },
+	{ id = 1 , nome = "Banco Paleto" , segundos = 120 , cops = 9 , recompensa = math.random(700000,800000) },
 	-- { id = 2 , nome = "Banco" , segundos = 120 , cops = 4, recompensa = math.random(10000,200000) },
 	-- { id = 3 , nome = "Banco" , segundos = 120 , cops = 4 , recompensa = math.random(10000,200000) },
 	-- { id = 4 , nome = "Banco" , segundos = 120 , cops = 4 , recompensa = math.random(10000,200000) },
@@ -39,24 +39,24 @@ local bancos = {
 }
 
 local lojas = {
-	{ id = 13 , nome = "Loja de Departamento" , segundos = 120 , cops = 4 , recompensa = math.random(70000,140000) },
-	{ id = 14 , nome = "Loja de Departamento" , segundos = 120 , cops = 4 , recompensa = math.random(70000,140000) },
-	{ id = 15 , nome = "Loja de Departamento" , segundos = 120 , cops = 4 , recompensa = math.random(70000,140000) },
-	{ id = 16 , nome = "Loja de Departamento" , segundos = 120 , cops = 4 , recompensa = math.random(70000,140000) },
-	{ id = 17 , nome = "Loja de Departamento" , segundos = 120 , cops = 4 , recompensa = math.random(70000,140000) },
-	{ id = 18 , nome = "Loja de Departamento" , segundos = 120 , cops = 4 , recompensa = math.random(70000,140000) },
-	{ id = 19 , nome = "Loja de Departamento" , segundos = 120 , cops = 4 , recompensa = math.random(70000,140000) },
-	{ id = 20 , nome = "Loja de Departamento" , segundos = 120 , cops = 4 , recompensa = math.random(70000,140000) },
-	{ id = 21 , nome = "Loja de Departamento" , segundos = 120 , cops = 4 , recompensa = math.random(70000,140000) },
-	{ id = 22 , nome = "Loja de Departamento" , segundos = 120 , cops = 4 , recompensa = math.random(70000,140000) },
-	{ id = 23 , nome = "Loja de Departamento" , segundos = 120 , cops = 4 , recompensa = math.random(70000,140000) },
-	{ id = 24 , nome = "Loja de Departamento" , segundos = 120 , cops = 4 , recompensa = math.random(70000,140000) },
-	{ id = 25 , nome = "Loja de Departamento" , segundos = 120 , cops = 4 , recompensa = math.random(70000,140000) },
+	{ id = 13 , nome = "Loja de Departamento" , segundos = 120 , cops = 4 , recompensa = math.random(200000,250000) },
+	{ id = 14 , nome = "Loja de Departamento" , segundos = 120 , cops = 4 , recompensa = math.random(200000,250000) },
+	{ id = 15 , nome = "Loja de Departamento" , segundos = 120 , cops = 4 , recompensa = math.random(200000,250000) },
+	{ id = 16 , nome = "Loja de Departamento" , segundos = 120 , cops = 4 , recompensa = math.random(200000,250000) },
+	{ id = 17 , nome = "Loja de Departamento" , segundos = 120 , cops = 4 , recompensa = math.random(200000,250000) },
+	{ id = 18 , nome = "Loja de Departamento" , segundos = 120 , cops = 4 , recompensa = math.random(200000,250000) },
+	{ id = 19 , nome = "Loja de Departamento" , segundos = 120 , cops = 4 , recompensa = math.random(200000,250000) },
+	{ id = 20 , nome = "Loja de Departamento" , segundos = 120 , cops = 4 , recompensa = math.random(200000,250000) },
+	{ id = 21 , nome = "Loja de Departamento" , segundos = 120 , cops = 4 , recompensa = math.random(200000,250000) },
+	{ id = 22 , nome = "Loja de Departamento" , segundos = 120 , cops = 4 , recompensa = math.random(200000,250000) },
+	{ id = 23 , nome = "Loja de Departamento" , segundos = 120 , cops = 4 , recompensa = math.random(200000,250000) },
+	{ id = 24 , nome = "Loja de Departamento" , segundos = 120 , cops = 4 , recompensa = math.random(200000,250000) },
+	{ id = 25 , nome = "Loja de Departamento" , segundos = 120 , cops = 4 , recompensa = math.random(200000,250000) },
 }
 
 local outros = {
-	{ id = 26 , nome = "Açougue" , segundos = 120 , cops = 6 , recompensa = math.random(90000,150000) },
-	{ id = 27 , nome = "Yellow Jack" , segundos = 120 , cops = 5 , recompensa = math.random(90000,150000) },
+	{ id = 26 , nome = "Açougue" , segundos = 120 , cops = 6 , recompensa = math.random(300000,350000) },
+	{ id = 27 , nome = "Yellow Jack" , segundos = 120 , cops = 5 , recompensa = math.random(300000,350000) },
 }
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- FUNÇÕES

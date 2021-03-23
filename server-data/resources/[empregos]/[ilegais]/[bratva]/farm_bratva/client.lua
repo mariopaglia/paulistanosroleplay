@@ -9,15 +9,17 @@ emP = Tunnel.getInterface("farm_bratva")
 local blips = false
 local servico = false
 local selecionado = 0
-local CoordenadaX = -97.22  -- -97.22,1013.48,235.79
-local CoordenadaY = 1013.48
-local CoordenadaZ = 235.79
--- local CoordenadaX = 1690.28 -- Teste (primeiro blip)
--- local CoordenadaY = 3753.29 -- Teste (primeiro blip)
--- local CoordenadaZ = 34.30 -- Teste (primeiro blip)
-local selecionado = 0
 local processo = false
 local segundos = 0
+
+-----------------------------------------------------------------------------------------------------------------------------------------
+-- LOCAIS DOS BLIPS
+-----------------------------------------------------------------------------------------------------------------------------------------
+local pegarBlips = {
+	{ ['x'] = -97.65, ['y'] = 1013.34, ['z'] = 235.79 }, -- -97.22,1013.48,235.79 (Bratva)
+	{ ['x'] = 1395.63, ['y'] = 1159.91, ['z'] = 114.34 }, -- 1395.63,1159.91,114.34 (Cosanostra)
+}
+
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- RESIDENCIAS
 -----------------------------------------------------------------------------------------------------------------------------------------
@@ -40,22 +42,25 @@ local locs = {
 Citizen.CreateThread(function()
 	while true do
 		local idle = 1000
-		if not servico then
-			local ped = PlayerPedId()
-			local x,y,z = table.unpack(GetEntityCoords(ped))
-			local bowz,cdz = GetGroundZFor_3dCoord(CoordenadaX,CoordenadaY,CoordenadaZ)
-			local distance = GetDistanceBetweenCoords(CoordenadaX,CoordenadaY,cdz,x,y,z,true)
+		for k,v in pairs(pegarBlips) do
+			if not servico then
+				local ped = PlayerPedId()
+				local x,y,z = table.unpack(GetEntityCoords(ped))
+				local bowz,cdz = GetGroundZFor_3dCoord(v.x,v.y,v.z)
+				local distance = GetDistanceBetweenCoords(v.x,v.y,cdz,x,y,z,true)
+				local pegarBlips = pegarBlips[k]
 
-			if distance <= 3 then
-				idle = 5
-				DrawMarker(21,CoordenadaX,CoordenadaY,CoordenadaZ-0.6,0,0,0,0.0,0,0,0.5,0.5,0.4,255,0,0,50,0,0,0,1)
-				if distance <= 1.2 then
-					drawTxt("PRESSIONE  ~r~E~w~  PARA INICIAR A COLETA",4,0.5,0.93,0.50,255,255,255,180)
-					if IsControlJustPressed(0,38) and emP.checkPermission() then
-						servico = true
-						selecionado = 1
-						CriandoBlip(locs,selecionado)
-						TriggerEvent("Notify","sucesso","Você entrou em serviço.")
+				if distance <= 3 then
+					idle = 5
+					DrawMarker(21,pegarBlips.x, pegarBlips.y, pegarBlips.z-0.6,0,0,0,0.0,0,0,0.5,0.5,0.4,255,0,0,50,0,0,0,1)
+					if distance <= 1.2 then
+						drawTxt("PRESSIONE  ~r~E~w~  PARA INICIAR A COLETA",4,0.5,0.93,0.50,255,255,255,180)
+						if IsControlJustPressed(0,38) and emP.checkPermission() then
+							servico = true
+							selecionado = 1
+							CriandoBlip(locs,selecionado)
+							TriggerEvent("Notify","sucesso","Você entrou em serviço")
+						end
 					end
 				end
 			end

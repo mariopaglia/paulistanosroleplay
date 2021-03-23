@@ -60,7 +60,7 @@ end)
 function emP.checkPermission1()
 	local source = source
 	local user_id = vRP.getUserId(source)
-	return vRP.hasPermission(user_id,"yakuza.permissao")
+	return vRP.hasPermission(user_id,"yakuza.permissao") or vRP.hasPermission(user_id,"triade.permissao")
 end
 
 function emP.checkPermission2()

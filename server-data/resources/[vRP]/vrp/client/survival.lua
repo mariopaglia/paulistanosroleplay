@@ -79,6 +79,7 @@ Citizen.CreateThread(function()
 					Citizen.Wait(1)
 				end
 				nocauteado = true
+				FreezeEntityPosition(ped,true)
 				vRPserver._updateHealth(100)
 				SetEntityHealth(ped,100)
 				SetEntityInvincible(ped,true)
@@ -86,6 +87,11 @@ Citizen.CreateThread(function()
 					tvRP.ejectVehicle()
 				end
 				NetworkSetVoiceActive(false)
+				AnimpostfxPlay('ChopVision',30,true)
+				AnimpostfxPlay('HeistCelebEnd',30,true)
+				AnimpostfxPlay('Rampage',30,true)
+				AnimpostfxPlay('DeathFailOut',30,true)
+				TriggerEvent("emotes","morrer")
 			else
 				if health < 100 then
 					SetEntityHealth(ped,100)
@@ -101,20 +107,31 @@ end
 
 function tvRP.killComa()
 	if nocauteado then
-		timedeath = 60
+		timedeath = 600
 	end
 end
 
 function tvRP.killGod()
-	nocauteado = false
 	NetworkSetVoiceActive(true)
 	SetEntityInvincible(PlayerPedId(),false)
-	SetEntityHealth(PlayerPedId(),120)
-	vRPserver._updateHealth(120)
+	SetEntityHealth(PlayerPedId(),400)
+	vRPserver._updateHealth(400)
 	TriggerEvent("tokovoip:toggleMute", false)
-	SetTimeout(5000,function()
-		timedeath = 600
-	end)
+	Citizen.Wait(1000)
+	nocauteado = false
+	FreezeEntityPosition(PlayerPedId(),false)
+	timedeath = 600
+	AnimpostfxStopAll()
+	tvRP.stopAnim(true)
+	tvRP.stopAnim(false)
+	ClearPedBloodDamage(PlayerPedId())
+	ClearPedEnvDirt(PlayerPedId())
+	while IsEntityPlayingAnim(PlayerPedId(),"misslamar1dead_body","dead_idle",3) do
+		AnimpostfxStopAll()
+		tvRP.stopAnim(true)
+		tvRP.stopAnim(false)
+		Citizen.Wait(500)
+	end
 end
 
 Citizen.CreateThread(function()
@@ -127,6 +144,8 @@ Citizen.CreateThread(function()
 end)
 
 Citizen.CreateThread(function()
+	Citizen.Wait(5000)
+	exports.spawnmanager:setAutoSpawn(false)
 	while true do
 		Citizen.Wait(100)
 		SetPlayerHealthRechargeMultiplier(PlayerId(),0)
@@ -138,14 +157,27 @@ Citizen.CreateThread(function()
 		local idle = 1000
 		if nocauteado then
 			idle = 5
-			if nocauteado and timedeath <= 0 and IsControlJustPressed(0,38) then
-				nocauteado = false
-				SetEntityInvincible(PlayerPedId(),false)
-				SetEntityHealth(PlayerPedId(),0)
-				TriggerEvent("tokovoip:toggleMute", false)
-				SetTimeout(5000,function()
-					timedeath = 600
-				end)
+			if timedeath <= 0 and IsControlJustPressed(0,38) then
+				idle = 1000
+				SetEntityHealth(PlayerPedId(),400)
+				vRPserver._updateHealth(400)
+				TriggerServerEvent("clearInventory")
+				tvRP.killGod()
+				SetEntityCoords(PlayerPedId(),-1035.5,-2733.9,13.77)
+				tvRP.replaceWeapons({})
+				vRPserver._updatePos(-1035.5,-2733.9,13.77)
+				FreezeEntityPosition(PlayerPedId(),false)
+				AnimpostfxStopAll()
+				tvRP.stopAnim(true)
+				tvRP.stopAnim(false)
+				ClearPedBloodDamage(PlayerPedId())
+				ClearPedEnvDirt(PlayerPedId())
+				while IsEntityPlayingAnim(PlayerPedId(),"misslamar1dead_body","dead_idle",3) do
+					AnimpostfxStopAll()
+					tvRP.stopAnim(true)
+					tvRP.stopAnim(false)
+					Citizen.Wait(500)
+				end
 			end
 		end
 		Citizen.Wait(idle)
@@ -202,6 +234,10 @@ Citizen.CreateThread(function()
 			DisableControlAction(0,189,true)
 			DisableControlAction(0,190,true)
 			DisableControlAction(0,188,true)
+			DisableControlAction(0,311,true)
+			if not IsEntityPlayingAnim(PlayerPedId(),"misslamar1dead_body","dead_idle",3) then
+				TriggerEvent("emotes","morrer")
+			end
 		end
 		Citizen.Wait(idle)
 	end

@@ -25,9 +25,7 @@ function addPlayerToRadio(channelId, playerServerId)
 	end
 
 	channels[channelId].subscribers[playerServerId] = playerServerId;
-	-- print("Added [" .. playerServerId .. "] " .. (GetPlayerName(playerServerId) or "") .. " to channel " .. channelId);
-	--SendWebhookMessage(webhookradio,"```css\n[ID]: " .. playerServerId .. " "..GetPlayerName(playerServerId).." \n[Entrou na Frequência]: "..channelId.." \nData: "..Time.dia.."/"..Time.mes.." Hora: "..Time.hora..":"..Time.min.." \r```")
-	
+	--print("Added [" .. playerServerId .. "] " .. (GetPlayerName(playerServerId) or "") .. " to channel " .. channelId);
 
 	for _, subscriberServerId in pairs(channels[channelId].subscribers) do
 		if (subscriberServerId ~= playerServerId) then
@@ -49,8 +47,7 @@ function removePlayerFromRadio(channelId, playerServerId)
 				channels[channelId] = nil;
 			end
 		end
-		-- print("Removed [" .. playerServerId .. "] " .. (GetPlayerName(playerServerId) or "") .. " from channel " .. channelId);
-		--SendWebhookMessage(webhookradio,"```css\n[ID]: " .. playerServerId .. " "..GetPlayerName(playerServerId).." \n[Removido da Frequência]: "..channelId.." \nData: "..Time.dia.."/"..Time.mes.." Hora: "..Time.hora..":"..Time.min.." \r```")
+		--print("Removed [" .. playerServerId .. "] " .. (GetPlayerName(playerServerId) or "") .. " from channel " .. channelId);
 
 		-- Tell unsubscribed player he's left the channel as well
 		TriggerClientEvent("TokoVoip:onPlayerLeaveChannel", playerServerId, channelId, playerServerId);
@@ -73,9 +70,21 @@ function removePlayerFromAllRadio(playerServerId)
 		end
 	end
 end
-
 RegisterServerEvent("TokoVoip:removePlayerFromAllRadio");
 AddEventHandler("TokoVoip:removePlayerFromAllRadio", removePlayerFromAllRadio);
+
+AddEventHandler("playerDropped", function()
+	removePlayerFromAllRadio(source);
+end);
+
+function printChannels()
+	for i, channel in pairs(channels) do
+		RconPrint("Channel: " .. channel.name .. "\n");
+		for j, player in pairs(channel.subscribers) do
+			RconPrint("- [" .. player .. "] " .. GetPlayerName(player) .. "\n");
+		end
+	end
+end
 
 function removeAllPlayerFromRadio(channelIdPlayers)
 	-- print(channelIdPlayers)

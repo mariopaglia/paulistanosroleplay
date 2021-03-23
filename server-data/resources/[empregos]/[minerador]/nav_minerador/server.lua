@@ -51,7 +51,7 @@ AddEventHandler("minerador-vender",function(item)
 		for k,v in pairs(valores) do
 			if item == v.item then
 				if vRP.tryGetInventoryItem(user_id,v.item,parseInt(v.quantidade)) then
-					vRP.giveMoney(user_id,parseInt(v.venda*v.quantidade))
+					vRP.injectMoneyLimpo(user_id,parseInt(v.venda*v.quantidade))
 					TriggerClientEvent("Notify",source,"sucesso","Vendeu <b>"..parseInt(v.quantidade).."x "..vRP.itemNameList(v.item).."</b> por <b>R$ "..vRP.format(parseInt(v.venda*v.quantidade)).." reais</b>.")
 				end
 			end

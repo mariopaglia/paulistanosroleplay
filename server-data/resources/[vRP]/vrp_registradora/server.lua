@@ -65,9 +65,9 @@ function func.checkRobbery(id,x,y,z,head)
 						end
 					end
 				end
-				SetTimeout(20000,function()
+				SetTimeout(10000,function()
 					vRP.antiflood(source,"registradora",3)
-					local qntdinheiro = math.random(5000,8000)
+					local qntdinheiro = math.random(2000,4000)
 					vRP.giveInventoryItem(user_id,"dinheirosujo",qntdinheiro) -- Ajuste do pagamento em dinheiro sujo
 					TriggerClientEvent("Notify",source,"importante","Você recebeu <b>R$ "..vRP.format(parseInt(qntdinheiro)).."</b> de <b>dinheiro sujo</b>",8000)
 					SendWebhookMessage(webhookroubos,"```prolog\n[ID]: "..user_id.." "..identity.name.." "..identity.firstname.."\n[ROUBOU]: Caixa Registradora\n[RECOMPENSA]: R$ "..vRP.format(parseInt(qntdinheiro)).."\n[COORDENADA]: "..crds.x..","..crds.y..","..crds.z..""..os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S").." \r```")

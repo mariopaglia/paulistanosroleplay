@@ -15,7 +15,7 @@ function emP.checkPayment()
 			
 			local sorte = math.random(1,100)
 		
-			if sorte >= 80 then
+			if sorte >= 70 then
 				local item = math.random(1,3)
 				if item == 1 then
 					if vRP.getInventoryWeight(user_id)+vRP.getItemWeight("componentemetal") <= vRP.getInventoryMaxWeight(user_id) then

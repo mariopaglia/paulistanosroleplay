@@ -20,3 +20,11 @@ function ShowInfo(text, state)
   AddTextComponentString(text)
   DisplayHelpTextFromStringLabel(0, state, 0, -1)
 end
+
+CreateThread(function()
+	while true do
+		SetRadarAsExteriorThisFrame()
+		SetRadarAsInteriorThisFrame(`h4_fake_islandx`, vec(4700.0, -5145.0), 0, 0)
+		Wait(0)
+	end
+end)

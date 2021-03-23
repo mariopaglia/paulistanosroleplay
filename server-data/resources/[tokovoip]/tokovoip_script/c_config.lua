@@ -8,7 +8,6 @@ TokoVoipConfig = {
 		15, -- Normal speech distance in gta distance units
 		5, -- Whisper speech distance in gta distance units
 		50, -- Shout speech distance in gta distance units
-		0,
 	},
 	headingType = 0, -- headingType 0 uses GetGameplayCamRot, basing heading on the camera's heading, to match how other GTA sounds work. headingType 1 uses GetEntityHeading which is based on the character's direction
 	radioKey = 137, -- Keybind used to talk on the radio
@@ -54,7 +53,7 @@ TokoVoipConfig = {
 AddEventHandler("onClientResourceStart", function(resource)
 	if (resource == GetCurrentResourceName()) then	--	Initialize the script when this resource is started
 		Citizen.CreateThread(function()
-			TokoVoipConfig.plugin_data.localName = "Identidade Protegida"; -- Set the local name
+			TokoVoipConfig.plugin_data.localName = "Individuo Indigente"; -- Set the local name
 		end);
 		TriggerEvent("initializeVoip"); -- Trigger this event whenever you want to start the voip
 	end

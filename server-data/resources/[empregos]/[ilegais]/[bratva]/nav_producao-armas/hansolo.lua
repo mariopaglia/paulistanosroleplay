@@ -7,7 +7,8 @@ oC = Tunnel.getInterface("nav_producao-armas")
 --[ LOCAL ]--------------------------------------------------------------------------------------
 -------------------------------------------------------------------------------------------------
 local prodMachine = {
-	{ ['x'] = -85.7, ['y'] = 997.66, ['z'] = 230.61 } -- -85.7,997.66,230.61
+	{ ['x'] = -85.7, ['y'] = 997.66, ['z'] = 230.61 }, -- -85.7,997.66,230.61
+	{ ['x'] = 1405.88, ['y'] = 1137.74, ['z'] = 109.75 }, -- 1405.88,1137.74,109.75
 }
 -------------------------------------------------------------------------------------------------
 --[ MENU ]---------------------------------------------------------------------------------------
@@ -42,6 +43,18 @@ RegisterNUICallback("ButtonClick",function(data,cb)
 
 	elseif data == "produzir-fiveseven" then
 		TriggerServerEvent("produzir-arma","fiveseven")
+
+	elseif data == "produzir-m-ak47" then
+		TriggerServerEvent("produzir-arma","m-ak47")
+
+	elseif data == "produzir-m-g36" then
+		TriggerServerEvent("produzir-arma","m-g36")
+
+	elseif data == "produzir-m-mp5" then
+		TriggerServerEvent("produzir-arma","m-mp5")
+
+	elseif data == "produzir-m-fiveseven" then
+		TriggerServerEvent("produzir-arma","m-fiveseven")
 
 	elseif data == "fechar" then
 		ToggleActionMenu()

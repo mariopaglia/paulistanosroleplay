@@ -22,6 +22,7 @@ local animStates = {}
 local displayingPluginScreen = false;
 local HeadBone = 0x796e;
 local dead = false
+local muteme = false
 
 --------------------------------------------------------------------------------
 --	Plugin functions
@@ -93,7 +94,7 @@ local function clientProcessing()
 
 			--	Process the volume for proximity voip
 			local mode = tonumber(getPlayerData(playerServerId, "voip:mode"));
-			if (not mode or (mode ~= 1 and mode ~= 2 and mode ~= 3 and mode ~= 4)) then mode = 1 end;
+			if (not mode or (mode ~= 1 and mode ~= 2 and mode ~= 3)) then mode = 1 end;
 			local volume = -30 + (30 - dist / voip.distance[mode] * 30);
 			if (volume >= 0) then
 				volume = 0;
@@ -115,12 +116,14 @@ local function clientProcessing()
 
 			-- Process proximity
 			tbl.forceUnmuted = 0
-			if (dist >= voip.distance[mode]) then
-				tbl.muted = 1;
-			else
-				tbl.volume = volume;
-				tbl.muted = 0;
-				tbl.forceUnmuted = 1
+			if not muteme then
+				if (dist >= voip.distance[mode]) then
+					tbl.muted = 1;
+				else
+					tbl.volume = volume;
+					tbl.muted = 0;
+					tbl.forceUnmuted = 1
+				end
 			end
 
 			local ped = PlayerPedId()
@@ -206,6 +209,11 @@ local function clientProcessing()
 	voip.plugin_data.posY = 0;
 	voip.plugin_data.posZ = voip.plugin_data.enableStereoAudio and localPos.z or 0;
 end
+
+RegisterNetEvent("tokovoip:toggleMute")
+AddEventHandler("tokovoip:toggleMute", function(status)
+	muteme = status
+end)					   
 
 RegisterNetEvent("initializeVoip");
 AddEventHandler("initializeVoip", function()

@@ -23,4 +23,5 @@ files {
 	"nui/ui.html",
 	"nui/ui.js",
 	"nui/img/carros/*",
+	"nui/img/*",
 }              

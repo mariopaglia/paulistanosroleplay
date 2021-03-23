@@ -398,10 +398,12 @@ AddEventHandler("clearInventory",function()
         vRP.setMoney(user_id,0)
         vRPclient._clearWeapons(source)
         vRPclient._setHandcuffed(source,false)
+		TriggerEvent("srkfive:killregisterclear",user_id)
 
         if not vRP.hasPermission(user_id,"mochila.permissao") then
             vRP.setExp(user_id,"physical","strength",20)
         end
+		vRP.setMoney(user_id, 0)
     end
 end)
 
@@ -930,6 +932,13 @@ local vehglobal = {
 	["samumav"] = { ['name'] = "Helicoptero SAMU", ['price'] = 1000, ['tipo'] = "work" },
 	["ambulance"] = { ['name'] = "Ambulância SAMU", ['price'] = 1000, ['tipo'] = "work" },
 	["policeb"] = { ['name'] = "Moto SAMU", ['price'] = 1000, ['tipo'] = "work" },
+	-- Novas viaturas
+	["20blazer2"] = { ['name'] = "Blazer F.T.", ['price'] = 1000, ['tipo'] = "work" },
+	["police3"] = { ['name'] = "Spin PMESP", ['price'] = 1000, ['tipo'] = "work" },
+	["spacepm1"] = { ['name'] = "Spacefox PMESP", ['price'] = 1000, ['tipo'] = "work" },
+	["trailcfp"] = { ['name'] = "Trail PMESP", ['price'] = 1000, ['tipo'] = "work" },
+	["trailpm1"] = { ['name'] = "Trail F.T.", ['price'] = 1000, ['tipo'] = "work" },
+
 
 	--TRABALHO
 	["youga2"] = { ['name'] = "Youga2", ['price'] = 220000, ['tipo'] = "carros" },
@@ -1221,6 +1230,9 @@ function vRP.clearInventory(user_id)
 	end
 end
 
+function tvRP.clearInventory()
+	vRP.clearInventory(vRP.getUserId(source))
+end
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- VEHICLETYPE
 -----------------------------------------------------------------------------------------------------------------------------------------

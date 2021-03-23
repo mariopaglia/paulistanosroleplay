@@ -187,13 +187,16 @@ end
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- CHESTCLOSE
 -----------------------------------------------------------------------------------------------------------------------------------------
+local copen = {}
+
 function vRPN.chestClose()
 	local source = source
 	local user_id = vRP.getUserId(source)
 	if user_id then
 		local vehicle,vnetid = vRPclient.vehList(source,7)
 		if vehicle then
-			vCLIENT.vehicleClientTrunk(-1,vnetid,true)
+			copen[vnetid] = nil
+			vCLIENT._vehicleClientTrunk(-1,vnetid,true)
 		end
 	end
 	return false
@@ -201,22 +204,52 @@ end
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- TRUNK
 -----------------------------------------------------------------------------------------------------------------------------------------
+
+local queuel = {}
+function queue(f, cb)
+	table.insert(queuel, {f, cb})
+end
+
+Citizen.CreateThread(function()
+	while true do
+		Citizen.Wait(100)
+		for k, v in pairs(queuel) do
+			local x = v
+			queuel[k] = nil
+			x[2](x[1]())
+		end
+	end
+end)
+
 function vRPN.chestOpen()
 	local source = source
 	local user_id = vRP.getUserId(source)
 	if user_id then
-		local vehicle,vnetid,placa,vname,lock,banned,trunk = vRPclient.vehList(source,7)
-		if vehicle then
-			if lock == 1 then
-				if banned then
-					return
+		local f = function()
+			local vehicle,vnetid,placa,vname,lock,banned,trunk = vRPclient.vehList(source,7)
+			if not copen[vnetid] then
+				if vehicle then
+					if lock == 1 then
+						if banned then
+							return
+						end
+						local placa_user_id = vRP.getUserByRegistration(placa)
+						if placa_user_id then
+							copen[vnetid] = true
+							vCLIENT._vehicleClientTrunk(-1,vnetid,false)
+							TriggerClientEvent("trunkchest:Open",source)
+						end
+					end
 				end
-				local placa_user_id = vRP.getUserByRegistration(placa)
-				if placa_user_id then
-					vCLIENT.vehicleClientTrunk(-1,vnetid,false)
-					TriggerClientEvent("trunkchest:Open",source)
-				end
+			else
+				TriggerClientEvent("Notify",source,"negado","Inventário já aberto.",4000)
 			end
+			return true
 		end
+		local r = async()
+		queue(f, function(cb)
+			r(cb)
+		end)
+		r:wait()
 	end
 end

@@ -270,7 +270,7 @@ cfg.cloakroom_types = {
 		},
 	},
 	["Fardamento ROTA"] = {
-		_config = {permissions = {"pmesp.permissao"}},
+		_config = {permissions = {"rota.permissao"}},
 		["ROTA [M] | [1]"] = {
 			[1] = {58, 1}, -- Mascara / Textura
 			[3] = {6, 0}, -- Luvas / Textura
@@ -508,7 +508,7 @@ cfg.cloakroom_types = {
 		},
 	},
 	["Fardamento PRF"] = {
-		_config = {permissions = {"pmesp.permissao"}},
+		_config = {permissions = {"prf.permissao"}},
 		["PRF [M] | [1]"] = {
 			[1] = {-1, 0}, -- Mascara / Textura
 			[3] = {4, 0}, -- Luvas / Textura
@@ -605,7 +605,7 @@ cfg.cloakroom_types = {
 
 cfg.cloakrooms = {
 	{"Fardamento PMESP", -1098.7556152344, -830.91094970703, 14.302787322998},
-	{"Fardamento ROTA", -1095.0867919922, -829.58959960938, 14.282787322998},
+	{"Fardamento ROTA", -2040.39,-460.1,16.43},
 	{"Fardamento PCESP", 458.6598815918, -992.93743896484, 30.689655303955},
 	{"Fardamento PRF", 2900.6137695313, 3819.74609375, 54.609714508057},
 	{"Fardamento SAMU", 301.32916259766, -599.16723632813, 43.283996582031},

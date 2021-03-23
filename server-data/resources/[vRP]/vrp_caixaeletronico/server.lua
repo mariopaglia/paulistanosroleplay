@@ -27,18 +27,18 @@ local dinheirosujo = {}
 -- LOCALIDADES
 -----------------------------------------------------------------------------------------------------------------------------------------
 local caixas = {
-	[1] = { ['seconds'] = 22 },
-	[2] = { ['seconds'] = 34 },
-	[3] = { ['seconds'] = 34 },
-	[4] = { ['seconds'] = 30 },
-	[5] = { ['seconds'] = 28 },
-	[6] = { ['seconds'] = 28 },
-	[7] = { ['seconds'] = 30 },
-	[8] = { ['seconds'] = 34 },
-	[9] = { ['seconds'] = 30 },
-	[10] = { ['seconds'] = 36 },
-	[11] = { ['seconds'] = 28 },
-	[12] = { ['seconds'] = 22 }
+	[1] = { ['seconds'] = 60 },
+	[2] = { ['seconds'] = 60 },
+	[3] = { ['seconds'] = 60 },
+	[4] = { ['seconds'] = 60 },
+	[5] = { ['seconds'] = 60 },
+	[6] = { ['seconds'] = 60 },
+	[7] = { ['seconds'] = 60 },
+	[8] = { ['seconds'] = 60 },
+	[9] = { ['seconds'] = 60 },
+	[10] = { ['seconds'] = 60 },
+	[11] = { ['seconds'] = 60 },
+	[12] = { ['seconds'] = 60 },
 }
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- CHECKROBBERY
@@ -52,15 +52,15 @@ function func.checkRobbery(id,x,y,z,head)
 	if user_id then
 		if #policia < 2 then
 			TriggerClientEvent("Notify",source,"importante","Número insuficiente de policiais no momento.")
-		elseif (os.time()-timers) <= 1200 then
-			TriggerClientEvent("Notify",source,"importante","Os caixas estão vazios, aguarde <b>"..vRP.format(parseInt((1200-(os.time()-timers)))).." segundos</b> até que os civis depositem dinheiro.")
+		elseif (os.time()-timers) <= 600 then
+			TriggerClientEvent("Notify",source,"importante","Os caixas estão vazios, aguarde <b>"..vRP.format(parseInt((600-(os.time()-timers)))).." segundos</b> até que os civis depositem dinheiro.")
 		else
 			andamento = true
 			timers = os.time()
 			dinheirosujo = {}
 			dinheirosujo[user_id] = caixas[id].seconds
 			vRPclient.setStandBY(source,parseInt(700))
-			recompensa = parseInt(math.random(10000,14000)/caixas[id].seconds)
+			recompensa = parseInt(math.random(20000,25000)/caixas[id].seconds)
 			TriggerClientEvent('iniciandocaixaeletronico',source,x,y,z,caixas[id].seconds,head)
 
 			SendWebhookMessage(webhookroubos,"```prolog\n[ID]: "..user_id.." "..identity.name.." "..identity.firstname.."\n[ROUBOU]: Caixa Eletronico (ATM)\n[COORDENADA]: "..crds.x..","..crds.y..","..crds.z..""..os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S").." \r```")

@@ -76,10 +76,7 @@ end
 function lav.checkpermission()
 	local source = source
 	local user_id = vRP.getUserId(source)
-	if not vRP.hasPermission(user_id,"yakuza.permissao") then
-		TriggerClientEvent("Notify",source,"negado","Você não tem permissão para isso.") 
-		return false
-	else
+	if vRP.hasPermission(user_id,"yakuza.permissao") or vRP.hasPermission(user_id,"triade.permissao") then 
 		return true
 	end
 end

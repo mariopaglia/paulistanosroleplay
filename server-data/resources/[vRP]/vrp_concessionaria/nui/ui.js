@@ -75,6 +75,7 @@ function criarCatalogo(veiculos, totalTipo, aberto, isVendedor) {
 					<div class="col-md-3 col-sm-4">
 						<div class="single-package-item">
 							<img src="img/carros/${dataV.model}.png" alt="package-place">
+							<img src="img/testdrive.png" class="testdrive" onclick="testdrive(\'${i}\',\'${i2}\')">
 							<div class="single-package-item-txt">
 								<h3>${dataV.title}<span class="pull-right">${preco}</span></h3>
 								<div class="packages-para">
@@ -173,6 +174,29 @@ function comprar(categoria, model) {
         }
     })
 }
+
+function testdrive(categoria, model) {
+
+    Swal.fire({
+        title: 'Atenção!',
+        text: "Deseja fazer o test drive deste veiculo?",
+        type: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'TEST DRIVE'
+    }).then((result) => {
+        if (result.value) {
+            sendData("ButtonClick", {
+                action: "testdrive",
+                categoria: categoria,
+                model: model
+            });
+        }
+    })
+}
+
+
 
 
 function vender(categoria, model) {

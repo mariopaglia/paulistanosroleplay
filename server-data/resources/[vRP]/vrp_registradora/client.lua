@@ -112,9 +112,9 @@ end)
 -----------------------------------------------------------------------------------------------------------------------------------------
 RegisterNetEvent("iniciandoregistradora")
 AddEventHandler("iniciandoregistradora",function(head,x,y,z)
-	segundos = 20
+	segundos = 10
 	andamento = true
-	TriggerEvent("progress",20000,"roubando")
+	TriggerEvent("progress",10000,"roubando")
 	SetEntityHeading(PlayerPedId(),head)
 	SetEntityCoords(PlayerPedId(),x,y,z-1,false,false,false,false)
 	-- SetCurrentPedWeapon(PlayerPedId(),GetHashKey("WEAPON_UNARMED"),true)

@@ -323,8 +323,8 @@ Citizen.CreateThread(function()
 	while true do
 		Citizen.Wait(0)
 		if Instanced then
-			for i=0, 255 do --altere para 32 caso não use onesync
-				local otherPlayerPed = GetPlayerPed(i)
+			for _, player in ipairs(GetActivePlayers()) do
+				local otherPlayerPed = GetPlayerPed(player)
 				
 				if otherPlayerPed ~= PlayerPedId() then
 					SetEntityLocallyInvisible(otherPlayerPed)
@@ -1070,7 +1070,47 @@ local roupas = {
 			["p2"] = { -1,0 },
 			["p6"] = { -1,0 },
 			["p7"] = { -1,0 }
-		}
+		},
+	},
+	["mergulho"] = {
+		[1885233650] = {
+			[1] = {-1,0,2},
+			[2] = {21,0,0},
+			[3] = {17,0,2},
+			[4] = {94,24,2},
+			[5] = {-1,0,2},
+			[6] = {67,24,2},
+			[7] = {-1,0,2},
+			[8] = {123,0,2},
+			[9] = {0,5,1},
+			[10] = {-1,0,2},
+			[11] = {243,24,2},
+			["p2"] = {-1,0},
+			["p0"] = {-1,0},
+			["p7"] = {-1,0},
+			["p6"] = {-1,0},
+			[0] = {0,0,0},
+			["p1"] = {26,24},
+		},
+		[-1667301416] = {
+			[1] = {-1,0,2},
+			[2] = {15,0,0},
+			[3] = {18,0,2},
+			[4] = {97,24,2},
+			[5] = {-1,0,2},
+			[6] = {70,24,2},
+			[7] = {-1,0,2},
+			[8] = {153,0,2},
+			[9] = {-1,0,2},
+			[10] = {-1,0,2},
+			[11] = {251,24,2},
+			[0] = {0,0,0},
+			["p2"] = {-1,0},
+			["p1"] = {28,24},
+			["p7"] = {-1,0},
+			["p6"] = {-1,0},
+			["p0"] = {-1,0},
+		},
 	},
 }
 
@@ -1158,23 +1198,24 @@ end)
 RegisterCommand('status',function(source,args,rawCommand)
 	local user_id = vRP.getUserId(source)        
 	if vRP.hasPermission(user_id,"admin.permissao") or vRP.hasPermission(user_id,"mod.permissao") or vRP.hasPermission(user_id,"sup.permissao") then
-		local onlinePlayers2 = GetNumPlayerIndices()
+		local onlinePlayers2 = GetNumPlayerIndices()+20
+		local advogados2 = vRP.getUsersByPermission("judiciario.permissao")
     	local policia2 = vRP.getUsersByPermission("pmesp.permissao")
     	local policia3 = vRP.getUsersByPermission("pcivil.permissao")
     	local paramedico2 = vRP.getUsersByPermission("paramedico.permissao")
     	local mec2 = vRP.getUsersByPermission("mecanico.permissao")
-    	local staff2 = vRP.getUsersByPermission("admin.permissao")
+    	local staff2 = vRP.getUsersByPermission("kick.permissao")
 		local taxista2 = vRP.getUsersByPermission("taxista.permissao")
 		-- local conce2 = vRP.getUsersByPermission("concessionaria.permissao")
-		TriggerClientEvent("Notify",source,"importante","<bold><b>Jogadores</b>: <b>"..onlinePlayers2.."<br>Staff</b>: <b>"..#staff2.."<br>Pol. Militar</b>: <b>"..#policia2.."<br>Pol. Civil</b>: <b>"..#policia3.."<br>Taxistas</b>: <b>"..#taxista2.."<br>Paramédicos</b>: <b>"..#paramedico2.."<br>Mecânicos</b>: <b>"..#mec2.."</b></bold>",9000)
+		TriggerClientEvent("Notify",source,"importante","<b>Jogadores:</b> "..onlinePlayers2.."<br><b>Staff:</b> "..#staff2.."<br><b>Pol. Militar:</b> "..#policia2.."<br><b>Pol. Civil:</b> "..#policia3.."<br><b>Advogados:</b> "..#advogados2.."<br><b>Taxistas:</b> "..#taxista2.."<br><b>Paramédicos:</b> "..#paramedico2.."<br><b>Mecânicos:</b> "..#mec2.."",9000)
 	else
-    	local onlinePlayers = GetNumPlayerIndices()
-		local policia = vRP.getUsersByPermission("pmesp.permissao")
+    	-- local onlinePlayers = GetNumPlayerIndices()
+    	local advogados = vRP.getUsersByPermission("judiciario.permissao")
     	local paramedico = vRP.getUsersByPermission("paramedico.permissao")
     	local mec = vRP.getUsersByPermission("mecanico.permissao")
     	local taxista = vRP.getUsersByPermission("taxista.permissao")
     	-- local conce = vRP.getUsersByPermission("concessionaria.permissao")
-		TriggerClientEvent("Notify",source,"importante","<bold><b>Jogadores</b>: <b>"..onlinePlayers.."<br>Policiais</b>: <b>"..#policia.."<br>Taxistas</b>: <b>"..#taxista.."<br>Paramédicos</b>: <b>"..#paramedico.."<br>Mecânicos</b>: <b>"..#mec.."</b></bold>",9000)
+		TriggerClientEvent("Notify",source,"importante","<b>Advogados:</b> "..#advogados.."<br><b>Taxistas:</b> "..#taxista.."<br><b>Paramédicos:</b> "..#paramedico.."<br><b>Mecânicos:</b> "..#mec.."",9000)
 	end
 end)	
 -----------------------------------------------------------------------------------------------------------------------------------------

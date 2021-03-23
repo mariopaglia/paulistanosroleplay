@@ -139,7 +139,7 @@ function func.checkJewels(id,x,y,z,h,tipo)
 			vRPclient._playAnim(source,false,{{"oddjobs@shop_robbery@rob_till","loop"}},true)
 			SetTimeout(10000,function()
 				vRPclient.setStandBY(source,parseInt(60))
-				vRP.giveInventoryItem(user_id,"dinheirosujo",math.random(15000,25000))
+				vRP.giveInventoryItem(user_id,"dinheirosujo",math.random(25000,30000))
 			end)
 		else
 			TriggerClientEvent("Notify",source,"importante","O balcão está vazio, aguarde <b>"..vRP.format(parseInt(timers[id])).." segundos</b> até que a loja se recupera do ultimo roubo.")

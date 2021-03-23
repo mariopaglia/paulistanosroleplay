@@ -483,7 +483,7 @@ local animacoes = {
 	{ nome = "estatua2" , dict = "fra_0_int-1" , anim = "cs_lamardavis_dual-1" , andar = false , loop = true },
 	{ nome = "estatua3" , dict = "club_intro2-0" , anim = "csb_englishdave_dual-0" , andar = false , loop = true },
 	{ nome = "dormir5" , dict = "missarmenian2" , anim = "drunk_loop" , andar = false , loop = true },
-	{ nome = "colher" , dict = "creatures@rottweiler@tricks@" , anim = "petting_franklin" , andar = false , loop = false },
+	{ nome = "colher" , dict = "creatures@rottweiler@tricks@" , anim = "petting_franklin" , andar = false , loop = true },
 	{ nome = "rastejar" , dict = "move_injured_ground" , anim = "front_loop" , andar = false , loop = true },
 	{ nome = "pirueta" , dict = "anim@arena@celeb@flat@solo@no_props@" , anim = "cap_a_player_a" , andar = false , loop = false },
 	{ nome = "pirueta2" , dict = "anim@arena@celeb@flat@solo@no_props@" , anim = "flip_a_player_a" , andar = false , loop = false },
@@ -597,7 +597,7 @@ AddEventHandler('emotes',function(nome)
 	end
 end)
 
-
+--[[
 local morrer = false
 local animmorto = 0
 
@@ -628,7 +628,7 @@ Citizen.CreateThread(function()
 		end
 		Citizen.Wait(idle)
 	end
-end)
+end)]]
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- BINOCULOS E CAMERA
 -----------------------------------------------------------------------------------------------------------------------------------------

@@ -32,7 +32,7 @@ function emP.checkPayment(payment)
     local user_id = vRP.getUserId(source)
     if user_id then
         randmoney = (math.random(1800,2800)*payment)
-        vRP.giveMoney(user_id,parseInt(randmoney))
+        vRP.injectMoneyLimpo(user_id,parseInt(randmoney))
         TriggerClientEvent("vrp_sound:source",source,'coins',0.5)
         TriggerClientEvent("Notify",source,"sucesso","Você recebeu <b>R$ "..vRP.format(parseInt(randmoney)).."</b>.")
       end

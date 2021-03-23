@@ -38,7 +38,7 @@ function emP.paymentCheck(check,status)
 		vRP.antiflood(source,"raceexplosive",2)
 		local random = math.random(pay[check].min,pay[check].max)
 		local policia = vRP.getUsersByPermission("policia.permissao")
-		vRP.giveInventoryItem(user_id,"dinheirosujo",parseInt(random))
+		vRP.injectMoneySujo(user_id,"dinheirosujo",parseInt(random))
 		TriggerClientEvent("Notify",source,"sucesso","Você recebeu "..vRP.format(parseInt(random)).."x em <b>Dinheiro Sujo</b>")
 	end
 end

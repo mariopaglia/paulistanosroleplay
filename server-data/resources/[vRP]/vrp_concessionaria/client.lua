@@ -155,7 +155,12 @@ RegisterNUICallback("ButtonClick", function(data, cb)
     end
 	
 	if data.action == "testdrive" then
-		if GetClosestVehicle(-855.66, -3226.67, 13.53,2.001,0,71) ~= 0 then
+		open = false
+		SetNuiFocus(false, false)
+		SendNUIMessage({type = 'closeAll'})
+		SetFocusPosAndVel(-855.66, -3226.67, 13.53,0.0,0.0,0.0)
+		if GetClosestVehicle(-855.66, -3226.67, 13.53,5.001,0,71) == 0 then
+			ClearFocus()
 			local pcoords = GetEntityCoords(PlayerPedId())
 			vRP.blockSpawnSave()
 			SetEntityCoords(PlayerPedId(), -855.66, -3226.67, 13.53)
@@ -180,9 +185,8 @@ RegisterNUICallback("ButtonClick", function(data, cb)
 			
 			SetEntityInvincible(nveh, true)
 			SetEntityLights(nveh, true)
-			FreezeEntityPosition(nveh, true)
 			SetVehicleDoorsLockedForAllPlayers(nveh, false)
-			TaskEnterVehicle(PlayerPedId(), nveh, 0, -1, 1.0, 16, 0)
+			TaskWarpPedIntoVehicle(PlayerPedId(),nveh,-1)
 			SetModelAsNoLongerNeeded(mhash)
 			Citizen.Wait(60000)
 			Citizen.InvokeNative(0xAD738C3085FE7E11,nveh,true,true)
@@ -195,7 +199,10 @@ RegisterNUICallback("ButtonClick", function(data, cb)
 			SetEntityAsNoLongerNeeded(nveh)
 			SetEntityCoords(PlayerPedId(), pcoords.x,pcoords.y,pcoords.z)
 			vRP.blockSpawnSave()
+		else
+			TriggerEvent("Notify","importante","Pista Ocupada",3000)
 		end
+		ClearFocus()
 	end
 	
 	if data.action == "visualizarCarro" then

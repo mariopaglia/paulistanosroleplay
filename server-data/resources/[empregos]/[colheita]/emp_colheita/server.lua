@@ -27,10 +27,10 @@ function emP.checkPayment()
     local source = source
     local user_id = vRP.getUserId(source)
     if user_id then
-        randgraos = math.random(1,3)
-        if vRP.getInventoryWeight(user_id)+vRP.getItemWeight("rosa") <= vRP.getInventoryMaxWeight(user_id) then
-            vRP.giveInventoryItem(user_id,"rosa",parseInt(randgraos))
-            TriggerClientEvent("Notify",source,"sucesso","Você recebeu <b>"..randgraos.."</b> Rosas.")
+        randgraos = math.random(2,4)
+        if vRP.getInventoryWeight(user_id)+vRP.getItemWeight("morango") <= vRP.getInventoryMaxWeight(user_id) then
+            vRP.giveInventoryItem(user_id,"morango",parseInt(randgraos))
+            TriggerClientEvent("Notify",source,"sucesso","Você recebeu <b>"..randgraos.."</b> Morango.")
         else
             TriggerClientEvent("Notify",source,"negado","<b>Mochila</b> cheia.")
         end

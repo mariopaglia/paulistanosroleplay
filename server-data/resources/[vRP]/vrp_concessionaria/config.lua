@@ -6,10 +6,10 @@ Config.Veiculos = {
     {
         categoria = {title = "Comum", id = "comum"},
         veiculos = {
-            {title = "panto", model = "panto", mala = 10, preco = 10000, estoque = 100},
-            {title = "rhapsody", model = "rhapsody", mala = 20, preco = 12000, estoque = 100},
-            {title = "prairie", model = "prairie", mala = 30, preco = 15000, estoque = 50},
-            {title = "f620", model = "f620", mala = 25, preco = 25000, estoque = 50},
+            {title = "panto", model = "panto", mala = 10, preco = 10000, estoque = 200},
+            {title = "rhapsody", model = "rhapsody", mala = 20, preco = 12000, estoque = 200},
+            {title = "prairie", model = "prairie", mala = 30, preco = 15000, estoque = 200},
+            {title = "f620", model = "f620", mala = 25, preco = 25000, estoque = 200},
             --
             {title = "zion", model = "zion", mala = 30, preco = 30000, estoque = 50},
             {title = "asea", model = "asea", mala = 30, preco = 30000, estoque = 50},

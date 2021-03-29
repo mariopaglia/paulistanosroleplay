@@ -43,7 +43,7 @@ color a
 rd /s /q "cache"
 @echo (%time%)  Server Reiniciou e apagou Cache
 @echo Pressione Enter nesta janela para reiniciar o servidor imediatamente, mantenha esta janela aberta para reinicializacoes automaticas do servidor de 12 em 12 horas.
-start "Server"  ..\run.cmd +exec server.cfg
+start "Server"  ..\run.cmd +exec server.cfg +set onesync on +set sv_enforceGameBuild 2189
 timeout /t 43200
 taskkill /f /im FXServer.exe
 @echo Encerramento do servidor com sucesso.

@@ -11,6 +11,10 @@ function setNuiActive(booleanOrNil)
   end
 end
 
+RegisterCommand('mysql', function()
+  setNuiActive()
+end, true)
+
 RegisterNUICallback('close-explorer', function()
   setNuiActive(false)
 end)

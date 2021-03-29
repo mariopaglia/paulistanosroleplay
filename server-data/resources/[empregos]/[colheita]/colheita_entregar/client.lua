@@ -16,7 +16,7 @@ local segundos = 0
 -- LOCAIS DOS BLIPS
 -----------------------------------------------------------------------------------------------------------------------------------------
 local pegarBlips = {
-	{ ['x'] = 296.22, ['y'] = 6587.21, ['z'] = 29.82 }, -- 296.43,6587.4,29.84
+	{ ['x'] = 280.3, ['y'] = 6591.96, ['z'] = 30.17 }, -- 296.43,6587.4,29.84
 }
 
 -----------------------------------------------------------------------------------------------------------------------------------------
@@ -55,7 +55,9 @@ Citizen.CreateThread(function()
 
 				if distance <= 20 then
 					idle = 5
-					DrawMarker(21,pegarBlips.x, pegarBlips.y, pegarBlips.z-0.6,0,0,0,0.0,0,0,0.5,0.5,0.4,255,0,0,200,0,0,0,1)
+					-- DrawMarker(21,pegarBlips.x, pegarBlips.y, pegarBlips.z-0.6,0,0,0,0.0,0,0,0.5,0.5,0.4,255,0,0,200,0,0,0,1)
+					DrawMarker(24,pegarBlips.x,pegarBlips.y,pegarBlips.z-0.6,0,0,0,0.0,0,0,0.7,0.7,1.0,255,0,0,200,0,0,0,1)
+					
 					if distance <= 1.2 then
 						drawTxt("PRESSIONE  ~r~E~w~  PARA INICIAR A ENTREGA",4,0.5,0.93,0.50,255,255,255,180)
 						if IsControlJustPressed(0,38) then
@@ -88,23 +90,23 @@ Citizen.CreateThread(function()
 				DrawMarker(25,locs[selecionado].x,locs[selecionado].y,locs[selecionado].z-0.99,0,0,0,0.0,0,0,3.0,3.0,0.4,0,180,0,80,0,0,0,1)
 				if distance <= 2.0 then
 					local vehicle = GetPlayersLastVehicle()
-					drawTxt("PRESSIONE  ~r~E~w~  PARA REALIZAR AS ~g~ENTREGAS~w~",4,0.5,0.93,0.50,255,255,255,180)
-					if IsControlJustPressed(0,38) and not IsPedInAnyVehicle(ped) then --and GetEntityModel(vehicle) == 1475773103 then
+					drawTxt("PRESSIONE  ~r~G~w~  PARA REALIZAR AS ~g~ENTREGAS~w~",4,0.5,0.93,0.50,255,255,255,180)
+					if IsControlJustPressed(0,47) and not IsPedInAnyVehicle(ped) then --and GetEntityModel(vehicle) == 1475773103 then
 						TriggerEvent('cancelando',true)
 						RemoveBlip(blips)
 						backentrega = selecionado
 						processo = true
-						segundos = 5
+						segundos = 2
 						
-						TriggerEvent("progress",5000,"Entregando")
-						vRP._playAnim(false,{{"anim@heists@ornate_bank@grab_cash_heels","grab"}},true)
+						TriggerEvent("progress",2000,"Entregando")
+						vRP._playAnim(true,{{"pickup_object","pickup_low"}},false)
 									 
-						if selecionado == 11 then
+						if selecionado == 15 then
 							selecionado = 1
 						else
 							selecionado = selecionado + 1
 						end
-						Citizen.Wait(5000)
+						Citizen.Wait(2000)
 						emP.checkPayment()
 						CriandoBlip(locs,selecionado)
 					end

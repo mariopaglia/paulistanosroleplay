@@ -78,8 +78,8 @@ cfg.list = {
 	[66] = { text = true, hash = -2023754432, ['x'] = -1057.31, ['y'] = -839.51, ['z'] = 5.12, lock = true, perm = "policia.permissao", other = 67 },
 	[67] = { text = true, hash = -2023754432, ['x'] = -1058.28, ['y'] = -840.26, ['z'] = 5.12, lock = true, perm = "policia.permissao", other = 66 },
 	[68] = { text = true, hash = 631614199, ['x'] = -1073.12, ['y'] = -826.97, ['z'] = 5.48, lock = true, perm = "policia.permissao" },
-	[69] = { text = true, hash = 0, ['x'] = 0, ['y'] = 0, ['z'] = 0, lock = true, perm = "" },
-	[70] = { text = true, hash = 0, ['x'] = 0, ['y'] = 0, ['z'] = 0, lock = true, perm = "" },
+	[69] = { text = true, hash = -642608865, ['x'] = -2061.08, ['y'] = -458.96, ['z'] = 16.44, lock = true, perm = "policia.permissao" }, -- Selas da ROTA
+	[70] = { text = true, hash = -642608865, ['x'] = -2064.74, ['y'] = -456.15, ['z'] = 16.44, lock = true, perm = "policia.permissao" }, -- Selas da ROTA
 	[71] = { text = true, hash = 0, ['x'] = 0, ['y'] = 0, ['z'] = 0, lock = true, perm = "" },
 	[72] = { text = true, hash = 0, ['x'] = 0, ['y'] = 0, ['z'] = 0, lock = true, perm = "" },
 

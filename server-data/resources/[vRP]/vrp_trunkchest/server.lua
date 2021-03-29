@@ -206,17 +206,25 @@ end
 -----------------------------------------------------------------------------------------------------------------------------------------
 
 local queuel = {}
-function queue(f, cb)
-	table.insert(queuel, {f, cb})
+local w = false
+function queue(f, cb, name)
+	while w do Citizen.Wait(250) end
+	table.insert(queuel, {f, cb, name})
 end
 
 Citizen.CreateThread(function()
 	while true do
 		Citizen.Wait(100)
-		for k, v in pairs(queuel) do
-			local x = v
-			queuel[k] = nil
-			x[2](x[1]())
+		if #queuel > 0 then
+			w = true
+			Citizen.Wait(100)
+			local tbx = queuel
+			queuel = {}
+			w = false
+			for k, v in pairs(tbx) do
+				local x = v
+				x[2](x[1](), k)
+			end
 		end
 	end
 end)
@@ -247,9 +255,12 @@ function vRPN.chestOpen()
 			return true
 		end
 		local r = async()
-		queue(f, function(cb)
+		queue(f, function(cb, idx)
+			table.remove(queuel, idx)
 			r(cb)
 		end)
-		r:wait()
+		return r:wait()
+	else
+		return false
 	end
 end

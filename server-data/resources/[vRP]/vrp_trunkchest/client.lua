@@ -34,13 +34,19 @@ AddEventHandler("trunkchest:Open",function()
 		SetNuiFocus(true,true)
 		SendNUIMessage({ action = "showMenu" })
 		invOpen = true
+	else
+		invOpen = false
+		TriggerEvent("Notify","negado","Tente novamente.",4000)
 	end
 end)
 RegisterKeyMapping('vrp_trunkchest:open', 'Abrir Portamalas', 'keyboard', 'PAGEUP')
 
 RegisterCommand('vrp_trunkchest:open', function()
 	if not IsPedBeingStunned(ped) and not IsPlayerFreeAiming(PlayerId()) and GetEntityHealth(PlayerPedId()) > 101 then
-		vRPNserver.chestOpen()
+		local r = vRPNserver.chestOpen()
+		if not r then
+			TriggerEvent("Notify","negado","Falha ao abrir inventário.",4000)
+		end
 	end
 end, false)
 

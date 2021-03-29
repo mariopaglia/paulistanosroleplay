@@ -486,23 +486,171 @@ cfg.groups = {
 	---------------------------------------------------
 	-- ROTA
 	---------------------------------------------------
-	["ROTA"] = {
+	["SargentoROTA"] = {
 		_config = {
-			title = "ROTA",
+			title = "Sargento ROTA",
 			gtype = "job"
 		},
 		"policia.permissao",
 		"pmesp.permissao",
 		"rota.permissao",
+		"sargentorota.permissao",
 		"player.blips",
 		"polpar.permissao"
 	},
-	["ROTAP"] = {
+	["SargentoROTAP"] = {
 		_config = {
 			title = "ROTA Paisana",
 			gtype = "job"
 		},
-		"rotatoogle.permissao",
+		"sargentorotapaisana.permissao",
+		"player.blips",
+		"nogarmas.permissao"
+	},
+	["SubTenenteROTA"] = {
+		_config = {
+			title = "Sub-Tenente ROTA",
+			gtype = "job"
+		},
+		"policia.permissao",
+		"pmesp.permissao",
+		"rota.permissao",
+		"subtenenterota.permissao",
+		"player.blips",
+		"polpar.permissao"
+	},
+	["SubTenenteROTAP"] = {
+		_config = {
+			title = "ROTA Paisana",
+			gtype = "job"
+		},
+		"subtetenterotapaisana.permissao",
+		"player.blips",
+		"nogarmas.permissao"
+	},
+	["Tenente2ROTA"] = {
+		_config = {
+			title = "2º Tenente ROTA",
+			gtype = "job"
+		},
+		"policia.permissao",
+		"pmesp.permissao",
+		"rota.permissao",
+		"tenenterotaii.permissao",
+		"player.blips",
+		"polpar.permissao"
+	},
+	["Tenente2ROTAP"] = {
+		_config = {
+			title = "ROTA Paisana",
+			gtype = "job"
+		},
+		"tenenteiirotapaisana.permissao",
+		"player.blips",
+		"nogarmas.permissao"
+	},
+	["Tenente1ROTA"] = {
+		_config = {
+			title = "1º Tenente ROTA",
+			gtype = "job"
+		},
+		"policia.permissao",
+		"pmesp.permissao",
+		"rota.permissao",
+		"tenenterotai.permissao",
+		"player.blips",
+		"polpar.permissao"
+	},
+	["Tenente1ROTAP"] = {
+		_config = {
+			title = "ROTA Paisana",
+			gtype = "job"
+		},
+		"tenenteirotapaisana.permissao",
+		"player.blips",
+		"nogarmas.permissao"
+	},
+	["CapitaoROTA"] = {
+		_config = {
+			title = "Capitão ROTA",
+			gtype = "job"
+		},
+		"policia.permissao",
+		"pmesp.permissao",
+		"rota.permissao",
+		"capitaorota.permissao",
+		"player.blips",
+		"polpar.permissao"
+	},
+	["CapitaoROTAP"] = {
+		_config = {
+			title = "ROTA Paisana",
+			gtype = "job"
+		},
+		"capitaorotapaisana.permissao",
+		"player.blips",
+		"nogarmas.permissao"
+	},
+	["MajorROTA"] = {
+		_config = {
+			title = "Major ROTA",
+			gtype = "job"
+		},
+		"policia.permissao",
+		"pmesp.permissao",
+		"rota.permissao",
+		"majorrota.permissao",
+		"player.blips",
+		"polpar.permissao"
+	},
+	["MajorROTAP"] = {
+		_config = {
+			title = "ROTA Paisana",
+			gtype = "job"
+		},
+		"majorrotapaisana.permissao",
+		"player.blips",
+		"nogarmas.permissao"
+	},
+	["TenenteCoronelROTA"] = {
+		_config = {
+			title = "Tenente-Coronel ROTA",
+			gtype = "job"
+		},
+		"policia.permissao",
+		"pmesp.permissao",
+		"rota.permissao",
+		"tenentecoronelrota.permissao",
+		"player.blips",
+		"polpar.permissao"
+	},
+	["TenenteCoronelROTAP"] = {
+		_config = {
+			title = "ROTA Paisana",
+			gtype = "job"
+		},
+		"tenentecoronelrotapaisana.permissao",
+		"player.blips",
+		"nogarmas.permissao"
+	},
+	["CoronelROTA"] = {
+		_config = {
+			title = "Coronel ROTA",
+			gtype = "job"
+		},
+		"policia.permissao",
+		"pmesp.permissao",
+		"rota.permissao",
+		"coronelrota.permissao",
+		"player.blips",
+		"polpar.permissao"
+	},
+	["CoronelROTAP"] = {
+		_config = {
+			title = "ROTA Paisana",
+			gtype = "job"
+		},
+		"coronelrotapaisana.permissao",
 		"player.blips",
 		"nogarmas.permissao"
 	},

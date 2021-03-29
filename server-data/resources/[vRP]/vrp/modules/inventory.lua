@@ -48,6 +48,7 @@ local itemlist = {
 	["cartaoinvasao"] = { index = "cartaoinvasao", nome = "Cartão de Invasão", type = "usar" },
 	["gps"] = { index = "gps", nome = "GPS", type = "usar" },
 	["rosa"] = { index = "rosa", nome = "Rosa", type = "usar" },
+	["morango"] = { index = "morango", nome = "Morango", type = "usar" },
 
 	-- Farm Contrabandop
 	["componentemetal"] = { index = "componentemetal", nome = "Componentes de Metais", type = "usar" },
@@ -1005,6 +1006,7 @@ local vehglobal = {
 	["tractor2"] = { ['name'] = "Tractor2", ['price'] = 1000, ['tipo'] = "work" },
 	["rebel"] = { ['name'] = "Rebel", ['price'] = 1000, ['tipo'] = "work" },
 	["volatus"] = { ['name'] = "Volatus", ['price'] = 100, ['tipo'] = "work" },
+	["swift2"] = { ['name'] = "Swift2", ['price'] = 100, ['tipo'] = "work" },
 	["luxor2"] = { ['name'] = "Luxor2", ['price'] = 100, ['tipo'] = "work" },
 	["cargobob2"] = { ['name'] = "Cargo Bob", ['price'] = 1000000, ['tipo'] = "work" },		
 	["hauler"] = { ['name'] = "Caminhão", ['price'] = 1000, ['tipo'] = "work" },	

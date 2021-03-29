@@ -30,6 +30,15 @@ salarii = {
   {"suplente.permissao", 7500, "PMESP Suplente"},
   {"subcomando.permissao", 8000, "PMESP Sub-Comando"},
   {"comandante.permissao", 8000, "PMESP Comandante"},
+  -- ROTA
+  {"sargentorota.permissao", 5500, "Sargento ROTA"},
+  {"subtenenterota.permissao", 6300, "Sub-Tenente ROTA"},
+  {"tenenterotaii.permissao", 6600, "2º Tenente ROTA"},
+  {"tenenterotai.permissao", 7000, "1º Tenente ROTA"},
+  {"capitaorota.permissao", 7200, "Capitão ROTA"},
+  {"majorrota.permissao", 7400, "Major ROTA"},
+  {"tenentecoronelrota.permissao", 7500, "Tenente-Coronel ROTA"},
+  {"coronelrota.permissao", 8000, "Coronel ROTA"},
   -- Policia Civil
   {"agente.permissao", 4000, "Agente Policia Civil"},
   {"inspetor.permissao", 5000, "Inspetor Policia Civil"},

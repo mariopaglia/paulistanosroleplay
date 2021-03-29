@@ -59,6 +59,7 @@ local itemlist = {
 	["cartaoinvasao"] = { index = "cartaoinvasao", nome = "Cartão de Invasão" },
 	["gps"] = { index = "gps", nome = "GPS" },
 	["rosa"] = { index = "rosa", nome = "Rosa" },
+	["morango"] = { index = "morango", nome = "Morango" },
 
 	-- Farm Contrabando
 	["componentemetal"] = { index = "componentemetal", nome = "Componentes de Metais" },
@@ -793,7 +794,7 @@ RegisterCommand('call',function(source,args,rawCommand)
 		-- elseif args[1] == "taxi" then
 		-- 	players = vRP.getUsersByPermission("taxista.permissao")
 		if args[1] == "adm" then
-			players = vRP.getUsersByPermission("admin.permissao")
+			players = vRP.getUsersByPermission("kick.permissao")
 		else
 			TriggerClientEvent("Notify",source,"negado","Serviço inexistente ou disponível somente pelo <b>celular</b>")
 			return

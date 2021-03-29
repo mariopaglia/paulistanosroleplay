@@ -282,13 +282,16 @@ local user_id = vRP.getUserId(source)
 
 					TriggerClientEvent('cancelando',source,true)
 					vRPclient._playAnim(source,false,{{"amb@prop_human_parking_meter@female@idle_a","idle_a_female"}},true)
-					TriggerClientEvent("progress",source,30000,"roubando")
-					SetTimeout(30000,function()
+					TriggerClientEvent("progress",source,5000,"roubando")
+					SetTimeout(5000,function()
 						actived[user_id] = nil
 						TriggerClientEvent('cancelando',source,false)
 						vRPclient._stopAnim(source,false)
 
-						if math.random(100) >= 50 then
+						roubo1 = math.random(10)
+						roubo2 = math.random(10)
+
+						if roubo1 >= 5 then
 							TriggerEvent("setPlateEveryone",placa)
 							vGARAGE.vehicleClientLock(-1,vnetid,lock)
 							TriggerClientEvent("vrp_sound:source",source,'lock',0.5)
@@ -308,7 +311,7 @@ local user_id = vRP.getUserId(source)
 									end)
 								end
 							end
-						else
+						elseif roubo2 >= 6 then
 							TriggerClientEvent("Notify",source,"negado","Roubo do veículo falhou e as autoridades foram acionadas.",8000)
 							local policia = vRP.getUsersByPermission("policia.permissao")
 							local x,y,z = vRPclient.getPosition(source)
@@ -324,6 +327,8 @@ local user_id = vRP.getUserId(source)
 									end)
 								end
 							end
+						else
+							TriggerClientEvent("Notify",source,"aviso","O roubo falhou porém as autoridades não foram acionadas!",8000)
 						end
 					end)
 				end

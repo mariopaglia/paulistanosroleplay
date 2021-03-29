@@ -369,6 +369,7 @@ local vehList = {
 	{ ['name'] = "patriot2", ['hash'] = -420911112, ['banned'] = false },
 	{ ['name'] = "stafford", ['hash'] = 321186144, ['banned'] = false },
 	{ ['name'] = "swinger", ['hash'] = 500482303, ['banned'] = false },
+	{ ['name'] = "swift2", ['hash'] = 1075432268, ['banned'] = false },
 	{ ['name'] = "clique", ['hash'] = -1566607184, ['banned'] = false },
 	{ ['name'] = "deveste", ['hash'] = 1591739866, ['banned'] = false },
 	{ ['name'] = "deviant", ['hash'] = 1279262537, ['banned'] = false },

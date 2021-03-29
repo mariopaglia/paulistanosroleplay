@@ -58,9 +58,10 @@ sistemas["[OUTROS2]"] = true
 sistemas["[REMOVE_GIVE_WEAPON]"] = true
 sistemas["[Multiplicador_Dano]"] = true
 sistemas["[SPAWN_DINHEIRO]"] = true
+sistemas["[SPAWN_DINHEIRO2]"] = true
 sistemas["[OUTROS4]"] = true
 sistemas["[TELEPORT]"] = true
-sistemas["[STOPCLIENT]"] = true
+sistemas["[STOPCLIENT]"] = false
 sistemas["[STOPCLIENT2]"] = true
 sistemas["[STOPCLIENT3]"] = true
 

@@ -147,7 +147,7 @@ function func.registerCars(car, rt)
 end
 
 function func.venderVeiculo(categoria, modelo)
-    vRP.antiflood(source, "vendercarro", 2)
+    vRP.antiflood(source, "vendercarro", 3)
     local source = source
     local user_id = vRP.getUserId(source)
 

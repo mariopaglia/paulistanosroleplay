@@ -8,9 +8,9 @@ vRP = Proxy.getInterface("vRP")
 local blips = false
 local servico = false
 local selecionado = 0
-local CoordenadaX = 304.48 -- 304.48,6612.16,29.46
-local CoordenadaY = 6612.16
-local CoordenadaZ = 29.46
+local CoordenadaX = 289.77 -- 289.77,6592.36,29.99
+local CoordenadaY = 6592.36
+local CoordenadaZ = 29.99
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- RESIDENCIAS
 -----------------------------------------------------------------------------------------------------------------------------------------

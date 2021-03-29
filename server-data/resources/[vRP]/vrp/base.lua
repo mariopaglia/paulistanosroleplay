@@ -323,8 +323,36 @@ function vRP.dropPlayer(source)
 			---------------------------------------------------
 			-- ROTA
 			---------------------------------------------------
-			elseif vRP.hasGroup(user_id,"ROTA") then
-				vRP.addUserGroup(user_id,"ROTAP")
+			elseif vRP.hasGroup(user_id,"SargentoROTA") then
+				vRP.addUserGroup(user_id,"SargentoROTAP")
+				SendWebhookMessage(webhookrota,"```prolog\n[POLICIAL]: "..user_id.." "..identity.name.." "..identity.firstname.." \n[===========SAIU DE SERVICO==========] "..os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S").." \r```")
+			
+			elseif vRP.hasGroup(user_id,"SubTenenteROTA") then
+				vRP.addUserGroup(user_id,"SubTenenteROTAP")
+				SendWebhookMessage(webhookrota,"```prolog\n[POLICIAL]: "..user_id.." "..identity.name.." "..identity.firstname.." \n[===========SAIU DE SERVICO==========] "..os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S").." \r```")
+			
+			elseif vRP.hasGroup(user_id,"Tenente2ROTA") then
+				vRP.addUserGroup(user_id,"Tenente2ROTAP")
+				SendWebhookMessage(webhookrota,"```prolog\n[POLICIAL]: "..user_id.." "..identity.name.." "..identity.firstname.." \n[===========SAIU DE SERVICO==========] "..os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S").." \r```")
+			
+			elseif vRP.hasGroup(user_id,"Tenente1ROTA") then
+				vRP.addUserGroup(user_id,"Tenente1ROTAP")
+				SendWebhookMessage(webhookrota,"```prolog\n[POLICIAL]: "..user_id.." "..identity.name.." "..identity.firstname.." \n[===========SAIU DE SERVICO==========] "..os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S").." \r```")
+			
+			elseif vRP.hasGroup(user_id,"CapitaoROTA") then
+				vRP.addUserGroup(user_id,"CapitaoROTAP")
+				SendWebhookMessage(webhookrota,"```prolog\n[POLICIAL]: "..user_id.." "..identity.name.." "..identity.firstname.." \n[===========SAIU DE SERVICO==========] "..os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S").." \r```")
+			
+			elseif vRP.hasGroup(user_id,"MajorROTA") then
+				vRP.addUserGroup(user_id,"MajorROTAP")
+				SendWebhookMessage(webhookrota,"```prolog\n[POLICIAL]: "..user_id.." "..identity.name.." "..identity.firstname.." \n[===========SAIU DE SERVICO==========] "..os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S").." \r```")
+			
+			elseif vRP.hasGroup(user_id,"TenenteCoronelROTA") then
+				vRP.addUserGroup(user_id,"TenenteCoronelROTAP")
+				SendWebhookMessage(webhookrota,"```prolog\n[POLICIAL]: "..user_id.." "..identity.name.." "..identity.firstname.." \n[===========SAIU DE SERVICO==========] "..os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S").." \r```")
+			
+			elseif vRP.hasGroup(user_id,"CoronelROTA") then
+				vRP.addUserGroup(user_id,"CoronelROTAP")
 				SendWebhookMessage(webhookrota,"```prolog\n[POLICIAL]: "..user_id.." "..identity.name.." "..identity.firstname.." \n[===========SAIU DE SERVICO==========] "..os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S").." \r```")
 			
 			---------------------------------------------------

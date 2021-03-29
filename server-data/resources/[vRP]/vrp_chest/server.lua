@@ -23,10 +23,9 @@ local webhookbauvermelhos = "https://discord.com/api/webhooks/814169670545965146
 local webhookbauroxos = "https://discord.com/api/webhooks/814169874677891123/-MiKyzjLXVOhmdku_5sa9L6hrUarEFwet-vRIzytH1N5otiCzDvQnoXGTMFonsdVZJh8"
 local webhookbaumotoclub = "https://discord.com/api/webhooks/814170138148339809/qsr6ZrdvDypE1oYqH2cA0NYd09M_-1-WVxDzf5d4ynN_R3_f6AZFQAr8U_Z1n72Nk3uR"
 local webhookbauyakuza = "https://discord.com/api/webhooks/814170900144062514/0Lat5AEYq8qWU5W9zpHWeV4qeSTLxeeHoC0iK-nvGysAbFzj7WL8-XktelPVKyv_XqIZ"
-local webhookbaucamorra = ""
-local webhookbautriade = ""
+local webhookbautriade = "https://discord.com/api/webhooks/825074285953024030/uqbQQmQVrrWOH0vGA3BWkfrCcJ8_UAVpypv4iePgL2vbx0MZ5mgebGitqo5mmozm2qA9"
 local webhookbaufarc = "https://discord.com/api/webhooks/820505826014920705/vdEF7RM11DdAnolodVHzmtUm-r2UMD21MyrSvWyNOFpHh1lZeLrBEneV5BFVLxhzlgA8"
-local webhookbauserpentes = ""
+local webhookbauserpentes = "https://discord.com/api/webhooks/825074237155835974/h1E_MXY0OFFCfMU9xCu9Dtq-KBUxfJjq7mLmL7SgZ9j03qaob4yBBjbxlT2rJ-_0uvih"
 
 
 function SendWebhookMessage(webhook,message)

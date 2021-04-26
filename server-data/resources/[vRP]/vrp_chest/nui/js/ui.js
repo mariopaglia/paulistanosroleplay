@@ -220,7 +220,6 @@ $(document).ready(function () {
     var event = $(this).data('event');
     if (event == 'send') {
       var paramUrl = $(this).data('url');
-      console.log(paramUrl);
       var $el = $(this).closest('.cell');
       var amount = Number($el.find(".amount-value").val());
       if (!amount || amount == '') {
@@ -236,7 +235,6 @@ $(document).ready(function () {
       );
     }
 
-    console.log('button click');
 
     Option = false;
 

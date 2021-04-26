@@ -16,6 +16,7 @@ vGARAGE = Tunnel.getInterface("vrp_garages")
 -- WEBHOOK
 -----------------------------------------------------------------------------------------------------------------------------------------
 local webhookinventario = "https://discord.com/api/webhooks/795672460493193266/swXw7bzSoJNVsjGoyfigHFUkNq5-du7u-mIDjqIAqvg6fFuB3B4UDkelCxKiA2ub-Mle" 
+local webhooklockpick = "https://discord.com/api/webhooks/827575258256113694/wJBb6Un4lupwPzNETxSMYfyF6gheCGGGs-hEBBZ2zhHY4ESzNCe2jRQAeah43JsGRgSb"
 
 function SendWebhookMessage(webhook,message)
 	if webhook ~= nil and webhook ~= "" then
@@ -194,8 +195,8 @@ local user_id = vRP.getUserId(source)
 					SetTimeout(10000,function()
 						actived[user_id] = nil
 						vRPclient._stopAnim(source,false)
-						vRPclient.playScreenEffect(source,"RaceTurbo",10000)
-						vRPclient.playScreenEffect(source,"DrugsTrevorClownsFight",10000)
+						vRPclient.playScreenEffect(source,"RaceTurbo",120)
+						vRPclient.playScreenEffect(source,"DrugsTrevorClownsFight",120)
 						TriggerClientEvent("Notify",source,"sucesso","Maconha utilizada com sucesso.",10000)
 					end)
 				end
@@ -235,6 +236,13 @@ local user_id = vRP.getUserId(source)
 					local nplayer = vRPclient.getNearestPlayer(source,2)
 					if nplayer then
 						vRPclient.setCapuz(nplayer)
+
+						if vRPclient.isCapuz(nplayer) then	
+							TriggerClientEvent('setcapuz',nplayer)
+						else
+							TriggerClientEvent('removecapuz',nplayer)
+						end
+
 						vRP.closeMenu(nplayer)
 						TriggerClientEvent("Notify",source,"sucesso","Capuz utilizado com sucesso.",8000)
 					end
@@ -282,8 +290,8 @@ local user_id = vRP.getUserId(source)
 
 					TriggerClientEvent('cancelando',source,true)
 					vRPclient._playAnim(source,false,{{"amb@prop_human_parking_meter@female@idle_a","idle_a_female"}},true)
-					TriggerClientEvent("progress",source,5000,"roubando")
-					SetTimeout(5000,function()
+					TriggerClientEvent("progress",source,30000,"roubando")
+					SetTimeout(30000,function()
 						actived[user_id] = nil
 						TriggerClientEvent('cancelando',source,false)
 						vRPclient._stopAnim(source,false)
@@ -299,6 +307,8 @@ local user_id = vRP.getUserId(source)
 							TriggerClientEvent("Notify",source,"sucesso","Roubo concluído, as autoridades foram acionadas.",8000)
 							local policia = vRP.getUsersByPermission("policia.permissao")
 							local x,y,z = vRPclient.getPosition(source)
+							local identitys = vRP.getUserIdentity(user_id)
+							local crds = GetEntityCoords(GetPlayerPed(source))
 							for k,v in pairs(policia) do
 								local player = vRP.getUserSource(parseInt(v))
 								if player then
@@ -311,6 +321,7 @@ local user_id = vRP.getUserId(source)
 									end)
 								end
 							end
+							SendWebhookMessage(webhooklockpick, "```prolog\n[ID]: "..user_id.." "..identitys.name.." "..identitys.firstname.." \n[MODELO]: "..model.."\n[PLACA]: "..placa.."\n[COORDENADA]: "..crds.x..","..crds.y..","..crds.z..""..os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S").."```")
 						elseif roubo2 >= 6 then
 							TriggerClientEvent("Notify",source,"negado","Roubo do veículo falhou e as autoridades foram acionadas.",8000)
 							local policia = vRP.getUsersByPermission("policia.permissao")

@@ -50,8 +50,8 @@ AddEventHandler("produzir-arma", function(item)
                     ---------------------------
                 elseif item == "ak47" then
                     if vRP.getInventoryWeight(user_id) + vRP.getItemWeight("wbody|WEAPON_ASSAULTRIFLE_MK2") <= vRP.getInventoryMaxWeight(user_id) then
-                        if vRP.getInventoryItemAmount(user_id, "corpodeak") >= 1 and vRP.getInventoryItemAmount(user_id, "placademetal") >= 140 and vRP.getInventoryItemAmount(user_id, "mola") >= 20 and vRP.getInventoryItemAmount(user_id, "gatilho") >= 1 then
-                            if vRP.tryGetInventoryItem(user_id, "corpodeak", 1) and vRP.tryGetInventoryItem(user_id, "placademetal", 140) and vRP.tryGetInventoryItem(user_id, "mola", 20) and vRP.tryGetInventoryItem(user_id, "gatilho", 1) then
+                        if vRP.getInventoryItemAmount(user_id, "corpodeak") >= 1 and vRP.getInventoryItemAmount(user_id, "placademetal") >= 140 and vRP.getInventoryItemAmount(user_id, "mola") >= 15 and vRP.getInventoryItemAmount(user_id, "gatilho") >= 1 then
+                            if vRP.tryGetInventoryItem(user_id, "corpodeak", 1) and vRP.tryGetInventoryItem(user_id, "placademetal", 140) and vRP.tryGetInventoryItem(user_id, "mola", 15) and vRP.tryGetInventoryItem(user_id, "gatilho", 1) then
                                 TriggerClientEvent(nomesnui, source) --------- trocar quando duplicar
                                 TriggerClientEvent("progress", source, 10000, "Montando " .. itemupper .. "")
                                 vRPclient._playAnim(source, false, {{"amb@prop_human_parking_meter@female@idle_a", "idle_a_female"}}, true)
@@ -73,8 +73,8 @@ AddEventHandler("produzir-arma", function(item)
                     ---------------------------
                 elseif item == "mp5" then
                     if vRP.getInventoryWeight(user_id) + vRP.getItemWeight("wbody|WEAPON_SMG_MK2") <= vRP.getInventoryMaxWeight(user_id) then
-                        if vRP.getInventoryItemAmount(user_id, "corpodemp5") >= 1 and vRP.getInventoryItemAmount(user_id, "placademetal") >= 120 and vRP.getInventoryItemAmount(user_id, "mola") >= 16 and vRP.getInventoryItemAmount(user_id, "gatilho") >= 1 then
-                            if vRP.tryGetInventoryItem(user_id, "corpodemp5", 1) and vRP.tryGetInventoryItem(user_id, "placademetal", 120) and vRP.tryGetInventoryItem(user_id, "mola", 16) and vRP.tryGetInventoryItem(user_id, "gatilho", 1) then
+                        if vRP.getInventoryItemAmount(user_id, "corpodemp5") >= 1 and vRP.getInventoryItemAmount(user_id, "placademetal") >= 80 and vRP.getInventoryItemAmount(user_id, "mola") >= 10 and vRP.getInventoryItemAmount(user_id, "gatilho") >= 1 then
+                            if vRP.tryGetInventoryItem(user_id, "corpodemp5", 1) and vRP.tryGetInventoryItem(user_id, "placademetal", 80) and vRP.tryGetInventoryItem(user_id, "mola", 10) and vRP.tryGetInventoryItem(user_id, "gatilho", 1) then
                                 TriggerClientEvent(nomesnui, source) --------- trocar quando duplicar
                                 TriggerClientEvent("progress", source, 10000, "Montando " .. itemupper .. "")
                                 vRPclient._playAnim(source, false, {{"amb@prop_human_parking_meter@female@idle_a", "idle_a_female"}}, true)
@@ -97,8 +97,8 @@ AddEventHandler("produzir-arma", function(item)
                     ---------------------------
                 elseif item == "fiveseven" then
                     if vRP.getInventoryWeight(user_id) + vRP.getItemWeight("wbody|WEAPON_PISTOL_MK2") <= vRP.getInventoryMaxWeight(user_id) then
-                        if vRP.getInventoryItemAmount(user_id, "corpodefiveseven") >= 1 and vRP.getInventoryItemAmount(user_id, "placademetal") >= 100 and vRP.getInventoryItemAmount(user_id, "mola") >= 6 and vRP.getInventoryItemAmount(user_id, "gatilho") >= 1 then
-                            if vRP.tryGetInventoryItem(user_id, "corpodefiveseven", 1) and vRP.tryGetInventoryItem(user_id, "placademetal", 100) and vRP.tryGetInventoryItem(user_id, "mola", 6) and vRP.tryGetInventoryItem(user_id, "gatilho", 1) then
+                        if vRP.getInventoryItemAmount(user_id, "corpodefiveseven") >= 1 and vRP.getInventoryItemAmount(user_id, "placademetal") >= 40 and vRP.getInventoryItemAmount(user_id, "mola") >= 15 and vRP.getInventoryItemAmount(user_id, "gatilho") >= 1 then
+                            if vRP.tryGetInventoryItem(user_id, "corpodefiveseven", 1) and vRP.tryGetInventoryItem(user_id, "placademetal", 40) and vRP.tryGetInventoryItem(user_id, "mola", 15) and vRP.tryGetInventoryItem(user_id, "gatilho", 1) then
                                 TriggerClientEvent(nomesnui, source) --------- trocar quando duplicar
                                 TriggerClientEvent("progress", source, 10000, "Montando " .. itemupper .. "")
                                 vRPclient._playAnim(source, false, {{"amb@prop_human_parking_meter@female@idle_a", "idle_a_female"}}, true)
@@ -121,8 +121,8 @@ AddEventHandler("produzir-arma", function(item)
                     ---------------------------
                 elseif item == "m-g36" then
                     if vRP.getInventoryWeight(user_id) + vRP.getItemWeight("wammo|WEAPON_SPECIALCARBINE_MK2") <= vRP.getInventoryMaxWeight(user_id) then
-                        if vRP.getInventoryItemAmount(user_id, "capsula") >= 150 and vRP.getInventoryItemAmount(user_id, "polvora") >= 400 then
-                            if vRP.tryGetInventoryItem(user_id, "capsula", 150) and vRP.tryGetInventoryItem(user_id, "polvora", 400) then
+                        if vRP.getInventoryItemAmount(user_id, "capsula") >= 150 and vRP.getInventoryItemAmount(user_id, "polvora") >= 150 then
+                            if vRP.tryGetInventoryItem(user_id, "capsula", 150) and vRP.tryGetInventoryItem(user_id, "polvora", 150) then
                                 TriggerClientEvent(nomesnui, source) --------- trocar quando duplicar
                                 TriggerClientEvent("progress", source, 10000, "Montando " .. itemupper .. "")
                                 vRPclient._playAnim(source, false, {{"amb@prop_human_parking_meter@female@idle_a", "idle_a_female"}}, true)
@@ -144,8 +144,8 @@ AddEventHandler("produzir-arma", function(item)
                     ---------------------------
                 elseif item == "m-ak47" then
                     if vRP.getInventoryWeight(user_id) + vRP.getItemWeight("wammo|WEAPON_ASSAULTRIFLE_MK2") <= vRP.getInventoryMaxWeight(user_id) then
-                        if vRP.getInventoryItemAmount(user_id, "capsula") >= 150 and vRP.getInventoryItemAmount(user_id, "polvora") >= 300 then
-                            if vRP.tryGetInventoryItem(user_id, "capsula", 150) and vRP.tryGetInventoryItem(user_id, "polvora", 300) then
+                        if vRP.getInventoryItemAmount(user_id, "capsula") >= 150 and vRP.getInventoryItemAmount(user_id, "polvora") >= 150 then
+                            if vRP.tryGetInventoryItem(user_id, "capsula", 150) and vRP.tryGetInventoryItem(user_id, "polvora", 150) then
                                 TriggerClientEvent(nomesnui, source) --------- trocar quando duplicar
                                 TriggerClientEvent("progress", source, 10000, "Montando " .. itemupper .. "")
                                 vRPclient._playAnim(source, false, {{"amb@prop_human_parking_meter@female@idle_a", "idle_a_female"}}, true)
@@ -167,8 +167,8 @@ AddEventHandler("produzir-arma", function(item)
                     ---------------------------
                 elseif item == "m-mp5" then
                     if vRP.getInventoryWeight(user_id) + vRP.getItemWeight("wammo|WEAPON_SMG_MK2") <= vRP.getInventoryMaxWeight(user_id) then
-                        if vRP.getInventoryItemAmount(user_id, "capsula") >= 100 and vRP.getInventoryItemAmount(user_id, "polvora") >= 200 then
-                            if vRP.tryGetInventoryItem(user_id, "capsula", 100) and vRP.tryGetInventoryItem(user_id, "polvora", 200) then
+                        if vRP.getInventoryItemAmount(user_id, "capsula") >= 100 and vRP.getInventoryItemAmount(user_id, "polvora") >= 100 then
+                            if vRP.tryGetInventoryItem(user_id, "capsula", 100) and vRP.tryGetInventoryItem(user_id, "polvora", 100) then
                                 TriggerClientEvent(nomesnui, source) --------- trocar quando duplicar
                                 TriggerClientEvent("progress", source, 10000, "Montando " .. itemupper .. "")
                                 vRPclient._playAnim(source, false, {{"amb@prop_human_parking_meter@female@idle_a", "idle_a_female"}}, true)
@@ -191,8 +191,8 @@ AddEventHandler("produzir-arma", function(item)
                     ---------------------------
                 elseif item == "m-fiveseven" then
                     if vRP.getInventoryWeight(user_id) + vRP.getItemWeight("wammo|WEAPON_PISTOL_MK2") <= vRP.getInventoryMaxWeight(user_id) then
-                        if vRP.getInventoryItemAmount(user_id, "capsula") >= 50 and vRP.getInventoryItemAmount(user_id, "polvora") >= 100 then
-                            if vRP.tryGetInventoryItem(user_id, "capsula", 50) and vRP.tryGetInventoryItem(user_id, "polvora", 100) then
+                        if vRP.getInventoryItemAmount(user_id, "capsula") >= 50 and vRP.getInventoryItemAmount(user_id, "polvora") >= 50 then
+                            if vRP.tryGetInventoryItem(user_id, "capsula", 50) and vRP.tryGetInventoryItem(user_id, "polvora", 50) then
                                 TriggerClientEvent(nomesnui, source) --------- trocar quando duplicar
                                 TriggerClientEvent("progress", source, 10000, "Montando " .. itemupper .. "")
                                 vRPclient._playAnim(source, false, {{"amb@prop_human_parking_meter@female@idle_a", "idle_a_female"}}, true)

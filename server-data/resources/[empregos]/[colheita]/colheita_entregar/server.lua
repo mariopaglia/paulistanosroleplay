@@ -13,8 +13,8 @@ function emP.checkPayment()
     local source = source
     local user_id = vRP.getUserId(source)
     if user_id then
-		qnt = math.random(2,4)
-		valor = math.random(800,1000)
+		qnt = 1
+		valor = 1100
         if vRP.tryGetInventoryItem(user_id, "morango", parseInt(qnt)) then
             vRP.giveMoney(user_id, parseInt(valor*qnt))
             TriggerClientEvent("Notify", source, "sucesso", "Vendeu <b>" .. parseInt(qnt) .. "x " .. vRP.itemNameList("morango") .. "</b> por <b>R$ " .. vRP.format(parseInt(valor*qnt)) .. "</b>.")

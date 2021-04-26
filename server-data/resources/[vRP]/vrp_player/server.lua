@@ -565,7 +565,7 @@ RegisterServerEvent("kickAFK")
 AddEventHandler("kickAFK",function()
 	local source = source
 	local user_id = vRP.getUserId(source)
-	if not vRP.hasPermission(user_id,"admin.permissao") then
+	if not vRP.hasPermission(user_id,"kick.permissao") then
 		DropPlayer(source,"Voce foi desconectado por ficar ausente.")
 	end
 end)
@@ -1199,7 +1199,7 @@ end)
 RegisterCommand('status',function(source,args,rawCommand)
 	local user_id = vRP.getUserId(source)        
 	if vRP.hasPermission(user_id,"admin.permissao") or vRP.hasPermission(user_id,"mod.permissao") or vRP.hasPermission(user_id,"sup.permissao") then
-		local onlinePlayers2 = GetNumPlayerIndices()+20
+		local onlinePlayers2 = GetNumPlayerIndices()
 		local advogados2 = vRP.getUsersByPermission("judiciario.permissao")
     	local policia2 = vRP.getUsersByPermission("pmesp.permissao")
     	local policia3 = vRP.getUsersByPermission("pcivil.permissao")

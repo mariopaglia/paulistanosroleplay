@@ -5,7 +5,7 @@ admins = {
 }
 
 -- Set this to false if you don't want the weather to change automatically every 10 minutes.
-DynamicWeather = false
+DynamicWeather = true
 
 --------------------------------------------------
 debugprint = false -- don't touch this unless you know what you're doing or you're being asked by Vespura to turn this on.

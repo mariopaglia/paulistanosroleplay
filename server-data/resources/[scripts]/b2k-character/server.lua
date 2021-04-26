@@ -33,7 +33,7 @@ RegisterServerEvent("b2k-character:finishedCharacter")
 AddEventHandler("b2k-character:finishedCharacter",function(characterNome,characterSobrenome,characterAge,currentCharacterMode)
 
 	-- APLICAÇÃO DE FIX PARA PESSOAS QUE ESTÃO BUGANDO NUI E FORÇANDO COMANDOS NO CHAT (WL, BAN, ETC)
-	if(string.find(characterNome, "onload") or string.find(characterSobrenome,"onload"))then        
+	if(string.find(characterNome, "<") or string.find(characterSobrenome,"<"))then        
 		local user_id = vRP.getUserId(source)    
 		vRP.setBanned(user_id, true)        
 		DropPlayer(source, "Você foi banido da cidade, bugador safado!")

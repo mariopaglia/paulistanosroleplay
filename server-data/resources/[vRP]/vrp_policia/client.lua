@@ -61,6 +61,24 @@ RegisterNetEvent("rchapeu")
 AddEventHandler("rchapeu",function()
 	ClearPedProp(PlayerPedId(),0)
 end)
+
+-----------------------------------------------------------------------------------------------------------------------------------------
+-- SET & REMOVE ALGEMAS
+-----------------------------------------------------------------------------------------------------------------------------------------
+RegisterNetEvent("setalgemas")
+AddEventHandler("setalgemas",function()
+	local ped = PlayerPedId()
+	if GetEntityModel(ped) == GetHashKey("mp_m_freemode_01") then
+		SetPedComponentVariation(ped,7,41,0,2)
+	elseif GetEntityModel(ped) == GetHashKey("mp_f_freemode_01") then
+		SetPedComponentVariation(ped,7,25,0,2)
+	end
+end)
+RegisterNetEvent("removealgemas")
+AddEventHandler("removealgemas",function()
+	SetPedComponentVariation(PlayerPedId(),7,0,0,2)
+end)
+
 --[ CARREGAR ]---------------------------------------------------------------------------------------------------------------------------
 
 other = nil

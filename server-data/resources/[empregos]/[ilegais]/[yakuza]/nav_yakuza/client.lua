@@ -26,6 +26,9 @@ RegisterNUICallback("ButtonClick",function(data,cb)
 	if data == "yakuza-comprar-chipset" then
 		TriggerServerEvent("yakuza-comprar","chipset")
 
+	elseif data == "yakuza-comprar-linha" then
+		TriggerServerEvent("yakuza-comprar","linha")
+
 	elseif data == "yakuza-vender-chipset" then
 		TriggerServerEvent("yakuza-vender","chipset")
 

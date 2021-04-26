@@ -11,7 +11,7 @@ function emP.checkServices()
 	local user_id = vRP.getUserId(source)
 	if user_id then
 		local paramedicos = vRP.getUsersByPermission("paramedico.permissao")
-		if parseInt(#paramedicos) == 0 then
+		if parseInt(#paramedicos) < 2 then
 			return true
 		end
 	end

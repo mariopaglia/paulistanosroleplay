@@ -36,7 +36,7 @@ function func.checkJewelry(x,y,z,h,sec,tipo)
 	local crds = GetEntityCoords(GetPlayerPed(source))
 	local policia = vRP.getUsersByPermission("pmesp.permissao")
 	if user_id then
-		if #policia < 7 then
+		if #policia < 6 then
 			TriggerClientEvent("Notify",source,"importante","Número insuficiente de policiais no momento.")
 		elseif (os.time()-timers) <= 3600 then
 			TriggerClientEvent("Notify",source,"importante","A joalheria não se recuperou do ultimo roubo, aguarde <b>"..vRP.format(parseInt((3600-(os.time()-timers)))).." segundos</b> até que o sistema seja restaurado.")

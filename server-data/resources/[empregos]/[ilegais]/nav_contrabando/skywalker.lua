@@ -58,8 +58,8 @@ AddEventHandler("produzir-contrabando",function(item)
                 ---------------------------
                 elseif item == "gps" then
                     if vRP.getInventoryWeight(user_id)+vRP.getItemWeight("gps") <= vRP.getInventoryMaxWeight(user_id) then
-                        if vRP.getInventoryItemAmount(user_id,"componentemetal") >= 5 and vRP.getInventoryItemAmount(user_id,"componenteplastico") >= 5 and vRP.getInventoryItemAmount(user_id,"componenteeletronico") >= 5 and vRP.getInventoryItemAmount(user_id,"dinheirosujo") >= 5000 then
-                            if vRP.tryGetInventoryItem(user_id,"componentemetal",5) and vRP.tryGetInventoryItem(user_id,"componenteplastico",5) and vRP.tryGetInventoryItem(user_id,"componenteeletronico",5) and vRP.tryGetInventoryItem(user_id,"dinheirosujo",5000) then
+                        if vRP.getInventoryItemAmount(user_id,"dinheirosujo") >= 10000 then
+                            if vRP.tryGetInventoryItem(user_id,"dinheirosujo",10000) then
                                 TriggerClientEvent(nomesnui,source) --------- trocar quando duplicar
                                 TriggerClientEvent("progress",source,10000,"Montando "..itemupper.."")
                                 vRPclient._playAnim(source,false,{{"amb@prop_human_parking_meter@female@idle_a","idle_a_female"}},true)
@@ -81,8 +81,8 @@ AddEventHandler("produzir-contrabando",function(item)
                 ---------------------------
                 elseif item == "placa" then
                     if vRP.getInventoryWeight(user_id)+vRP.getItemWeight("placa") <= vRP.getInventoryMaxWeight(user_id) then
-                        if vRP.getInventoryItemAmount(user_id,"componentemetal") >= 8 and vRP.getInventoryItemAmount(user_id,"componenteplastico") >= 12 and vRP.getInventoryItemAmount(user_id,"dinheirosujo") >= 10000 then
-                            if vRP.tryGetInventoryItem(user_id,"componentemetal",8) and vRP.tryGetInventoryItem(user_id,"componenteplastico",12) and vRP.tryGetInventoryItem(user_id,"dinheirosujo",10000) then
+                        if vRP.getInventoryItemAmount(user_id,"componentemetal") >= 2 and vRP.getInventoryItemAmount(user_id,"componenteplastico") >= 8 and vRP.getInventoryItemAmount(user_id,"dinheirosujo") >= 10000 then
+                            if vRP.tryGetInventoryItem(user_id,"componentemetal",2) and vRP.tryGetInventoryItem(user_id,"componenteplastico",8) and vRP.tryGetInventoryItem(user_id,"dinheirosujo",10000) then
                                 TriggerClientEvent(nomesnui,source) --------- trocar quando duplicar
                                 TriggerClientEvent("progress",source,10000,"Montando "..itemupper.."")
                                 vRPclient._playAnim(source,false,{{"amb@prop_human_parking_meter@female@idle_a","idle_a_female"}},true)

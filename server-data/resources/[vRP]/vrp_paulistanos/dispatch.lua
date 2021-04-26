@@ -10,34 +10,18 @@ end)
 -- REMOVER ARMA ABAIXO DE 40MPH DENTRO DO CARRO
 -----------------------------------------------------------------------------------------------------------------------------------------
 Citizen.CreateThread(function()
-	while true do
-		local idle = 1000
-		local ped = PlayerPedId()
-		local vehicle = GetVehiclePedIsIn(ped)
-		if IsEntityAVehicle(vehicle) then
-			local speed = GetEntitySpeed(vehicle)*3.6
-			if GetPedInVehicleSeat(vehicle,-1) == ped then
-				idle = 5
-				if speed >= 100 then
-					SetPlayerCanDoDriveBy(PlayerId(),false)
-				else
-					SetPlayerCanDoDriveBy(PlayerId(),true)
-				end
-			end
-		end
-		Citizen.Wait(idle)
-	end
+	SetPlayerCanDoDriveBy(PlayerId(),false)
 end)
 
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- TREM NO MAPA
 -----------------------------------------------------------------------------------------------------------------------------------------
-Citizen.CreateThread(function()
-	SwitchTrainTrack(0, true)
-	SwitchTrainTrack(3, true)
-	N_0x21973bbf8d17edfa(0, 120000)
-	SetRandomTrains(true)
-  end)
+-- Citizen.CreateThread(function()
+-- 	SwitchTrainTrack(0, true)
+-- 	SwitchTrainTrack(3, true)
+-- 	N_0x21973bbf8d17edfa(0, 120000)
+-- 	SetRandomTrains(true)
+--   end)
 
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- STATUS DO DISCORD

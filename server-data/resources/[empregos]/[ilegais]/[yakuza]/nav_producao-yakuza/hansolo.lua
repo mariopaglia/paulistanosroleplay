@@ -35,6 +35,9 @@ end
 RegisterNUICallback("ButtonClick",function(data,cb)
 	if data == "produzir-pendrivedeep" then
 		TriggerServerEvent("produzir-pendrivedeep","pendrivedeep")
+		
+	elseif data == "produzir-colete" then
+		TriggerServerEvent("produzir-pendrivedeep","colete")
 
 	elseif data == "fechar" then
 		ToggleActionMenu()

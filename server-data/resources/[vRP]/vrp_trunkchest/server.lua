@@ -1,5 +1,7 @@
 local Tunnel = module("vrp","lib/Tunnel")
 local Proxy = module("vrp","lib/Proxy")
+local Tools = module("vrp","lib/Tools")
+local idgens = Tools.newIDGenerator()
 vRP = Proxy.getInterface("vRP")
 vRPclient = Tunnel.getInterface("vRP")
 
@@ -204,26 +206,46 @@ end
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- TRUNK
 -----------------------------------------------------------------------------------------------------------------------------------------
-
 local queuel = {}
-local w = false
-function queue(f, cb, name)
-	while w do Citizen.Wait(250) end
-	table.insert(queuel, {f, cb, name})
+local queuer = {}
+
+function count(tbl)
+	local a = 0
+	if type(tbl) == "table" then
+		for k, v in pairs(tbl) do
+			a = a+1
+		end
+	end
+	return a
+end
+
+function queue(f, name)
+	local r = async()
+	async(function()
+		local ids = idgens:gen()
+		queuel[ids] = {f, ids, name}
+		while queuer[ids] == nil do
+			Citizen.Wait(5)
+		end
+		local x = queuer[ids]
+		queuer[ids] = nil
+		idgens:free(ids)
+		r(x)
+	end)
+	
+	return r:wait()
 end
 
 Citizen.CreateThread(function()
 	while true do
-		Citizen.Wait(100)
-		if #queuel > 0 then
-			w = true
-			Citizen.Wait(100)
-			local tbx = queuel
-			queuel = {}
-			w = false
-			for k, v in pairs(tbx) do
+		Citizen.Wait(1)
+		if count(queuel) > 0 then
+			for k, v in pairs(queuel) do
 				local x = v
-				x[2](x[1](), k)
+				queuel[v[2]] = nil
+				Citizen.CreateThread(function()
+					queuer[x[2]] = x[1]()
+				end)
 			end
 		end
 	end
@@ -232,14 +254,14 @@ end)
 function vRPN.chestOpen()
 	local source = source
 	local user_id = vRP.getUserId(source)
-	if user_id then
-		local f = function()
+	local f = function()	
+		if user_id then
 			local vehicle,vnetid,placa,vname,lock,banned,trunk = vRPclient.vehList(source,7)
 			if not copen[vnetid] then
 				if vehicle then
 					if lock == 1 then
 						if banned then
-							return
+							r(false)
 						end
 						local placa_user_id = vRP.getUserByRegistration(placa)
 						if placa_user_id then
@@ -253,14 +275,10 @@ function vRPN.chestOpen()
 				TriggerClientEvent("Notify",source,"negado","Inventário já aberto.",4000)
 			end
 			return true
+		else
+			return false
 		end
-		local r = async()
-		queue(f, function(cb, idx)
-			table.remove(queuel, idx)
-			r(cb)
-		end)
-		return r:wait()
-	else
-		return false
 	end
+	
+	return queue(f, "trunk")
 end

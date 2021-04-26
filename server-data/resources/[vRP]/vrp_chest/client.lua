@@ -30,6 +30,8 @@ Citizen.CreateThread(
 RegisterNUICallback("chestClose",function(data)
 	SetNuiFocus(false, false)
 	SendNUIMessage({action = "hideMenu"})
+	vSERVER._closeChest(chestOpen)
+	chestOpen = ""
 	cbb = false
 end)
 -----------------------------------------------------------------------------------------------------------------------------------------
@@ -63,8 +65,14 @@ end)
 -- REQUESTCHEST
 -----------------------------------------------------------------------------------------------------------------------------------------
 RegisterNUICallback("requestChest", function(data, cb)
-	local inventario, inventario2, peso, maxpeso, peso2, maxpeso2 = vSERVER.openChest(tostring(chestOpen))
-	if inventario then
+	local res = vSERVER.openChest(tostring(chestOpen))
+	if res then
+		local inventario = res[1]
+		local inventario2 = res[2]
+		local peso = res[3]
+		local maxpeso = res[4]
+		local peso2 = res[5]
+		local maxpeso2 = res[6]
 		cb({
 			inventario = inventario,
 			inventario2 = inventario2,
@@ -93,6 +101,7 @@ local chest = {
 	{"farc", 563.52,-3126.63,18.77},
 	{"serpentes", 29.46,3669.71,40.45},
 	{"rota", -2043.14,-469.68,16.43},
+	{"prf", 2901.04,3826.9,54.61},
 }
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- CHESTTIMER
@@ -110,8 +119,7 @@ Citizen.CreateThread(
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- CHEST
 -----------------------------------------------------------------------------------------------------------------------------------------
-RegisterCommand(
-	"chest", function(source, args)
+RegisterCommand("chest", function(source, args)
 		local ped = PlayerPedId()
 		local x, y, z = table.unpack(GetEntityCoords(ped))
 		for k, v in pairs(chest) do
@@ -149,7 +157,9 @@ Citizen.CreateThread(
 								SendNUIMessage({action = "showMenu"})
 								chestOpen = v[1]
 							end
+							print("c")
 						end
+						print("b")
 					end
 				end
 			end

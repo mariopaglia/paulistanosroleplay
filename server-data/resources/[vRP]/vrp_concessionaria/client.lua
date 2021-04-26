@@ -8,6 +8,7 @@ func = Tunnel.getInterface("vrp_concessionaria")
 local open = false
 local categoriaSelecionada = nil
 local carroSelecionado = nil
+local testdrive = false
 
 local spawncds = {
     {['x'] = -47.52, ['y'] = -1093.53, ['z'] = 25.89, ['h'] = 70.36},
@@ -121,6 +122,31 @@ RegisterNUICallback("CarregarDados", function(data, cb)
     })
 end)
 
+local t = 0
+
+Citizen.CreateThread(function()
+	while true do
+		if t > 0 then
+			t = t-1
+		end
+		Citizen.Wait(1000)
+	end
+end)
+
+Citizen.CreateThread(function()
+	while true do
+		Citizen.Wait(5)
+		if t > 0 then
+			drawTxt("TEMPO RESTANTE: "..t.." ~r~E~w~ PARA SAIR",4,0.5,0.88,0.50,255,255,255,180)
+			if IsControlJustPressed(1, 38) then
+				t = 0
+			end
+		else
+			Citizen.Wait(250)
+		end
+	end
+end)
+
 RegisterNUICallback("ButtonClick", function(data, cb)
     if data.action == "close" then
         open = false
@@ -185,10 +211,19 @@ RegisterNUICallback("ButtonClick", function(data, cb)
 			
 			SetEntityInvincible(nveh, true)
 			SetEntityLights(nveh, true)
-			SetVehicleDoorsLockedForAllPlayers(nveh, false)
+			
+			TriggerEvent('vehtuning',nveh)
+			
+            Citizen.Wait(500)
 			TaskWarpPedIntoVehicle(PlayerPedId(),nveh,-1)
+			SetVehicleDoorsLockedForAllPlayers(nveh, true)
+			SetVehicleDoorsLocked(nveh, 4)
 			SetModelAsNoLongerNeeded(mhash)
-			Citizen.Wait(60000)
+			testdrive = nveh
+			t = 60
+			while t > 0 do
+				Citizen.Wait(250)
+			end
 			Citizen.InvokeNative(0xAD738C3085FE7E11,nveh,true,true)
 			SetEntityAsMissionEntity(nveh,true,true)
 			SetVehicleHasBeenOwnedByPlayer(nveh,true)
@@ -199,6 +234,7 @@ RegisterNUICallback("ButtonClick", function(data, cb)
 			SetEntityAsNoLongerNeeded(nveh)
 			SetEntityCoords(PlayerPedId(), pcoords.x,pcoords.y,pcoords.z)
 			vRP.blockSpawnSave()
+			testdrive = false
 		else
 			TriggerEvent("Notify","importante","Pista Ocupada",3000)
 		end
@@ -246,6 +282,39 @@ RegisterNUICallback("ButtonClick", function(data, cb)
 		end
 	end
 end)
+
+Citizen.CreateThread(function()
+	while true do
+		Citizen.Wait(100)
+		while testdrive ~= false do
+			if GetVehiclePedIsIn(PlayerPedId(), false) ~= testdrive then
+				Citizen.InvokeNative(0xAD738C3085FE7E11,testdrive,true,true)
+				SetEntityAsMissionEntity(testdrive,true,true)
+				SetVehicleHasBeenOwnedByPlayer(testdrive,true)
+				NetworkRequestControlOfEntity(testdrive)
+				Citizen.InvokeNative(0xEA386986E786A54F,Citizen.PointerValueIntInitialized(testdrive))
+				DeleteEntity(testdrive)
+				DeleteVehicle(testdrive)
+				SetEntityAsNoLongerNeeded(testdrive)
+				testdrive = false
+			else
+				DisableControlAction(0, 75, 1)
+			end
+			Citizen.Wait(1)
+		end
+	end
+end)
+
+function drawTxt(text,font,x,y,scale,r,g,b,a)
+	SetTextFont(font)
+	SetTextScale(scale,scale)
+	SetTextColour(r,g,b,a)
+	SetTextOutline()
+	SetTextCentre(1)
+	SetTextEntry("STRING")
+	AddTextComponentString(text)
+	DrawText(x,y)
+end
 
 RegisterCommand("lm",function(source,args)
 	local cars = func.registerCars("",1)

@@ -56,9 +56,38 @@ AddEventHandler('cloneplates',function()
     local ped = PlayerPedId()
     local vehicle = GetVehiclePedIsUsing(ped)
     local clonada = GetVehicleNumberPlateText(vehicle)
+
+	placa = 0
+	placa = math.random(1,12)
+	if placa == 1 then
+		placa = "412WFA12"
+	elseif placa == 2 then
+		placa = "545AGT57"
+	elseif placa == 3 then
+		placa = "245ZSG98"
+	elseif placa == 4 then
+		placa = "572SFM24"
+	elseif placa == 5 then
+		placa = "195XSM51"
+	elseif placa == 6 then
+		placa = "607AAS08"
+	elseif placa == 7 then
+		placa = "569VOP45"
+	elseif placa == 8 then
+		placa = "056PLX55"
+	elseif placa == 9 then
+		placa = "661ZSA34"
+	elseif placa == 10 then
+		placa = "056FSX40"
+	elseif placa == 11 then
+		placa = "952XMM05"
+	elseif placa == 12 then
+		placa = "106FJA42"
+	end
+	
     if IsEntityAVehicle(vehicle) then
         PlateIndex = GetVehicleNumberPlateText(vehicle)
-        SetVehicleNumberPlateText(vehicle,"CLONADO")
+        SetVehicleNumberPlateText(vehicle,placa)
         FreezeEntityPosition(vehicle,false)
         if clonada == CLONADA then 
             SetVehicleNumberPlateText(vehicle,PlateIndex)
@@ -88,6 +117,24 @@ end
 function vRPNclient.syncTyreRepair(car, tyre)
 	SetVehicleTyreFixed(NetToVeh(car), tyre)
 end
+
+-----------------------------------------------------------------------------------------------------------------------------------------
+-- SET & REMOVE CAPUZ
+-----------------------------------------------------------------------------------------------------------------------------------------
+RegisterNetEvent("setcapuz")
+AddEventHandler("setcapuz",function()
+	local ped = PlayerPedId()
+	if GetEntityModel(ped) == GetHashKey("mp_m_freemode_01") then
+		SetPedComponentVariation(ped,1,69,2,2)
+	elseif GetEntityModel(ped) == GetHashKey("mp_f_freemode_01") then
+		SetPedComponentVariation(ped,1,69,2,2)
+	end
+end)
+RegisterNetEvent("removecapuz")
+AddEventHandler("removecapuz",function()
+	SetPedComponentVariation(PlayerPedId(),1,0,0,2)
+end)
+
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- VEHICLEANCHOR
 -----------------------------------------------------------------------------------------------------------------------------------------

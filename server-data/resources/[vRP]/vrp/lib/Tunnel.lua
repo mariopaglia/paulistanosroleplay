@@ -1,6 +1,6 @@
 local Tools = module("lib/Tools")
 
-local TriggerRemoteEvent = nil
+TriggerRemoteEvent = nil
 local RegisterLocalEvent = nil
 if SERVER then
 	TriggerRemoteEvent = TriggerClientEvent

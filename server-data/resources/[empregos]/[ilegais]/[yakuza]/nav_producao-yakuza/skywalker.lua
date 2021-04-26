@@ -11,6 +11,7 @@ local nomesnui = "fechar-nui-yakuza"
 -----------------------------------------------------------------------------------------------------------------------------------------
 local listaitens = {
 	{ item = "pendrivedeep" },
+	{ item = "colete" },
 }
 -----------------------------------------------------------------------------------------------------------------------------------
 --[ EVENTOS ]----------------------------------------------------------------------------------------------------------------------
@@ -38,6 +39,30 @@ AddEventHandler("produzir-pendrivedeep",function(item)
                                     vRPclient._stopAnim(source,false)
                                     vRP.giveInventoryItem(user_id,"pendrivedeep",10)
                                     TriggerClientEvent("Notify",source,"sucesso","Você produziu <b>10x Pendrive Deepweb</b>")
+                                end)
+                            end
+                        else
+                            TriggerClientEvent("Notify",source,"negado","Materiais insuficientes!")
+                        end
+                    else
+                        TriggerClientEvent("Notify",source,"negado","Espaço insuficiente na mochila.")
+                    end
+
+				---------------------------
+                -- PRODUÇÃO COLETE
+                ---------------------------
+                elseif item == "colete" then
+                    if vRP.getInventoryWeight(user_id)+vRP.getItemWeight("colete") <= vRP.getInventoryMaxWeight(user_id) then
+                        if vRP.getInventoryItemAmount(user_id,"tecido") >= 20 and vRP.getInventoryItemAmount(user_id,"linha") >= 20 then
+                            if vRP.tryGetInventoryItem(user_id,"tecido",20) and vRP.tryGetInventoryItem(user_id,"linha",20) then
+                                TriggerClientEvent(nomesnui,source) --------- trocar quando duplicar
+                                TriggerClientEvent("progress",source,10000,"Montando "..itemupper.."")
+                                vRPclient._playAnim(source,false,{{"amb@prop_human_parking_meter@female@idle_a","idle_a_female"}},true)
+                                SetTimeout(10000,function()
+                                    vRPclient._stopAnim(source,false)
+                                    vRP.giveInventoryItem(user_id,"colete",1)
+                                    local itemupper = string.upper(item)
+                                    TriggerClientEvent("Notify",source,"sucesso","Você produziu <b>"..itemupper.."</b>")
                                 end)
                             end
                         else

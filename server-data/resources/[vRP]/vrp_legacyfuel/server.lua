@@ -22,7 +22,7 @@ AddEventHandler("vrp_legacyfuel:pagamento1731910",function(price,galao)
     end
 	
 	if user_id and price > 0 then
-		if vRP.tryPayment(user_id,price) then
+		if vRP.tryFullPayment(user_id,price) then
 			if galao then
 				TriggerClientEvent('vrp_legacyfuel:galao1731910',source)
 				TriggerClientEvent("Notify",source,"sucesso","Pagou <b>R$ "..vRP.format(price).." </b> pelo <b>Galão</b>")

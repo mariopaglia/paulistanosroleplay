@@ -4,6 +4,8 @@
 local Tunnel = module("vrp","lib/Tunnel")
 local Proxy = module("vrp","lib/Proxy")
 local sanitizes = module("cfg/sanitizes")
+local Tools = module("vrp","lib/Tools")
+local idgens = Tools.newIDGenerator()
 vRP = Proxy.getInterface("vRP")
 vRPclient = Tunnel.getInterface("vRP")
 -----------------------------------------------------------------------------------------------------------------------------------------
@@ -550,7 +552,7 @@ local homes = {
 	["MS01"] = { 10000000,2,10000 },
 	["MS02"] = { 10000000,2,10000 },
 	["MS03"] = { 10000000,2,10000 },
-	["MS04"] = { 10000000,2,10000 },
+	["MS04"] = { 3000000,2,3000 },
 	["MS05"] = { 10000000,2,10000 },
 	["MS06"] = { 10000000,2,10000 },
 	["MS07"] = { 10000000,2,10000 },
@@ -765,9 +767,9 @@ RegisterCommand('homes',function(source,args,rawCommand)
 					if ownerHomes[1] then
 						local house_price = parseInt(homes[tostring(v.home)][1])
 						local house_tax = 0.10
-						-- if house_price >= 7000000 then
-						-- 	house_tax = 0.00
-						-- end
+						if house_price >= 3000000 then
+							house_tax = 0.00
+						end
 						
 						-- if parseInt(os.time()) >= parseInt(ownerHomes[1].tax+24*15*60*60) then
 						-- 	TriggerClientEvent("Notify",source,"negado","<b>Residência:</b> "..v.home.."<br><b>Property Tax:</b> Atrasado",20000)
@@ -906,30 +908,62 @@ end
 
 local copen = {}
 local queuel = {}
-function queue(f, cb)
-	table.insert(queuel, {f, cb})
+local queuer = {}
+
+function count(tbl)
+	local a = 0
+	if type(tbl) == "table" then
+		for k, v in pairs(tbl) do
+			a = a+1
+		end
+	end
+	return a
+end
+
+function queue(f, name)
+	local r = async()
+	async(function()
+		local ids = idgens:gen()
+		queuel[ids] = {f, ids, name}
+		while queuer[ids] == nil do
+			Citizen.Wait(5)
+		end
+		local x = queuer[ids]
+		queuer[ids] = nil
+		idgens:free(ids)
+		r(x)
+	end)
+	
+	return r:wait()
 end
 
 Citizen.CreateThread(function()
 	while true do
-		Citizen.Wait(100)
-		for k, v in pairs(queuel) do
-			local x = v
-			queuel[k] = nil
-			x[2](x[1]())
+		Citizen.Wait(1)
+		if count(queuel) > 0 then
+			for k, v in pairs(queuel) do
+				local x = v
+				queuel[v[2]] = nil
+				Citizen.CreateThread(function()
+					queuer[x[2]] = x[1]()
+				end)
+			end
 		end
 	end
 end)
+
+
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- CHECKINTPERMISSIONS
 -----------------------------------------------------------------------------------------------------------------------------------------
 function src.checkIntPermissions(homeName)
 	local source = source
 	local user_id = vRP.getUserId(source)
-	if user_id then
-		if not vRP.searchReturn(source,user_id) then
-			local f = function()
+	local f = function()
+		if user_id then
+			if not vRP.searchReturn(source,user_id) then
 				if not copen[homeName] then
+					copen[homeName] = true
 					local myResult = vRP.query("homes/get_homeuser",{ user_id = parseInt(user_id), home = tostring(homeName) })
 					if myResult[1] or vRP.hasPermission(user_id,"policia.permissao") then
 						return true
@@ -940,18 +974,13 @@ function src.checkIntPermissions(homeName)
 					return false
 				end
 			end
-
-			local r = async()
-			queue(f, function(cb)
-				r(cb)
-			end)
-			return r:wait()
 		end
 	end
-	return false
+	return queue(f, homeName)
 end
---[ OUTFIT ]-----------------------------------------------------------------------------------------------------------------------------
-
+-----------------------------------------------------------------------------------------------------------------------------------------
+-- OUTFIT
+-----------------------------------------------------------------------------------------------------------------------------------------
 RegisterCommand('outfit',function(source,args,rawCommand)
 	local source = source
 	local user_id = vRP.getUserId(source)
@@ -963,37 +992,37 @@ RegisterCommand('outfit',function(source,args,rawCommand)
 			local result = json.decode(data) or {}
 			if result then
 				if args[1] == "save" and args[2] then
-					local custom = vRPclient.getCustomPlayer(source)
+					local custom = vRPclient.getCustomization(source)
 					if custom then
-						local outname = sanitizeString(rawCommand:sub(13),sanitizes.homename[1],sanitizes.homename[2])
+						local outname = args[2]
 						if result[outname] == nil and string.len(outname) > 0 then
 							result[outname] = custom
 							vRP.setSData("outfit:"..tostring(homeName),json.encode(result))
-							TriggerClientEvent("Notify",source,"sucesso","Outfit <b>"..outname.."</b> adicionado com sucesso.",10000)
+							TriggerClientEvent("Notify",source,"sucesso","Outfit <b>"..outname.."</b> adicionado com sucesso.")
 						else
-							TriggerClientEvent("Notify",source,"aviso","Nome escolhido já existe na lista de <b>Outfits</b>.",10000)
+							TriggerClientEvent("Notify",source,"aviso","Nome escolhido já existe na lista de <b>Outfits</b>.")
 						end
 					end
 				elseif args[1] == "rem" and args[2] then
-					local outname = sanitizeString(rawCommand:sub(12),sanitizes.homename[1],sanitizes.homename[2])
+					local outname = args[2]
 					if result[outname] ~= nil and string.len(outname) > 0 then
 						result[outname] = nil
 						vRP.setSData("outfit:"..tostring(homeName),json.encode(result))
-						TriggerClientEvent("Notify",source,"sucesso","Outfit <b>"..outname.."</b> removido com sucesso.",10000)
+						TriggerClientEvent("Notify",source,"sucesso","Outfit <b>"..outname.."</b> removido com sucesso.")
 					else
-						TriggerClientEvent("Notify",source,"negado","Nome escolhido não encontrado na lista de <b>Outfits</b>.",10000)
+						TriggerClientEvent("Notify",source,"negado","Nome escolhido não encontrado na lista de <b>Outfits</b>.")
 					end
 				elseif args[1] == "apply" and args[2] then
-					local outname = sanitizeString(rawCommand:sub(14),sanitizes.homename[1],sanitizes.homename[2])
+					local outname = args[2]
 					if result[outname] ~= nil and string.len(outname) > 0 then
-						TriggerClientEvent("updateRoupas",source,result[outname])
-						TriggerClientEvent("Notify",source,"sucesso","Outfit <b>"..outname.."</b> aplicado com sucesso.",10000)
+						vRPclient._setCustomization(source,result[outname])
+						TriggerClientEvent("Notify",source,"sucesso","Outfit <b>"..outname.."</b> aplicado com sucesso.")
 					else
-						TriggerClientEvent("Notify",source,"negado","Nome escolhido não encontrado na lista de <b>Outfits</b>.",10000)
+						TriggerClientEvent("Notify",source,"negado","Nome escolhido não encontrado na lista de <b>Outfits</b>.")
 					end
 				else
 					for k,v in pairs(result) do
-						TriggerClientEvent("Notify",source,"importante","<b>Outfit:</b> "..k,20000)
+						TriggerClientEvent("Notify",source,"sucesso","<b>Outfit:</b> "..k)
 						Citizen.Wait(10)
 					end
 				end
@@ -1004,6 +1033,10 @@ end)
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- OPENCHEST
 -----------------------------------------------------------------------------------------------------------------------------------------
+function src.chestClose(homeName)
+	copen[homeName] = nil
+end
+
 function src.openChest(homeName)
 	local source = source
 	local user_id = vRP.getUserId(source)

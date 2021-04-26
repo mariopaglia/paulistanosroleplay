@@ -29,6 +29,7 @@ end)
 -----------------------------------------------------------------------------------------------------------------------------------------
 RegisterNUICallback("chestClose",function(data)
 	TriggerEvent("vrp_sound:source",'zipperclose',0.2)
+	vSERVER._chestClose(houseOpen)
 	SetNuiFocus(false,false)
 	SendNUIMessage({ action = "hideMenu" })
 end)
@@ -2883,6 +2884,23 @@ end)
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- VAULT
 -----------------------------------------------------------------------------------------------------------------------------------------
+local queuel = {}
+function queue(f, cb)
+	table.insert(queuel, {f, cb})
+end
+
+Citizen.CreateThread(function()
+	while true do
+		Citizen.Wait(100)
+		for k, v in pairs(queuel) do
+			local x = v
+			queuel[k] = nil
+			x[2](x[1]())
+		end
+	end
+end)
+
+
 RegisterCommand("vault",function(source,args)
 	local ped = PlayerPedId()
 	local x,y,z = table.unpack(GetEntityCoords(ped))

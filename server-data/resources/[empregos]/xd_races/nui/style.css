@@ -1,0 +1,307 @@
+html {
+    overflow-x: hidden !important;
+    overflow-y: hidden !important;
+    /*background-color: rgba(38, 77, 77, 0.377);*/
+}
+
+body {
+    font-size: 12px;
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: transparent !important;
+}
+
+#race {
+    top: 20%;
+    right: 1%;
+    width: 190px;
+    float: right;
+    height: 70px;
+    display: block;
+    position: absolute !important;
+    -webkit-transform: perspective(400px) rotateY(-21deg);
+    transform: perspective(400px) rotateY(-21deg);
+}
+
+#race2 {
+    top: 80%;
+    left: -17%;
+    width: 110px;
+    height: 40px;
+    background: rgba(0, 0, 0, 0.6);
+    display: block;
+    position: absolute !important;
+    
+}
+#namerace {
+    top: 120%;
+    left: -100%;
+    width: 220px;
+    height: 29px;
+    background: rgba(0, 0, 0, 0.6);
+    display: block;
+    position: absolute !important;
+    
+}
+#namerace2 {
+    top:200%;
+    left: -100%;
+    width: 220px;
+    height: 29px;
+    background: rgba(0, 0, 0, 0.6);
+    display: block;
+    position: absolute !important;
+    
+}
+#namerace3 {
+    top:280%;
+    left: -100%;
+    width: 220px;
+    height: 29px;
+    background: rgba(0, 0, 0, 0.6);
+    display: block;
+    position: absolute !important;
+    
+}
+#namerace4 {
+    top:360%;
+    left: -100%;
+    width: 220px;
+    height: 29px;
+    background: rgba(0, 0, 0, 0.6);
+    display: block;
+    position: absolute !important;
+    
+}
+#namerace5 {
+    top:440%;
+    left: -100%;
+    width: 220px;
+    height: 29px;
+    background: rgba(0, 0, 0, 0.6);
+    display: block;
+    position: absolute !important;
+    
+}
+.namer {
+    color: rgb(255, 0, 0);
+    margin: 5px;
+    text-align: left;
+    font-weight: bold;
+    font-size: 14px;
+    font-family: Arial;
+}
+.namer2 {
+    color: rgb(255, 0, 0);
+    text-align: center;
+    font-weight: bold;
+    font-size: 14px;
+    margin: 5px ;
+    margin-left: -20px;
+    font-family: Arial;
+}
+.namer3 {
+    color: rgb(255, 0, 0);
+    text-align: center;
+    font-weight: bold;
+    font-size: 14px;
+    margin: 5px ;
+    margin-left: -20px;
+    font-family: Arial;
+}
+.namer4 {
+    color: rgb(255, 0, 0);
+    text-align: center;
+    font-weight: bold;
+    font-size: 14px;
+    margin: 5px ;
+    margin-left: -20px;
+    font-family: Arial;
+}
+.namer5 {
+    color: rgb(255, 0, 0);
+    text-align: center;
+    font-weight: bold;
+    font-size: 14px;
+    margin: 5px ;
+    margin-left: -20px;
+    font-family: Arial;
+}
+.namer1 {
+    color: rgb(255, 0, 0);
+    text-align: center;
+    font-weight: bold;
+    font-size: 14px;
+    margin: 5px ;
+    margin-left: -20px;
+    font-family: Arial;
+}
+.barra2 {
+    color: rgba(255, 255, 255, 0.342);
+    text-align: center;
+    font-weight: bold;
+    margin: -24px ;
+    margin-left: -190px;
+    font-size: 19px;
+    font-family: Arial;
+}
+.barra3 {
+    color: rgba(255, 255, 255, 0.342);
+    text-align: center;
+    font-weight: bold;
+    margin: -24px ;
+    margin-left: 90px;
+    font-size: 19px;
+    font-family: Arial;
+}
+.recordtime1 {
+    color: rgb(255, 0, 0);
+    text-align: center;
+    font-weight: bold;
+    margin: 5px ;
+    margin-left: 175px;
+    font-size: 15px;
+    font-family: Arial;
+}
+.recordtime2 {
+    color: rgb(255, 0, 0);
+    text-align: center;
+    font-weight: bold;
+    margin: 5px ;
+    margin-left: 175px;
+    font-size: 15px;
+    font-family: Arial;
+}
+.recordtime3 {
+    color: rgb(255, 0, 0);
+    text-align: center;
+    font-weight: bold;
+    margin: 5px ;
+    margin-left: 175px;
+    font-size: 15px;
+    font-family: Arial;
+}
+.recordtime4 {
+    color: rgb(255, 0, 0);
+    text-align: center;
+    font-weight: bold;
+    margin: 5px ;
+    margin-left: 175px;
+    font-size: 15px;
+    font-family: Arial;
+}
+.recordtime5 {
+    color: rgb(255, 0, 0);
+    text-align: center;
+    font-weight: bold;
+    margin: 5px ;
+    margin-left: 175px;
+    font-size: 15px;
+    font-family: Arial;
+}
+
+
+
+
+
+
+#corrida {
+    top: 80%;
+    left: 40%;
+    float: center;
+    width: 110px;
+    height: 40px;
+    background: rgba(255, 0, 0, 0.6);
+    display: block;
+    position: absolute !important;
+}
+
+.name {
+    color: rgb(0, 0, 0);
+    margin: 5px;
+    text-align: center;
+    font-weight: bold;
+    font-size: 14px;
+    font-family: Arial;
+}
+
+.cname {
+    color: rgb(0, 0, 0);
+    margin: -5px;
+    text-align: center;
+    font-weight: bold;
+    font-size: 14px;
+    font-family: Arial;
+}
+
+.pos {
+    color: rgba(255, 0, 0, 0.678);
+    margin-left: 25px;
+    text-align: left;
+    font-weight: bold;
+    font-size: 20px;
+    font-family: Arial;
+}
+
+.total {
+    color: rgb(255, 0, 0);
+    margin-left: 106px;
+    margin-top: 13px;
+    text-align: left;
+    font-weight: bold;
+    position: fixed;
+    font-size: 20px;
+    font-family: Arial;
+}
+
+.pos2 {
+    color: rgb(255, 0, 0);
+    text-align: left;
+    margin-left: 40px;
+    margin-top: 10px;
+    position: fixed;
+    font-weight: bold;
+    font-size: 40px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+.barra {
+    color: rgb(255, 0, 0);
+    text-align: left;
+    margin-left: 90px;
+    margin-top: 12px;
+    position: fixed;
+    font-weight: bold;
+    font-size: 30px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.loc {
+    color: #999;
+    margin-left: 60px;
+    margin-top: 10px;
+    text-align: center;
+    font-weight: bold;
+    font-size: 20px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.raceb2 {
+    color: rgb(255, 0, 0);
+    margin: 5px;
+    text-align: center;
+    font-weight: bold;
+    font-size: 14px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.time {
+    color: rgb(255, 0, 0);
+    margin: -5px;
+    text-align: center;
+    font-weight: bold;
+    font-size: 14px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+#time red {
+    color: rgba(255, 80, 80, 1.0);
+}

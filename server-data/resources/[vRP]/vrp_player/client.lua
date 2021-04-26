@@ -434,16 +434,16 @@ Citizen.CreateThread(
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- CLONAR PLACAS
 -----------------------------------------------------------------------------------------------------------------------------------------
-RegisterNetEvent("cloneplates")
-AddEventHandler(
-	"cloneplates",
-	function()
-		local vehicle = GetVehiclePedIsUsing(PlayerPedId())
-		if IsEntityAVehicle(vehicle) then
-			SetVehicleNumberPlateText(vehicle, "CLONADOS")
-		end
-	end
-)
+-- RegisterNetEvent("cloneplates")
+-- AddEventHandler(
+-- 	"cloneplates",
+-- 	function()
+-- 		local vehicle = GetVehiclePedIsUsing(PlayerPedId())
+-- 		if IsEntityAVehicle(vehicle) then
+-- 			SetVehicleNumberPlateText(vehicle, "CLONADOS")
+-- 		end
+-- 	end
+-- )
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- CANCELANDO O F6
 -----------------------------------------------------------------------------------------------------------------------------------------

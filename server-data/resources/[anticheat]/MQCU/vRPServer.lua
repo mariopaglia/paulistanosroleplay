@@ -27,6 +27,7 @@ excecao[4] = true
 excecao[5] = true
 excecao[6] = true
 excecao[7] = true
+excecao[48] = true
 -- oque fica entre os [] é o id de quem não deve ser banido por mais q tenha ultrapassado o limite de bans
 ------------------------------
 Citizen.CreateThread(function()
@@ -152,7 +153,7 @@ end
 
 RegisterServerEvent("MCU:Load")
 AddEventHandler("MCU:Load", function(cb)
-    local vrpobj = {MQCU = GetCurrentResourceName(), getUserId = vRP.getUserId, getUserIdByIdentifier = vRP.getUserIdByIdentifier, isBanned = vRP.isBanned, getUserSource = vRP.getUserSource, setSData = vRP.setSData, getSData = vRP.getSData, hasPermission = vRP.hasPermission, tryPayment = vRP.tryPayment, tryFullPayment = vRP.tryFullPayment, getUData = vRP.getUData, setUData = vRP.setUData, giveMoney = vRP.giveMoney, giveBankMoney = vRP.giveBankMoney, getUserIdentity = vRP.getUserIdentity, Log = RegistraLog, placas = {"SHOWROOM", "STAFFMOD", "CORREDOR", "CAMINHAO"}, getPlacas = getAllPlacas}
+    local vrpobj = {MQCU = GetCurrentResourceName(), getUserId = vRP.getUserId, getUserIdByIdentifier = vRP.getUserIdByIdentifier, isBanned = vRP.isBanned, getUserSource = vRP.getUserSource, setSData = vRP.setSData, getSData = vRP.getSData, hasPermission = vRP.hasPermission, tryPayment = vRP.tryPayment, tryFullPayment = vRP.tryFullPayment, getUData = vRP.getUData, setUData = vRP.setUData, giveMoney = vRP.giveMoney, giveBankMoney = vRP.giveBankMoney, getUserIdentity = vRP.getUserIdentity, Log = RegistraLog, placas = {"SHOWROOM", "STAFFMOD", "CORREDOR", "CAMINHAO", "412WFA12", "545AGT57", "245ZSG98", "572SFM24", "195XSM51", "607AAS08", "569VOP45", "056PLX55", "661ZSA34", "056FSX40", "952XMM05", "106FJA42"}, getPlacas = getAllPlacas}
     cb(vrpobj)
 end)
 vRP._prepare("mqcu/get_AllPlacas", "SELECT plate FROM vrp_user_vehicles WHERE user_id = @user_id")

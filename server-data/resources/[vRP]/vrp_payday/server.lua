@@ -41,7 +41,7 @@ salarii = {
   {"samuiii.permissao", 8000, "SAMU III"},
   {"samuiv.permissao", 8000, "SAMU Diretor(a)"},
   -- Mecanico
-  {"mecanico.permissao", 6000, "Mecanico"},
+  {"mecanico.permissao", 2000, "Mecanico"},
   -- Judiciário
   {"advogado.permissao", 6000, "Advogado"},
   {"promotor.permissao", 7000, "Promotor"},

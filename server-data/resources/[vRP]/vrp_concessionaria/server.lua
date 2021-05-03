@@ -83,15 +83,11 @@ function func.comprarVeiculo(categoria, modelo)
                     if vRP.hasPermission(user_id, "diamante.permissao") then
                         totalGaragens = Config.TotalGaragem + 9
                     elseif vRP.hasPermission(user_id, "esmeralda.permissao") then
-                        totalGaragens = Config.TotalGaragem + 7
+                        totalGaragens = Config.TotalGaragem + 6
                     elseif vRP.hasPermission(user_id, "platina.permissao") then
-                        totalGaragens = Config.TotalGaragem + 5
-                    elseif vRP.hasPermission(user_id, "ouro.permissao") then
                         totalGaragens = Config.TotalGaragem + 4
-                    elseif vRP.hasPermission(user_id, "prata.permissao") then
+                    elseif vRP.hasPermission(user_id, "ouro.permissao") then
                         totalGaragens = Config.TotalGaragem + 2
-                    elseif vRP.hasPermission(user_id, "bronze.permissao") then
-                        totalGaragens = Config.TotalGaragem + 1
                     end
 
                     if parseInt(totalv[1].quantidade) >= totalGaragens then

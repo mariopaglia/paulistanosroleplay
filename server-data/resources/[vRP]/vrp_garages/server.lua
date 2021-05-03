@@ -953,15 +953,11 @@ RegisterCommand('vehs', function(source, args, rawCommand)
             if vRP.hasPermission(nuser_id, "diamante.permissao") then
                 totalGaragens = totalGaragens + 9
             elseif vRP.hasPermission(nuser_id, "esmeralda.permissao") then
-                totalGaragens = totalGaragens + 7
+                totalGaragens = totalGaragens + 6
             elseif vRP.hasPermission(nuser_id, "platina.permissao") then
-                totalGaragens = totalGaragens + 5
-            elseif vRP.hasPermission(nuser_id, "ouro.permissao") then
                 totalGaragens = totalGaragens + 4
-            elseif vRP.hasPermission(nuser_id, "prata.permissao") then
+            elseif vRP.hasPermission(nuser_id, "ouro.permissao") then
                 totalGaragens = totalGaragens + 2
-            elseif vRP.hasPermission(nuser_id, "bronze.permissao") then
-                totalGaragens = totalGaragens + 1
             end
 
             if parseInt(totalv[1].quantidade) >= totalGaragens then

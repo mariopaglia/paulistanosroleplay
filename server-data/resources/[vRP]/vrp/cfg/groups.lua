@@ -113,9 +113,6 @@ cfg.groups = {
 		},
 		"ouro.permissao",
 		"carrosvip.permissao",
-		"corarma.permissao",
-		"roupavip.permissao",
-		"mochila.permissao"
 	},
 	["Platina"] = {
 		_config = {

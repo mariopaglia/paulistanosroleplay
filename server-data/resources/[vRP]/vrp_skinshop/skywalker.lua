@@ -12,27 +12,19 @@ AddEventHandler("vrp_skinshop:Comprar", function(preco)
     if preco then
         
         if vRP.hasPermission(user_id,"diamante.permissao") then
-            off = 18
+            off = 25
             desconto = math.floor(preco*off/100)
             pagamento = math.floor(preco-desconto)
         elseif vRP.hasPermission(user_id,"esmeralda.permissao") then
-            off = 15
+            off = 20
             desconto = math.floor(preco*off/100)
             pagamento = math.floor(preco-desconto)
         elseif vRP.hasPermission(user_id,"platina.permissao") then
-            off = 12
+            off = 15
             desconto = math.floor(preco*off/100)
             pagamento = math.floor(preco-desconto)
         elseif vRP.hasPermission(user_id,"ouro.permissao") then
-            off = 9
-            desconto = math.floor(preco*off/100)
-            pagamento = math.floor(preco-desconto)
-        elseif vRP.hasPermission(user_id,"prata.permissao") then
-            off = 6
-            desconto = math.floor(preco*off/100)
-            pagamento = math.floor(preco-desconto)
-        elseif vRP.hasPermission(user_id,"bronze.permissao") then
-            off = 3
+            off = 10
             desconto = math.floor(preco*off/100)
             pagamento = math.floor(preco-desconto)
         else

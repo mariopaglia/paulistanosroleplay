@@ -18,6 +18,10 @@ local garages = {
 	[9] = { locked = false, camera = { x = -227.10, y = -1321.01, z = 30.89, heading = 89.70 }, driveout = { x = -222.66, y = -1323.13, z = 30.89, heading = 89.70 }, drivein = { x = -222.66, y = -1323.13, z = 30.89, heading = 89.70 }, outside = { x = -222.66, y = -1323.13, z = 30.89, heading = 89.70 }, inside = { x = -222.66, y = -1323.13, z = 30.89, heading = 89.70 }},
 	[10] = { locked = false, camera = { x = -216.10, y = -1326.76, z = 30.89, heading = 180.23 }, driveout = { x = -213.42, y = -1319.66, z = 30.89, heading = 180.23 }, drivein = { x = -213.42, y = -1319.66, z = 30.89, heading = 180.23 }, outside = { x = -213.42, y = -1319.66, z = 30.89, heading = 180.23 }, inside = { x = -213.42, y = -1319.66, z = 30.89, heading = 180.23 }},
 	[11] = { locked = false, camera = { x=-343.38, y=-134.27, z=38.13, heading = 247.75 }, driveout = { x=-343.38, y=-134.27, z=38.13, heading = 247.75 }, drivein = { x=-343.38, y=-134.27, z=38.13, heading = 247.75 }, outside = { x=-343.38, y=-134.27, z=38.13, heading = 247.75 }, inside = { x=-343.38, y=-134.27, z=38.13, heading = 247.75 }},
+	[12] = { locked = false, camera = { x=-32.14, y=-1066.9, z=27.98, heading = 162.06 }, driveout = { x=-32.14, y=-1066.9, z=27.98, heading = 162.06 }, drivein = { x=-32.14, y=-1066.9, z=27.98, heading = 162.06 }, outside = { x=-32.14, y=-1066.9, z=27.98, heading = 162.06 }, inside = { x=-32.14, y=-1066.9, z=27.98, heading = 162.06 }},
+	[13] = { locked = false, camera = { x=-38.47, y=-1064.39, z=27.98, heading = 161.16 }, driveout = { x=-38.47, y=-1064.39, z=27.98, heading = 161.16 }, drivein = { x=-38.47, y=-1064.39, z=27.98, heading = 161.16 }, outside = { x=-38.47, y=-1064.39, z=27.98, heading = 161.16 }, inside = { x=-38.47, y=-1064.39, z=27.98, heading = 161.16 }},
+	[14] = { locked = false, camera = { x=-32.54, y=-1048.55, z=27.98, heading = 249.86 }, driveout = { x=-32.54, y=-1048.55, z=27.98, heading = 249.86 }, drivein = { x=-32.54, y=-1048.55, z=27.98, heading = 249.86 }, outside = { x=-32.54, y=-1048.55, z=27.98, heading = 249.86 }, inside = { x=-32.54, y=-1048.55, z=27.98, heading = 249.86 }},
+	[15] = { locked = false, camera = { x=-39.36, y=-1051.8, z=27.98, heading = 249.87 }, driveout = { x=-39.36, y=-1051.8, z=27.98, heading = 249.87 }, drivein = { x=-39.36, y=-1051.8, z=27.98, heading = 249.87 }, outside = { x=-39.36, y=-1051.8, z=27.98, heading = 249.87 }, inside = { x=-39.36, y=-1051.8, z=27.98, heading = 249.87 }},
 
 }
 
@@ -58,12 +62,12 @@ local function AddMod(mod,parent,header,name,info,stock)
 				local lbl = GetModTextLabel(veh,mod,i)
 				if lbl ~= nil then
 					local mname = tostring(GetLabelText(lbl))
-					if mname ~= "NULL" then
+					--if mname ~= "NULL" then
 						local btn = m:addPurchase(mname,price)
 						btn.modtype = mod
 						btn.mod = i
 						price = price + LSC_Config.prices.mods[mod].increaseby
-					end
+					--end
 				end
 			end
 		else

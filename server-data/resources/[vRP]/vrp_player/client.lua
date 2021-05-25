@@ -262,6 +262,8 @@ end)
 --------------------------
 Citizen.CreateThread(function()
 	while true do
+		N_0x4757f00bc6323cfe(GetHashKey("weapon_knuckle"), 0.1)
+		Wait(0)
 		N_0x4757f00bc6323cfe(GetHashKey("WEAPON_SNOWBALL"), 0.00)
 		Wait(0)
 		N_0x4757f00bc6323cfe(GetHashKey("WEAPON_SMOKEGRENADE"), 0.00)
@@ -272,7 +274,7 @@ Citizen.CreateThread(function()
 		Wait(0)
 		N_0x4757f00bc6323cfe(GetHashKey("WEAPON_BZGAS"), 0.20)
 		Wait(0)
-	    N_0x4757f00bc6323cfe(GetHashKey("WEAPON_UNARMED"), 0.2) 
+	    N_0x4757f00bc6323cfe(GetHashKey("WEAPON_UNARMED"), 1.0) 
     	Wait(0)
     	N_0x4757f00bc6323cfe(GetHashKey("WEAPON_NIGHTSTICK"), 0.0) -- Cassetete
     	Wait(0)
@@ -1189,32 +1191,7 @@ Citizen.CreateThread(function()
 		end
 	end
 end)
------------------------------------------------------------------------------------------------------------------------------------------
--- DEIXAR A PORTA ABERTA AO SAIR DO CARRO
------------------------------------------------------------------------------------------------------------------------------------------
-Citizen.CreateThread(
-	function()
-		while true do
-			Citizen.Wait(8)
 
-			local ped = GetPlayerPed(-1)
-
-			if
-				DoesEntityExist(ped) and IsPedInAnyVehicle(ped, false) and IsControlPressed(2, 75) and not IsEntityDead(ped) and
-					not IsPauseMenuActive()
-			 then
-				Citizen.Wait(150)
-				if
-					DoesEntityExist(ped) and IsPedInAnyVehicle(ped, false) and IsControlPressed(2, 75) and not IsEntityDead(ped) and
-						not IsPauseMenuActive()
-				 then
-					local veh = GetVehiclePedIsIn(ped, false)
-					TaskLeaveVehicle(ped, veh, 256)
-				end
-			end
-		end
-	end
-)
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- SCRIPT DE HS
 -----------------------------------------------------------------------------------------------------------------------------------------
@@ -1817,3 +1794,20 @@ function drawNativeNotification(text)
     AddTextComponentString(text)
     DisplayHelpTextFromStringLabel(0, 0, 1, -1)
 end
+
+--Limitador de Velocidade de Veiculos
+----------------------------------------------------------------------------------------------------------------------------------------------------
+Citizen.CreateThread( function()
+    while true do 
+        Citizen.Wait( 0 )
+        local ped = GetPlayerPed(-1)
+        local vehicle = GetVehiclePedIsIn(ped, false)
+        local speed = GetEntitySpeed(vehicle)
+            if ( ped ) then
+                if math.floor(speed*3.6) == 280 then --Velocidade limitada em 250
+                    cruise = GetEntitySpeed(GetVehiclePedIsIn(GetPlayerPed(-1), true))
+                    SetEntityMaxSpeed(GetVehiclePedIsIn(GetPlayerPed(-1), true), cruise)
+                end
+            end
+        end
+end)

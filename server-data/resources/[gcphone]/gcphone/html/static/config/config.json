@@ -43,7 +43,6 @@
     "White desert": "back001.jpg",
     "Palms": "back002.jpg",
     "Default": "back003.jpg",
-    "Paulistanos": "paulistanos.jpg",
 
     "Route 66": "color.jpg",
     "Classic tokyo": "humo.jpg",
@@ -57,8 +56,8 @@
     "Custom URL": "URL"
   },
   "background_default": {
-    "label": "Paulistanos",
-    "value": "paulistanos.jpg"
+    "label": "Winter",
+    "value": "paisajes.jpg"
   },
 
 

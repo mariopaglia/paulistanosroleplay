@@ -786,6 +786,15 @@ local vehList = {
 	{ ['name'] = "rmodlfa", ['hash'] = -837708260, ['banned'] = false },
 	{ ['name'] = "rmodjeep", ['hash'] = -2098155976, ['banned'] = false },
 	{ ['name'] = "rmodbacalar", ['hash'] = -1259375426, ['banned'] = false },
+
+	-- POLICIA
+	{ ['name'] = "av-amarok", ['hash'] = 1753103501, ['banned'] = false },
+	{ ['name'] = "sbearcat", ['hash'] = -1881296547, ['banned'] = false },
+	{ ['name'] = "bmwg20", ['hash'] = 1879538617, ['banned'] = false },
+	{ ['name'] = "pdfocus", ['hash'] = 458087531, ['banned'] = false },
+	{ ['name'] = "av-nc7", ['hash'] = 896587425, ['banned'] = false },
+	{ ['name'] = "av-levante", ['hash'] = -774585533, ['banned'] = false },
+	{ ['name'] = "ghispo2", ['hash'] = -304857564, ['banned'] = false },
 	
 }
 -----------------------------------------------------------------------------------------------------------------------------------------

@@ -4,8 +4,8 @@
 -- vRPclient = Tunnel.getInterface("vRP")
 
 local logs = "https://discordapp.com/api/webhooks/756009434710409388/D6FFuDiqhkjGcscrCve30W9_5fzbdf2O7NNvW73FJjS4361c7S2P7AGyMcHtfuDLjCAD"
-local communityname = "Paulistanos Roleplay"
-local communtiylogo = "https://i.imgur.com/lSLWJ65.png"
+local communityname = "Fênix City"
+local communtiylogo = "https://cdn.discordapp.com/attachments/795675862350430288/843889645799342080/LOGO_Fenix_RP_512x512_Transparente_-_by_Design_Ideal.png"
 
 AddEventHandler('playerConnecting', function()
 local name = GetPlayerName(source)

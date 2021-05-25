@@ -2,7 +2,7 @@
 -- PEDS
 -------------------------------------------------
 Citizen.CreateThread(function()
-	AddTextEntry("FE_THDR_GTAO","Paulistanos Roleplay")
+	AddTextEntry("FE_THDR_GTAO","Fênix City")
 	while true do
 		Citizen.Wait(4)
 		N_0xf4f2c0d4ee209e20()

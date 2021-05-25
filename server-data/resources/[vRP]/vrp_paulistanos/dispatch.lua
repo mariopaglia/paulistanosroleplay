@@ -41,7 +41,7 @@ Citizen.CreateThread(function()
         -- SetRichPresence("Jogadores Online: "..#players)
 
         SetDiscordRichPresenceAssetText('discord.gg/F3Jp5J2')
-		SetDiscordRichPresenceAction(0, "Entrar na Cidade", "fivem://connect/paulistanosrp.com") -- Botão 1
+		-- SetDiscordRichPresenceAction(0, "Entrar na Cidade", "fivem://connect/paulistanosrp.com") -- Botão 1
 		SetDiscordRichPresenceAction(1, "Discord", "https://discord.gg/F3Jp5J2") -- Botão 2
 	end
 end)

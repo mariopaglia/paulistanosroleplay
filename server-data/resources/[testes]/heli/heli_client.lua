@@ -158,9 +158,6 @@ function ChangeVision()
 		vision_state = 1
 	elseif vision_state == 1 then
 		SetNightvision(false)
-		SetSeethrough(true)
-		vision_state = 2
-	else
 		SetSeethrough(false)
 		vision_state = 0
 	end

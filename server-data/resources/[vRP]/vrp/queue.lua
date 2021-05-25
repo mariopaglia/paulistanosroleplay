@@ -558,7 +558,7 @@ Citizen.CreateThread(function()
 					return
 				end
 
-				local msg = string_format("Paulistanos Roleplay\n\n"..Config.Language.pos.."%s\ndiscord.gg/F3Jp5J2\nAtualizações frequentes, deixe sua sugestão em nosso discord.",pos,Queue:GetSize(),dots)
+				local msg = string_format("Fênix City\n\n"..Config.Language.pos.."%s\ndiscord.gg/F3Jp5J2\nAtualizações frequentes, deixe sua sugestão em nosso discord.",pos,Queue:GetSize(),dots)
 				data.deferrals.update(msg)
 			end
 		end)

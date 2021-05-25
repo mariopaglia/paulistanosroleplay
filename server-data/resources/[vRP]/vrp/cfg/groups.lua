@@ -159,350 +159,87 @@ cfg.groups = {
 	---------------------------------------------------
 	-- POLÍCIA MILITAR
 	---------------------------------------------------
-	["PMESPI"] = {
+	["PMFCI"] = {
 		_config = {
-			title = "PMESP I",
+			title = "PMFC I",
 			gtype = "job"
 		},
 		"policia.permissao",
 		"pmesp.permissao",
-		"pmespi.permissao",
+		"pmfci.permissao",
 		"player.blips",
 		"polpar.permissao"
 	},
-	["PMESPIP"] = {
+	["PMFCIP"] = {
 		_config = {
-			title = "PMESP Paisana",
+			title = "PMFC Paisana",
 			gtype = "job"
 		},
-		"pmespip.permissao",
+		"pmfcip.permissao",
 		"player.blips",
 		"nogarmas.permissao"
 	},
-	["PMESPII"] = {
+	["PMFCII"] = {
 		_config = {
-			title = "PMESP II",
+			title = "PMFC II",
 			gtype = "job"
 		},
 		"policia.permissao",
 		"pmesp.permissao",
-		"pmespii.permissao",
+		"pmfcii.permissao",
 		"player.blips",
 		"polpar.permissao"
 	},
-	["PMESPIIP"] = {
+	["PMFCIIP"] = {
 		_config = {
-			title = "PMESP Paisana",
+			title = "PMFC Paisana",
 			gtype = "job"
 		},
-		"pmespiip.permissao",
+		"pmfciip.permissao",
 		"player.blips",
 		"nogarmas.permissao"
 	},
-	["PMESPIII"] = {
+	["PMFCIII"] = {
 		_config = {
-			title = "PMESP III",
+			title = "PMFC III",
 			gtype = "job"
 		},
 		"policia.permissao",
 		"pmesp.permissao",
-		"pmespiii.permissao",
+		"pmfciii.permissao",
 		"player.blips",
 		"polpar.permissao"
 	},
-	["PMESPIIIP"] = {
+	["PMFCIIIP"] = {
 		_config = {
-			title = "PMESP Paisana",
+			title = "PMFC Paisana",
 			gtype = "job"
 		},
-		"pmespiiip.permissao",
+		"pmfciiip.permissao",
 		"player.blips",
 		"nogarmas.permissao"
 	},
-	["PMESPIV"] = {
+	["PMFCIV"] = {
 		_config = {
-			title = "PMESP Comando",
+			title = "PMFC Comando",
 			gtype = "job"
 		},
 		"policia.permissao",
 		"pmesp.permissao",
-		"pmespiv.permissao",
+		"pmfciv.permissao",
 		"player.blips",
 		"polpar.permissao"
 	},
-	["PMESPIVP"] = {
+	["PMFCIVP"] = {
 		_config = {
-			title = "PMESP Paisana",
+			title = "PMFC Paisana",
 			gtype = "job"
 		},
-		"pmespivp.permissao",
-		"player.blips",
-		"nogarmas.permissao"
-	},
-
-	---------------------------------------------------
-	-- ROTA
-	---------------------------------------------------
-	["ROTAI"] = {
-		_config = {
-			title = "ROTA I",
-			gtype = "job"
-		},
-		"policia.permissao",
-		"pmesp.permissao",
-		"rota.permissao",
-		"rotai.permissao",
-		"player.blips",
-		"polpar.permissao"
-	},
-	["ROTAIP"] = {
-		_config = {
-			title = "ROTA Paisana",
-			gtype = "job"
-		},
-		"rotaip.permissao",
-		"player.blips",
-		"nogarmas.permissao"
-	},
-	["ROTAII"] = {
-		_config = {
-			title = "ROTA II",
-			gtype = "job"
-		},
-		"policia.permissao",
-		"pmesp.permissao",
-		"rota.permissao",
-		"rotaii.permissao",
-		"player.blips",
-		"polpar.permissao"
-	},
-	["ROTAIIP"] = {
-		_config = {
-			title = "ROTA Paisana",
-			gtype = "job"
-		},
-		"rotaiip.permissao",
-		"player.blips",
-		"nogarmas.permissao"
-	},
-	["ROTAIII"] = {
-		_config = {
-			title = "ROTA III",
-			gtype = "job"
-		},
-		"policia.permissao",
-		"pmesp.permissao",
-		"rota.permissao",
-		"rotaiii.permissao",
-		"player.blips",
-		"polpar.permissao"
-	},
-	["ROTAIIIP"] = {
-		_config = {
-			title = "ROTA Paisana",
-			gtype = "job"
-		},
-		"rotaiiip.permissao",
-		"player.blips",
-		"nogarmas.permissao"
-	},
-	["ROTAIV"] = {
-		_config = {
-			title = "ROTA Comando",
-			gtype = "job"
-		},
-		"policia.permissao",
-		"pmesp.permissao",
-		"rota.permissao",
-		"rotaiv.permissao",
-		"player.blips",
-		"polpar.permissao"
-	},
-	["ROTAIVP"] = {
-		_config = {
-			title = "ROTA Paisana",
-			gtype = "job"
-		},
-		"rotaivp.permissao",
-		"player.blips",
-		"nogarmas.permissao"
-	},
-
-	---------------------------------------------------
-	-- POLÍCIA CÍVIL
-	---------------------------------------------------
-	["PCIVILI"] = {
-		_config = {
-			title = "Policia Civil I",
-			gtype = "job"
-		},
-		"policia.permissao",
-		"pcivil.permissao",
-		"pcivili.permissao",
-		"player.blips",
-		"polpar.permissao"
-	},
-	["PCIVILIP"] = {
-		_config = {
-			title = "Policia Civil Paisana",
-			gtype = "job"
-		},
-		"pcivilip.permissao",
-		"player.blips",
-		"nogarmas.permissao"
-	},
-
-	["PCIVILII"] = {
-		_config = {
-			title = "Policia Civil II",
-			gtype = "job"
-		},
-		"policia.permissao",
-		"pcivil.permissao",
-		"pcivilii.permissao",
-		"player.blips",
-		"polpar.permissao"
-	},
-	["PCIVILIIP"] = {
-		_config = {
-			title = "Policia Civil Paisana",
-			gtype = "job"
-		},
-		"pciviliip.permissao",
-		"player.blips",
-		"nogarmas.permissao"
-	},
-
-	["PCIVILIII"] = {
-		_config = {
-			title = "Policia Civil III",
-			gtype = "job"
-		},
-		"policia.permissao",
-		"pcivil.permissao",
-		"pciviliii.permissao",
-		"player.blips",
-		"polpar.permissao"
-	},
-	["PCIVILIIIP"] = {
-		_config = {
-			title = "Policia Civil Paisana",
-			gtype = "job"
-		},
-		"pciviliiip.permissao",
-		"player.blips",
-		"nogarmas.permissao"
-	},
-
-	["PCIVILIV"] = {
-		_config = {
-			title = "Policia Civil IV",
-			gtype = "job"
-		},
-		"policia.permissao",
-		"pcivil.permissao",
-		"pciviliv.permissao",
-		"player.blips",
-		"polpar.permissao"
-	},
-	["PCIVILIVP"] = {
-		_config = {
-			title = "Policia Civil Paisana",
-			gtype = "job"
-		},
-		"pcivilivp.permissao",
+		"pmfcivp.permissao",
 		"player.blips",
 		"nogarmas.permissao"
 	},
 	
-	---------------------------------------------------
-	-- POLÍCIA RODOVIÁRIA FEDERAL
-	---------------------------------------------------
-	["PRFI"] = {
-		_config = {
-			title = "PRF I",
-			gtype = "job"
-		},
-		"policia.permissao",
-		"prf.permissao",
-		"pmesp.permissao",
-		"prfi.permissao",
-		"player.blips",
-		"polpar.permissao"
-	},
-	["PRFIP"] = {
-		_config = {
-			title = "PRF Paisana",
-			gtype = "job"
-		},
-		"prfip.permissao",
-		"player.blips",
-		"nogarmas.permissao"
-	},
-	["PRFII"] = {
-		_config = {
-			title = "PRF II",
-			gtype = "job"
-		},
-		"policia.permissao",
-		"prf.permissao",
-		"pmesp.permissao",
-		"prfii.permissao",
-		"player.blips",
-		"polpar.permissao"
-	},
-	["PRFIIP"] = {
-		_config = {
-			title = "PRF Paisana",
-			gtype = "job"
-		},
-		"prfiip.permissao",
-		"player.blips",
-		"nogarmas.permissao"
-	},
-	["PRFIII"] = {
-		_config = {
-			title = "PRF III",
-			gtype = "job"
-		},
-		"policia.permissao",
-		"prf.permissao",
-		"pmesp.permissao",
-		"prfiiii.permissao",
-		"player.blips",
-		"polpar.permissao"
-	},
-	["PRFIIIP"] = {
-		_config = {
-			title = "PRF Paisana",
-			gtype = "job"
-		},
-		"prfiiip.permissao",
-		"player.blips",
-		"nogarmas.permissao"
-	},
-	["PRFIV"] = {
-		_config = {
-			title = "PRF Comando",
-			gtype = "job"
-		},
-		"policia.permissao",
-		"prf.permissao",
-		"pmesp.permissao",
-		"prfiv.permissao",
-		"player.blips",
-		"polpar.permissao"
-	},
-	["PRFIVP"] = {
-		_config = {
-			title = "PRF Paisana",
-			gtype = "job"
-		},
-		"prfivp.permissao",
-		"player.blips",
-		"nogarmas.permissao"
-	},
-
 	---------------------------------------------------
 	-- SAMU
 	---------------------------------------------------

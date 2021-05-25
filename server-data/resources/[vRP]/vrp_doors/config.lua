@@ -3,32 +3,32 @@ local cfg = {}
 cfg.list = {
 
 	-- POLICIA CIVIL
-	[1] = { text = true, hash = 631614199, ['x'] = 461.86, ['y'] = -993.68, ['z'] = 24.91, lock = true, perm = "pcivil.permissao" },
-	[2] = { text = true, hash = 631614199, ['x'] = 461.84, ['y'] = -998.37, ['z'] = 24.91, lock = true, perm = "pcivil.permissao" },
-	[3] = { text = true, hash = 631614199, ['x'] = 461.83, ['y'] = -1002.08, ['z'] = 24.91, lock = true, perm = "pcivil.permissao" },
-	[4] = { text = true, hash = 2271212864, ['x'] = 468.29, ['y'] = -1014.15, ['z'] = 26.38, lock = true, perm = "pcivil.permissao", other = 5 },
-	[5] = { text = true, hash = 2271212864, ['x'] = 468.96, ['y'] = -1014.09, ['z'] = 26.38, lock = true, perm = "pcivil.permissao", other = 4 },
-	[6] = { text = true, hash = 749848321, ['x'] = 452.52, ['y'] = -982.49, ['z'] = 30.68, lock = true, perm = "pcivil.permissao" },
-	[7] = { text = true, hash = -131296141, ['x'] = 465.52, ['y'] = -989.36, ['z'] = 24.91, lock = true, perm = "pcivil.permissao", other = 8 },
-	[8] = { text = true, hash = -131296141, ['x'] = 465.44, ['y'] = -990.68, ['z'] = 24.91, lock = true, perm = "pcivil.permissao", other = 7 },
-	[9] = { text = true, hash = -131296141, ['x'] = 467.67, ['y'] = -992.29, ['z'] = 24.92, lock = true, perm = "pcivil.permissao" },
-	[10] = { text = true, hash = -131296141, ['x'] = 470.01, ['y'] = -994.68, ['z'] = 24.92, lock = true, perm = "pcivil.permissao" },
+	[1] = { text = true, hash = 631614199, ['x'] = 461.86, ['y'] = -993.68, ['z'] = 24.91, lock = true, perm = "policia.permissao" },
+	[2] = { text = true, hash = 631614199, ['x'] = 461.84, ['y'] = -998.37, ['z'] = 24.91, lock = true, perm = "policia.permissao" },
+	[3] = { text = true, hash = 631614199, ['x'] = 461.83, ['y'] = -1002.08, ['z'] = 24.91, lock = true, perm = "policia.permissao" },
+	[4] = { text = true, hash = 2271212864, ['x'] = 468.29, ['y'] = -1014.15, ['z'] = 26.38, lock = true, perm = "policia.permissao", other = 5 },
+	[5] = { text = true, hash = 2271212864, ['x'] = 468.96, ['y'] = -1014.09, ['z'] = 26.38, lock = true, perm = "policia.permissao", other = 4 },
+	[6] = { text = true, hash = 749848321, ['x'] = 452.52, ['y'] = -982.49, ['z'] = 30.68, lock = true, perm = "policia.permissao" },
+	[7] = { text = true, hash = -131296141, ['x'] = 465.52, ['y'] = -989.36, ['z'] = 24.91, lock = true, perm = "policia.permissao", other = 8 },
+	[8] = { text = true, hash = -131296141, ['x'] = 465.44, ['y'] = -990.68, ['z'] = 24.91, lock = true, perm = "policia.permissao", other = 7 },
+	[9] = { text = true, hash = -131296141, ['x'] = 467.67, ['y'] = -992.29, ['z'] = 24.92, lock = true, perm = "policia.permissao" },
+	[10] = { text = true, hash = -131296141, ['x'] = 470.01, ['y'] = -994.68, ['z'] = 24.92, lock = true, perm = "policia.permissao" },
 	[11] = { text = true, hash = 0, ['x'] = 0, ['y'] = 0, ['z'] = 0, lock = true, perm = "" },
 	[12] = { text = true, hash = 0, ['x'] = 0, ['y'] = 0, ['z'] = 0, lock = true, perm = "" },
 	[13] = { text = true, hash = 0, ['x'] = 0, ['y'] = 0, ['z'] = 0, lock = true, perm = "" },
-	[14] = { text = true, hash = 185711165, ['x'] = 445.37, ['y'] = -989.77, ['z'] = 30.68, lock = true, perm = "pcivil.permissao", other = 15 },
-	[15] = { text = true, hash = 185711165, ['x'] = 444.07, ['y'] = -989.77, ['z'] = 30.68, lock = true, perm = "pcivil.permissao", other = 14 },
+	[14] = { text = true, hash = 185711165, ['x'] = 445.37, ['y'] = -989.77, ['z'] = 30.68, lock = true, perm = "policia.permissao", other = 15 },
+	[15] = { text = true, hash = 185711165, ['x'] = 444.07, ['y'] = -989.77, ['z'] = 30.68, lock = true, perm = "policia.permissao", other = 14 },
 	[16] = { text = true, hash = 0, ['x'] = 0, ['y'] = 0, ['z'] = 0, lock = true, perm = "" },
 	[17] = { text = true, hash = 0, ['x'] = 0, ['y'] = 0, ['z'] = 0, lock = true, perm = "" },
 	[18] = { text = true, hash = 0, ['x'] = 0, ['y'] = 0, ['z'] = 0, lock = true, perm = "" },
-	[19] = { text = true, hash = 749848321, ['x'] = 453.0793, ['y'] = -983.1895, ['z'] = 30.83926, lock = true, perm = "pcivil.permissao" }, 
-	[19] = { text = true, hash = 1557126584, ['x'] = 449.68, ['y'] = -986.72, ['z'] = 30.69, lock = true, perm = "pcivil.permissao" },
-	[20] = { text = true, hash = -1320876379, ['x'] = 447.62, ['y'] = -980.4, ['z'] = 30.69, lock = true, perm = "pcivil.permissao" },
-	[21] = { text = true, hash = 631614199, ['x'] = 481.86, ['y'] = -988.49, ['z'] = 24.91, lock = true, perm = "pcivil.permissao" },
-	[22] = { text = true, hash = 631614199, ['x'] = 482.10, ['y'] = -991.28, ['z'] = 24.91, lock = true, perm = "pcivil.permissao" },
-	[23] = { text = true, hash = 631614199, ['x'] = 465.70, ['y'] = -1002.02, ['z'] = 24.91, lock = true, perm = "pcivil.permissao" },
-	[24] = { text = true, hash = 631614199, ['x'] = 465.64, ['y'] = -998.35, ['z'] = 24.91, lock = true, perm = "pcivil.permissao" },
-	[25] = { text = true, hash = -103301619, ['x'] = 464.17, ['y'] = -1003.02, ['z'] = 24.91, lock = true, perm = "pcivil.permissao" },
+	[19] = { text = true, hash = 749848321, ['x'] = 453.0793, ['y'] = -983.1895, ['z'] = 30.83926, lock = true, perm = "policia.permissao" }, 
+	[19] = { text = true, hash = 1557126584, ['x'] = 449.68, ['y'] = -986.72, ['z'] = 30.69, lock = true, perm = "policia.permissao" },
+	[20] = { text = true, hash = -1320876379, ['x'] = 447.62, ['y'] = -980.4, ['z'] = 30.69, lock = true, perm = "policia.permissao" },
+	[21] = { text = true, hash = 631614199, ['x'] = 481.86, ['y'] = -988.49, ['z'] = 24.91, lock = true, perm = "policia.permissao" },
+	[22] = { text = true, hash = 631614199, ['x'] = 482.10, ['y'] = -991.28, ['z'] = 24.91, lock = true, perm = "policia.permissao" },
+	[23] = { text = true, hash = 631614199, ['x'] = 465.70, ['y'] = -1002.02, ['z'] = 24.91, lock = true, perm = "policia.permissao" },
+	[24] = { text = true, hash = 631614199, ['x'] = 465.64, ['y'] = -998.35, ['z'] = 24.91, lock = true, perm = "policia.permissao" },
+	[25] = { text = true, hash = -103301619, ['x'] = 464.17, ['y'] = -1003.02, ['z'] = 24.91, lock = true, perm = "policia.permissao" },
 
 	-- YAKUZA
 	[26] = { text = true, hash = -1653461382, ['x'] = -948.44, ['y'] = -1476.89, ['z'] = 6.8, lock = true, perm = "yakuza.permissao", other = 27 },
@@ -122,9 +122,28 @@ cfg.list = {
 	[102] = { text = true, hash = -52575179, ['x'] = 1400.06, ['y'] = 1128.23, ['z'] = 114.34, lock = true, perm = "cn.permissao", other = 103 }, -- Porta lateral/garagem
 	[103] = { text = true, hash = -1032171637, ['x'] = 1401.0, ['y'] = 1128.2, ['z'] = 114.34, lock = true, perm = "cn.permissao", other = 102 }, -- Porta lateral/garagem
 
-
-
---	[] = { text = true/false, hash = , ['x'] = , ['y'] = , ['z'] = , lock = true/false, perm = "suapermissiao" },
+	-- DP PRACA
+	[104] = { text = true, hash = -1033001619, ['x'] = 468.0, ['y'] = -996.41, ['z'] = 24.92, lock = true, perm = "policia.permissao" }, -- Celas direita 01 DP Praca
+	[105] = { text = true, hash = -1033001619, ['x'] = 472.23, ['y'] = -996.51, ['z'] = 24.92, lock = true, perm = "policia.permissao" }, -- Celas direita 02 DP Praca
+	[106] = { text = true, hash = -1033001619, ['x'] = 476.52, ['y'] = -996.45, ['z'] = 24.92, lock = true, perm = "policia.permissao" }, -- Celas direita 03 DP Praca
+	[107] = { text = true, hash = -1033001619, ['x'] = 480.78, ['y'] = -996.41, ['z'] = 24.92, lock = true, perm = "policia.permissao" }, -- Celas direita 04 DP Praca
+	--
+	[108] = { text = true, hash = -1033001619, ['x'] = 467.71, ['y'] = -1003.51, ['z'] = 24.92, lock = true, perm = "policia.permissao" }, -- Celas interrogario 01 DP Praca
+	[109] = { text = true, hash = -1033001619, ['x'] = 472.17, ['y'] = -1003.58, ['z'] = 24.92, lock = true, perm = "policia.permissao" }, -- Celas interrogario 02 DP Praca
+	[110] = { text = true, hash = -1033001619, ['x'] = 476.29, ['y'] = -1003.57, ['z'] = 24.92, lock = true, perm = "policia.permissao" }, -- Celas interrogario 03 DP Praca
+	[111] = { text = true, hash = -1033001619, ['x'] = 480.77, ['y'] = -1003.52, ['z'] = 24.92, lock = true, perm = "policia.permissao" }, -- Celas interrogario 04 DP Praca
+	--
+	[112] = { text = true, hash = 631614199, ['x'] = 463.88, ['y'] = -992.63, ['z'] = 24.92, lock = true, perm = "policia.permissao" }, -- Entrada celas DP Praca
+	--[113] = { text = true, hash = -1033001619, ['x'] = 464.15, ['y'] = -1003.47, ['z'] = 24.92, lock = true, perm = "policia.permissao" }, -- Entrada celas 02 DP Praca
+	--
+	--[114] = { text = true, hash = -543497392, ['x'] = 465.57, ['y'] = -989.42, ['z'] = 24.92, lock = true, perm = "policia.permissao", other = 115 },
+	--[115] = { text = true, hash = -543497392, ['x'] = 465.54, ['y'] = -990.58, ['z'] = 24.92, lock = true, perm = "policia.permissao", other = 114 },
+	--
+	[116] = { text = true, hash = -1033001619, ['x'] = 445.42, ['y'] = -999.04, ['z'] = 30.73, lock = true, perm = "policia.permissao", other = 117 }, -- Entrada fora 01 DP Praca
+	[117] = { text = true, hash = -1033001619, ['x'] = 446.43, ['y'] = -999.04, ['z'] = 30.73, lock = true, perm = "policia.permissao", other = 116 }, -- Entrada fora 02 DP Praca
+	--
+	[118] = { text = true, hash = -131296141, ['x'] = 443.01, ['y'] = -993.77, ['z'] = 30.69, lock = true, perm = "policia.permissao", other = 118 }, -- subida 01 DP Praca
+	[119] = { text = true, hash = -131296141, ['x'] = 443.04, ['y'] = -992.65, ['z'] = 30.69, lock = true, perm = "policia.permissao", other = 119 }, -- subida 02 DP Praca
 }
 
 return cfg

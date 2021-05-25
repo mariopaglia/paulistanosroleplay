@@ -16,25 +16,10 @@ salarii = {
   -- STAFF
   {"kick.permissao", 8000, "STAFF"},
   -- Policia Militar
-  {"pmespi.permissao", 6000, "PMESP I"},
-  {"pmespii.permissao", 7000, "PMESP II"},
-  {"pmespiii.permissao", 8000, "PMESP III"},
-  {"pmespiv.permissao", 8000, "PMESP Comando"},
-  -- ROTA
-  {"rotai.permissao", 6000, "ROTA I"},
-  {"rotaii.permissao", 7000, "ROTA II"},
-  {"rotaiii.permissao", 8000, "ROTA III"},
-  {"rotaiv.permissao", 8000, "ROTA Comando"},
-  -- Policia Civil
-  {"pcivili.permissao", 6000, "Polícia Civil I"},
-  {"pcivilii.permissao", 7000, "Polícia Civil II"},
-  {"pciviliii.permissao", 8000, "Polícia Civil III"},
-  {"pciviliv.permissao", 8000, "Polícia Civil Comando"},
-  -- PRF
-  {"prfi.permissao", 6000, "PRF I"},
-  {"prfii.permissao", 7000, "PRF II"},
-  {"prfiii.permissao", 8000, "PRF III"},
-  {"prfiv.permissao", 8000, "PRF Comando"},
+  {"pmfci.permissao", 6000, "PMFC I"},
+  {"pmfcii.permissao", 7000, "PMFC II"},
+  {"pmfciii.permissao", 8000, "PMFC III"},
+  {"pmfciv.permissao", 8000, "PMFC Comando"},
   -- SAMU
   {"samui.permissao", 6000, "SAMU I"},
   {"samuii.permissao", 7000, "SAMU II"},

@@ -10,7 +10,7 @@ local items = {}
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- WEBHOOK
 -----------------------------------------------------------------------------------------------------------------------------------------
-local webhookpegaritem = ""
+local webhookpegaritem = "https://discord.com/api/webhooks/846557271420174386/vlIYNKeTe03sIQzzsc77nKNnqvbtJ59IqbjsKQB0ec3Ol9WoMftRPUAH0wdhmMDQnSPQ"
 function SendWebhookMessage(webhook,message)
 	if webhook ~= nil and webhook ~= "" then
 		PerformHttpRequest(webhook, function(err, text, headers) end, 'POST', json.encode({content = message}), { ['Content-Type'] = 'application/json' })
@@ -38,6 +38,14 @@ RegisterServerEvent('DropSystem:take')
 AddEventHandler('DropSystem:take',function(id)
 	local source = source
 	local user_id = vRP.getUserId(source)
+	local nplayer = vRPclient.getNearestPlayer(source,4)
+	local nuser_id = vRP.getUserId(nplayer)
+
+	if nuser_id then
+		TriggerClientEvent("Notify",source,"negado","Existem pessoas por perto!")
+		return
+	end
+
 	if user_id then
 		if items[id] ~= nil then
 			local new_weight = vRP.getInventoryWeight(user_id)+vRP.getItemWeight(items[id].item)*items[id].count

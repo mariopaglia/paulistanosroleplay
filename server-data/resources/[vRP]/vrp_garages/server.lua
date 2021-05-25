@@ -424,9 +424,9 @@ local garages = {
     -----------------------------------------------------------------------------------------------------------------------------------------
     [612] = {['name'] = "PMESP", ['payment'] = false, ['perm'] = "pmesp.permissao"},
     [613] = {['name'] = "PMESPH", ['payment'] = false, ['perm'] = "pmesp.permissao"},
-    [618] = {['name'] = "PCESPH", ['payment'] = false, ['perm'] = "pcivil.permissao"},
+    [618] = {['name'] = "PoliciaHeli", ['payment'] = false, ['perm'] = "policia.permissao"},
     [614] = { ['name'] = "ROTA", ['payment'] = false, ['perm'] = "rota.permissao" },
-    [615] = {['name'] = "PCESP", ['payment'] = false, ['perm'] = "pcivil.permissao"},
+    [615] = {['name'] = "Policia", ['payment'] = false, ['perm'] = "policia.permissao"},
     [616] = {['name'] = "PRF", ['payment'] = false, ['perm'] = "prf.permissao"},
     --	[] = { ['name'] = "", ['payment'] = false, ['perm'] = "suapermissao" },
     -----------------------------------------------------------------------------------------------------------------------------------------
@@ -477,8 +477,8 @@ local workgarage = {
     ["Bennys"] = {"flatbed", "slamvan3"},
     ["SportRace"] = {"flatbed", "slamvan3"},
     ["PRF"] = {"cruzeprf2", "l200prf", "trailprf", "ec130PRF"},
-    ["PCESP"] = {"sw4pc1", "trailcivileie", "traildesc", "trailgarra1"},
-    ["PCESPH"] = {"buzzard2", "frogger2"},
+    ["Policia"] = {"av-amarok", "sbearcat", "bmwg20", "av-gt63", "av-m8", "pbus", "pdfocus", "av-nc7", "av-levante", "ghispo2"},
+    ["PoliciaHeli"] = {"polmav"},
     ["ROTA"] = {"sw4revrota1", "trailrota2"},
     ["PMESP"] = {"pbus", "riot", "20blazer2", "police3", "spacepm1", "trailcfp", "trailpm1", "av-gt63", "av-m8", "policeb"},
     ["PMESPH"] = {"as350", "polmav"},

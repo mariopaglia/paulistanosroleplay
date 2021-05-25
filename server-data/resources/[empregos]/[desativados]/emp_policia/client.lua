@@ -7,9 +7,9 @@ emP = Tunnel.getInterface("emp_policia")
 local blips = false
 local servico = false
 local selecionado = 0
-local CoordenadaX = 455.93
-local CoordenadaY = -979.41
-local CoordenadaZ = 30.68
+local CoordenadaX = 440.71
+local CoordenadaY = -975.82
+local CoordenadaZ = 30.69
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- RESIDENCIAS
 -----------------------------------------------------------------------------------------------------------------------------------------
@@ -80,12 +80,14 @@ Citizen.CreateThread(function()
 			local distance = GetDistanceBetweenCoords(CoordenadaX,CoordenadaY,cdz,x,y,z,true)
 
 			if distance <= 30.0 then
-				DrawMarker(23,CoordenadaX,CoordenadaY,CoordenadaZ-0.97,0,0,0,0,0,0,1.0,1.0,0.5,240,200,80,20,0,0,0,0)
+				DrawMarker(23,CoordenadaX,CoordenadaY,CoordenadaZ-0.97,0,0,0,0,0,0,1.0,1.0,0.5,240,200,80,100,0,0,0,0)
 				if distance <= 1.5 then
+					DrawText3D(440.71, -975.82, 30.69, "~w~Aperte ~r~E ~w~para iniciar rota", 0.8, 1)
 					if IsControlJustPressed(0,38) and emP.checkPermission() then
 						servico = true
 						selecionado = 1
 						CriandoBlip(locs,selecionado)
+						TriggerEvent("Notify","importante","Voce iniciou sua <b>rota de patrulha</b>.")
 					end
 				end
 			end
@@ -105,10 +107,10 @@ Citizen.CreateThread(function()
 			local distance = GetDistanceBetweenCoords(locs[selecionado].x,locs[selecionado].y,cdz,x,y,z,true)
 
 			if distance <= 30.0 then
-				DrawMarker(21,locs[selecionado].x,locs[selecionado].y,locs[selecionado].z+0.30,0,0,0,0,180.0,130.0,2.0,2.0,1.0,240,200,80,20,1,0,0,1)
-				if distance <= 2.5 then
-					if IsControlJustPressed(0,38) and emP.checkPermission() then
-						if IsVehicleModel(GetVehiclePedIsUsing(PlayerPedId()),GetHashKey("policiacharger2018")) or IsVehicleModel(GetVehiclePedIsUsing(PlayerPedId()),GetHashKey("policiasilverado")) or IsVehicleModel(GetVehiclePedIsUsing(PlayerPedId()),GetHashKey("policiabmwr1200")) or IsVehicleModel(GetVehiclePedIsUsing(PlayerPedId()),GetHashKey("policiatahoe")) or IsVehicleModel(GetVehiclePedIsUsing(PlayerPedId()),GetHashKey("policiataurus")) or IsVehicleModel(GetVehiclePedIsUsing(PlayerPedId()),GetHashKey("policiavictoria")) then
+				DrawMarker(21,locs[selecionado].x,locs[selecionado].y,locs[selecionado].z+0.30,0,0,0,0,180.0,130.0,2.0,2.0,1.0,240,200,80,100,1,0,0,1)
+				if distance <= 5.0 then
+					if emP.checkPermission() then
+						if IsVehicleModel(GetVehiclePedIsUsing(PlayerPedId()),GetHashKey("ghispo2")) or IsVehicleModel(GetVehiclePedIsUsing(PlayerPedId()),GetHashKey("av-amarok")) or IsVehicleModel(GetVehiclePedIsUsing(PlayerPedId()),GetHashKey("av-gt63")) or IsVehicleModel(GetVehiclePedIsUsing(PlayerPedId()),GetHashKey("av-levante")) or IsVehicleModel(GetVehiclePedIsUsing(PlayerPedId()),GetHashKey("av-nc7")) or IsVehicleModel(GetVehiclePedIsUsing(PlayerPedId()),GetHashKey("bmwg20")) or IsVehicleModel(GetVehiclePedIsUsing(PlayerPedId()),GetHashKey("pdfocus")) or IsVehicleModel(GetVehiclePedIsUsing(PlayerPedId()),GetHashKey("av-m8")) then
 							RemoveBlip(blips)
 							if selecionado == 52 then
 								selecionado = 1
@@ -134,6 +136,7 @@ Citizen.CreateThread(function()
 			if IsControlJustPressed(0,168) then
 				servico = false
 				RemoveBlip(blips)
+				TriggerEvent("Notify","negado","Voce cancelou sua <b>rota de patrulha</b>.")
 			end
 		end
 	end
@@ -151,4 +154,44 @@ function CriandoBlip(locs,selecionado)
 	BeginTextCommandSetBlipName("STRING")
 	AddTextComponentString("Rota de Patrulha")
 	EndTextCommandSetBlipName(blips)
+end
+-- TEXTOS 3D
+function DrawText3D(x,y,z, text, scl, font) 
+	local onScreen,_x,_y=World3dToScreen2d(x,y,z)
+	local px,py,pz=table.unpack(GetGameplayCamCoords())
+	local dist = GetDistanceBetweenCoords(px,py,pz, x,y,z, 1)
+
+	local scale = (1/dist)*scl
+	local fov = (1/GetGameplayCamFov())*100
+	local scale = scale*fov
+	if onScreen then
+		SetTextScale(0.0*scale, 1.1*scale)
+        SetTextFont(font)
+        SetTextProportional(1)
+        SetTextColour(255, 255, 255, 180)
+        SetTextDropshadow(0, 0, 0, 0, 255)
+        SetTextEdge(2, 0, 0, 0, 150)
+        SetTextDropShadow()
+        SetTextOutline()
+        SetTextEntry("STRING")
+        SetTextCentre(1)
+        AddTextComponentString(text)
+        DrawText(_x,_y)
+	end
+end
+
+function DrawText3Ds(x,y,z,text)
+    local onScreen,_x,_y=World3dToScreen2d(x,y,z)
+    local px,py,pz=table.unpack(GetGameplayCamCoords())
+    
+    SetTextScale(0.34, 0.34)
+    SetTextFont(4)
+    SetTextProportional(1)
+    SetTextColour(255, 255, 255, 215)
+    SetTextEntry("STRING")
+    SetTextCentre(1)
+    AddTextComponentString(text)
+    DrawText(_x,_y)
+    local factor = (string.len(text)) / 370
+    DrawRect(_x,_y+0.0125, 0.001+ factor, 0.028, 0, 0, 0, 78)
 end

@@ -143,24 +143,24 @@ Config.Veiculos = {
             {title = "Ferrari F12 TDF", model = "rmodf12tdf", mala = 0, preco = 1000, estoque = 0},
         },
     },
-    {
-        categoria = {title = "Brasileiro", id = "brasileiro"},
-        veiculos = {
-            -- {title = "Fusca", model = "weevil", mala = 10, preco = 70000, estoque = 5},
-            {title = "Fiat 500", model = "brioso2", mala = 10, preco = 70000, estoque = 5},
-            --
-            {title = "chevette", model = "chevette", mala = 10, preco = 85000, estoque = 5},
-            {title = "Palio", model = "fugitive", mala = 10, preco = 100000, estoque = 5},
-            {title = "GOL-S", model = "blista", mala = 20, preco = 130000, estoque = 5},
-            {title = "Voyage", model = "blista3", mala = 10, preco = 160000, estoque = 5},
-            {title = "Celta", model = "celta", mala = 0, preco = 180000, estoque = 5},
-            --
-            {title = "civic 2010", model = "civic2010", mala = 10, preco = 210000, estoque = 5},
-            {title = "Golf", model = "vwgolf", mala = 20, preco = 240000, estoque = 5},
-            {title = "Saveiro", model = "vwsava", mala = 30, preco = 270000, estoque = 5},
-            {title = "civic 2016", model = "civic2016", mala = 20, preco = 300000, estoque = 5},
-        },
-    },
+    -- {
+    --     categoria = {title = "Brasileiro", id = "brasileiro"},
+    --     veiculos = {
+    --         -- {title = "Fusca", model = "weevil", mala = 10, preco = 70000, estoque = 5},
+    --         {title = "Fiat 500", model = "brioso2", mala = 10, preco = 70000, estoque = 5},
+    --         --
+    --         {title = "chevette", model = "chevette", mala = 10, preco = 85000, estoque = 5},
+    --         {title = "Palio", model = "fugitive", mala = 10, preco = 100000, estoque = 5},
+    --         {title = "GOL-S", model = "blista", mala = 20, preco = 130000, estoque = 5},
+    --         {title = "Voyage", model = "blista3", mala = 10, preco = 160000, estoque = 5},
+    --         {title = "Celta", model = "celta", mala = 0, preco = 180000, estoque = 5},
+    --         --
+    --         {title = "civic 2010", model = "civic2010", mala = 10, preco = 210000, estoque = 5},
+    --         {title = "Golf", model = "vwgolf", mala = 20, preco = 240000, estoque = 5},
+    --         {title = "Saveiro", model = "vwsava", mala = 30, preco = 270000, estoque = 5},
+    --         {title = "civic 2016", model = "civic2016", mala = 20, preco = 300000, estoque = 5},
+    --     },
+    -- },
     {
         categoria = {title = "Diamond", id = "diamond"},
         veiculos = {

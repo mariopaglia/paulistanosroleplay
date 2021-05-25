@@ -252,9 +252,9 @@ local user_id = vRP.getUserId(source)
 					actived[user_id] = true
 					TriggerClientEvent('Creative:Update',source,'updateMochila')
 					TriggerClientEvent('cancelando',source,true)
-					vRPclient._CarregarObjeto(source,"amb@world_human_drinking@beer@male@idle_a","idle_a","prop_energy_drink",49,28422)
-					TriggerClientEvent("progress",source,20000,"bebendo")
-					SetTimeout(20000,function()
+					vRPclient._CarregarObjeto(source,"mp_player_intdrink","loop_bottle","prop_energy_drink",49,60309)
+					TriggerClientEvent("progress",source,12000,"bebendo")
+					SetTimeout(12000,function()
 						actived[user_id] = nil
 						TriggerClientEvent('energeticos',source,true)
 						TriggerClientEvent('cancelando',source,false)

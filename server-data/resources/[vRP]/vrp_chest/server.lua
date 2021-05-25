@@ -43,7 +43,7 @@ end
 -----------------------------------------------------------------------------------------------------------------------------------------
 local chest = {
 	["policiamilitar"] = { 100000,"policia.permissao" },
-	["policiacivil"] = { 100000,"pcivil.permissao" },
+	["policiacivil"] = { 100000,"policia.permissao" },
 	["cosanostra"] = { 10000,"cn.permissao" },
 	["bratva"] = { 10000,"bratva.permissao" },
 	["verdes"] = { 10000,"verdes.permissao" },

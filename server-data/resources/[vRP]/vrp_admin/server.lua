@@ -44,6 +44,34 @@ Citizen.CreateThread(function()
 end)
 
 -----------------------------------------------------------------------------------------------------------------------------------------
+-- /DV POR ÁREA
+-----------------------------------------------------------------------------------------------------------------------------------------
+RegisterCommand('dvall', function(a,b)
+    user_id = vRP.getUserId(a)
+    if vRP.hasPermission(user_id,'dv.permissao') then
+        if tonumber(b[1]) then
+            local vehicles = vRPclient.getNearestVehicles(a,tonumber(b[1]))
+            for k,v in pairs(vehicles) do
+                TriggerClientEvent('deleteVeh', a, k)
+            end
+            TriggerClientEvent('Notify',a, 'sucesso', '<b>Você deletou '.. tablelen(vehicles) ..'x veículos')
+        else
+            TriggerClientEvent('Notify',a, 'negado', 'Comando dado de forma incorreta, use a estrutura /dvall [raio]')
+        end
+    else
+        TriggerClientEvent('Notify', a,'negado', 'Sem permissão!')
+    end
+end)
+
+function tablelen(table)
+    num = 0
+    for k,v in pairs(table) do
+        num = num + 1
+    end
+    return num
+end
+
+-----------------------------------------------------------------------------------------------------------------------------------------
 -- PLAYERSON
 -----------------------------------------------------------------------------------------------------------------------------------------
 RegisterCommand('pon',function(source,args,rawCommand)
@@ -61,6 +89,25 @@ RegisterCommand('pon',function(source,args,rawCommand)
         end
         -- TriggerClientEvent('chatMessage',source,"TOTAL ONLINE",{0,191,255},quantidade)
         TriggerClientEvent('chatMessage',source,"ID's ONLINE",{0,191,255},players)
+    end
+end)
+-----------------------------------------------------------------------------------------------------------------------------------------
+-- /KILL
+-----------------------------------------------------------------------------------------------------------------------------------------
+RegisterCommand('kill',function(source,args,rawCommand)
+    local user_id = vRP.getUserId(source)
+    if vRP.hasPermission(user_id,"kick.permissao") then
+        if args[1] then
+            local nplayer = vRP.getUserSource(parseInt(args[1]))
+            if nplayer then
+                vRPclient.killGod(nplayer)
+                vRPclient.setHealth(nplayer,0)
+            end
+        else
+            vRPclient.killGod(source)
+            vRPclient.setHealth(source,0)
+            vRPclient.setArmour(source,0)
+        end
     end
 end)
 -----------------------------------------------------------------------------------------------------------------------------------------
@@ -564,7 +611,7 @@ RegisterCommand('car',function(source,args,rawCommand)
 	local crds = GetEntityCoords(GetPlayerPed(source))
 	if vRP.hasPermission(user_id,"admin.permissao") then
 		if args[1] then
-			TriggerClientEvent('spawnarveiculo',source,args[1])
+			TriggerClientEvent('spawnarveiculo654687687',source,args[1])
 			SendWebhookMessage(webhookcarros,"```prolog\n[ID]: "..user_id.." "..identity.name.." "..identity.firstname.." \n[SPAWNOU]: "..(args[1]).."\n[COORDENADA]: "..crds.x..","..crds.y..","..crds.z..""..os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S").." \r```")
 		end
 	end
@@ -816,6 +863,27 @@ local presets = {
 			["p0"] = {-1,0},
 		}
 	},
+	["porcaop"] = {
+		[1885233650] = {
+			[1] = {0,0,2},
+			[2] = {21,0,0},
+			[3] = {0,0,2},
+			[4] = {87,2,2},
+			[5] = {0,0,0},
+			[6] = {46,0,2},
+			[7] = {4,0,2},
+			[8] = {40,0,2},
+			[9] = {0,0,0},
+			[10] = {0,0,0},
+			[11] = {256,3,2},
+			[0] = {0,0,0},
+			["p0"] = {-1,0},
+			["p1"] = {7,0},
+			["p2"] = {-1,0},
+			["p7"] = {-1,0},
+			["p6"] = {4,0},
+		}
+	},
 	["wally"] = {
 		[1885233650] = {
 			[1] = {26,1,2},
@@ -890,6 +958,27 @@ local presets = {
 			["p0"] = {-1,0},
 		}
 	},
+	["jhon"] = {
+		[1885233650] = {
+			[1] = {9,0,2},
+			[2] = {21,0,0},
+			[3] = {0,0,1},
+			[4] = {87,11,1},
+			[5] = {-1,0,2},
+			[6] = {9,12,1},
+			[7] = {0,0,2},
+			[8] = {15,0,2},
+			[9] = {0,0,1},
+			[10] = {-1,0,2},
+			[11] = {208,18,1},
+			[0] = {0,0,0},
+			["p7"] = {-1,0},
+			["p6"] = {-1,0},
+			["p0"] = {-1,0},
+			["p1"] = {15,8},
+			["p2"] = {4,0},
+		}
+	},
 	["chloe"] = {
 		[-1667301416] = {
 			[1] = {18,0,2},
@@ -909,6 +998,48 @@ local presets = {
 			["p1"] = {-1,0},
 			["p7"] = {-1,0},
 			["p6"] = {-1,0},
+		}
+	},
+	["seitaf"] = { -- Seita Feminino
+		[-1667301416] = {
+			[1] = {37,0,1},
+			[2] = {74,0,0},
+			[3] = {5,0,1},
+			[4] = {112,0,2},
+			[5] = {-1,0,2},
+			[6] = {25,0,1},
+			[7] = {-1,0,2},
+			[8] = {6,0,2},
+			[9] = {-1,0,2},
+			[10] = {-1,0,2},
+			[11] = {206,0,1},
+			[0] = {0,0,0},
+			["p2"] = {-1,0},
+			["p1"] = {-1,0},
+			["p6"] = {-1,0},
+			["p7"] = {-1,0},
+			["p0"] = {-1,0},
+		}
+	},
+	["seita"] = { -- Seita Masculino
+		[1885233650] = {
+			[1] = {11,2,1},
+			[2] = {57,0,0},
+			[3] = {35,0,1},
+			[4] = {33,0,1},
+			[5] = {-1,0,2},
+			[6] = {50,0,1},
+			[7] = {-1,0,2},
+			[8] = {15,0,2},
+			[9] = {0,0,0},
+			[10] = {-1,0,2},
+			[11] = {204,0,1},
+			[0] = {0,0,0},
+			["p1"] = {-1,0},
+			["p6"] = {-1,0},
+			["p0"] = {2,0},
+			["p7"] = {-1,0},
+			["p2"] = {-1,0},
 		}
 	},
 }
@@ -1380,4 +1511,12 @@ RegisterCommand('evento',function(source,args,rawCommand)
 			vRPclient.removeDiv(-1,"anuncio")
 		end)
 	end
+end)
+
+-----------------------------------------------------------------------------------------------------------------------------------------
+-- KICKAR JOGADORES QUE USAM A VERSÃO CANARY E NASCEM BUGADOS (BUG DO FIVEM)
+-----------------------------------------------------------------------------------------------------------------------------------------
+RegisterServerEvent('Bugado')
+AddEventHandler('Bugado', function()
+  DropPlayer(source,"[MQCU]  VOCÊ ESTÁ BUGADO, DESATIVE A OPÇÃO CANARY PARA DESBUGAR")
 end)

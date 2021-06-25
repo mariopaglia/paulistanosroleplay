@@ -7,7 +7,7 @@
       <modelName>pdfocus</modelName>
       <txdName>pdfocus</txdName>
       <handlingId>pdfocus</handlingId>
-      <gameName>pdfocus</gameName>
+      <gameName>Focus Policia</gameName>
       <vehicleMakeName>FORD</vehicleMakeName>
       <expressionDictName>null</expressionDictName>
       <expressionName>null</expressionName>
@@ -81,7 +81,7 @@
       <frequency value="90" />
       <swankness>SWANKNESS_2</swankness>
       <maxNum value="20" />
-      <flags>FLAG_RECESSED_HEADLIGHT_CORONAS FLAG_HAS_LIVERY FLAG_SPAWN_ON_TRAILER FLAG_AVERAGE_CAR FLAG_HAS_INTERIOR_EXTRAS FLAG_PARKING_SENSORS FLAG_EXTRAS_ALL FLAG_EXTRAS_STRONG</flags>
+      <flags>FLAG_LAW_ENFORCEMENT FLAG_EMERGENCY_SERVICE FLAG_RECESSED_HEADLIGHT_CORONAS FLAG_HAS_LIVERY FLAG_SPAWN_ON_TRAILER FLAG_AVERAGE_CAR FLAG_HAS_INTERIOR_EXTRAS FLAG_PARKING_SENSORS FLAG_EXTRAS_ALL FLAG_EXTRAS_STRONG</flags>
       <type>VEHICLE_TYPE_CAR</type>
       <plateType>VPT_BACK_PLATES</plateType>
       <dashboardType>VDT_RACE</dashboardType>

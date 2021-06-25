@@ -27,6 +27,13 @@ cfg.items = {
 	["gps"] = { "GPS",0.5 },
 	["rosa"] = { "rosa",0.5 },
 	["morango"] = { "morango",0.5 },
+	["tequila"] = { "tequila",0.2 },
+	["vodka"] = { "vodka",0.2 },
+	["cerveja"] = { "cerveja",0.2 },
+	["whisky"] = { "whisky",0.2 },
+	["conhaque"] = { "conhaque",0.2 },
+	["absinto"] = { "absinto",0.2 },
+	["agua"] = { "agua",0.2 },
 
 	-- Farm Contrabando
 	["componentemetal"] = { "Componentes de Metais",0.5 },

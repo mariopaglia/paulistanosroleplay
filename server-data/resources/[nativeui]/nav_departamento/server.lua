@@ -12,7 +12,7 @@ local valores = {
 	{ item = "celular", quantidade = 1, compra = 3000, venda = 1500 },
 	{ item = "radio", quantidade = 1, compra = 1000, venda = 500 },
 	{ item = "energetico", quantidade = 3, compra = 5000, venda = 2500 },
-	{ item = "militec", quantidade = 1, compra = 4000, venda = 100 },
+	{ item = "militec", quantidade = 1, compra = 5000, venda = 100 },
 }
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- COMPRAR

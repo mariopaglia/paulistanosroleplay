@@ -51,6 +51,7 @@ end)
 local marcacoes = {
 	{ 953.26,-975.51,39.76 }, -- Sport Race
 	{ -197.34,-1320.45,31.09 }, -- Bennys
+	{ -32.08,-1039.11,28.6 }, -- Bennys
 }
 
 Citizen.CreateThread(function()

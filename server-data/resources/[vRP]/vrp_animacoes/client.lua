@@ -73,6 +73,7 @@ local animacoes = {
 	{ nome = "beber5" , dict = "amb@world_human_drinking@beer@male@idle_a" , anim = "idle_a" , prop = "prop_beer_logopen" , flag = 49 , hand = 28422 },
 	{ nome = "beber6" , dict = "amb@world_human_drinking@beer@male@idle_a" , anim = "idle_a" , prop = "prop_beer_blr" , flag = 49 , hand = 28422 },
 	{ nome = "beber7" , dict = "amb@world_human_drinking@beer@male@idle_a" , anim = "idle_a" , prop = "prop_ld_flow_bottle" , flag = 49 , hand = 28422 },
+	--{ nome = "agua" , dict = "mp_player_intdrink" , anim = "loop_bottle" , prop = "prop_ld_flow_bottle" , flag = 49 , hand = 60309 },
 	{ nome = "digitar" , dict = "anim@heists@prison_heistig1_p1_guard_checks_bus" , anim = "loop" , andar = false , loop = true },
 	{ nome = "continencia" , dict = "mp_player_int_uppersalute" , anim = "mp_player_int_salute" , andar = true , loop = true },
 	{ nome = "atm" , dict = "amb@prop_human_atm@male@idle_a" , anim = "idle_a" , andar = false , loop = false },
@@ -360,13 +361,22 @@ local animacoes = {
     { nome = "dancar253" , dict = "anim@amb@casino@mini@dance@dance_solo@female@var_a@" , anim = "med_center" , andar = false , loop = true },
     { nome = "dancar254" , dict = "anim@amb@nightclub@dancers@crowddance_facedj@hi_intensity" , anim = "hi_dance_facedj_09_v2_female^1" , andar = false , loop = true },
     { nome = "dancar255" , dict = "anim@amb@nightclub@dancers@crowddance_facedj@hi_intensity" , anim = "hi_dance_facedj_09_v2_female^3" , andar = false , loop = true },
-    { nome = "dancar256" , dict = "anim@amb@nightclub@mini@dance@dance_solo@female@var_b" , anim = "low_center_down" , andar = false , loop = true },
+    { nome = "dancar256" , dict = "mini@strip_club@lap_dance@ld_girl_a_song_a_p1" , anim = "ld_girl_a_song_a_p1_f" , andar = false , loop = true },
+	{ nome = "dancar257" , dict = "mini@strip_club@private_dance@idle" , anim = "priv_dance_idle" , andar = false , loop = true },
+	{ nome = "dancar258" , dict = "mini@strip_club@lap_dance_2g@ld_2g_p1" , anim = "ld_2g_p1_s2" , andar = false , loop = true },
+	{ nome = "dancar259" , dict = "anim@amb@nightclub@lazlow@hi_dancefloor@" , anim = "dancecrowd_li_11_hu_shimmy_laz", prop = "ba_prop_battle_hobby_horse", hand = 28422 , andar = false , loop = true },
+	{ nome = "dancar260" , dict = "anim@amb@nightclub@lazlow@hi_dancefloor@" , anim = "crowddance_hi_11_handup_laz", prop = "ba_prop_battle_hobby_horse", hand = 28422 , andar = false , loop = true },
+	{ nome = "dancar261" , dict = "anim@amb@nightclub@lazlow@hi_dancefloor@" , anim = "dancecrowd_li_15_handup_laz", prop = "ba_prop_battle_hobby_horse", hand = 28422 , andar = false , loop = true },
 	{ nome = "sexo" , dict = "rcmpaparazzo_2" , anim = "shag_loop_poppy" , andar = false , loop = true },
 	{ nome = "sexo2" , dict = "rcmpaparazzo_2" , anim = "shag_loop_a" , andar = false , loop = true },
 	{ nome = "sexo3" , dict = "anim@mp_player_intcelebrationfemale@air_shagging" , anim = "air_shagging" , andar = false , loop = true },
 	{ nome = "sexo4" , dict = "oddjobs@towing" , anim = "m_blow_job_loop" , andar = false , loop = true , carros = true },
 	{ nome = "sexo5" , dict = "oddjobs@towing" , anim = "f_blow_job_loop" , andar = false , loop = true , carros = true },
 	{ nome = "sexo6" , dict = "mini@prostitutes@sexlow_veh" , anim = "low_car_sex_loop_female" , andar = false , loop = true , carros = true },
+	{ nome = "casalm" , dict = "timetable@trevor@ig_1" , anim = "ig_1_thedontknowwhy_trevor" , andar = false , loop = true },
+    { nome = "casalf" , dict = "timetable@trevor@ig_1" , anim = "ig_1_thedontknowwhy_patricia" , andar = false , loop = true },
+    { nome = "casalm2" , dict = "timetable@trevor@ig_1" , anim = "ig_1_thedesertissobeautiful_trevor" , andar = false , loop = true },
+    { nome = "casalf2" , dict = "timetable@trevor@ig_1" , anim = "ig_1_thedesertissobeautiful_patricia" , andar = false , loop = true },
 	--{ nome = "sentar" , anim = "PROP_HUMAN_SEAT_CHAIR_MP_PLAYER" },
 	{ nome = "sentar2" , dict = "amb@world_human_picnic@male@base" , anim = "base" , andar = false , loop = true },
 	{ nome = "sentar3" , dict = "anim@heists@fleeca_bank@ig_7_jetski_owner" , anim = "owner_idle" , andar = false , loop = true },
@@ -520,6 +530,99 @@ local animacoes = {
     { nome = "abracocintura2" , dict = "misscarsteal2chad_goodbye" , anim = "chad_armsaround_chad" , andar = true , loop = true },
     { nome = "abracoombro" , dict = "misscarsteal2chad_goodbye" , anim = "chad_armsaround_girl" , andar = false , loop = true },
     { nome = "abracoombro2" , dict = "misscarsteal2chad_goodbye" , anim = "chad_armsaround_girl" , andar = true , loop = true },
+	{ nome = "tablet" , dict = "amb@code_human_in_bus_passenger_idles@female@tablet@base" , anim = "base" , prop = "prop_cs_tablet" , flag = 50 , mao = 28422 },
+	{ nome = "wait" , dict = "random@shop_tattoo", anim = "_idle_a" , andar = true , loop = true },
+	{ nome = "wait2" , dict = "rcmnigel1cnmt_1c", anim = "base" , andar = true , loop = true },
+	{ nome = "wait3" , dict = "rcmjosh1", anim = "idle" , andar = true , loop = true },
+	{ nome = "wait4" , dict = "timetable@amanda@ig_3", anim = "ig_3_base_tracy" , andar = true , loop = true },
+	{ nome = "wait5" , dict = "misshair_shop@hair_dressers", anim = "keeper_base" , andar = true , loop = true },
+	{ nome = "think" , dict = "misscarsteal4@aliens", anim = "rehearsal_base_idle_director" , andar = true , loop = true },
+	{ nome = "think2" , dict = "missheist_jewelleadinout", anim = "jh_int_outro_loop_a" , andar = true , loop = true },
+	{ nome = "think3" , dict = "timetable@tracy@ig_8@base", anim = "base" , andar = true , loop = true },
+	{ nome = "gangsign" , dict = "mp_player_int_uppergang_sign_a", anim = "mp_player_int_gang_sign_a" , andar = true , loop = true },
+	{ nome = "gangsign2" , dict = "mp_player_int_uppergang_sign_b", anim = "mp_player_int_gang_sign_b" , andar = true , loop = true },
+	{ nome = "checkin" , dict = "anim@gangops@morgue@table@" , anim = "body_search" , andar = false , loop = true },
+	{ nome = "w" , dict = "anim@mp_player_intcelebrationmale@bang_bang" , anim = "bang_bang" , andar = true , loop = false },
+	{ nome = "w2" , dict = "anim@mp_player_intcelebrationmale@air_drums" , anim = "air_drums" , andar = true , loop = false },
+	{ nome = "w3" , dict = "anim@mp_player_intcelebrationmale@call_me" , anim = "call_me" , andar = true , loop = false },
+	{ nome = "w4" , dict = "anim@mp_player_intcelebrationmale@coin_roll_and_toss" , anim = "coin_roll_and_toss" , andar = true , loop = false },
+	{ nome = "w5" , dict = "anim@mp_player_intcelebrationmale@mind_blown" , anim = "mind_blown" , andar = true , loop = false },
+	{ nome = "w6" , dict = "anim@mp_player_intcelebrationmale@respect" , anim = "respect" , andar = true , loop = false },
+	{ nome = "w7" , dict = "anim@amb@casino@hangout@ped_male@stand@01a@base" , anim = "base" , andar = true , loop = true },
+	{ nome = "w8" , dict = "anim@amb@casino@hangout@ped_male@stand@01b@enter" , anim = "enter" , andar = true , loop = false },
+	{ nome = "w9" , dict = "anim@amb@casino@hangout@ped_male@stand@01b@exit" , anim = "exit" , andar = true , loop = false },
+	{ nome = "toctoc" , dict = "missheistfbi3b_ig7" , anim = "lift_fibagent_loop" , andar = false , loop = true },
+	{ nome = "seguranca", anim = "WORLD_HUMAN_GUARD_STAND" },
+	--{ nome = "poledance" , dict = "mini@strip_club@pole_dance@pole_dance2" , anim = "pd_dance_02" , andar = false , loop = true },
+	--{ nome = "poledance2" , dict = "mini@strip_club@pole_dance@pole_dance1" , anim = "pd_dance_01" , andar = false , loop = true },
+	--{ nome = "poledance3" , dict = "mini@strip_club@pole_dance@pole_dance3" , anim = "pd_dance_03" , andar = false , loop = true },
+	{ nome = "mijar" , dict = "misscarsteal2peeing" , anim = "peeing_loop" , andar = false , loop = false , extra = function()
+		PtfxThis("core")
+		SetTimeout(500,function()
+			effect = StartParticleFxLoopedOnPedBone("ent_amb_peeing",PlayerPedId(),0.0,0.2,0.0,-140.0,0.0,0.0,GetPedBoneIndex(PlayerPedId(),11816),2.5,false,false,false)
+			Citizen.Wait(5500)
+			StopParticleFxLooped(effect,0)
+		end)
+	end },
+	{ nome = "cagar" , dict = "missfbi3ig_0" , anim = "shit_loop_trev" , andar = false , loop = false , extra = function()
+		PtfxThis("scr_amb_chop")
+		SetTimeout(1000,function()
+			effect = StartParticleFxLoopedOnPedBone("ent_anim_dog_poo",PlayerPedId(),0.0,0.0,-0.6,0.0,0.0,20.0,GetPedBoneIndex(PlayerPedId(),11816),2.0,false,false,false)
+			effect2 = StartParticleFxLoopedOnPedBone("ent_anim_dog_poo",PlayerPedId(),0.0,0.0,-0.6,0.0,0.0,20.0,GetPedBoneIndex(PlayerPedId(),11816),2.0,false,false,false)
+			Citizen.Wait(1000)
+			StopParticleFxLooped(effect,0)
+			StopParticleFxLooped(effect2,0)
+		end)
+	end	},
+	{ nome = "livro" , dict = "cellphone@" , anim = "cellphone_text_read_base" , andar = true , loop = true , extra = function()
+		vRP._CarregarObjeto("","","prop_novel_01",49,6286,0.15,0.03,-0.065,0.0,180.0,90.0)
+	end },
+	{ nome = "urso" , dict = "impexp_int-0" , anim = "mp_m_waremech_01_dual-0" , andar = true , loop = true , extra = function()
+		vRP._CarregarObjeto("","","v_ilev_mr_rasberryclean",49,24817,-0.20,0.46,-0.016,-180.0,-90.0,0.0)
+	end },
+	{ nome = "dinheiro" , dict = "anim@mp_player_intupperraining_cash" , anim = "idle_a" , andar = true , loop = true , extra = function()
+		vRP._CarregarObjeto("","","prop_anim_cash_pile_01",49,60309,0.0,0.0,0.0,180.0,0.0,70.0)
+	end },
+	{ nome = "parachoque" , dict = "anim@heists@box_carry@" , anim = "idle" , andar = true , loop = true , extra = function()
+		--TriggerServerEvent("carregarobjeto","imp_prop_impexp_front_bumper_02a",49,28422,0.0,0.1,0.05,0.0,0.0,0.0)
+        vRP._CarregarObjeto("","","imp_prop_impexp_front_bumper_02a",49,28422,0.0,0.1,0.05,0.0,0.0,0.0)
+	end },
+	{ nome = "porta" , dict = "anim@heists@box_carry@" , anim = "idle" , andar = true , loop = true , extra = function()
+		--TriggerServerEvent("carregarobjeto","imp_prop_impexp_front_bumper_02a",49,28422,0.0,0.1,0.05,0.0,0.0,0.0)
+        vRP._CarregarObjeto("","","prop_car_door_01",49,28422,0.0,-0.1,-0.15,0.0,0.0,0.0)
+	end },
+	{ nome = "porta2" , dict = "anim@heists@box_carry@" , anim = "idle" , andar = true , loop = true , extra = function()
+		--TriggerServerEvent("carregarobjeto","imp_prop_impexp_front_bumper_02a",49,28422,0.0,0.1,0.05,0.0,0.0,0.0)
+        vRP._CarregarObjeto("","","prop_car_door_02",49,28422,0.0,-0.1,-0.15,0.0,0.0,0.0)
+	end },
+	{ nome = "porta3" , dict = "anim@heists@box_carry@" , anim = "idle" , andar = true , loop = true , extra = function()
+		--TriggerServerEvent("carregarobjeto","imp_prop_impexp_front_bumper_02a",49,28422,0.0,0.1,0.05,0.0,0.0,0.0)
+		vRP._CarregarObjeto("","","prop_car_door_03",49,28422,0.0,-0.1,-0.15,0.0,0.0,0.0)
+	end },
+	{ nome = "porta4" , dict = "anim@heists@box_carry@" , anim = "idle" , andar = true , loop = true , extra = function()
+		--TriggerServerEvent("carregarobjeto","imp_prop_impexp_front_bumper_02a",49,28422,0.0,0.1,0.05,0.0,0.0,0.0)
+        vRP._CarregarObjeto("","","prop_car_door_04",49,28422,0.0,-0.1,-0.15,0.0,0.0,0.0)
+	end },
+	{ nome = "banco" , dict = "anim@heists@box_carry@" , anim = "idle" , andar = true , loop = true , extra = function()
+		--TriggerServerEvent("carregarobjeto","imp_prop_impexp_front_bumper_02a",49,28422,0.0,0.1,0.05,0.0,0.0,0.0)
+		vRP._CarregarObjeto("","","prop_car_seat",49,28422,0.0,-0.2,-0.14,0.0,0.0,0.0)
+	end },
+	{ nome = "pneu" , dict = "anim@heists@box_carry@" , anim = "idle" , andar = true , loop = true , extra = function()
+		--TriggerServerEvent("carregarobjeto","imp_prop_impexp_front_bumper_02a",49,28422,0.0,0.1,0.05,0.0,0.0,0.0)
+        vRP._CarregarObjeto("","","prop_wheel_tyre",49,28422,0.0,-0.1,-0.15,0.0,0.0,0.0)
+	end },
+	{ nome = "pneu2" , dict = "anim@heists@box_carry@" , anim = "idle" , andar = true , loop = true , extra = function()
+		--TriggerServerEvent("carregarobjeto","imp_prop_impexp_front_bumper_02a",49,28422,0.0,0.1,0.05,0.0,0.0,0.0)
+        vRP._CarregarObjeto("","","prop_wheel_03",49,28422,0.0,-0.1,-0.15,0.0,0.0,0.0)
+	end },
+	{ nome = "bateria" , dict = "anim@heists@box_carry@" , anim = "idle" , andar = true , loop = true , extra = function()
+		--TriggerServerEvent("carregarobjeto","imp_prop_impexp_front_bumper_02a",49,28422,0.0,0.1,0.05,0.0,0.0,0.0)
+        vRP._CarregarObjeto("","","prop_car_battery_01",49,28422,0.0,-0.1,-0.10,0.0,0.0,0.0)
+	end },
+	{ nome = "motor" , dict = "anim@heists@box_carry@" , anim = "idle" , andar = true , loop = true , extra = function()
+		--TriggerServerEvent("carregarobjeto","imp_prop_impexp_front_bumper_02a",49,28422,0.0,0.1,0.05,0.0,0.0,0.0)
+        vRP._CarregarObjeto("","","prop_car_engine_01",49,28422,0.0,-0.1,-0.10,0.0,0.0,0.0)
+	end },
 	{ nome = "rebolar" , dict = "switch@trevor@mocks_lapdance" , anim = "001443_01_trvs_28_idle_stripper" , andar = true, loop = true, extra = function() 
         local ped = GetPlayerPed()
         if IsPedArmed(ped, 7) then
@@ -735,7 +838,86 @@ Citizen.CreateThread(function()
         end
     end
 end)
- 
+
+------------------------------------------------------------------------
+-- SYNC
+------------------------------------------------------------------------
+RegisterNetEvent('syncanim')
+AddEventHandler('syncanim',function(pos)
+ 	local pedInFront = GetPlayerPed(GetClosestPlayer())
+    local heading = GetEntityHeading(pedInFront)
+    local coords = GetOffsetFromEntityInWorldCoords(pedInFront,0.0,pos,0.0)
+    SetEntityHeading(PlayerPedId(),heading-180.1)
+    SetEntityCoordsNoOffset(PlayerPedId(),coords.x,coords.y,coords.z,0)
+end)
+
+RegisterNetEvent('dancalouca')
+AddEventHandler('dancalouca',function()
+	vRP._playAnim(false, {{"special_ped@mountain_dancer@monologue_3@monologue_3a", "mnt_dnc_buttwag"}}, false)
+end)
+
+RegisterNetEvent('yoga')
+AddEventHandler('yoga',function()
+	vRP._playAnim(false, {{"amb@world_human_yoga@male@base", "base_a"}}, false)
+end)
+
+RegisterNetEvent('beijar2')
+AddEventHandler('beijar2',function()
+	vRP._playAnim(false, {{"mp_ped_interaction", "kisses_guy_a"}}, false)
+end)
+
+RegisterNetEvent('abracar')
+AddEventHandler('abracar',function()
+	vRP._playAnim(false, {{"mp_ped_interaction", "hugs_guy_a"}}, false)
+end)
+
+RegisterNetEvent('abracar2')
+AddEventHandler('abracar2',function()
+	vRP._playAnim(false, {{"mp_ped_interaction", "kisses_guy_b"}}, false)
+end)
+
+function GetClosestPlayer()
+    local players = GetPlayers()
+    local closestDistance = -1
+    local closestPlayer = -1
+    local ply = GetPlayerPed(-1)
+    local plyCoords = GetEntityCoords(ply, 0)
+
+    for index,value in ipairs(players) do
+        local target = GetPlayerPed(value)
+        if(target ~= ply) then
+            local targetCoords = GetEntityCoords(GetPlayerPed(value), 0)
+            local distance = GetDistanceBetweenCoords(targetCoords["x"], targetCoords["y"], targetCoords["z"], plyCoords["x"], plyCoords["y"], plyCoords["z"], true)
+            if(closestDistance == -1 or closestDistance > distance) then
+                closestPlayer = value
+                closestDistance = distance
+            end
+        end
+    end
+    return closestPlayer, closestDistance
+end
+
+function GetPlayers()
+    local players = {}
+
+    for i = 0, 256 do
+        if NetworkIsPlayerActive(i) then
+            table.insert(players, i)
+        end
+    end
+
+    return players
+end
+
+function PtfxThis(asset)
+	while not HasNamedPtfxAssetLoaded(asset) do
+	  RequestNamedPtfxAsset(asset)
+	  Wait(10)
+	end
+	UseParticleFxAssetNextCall(asset)
+  end
+----------------------------------------------
+----------------------------------------------
 RegisterNetEvent('binoculos')
 AddEventHandler('binoculos',function()
     if IsEntityPlayingAnim(PlayerPedId(),"amb@world_human_binoculars@male@enter","enter",3) then

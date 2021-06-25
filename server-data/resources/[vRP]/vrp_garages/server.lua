@@ -14,6 +14,8 @@ Tunnel.bindInterface("vrp_garages", src)
 vCLIENT = Tunnel.getInterface("vrp_garages")
 local inventory = module("vrp", "cfg/inventory")
 local idgens = Tools.newIDGenerator()
+
+vCONCES = Proxy.getInterface("vrp_concessionaria","vrp_concessionaria")
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- PREPARE
 -----------------------------------------------------------------------------------------------------------------------------------------
@@ -94,8 +96,8 @@ local garages = {
     [31] = {['name'] = "Carteiro", ['payment'] = false, ['perm'] = "livre"},
     [32] = {['name'] = "Lixeiro", ['payment'] = false, ['perm'] = "livre"},
     [33] = {['name'] = "Minerador", ['payment'] = false, ['perm'] = "livre"},
-    [34] = {['name'] = "Lenhador", ['payment'] = false, ['perm'] = "livre"},
-    [35] = {['name'] = "Leiteiro", ['payment'] = false, ['perm'] = "livre"},
+    -- [34] = {['name'] = "Lenhador", ['payment'] = false, ['perm'] = "livre"},
+    -- [35] = {['name'] = "Leiteiro", ['payment'] = false, ['perm'] = "livre"},
     [36] = {['name'] = "Caminhoneiro", ['payment'] = false, ['perm'] = "livre"},
     [37] = {['name'] = "Advogado", ['payment'] = false, ['perm'] = "advogado.permissao"},
     [38] = {['name'] = "Embarcações", ['payment'] = false, ['perm'] = "livre"},
@@ -422,8 +424,9 @@ local garages = {
     -----------------------------------------------------------------------------------------------------------------------------------------
     --													POLICIA
     -----------------------------------------------------------------------------------------------------------------------------------------
+    [637] = {['name'] = "Garagem", ['payment'] = false, ['public'] = true}, 
     [612] = {['name'] = "PMESP", ['payment'] = false, ['perm'] = "pmesp.permissao"},
-    [613] = {['name'] = "PMESPH", ['payment'] = false, ['perm'] = "pmesp.permissao"},
+    [613] = {['name'] = "PoliciaHeli", ['payment'] = false, ['perm'] = "policia.permissao"},
     [618] = {['name'] = "PoliciaHeli", ['payment'] = false, ['perm'] = "policia.permissao"},
     [614] = { ['name'] = "ROTA", ['payment'] = false, ['perm'] = "rota.permissao" },
     [615] = {['name'] = "Policia", ['payment'] = false, ['perm'] = "policia.permissao"},
@@ -458,6 +461,15 @@ local garages = {
     [633] = {['name'] = "Serpentes", ['payment'] = false, ['perm'] = "serpentes.permissao"},
     [634] = {['name'] = "Embarcações", ['payment'] = false, ['perm'] = "livre"},
     [635] = {['name'] = "Embarcações", ['payment'] = false, ['perm'] = "livre"},
+    [636] = {['name'] = "Bicicletario", ['payment'] = false, ['perm'] = "livre"}, -- Bennys
+    [637] = {['name'] = "Garagem", ['payment'] = false, ['public'] = true}, -- Bennys
+    [638] = {['name'] = "Garagem", ['payment'] = false, ['public'] = true}, -- mansao playboy
+    [639] = {['name'] = "Policia", ['payment'] = false, ['perm'] = "policia.permissao"}, -- POLICIA DP NOVA
+    [640] = {['name'] = "PoliciaHeli", ['payment'] = false, ['perm'] = "policia.permissao"}, -- HELI DP NOVA
+    [641] = {['name'] = "Garagem", ['payment'] = false, ['public'] = true}, -- PESSOAL DP NOVA
+    [642] = {['name'] = "Garagem", ['payment'] = false, ['public'] = true}, -- ECLIPSE TOWER
+    [643] = {['name'] = "Policia", ['payment'] = false, ['perm'] = "policia.permissao"}, -- GARAGEM PRESIDIO
+    [644] = {['name'] = "Garagem", ['payment'] = false, ['public'] = true}, -- GARAGEM PESSOAL SERPENTES
 }
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- GARAGEMS
@@ -475,13 +487,13 @@ local workgarage = {
     ["Serpentes"] = {"sanctus"},
     ["Motoclub"] = {"sanctus"},
     ["Bennys"] = {"flatbed", "slamvan3"},
+    ["NovaBennys"] = {"flatbed", "slamvan3"},
     ["SportRace"] = {"flatbed", "slamvan3"},
     ["PRF"] = {"cruzeprf2", "l200prf", "trailprf", "ec130PRF"},
-    ["Policia"] = {"av-amarok", "sbearcat", "bmwg20", "av-gt63", "av-m8", "pbus", "pdfocus", "av-nc7", "av-levante", "ghispo2"},
+    ["Policia"] = {"av-amarok", "sbearcat", "bmwg20", "av-gt63", "av-m8", "pbus", "pdfocus", "av-nc7", "av-levante", "ghispo2", "bmwm5policia", "chevypolicia", "porschespeed"},
     ["PoliciaHeli"] = {"polmav"},
     ["ROTA"] = {"sw4revrota1", "trailrota2"},
     ["PMESP"] = {"pbus", "riot", "20blazer2", "police3", "spacepm1", "trailcfp", "trailpm1", "av-gt63", "av-m8", "policeb"},
-    ["PMESPH"] = {"as350", "polmav"},
     ["PoliciaPC"] = {"sw4pc1", "trailcivileie", "traildesc", "trailgarra1"},
     ["RECOM"] = {"frontierrecom", "frontierrecom2"},
     ["BPCHQ"] = {"sw4bpchq", "s10bpchq", "xrebpchq"},
@@ -609,6 +621,15 @@ function src.spawnVehicles(name, use)
             local identity = vRP.getUserIdentity(user_id)
             local value = vRP.getUData(parseInt(user_id), "vRP:multas")
             local multas = json.decode(value) or 0
+
+            -- BLOQUEAR RETIRADA DE VEÍCULOS COM X VALOR DE MULTA PENDENTE
+            if vRP.vehicleType(tostring(name)) ~= "work" then
+                if multas >= 50000 then
+                    TriggerClientEvent("Notify", source, "negado", "Você tem <b>R$ " ..vRP.format(parseInt(multas)).. "</b> em multas pendentes, pague-as no banco para retirar seus veículos", 15000)
+                    return
+                end
+            end
+
             if not vCLIENT.returnVehicle(source, name) then
                 local vehicle = vRP.query("creative/get_vehicles", {user_id = parseInt(user_id), vehicle = name})
                 local tuning = vRP.getSData("custom:u" .. user_id .. "veh_" .. name)
@@ -930,7 +951,7 @@ end
 -- 		if vRP.hasPermission(user_id,"admin.permissao") then
 -- 			if args[1] then
 -- 				SendWebhookMessage(webhookadmin,"```prolog\n[ID]: "..user_id.." "..identity.name.." "..identity.firstname.." \n[SPAWNOU]: "..(args[1]).." "..os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S").." \r```")
--- 				TriggerClientEvent('spawnarveiculo',source,args[1])
+-- 				TriggerClientEvent('spawnarveiculo654687687',source,args[1])
 -- 				TriggerEvent("setPlateEveryone",identity.registration)
 -- 			end
 -- 		end
@@ -947,7 +968,6 @@ RegisterCommand('vehs', function(source, args, rawCommand)
             local myvehicles = vRP.query("creative/get_vehicles", {user_id = parseInt(user_id), vehicle = tostring(args[1])})
 
             local nuser_id = vRP.getUserId(nplayer)
-            local totalv = vRP.query("vRP/get_maxcars", {user_id = nuser_id})
             local totalGaragens = 3
 
             if vRP.hasPermission(nuser_id, "diamante.permissao") then
@@ -960,11 +980,11 @@ RegisterCommand('vehs', function(source, args, rawCommand)
                 totalGaragens = totalGaragens + 2
             end
 
-            if parseInt(totalv[1].quantidade) >= totalGaragens then
+            if vCONCES.getTotalVeiculos(nuser_id) >= totalGaragens then
                 TriggerClientEvent("Notify", source, "importante", "O comprador não tem vagas na garagem!", 8000)
                 TriggerClientEvent("Notify", nplayer, "importante", "Você não tem vagas na garagem!", 8000)
             end
-            if parseInt(totalv[1].quantidade) < totalGaragens then
+            if vCONCES.getTotalVeiculos(nuser_id) < totalGaragens then
                 if myvehicles[1] then
                     if vRP.vehicleType(tostring(args[1])) == "vip" or vRP.vehicleType(tostring(args[1])) == "alugado" then
                         TriggerClientEvent("Notify", source, "negado", "<b>" .. vRP.vehicleName(tostring(args[1])) .. "</b> não pode ser transferido por ser um veículo <b>VIP ou Alugado</b>", 10000)

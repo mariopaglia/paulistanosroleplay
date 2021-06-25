@@ -289,23 +289,23 @@ end, false)
 
 --[  ]-----------------------------------------------------------------------------
 
-RegisterKeyMapping ( 'vrp:up' , 'Cima' , 'keyboard' , 'UP' )
+ RegisterKeyMapping ( 'vrp:up' , 'Cima' , 'keyboard' , 'UP' )
 
-RegisterCommand('vrp:up', function()
-	if menu_state.opened then
-		SendNUIMessage({ act = "event", event = "UP" }) 
-        tvRP.playSound("NAV_UP_DOWN","HUD_FRONTEND_DEFAULT_SOUNDSET") 
-	end
-end, false)
+ RegisterCommand('vrp:up', function()
+ 	if menu_state.opened then
+ 		SendNUIMessage({ act = "event", event = "UP" }) 
+         tvRP.playSound("NAV_UP_DOWN","HUD_FRONTEND_DEFAULT_SOUNDSET") 
+ 	end
+ end, false)
 
-RegisterKeyMapping ( 'vrp:down' , 'Baixo' , 'keyboard' , 'DOWN' )
+ RegisterKeyMapping ( 'vrp:down' , 'Baixo' , 'keyboard' , 'DOWN' )
 
-RegisterCommand('vrp:down', function()
-	if menu_state.opened then
-		SendNUIMessage({ act = "event", event = "DOWN" })
-        tvRP.playSound("NAV_UP_DOWN","HUD_FRONTEND_DEFAULT_SOUNDSET")
-	end
-end, false)
+ RegisterCommand('vrp:down', function()
+ 	if menu_state.opened then
+ 		SendNUIMessage({ act = "event", event = "DOWN" })
+         tvRP.playSound("NAV_UP_DOWN","HUD_FRONTEND_DEFAULT_SOUNDSET")
+ 	end
+ end, false)
 
 RegisterKeyMapping ( 'vrp:left' , 'Esquerda' , 'keyboard' , 'LEFT' )
 

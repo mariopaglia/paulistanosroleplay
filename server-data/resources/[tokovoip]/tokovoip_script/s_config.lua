@@ -999,11 +999,11 @@ TokoVoipConfig = {
 		{ name = "Freq. 997", subscribers = {} }, -- 997   
 		{ name = "Freq. 998", subscribers = {} }, -- 998   
 		{ name = "Freq. 999", subscribers = {} }, -- 999   
-		{ name = "PMESP", subscribers = {} }, -- 1000   
+		{ name = "Policia 01", subscribers = {} }, -- 1000   
 		{ name = "STAFF", subscribers = {} }, -- 1001 
-		{ name = "PMESP ROTA", subscribers = {} }, -- 1002 
-		{ name = "Polícia Cívil", subscribers = {} }, -- 1003 
-		{ name = "PRF", subscribers = {} }, -- 1004 
+		{ name = "Policia 02", subscribers = {} }, -- 1002 
+		{ name = "Serpentes", subscribers = {} }, -- 1003 
+		{ name = "Triade", subscribers = {} }, -- 1004 
 		{ name = "SAMU", subscribers = {} }, -- 1005 
 		{ name = "Bennys", subscribers = {} }, -- 1006 
 		{ name = "SportRace", subscribers = {} }, -- 1007 

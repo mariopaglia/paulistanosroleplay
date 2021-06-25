@@ -290,33 +290,33 @@ Citizen.CreateThread(function()
     	Wait(0)
 		N_0x4757f00bc6323cfe(GetHashKey("WEAPON_BULLPUPRIFLE"), 0.0)
     	Wait(0)
-		N_0x4757f00bc6323cfe(GetHashKey("WEAPON_SPECIALCARBINE"), 0.0)
+		N_0x4757f00bc6323cfe(GetHashKey("WEAPON_SPECIALCARBINE"), 1.5) -- G36x
     	Wait(0)
-		N_0x4757f00bc6323cfe(GetHashKey("WEAPON_ASSAULTRIFLE_MK2"), 3.5) -- AK-47
+		N_0x4757f00bc6323cfe(GetHashKey("WEAPON_ASSAULTRIFLE_MK2"), 1.5) -- AK-47
     	Wait(0)
-		N_0x4757f00bc6323cfe(GetHashKey("WEAPON_CARBINERIFLE_MK2"), 3.5) -- M4A1
+		N_0x4757f00bc6323cfe(GetHashKey("WEAPON_CARBINERIFLE_MK2"), 1.5) -- M4A1
     	Wait(0)
-		N_0x4757f00bc6323cfe(GetHashKey("WEAPON_SPECIAlCARBINE_MK2"), 3.5) -- G36
+		N_0x4757f00bc6323cfe(GetHashKey("WEAPON_SPECIAlCARBINE_MK2"), 1.5) -- G36
     	Wait(0)
-		N_0x4757f00bc6323cfe(GetHashKey("WEAPON_CARBINERIFLE"), 3.5) -- AR-15
+		N_0x4757f00bc6323cfe(GetHashKey("WEAPON_CARBINERIFLE"), 1.5) -- AR-15
     	Wait(0)
-		N_0x4757f00bc6323cfe(GetHashKey("WEAPON_COMBATPISTOL"), 3.0) -- GLOCK
+		N_0x4757f00bc6323cfe(GetHashKey("WEAPON_COMBATPISTOL"), 1.2) -- GLOCK
     	Wait(0)
 		N_0x4757f00bc6323cfe(GetHashKey("WEAPON_MACHINEPISTOL"), 0.0)
     	Wait(0)
-		N_0x4757f00bc6323cfe(GetHashKey("WEAPON_COMBATPDW"), 2.5) -- SIGSAUER
+		N_0x4757f00bc6323cfe(GetHashKey("WEAPON_COMBATPDW"), 1.2) -- SIGSAUER
     	Wait(0)
 		N_0x4757f00bc6323cfe(GetHashKey("WEAPON_SMOKEGRENADE"), 0.0)
     	Wait(0)
 		N_0x4757f00bc6323cfe(GetHashKey("WEAPON_APPISTOL"), 0.0)
     	Wait(0)
-		N_0x4757f00bc6323cfe(GetHashKey("WEAPON_PISTOL"), 0.0)
+		N_0x4757f00bc6323cfe(GetHashKey("WEAPON_PISTOL"), 1.2) -- M1911
     	Wait(0)
 		N_0x4757f00bc6323cfe(GetHashKey("WEAPON_REVOLVER"), 0.0)
     	Wait(0)
 		N_0x4757f00bc6323cfe(GetHashKey("WEAPON_VINTAGEPISTOL"), 0.0)
 		Wait(0)
-		N_0x4757f00bc6323cfe(GetHashKey("WEAPON_SMG_MK2"), 2.5) -- MP5-MK2
+		N_0x4757f00bc6323cfe(GetHashKey("WEAPON_SMG_MK2"), 1.2) -- MP5-MK2
     	Wait(0)
 		N_0x4757f00bc6323cfe(GetHashKey("WEAPON_SMG"), 0.0)
     	Wait(0)
@@ -334,7 +334,7 @@ Citizen.CreateThread(function()
     	Wait(0)
 		N_0x4757f00bc6323cfe(GetHashKey("WEAPON_DBSHOTGUN"), 0.0)
     	Wait(0)
-		N_0x4757f00bc6323cfe(GetHashKey("WEAPON_PISTOL_MK2"), 3.0) -- FIVE-SEVEN
+		N_0x4757f00bc6323cfe(GetHashKey("WEAPON_PISTOL_MK2"), 1.2) -- FIVE-SEVEN
     	Wait(0)
 		N_0x4757f00bc6323cfe(GetHashKey("WEAPON_PISTOL50"), 0.0)
     	Wait(0)
@@ -352,6 +352,10 @@ RegisterCommand("attachs",function(source,args)
         GiveWeaponComponentToPed(ped,GetHashKey("WEAPON_SPECIALCARBINE_MK2"),GetHashKey("COMPONENT_AT_SCOPE_MEDIUM_MK2")) -- MIRA GRANDE
         GiveWeaponComponentToPed(ped,GetHashKey("WEAPON_SPECIALCARBINE_MK2"),GetHashKey("COMPONENT_AT_MUZZLE_02")) -- FREIO DE BOCA TATICO
         GiveWeaponComponentToPed(ped,GetHashKey("WEAPON_SPECIALCARBINE_MK2"),GetHashKey("COMPONENT_AT_AR_AFGRIP_02")) -- EMPUNHADURA
+	elseif GetSelectedPedWeapon(ped) == GetHashKey("WEAPON_SPECIALCARBINE") then -- G36x
+        GiveWeaponComponentToPed(ped,GetHashKey("WEAPON_SPECIALCARBINE"),GetHashKey("COMPONENT_AT_SCOPE_MEDIUM")) -- MIRA GRANDE
+        GiveWeaponComponentToPed(ped,GetHashKey("WEAPON_SPECIALCARBINE"),GetHashKey("COMPONENT_AT_AR_FLSH")) -- LANTERNA
+        GiveWeaponComponentToPed(ped,GetHashKey("WEAPON_SPECIALCARBINE"),GetHashKey("COMPONENT_AT_AR_AFGRIP")) -- EMPUNHADURA
 	elseif GetSelectedPedWeapon(ped) == GetHashKey("WEAPON_ASSAULTRIFLE_MK2") then -- AK-47
         GiveWeaponComponentToPed(ped,GetHashKey("WEAPON_ASSAULTRIFLE_MK2"),GetHashKey("COMPONENT_AT_SCOPE_MEDIUM_MK2")) -- MIRA GRANDE
         GiveWeaponComponentToPed(ped,GetHashKey("WEAPON_ASSAULTRIFLE_MK2"),GetHashKey("COMPONENT_AT_MUZZLE_02")) -- FREIO DE BOCA TATICO
@@ -365,6 +369,9 @@ RegisterCommand("attachs",function(source,args)
         GiveWeaponComponentToPed(ped,GetHashKey("WEAPON_PISTOL_MK2"),GetHashKey("COMPONENT_AT_PI_RAIL")) -- MIRA
         GiveWeaponComponentToPed(ped,GetHashKey("WEAPON_PISTOL_MK2"),GetHashKey("COMPONENT_AT_PI_FLSH_02")) -- LANTERNA
         GiveWeaponComponentToPed(ped,GetHashKey("WEAPON_PISTOL_MK2"),GetHashKey("COMPONENT_PISTOL_MK2_CLIP_02")) -- CARREGADOR ESTENDIDO
+	elseif GetSelectedPedWeapon(ped) == GetHashKey("WEAPON_PISTOL") then -- M1911
+        GiveWeaponComponentToPed(ped,GetHashKey("WEAPON_PISTOL"),GetHashKey("COMPONENT_AT_PI_FLSH")) -- LANTERNA
+        GiveWeaponComponentToPed(ped,GetHashKey("WEAPON_PISTOL"),GetHashKey("COMPONENT_PISTOL_CLIP_02")) -- CARREGADOR ESTENDIDO
 	elseif GetSelectedPedWeapon(ped) == GetHashKey("WEAPON_CARBINERIFLE_MK2") then -- M4A1
         GiveWeaponComponentToPed(ped,GetHashKey("WEAPON_CARBINERIFLE_MK2"),GetHashKey("COMPONENT_AT_SCOPE_MEDIUM_MK2")) -- MIRA GRANDE
         GiveWeaponComponentToPed(ped,GetHashKey("WEAPON_CARBINERIFLE_MK2"),GetHashKey("COMPONENT_AT_MUZZLE_02")) -- FREIO DE BOCA TATICO
@@ -395,6 +402,10 @@ RegisterCommand("sil",function(source,args)
     	    GiveWeaponComponentToPed(ped,GetHashKey("WEAPON_SMG_MK2"),GetHashKey("COMPONENT_AT_PI_SUPP"))
 		elseif GetSelectedPedWeapon(ped) == GetHashKey("WEAPON_PISTOL_MK2") then -- FIVE-SEVEN
     	    GiveWeaponComponentToPed(ped,GetHashKey("WEAPON_PISTOL_MK2"),GetHashKey("COMPONENT_AT_PI_SUPP_02"))
+		elseif GetSelectedPedWeapon(ped) == GetHashKey("WEAPON_PISTOL") then -- M1911
+    	    GiveWeaponComponentToPed(ped,GetHashKey("WEAPON_PISTOL"),GetHashKey("COMPONENT_AT_PI_SUPP_02"))
+		elseif GetSelectedPedWeapon(ped) == GetHashKey("WEAPON_SPECIALCARBINE") then -- G36X
+    	    GiveWeaponComponentToPed(ped,GetHashKey("WEAPON_SPECIALCARBINE"),GetHashKey("COMPONENT_AT_AR_SUPP_02"))
 		elseif GetSelectedPedWeapon(ped) == GetHashKey("WEAPON_CARBINERIFLE_MK2") then -- M4A1
     	    GiveWeaponComponentToPed(ped,GetHashKey("WEAPON_CARBINERIFLE_MK2"),GetHashKey("COMPONENT_AT_AR_SUPP"))
 		elseif GetSelectedPedWeapon(ped) == GetHashKey("WEAPON_CARBINERIFLE") then -- AR-15
@@ -1045,7 +1056,7 @@ AddEventHandler(
 	function()
 		repeat
 			SetEntityHealth(PlayerPedId(), GetEntityHealth(PlayerPedId()) + 1)
-			Citizen.Wait(600)
+			Citizen.Wait(500)
 		until GetEntityHealth(PlayerPedId()) >= 400 or GetEntityHealth(PlayerPedId()) <= 100
 		TriggerEvent("Notify", "sucesso", "Tratamento concluido.")
 	end
@@ -1210,9 +1221,9 @@ local hurt = false
 Citizen.CreateThread(function()
     while true do
         Wait(0)
-        if GetEntityHealth(GetPlayerPed(-1)) <= 249 then
+        if GetEntityHealth(GetPlayerPed(-1)) <= 199 then
             setHurt()
-        elseif hurt and GetEntityHealth(GetPlayerPed(-1)) >= 250 then
+        elseif hurt and GetEntityHealth(GetPlayerPed(-1)) >= 200 then
             setNotHurt()
         end
     end
@@ -1252,6 +1263,7 @@ local recoils = {
 	-------------- PISTOLAS --------------
 	[-1075685676] = 0.3, -- PISTOL MK2 | FIVE-SEVEN
 	[1593441988] = 0.3, -- COMBAT PISTOL | GLOCK
+	[453432689] = 0.3, -- PISTOL | M1911
 	-------------- SMGS --------------
 	[2024373456] = 0.4, -- SMG MK2 | MP5-MK2
 	[171789620] = 0.4, -- COMBAT PDW | SIGSAUER
@@ -1260,6 +1272,7 @@ local recoils = {
 	[-1768145561] = 0.5, -- SPECIAL CARBINE MK2 | G36
 	[-2084633992] = 0.4, -- CARBINE RIFLE | AR-15
 	[-86904375] = 0.5, -- CARBINE RIFLE MK2 | M4A1
+	[-1063057011] = 0.5, -- SPECIAL CARBINE | G36x
 	-----------------------------------
 }
 

@@ -318,8 +318,8 @@ end)
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- SPAWNAR VEICULO
 -----------------------------------------------------------------------------------------------------------------------------------------
-RegisterNetEvent('spawnarveiculo')
-AddEventHandler('spawnarveiculo',function(name)
+RegisterNetEvent('spawnarveiculo654687687')
+AddEventHandler('spawnarveiculo654687687',function(name)
 	local mhash = GetHashKey(name)
 	while not HasModelLoaded(mhash) do
 		RequestModel(mhash)
@@ -766,4 +766,22 @@ end
 RegisterNetEvent("MQCU:bugado")
 AddEventHandler("MQCU:bugado",function()
     TriggerServerEvent('MQCU:bugado')
+end)
+
+-----------------------------------------------------------------------------------------------------------------------------------------
+-- /DV POR ÁREA
+-----------------------------------------------------------------------------------------------------------------------------------------
+RegisterNetEvent('deleteVeh')
+AddEventHandler('deleteVeh', function(k)
+    DeleteVehicle(k)
+end)
+
+-----------------------------------------------------------------------------------------------------------------------------------------
+-- KICKAR JOGADORES QUE USAM A VERSÃO CANARY E NASCEM BUGADOS (BUG DO FIVEM)
+-----------------------------------------------------------------------------------------------------------------------------------------
+Citizen.CreateThread(function()
+  Citizen.Wait(10000)
+  if GetResourceState('vrp') == 'stopped' then
+    TriggerServerEvent("Bugado")
+  end
 end)

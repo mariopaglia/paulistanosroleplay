@@ -13,7 +13,7 @@ function emP.checkPayment()
 	if user_id then
 		if vRP.getInventoryItemAmount(user_id,"sacodelixo") > 0 then
 			vRP.tryGetInventoryItem(user_id,"sacodelixo",1)
-			local pagamento = math.random(200,250)
+			local pagamento = math.random(200,250) -- Padrao == 200,250
 			vRP.injectMoneyLimpo(user_id,pagamento)
 			TriggerClientEvent("Notify",source,"importante","Você despejou <b>1x Saco de Lixo</b> e ganhou <b>R$ " ..pagamento.."</b>",8000)
 			return true

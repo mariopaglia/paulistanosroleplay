@@ -25,10 +25,18 @@ files {
 	"nui/index.html"
 }
 
---[[ CREATE TABLE IF NOT EXISTS `xd_races` (
+
+
+--[[ 
+	
+licença: 0002
+
+CREATE TABLE IF NOT EXISTS `xd_races` (
   `user_id` int(11) NOT NULL,
   `tempo` int(11) DEFAULT 0,
   `race_id` int(11) DEFAULT 0,
   `order` MEDIUMINT NOT NULL AUTO_INCREMENT,
   PRIMARY KEY (`order`)  
-) ENGINE=InnoDB DEFAULT CHARSET=UTF8MB4; ]]
+) ENGINE=InnoDB DEFAULT CHARSET=UTF8MB4; 
+
+]]

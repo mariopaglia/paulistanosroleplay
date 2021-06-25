@@ -17,13 +17,9 @@ window.addEventListener('message', (event) => {
 
 		$('.name p').text(nome);
 		$('.name h6 span').text(emprego);
-		if (cargo) {
-			$('.cargo p span').text(cargo);
-		} else {
-			$('.cargo').hide();
-		}
+		$('.cargo').hide();
 		$('.carteira p').text('R$' + carteira);
-		$('.coins p').text('R$' + paypal);
+		$('.coins p').text(cargo);
 		$('.vip p').text(vip);
 		$('.identidade p').text(id);
 		$('.documento p').text(documento);

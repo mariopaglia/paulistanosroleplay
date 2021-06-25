@@ -305,13 +305,48 @@ AddEventHandler('prisioneiro',function(status)
 	end
 end)
 
+-- COLOCAR ROUPA DE PRISIONEIRO
+Citizen.CreateThread(function()
+	while true do
+		Citizen.Wait(10000)
+		if prisioneiro then
+			local ped = PlayerPedId()
+			if GetEntityModel(ped) == GetHashKey("mp_m_freemode_01") then
+				SetPedComponentVariation(ped,1,-1,0,0)
+				SetPedComponentVariation(ped,2,21,0,0)
+				SetPedComponentVariation(ped,3,2,0,1)
+				SetPedComponentVariation(ped,4,64,6,1)
+				SetPedComponentVariation(ped,5,-1,0,0)
+				SetPedComponentVariation(ped,6,5,2,1)
+				SetPedComponentVariation(ped,7,-1,0,0)
+				SetPedComponentVariation(ped,8,15,0,2)
+				SetPedComponentVariation(ped,9,-1,0,0)
+				SetPedComponentVariation(ped,10,-1,0,0)
+				SetPedComponentVariation(ped,11,238,0,1)
+			elseif GetEntityModel(ped) == GetHashKey("mp_f_freemode_01") then
+				SetPedComponentVariation(ped,1,-1,0,0)
+				SetPedComponentVariation(ped,2,74,0,0)
+				SetPedComponentVariation(ped,3,11,0,1)
+				SetPedComponentVariation(ped,4,66,6,1)
+				SetPedComponentVariation(ped,5,-1,0,0)
+				SetPedComponentVariation(ped,6,5,0,1)
+				SetPedComponentVariation(ped,7,-1,0,0)
+				SetPedComponentVariation(ped,8,6,0,2)
+				SetPedComponentVariation(ped,9,-1,0,0)
+				SetPedComponentVariation(ped,10,-1,0,0)
+				SetPedComponentVariation(ped,11,117,0,1)
+			end
+		end
+	end
+end)
+
 Citizen.CreateThread(function()
 	while true do
 		Citizen.Wait(5000)
 		if prisioneiro then
-			local distance = GetDistanceBetweenCoords(GetEntityCoords(PlayerPedId()),1700.5,2605.2,45.5,true)
-			if distance >= 150 then
-				SetEntityCoords(PlayerPedId(),1680.1,2513.0,45.5)
+			local distance = GetDistanceBetweenCoords(GetEntityCoords(PlayerPedId()),694.99,121.25,80.76,true)
+			if distance >= 60 then
+				SetEntityCoords(PlayerPedId(),712.08,111.49,80.76)
 				TriggerEvent("Notify","aviso","O agente penitenciário encontrou você tentando escapar.")
 			end
 		end
@@ -323,8 +358,8 @@ Citizen.CreateThread(function()
 		local idle = 1000
 		if prisioneiro then
 			idle = 5
-			local distance01 = GetDistanceBetweenCoords(GetEntityCoords(PlayerPedId()),1691.59,2566.05,45.56,true)
-			local distance02 = GetDistanceBetweenCoords(GetEntityCoords(PlayerPedId()),1669.51,2487.71,45.82,true)
+			local distance01 = GetDistanceBetweenCoords(GetEntityCoords(PlayerPedId()),670.02,101.05,80.76,true)
+			local distance02 = GetDistanceBetweenCoords(GetEntityCoords(PlayerPedId()),699.67,144.17,80.76,true)
 
 			if GetEntityHealth(PlayerPedId()) <= 100 then
 				reducaopenal = false
@@ -332,7 +367,7 @@ Citizen.CreateThread(function()
 			end
 
 			if distance01 <= 100 and not reducaopenal then
-				DrawMarker(21,1691.59,2566.05,45.56,0,0,0,0,180.0,130.0,1.0,1.0,0.5,255,255,255,100,1,0,0,1)
+				DrawMarker(21,670.02,101.05,80.76,0,0,0,0,180.0,130.0,1.0,1.0,0.5,255,255,255,100,1,0,0,1)
 				if distance01 <= 1.2 then
 					drawTxt("PRESSIONE  ~r~E~w~  PARA PEGAR A CAIXA",4,0.5,0.93,0.50,255,255,255,180)
 					if IsControlJustPressed(0,38) then
@@ -345,7 +380,7 @@ Citizen.CreateThread(function()
 			end
 
 			if distance02 <= 100 and reducaopenal then
-				DrawMarker(21,1669.51,2487.71,45.82,0,0,0,0,180.0,130.0,1.0,1.0,0.5,255,255,255,100,1,0,0,1)
+				DrawMarker(21,699.67,144.17,80.76,0,0,0,0,180.0,130.0,1.0,1.0,0.5,255,255,255,100,1,0,0,1)
 				if distance02 <= 1.2 then
 					drawTxt("PRESSIONE  ~r~E~w~  PARA ENTREGAR A CAIXA",4,0.5,0.93,0.50,255,255,255,180)
 					if IsControlJustPressed(0,38) then

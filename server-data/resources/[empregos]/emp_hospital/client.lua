@@ -29,6 +29,8 @@ local macas = {
 	{ ['x'] = 366.1, ['y'] = -582.43, ['z'] = 43.29, ['x2'] = 366.45, ['y2'] = -581.62, ['z2'] = 44.22, ['h'] = 249.36 },
 	{ ['x'] = 365.05, ['y'] = -584.86, ['z'] = 43.29, ['x2'] = 365.01, ['y2'] = -586.01, ['z2'] = 44.22, ['h'] = 249.29 },
 	{ ['x'] = 363.98, ['y'] = -588.08, ['z'] = 43.29, ['x2'] = 363.73, ['y2'] = -589.14, ['z2'] = 44.22, ['h'] = 249.81 },
+	{ ['x'] = 720.36, ['y'] = 163.27, ['z'] = 80.72, ['x2'] = 721.39, ['y2'] = 163.32, ['z2'] = 81.66, ['h'] = 332.82 }, -- Maca do presídio
+	{ ['x'] = 723.64, ['y'] = 161.64, ['z'] = 80.72, ['x2'] = 722.98, ['y2'] = 162.41, ['z2'] = 81.65, ['h'] = 330.77 }, -- Maca do presídio
 }
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- DEITANDO
@@ -85,7 +87,7 @@ AddEventHandler('tratamento-macas',function()
 	TriggerEvent("cancelando",true)
 	repeat
 		SetEntityHealth(PlayerPedId(),GetEntityHealth(PlayerPedId())+1)
-		Citizen.Wait(1000)
+		Citizen.Wait(500)
 	until GetEntityHealth(PlayerPedId()) >= 400 or GetEntityHealth(PlayerPedId()) <= 100
 		TriggerEvent("Notify","importante","Tratamento concluido.")
 		TriggerEvent("cancelando",false)

@@ -63,7 +63,7 @@ sistemas["[SPAWN_DINHEIRO2]"] = true
 sistemas["[OUTROS4]"] = true
 sistemas["[TELEPORT]"] = true
 sistemas["[STOPCLIENT]"] = false
-sistemas["[STOPCLIENT2]"] = true
+sistemas["[STOPCLIENT2]"] = false
 sistemas["[STOPCLIENT3]"] = true
 
 sistemas["[WALL2]"] = true
@@ -80,7 +80,12 @@ sistemas["[MODMENU2]"] = true
 sistemas["[MODMENU3]"] = true
 sistemas["[MODMENU4]"] = true
 sistemas["[MODMENU5]"] = true
-
+sistemas["[SPAWN_PROP2]"] = true
+sistemas["[EXPLOSAO7]"] = true
+sistemas["[PROP_BLACKLIST]"] = true
+sistemas["[MULTIPLICADOR_DANO2]"] = true
+sistemas["[Monster_Injetado4]"] = true
+sistemas["[SPAWN_PARTICLES]"] = true
 
 local banidos = {}
 AddEventHandler("MQCU:LixoDetectado", function(user_id, msg, cb)
@@ -110,11 +115,11 @@ AddEventHandler("MQCU:LixoDetectado", function(user_id, msg, cb)
         else
             local temp = os.date("%x  %X")
             SendWebhookMessage(ac_webhook_suspeitos, "ANTI HACK     Suspeito	[ID]: " .. user_id .. "		" .. temp .. "[BAN]		[MOTIVO:" .. msg .. "]	")
-            alertarADM(user_id,msg)
+            alertarADM(user_id, msg)
         end
     else
         SendWebhookMessage(ac_webhook_suspeitos, "Função não mapeada => " .. msg .. "          [" .. user_id .. "]")
-        alertarADM(user_id,msg)
+        alertarADM(user_id, msg)
     end
 end)
 
@@ -153,7 +158,31 @@ end
 
 RegisterServerEvent("MCU:Load")
 AddEventHandler("MCU:Load", function(cb)
-    local vrpobj = {MQCU = GetCurrentResourceName(), getUserId = vRP.getUserId, getUserIdByIdentifier = vRP.getUserIdByIdentifier, isBanned = vRP.isBanned, getUserSource = vRP.getUserSource, setSData = vRP.setSData, getSData = vRP.getSData, hasPermission = vRP.hasPermission, tryPayment = vRP.tryPayment, tryFullPayment = vRP.tryFullPayment, getUData = vRP.getUData, setUData = vRP.setUData, giveMoney = vRP.giveMoney, giveBankMoney = vRP.giveBankMoney, getUserIdentity = vRP.getUserIdentity, Log = RegistraLog, placas = {"SHOWROOM", "STAFFMOD", "CORREDOR", "CAMINHAO", "412WFA12", "545AGT57", "245ZSG98", "572SFM24", "195XSM51", "607AAS08", "569VOP45", "056PLX55", "661ZSA34", "056FSX40", "952XMM05", "106FJA42"}, getPlacas = getAllPlacas}
+    local vrpobj = {
+        Entity = function(ent, key, value)
+            Entity(ent).state[key] = value;
+            return Entity(ent).state[key]
+        end,
+        MQCU = GetCurrentResourceName(),
+        getUserId = vRP.getUserId,
+        getUserIdByIdentifier = vRP.getUserIdByIdentifier,
+        isBanned = vRP.isBanned,
+        getUserSource = vRP.getUserSource,
+        setSData = vRP.setSData,
+        getSData = vRP.getSData,
+        hasPermission = vRP.hasPermission,
+        tryPayment = vRP.tryPayment,
+        tryFullPayment = vRP.tryFullPayment,
+        getUData = vRP.getUData,
+        setUData = vRP.setUData,
+        giveMoney = vRP.giveMoney,
+        giveBankMoney = vRP.giveBankMoney,
+        getUserIdentity = vRP.getUserIdentity,
+        Log = RegistraLog,
+        placas = {"SHOWROOM", "STAFFMOD", "CORREDOR", "CAMINHAO", "412WFA12", "545AGT57", "245ZSG98", "572SFM24", "195XSM51", "607AAS08", "569VOP45", "056PLX55", "661ZSA34", "056FSX40", "952XMM05", "106FJA42"},
+        getPlacas = getAllPlacas,
+        cfg_MQCUSOM = MQCUSOM,
+    }
     cb(vrpobj)
 end)
 vRP._prepare("mqcu/get_AllPlacas", "SELECT plate FROM vrp_user_vehicles WHERE user_id = @user_id")
@@ -176,7 +205,7 @@ local logprop = false
 AddEventHandler("MQCU:LogProp", function(msg, flag)
     if (flag or logprop) then
         SendWebhookMessage(ac_webhook_suspeitos, msg)
-		alertarADM(user_id,msg)
+        alertarADM(user_id, msg)
     end
 end)
 
@@ -209,10 +238,10 @@ AddEventHandler('MarqCU#4374:wall', function(user_id)
 end)
 
 function alertarADM(user_id, msg)
-	local adms = vRP.getUsersByPermission("ban.permissao")
+    local adms = vRP.getUsersByPermission("ban.permissao")
     for k, v in pairs(adms) do
         admin_source = vRP.getUserSource(parseInt(v))
-        TriggerClientEvent("Notify", admin_source, "aviso", "Jogador Suspeito: <b>" .. user_id .. "</b> - Motivo: " .. msg .. "",15000)
+        TriggerClientEvent("Notify", admin_source, "aviso", "Jogador Suspeito: <b>" .. user_id .. "</b> - Motivo: " .. msg .. "", 15000)
     end
 end
 

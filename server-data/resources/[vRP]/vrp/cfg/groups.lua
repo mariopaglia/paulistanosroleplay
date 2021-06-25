@@ -23,6 +23,7 @@ cfg.groups = {
 		"player.spec", -- Comando /spec
 		"player.wall", -- Comando /wall
 		"mqcu.permissao", -- Acesso ao menu MQCU
+		"player.som", -- Acesso ao /som do MQCU
 		"anuncio.permissao"
 	},
 	["admin"] = {
@@ -94,7 +95,8 @@ cfg.groups = {
 		},
 		"bronze.permissao",
 		"carrosvip.permissao",
-		"mochila.permissao"
+		"mochila.permissao",
+		"player.som"
 	},
 	["Prata"] = {
 		_config = {
@@ -104,7 +106,8 @@ cfg.groups = {
 		"prata.permissao",
 		"carrosvip.permissao",
 		"corarma.permissao",
-		"mochila.permissao"
+		"mochila.permissao",
+		"player.som"
 	},
 	["Ouro"] = {
 		_config = {
@@ -113,6 +116,7 @@ cfg.groups = {
 		},
 		"ouro.permissao",
 		"carrosvip.permissao",
+		"player.som"
 	},
 	["Platina"] = {
 		_config = {
@@ -123,7 +127,8 @@ cfg.groups = {
 		"carrosvip.permissao",
 		"corarma.permissao",
 		"roupavip.permissao",
-		"mochila.permissao"
+		"mochila.permissao",
+		"player.som"
 	},
 	["Esmeralda"] = {
 		_config = {
@@ -134,7 +139,8 @@ cfg.groups = {
 		"carrosvip.permissao",
 		"corarma.permissao",
 		"roupavip.permissao",
-		"mochila.permissao"
+		"mochila.permissao",
+		"player.som"
 	},
 	["Diamante"] = {
 		_config = {
@@ -145,7 +151,8 @@ cfg.groups = {
 		"carrosvip.permissao",
 		"corarma.permissao",
 		"roupavip.permissao",
-		"mochila.permissao"
+		"mochila.permissao",
+		"player.som"
 	},
 	["Boost"] = {
 		_config = {
@@ -154,6 +161,21 @@ cfg.groups = {
 		},
 		"boost.permissao",
 		"corarma.permissao"
+	},
+	["Boost2"] = {
+		_config = {
+			title = "Nitro Boost 2",
+			gtype = "boost1"
+		},
+		"boostii.permissao",
+		"corarma.permissao"
+	},
+	["JBL"] = {
+		_config = {
+			title = "JBL",
+			gtype = "jbl"
+		},
+		"player.som"
 	},
 
 	---------------------------------------------------
@@ -381,6 +403,78 @@ cfg.groups = {
 			gtype = "promoter"
 		},
 		"promoter.permissao"
+	},
+
+	---------------------------------------------------
+	-- VANILLA
+	---------------------------------------------------
+	["Vanilla"] = {
+		_config = {
+			title = "Vanilla",
+			gtype = "promoter"
+		},
+		"vanilla.permissao",
+		"lojinha.permissao",
+	},
+
+	---------------------------------------------------
+	-- GALAXY
+	---------------------------------------------------
+	["Galaxy"] = {
+		_config = {
+			title = "Galaxy",
+			gtype = "promoter"
+		},
+		"galaxy.permissao",
+		"lojinha.permissao",
+	},
+
+	---------------------------------------------------
+	-- TEQUILA
+	---------------------------------------------------
+	["Tequila"] = {
+		_config = {
+			title = "Tequila",
+			gtype = "promoter"
+		},
+		"tequila.permissao",
+		"lojinha.permissao",
+	},
+
+	---------------------------------------------------
+	-- SPLIT
+	---------------------------------------------------
+	["Split"] = {
+		_config = {
+			title = "Split",
+			gtype = "promoter"
+		},
+		"split.permissao",
+		"lojinha.permissao",
+	},
+
+	---------------------------------------------------
+	-- BAHAMAS
+	---------------------------------------------------
+	["Bahamas"] = {
+		_config = {
+			title = "Bahamas",
+			gtype = "promoter"
+		},
+		"bahamas.permissao",
+		"lojinha.permissao",
+	},
+
+	---------------------------------------------------
+	-- HENHOUSE
+	---------------------------------------------------
+	["Henhouse"] = {
+		_config = {
+			title = "Hen House",
+			gtype = "promoter"
+		},
+		"henhouse.permissao",
+		"lojinha.permissao",
 	},
 
 	---------------------------------------------------

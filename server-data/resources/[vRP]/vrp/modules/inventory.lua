@@ -49,6 +49,13 @@ local itemlist = {
 	["gps"] = { index = "gps", nome = "GPS", type = "usar" },
 	["rosa"] = { index = "rosa", nome = "Rosa", type = "usar" },
 	["morango"] = { index = "morango", nome = "Morango", type = "usar" },
+	["tequila"] = { index = "tequila", nome = "Tequila", type = "usar" },
+	["vodka"] = { index = "vodka", nome = "Vodka", type = "usar" },
+	["cerveja"] = { index = "cerveja", nome = "Cerveja", type = "usar" },
+	["whisky"] = { index = "whisky", nome = "Whisky", type = "usar" },
+	["conhaque"] = { index = "conhaque", nome = "Conhaque", type = "usar" },
+	["absinto"] = { index = "absinto", nome = "Absinto", type = "usar" },
+	["agua"] = { index = "agua", nome = "Água", type = "usar" },
 
 	-- Farm Contrabandop
 	["componentemetal"] = { index = "componentemetal", nome = "Componentes de Metais", type = "usar" },
@@ -157,7 +164,6 @@ local itemlist = {
 	["wbody|WEAPON_MICROSMG"] = { index = "uzi", nome = "Uzi", type = "equipar" },
 	["wbody|WEAPON_ASSAULTSMG"] = { index = "mtar21", nome = "MTAR-21", type = "equipar" },
 	["wbody|WEAPON_PUMPSHOTGUN_MK2"] = { index = "remington", nome = "Remington 870", type = "equipar" },
-	["wbody|WEAPON_SPECIALCARBINE"] = { index = "parafall", nome = "Parafall", type = "equipar" },
 	["wbody|WEAPON_ASSAULTRIFLE"] = { index = "ak103", nome = "AK-103", type = "equipar" },
 	["wbody|WEAPON_BULLPUPRIFLE_MK2"] = { index = "famas", nome = "Famas", type = "equipar" },
 	["wbody|WEAPON_PETROLCAN"] = { index = "gasolina", nome = "Galão de Gasolina", type = "equipar" },	
@@ -177,7 +183,6 @@ local itemlist = {
 	["wammo|WEAPON_FIREEXTINGUISHER"] = { index = "m-extintor", nome = "M.Extintor", type = "recarregar" },
 	["wammo|WEAPON_PUMPSHOTGUN"] = { index = "m-shotgun", nome = "M.Shotgun", type = "recarregar" },
 	["wammo|WEAPON_PUMPSHOTGUN_MK2"] = { index = "m-remington", nome = "M.Remington 870", type = "recarregar" },
-	["wammo|WEAPON_SPECIALCARBINE"] = { index = "m-parafall", nome = "M.Parafall", type = "recarregar" },
 	["wammo|WEAPON_ASSAULTRIFLE"] = { index = "m-ak103", nome = "M.AK-103", type = "recarregar" },
 	["wammo|WEAPON_GUSENBERG"] = { index = "m-thompson", nome = "M.Thompson", type = "recarregar" },
 	["wammo|WEAPON_MACHINEPISTOL"] = { index = "m-tec9", nome = "M.Tec-9", type = "recarregar" },
@@ -194,12 +199,18 @@ local itemlist = {
 	["wbody|WEAPON_CARBINERIFLE"] = { index = "ar15", nome = "AR-15", type = "equipar" },
 	["wbody|WEAPON_COMBATPDW"] = { index = "sigsauer", nome = "Sig Sauer", type = "equipar" },
 	["wbody|WEAPON_COMBATPISTOL"] = { index = "glock", nome = "Glock", type = "equipar" },
+	["wbody|WEAPON_SPECIALCARBINE"] = { index = "g36x", nome = "G36x", type = "equipar" },
 	-- Munição Policia
 	["wammo|WEAPON_CARBINERIFLE_MK2"] = { index = "m-m4a1", nome = "M. M4A1", type = "recarregar" },
 	["wammo|WEAPON_CARBINERIFLE"] = { index = "m-ar15", nome = "M. AR-15", type = "recarregar" },
 	["wammo|WEAPON_COMBATPDW"] = { index = "m-sigsauer", nome = "M. Sig Sauer", type = "recarregar" },
 	["wammo|WEAPON_COMBATPISTOL"] = { index = "m-glock", nome = "M. Glock", type = "recarregar" },
+	["wammo|WEAPON_SPECIALCARBINE"] = { index = "m-g36x", nome = "M. G36x", type = "recarregar" },
 	
+	-- Pistol do porte
+	["wbody|WEAPON_PISTOL"] = { index = "m1911", nome = "M1911", type = "equipar" },
+	["wammo|WEAPON_PISTOL"] = { index = "m-m1911", nome = "M. M1911", type = "recarregar" },
+
 	-- Armas Ilegal
 	["wbody|WEAPON_ASSAULTRIFLE_MK2"] = { index = "ak47", nome = "AK-47", type = "equipar" },
 	["wbody|WEAPON_SPECIALCARBINE_MK2"] = { index = "g36", nome = "G36", type = "equipar" },
@@ -814,7 +825,12 @@ local vehglobal = {
 	["rmodtracktor"] = { ['name'] = "Top Gear Track-Tor", ['price'] = 1000000, ['tipo'] = "vip" },
 	["rmodm8gte"] = { ['name'] = "BMW M8 GTE", ['price'] = 1000000, ['tipo'] = "vip" },
 	["rmodskyline34"] = { ['name'] = "Nissan Skyline BNR34 C-WEST", ['price'] = 1000000, ['tipo'] = "vip" },
+	["rmod240sx"] = { ['name'] = "Nissan 240SX", ['price'] = 1000000, ['tipo'] = "vip" },
 	
+	-- EDICAO ESPECIAL
+	["evo9"] = { ['name'] = "Lancer Evolution IX Fast and Furios", ['price'] = 1000000, ['tipo'] = "vip" },
+	["skyline"] = { ['name'] = "Nissan Skyline R34 Japan", ['price'] = 1000000, ['tipo'] = "vip" },
+
 	-- RMOD VIP
 	["rmodi8ks"] = { ['name'] = "BMW i8 Coupe K.S Edition", ['price'] = 1000000, ['tipo'] = "vip" },
 	["rmoddarki8"] = { ['name'] = "BMW EVO i8 Dark Knight", ['price'] = 1000000, ['tipo'] = "vip" },
@@ -945,7 +961,7 @@ local vehglobal = {
 	["nissan370z"] = { ['name'] = "Nissan 370Z", ['price'] = 1600000, ['tipo'] = "import" },
 	["nissangtr"] = { ['name'] = "Nissan GTR", ['price'] = 1700000, ['tipo'] = "import" },
 	["71gtx"] = { ['name'] = "Plymouth GTX", ['price'] = 750000, ['tipo'] = "import" },
-	["180sx"] = { ['name'] = "Nissan 180SX", ['price'] = 1000000, ['tipo'] = "import" },
+	["180sx"] = { ['name'] = "Nissan 180SX", ['price'] = 600000, ['tipo'] = "import" },
 	["911r"] = { ['name'] = "Porsche 911R", ['price'] = 2950000, ['tipo'] = "import" },
 	["2018zl1"] = { ['name'] = "Camaro ZL1", ['price'] = 2300000, ['tipo'] = "import" },
 	["19ftype"] = { ['name'] = "Jaguar F-type", ['price'] = 2650000, ['tipo'] = "import" },
@@ -967,12 +983,19 @@ local vehglobal = {
 	["toyotasupra"] = { ['name'] = "Toyota Supra", ['price'] = 1500000, ['tipo'] = "import" },
 	["italirsx"] = { ['name'] = "Itali RSX", ['price'] = 700000, ['tipo'] = "import" },
 
+	-- CARROS QUE CARREGAM O PAREDÃO DE SOM
+	["paredao"] = { ['name'] = "Paredão Pequeno", ['price'] = 100, ['tipo'] = "vip" },
+	["SomMarqCULuz"] = { ['name'] = "Paredão Grande", ['price'] = 100, ['tipo'] = "vip" },
+	["amarok"] = { ['name'] = "Amarok", ['price'] = 2100000, ['tipo'] = "carros" },
+	["s10"] = { ['name'] = "S10", ['price'] = 2100000, ['tipo'] = "carros" },
+	["19ram"] = { ['name'] = "Dodge RAM", ['price'] = 2100000, ['tipo'] = "carros" },
+	["F250Deboxe"] = { ['name'] = "F250 Deboxe", ['price'] = 2100000, ['tipo'] = "carros" },
+
 	-- BRASILEIROS
 	["blista"] = { ['name'] = "GOL S 86", ['price'] = 130000, ['tipo'] = "carros" },
 	["blista3"] = { ['name'] = "Voyage 86", ['price'] = 160000, ['tipo'] = "carros" },
 	["fugitive"] = { ['name'] = "FIAT Palio", ['price'] = 100000, ['tipo'] = "carros" },
 	["celta"] = { ['name'] = "Celta", ['price'] = 180000, ['tipo'] = "carros" },
-	["amarok"] = { ['name'] = "Amarok", ['price'] = 2100000, ['tipo'] = "carros" },
 	["civic2010"] = { ['name'] = "Civic 2010", ['price'] = 210000, ['tipo'] = "carros" },
 	["civic2016"] = { ['name'] = "Civic 2016", ['price'] = 300000, ['tipo'] = "carros" },
 	["focusrs"] = { ['name'] = "Ford Focus RS", ['price'] = 1800000, ['tipo'] = "carros" },
@@ -984,6 +1007,9 @@ local vehglobal = {
 	["chevette"] = { ['name'] = "Chevette", ['price'] = 85000, ['tipo'] = "carros" },
 	
 	-- POLICIA
+	["porschespeed"] = { ['name'] = "Porsche 718 Cayman S", ['price'] = 1000, ['tipo'] = "work" },
+	["chevypolicia"] = { ['name'] = "Chevy PMFC", ['price'] = 1000, ['tipo'] = "work" },
+	["bmwm5policia"] = { ['name'] = "BMW M5 PMFC", ['price'] = 1000, ['tipo'] = "work" },
 	["av-gt63"] = { ['name'] = "Mercedes GT63 PMFC", ['price'] = 1000, ['tipo'] = "work" },
 	["av-m8"] = { ['name'] = "BMW M8 PMFC", ['price'] = 1000, ['tipo'] = "work" },
 	["paliopmrp1"] = { ['name'] = "Palio PMFC", ['price'] = 1000, ['tipo'] = "work" },
@@ -1109,6 +1135,7 @@ local vehglobal = {
 
 	-- NÃO USADOS
 	["xj"] = { ['name'] = "XJ", ['price'] = 270000, ['tipo'] = "motos" },
+	["verus"] = { ['name'] = "Triciclo", ['price'] = 100, ['tipo'] = "motos" },
 	["sultan2"] = { ['name'] = "Sultan2", ['price'] = 5000, ['tipo'] = "carros" },
 	["sugoi"] = { ['name'] = "Sugoi", ['price'] = 5000, ['tipo'] = "carros" },
 	["furia"] = { ['name'] = "Furia", ['price'] = 5000, ['tipo'] = "carros" },

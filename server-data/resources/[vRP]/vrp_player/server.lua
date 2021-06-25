@@ -60,6 +60,13 @@ local itemlist = {
 	["gps"] = { index = "gps", nome = "GPS" },
 	["rosa"] = { index = "rosa", nome = "Rosa" },
 	["morango"] = { index = "morango", nome = "Morango" },
+	["tequila"] = { index = "tequila", nome = "Tequila" },
+	["vodka"] = { index = "vodka", nome = "Vodka" },
+	["cerveja"] = { index = "cerveja", nome = "Cerveja" },
+	["whisky"] = { index = "whisky", nome = "Whisky" },
+	["conhaque"] = { index = "conhaque", nome = "Conhaque" },
+	["absinto"] = { index = "absinto", nome = "Absinto" },
+	["agua"] = { index = "agua", nome = "Água" },
 
 	-- Farm Contrabando
 	["componentemetal"] = { index = "componentemetal", nome = "Componentes de Metais" },
@@ -154,7 +161,6 @@ local itemlist = {
 	["wbody|WEAPON_MACHETE"] = { index = "machete", nome = "Machete" },
 	["wbody|WEAPON_SWITCHBLADE"] = { index = "canivete", nome = "Canivete" },
 	["wbody|WEAPON_NIGHTSTICK"] = { index = "cassetete", nome = "Cassetete" },
-	["wbody|WEAPON_SPECIALCARBINE"] = { index = "parafall", nome = "Parafall" },
 	["wbody|WEAPON_WRENCH"] = { index = "grifo", nome = "Chave de Grifo" },
 	["wbody|WEAPON_BATTLEAXE"] = { index = "batalha", nome = "Machado de Batalha" },
 	["wbody|WEAPON_POOLCUE"] = { index = "sinuca", nome = "Taco de Sinuca" },
@@ -186,7 +192,6 @@ local itemlist = {
 	["wammo|WEAPON_STUNGUN"] = { index = "m-tazer", nome = "Munição de Tazer" },
 	["wammo|WEAPON_SNSPISTOL"] = { index = "m-hkp7m10", nome = "Munição de HK P7M10" },
 	["wammo|WEAPON_VINTAGEPISTOL"] = { index = "m-m1922", nome = "Munição de M1922" },
-	["wammo|WEAPON_SPECIALCARBINE"] = { index = "m-parafall", nome = "Munição de Parafall" },
 	["wammo|WEAPON_MUSKET"] = { index = "m-winchester22", nome = "Munição de Winchester 22" },
 	["wammo|GADGET_PARACHUTE"] = { index = "m-paraquedas", nome = "Munição de Paraquedas" },
 	["wammo|WEAPON_FIREEXTINGUISHER"] = { index = "m-extintor", nome = "Munição de Extintor" },
@@ -207,12 +212,18 @@ local itemlist = {
 	["wbody|WEAPON_CARBINERIFLE"] = { index = "ar15", nome = "AR-15" },
 	["wbody|WEAPON_COMBATPDW"] = { index = "sigsauer", nome = "Sig Sauer MPX" },
 	["wbody|WEAPON_COMBATPISTOL"] = { index = "glock", nome = "Glock" },
+	["wbody|WEAPON_SPECIALCARBINE"] = { index = "g36x", nome = "G36x" },
 	-- Munição Policia
 	["wammo|WEAPON_CARBINERIFLE_MK2"] = { index = "m-m4a1", nome = "Munição de M4A1" },
 	["wammo|WEAPON_CARBINERIFLE"] = { index = "m-ar15", nome = "Munição de AR-15" },
 	["wammo|WEAPON_COMBATPDW"] = { index = "m-sigsauer", nome = "Munição de Sig Sauer" },
 	["wammo|WEAPON_COMBATPISTOL"] = { index = "m-glock", nome = "Munição de Glock" },
+	["wammo|WEAPON_SPECIALCARBINE"] = { index = "m-g36x", nome = "Munição de G36x" },
 	
+	-- Pistol do porte
+	["wbody|WEAPON_PISTOL"] = { index = "m1911", nome = "M1911" },
+	["wammo|WEAPON_PISTOL"] = { index = "m-m1911", nome = "Munição de M1911" },
+
 	-- Armas Ilegal
 	["wbody|WEAPON_ASSAULTRIFLE_MK2"] = { index = "ak47", nome = "AK-47" },
 	["wbody|WEAPON_SPECIALCARBINE_MK2"] = { index = "g36", nome = "G36" },
@@ -599,13 +610,13 @@ RegisterCommand('tratamento',function(source,args,rawCommand)
 	if vRP.hasPermission(user_id,"paramedico.permissao") then
 		local nplayer = vRPclient.getNearestPlayer(source,3)
 		if nplayer then
-			if vRPNclient.isNearCds(source, vector3(323.8,-593.75,43.29), 30) then
+			-- if vRPNclient.isNearCds(source, vector3(323.8,-593.75,43.29), 30) or vRPNclient.isNearCds(source, vector3(722.09,162.63,80.72), 30) then
 				TriggerClientEvent('tratamento',nplayer)
 				TriggerClientEvent("Notify",nplayer,"sucesso","Tratamento iniciado, aguarde a liberação do paramédico.")
 				TriggerClientEvent("Notify",source,"sucesso","Tratamento no paciente iniciado com sucesso.")
-			else
-				TriggerClientEvent("Notify",source,"negado","Tratamento deve ser realizado somente no hospital")
-			end
+			-- else
+			-- 	TriggerClientEvent("Notify",source,"negado","Tratamento deve ser realizado somente no hospital")
+			-- end
 		end
 	end
 end)
@@ -785,16 +796,18 @@ RegisterCommand('call',function(source,args,rawCommand)
 	local user_id = vRP.getUserId(source)
 	if user_id then
 		local players = {}
-		-- if args[1] == "190" then
-		-- 	players = vRP.getUsersByPermission("policia.permissao")
-		-- elseif args[1] == "192" then
-		-- 	players = vRP.getUsersByPermission("paramedico.permissao")
-		-- elseif args[1] == "mec" then
-		-- 	players = vRP.getUsersByPermission("mecanico.permissao")
-		-- elseif args[1] == "taxi" then
-		-- 	players = vRP.getUsersByPermission("taxista.permissao")
-		if args[1] == "adm" then
+		if args[1] == "190" then
+			players = vRP.getUsersByPermission("policia.permissao")
+		elseif args[1] == "192" then
+			players = vRP.getUsersByPermission("paramedico.permissao")
+		elseif args[1] == "mec" then
+			players = vRP.getUsersByPermission("mecanico.permissao")
+		elseif args[1] == "taxi" then
+			players = vRP.getUsersByPermission("taxista.permissao")
+		elseif args[1] == "adm" then
 			players = vRP.getUsersByPermission("kick.permissao")
+		elseif args[1] == "adv" then
+			players = vRP.getUsersByPermission("judiciario.permissao")
 		else
 			TriggerClientEvent("Notify",source,"negado","Serviço inexistente ou disponível somente pelo <b>celular</b>")
 			return
@@ -993,36 +1006,22 @@ local roupas = {
 	["pelado"] = {
 		[1885233650] = {                                      
 			[1] = {-1,0,2},
-			[2] = {21,0,03},
-			[3] = {1,0,1},
-			[4] = {29,0,1},
+			[2] = {21,0,0},
+			[3] = {126,0,2},
+			[4] = {72,0,2},
 			[5] = {-1,0,2},
 			[6] = {34,0,2},
 			[7] = {-1,0,2},
-			[8] = {15,0,2},
+			[8] = {83,2,2},
 			[9] = {0,5,1},
 			[10] = {-1,0,2},
 			[11] = {15,0,2},
-			[12] = {0,0,0},
-			[13] = {0,2,0},
-			[14] = {0,0,255},
-			[15] = {0,2,100},
-			[16] = {0,1,255},
-			[17] = {1280,2,255},
-			[18] = {33554944,2,255},
-			[19] = {33686017,2,255},
-			[20] = {33685762,2,255},
-			["p0"] = {-1,0},
-			["p1"] = {-1,0},
-			["p2"] = {-1,0},
-			["p3"] = {-1,0},
-			["p7"] = {-1,0},
 			["p6"] = {-1,0},
-			["p8"] = {-1,0},
-			["p9"] = {-1,0},
-			["p5"] = {-1,0},
-			[0] = {0,0,0},
-			["p10"] = {-1,0}
+			["p7"] = {-1,0},
+			["p1"] = {-1,0},
+			["p0"] = {-1,0},
+			["p2"] = {-1,0},
+			[0] = {0,0,0}			
 		},
 		[-1667301416] = {
 			[1] = { -1,0 },
@@ -1072,6 +1071,44 @@ local roupas = {
 			["p6"] = { -1,0 },
 			["p7"] = { -1,0 }
 		},
+	},
+	["gesso"] = {
+		[1885233650] = {
+			[1] = {-1,0,2},
+			[2] = {57,0,0},
+			[3] = {4,0,1},
+			[4] = {84,9,2},
+			[5] = {-1,0,2},
+			[6] = {13,0,2},
+			[7] = {-1,0,2},
+			[8] = {-1,0,2},
+			[9] = {-1,0,2},
+			[10] = {-1,0,2},
+			[11] = {186,9,2},
+			["p1"] = {-1,0},
+			["p0"] = {-1,0},
+			["p2"] = {-1,0},
+			[0] = {0,0,0},
+			["p7"] = {-1,0},
+			["p6"] = {-1,0}		
+		},
+		[-1667301416] = {
+			[1] = { -1,0 },
+			[3] = { 3,0 },
+			[4] = { 86,9 },
+			[5] = { -1,0 },
+			[6] = { 12,0 },
+			[7] = { -1,0 },		
+			[8] = { -1,0 },
+			[9] = { -1,0 },
+			[10] = { -1,0 },
+			[11] = { 188,9 },
+			["p0"] = { -1,0 },
+			["p1"] = { -1,0 },
+			["p2"] = { -1,0 },
+			["p6"] = { -1,0 },
+			["p7"] = { -1,0 }
+		}
 	},
 	["mergulho"] = {
 		[1885233650] = {
@@ -1206,15 +1243,19 @@ RegisterCommand('status',function(source,args,rawCommand)
     	local mec2 = vRP.getUsersByPermission("mecanico.permissao")
     	local staff2 = vRP.getUsersByPermission("kick.permissao")
 		local taxista2 = vRP.getUsersByPermission("taxista.permissao")
-		-- local conce2 = vRP.getUsersByPermission("concessionaria.permissao")
-		TriggerClientEvent("Notify",source,"importante","<b>Jogadores:</b> "..onlinePlayers2.."<br><b>Staff:</b> "..#staff2.."<br><b>Pol. Militar:</b> "..#policia2.."<br><b>Advogados:</b> "..#advogados2.."<br><b>Taxistas:</b> "..#taxista2.."<br><b>Paramédicos:</b> "..#paramedico2.."<br><b>Mecânicos:</b> "..#mec2.."",9000)
+		TriggerClientEvent("Notify",source,"importante","<b>Jogadores:</b> "..onlinePlayers2.."<br><b>Staff:</b> "..#staff2.."<br><b>Policiais:</b> "..#policia2.."<br><b>Advogados:</b> "..#advogados2.."<br><b>Taxistas:</b> "..#taxista2.."<br><b>Paramédicos:</b> "..#paramedico2.."<br><b>Mecânicos:</b> "..#mec2.."",9000)
+	elseif vRP.hasPermission(user_id,"carrosvip.permissao") then
+    	local advogados3 = vRP.getUsersByPermission("judiciario.permissao")
+		local policia3 = vRP.getUsersByPermission("policia.permissao")
+    	local paramedico3 = vRP.getUsersByPermission("paramedico.permissao")
+    	local mec3 = vRP.getUsersByPermission("mecanico.permissao")
+    	local taxista3 = vRP.getUsersByPermission("taxista.permissao")
+		TriggerClientEvent("Notify",source,"importante","<b>Advogados:</b> "..#advogados3.."<br><b>Policiais:</b> "..#policia3.."<br><b>Taxistas:</b> "..#taxista3.."<br><b>Paramédicos:</b> "..#paramedico3.."<br><b>Mecânicos:</b> "..#mec3.."",9000)
 	else
-    	-- local onlinePlayers = GetNumPlayerIndices()
     	local advogados = vRP.getUsersByPermission("judiciario.permissao")
     	local paramedico = vRP.getUsersByPermission("paramedico.permissao")
     	local mec = vRP.getUsersByPermission("mecanico.permissao")
     	local taxista = vRP.getUsersByPermission("taxista.permissao")
-    	-- local conce = vRP.getUsersByPermission("concessionaria.permissao")
 		TriggerClientEvent("Notify",source,"importante","<b>Advogados:</b> "..#advogados.."<br><b>Taxistas:</b> "..#taxista.."<br><b>Paramédicos:</b> "..#paramedico.."<br><b>Mecânicos:</b> "..#mec.."",9000)
 	end
 end)	

@@ -2,25 +2,17 @@
 
 <CVehicleModelInfoVariation>
   <variationData> 
-
-
-
-
-
-
-
-
-
-
     <Item>
       <modelName>ghispo2</modelName>
       <colors>
         <Item>
           <indices content="char_array">
-            112 
-            112
-            112
-            0
+            134
+            134
+            134
+            88
+						35
+						35 
           </indices>
           <liveries>
             <Item value="true" />

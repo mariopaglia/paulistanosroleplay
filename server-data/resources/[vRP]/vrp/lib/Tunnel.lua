@@ -6,7 +6,7 @@ if SERVER then
 	TriggerRemoteEvent = TriggerClientEvent
 	RegisterLocalEvent = RegisterServerEvent
 else
-	TriggerRemoteEvent = TriggerServerEvent
+	TriggerRemoteEvent = function(...) return TriggerServerEvent(...) end
 	RegisterLocalEvent = RegisterNetEvent
 end
 

@@ -6,10 +6,9 @@ vRPclient = Tunnel.getInterface("vRP","vRP_salar")
 
 salarii = {
   -- VIPS
-  {"boost.permissao", 2500, "Nitro Boost"},
-  {"bronze.permissao", 5000, "VIP Bronze"},
-  {"prata.permissao", 10000, "VIP Prata"},
-  {"ouro.permissao", 5000, "VIP Ouro"},
+  {"boost.permissao", 2500, "Nitro Boost 1"},
+  {"boostii.permissao", 5000, "Nitro Boost 2"},
+  {"ouro.permissao", 8000, "VIP Ouro"},
   {"platina.permissao", 8000, "VIP Platina"},
   {"esmeralda.permissao", 8000, "VIP Esmeralda"},
   {"diamante.permissao", 8000, "VIP Diamante"},
@@ -31,6 +30,8 @@ salarii = {
   {"advogado.permissao", 6000, "Advogado"},
   {"promotor.permissao", 7000, "Promotor"},
   {"juiz.permissao", 8000, "Juíz"},
+  -- Promotores de Eventos
+  {"lojinha.permissao", 1000, "Promotor de Eventos"},
 }
 
 RegisterServerEvent('offred:salar464651684')

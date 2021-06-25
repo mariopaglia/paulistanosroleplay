@@ -100,18 +100,20 @@ data_file "VEHICLE_VARIATION_FILE" "data/av-m8/carvariations.meta"
 --\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 
 files {
-	"data/ghispo2/handling.meta",
-	"data/ghispo2/vehicles.meta",
-	"data/ghispo2/carcols.meta",
-	"data/ghispo2/carvariations.meta"
+	'data/ghispo2/vehicles.meta',
+	'data/ghispo2/carvariations.meta',
+	'data/ghispo2/carcols.meta',
+	'data/ghispo2/handling.meta',
+	'data/ghispo2/vehiclelayouts.meta'
 }
 
-client_script "data/ghispo2/tuning.lua"
+data_file 'HANDLING_FILE' 'data/ghispo2/handling.meta'
+data_file 'VEHICLE_METADATA_FILE' 'data/ghispo2/vehicles.meta'
+data_file 'CARCOLS_FILE' 'data/ghispo2/carcols.meta'
+data_file 'VEHICLE_VARIATION_FILE' 'data/ghispo2/carvariations.meta'
+data_file 'VEHICLE_LAYOUTS_FILE' 'data/ghispo2/vehiclelayouts.META'
 
-data_file "HANDLING_FILE" "data/ghispo2/handling.meta"
-data_file "VEHICLE_METADATA_FILE" "data/ghispo2/vehicles.meta"
-data_file "CARCOLS_FILE" "data/ghispo2/carcols.meta"
-data_file "VEHICLE_VARIATION_FILE" "data/ghispo2/carvariations.meta"
+client_script 'data/av-nc7/vehicle_names.lua'
 
 --\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 
@@ -168,12 +170,81 @@ data_file 'VEHICLE_LAYOUTS_FILE' 'data/pdfocus/vehiclelayouts.META'
 client_script 'data/pdfocus/vehicle_names.lua'
 
 --\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+--\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+ 
+files {
+    'data/bmwm5policia/vehicles.meta',
+    'data/bmwm5policia/carvariations.meta',
+    'data/bmwm5policia/carcols.meta',
+    'data/bmwm5policia/handling.meta'
+    
+}
 
+data_file 'HANDLING_FILE' 'data/bmwm5policia/handling.meta'
+data_file 'VEHICLE_METADATA_FILE' 'data/bmwm5policia/vehicles.meta'
+data_file 'CARCOLS_FILE' 'data/bmwm5policia/carcols.meta'
+data_file 'VEHICLE_VARIATION_FILE' 'data/bmwm5policia/carvariations.meta'
+
+
+client_script 'data/bmwm5policia/vehicle_names.lua'
 
 --\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 
+files {
+    'data/polmav/vehicles.meta',
+    'data/polmav/handling.meta'
+   
+}
+
+data_file 'HANDLING_FILE' 'data/polmav/handling.meta'
+data_file 'VEHICLE_METADATA_FILE' 'data/polmav/vehicles.meta'
+
+
+client_script 'data/polmav/vehicle_names.lua'
 
 --\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 
+files {
+    'data/chevypolicia/vehicles.meta',
+    'data/chevypolicia/carvariations.meta',
+    'data/chevypolicia/carcols.meta',
+    'data/chevypolicia/handling.meta'
+    
+}
+
+data_file 'HANDLING_FILE' 'data/chevypolicia/handling.meta'
+data_file 'VEHICLE_METADATA_FILE' 'data/chevypolicia/vehicles.meta'
+data_file 'CARCOLS_FILE' 'data/chevypolicia/carcols.meta'
+data_file 'VEHICLE_VARIATION_FILE' 'data/chevypolicia/carvariations.meta'
+
+
+client_script 'data/chevypolicia/vehicle_names.lua'
 
 --\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
+files {
+    'data/porschespeed/vehicles.meta',
+    'data/porschespeed/carvariations.meta',
+    'data/porschespeed/carcols.meta',
+    'data/porschespeed/handling.meta'
+    
+}
+
+data_file 'HANDLING_FILE' 'data/porschespeed/handling.meta'
+data_file 'VEHICLE_METADATA_FILE' 'data/porschespeed/vehicles.meta'
+data_file 'CARCOLS_FILE' 'data/porschespeed/carcols.meta'
+data_file 'VEHICLE_VARIATION_FILE' 'data/porschespeed/carvariations.meta'
+
+
+client_script 'data/porschespeed/vehicle_names.lua'
+
+--\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
+--\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
+--\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
+--\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
+--\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+

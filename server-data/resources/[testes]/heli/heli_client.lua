@@ -3,10 +3,10 @@
 
 -- config
 local fov_max = 80.0
-local fov_min = 10.0 -- max zoom level (smaller fov is more zoom)
-local zoomspeed = 2.0 -- camera zoom speed
-local speed_lr = 3.0 -- speed by which the camera pans left-right 
-local speed_ud = 3.0 -- speed by which the camera pans up-down
+local fov_min = 1.0 -- max zoom level (smaller fov is more zoom)
+local zoomspeed = 8.0 -- camera zoom speed
+local speed_lr = 7.0 -- speed by which the camera pans left-right 
+local speed_ud = 7.0 -- speed by which the camera pans up-down
 local toggle_helicam = 51 -- control id of the button by which to toggle the helicam mode. Default: INPUT_CONTEXT (E)
 local toggle_vision = 25 -- control id to toggle vision mode. Default: INPUT_AIM (Right mouse btn)
 local toggle_rappel = 154 -- control id to rappel out of the heli. Default: INPUT_DUCK (X)
@@ -67,8 +67,8 @@ Citizen.CreateThread(function()
 			SetCamRot(cam, 0.0,0.0,GetEntityHeading(heli))
 			SetCamFov(cam, fov)
 			RenderScriptCams(true, false, 0, 1, 0)
-			PushScaleformMovieFunction(scaleform, "SET_CAM_LOGO")
-			PushScaleformMovieFunctionParameterInt(1) -- 0 for nothing, 1 for LSPD logo
+			-- PushScaleformMovieFunction(scaleform, "SET_CAM_LOGO")
+			PushScaleformMovieFunctionParameterInt(0) -- 0 for nothing, 1 for LSPD logo
 			PopScaleformMovieFunctionVoid()
 			local locked_on_vehicle = nil
 			while helicam and not IsEntityDead(lPed) and (GetVehiclePedIsIn(lPed) == heli) and IsHeliHighEnough(heli) do
@@ -218,7 +218,7 @@ end
 
 function RenderVehicleInfo(vehicle)
 	local model = GetEntityModel(vehicle)
-	local vehname = GetLabelText(GetDisplayNameFromVehicleModel(model))
+	local vehname = GetDisplayNameFromVehicleModel(model)
 	local licenseplate = GetVehicleNumberPlateText(vehicle)
 	SetTextFont(0)
 	SetTextProportional(1)
@@ -229,7 +229,7 @@ function RenderVehicleInfo(vehicle)
 	SetTextDropShadow()
 	SetTextOutline()
 	SetTextEntry("STRING")
-	AddTextComponentString("Model: "..vehname.."\nPlate: "..licenseplate)
+	AddTextComponentString("Modelo: "..vehname.."\nPlaca: "..licenseplate)
 	DrawText(0.45, 0.9)
 end
 

@@ -291,7 +291,7 @@
                         <start value="0.00000000"/>
                         <speed value="1.00000000"/>
                         <sequencer value="100687958"/>
-                        <multiples value="30"/>
+                        <multiples value="1"/>
                         <direction value="true"/>
                         <syncToBpm value="true"/>
                     </flashiness>
@@ -329,7 +329,7 @@
                         <start value="0.00000000"/>
                         <speed value="1.00000000"/>
                         <sequencer value="3435973836"/>
-                        <multiples value="30"/>
+                        <multiples value="1"/>
                         <direction value="true"/>
                         <syncToBpm value="true"/>
                     </flashiness>
@@ -367,7 +367,7 @@
                         <start value="0.00000000"/>
                         <speed value="1.00000000"/>
                         <sequencer value="858993459"/>
-                        <multiples value="30"/>
+                        <multiples value="1"/>
                         <direction value="true"/>
                         <syncToBpm value="true"/>
                     </flashiness>
@@ -405,7 +405,7 @@
                         <start value="0.00000000"/>
                         <speed value="1.00000000"/>
                         <sequencer value="2249744774"/>
-                        <multiples value="30"/>
+                        <multiples value="1"/>
                         <direction value="true"/>
                         <syncToBpm value="true"/>
                     </flashiness>
@@ -443,7 +443,7 @@
                         <start value="0.00000000"/>
                         <speed value="1.00000000"/>
                         <sequencer value="1227133514"/>
-                        <multiples value="30"/>
+                        <multiples value="1"/>
                         <direction value="true"/>
                         <syncToBpm value="true"/>
                     </flashiness>
@@ -481,7 +481,7 @@
                         <start value="0.00000000"/>
                         <speed value="1.00000000"/>
                         <sequencer value="818089010"/>
-                        <multiples value="30"/>
+                        <multiples value="1"/>
                         <direction value="true"/>
                         <syncToBpm value="true"/>
                     </flashiness>
@@ -519,7 +519,7 @@
                         <start value="0.00000000"/>
                         <speed value="1.00000000"/>
                         <sequencer value="2249744774"/>
-                        <multiples value="30"/>
+                        <multiples value="1"/>
                         <direction value="true"/>
                         <syncToBpm value="true"/>
                     </flashiness>
@@ -557,7 +557,7 @@
                         <start value="0.00000000"/>
                         <speed value="1.00000000"/>
                         <sequencer value="1227133514"/>
-                        <multiples value="30"/>
+                        <multiples value="1"/>
                         <direction value="true"/>
                         <syncToBpm value="true"/>
                     </flashiness>
@@ -595,7 +595,7 @@
                         <start value="0.00000000"/>
                         <speed value="1.00000000"/>
                         <sequencer value="818089010"/>
-                        <multiples value="30"/>
+                        <multiples value="1"/>
                         <direction value="true"/>
                         <syncToBpm value="true"/>
                     </flashiness>

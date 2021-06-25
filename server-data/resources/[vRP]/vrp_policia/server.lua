@@ -373,7 +373,7 @@ RegisterCommand('prender',function(source,args,rawCommand)
 		TriggerClientEvent('prisioneiro',player,true)
 		vRPclient._playSound(source,"Hack_Success","DLC_HEIST_BIOLAB_PREP_HACKING_SOUNDS")
 		TriggerClientEvent("vrp_sound:source",player,'jaildoor',1)
-		vRPclient.teleport(player,1680.1,2513.0,45.5)
+		vRPclient.teleport(player,712.08,111.49,80.76)
 
 		local oficialid = vRP.getUserIdentity(user_id)
 		local identity = vRP.getUserIdentity(parseInt(args[1]))
@@ -393,7 +393,7 @@ end)
 -----------------------------------------------------------------------------------------------------------------------------------------
 RegisterCommand('prenderadv',function(source,args,rawCommand)
 	local user_id = vRP.getUserId(source)
-	if vRP.hasPermission(user_id,"admin.permissao") then
+	if vRP.hasPermission(user_id,"kick.permissao") then
 		local player = vRP.getUserSource(parseInt(args[1]))
 		vRP.setUData(parseInt(args[1]),"vRP:prisao",json.encode(parseInt(args[2])))
 		vRPclient.setHandcuffed(player,false)
@@ -404,7 +404,7 @@ RegisterCommand('prenderadv',function(source,args,rawCommand)
 		TriggerClientEvent('prisioneiro',player,true)
 		vRPclient._playSound(source,"Hack_Success","DLC_HEIST_BIOLAB_PREP_HACKING_SOUNDS")
 		TriggerClientEvent("vrp_sound:source",player,'jaildoor',1)
-		vRPclient.teleport(player,1680.1,2513.0,45.5)
+		vRPclient.teleport(player,712.08,111.49,80.76)
 
 		TriggerClientEvent("Notify",source,"sucesso","Prisão efetuada com sucesso!")
 		TriggerClientEvent("Notify",player,"importante","Você foi preso pelos seguintes crimes: <b>"..crimes.."</b>")
@@ -605,34 +605,34 @@ end)
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- CARD
 -----------------------------------------------------------------------------------------------------------------------------------------
-local pulso = nil
-local upulso = nil
-RegisterCommand('vida',function(source,args,rawCommand)
-	local user_id = vRP.getUserId(source)
-	local nplayer = vRPclient.getNearestPlayer(source,2)
-	local nuser_id = vRP.getUserId(nplayer)
-	if vRP.hasPermission(user_id,"paramedico.permissao") then
-		if nuser_id and vRPclient.isInComa(nplayer) then
-			if upulso ~= nuser_id then
-				upulso = nuser_id
-				pulso = math.random(1,100)
-				if pulso >= 30 then
-					TriggerClientEvent("Notify",source,"importante","Essa pessoa ainda tem pulso.")
-					TriggerClientEvent("Notify",nplayer,"importante","Você está pulsando.")
-				elseif pulso <= 29 then
-					TriggerClientEvent("Notify",source,"importante","Essa infelizmente não tem mais pulso.")
-					TriggerClientEvent("Notify",nplayer,"importante","Você não tem mais pulso.")
-				end
-			else
-				TriggerClientEvent("Notify",source,"importante","Você ja mediu o pulso dessa pessoa.")
-			end
-		else
-			TriggerClientEvent("Notify",source,"importante","A pessoa deve estar em coma para prosseguir")
-		end
-	end
-end)
+--local pulso = nil
+--local upulso = nil
+--RegisterCommand('vida',function(source,args,rawCommand)
+--	local user_id = vRP.getUserId(source)
+--	local nplayer = vRPclient.getNearestPlayer(source,2)
+--	local nuser_id = vRP.getUserId(nplayer)
+--	if vRP.hasPermission(user_id,"paramedico.permissao") then
+--		if nuser_id and vRPclient.isInComa(nplayer) then
+--			if upulso ~= nuser_id then
+--				upulso = nuser_id
+--				pulso = math.random(1,100)
+--				if pulso >= 30 then
+--					TriggerClientEvent("Notify",source,"importante","Essa pessoa ainda tem pulso.")
+--					TriggerClientEvent("Notify",nplayer,"importante","Você está pulsando.")
+--				elseif pulso <= 29 then
+--					TriggerClientEvent("Notify",source,"importante","Essa infelizmente não tem mais pulso.")
+--					TriggerClientEvent("Notify",nplayer,"importante","Você não tem mais pulso.")
+--				end
+--			else
+--				TriggerClientEvent("Notify",source,"importante","Você ja mediu o pulso dessa pessoa.")
+--			end
+--		else
+--			TriggerClientEvent("Notify",source,"importante","A pessoa deve estar em coma para prosseguir")
+--		end
+--	end
+--end)
 -----------------------------------------------------------------------------------------------------------------------------------------
--- RE
+-- RE wally teste
 -----------------------------------------------------------------------------------------------------------------------------------------
 RegisterCommand('re',function(source,args,rawCommand)
 	local user_id = vRP.getUserId(source)
@@ -643,7 +643,7 @@ RegisterCommand('re',function(source,args,rawCommand)
 			local identity = vRP.getUserIdentity(user_id)
 			local identityu = vRP.getUserIdentity(nuser_id)
 			local crds = GetEntityCoords(GetPlayerPed(source))
-			if vRPclient.isInComa(nplayer) and pulso >= 30 then
+			if vRPclient.isInComa(nplayer) then
 				TriggerClientEvent('cancelando',source,true)
 				vRPclient._playAnim(source,false,{{"amb@medic@standing@tendtodead@base","base"},{"mini@cpr@char_a@cpr_str","cpr_pumpchest"}},true)
 				TriggerClientEvent("progress",source,30000,"reanimando")
@@ -654,21 +654,53 @@ RegisterCommand('re',function(source,args,rawCommand)
 					vRPclient._stopAnim(nplayer,false)
 					vRP.giveMoney(user_id,500)
 					TriggerClientEvent('cancelando',source,false)
-					pulso = nil
-					upulso = 0
 					TriggerEvent("srkfive:killregisterclear",nuser_id)
 					SendWebhookMessage(webhookre,"```prolog\n[ID]: "..user_id.." "..identity.name.." "..identity.firstname.." \n[REVIVEU]: "..nuser_id.." "..identityu.name.." "..identityu.firstname.."\n[COORDENADA]: "..crds.x..","..crds.y..","..crds.z..""..os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S").." \r```")
 				end)
-			elseif pulso == nil then
-				TriggerClientEvent("Notify",source,"importante","Utilize /vida para medir o pulso.")
-			elseif pulso <= 29 then
-				TriggerClientEvent("Notify",source,"importante","A pessoa nao tem mais pulso.")
 			else
 				TriggerClientEvent("Notify",source,"importante","A pessoa precisa estar em coma para prosseguir.")
 			end
 		end
 	end
 end)
+-----------------------------------------------------------------------------------------------------------------------------------------
+-- RE
+-----------------------------------------------------------------------------------------------------------------------------------------
+--RegisterCommand('re',function(source,args,rawCommand)
+--	local user_id = vRP.getUserId(source)
+--	if vRP.hasPermission(user_id,"paramedico.permissao") then
+--		local nplayer = vRPclient.getNearestPlayer(source,2)
+--		local nuser_id = vRP.getUserId(nplayer)
+--		if nplayer then
+--			local identity = vRP.getUserIdentity(user_id)
+--			local identityu = vRP.getUserIdentity(nuser_id)
+--			local crds = GetEntityCoords(GetPlayerPed(source))
+--			if vRPclient.isInComa(nplayer) and pulso >= 30 then
+--				TriggerClientEvent('cancelando',source,true)
+--				vRPclient._playAnim(source,false,{{"amb@medic@standing@tendtodead@base","base"},{"mini@cpr@char_a@cpr_str","cpr_pumpchest"}},true)
+--				TriggerClientEvent("progress",source,30000,"reanimando")
+--				SetTimeout(30000,function()
+--					vRPclient.killGod(nplayer)
+--					vRPclient.setHealth(nplayer,150)
+--					vRPclient._stopAnim(source,false)
+--					vRPclient._stopAnim(nplayer,false)
+--					vRP.giveMoney(user_id,500)
+--					TriggerClientEvent('cancelando',source,false)
+--					pulso = nil
+--					upulso = 0
+--					TriggerEvent("srkfive:killregisterclear",nuser_id)
+--					SendWebhookMessage(webhookre,"```prolog\n[ID]: "..user_id.." "..identity.name.." "..identity.firstname.." \n[REVIVEU]: "..nuser_id.." "..identityu.name.." "..identityu.firstname.."\n[COORDENADA]: "..crds.x..","..crds.y..","..crds.z..""..os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S").." \r```")
+--				end)
+--			elseif pulso == nil then
+--				TriggerClientEvent("Notify",source,"importante","Utilize /vida para medir o pulso.")
+--			elseif pulso <= 29 then
+--				TriggerClientEvent("Notify",source,"importante","A pessoa nao tem mais pulso.")
+--			else
+--				TriggerClientEvent("Notify",source,"importante","A pessoa precisa estar em coma para prosseguir.")
+--			end
+--		end
+--	end
+--end)
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- CV
 -----------------------------------------------------------------------------------------------------------------------------------------
@@ -963,7 +995,7 @@ AddEventHandler("vRP:playerSpawn",function(user_id,source,first_spawn)
 
 			if tempo > 0 then
 				TriggerClientEvent('prisioneiro',player,true)
-				vRPclient.teleport(player,1680.1,2513.0,46.5)
+				vRPclient.teleport(player,712.08,111.49,80.76)
 				TriggerClientEvent("Notify",player,"importante","Você está preso e ainda vai passar <b>"..parseInt(tempo).." meses</b> na cadeia")
 				prison_lock(parseInt(user_id))
 			end
@@ -983,7 +1015,7 @@ function prison_lock(target_id)
 				prison_lock(parseInt(target_id))
 			elseif parseInt(tempo) == 0 then
 				TriggerClientEvent('prisioneiro',player,false)
-				vRPclient.teleport(player,1850.5,2604.0,45.5)
+				vRPclient.teleport(player,741.67,134.32,80.41)
 				vRP.setUData(parseInt(target_id),"vRP:prisao",json.encode(-1))
 				TriggerClientEvent("Notify",player,"importante","Sua sentença terminou, esperamos não ve-lo novamente")
 			end

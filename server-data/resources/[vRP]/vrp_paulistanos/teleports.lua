@@ -19,6 +19,22 @@ local Teleport = {
 		positionFrom = { ['x'] = 232.34, ['y'] = -1095.12, ['z'] = 29.3 },
 		positionTo = { ['x'] = 244.17, ['y'] = -344.3, ['z'] = -118.79 }
 	},
+	["VANILLA"] = {
+		positionFrom = { ['x'] = 133.13, ['y'] = -1293.63, ['z'] = 29.27 },
+		positionTo = { ['x'] = 132.43, ['y'] = -1287.46, ['z'] = 29.28 }
+	},
+	["CASSINO"] = {
+		positionFrom = { ['x'] = 935.9, ['y'] = 47.03, ['z'] = 81.1 },
+		positionTo = { ['x'] = 965.15, ['y'] = 58.66, ['z'] = 112.56 }
+	},
+	["BAHAMAS"] = {
+		positionFrom = { ['x'] = -1386.28, ['y'] = -627.48, ['z'] = 30.82 },
+		positionTo = { ['x'] = -1371.52, ['y'] = -626.05, ['z'] = 30.82 }
+	},
+	["DPNOVA"] = { -- HELIPONTO DP NOVA
+		positionFrom = { ['x'] = -582.99, ['y'] = -146.34, ['z'] = 38.24 },
+		positionTo = { ['x'] = -554.7, ['y'] = -187.23, ['z'] = 52.21 } 
+	},
 }
 
 Citizen.CreateThread(function()

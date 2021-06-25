@@ -17,6 +17,22 @@ data_file 'VEHICLE_LAYOUTS_FILE' 'data/rmodlfa/vehiclelayouts.meta'
 --\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 
 files {
+    'data/rmodf12tdf/vehicles.meta',
+    'data/rmodf12tdf/carvariations.meta',
+    'data/rmodf12tdf/carcols.meta',
+    'data/rmodf12tdf/handling.meta',
+    'data/rmodf12tdf/vehiclelayouts.meta',
+}
+
+data_file 'HANDLING_FILE' 'data/rmodf12tdf/handling.meta'
+data_file 'VEHICLE_METADATA_FILE' 'data/rmodf12tdf/vehicles.meta'
+data_file 'CARCOLS_FILE' 'data/rmodf12tdf/carcols.meta'
+data_file 'VEHICLE_VARIATION_FILE' 'data/rmodf12tdf/carvariations.meta'
+data_file 'VEHICLE_LAYOUTS_FILE' 'data/rmodf12tdf/vehiclelayouts.meta'
+
+--\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
+files {
     'data/rmodlp670/vehicles.meta',
     'data/rmodlp670/carvariations.meta',
     'data/rmodlp670/carcols.meta',
@@ -721,35 +737,35 @@ data_file 'VEHICLE_LAYOUTS_FILE' 'data/rmodzl1/vehiclelayouts.meta'
 --\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 
 files {
-    'vehicles.meta',
-    'carvariations.meta',
-    'carcols.meta',
-    'handling.meta',
-    'vehiclelayouts.meta',
+    'data/evo9/vehicles.meta',
+    'data/evo9/carvariations.meta',
+    'data/evo9/carcols.meta',
+    'data/evo9/handling.meta',
+    'data/evo9/vehiclelayouts.meta',
 }
 
-data_file 'HANDLING_FILE' 'handling.meta'
-data_file 'VEHICLE_METADATA_FILE' 'vehicles.meta'
-data_file 'CARCOLS_FILE' 'carcols.meta'
-data_file 'VEHICLE_VARIATION_FILE' 'carvariations.meta'
-data_file 'VEHICLE_LAYOUTS_FILE' 'vehiclelayouts.meta'
+data_file 'HANDLING_FILE' 'data/evo9/handling.meta'
+data_file 'VEHICLE_METADATA_FILE' 'data/evo9/vehicles.meta'
+data_file 'CARCOLS_FILE' 'data/evo9/carcols.meta'
+data_file 'VEHICLE_VARIATION_FILE' 'data/evo9/carvariations.meta'
+data_file 'VEHICLE_LAYOUTS_FILE' 'data/evo9/vehiclelayouts.meta'
 
 --\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 
 --\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 
 files {
-    'vehicles.meta',
-    'carvariations.meta',
-    'carcols.meta',
-    'handling.meta',
-    'vehiclelayouts.meta',
+    'data/skylinejapao/vehicles.meta',
+    'data/skylinejapao/carvariations.meta',
+    'data/skylinejapao/carcols.meta',
+    'data/skylinejapao/handling.meta',
+    'data/skylinejapao/vehiclelayouts.meta',
 }
 
-data_file 'HANDLING_FILE' 'handling.meta'
-data_file 'VEHICLE_METADATA_FILE' 'vehicles.meta'
-data_file 'CARCOLS_FILE' 'carcols.meta'
-data_file 'VEHICLE_VARIATION_FILE' 'carvariations.meta'
-data_file 'VEHICLE_LAYOUTS_FILE' 'vehiclelayouts.meta'
+data_file 'HANDLING_FILE' 'data/skylinejapao/handling.meta'
+data_file 'VEHICLE_METADATA_FILE' 'data/skylinejapao/vehicles.meta'
+data_file 'CARCOLS_FILE' 'data/skylinejapao/carcols.meta'
+data_file 'VEHICLE_VARIATION_FILE' 'data/skylinejapao/carvariations.meta'
+data_file 'VEHICLE_LAYOUTS_FILE' 'data/skylinejapao/vehiclelayouts.meta'
 
 --\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\

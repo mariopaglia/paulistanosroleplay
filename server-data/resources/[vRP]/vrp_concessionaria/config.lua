@@ -52,12 +52,12 @@ Config.Veiculos = {
     {
         categoria = {title = "Importado", id = "importado"},
         veiculos = {
+            {title = "Nissan 180SX (Drift)", model = "180sx", mala = 20, preco = 600000, estoque = 10},
             {title = "Dodge Charger", model = "defiant", mala = 20, preco = 650000, estoque = 10},
             {title = "Plymouth GTX", model = "71gtx", mala = 20, preco = 750000, estoque = 10},
             {title = "Mustang Mach 1", model = "mustangmach1", mala = 0, preco = 850000, estoque = 10},
-            {title = "Porsche 930", model = "porsche930", mala = 10, preco = 950000, estoque = 10},
             --  
-            {title = "Nissan 180SX", model = "180sx", mala = 20, preco = 1000000, estoque = 10},
+            {title = "Porsche 930", model = "porsche930", mala = 10, preco = 950000, estoque = 10},
             {title = "Mitsubishi Eclipse", model = "eclipse", mala = 0, preco = 1150000, estoque = 10},
             {title = "Civic Type R", model = "hondafk8", mala = 30, preco = 1200000, estoque = 10},
             {title = "Mazda RX7", model = "mazdarx7", mala = 10, preco = 1300000, estoque = 10},
@@ -143,6 +143,21 @@ Config.Veiculos = {
             {title = "Ferrari F12 TDF", model = "rmodf12tdf", mala = 0, preco = 1000, estoque = 0},
         },
     },
+    {
+        categoria = {title = "Edição Especial", id = "edicaoespecial"},
+        veiculos = {
+            {title = "Lancer Evolution IX", model = "evo9", mala = 0, preco = 1000, estoque = 0},
+            {title = "Nissan 240SX", model = "rmod240sx", mala = 0, preco = 1000, estoque = 0},
+            {title = "Bugatti Bolide", model = "rmodbolide", mala = 0, preco = 1000, estoque = 0},
+            {title = "Dodge Charger 69", model = "rmodcharger69", mala = 0, preco = 1000, estoque = 0},
+            {title = "Escort RS Cosworth", model = "rmodescort", mala = 0, preco = 1000, estoque = 0},
+            {title = "Ferrari F40", model = "rmodf40", mala = 0, preco = 1000, estoque = 0},
+            {title = "Nissan GT R50", model = "rmodgtr50", mala = 0, preco = 1000, estoque = 0},
+            {title = "BMW M8 GTE", model = "rmodm8gte", mala = 0, preco = 1000, estoque = 0},
+            {title = "Nissan Skyline R34", model = "rmodskyline34", mala = 0, preco = 1000, estoque = 0},
+            {title = "Nissan Skyline R34 Japan", model = "skyline", mala = 0, preco = 1000, estoque = 0},
+        },
+    },
     -- {
     --     categoria = {title = "Brasileiro", id = "brasileiro"},
     --     veiculos = {
@@ -211,6 +226,7 @@ Config.Veiculos = {
             {title = "specter", model = "specter", mala = 10, preco = 235000, estoque = 10},
             {title = "elegy2", model = "elegy2", mala = 10, preco = 240000, estoque = 10},
             {title = "coquette", model = "coquette", mala = 10, preco = 245000, estoque = 10},
+            {title = "gb200", model = "gb200", mala = 10, preco = 250000, estoque = 10},
             {title = "elegy", model = "elegy", mala = 20, preco = 260000, estoque = 10},
             --
             {title = "flashgt", model = "flashgt", mala = 15, preco = 280000, estoque = 10},

@@ -10,14 +10,20 @@ xD = {
 
 	------------------------------------------------------------------------------ FUNÇÕES ----------------------------------------------------------------------------
 	
-	checkTicket = function(user_id) -- Função que checa determinado item no seu inventário.
+	checkTicket = function(user_id,getItem) -- Função que checa determinado item no seu inventário.
 		local item = "gps" -- (item) Item necessário para iniciar a corrida, caso queira.
 		local amount = 1 -- (quantidade) Quantidade de item usada para iniciar a corrida.
 
         if vRP.getInventoryItemAmount(user_id,item) >= amount then  -- Caso queira que seja necessário usar algum item para iniciar a corrida.
-			return vRP.tryGetInventoryItem(user_id,item,amount)
+			if getItem then
+				return vRP.tryGetInventoryItem(user_id,item,amount)
+			else
+				return true
+			end
 		else
-			TriggerClientEvent("Notify",source,"negado","Você não possui <b>"..amount.." "..vRP.itemNameList(item).."</b>, a corrida será iniciada no modo treino.") 
+			if not getItem then
+				TriggerClientEvent("Notify",source,"negado","Você não possui <b>"..amount.." "..vRP.itemNameList(item).."</b>, a corrida será iniciada no modo treino.") 
+			end
 			return false
 		end
 			--return true -- Para iniciar sem nenhum item

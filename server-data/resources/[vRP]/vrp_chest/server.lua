@@ -14,11 +14,12 @@ Tunnel.bindInterface("vrp_chest",src)
 vCLIENT = Tunnel.getInterface("vrp_chest")
 
 local oinv = {}
+local uinv = {}
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- WEBHOOK
 -----------------------------------------------------------------------------------------------------------------------------------------
 local webhookbaupoliciamilitar = "https://discord.com/api/webhooks/809192959135973378/Bmjn-R-2oQaEVr55_U_Xa5IGWBt8EfXOLvKhe60jOcahA-Zw42XBCzbeIL01EId1sVQY"
-local webhookbaupoliciacivil = "https://discord.com/api/webhooks/809892234848632924/svo93-yfO4-ErDlB9NbzAtxfAH8yUAsc_xJlxSD0grYVpGRQnYr0Mib-_hLGRULrYJD2"
+local webhookbaupoliciacivil = "https://discord.com/api/webhooks/856346042123288607/7WOiDztjSFdcw9g0JIB_nd9FSpbofgIoziGr8QqyMEVcgr3VEOT_A_zijGDgY3B3ebrT"
 local webhookbaugangues = "https://discord.com/api/webhooks/795762921128984577/BUdK4PSye4EoV6laclhYGKGSQCSm2q-vPGHcEx_ySynnGKGKAKfln5A2awNprfAZRsDl"
 local webhookbaucosanostra = "https://discord.com/api/webhooks/814170339436527656/2xszX0aIIUlIqdqfTlByh5D0e1XEXRi0cixHXb9dJ2mO-zxCA7Ssw76pZRvlleAGJlNV"
 local webhookbaubratva = "https://discord.com/api/webhooks/814170534807076875/cj-_UmOXbt_qJ6PMIib4XREprG7s0yvL7115HEdLrg9NZf7ahPv2Zt8A0pUyLgW3BsF5"
@@ -31,7 +32,15 @@ local webhookbautriade = "https://discord.com/api/webhooks/825074285953024030/uq
 local webhookbaufarc = "https://discord.com/api/webhooks/820505826014920705/vdEF7RM11DdAnolodVHzmtUm-r2UMD21MyrSvWyNOFpHh1lZeLrBEneV5BFVLxhzlgA8"
 local webhookbauserpentes = "https://discord.com/api/webhooks/825074237155835974/h1E_MXY0OFFCfMU9xCu9Dtq-KBUxfJjq7mLmL7SgZ9j03qaob4yBBjbxlT2rJ-_0uvih"
 local webhookbauprf = "https://discord.com/api/webhooks/827573925273010246/hag87ROqJhefp5pe_kqv6V0i_7miRl2ASBKKoGKVonGEnMXRqPW3ZiSU_IsOSskylA0O"
-
+local webhookbauverdeslider = "https://discord.com/api/webhooks/850595009455587329/eXNvz5UyT_py7EjOPTh67UYP7RY-j8lSC398gZoyLaWx9hd9a2LYHPrrAsmque4i0xOT"
+local webhookbauvermelhoslider = "https://discord.com/api/webhooks/850599051879383060/Lei325qHntXfWEGUu7YcEfN_QGoSwrlxKFrWM3L7BZyP3IebaGKMIHGrfDYqDLpJgOkI"
+local webhookbauroxoslider = "https://discord.com/api/webhooks/850600528257744907/n4iv5WCsPXUyl_HCUUYhruUTYfJ42vlw1vmuBAj1iuhbNZaCu44cvw8bQLVbQTEOY4U-"
+local webhookbaucnlider = "https://discord.com/api/webhooks/850602486112321546/MKW5dOw5IR81_gX2iFgm9zhfI-edLUwikdqkUknwt3T1mAXFnwvjgjjPuU_BoYe80T8t"
+local webhookbaubratvalider = "https://discord.com/api/webhooks/850603528170110976/dowz-fadMHX8LEx2nPPoAMKsxRSWONhizba7GARMgrHlwPhO7MKKZYHNDJ3AJCc-aME0"
+local webhookbauyakuzalider = "https://discord.com/api/webhooks/851318084232019968/_hn34aGlJFv6OUsbhE-EnodOCbW7nIvJ-stqD9iNd3CK78uONq4MtztoNnfZTVz7Bu97"
+local webhookbautriadelider = "https://discord.com/api/webhooks/851321164613287946/YIG3CSiY4m80VrmhHd2DjQNYQdBb1Q-HeIFzY4nyFYRRwNxV38qjxjsZhRa1XF0VcOOg"
+local webhookbaumotoclublider = "https://discord.com/api/webhooks/852130458346979388/jlpjGP58MFq9RzCNU5LNyeV2jmZkmU8e-5MRBCtkKRIqTpPErHvCXVy9Y501nHv_Anxk"
+local webhookbauserpenteslider = "https://discord.com/api/webhooks/857645996804407357/ev2A79P6G1k-3qgV3xuE4Kaf3CfYniXf0COb6TDXUFCYFmkz46SEvz3s0k4K597xi0IH"
 
 function SendWebhookMessage(webhook,message)
 	if webhook ~= nil and webhook ~= "" then
@@ -57,6 +66,15 @@ local chest = {
 	["serpentes"] = { 10000,"serpentes.permissao" },
 	["rota"] = { 100000,"rota.permissao" },
 	["prf"] = { 100000,"policia.permissao" },
+	["verdeslider"] = { 5000,"liderverdes.permissao" },
+	["vermelhoslider"] = { 5000,"lidervermelhos.permissao" },
+	["roxoslider"] = { 5000,"liderroxos.permissao" },
+	["cnlider"] = { 5000,"lidercn.permissao" },
+	["bratvalider"] = { 5000,"liderbratva.permissao" },
+	["yakuzalider"] = { 5000,"lideryakuza.permissao" },
+	["triadelider"] = { 5000,"lidertriade.permissao" },
+	["motoclublider"] = { 5000,"lidermotoclub.permissao" },
+	["serpenteslider"] = { 5000,"liderserpentes.permissao" },
 }
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- VARIÁVEIS
@@ -129,6 +147,9 @@ Citizen.CreateThread(function()
 end)
 
 function src.closeChest(chestName)
+	local source = source
+	local user_id = vRP.getUserId(source)
+	uinv[oinv[chestName]] = nil
 	oinv[chestName] = nil
 end
 
@@ -138,7 +159,8 @@ function src.checkIntPermissions(chestName)
 	
 	local f = function()
 		if user_id and not oinv[chestName] then
-			oinv[chestName] = true
+			oinv[chestName] = user_id
+			uinv[user_id] = chestName
 			if not vRP.searchReturn(source,user_id) then
 				if vRP.hasPermission(user_id,chest[chestName][2]) or vRP.hasPermission(user_id,"delegado.permissao") or vRP.hasPermission(user_id,"admin.permissao") then
 					return true
@@ -229,7 +251,25 @@ function src.storeItem(chestName,itemName,amount)
 							elseif chestName == "farc" then
 								SendWebhookMessage(webhookbaufarc,"```prolog\n[ID]: "..user_id.." "..identity.name.." "..identity.firstname.." \n[GUARDOU]: "..vRP.format(parseInt(amount)).." "..vRP.itemNameList(itemName).." \n[BAU]: "..chestName.." "..os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S").." \r```")
 							elseif chestName == "serpentes" then
-								SendWebhookMessage(webhookbauserpentes,"```prolog\n[ID]: "..user_id.." "..identity.name.." "..identity.firstname.." \n[GUARDOU]: "..vRP.format(parseInt(amount)).." "..vRP.itemNameList(itemName).." \n[BAU]: "..chestName.." "..os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S").." \r```")
+								SendWebhookMessage(webhookbaufarc,"```prolog\n[ID]: "..user_id.." "..identity.name.." "..identity.firstname.." \n[GUARDOU]: "..vRP.format(parseInt(amount)).." "..vRP.itemNameList(itemName).." \n[BAU]: "..chestName.." "..os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S").." \r```")
+							elseif chestName == "verdeslider" then
+								SendWebhookMessage(webhookbauverdeslider,"```prolog\n[ID]: "..user_id.." "..identity.name.." "..identity.firstname.." \n[GUARDOU]: "..vRP.format(parseInt(amount)).." "..vRP.itemNameList(itemName).." \n[BAU]: "..chestName.." "..os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S").." \r```")
+							elseif chestName == "roxoslider" then
+								SendWebhookMessage(webhookbauroxoslider,"```prolog\n[ID]: "..user_id.." "..identity.name.." "..identity.firstname.." \n[GUARDOU]: "..vRP.format(parseInt(amount)).." "..vRP.itemNameList(itemName).." \n[BAU]: "..chestName.." "..os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S").." \r```")
+							elseif chestName == "cnlider" then
+								SendWebhookMessage(webhookbaucnlider,"```prolog\n[ID]: "..user_id.." "..identity.name.." "..identity.firstname.." \n[GUARDOU]: "..vRP.format(parseInt(amount)).." "..vRP.itemNameList(itemName).." \n[BAU]: "..chestName.." "..os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S").." \r```")
+							elseif chestName == "bratvalider" then
+								SendWebhookMessage(webhookbaubratvalider,"```prolog\n[ID]: "..user_id.." "..identity.name.." "..identity.firstname.." \n[GUARDOU]: "..vRP.format(parseInt(amount)).." "..vRP.itemNameList(itemName).." \n[BAU]: "..chestName.." "..os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S").." \r```")							
+							elseif chestName == "yakuzalider" then
+								SendWebhookMessage(webhookbauyakuzalider,"```prolog\n[ID]: "..user_id.." "..identity.name.." "..identity.firstname.." \n[GUARDOU]: "..vRP.format(parseInt(amount)).." "..vRP.itemNameList(itemName).." \n[BAU]: "..chestName.." "..os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S").." \r```")							
+							elseif chestName == "triadelider" then
+								SendWebhookMessage(webhookbautriadelider,"```prolog\n[ID]: "..user_id.." "..identity.name.." "..identity.firstname.." \n[GUARDOU]: "..vRP.format(parseInt(amount)).." "..vRP.itemNameList(itemName).." \n[BAU]: "..chestName.." "..os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S").." \r```")							
+							elseif chestName == "motoclublider" then
+								SendWebhookMessage(webhookbaumotoclublider,"```prolog\n[ID]: "..user_id.." "..identity.name.." "..identity.firstname.." \n[GUARDOU]: "..vRP.format(parseInt(amount)).." "..vRP.itemNameList(itemName).." \n[BAU]: "..chestName.." "..os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S").." \r```")							
+							elseif chestName == "serpenteslider" then
+								SendWebhookMessage(webhookbauserpenteslider,"```prolog\n[ID]: "..user_id.." "..identity.name.." "..identity.firstname.." \n[GUARDOU]: "..vRP.format(parseInt(amount)).." "..vRP.itemNameList(itemName).." \n[BAU]: "..chestName.." "..os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S").." \r```")							
+							elseif chestName == "serpentes" then
+								SendWebhookMessage(webhookbaufarc,"```prolog\n[ID]: "..user_id.." "..identity.name.." "..identity.firstname.." \n[GUARDOU]: "..vRP.format(parseInt(amount)).." "..vRP.itemNameList(itemName).." \n[BAU]: "..chestName.." "..os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S").." \r```")
 							elseif chestName == "prf" then
 								SendWebhookMessage(webhookbauprf,"```prolog\n[ID]: "..user_id.." "..identity.name.." "..identity.firstname.." \n[GUARDOU]: "..vRP.format(parseInt(amount)).." "..vRP.itemNameList(itemName).." \n[BAU]: "..chestName.." "..os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S").." \r```")
 							end
@@ -285,7 +325,25 @@ function src.storeItem(chestName,itemName,amount)
 									elseif chestName == "farc" then
 										SendWebhookMessage(webhookbaufarc,"```prolog\n[ID]: "..user_id.." "..identity.name.." "..identity.firstname.." \n[GUARDOU]: "..vRP.format(parseInt(v.amount)).." "..vRP.itemNameList(itemName).." \n[BAU]: "..chestName.." "..os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S").." \r```")
 									elseif chestName == "serpentes" then
-										SendWebhookMessage(webhookbauserpentes,"```prolog\n[ID]: "..user_id.." "..identity.name.." "..identity.firstname.." \n[GUARDOU]: "..vRP.format(parseInt(v.amount)).." "..vRP.itemNameList(itemName).." \n[BAU]: "..chestName.." "..os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S").." \r```")
+										SendWebhookMessage(webhookbaufarc,"```prolog\n[ID]: "..user_id.." "..identity.name.." "..identity.firstname.." \n[GUARDOU]: "..vRP.format(parseInt(v.amount)).." "..vRP.itemNameList(itemName).." \n[BAU]: "..chestName.." "..os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S").." \r```")
+									elseif chestName == "verdeslider" then
+										SendWebhookMessage(webhookbauverdeslider,"```prolog\n[ID]: "..user_id.." "..identity.name.." "..identity.firstname.." \n[GUARDOU]: "..vRP.format(parseInt(v.amount)).." "..vRP.itemNameList(itemName).." \n[BAU]: "..chestName.." "..os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S").." \r```")
+									elseif chestName == "vermelhoslider" then
+										SendWebhookMessage(webhookbauvermelhoslider,"```prolog\n[ID]: "..user_id.." "..identity.name.." "..identity.firstname.." \n[GUARDOU]: "..vRP.format(parseInt(v.amount)).." "..vRP.itemNameList(itemName).." \n[BAU]: "..chestName.." "..os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S").." \r```")
+									elseif chestName == "roxoslider" then
+										SendWebhookMessage(webhookbauroxoslider,"```prolog\n[ID]: "..user_id.." "..identity.name.." "..identity.firstname.." \n[GUARDOU]: "..vRP.format(parseInt(v.amount)).." "..vRP.itemNameList(itemName).." \n[BAU]: "..chestName.." "..os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S").." \r```")
+									elseif chestName == "bratvalider" then
+										SendWebhookMessage(webhookbaubratvalider,"```prolog\n[ID]: "..user_id.." "..identity.name.." "..identity.firstname.." \n[GUARDOU]: "..vRP.format(parseInt(v.amount)).." "..vRP.itemNameList(itemName).." \n[BAU]: "..chestName.." "..os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S").." \r```")
+									elseif chestName == "yakuzalider" then
+										SendWebhookMessage(webhookbauyakuzalider,"```prolog\n[ID]: "..user_id.." "..identity.name.." "..identity.firstname.." \n[GUARDOU]: "..vRP.format(parseInt(v.amount)).." "..vRP.itemNameList(itemName).." \n[BAU]: "..chestName.." "..os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S").." \r```")
+									elseif chestName == "triadelider" then
+										SendWebhookMessage(webhookbautriadelider,"```prolog\n[ID]: "..user_id.." "..identity.name.." "..identity.firstname.." \n[GUARDOU]: "..vRP.format(parseInt(v.amount)).." "..vRP.itemNameList(itemName).." \n[BAU]: "..chestName.." "..os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S").." \r```")
+									elseif chestName == "motoclublider" then
+										SendWebhookMessage(webhookbaumotoclublider,"```prolog\n[ID]: "..user_id.." "..identity.name.." "..identity.firstname.." \n[GUARDOU]: "..vRP.format(parseInt(v.amount)).." "..vRP.itemNameList(itemName).." \n[BAU]: "..chestName.." "..os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S").." \r```")
+									elseif chestName == "serpenteslider" then
+										SendWebhookMessage(webhookbauserpenteslider,"```prolog\n[ID]: "..user_id.." "..identity.name.." "..identity.firstname.." \n[GUARDOU]: "..vRP.format(parseInt(v.amount)).." "..vRP.itemNameList(itemName).." \n[BAU]: "..chestName.." "..os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S").." \r```")
+									elseif chestName == "cnlider" then
+										SendWebhookMessage(webhookbaucnlider,"```prolog\n[ID]: "..user_id.." "..identity.name.." "..identity.firstname.." \n[GUARDOU]: "..vRP.format(parseInt(v.amount)).." "..vRP.itemNameList(itemName).." \n[BAU]: "..chestName.." "..os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S").." \r```")
 									elseif chestName == "prf" then
 										SendWebhookMessage(webhookbauprf,"```prolog\n[ID]: "..user_id.." "..identity.name.." "..identity.firstname.." \n[GUARDOU]: "..vRP.format(parseInt(v.amount)).." "..vRP.itemNameList(itemName).." \n[BAU]: "..chestName.." "..os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S").." \r```")
 									end
@@ -349,7 +407,25 @@ function src.takeItem(chestName,itemName,amount)
 							elseif chestName == "farc" then
 								SendWebhookMessage(webhookbaufarc,"```prolog\n[ID]: "..user_id.." "..identity.name.." "..identity.firstname.." \n[RETIROU]: "..vRP.format(parseInt(amount)).." "..vRP.itemNameList(itemName).." \n[BAU]: "..chestName.." "..os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S").." \r```")
 							elseif chestName == "serpentes" then
-								SendWebhookMessage(webhookbauserpentes,"```prolog\n[ID]: "..user_id.." "..identity.name.." "..identity.firstname.." \n[RETIROU]: "..vRP.format(parseInt(amount)).." "..vRP.itemNameList(itemName).." \n[BAU]: "..chestName.." "..os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S").." \r```")
+								SendWebhookMessage(webhookbaufarc,"```prolog\n[ID]: "..user_id.." "..identity.name.." "..identity.firstname.." \n[RETIROU]: "..vRP.format(parseInt(amount)).." "..vRP.itemNameList(itemName).." \n[BAU]: "..chestName.." "..os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S").." \r```")
+							elseif chestName == "verdeslider" then
+								SendWebhookMessage(webhookbauverdeslider,"```prolog\n[ID]: "..user_id.." "..identity.name.." "..identity.firstname.." \n[RETIROU]: "..vRP.format(parseInt(amount)).." "..vRP.itemNameList(itemName).." \n[BAU]: "..chestName.." "..os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S").." \r```")
+							elseif chestName == "vermelhoslider" then
+								SendWebhookMessage(webhookbauvermelhoslider,"```prolog\n[ID]: "..user_id.." "..identity.name.." "..identity.firstname.." \n[RETIROU]: "..vRP.format(parseInt(amount)).." "..vRP.itemNameList(itemName).." \n[BAU]: "..chestName.." "..os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S").." \r```")							
+							elseif chestName == "roxoslider" then
+								SendWebhookMessage(webhookbauroxoslider,"```prolog\n[ID]: "..user_id.." "..identity.name.." "..identity.firstname.." \n[RETIROU]: "..vRP.format(parseInt(amount)).." "..vRP.itemNameList(itemName).." \n[BAU]: "..chestName.." "..os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S").." \r```")
+							elseif chestName == "cnlider" then
+								SendWebhookMessage(webhookbaucnlider,"```prolog\n[ID]: "..user_id.." "..identity.name.." "..identity.firstname.." \n[RETIROU]: "..vRP.format(parseInt(amount)).." "..vRP.itemNameList(itemName).." \n[BAU]: "..chestName.." "..os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S").." \r```")
+							elseif chestName == "bratvalider" then
+								SendWebhookMessage(webhookbaubratvalider,"```prolog\n[ID]: "..user_id.." "..identity.name.." "..identity.firstname.." \n[RETIROU]: "..vRP.format(parseInt(amount)).." "..vRP.itemNameList(itemName).." \n[BAU]: "..chestName.." "..os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S").." \r```")
+							elseif chestName == "yakuzalider" then
+								SendWebhookMessage(webhookbauyakuzalider,"```prolog\n[ID]: "..user_id.." "..identity.name.." "..identity.firstname.." \n[RETIROU]: "..vRP.format(parseInt(amount)).." "..vRP.itemNameList(itemName).." \n[BAU]: "..chestName.." "..os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S").." \r```")
+							elseif chestName == "triadelider" then
+								SendWebhookMessage(webhookbautriadelider,"```prolog\n[ID]: "..user_id.." "..identity.name.." "..identity.firstname.." \n[RETIROU]: "..vRP.format(parseInt(amount)).." "..vRP.itemNameList(itemName).." \n[BAU]: "..chestName.." "..os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S").." \r```")
+							elseif chestName == "motoclublider" then
+								SendWebhookMessage(webhookbaumotoclublider,"```prolog\n[ID]: "..user_id.." "..identity.name.." "..identity.firstname.." \n[RETIROU]: "..vRP.format(parseInt(amount)).." "..vRP.itemNameList(itemName).." \n[BAU]: "..chestName.." "..os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S").." \r```")
+							elseif chestName == "serpenteslider" then
+								SendWebhookMessage(webhookbauserpenteslider,"```prolog\n[ID]: "..user_id.." "..identity.name.." "..identity.firstname.." \n[RETIROU]: "..vRP.format(parseInt(amount)).." "..vRP.itemNameList(itemName).." \n[BAU]: "..chestName.." "..os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S").." \r```")
 							elseif chestName == "prf" then
 								SendWebhookMessage(webhookbauprf,"```prolog\n[ID]: "..user_id.." "..identity.name.." "..identity.firstname.." \n[RETIROU]: "..vRP.format(parseInt(amount)).." "..vRP.itemNameList(itemName).." \n[BAU]: "..chestName.." "..os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S").." \r```")
 							end
@@ -396,7 +472,25 @@ function src.takeItem(chestName,itemName,amount)
 							elseif chestName == "farc" then
 								SendWebhookMessage(webhookbaufarc,"```prolog\n[ID]: "..user_id.." "..identity.name.." "..identity.firstname.." \n[RETIROU]: "..vRP.format(parseInt(items[itemName].amount)).." "..vRP.itemNameList(itemName).." \n[BAU]: "..chestName.." "..os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S").." \r```")
 							elseif chestName == "serpentes" then
-								SendWebhookMessage(webhookbauserpentes,"```prolog\n[ID]: "..user_id.." "..identity.name.." "..identity.firstname.." \n[RETIROU]: "..vRP.format(parseInt(items[itemName].amount)).." "..vRP.itemNameList(itemName).." \n[BAU]: "..chestName.." "..os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S").." \r```")
+								SendWebhookMessage(webhookbaufarc,"```prolog\n[ID]: "..user_id.." "..identity.name.." "..identity.firstname.." \n[RETIROU]: "..vRP.format(parseInt(items[itemName].amount)).." "..vRP.itemNameList(itemName).." \n[BAU]: "..chestName.." "..os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S").." \r```")
+							elseif chestName == "verdeslider" then
+								SendWebhookMessage(webhookbauverdeslider,"```prolog\n[ID]: "..user_id.." "..identity.name.." "..identity.firstname.." \n[RETIROU]: "..vRP.format(parseInt(items[itemName].amount)).." "..vRP.itemNameList(itemName).." \n[BAU]: "..chestName.." "..os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S").." \r```")
+							elseif chestName == "vermelhoslider" then
+								SendWebhookMessage(webhookbauvermelhoslider,"```prolog\n[ID]: "..user_id.." "..identity.name.." "..identity.firstname.." \n[RETIROU]: "..vRP.format(parseInt(items[itemName].amount)).." "..vRP.itemNameList(itemName).." \n[BAU]: "..chestName.." "..os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S").." \r```")
+							elseif chestName == "roxoslider" then
+								SendWebhookMessage(webhookbauroxoslider,"```prolog\n[ID]: "..user_id.." "..identity.name.." "..identity.firstname.." \n[RETIROU]: "..vRP.format(parseInt(items[itemName].amount)).." "..vRP.itemNameList(itemName).." \n[BAU]: "..chestName.." "..os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S").." \r```")
+							elseif chestName == "cnlider" then
+								SendWebhookMessage(webhookbaucnlider,"```prolog\n[ID]: "..user_id.." "..identity.name.." "..identity.firstname.." \n[RETIROU]: "..vRP.format(parseInt(items[itemName].amount)).." "..vRP.itemNameList(itemName).." \n[BAU]: "..chestName.." "..os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S").." \r```")
+							elseif chestName == "bratvalider" then
+								SendWebhookMessage(webhookbaubratvalider,"```prolog\n[ID]: "..user_id.." "..identity.name.." "..identity.firstname.." \n[RETIROU]: "..vRP.format(parseInt(items[itemName].amount)).." "..vRP.itemNameList(itemName).." \n[BAU]: "..chestName.." "..os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S").." \r```")
+							elseif chestName == "yakuzalider" then
+								SendWebhookMessage(webhookbauyakuzalider,"```prolog\n[ID]: "..user_id.." "..identity.name.." "..identity.firstname.." \n[RETIROU]: "..vRP.format(parseInt(items[itemName].amount)).." "..vRP.itemNameList(itemName).." \n[BAU]: "..chestName.." "..os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S").." \r```")
+							elseif chestName == "triadelider" then
+								SendWebhookMessage(webhookbautriadelider,"```prolog\n[ID]: "..user_id.." "..identity.name.." "..identity.firstname.." \n[RETIROU]: "..vRP.format(parseInt(items[itemName].amount)).." "..vRP.itemNameList(itemName).." \n[BAU]: "..chestName.." "..os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S").." \r```")
+							elseif chestName == "motoclublider" then
+								SendWebhookMessage(webhookbaumotoclublider,"```prolog\n[ID]: "..user_id.." "..identity.name.." "..identity.firstname.." \n[RETIROU]: "..vRP.format(parseInt(items[itemName].amount)).." "..vRP.itemNameList(itemName).." \n[BAU]: "..chestName.." "..os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S").." \r```")
+							elseif chestName == "serpenteslider" then
+								SendWebhookMessage(webhookbauserpenteslider,"```prolog\n[ID]: "..user_id.." "..identity.name.." "..identity.firstname.." \n[RETIROU]: "..vRP.format(parseInt(items[itemName].amount)).." "..vRP.itemNameList(itemName).." \n[BAU]: "..chestName.." "..os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S").." \r```")
 							elseif chestName == "prf" then
 								SendWebhookMessage(webhookbauprf,"```prolog\n[ID]: "..user_id.." "..identity.name.." "..identity.firstname.." \n[RETIROU]: "..vRP.format(parseInt(items[itemName].amount)).." "..vRP.itemNameList(itemName).." \n[BAU]: "..chestName.." "..os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S").." \r```")
 							end
@@ -416,3 +510,11 @@ function src.takeItem(chestName,itemName,amount)
 	end
 	return false
 end
+
+AddEventHandler("vRP:playerLeave",function(user_id,source)
+	local cname = uinv[user_id]
+	uinv[user_id] = nil
+	if cname then
+		oinv[cname] = nil
+	end
+end)

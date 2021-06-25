@@ -13,6 +13,7 @@ Tunnel.bindInterface("vrp_rouboarmas", func)
 -----------------------------------------------------------------------------------------------------------------------------------------
 local idgens = Tools.newIDGenerator()
 local blips = {}
+local variavel1 = 0 
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- WEBHOOK
 -----------------------------------------------------------------------------------------------------------------------------------------
@@ -56,27 +57,26 @@ function func.checkRobbery(id, x, y, z, head)
     if user_id then
         local policia = vRP.getUsersByPermission("pmesp.permissao")
         if #policia >= 2 then
-            if timers[id] == 0 or not timers[id] then
-                timers[id] = 1200
+            if (os.time() - variavel1) < 2400 then
+                TriggerClientEvent('Notify',source,"negado","Os cofres estão vazios, aguarde "..(2400 - (os.time() - variavel1)).." segundos!")
+            else
+                variavel1 = os.time()
                 TriggerClientEvent('iniciandolojadearmas', source, head, x, y, z)
                 vRPclient._playAnim(source, false, {{"oddjobs@shop_robbery@rob_till", "loop"}}, true)
-                local random = math.random(100)
-                if random >= 10 then
-                    vRPclient.playSound(source, "Oneshot_Final", "MP_MISSION_COUNTDOWN_SOUNDSET")
-                    TriggerClientEvent("Notify", source, "aviso", "Corra, a polícia foi acionada!")
-                    vRPclient.setStandBY(source, parseInt(60))
-                    for l, w in pairs(policia) do
-                        local player = vRP.getUserSource(parseInt(w))
-                        if player then
-                            async(function()
-                                TriggerClientEvent('blip:criar:ammunation', player, x, y, z)
-                                vRPclient.playSound(player, "Oneshot_Final", "MP_MISSION_COUNTDOWN_SOUNDSET")
-                                TriggerClientEvent('chatMessage', player, "190", {65, 130, 255}, "O roubo começou na ^1Ammunation^0, dirija-se até o local e intercepte o assaltante.")
-                                SetTimeout(20000, function()
-                                    TriggerClientEvent('blip:remover:ammunation', player)
-                                end)
+                vRPclient.playSound(source, "Oneshot_Final", "MP_MISSION_COUNTDOWN_SOUNDSET")
+                TriggerClientEvent("Notify", source, "aviso", "Corra, a polícia foi acionada!")
+                vRPclient.setStandBY(source, parseInt(60))
+                for l, w in pairs(policia) do
+                    local player = vRP.getUserSource(parseInt(w))
+                    if player then
+                        async(function()
+                            TriggerClientEvent('blip:criar:ammunation', player, x, y, z)
+                            vRPclient.playSound(player, "Oneshot_Final", "MP_MISSION_COUNTDOWN_SOUNDSET")
+                            TriggerClientEvent('chatMessage', player, "190", {65, 130, 255}, "O roubo começou na ^1Ammunation^0, dirija-se até o local e intercepte o assaltante.")
+                            SetTimeout(20000, function()
+                                TriggerClientEvent('blip:remover:ammunation', player)
                             end)
-                        end
+                        end)
                     end
                 end
                 SetTimeout(10000, function()
@@ -87,14 +87,12 @@ function func.checkRobbery(id, x, y, z, head)
                     SendWebhookMessage(webhookrouboarmas, "```prolog\n[ID]: " .. user_id .. " " .. identity.name .. " " .. identity.firstname .. "\n[ROUBOU]: Ammunation\n[RECOMPENSA]: R$ " .. vRP.format(parseInt(qntdinheiro)) .. "\n[COORDENADA]: " .. crds.x .. "," .. crds.y .. "," .. crds.z .. "" .. os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S") .. " \r```")
 
                     local randlist = math.random(100)
-                    if randlist >= 90 and randlist <= 100 then
+                    if randlist >= 90 then
                         local randitem = math.random(#armalist)
                         vRP.giveInventoryItem(user_id, armalist[randitem].index, armalist[randitem].qtd)
                         TriggerClientEvent("Notify", source, "sucesso", "Você recebeu " .. armalist[randitem].qtd .. "x <b>" .. armalist[randitem].name .. "</b>.", 8000)
                     end
                 end)
-            else
-                TriggerClientEvent("Notify", source, "importante", "O seguro ainda não cobriu o ultimo assalto, aguarde <b>" .. timers[id] .. " segundos</b> até a cobertura.", 8000)
             end
         else
             TriggerClientEvent("Notify", source, "importante", "Número insuficiente de policiais no momento.", 8000)

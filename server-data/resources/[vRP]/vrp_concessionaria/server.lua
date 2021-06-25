@@ -7,6 +7,7 @@ vRP = Proxy.getInterface("vRP")
 
 func = {}
 Tunnel.bindInterface("vrp_concessionaria", func)
+Proxy.addInterface("vrp_concessionaria", func)
 
 -- WEBHOOK DISCORD
 
@@ -22,7 +23,7 @@ end
 vRP._prepare("vRP/add_vehicle", "INSERT IGNORE INTO vrp_user_vehicles(user_id,vehicle,ipva) VALUES(@user_id,@vehicle,@ipva)")
 vRP._prepare("vRP/remove_vehicle", "DELETE FROM vrp_user_vehicles WHERE user_id = @user_id AND vehicle = @vehicle")
 vRP._prepare("vRP/remove_vrp_srv_data", "DELETE FROM vrp_srv_data WHERE dkey = @dkey")
-vRP._prepare("vRP/get_vehicles", "SELECT vehicle FROM vrp_user_vehicles WHERE user_id = @user_id")
+vRP._prepare("vRP/get_vehicles", "SELECT vehicle, time FROM vrp_user_vehicles WHERE user_id = @user_id")
 vRP._prepare("vRP/get_vehicle", "SELECT vehicle FROM vrp_user_vehicles WHERE user_id = @user_id AND vehicle = @vehicle")
 vRP._prepare("vRP/count_vehicle", "SELECT COUNT(*) as qtd FROM vrp_user_vehicles WHERE vehicle = @vehicle")
 vRP._prepare("vRP/get_maxcars", "SELECT COUNT(vehicle) as quantidade FROM vrp_user_vehicles WHERE user_id = @user_id")
@@ -56,6 +57,18 @@ function func.getVeiculos()
     return vRP.query("vRP/get_vehicles", {user_id = user_id})
 end
 
+function func.getTotalVeiculos(user_id)
+    local vehs = vRP.query("vRP/get_vehicles", {user_id = user_id})
+    local c = 0
+    for k, v in pairs(vehs) do
+        local cat = vRP.vehicleType(v.vehicle)
+        if cat ~= "vip" and parseInt(v.time) == 0 then
+            c = c+1
+        end
+    end
+    return c
+end
+
 function func.comprarVeiculo(categoria, modelo)
     vRP.antiflood(source, "comprarcarro", 2)
     local source = source
@@ -77,7 +90,6 @@ function func.comprarVeiculo(categoria, modelo)
                     TriggerClientEvent("vrp_concessionaria:notify", source, "Ops!", "Estoque indisponivel.", "error")
                     return
                 else
-                    local totalv = vRP.query("vRP/get_maxcars", {user_id = user_id})
                     local totalGaragens = Config.TotalGaragem
 
                     if vRP.hasPermission(user_id, "diamante.permissao") then
@@ -90,7 +102,7 @@ function func.comprarVeiculo(categoria, modelo)
                         totalGaragens = Config.TotalGaragem + 2
                     end
 
-                    if parseInt(totalv[1].quantidade) >= totalGaragens then
+                    if func.getTotalVeiculos(user_id) >= totalGaragens then
                         TriggerClientEvent("vrp_concessionaria:notify", source, "Ops!", "Atingiu o número máximo de veículos em sua garagem.", "error")
                         return
                     end

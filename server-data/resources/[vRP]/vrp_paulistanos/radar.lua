@@ -34,9 +34,9 @@ Citizen.CreateThread(function()
 
 				if IsEntityAVehicle(e) then
 					local fmodel = GetDisplayNameFromVehicleModel(GetEntityModel(e))
-					local fvspeed = GetEntitySpeed(e)*2.236936
+					local fvspeed = GetEntitySpeed(e)*3.6
 					local fplate = GetVehicleNumberPlateText(e)
-					radar.info = string.format("~y~PLACA: ~w~%s   ~y~MODELO: ~w~%s   ~y~VELOCIDADE: ~w~%s MPH",fplate,fmodel,math.ceil(fvspeed))
+					radar.info = string.format("~r~PLACA: ~w~%s   ~r~MODELO: ~w~%s   ~r~VELOCIDADE: ~w~%s KMH",fplate,fmodel,math.ceil(fvspeed))
 				end
 
 				local bcoordB = GetOffsetFromEntityInWorldCoords(veh,0.0,-105.0,0.0)
@@ -45,13 +45,13 @@ Citizen.CreateThread(function()
 
 				if IsEntityAVehicle(j) then
 					local bmodel = GetDisplayNameFromVehicleModel(GetEntityModel(j))
-					local bvspeed = GetEntitySpeed(j)*2.236936
+					local bvspeed = GetEntitySpeed(j)*3.6
 					local bplate = GetVehicleNumberPlateText(j)
-					radar.info2 = string.format("~y~PLACA: ~w~%s   ~y~MODELO: ~w~%s   ~y~VELOCIDADE: ~w~%s MPH",bplate,bmodel,math.ceil(bvspeed))
+					radar.info2 = string.format("~r~PLACA: ~w~%s   ~r~MODELO: ~w~%s   ~r~VELOCIDADE: ~w~%s KMH",bplate,bmodel,math.ceil(bvspeed))
 				end
 			end
-			drawTxt(radar.info,4,0.5,0.905,0.50,255,255,255,180)
-			drawTxt(radar.info2,4,0.5,0.93,0.50,255,255,255,180)
+			drawTxt(radar.info,4,0.7,0.905,0.50,255,255,255,200)
+			drawTxt(radar.info2,4,0.7,0.93,0.50,255,255,255,200)
 		end
 
 		if not IsPedInAnyVehicle(PlayerPedId()) and radar.shown then

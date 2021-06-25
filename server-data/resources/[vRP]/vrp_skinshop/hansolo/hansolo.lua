@@ -36,8 +36,15 @@ local lojaderoupa = {
     { x=-620.1, y=-1618.3, z=33.02, provador = { x=-620.1, y=-1618.3, z=33.02, heading = 176.91 } }, -- Triade
     { x=576.79, y=-3108.85, z=6.07, provador = { x=576.79, y=-3108.85, z=6.07, heading = 179.28 } }, -- FARC
     { x=-1881.29, y=2068.57, z=145.58, provador = { x=-1881.29, y=2068.57, z=145.58, heading = 158.7 } }, -- Camorra
-    { x=90.26, y=3750.88, z=40.78, provador = { x=90.26, y=3750.88, z=40.78, heading = 247.35 } }, -- Serpentes
+    { x=1439.82, y=-1481.7, z=66.62, provador = { x=1439.82, y=-1481.7, z=66.62, heading = 164.33 } }, -- Serpentes
     { x=-2039.13, y=-466.48, z=16.43, provador = { x=-2039.13, y=-466.48, z=16.43, heading = 46.82 } }, -- ROTA
+    { x=105.65, y=-1302.94, z=28.77, provador = { x=105.65, y=-1302.94, z=28.77, heading = 299.78 } }, -- Vanilla
+    { x=393.57, y=278.96, z=95.0, provador = { x=393.57, y=278.96, z=95.0, heading = 169.65 } }, -- Galaxy
+    { x=-572.94, y=293.04, z=79.18, provador = { x=-572.94, y=293.04, z=79.18, heading = 223.19 } }, -- Tequila
+    { x=-763.19, y=330.79, z=199.49, provador = { x=-763.19, y=330.79, z=199.49, heading = 181.19 } }, -- casa wally
+    { x=-797.71, y=326.82, z=190.72, provador = { x=-797.71, y=326.82, z=190.72, heading = 4.0 } }, -- casa porcao
+    { x=-568.48, y=-115.12, z=33.88, provador = { x=-568.48, y=-115.12, z=33.88, heading = 24.78 } }, -- DP NOVA
+    { x=-1535.56, y=123.37, z=50.06, provador = { x=-1535.56, y=123.37, z=50.06, heading = 276.93 } }, -- MANSAO PLAYBOY
 }
 
 local parts = {

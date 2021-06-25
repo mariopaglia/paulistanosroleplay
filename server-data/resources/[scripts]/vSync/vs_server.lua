@@ -8,7 +8,7 @@ admins = {
 DynamicWeather = true
 
 --------------------------------------------------
-debugprint = false -- don't touch this unless you know what you're doing or you're being asked by Vespura to turn this on.
+debugprint = true -- don't touch this unless you know what you're doing or you're being asked by Vespura to turn this on.
 --------------------------------------------------
 
 -------------------- DON'T CHANGE THIS --------------------
@@ -103,7 +103,7 @@ RegisterCommand('weather', function(source, args)
     if source == 0 then
         local validWeatherType = false
         if args[1] == nil then
-            print("Invalid syntax, correct syntax is: /tempo <weathertype> ")
+            print("Invalid syntax, correct syntax is: /weather <weathertype> ")
             return
         else
             for i,wtype in ipairs(AvailableWeatherTypes) do
@@ -114,7 +114,7 @@ RegisterCommand('weather', function(source, args)
             if validWeatherType then
                 print("Weather has been updated.")
                 CurrentWeather = string.upper(args[1])
-                newWeatherTimer = 40
+                newWeatherTimer = 30
                 TriggerEvent('vSync:requestSync')
             else
                 print("Invalid weather type, valid weather types are: \nEXTRASUNNY CLEAR NEUTRAL SMOG FOGGY OVERCAST CLOUDS CLEARING RAIN THUNDER SNOW BLIZZARD SNOWLIGHT XMAS HALLOWEEN ")
@@ -134,7 +134,7 @@ RegisterCommand('weather', function(source, args)
                 if validWeatherType then
                     TriggerClientEvent('vSync:notify', source, 'Weather will change to: ~y~' .. string.lower(args[1]) .. "~s~.")
                     CurrentWeather = string.upper(args[1])
-                    newWeatherTimer = 40
+                    newWeatherTimer = 30
                     TriggerEvent('vSync:requestSync')
                 else
                     TriggerClientEvent('chatMessage', source, '', {255,255,255}, '^8Error: ^1Invalid weather type, valid weather types are: ^0\nEXTRASUNNY CLEAR NEUTRAL SMOG FOGGY OVERCAST CLOUDS CLEARING RAIN THUNDER SNOW BLIZZARD SNOWLIGHT XMAS HALLOWEEN ')
@@ -312,7 +312,7 @@ Citizen.CreateThread(function()
             if DynamicWeather then
                 NextWeatherStage()
             end
-            newWeatherTimer = 40
+            newWeatherTimer = 30
         end
     end
 end)
@@ -321,14 +321,14 @@ function NextWeatherStage()
     if CurrentWeather == "CLEAR" or CurrentWeather == "CLOUDS" or CurrentWeather == "EXTRASUNNY"  then
         local new = math.random(1,2)
         if new == 1 then
-            CurrentWeather = "CLEARING"
+            CurrentWeather = "CLOUDS"
         else
             CurrentWeather = "OVERCAST"
         end
-    elseif CurrentWeather == "CLEARING" or CurrentWeather == "OVERCAST" then
+    elseif CurrentWeather == "CLOUDS" or CurrentWeather == "OVERCAST" then
         local new = math.random(1,6)
         if new == 1 then
-            if CurrentWeather == "CLEARING" then CurrentWeather = "FOGGY" else CurrentWeather = "CLEAR" end
+            if CurrentWeather == "CLOUDS" then CurrentWeather = "FOGGY" else CurrentWeather = "CLEAR" end
         elseif new == 2 then
             CurrentWeather = "CLOUDS"
         elseif new == 3 then
@@ -341,7 +341,7 @@ function NextWeatherStage()
             CurrentWeather = "FOGGY"
         end
     elseif CurrentWeather == "CLEAR" or CurrentWeather == "CLEAR" then
-        CurrentWeather = "CLEARING"
+        CurrentWeather = "CLOUDS"
     elseif CurrentWeather == "SMOG" or CurrentWeather == "FOGGY" then
         CurrentWeather = "CLEAR"
     end

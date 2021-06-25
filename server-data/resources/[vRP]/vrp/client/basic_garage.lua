@@ -81,6 +81,9 @@ local vehList = {
 	{ ['name'] = "sentinel", ['hash'] = 1349725314, ['banned'] = false },
 	{ ['name'] = "sentinel2", ['hash'] = 873639469, ['banned'] = false },
 	{ ['name'] = "windsor", ['hash'] = 1581459400, ['banned'] = false },
+	{ ['name'] = "paredao", ['hash'] = 167397304, ['banned'] = false },
+	{ ['name'] = "SomMarqCULuz", ['hash'] = 150895758, ['banned'] = false },
+	{ ['name'] = "verus", ['hash'] = 298565713, ['banned'] = false },
 	{ ['name'] = "windsor2", ['hash'] = -1930048799, ['banned'] = false },
 	{ ['name'] = "zion", ['hash'] = -1122289213, ['banned'] = false },
 	{ ['name'] = "zion2", ['hash'] = -1193103848, ['banned'] = false },
@@ -546,6 +549,7 @@ local vehList = {
 	{ ['name'] = "bettle", ['hash'] = -498891507, ['banned'] = false },
 	{ ['name'] = "senna", ['hash'] = -433961724, ['banned'] = false },
 	{ ['name'] = "rmodx6", ['hash'] = 2045784380, ['banned'] = false },
+	{ ['name'] = "rmod240sx", ['hash'] = -221892567, ['banned'] = false },
 	{ ['name'] = "bnteam", ['hash'] = 113372153, ['banned'] = false },
 	{ ['name'] = "rmodlp770", ['hash'] = -1274284606, ['banned'] = false },
 	{ ['name'] = "divo", ['hash'] = 1503141430, ['banned'] = false },
@@ -555,6 +559,9 @@ local vehList = {
 	{ ['name'] = "vantage", ['hash'] = -1067176722, ['banned'] = false },
 	{ ['name'] = "urus", ['hash'] = -520214134, ['banned'] = false },
 	{ ['name'] = "amarok", ['hash'] = 493030188, ['banned'] = false },
+	{ ['name'] = "s10", ['hash'] = -110704625, ['banned'] = false },
+	{ ['name'] = "19ram", ['hash'] = -1435904776, ['banned'] = false },
+	{ ['name'] = "F250Deboxe", ['hash'] = -1686080635, ['banned'] = false },
 	{ ['name'] = "slsamg", ['hash'] = 2093958905, ['banned'] = false },
 	{ ['name'] = "g65amg", ['hash'] = 104532066, ['banned'] = false },
 	{ ['name'] = "celta", ['hash'] = 1995020435, ['banned'] = false },
@@ -787,7 +794,14 @@ local vehList = {
 	{ ['name'] = "rmodjeep", ['hash'] = -2098155976, ['banned'] = false },
 	{ ['name'] = "rmodbacalar", ['hash'] = -1259375426, ['banned'] = false },
 
-	-- POLICIA
+	-- CARROS EDICAO ESPECIAL
+	{ ['name'] = "evo9", ['hash'] = -228528329, ['banned'] = false },
+	{ ['name'] = "skyline", ['hash'] = 2117711508, ['banned'] = false },
+
+	-- POLICIA 
+	{ ['name'] = "porschespeed", ['hash'] = -119110143, ['banned'] = false },
+	{ ['name'] = "chevypolicia", ['hash'] = -1878793377, ['banned'] = false },
+	{ ['name'] = "bmwm5policia", ['hash'] = -1770984250, ['banned'] = false },
 	{ ['name'] = "av-amarok", ['hash'] = 1753103501, ['banned'] = false },
 	{ ['name'] = "sbearcat", ['hash'] = -1881296547, ['banned'] = false },
 	{ ['name'] = "bmwg20", ['hash'] = 1879538617, ['banned'] = false },

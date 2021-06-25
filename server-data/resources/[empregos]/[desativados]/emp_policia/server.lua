@@ -14,7 +14,7 @@ end
 
 function emP.checkPayment()
 	local source = source
-	local pagamento = math.random(100,200)
+	local pagamento = math.random(100,200) -- padrao 100,200
 	local user_id = vRP.getUserId(source)
 	if user_id then
 		vRP.giveMoney(user_id,pagamento)

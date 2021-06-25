@@ -351,6 +351,7 @@ cfg.chestweight = {
 
 	-- RMOD
 	["rmodbolide"] = 20,
+	["rmod240sx"] = 20,
 	["rmodcharger69"] = 20,
 	["rmodi8ks"] = 20,
 	["rmoddarki8"] = 20,
@@ -393,6 +394,10 @@ cfg.chestweight = {
 	["rmodjeep"] = 20,
 	["rmodbacalar"] = 20,
 	
+	-- NOVOS EDICAO ESPECIAL
+	["evo9"] = 20,
+	["skyline"] = 20,
+
 	-- IMPORTADOS
 	["71gtx"] = 20,
 	["nissantitan17"] = 80,

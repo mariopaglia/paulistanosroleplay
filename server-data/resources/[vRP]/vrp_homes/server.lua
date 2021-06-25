@@ -41,6 +41,7 @@ local homes = {
 -----------------------------------------------------------------------------------------------------------------------------------------
 ---------------------------------------------------------FORTHILLS-----------------------------------------------------------------------
 -----------------------------------------------------------------------------------------------------------------------------------------
+	["ES01"] = { 99999999,2,10000 }, -- Casa Pablo Escobar
 	["FH01"] = { 2000000,2,2000 },
 	["FH02"] = { 2000000,2,2000 },
 	["FH03"] = { 2000000,2,2000 },
@@ -196,7 +197,7 @@ local homes = {
 	["LX50"] = { 3000000,2,3000 },
 	["LX51"] = { 3000000,2,3000 },
 	["LX52"] = { 3000000,2,3000 },
-	["LX53"] = { 3000000,2,3000 },
+	["LX53"] = { 3000000,2,10000 },
 	["LX54"] = { 3000000,2,3000 },
 	["LX55"] = { 3000000,2,3000 },
 	["LX56"] = { 3000000,2,3000 },
@@ -552,7 +553,7 @@ local homes = {
 	["MS01"] = { 10000000,2,10000 },
 	["MS02"] = { 10000000,2,10000 },
 	["MS03"] = { 10000000,2,10000 },
-	["MS04"] = { 3000000,2,3000 },
+	["MS04"] = { 10000000,2,10000 },
 	["MS05"] = { 10000000,2,10000 },
 	["MS06"] = { 10000000,2,10000 },
 	["MS07"] = { 10000000,2,10000 },
@@ -741,46 +742,37 @@ RegisterCommand('homes',function(source,args,rawCommand)
 				end
 			end
 		elseif args[1] == "tax" and homes[tostring(args[2])] then
-			-- if vRPNclient.isNearCds(source, vector3(-550.63,-192.46,38.23), 13) then
-				local ownerHomes = vRP.query("homes/get_homeuseridowner",{ home = tostring(args[2]) })
-				if ownerHomes[1] then
-					if vRP.tryFullPayment(user_id,parseInt(homes[tostring(args[2])][1]*0.10)) then
+			local ownerHomes = vRP.query("homes/get_homeuseridowner",{ home = tostring(args[2]) })
+			if ownerHomes[1] then
+					local house_price = parseInt(homes[tostring(args[2])][1])
+					local house_tax = 0.10
+					if house_price >= 3000000 then
+						house_tax = 0.00
+					end
+					if vRP.tryFullPayment(user_id,parseInt(house_price * house_tax)) then
 						vRP.execute("homes/rem_permissions",{ home = tostring(args[2]), user_id = parseInt(ownerHomes[1].user_id) })
 						vRP.execute("homes/buy_permissions",{ home = tostring(args[2]), user_id = parseInt(ownerHomes[1].user_id), tax = parseInt(os.time()) })
-						TriggerClientEvent("Notify",source,"sucesso","Pagamento de <b>R$ "..vRP.format(parseInt(homes[tostring(args[2])][1]*0.1)).."</b> efetuado com sucesso.",10000)
+						TriggerClientEvent("Notify",source,"sucesso","Pagamento de <b>R$ "..vRP.format(parseInt(house_price * house_tax)).." </b> efetuado com sucesso.",10000)
 					else
 						TriggerClientEvent("Notify",source,"negado","Dinheiro insuficiente.",10000)
 					end
-				end
-			-- else
-			-- 	TriggerClientEvent("Notify",source,"negado","O pagamento deve ser realizado dentro da prefeitura",10000)
-			-- end
+			end
 		else
-	
 			local myHomes = vRP.query("homes/get_homeuserid",{ user_id = parseInt(user_id) })
 			if parseInt(#myHomes) >= 1 then
-				
 				for k,v in pairs(myHomes) do
-
 					local ownerHomes = vRP.query("homes/get_homeuseridowner",{ home = tostring(v.home) })
-					
 					if ownerHomes[1] then
 						local house_price = parseInt(homes[tostring(v.home)][1])
 						local house_tax = 0.10
 						if house_price >= 3000000 then
 							house_tax = 0.00
 						end
-						
-						-- if parseInt(os.time()) >= parseInt(ownerHomes[1].tax+24*15*60*60) then
-						-- 	TriggerClientEvent("Notify",source,"negado","<b>Residência:</b> "..v.home.."<br><b>Property Tax:</b> Atrasado",20000)
-						-- else
-						-- 	TriggerClientEvent("Notify",source,"importante","<b>Residência:</b> "..v.home.."",20000)
-						-- end						
 
 						if parseInt(os.time()) >= parseInt(ownerHomes[1].tax+24*15*60*60) then
-							TriggerClientEvent("Notify",source,"negado","<b>Residência:</b> "..v.home.."<br><b>Taxa:</b> Atrasada<br><b>Valor:</b> R$ "..vRP.format(parseInt(house_price * house_tax)).."",20000)
+							TriggerClientEvent("Notify",source,"negado","<b>Residência:</b> "..v.home.."<br><b>Property Tax:</b> Atrasado<br>Valor: <b>R$ "..vRP.format(parseInt(house_price * house_tax)).." </b>",20000)
 						else
-							TriggerClientEvent("Notify",source,"importante","<b>Residência:</b> "..v.home.."<br><b>Taxa em:</b> "..vRP.getDayHours(parseInt(86400*15-(os.time()-ownerHomes[1].tax))).."<br><b>Valor:</b> R$ "..vRP.format(parseInt(house_price * house_tax)).."",20000)
+							TriggerClientEvent("Notify",source,"importante","<b>Residência:</b> "..v.home.."<br>Taxa em: "..vRP.getDayHours(parseInt(86400*15-(os.time()-ownerHomes[1].tax))).."<br>Valor: <b>R$ "..vRP.format(parseInt(house_price * house_tax)).." </b>",20000)
 						end
 						Citizen.Wait(10)
 					end
@@ -889,6 +881,14 @@ function src.checkPermissions(homeName)
 						end
 					end
 				else
+					local value = vRP.getUData(parseInt(user_id), "vRP:multas")
+            		local multas = json.decode(value) or 0
+
+					if multas >= 50000 then -- Limite em multas para poder comprar casa
+                		TriggerClientEvent("Notify", source, "negado", "Você tem <b>R$ " ..vRP.format(parseInt(multas)).. "</b> em multas pendentes, pague-as no banco para poder comprar residencias", 15000)
+                		return
+            		end
+
 					local ok = vRP.request(source,"Deseja efetuar a compra da residência <b>"..tostring(homeName).."</b> por <b>R$ "..vRP.format(parseInt(homes[tostring(homeName)][1])).."</b>?",30)
 					if ok then
 						if vRP.tryFullPayment(user_id,parseInt(homes[tostring(homeName)][1])) then

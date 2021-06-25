@@ -7,7 +7,7 @@
       <modelName>av-cbr</modelName>
       <txdName>av-cbr</txdName>
       <handlingId>av-cbr</handlingId>
-      <gameName>av-cbr</gameName>
+      <gameName>750x Policia</gameName>
       <vehicleMakeName>HONDA</vehicleMakeName>
       <expressionDictName>null</expressionDictName>
       <expressionName>null</expressionName>
@@ -432,9 +432,9 @@
 <frequency value="30" />
 <swankness>SWANKNESS_1</swankness>
 <maxNum value="5" />
-<flags>FLAG_NO_BOOT FLAG_HAS_LIVERY FLAG_HAS_EXTRAS FLAG_EXTRAS_ALL FLAG_EXTRAS_STRONG FLAG_IGNORE_ON_SIDE_CHECK FLAG_AVERAGE_CAR FLAG_IS_OFFROAD_VEHICLE FLAG_HEADLIGHTS_USE_ACTUAL_BONE_POS</flags>
+<flags>FLAG_LAW_ENFORCEMENT FLAG_EMERGENCY_SERVICE FLAG_NO_BOOT FLAG_HAS_LIVERY FLAG_HAS_EXTRAS FLAG_EXTRAS_ALL FLAG_EXTRAS_STRONG FLAG_IGNORE_ON_SIDE_CHECK FLAG_AVERAGE_CAR FLAG_IS_OFFROAD_VEHICLE FLAG_HEADLIGHTS_USE_ACTUAL_BONE_POS</flags>
 <type>VEHICLE_TYPE_BIKE</type>
-<plateType>VPT_NONE</plateType>
+<plateType>VPT_BACK_PLATES</plateType>
 <dashboardType>VDT_RACE</dashboardType>
 <vehicleClass>VC_EMERGENCY</vehicleClass>
 <wheelType>VWT_BIKE</wheelType>

@@ -35,7 +35,7 @@ end)
 -----------------------------------------------------------------------------------------------------------------------------------------
 RegisterNUICallback("ButtonClick",function(data,cb)
 	if data == "policia1" then
-		if emP.checkPermission2("policia.permissao","Polícia Militar") then
+		if emP.checkPermission2("policia.permissao","Polícia 01") then
 			outServers()
 			exports.tokovoip_script:addPlayerToRadio(1000)
 		end
@@ -44,18 +44,18 @@ RegisterNUICallback("ButtonClick",function(data,cb)
 			outServers()
 			exports.tokovoip_script:addPlayerToRadio(1001)
 		end
-	elseif data == "rota" then
-		if emP.checkPermission2("policia.permissao","ROTA") then
+	elseif data == "policia2" then
+		if emP.checkPermission2("policia.permissao","Polícia 02") then
 			outServers()
 			exports.tokovoip_script:addPlayerToRadio(1002)
 		end
-	elseif data == "pcsp" then
-		if emP.checkPermission2("pcivil.permissao","Polícia Civil") then
+	elseif data == "serpentes" then
+		if emP.checkPermission2("serpentes.permissao","Serpentes") then
 			outServers()
 			exports.tokovoip_script:addPlayerToRadio(1003)
 		end	
-	elseif data == "prf" then
-		if emP.checkPermission2("policia.permissao","Polícia Rodoviária Federal") then
+	elseif data == "triade" then
+		if emP.checkPermission2("triade.permissao","Triade") then
 			outServers()
 			exports.tokovoip_script:addPlayerToRadio(1004)
 		end

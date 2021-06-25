@@ -28,11 +28,11 @@ function vRPN.Identidade()
 		local identity = vRP.getUserIdentity(user_id)
 		local multas = vRP.getUData(user_id,"vRP:multas")
 		local mymultas = json.decode(multas) or 0
-		local paypal = vRP.getUData(user_id,"vRP:paypal")
+		local paypal = vRPN.getUserGroupByType(user_id,"promoter")
 		local mypaypal = json.decode(paypal) or 0
 		local bills = vRP.getBills(user_id)
 		local job = vRPN.getUserGroupByType(user_id,"job")
-		local cargo = vRPN.getUserGroupByType(user_id,"cargo")
+		local cargo = vRPN.getUserGroupByType(user_id,"promoter")
 		-- local vip = vRPN.getUserGroupByType(user_id,"vip2")
 
 		if vRPN.getUserGroupByType(user_id,"vip6") == "Diamante" then

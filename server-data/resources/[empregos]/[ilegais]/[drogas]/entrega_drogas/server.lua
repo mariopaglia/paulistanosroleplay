@@ -43,18 +43,18 @@ end
 -- PAGAMENTO CIVIL
 -----------------------------------------------------------------------------------------------------------------------------------------
 function emP.checkPayment()
-    vRP.antiflood(source, "entrega_drogas", 3)
+    vRP.antiflood(source, "entrega_drogas", 5)
     local source = source
     local user_id = vRP.getUserId(source)
-    local policia = vRP.getUsersByPermission("pmesp.permissao")
+    local policia = vRP.getUsersByPermission("policia.permissao")
     local bonus = 0
 
     if #policia >= 0 and #policia <= 2 then
-        bonus = 1600
+        bonus = 1600 -- 1600
     elseif #policia >= 3 and #policia <= 6 then
-        bonus = 2000
+        bonus = 2000 -- 2000
     elseif #policia >= 7 then
-        bonus = 2400
+        bonus = 2400 -- 2400
     end
 
     if user_id then
@@ -111,18 +111,18 @@ end
 -- PAGAMENTO FACÇÃO
 -----------------------------------------------------------------------------------------------------------------------------------------
 function emP.checkPayment2()
-    vRP.antiflood(source, "entrega_drogas", 3)
+    vRP.antiflood(source, "entrega_drogas", 5)
     local source = source
     local user_id = vRP.getUserId(source)
-    local policia = vRP.getUsersByPermission("pmesp.permissao")
+    local policia = vRP.getUsersByPermission("policia.permissao")
     local bonus = 0
 
     if #policia >= 0 and #policia <= 2 then
-        bonus = 1400
+        bonus = 1600 -- 2000
     elseif #policia >= 3 and #policia <= 6 then
-        bonus = 1600
+        bonus = 2000 -- 2400
     elseif #policia >= 7 then
-        bonus = 1800
+        bonus = 2400 -- 2800
     end
 
 	if user_id then
@@ -188,9 +188,9 @@ function emP.MarcarOcorrencia()
     local crds = GetEntityCoords(GetPlayerPed(source))
 
     local chance = 0
-    local chance = math.random(1, 100)
+    local chance = math.random(1,10)
 
-    if chance >= 70 then
+    if chance >= 5 then
         return
     end
 

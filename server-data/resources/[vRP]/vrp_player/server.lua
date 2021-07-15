@@ -67,12 +67,27 @@ local itemlist = {
 	["conhaque"] = { index = "conhaque", nome = "Conhaque" },
 	["absinto"] = { index = "absinto", nome = "Absinto" },
 	["agua"] = { index = "agua", nome = "Água" },
+	["corda"] = { index = "corda", nome = "Corda" },
+	["adrenalina"] = { index = "adrenalina", nome = "Adrenalina" },
+	["gopro"] = { index = "gopro", nome = "GoPro Hero 9" },
+	["gravadordevoz"] = { index = "gravadordevoz", nome = "Gravador de Voz" },
 
 	-- Farm Contrabando
 	["componentemetal"] = { index = "componentemetal", nome = "Componentes de Metais" },
 	["componenteeletronico"] = { index = "componenteeletronico", nome = "Componentes Eletrônicos" },
 	["componenteplastico"] = { index = "componenteplastico", nome = "Componentes de Plásticos" },
 	
+	-- Itens do roubo a residencia
+	["sapatosroubado"] = { index = "sapatosroubado", nome = "Sapatos Roubado" },
+	["relogioroubado"] = { index = "relogioroubado", nome = "Relógio Roubado" },
+	["anelroubado"] = { index = "anelroubado", nome = "Anel Roubado" },
+	["colarroubado"] = { index = "colarroubado", nome = "Colar Roubado" },
+	["notebookroubado"] = { index = "notebookroubado", nome = "Notebook Roubado" },
+	["tabletroubado"] = { index = "tabletroubado", nome = "Tablet Roubado" },
+	["vibradorroubado"] = { index = "vibradorroubado", nome = "Vibrador Roubado" },
+	["carteiraroubada"] = { index = "carteiraroubada", nome = "Carteira Roubada" },
+	["perfumeroubado"] = { index = "perfumeroubado", nome = "Perfume Roubado" },
+
 	-- Pesca
 	["isca"] = { index = "isca", nome = "Isca" },
 	["dourado"] = { index = "dourado", nome = "Dourado" },
@@ -100,6 +115,7 @@ local itemlist = {
 	["cocaina"] = { index = "cocaina", nome = "Cocaína" },
 	["pastadecoca"] = { index = "pastadecoca", nome = "Pasta de Cocaina" },
 	["pino"] = { index = "pino", nome = "Pino" },
+	["lolo"] = { index = "lolo", nome = "Loló" },
 	
 	-- Farm Desmanche
 	["ferramenta"] = { index = "ferramenta", nome = "Ferramenta" },
@@ -168,18 +184,15 @@ local itemlist = {
 	["wbody|WEAPON_PISTOL"] = { index = "m1911", nome = "M1911" },
 	["wbody|WEAPON_APPISTOL"] = { index = "vp9", nome = "Koch VP9" },
 	["wbody|WEAPON_STUNGUN"] = { index = "tazer", nome = "Tazer" },
-	["wbody|WEAPON_SNSPISTOL"] = { index = "hkp7m10", nome = "HK P7M10" },
 	["wbody|WEAPON_BULLPUPRIFLE_MK2"] = { index = "famas", nome = "FAMAS" },
 	["wbody|WEAPON_VINTAGEPISTOL"] = { index = "m1922", nome = "M1922" },
 	["wbody|WEAPON_REVOLVER"] = { index = "magnum44", nome = "Magnum 44" },
 	["wbody|WEAPON_REVOLVER_MK2"] = { index = "magnum357", nome = "Magnum 357" },
-	["wbody|WEAPON_MUSKET"] = { index = "winchester22", nome = "Winchester 22" },
 	["wbody|GADGET_PARACHUTE"] = { index = "paraquedas", nome = "Paraquedas" },
 	["wbody|WEAPON_FIREEXTINGUISHER"] = { index = "extintor", nome = "Extintor" },
 	["wbody|WEAPON_MICROSMG"] = { index = "uzi", nome = "Uzi" },
 	-- ["wbody|WEAPON_SMG"] = { index = "mp5", nome = "MP5" },
 	["wbody|WEAPON_ASSAULTSMG"] = { index = "mtar21", nome = "MTAR-21" },
-	["wbody|WEAPON_PUMPSHOTGUN_MK2"] = { index = "remington", nome = "Remington 870" },
 	["wbody|WEAPON_SAWNOFFSHOTGUN"] = { index = "shotgun", nome = "Shotgun" },
 	["wammo|WEAPON_SAWNOFFSHOTGUN"] = { index = "m-shotgun", nome = "Munição de Shotgun" },
 	["wbody|WEAPON_MACHINEPISTOL"] = { index = "tec9", nome = "Tec-9" },
@@ -190,17 +203,15 @@ local itemlist = {
 	["wammo|WEAPON_PISTOL"] = { index = "m-m1911", nome = "Munição de M1911" },
 	["wammo|WEAPON_APPISTOL"] = { index = "m-vp9", nome = "Munição de Koch VP9" },
 	["wammo|WEAPON_STUNGUN"] = { index = "m-tazer", nome = "Munição de Tazer" },
-	["wammo|WEAPON_SNSPISTOL"] = { index = "m-hkp7m10", nome = "Munição de HK P7M10" },
 	["wammo|WEAPON_VINTAGEPISTOL"] = { index = "m-m1922", nome = "Munição de M1922" },
-	["wammo|WEAPON_MUSKET"] = { index = "m-winchester22", nome = "Munição de Winchester 22" },
 	["wammo|GADGET_PARACHUTE"] = { index = "m-paraquedas", nome = "Munição de Paraquedas" },
 	["wammo|WEAPON_FIREEXTINGUISHER"] = { index = "m-extintor", nome = "Munição de Extintor" },
 	-- ["wammo|WEAPON_SMG"] = { index = "m-mp5", nome = "Munição de MP5" },
-	["wammo|WEAPON_PUMPSHOTGUN_MK2"] = { index = "m-remington", nome = "Munição de Remington 870" },
 	["wammo|WEAPON_ASSAULTRIFLE"] = { index = "m-ak103", nome = "Munição de AK-103" },
 	["wammo|WEAPON_GUSENBERG"] = { index = "m-thompson", nome = "Munição de Thompson" },
 	["wammo|WEAPON_PETROLCAN"] = { index = "combustivel", nome = "Combustível" },
 	["wbody|WEAPON_PETROLCAN"] = { index = "gasolina", nome = "Galão de Gasolina" },
+	["wammo|WEAPON_PETROLCAN"] = { index = "m-gasolina", nome = "Combustível" },
 	["wbody|WEAPON_RAYPISTOL"] = { index = "raypistol", nome = "Raypistol" },
 	["wammo|WEAPON_MICROSMG"] = { index = "m-uzi", nome = "Munição de UZI" },
 	["wammo|WEAPON_ASSAULTSMG"] = { index = "m-mtar21", nome = "Munição de MTAR-21" },
@@ -213,13 +224,27 @@ local itemlist = {
 	["wbody|WEAPON_COMBATPDW"] = { index = "sigsauer", nome = "Sig Sauer MPX" },
 	["wbody|WEAPON_COMBATPISTOL"] = { index = "glock", nome = "Glock" },
 	["wbody|WEAPON_SPECIALCARBINE"] = { index = "g36x", nome = "G36x" },
+	["wbody|WEAPON_PUMPSHOTGUN_MK2"] = { index = "remington", nome = "Remington 870" },
 	-- Munição Policia
 	["wammo|WEAPON_CARBINERIFLE_MK2"] = { index = "m-m4a1", nome = "Munição de M4A1" },
 	["wammo|WEAPON_CARBINERIFLE"] = { index = "m-ar15", nome = "Munição de AR-15" },
 	["wammo|WEAPON_COMBATPDW"] = { index = "m-sigsauer", nome = "Munição de Sig Sauer" },
 	["wammo|WEAPON_COMBATPISTOL"] = { index = "m-glock", nome = "Munição de Glock" },
 	["wammo|WEAPON_SPECIALCARBINE"] = { index = "m-g36x", nome = "Munição de G36x" },
+	["wammo|WEAPON_PUMPSHOTGUN_MK2"] = { index = "m-remington", nome = "Munição de Remington 870" },
 	
+	-- armas novas
+	["wbody|WEAPON_MUSKET"] = { index = "mosinnagant", nome = "Mosin Nagant" },
+	["wbody|WEAPON_SAWNOFFSHOTGUN"] = { index = "mossberg500", nome = "Mossberg 500" },
+	["wbody|WEAPON_MINISMG"] = { index = "czscorpion", nome = "CZ Scorpion" },
+	["wbody|WEAPON_SNSPISTOL"] = { index = "hkp7m10", nome = "HK P7M10" },
+
+	-- municoes novas
+	["wammo|WEAPON_MUSKET"] = { index = "m-mosinnagant", nome = "Munição de Mosin Nagant" },
+	["wammo|WEAPON_SAWNOFFSHOTGUN"] = { index = "m-mossberg500", nome = "Munição de Mossberg 500" },
+	["wammo|WEAPON_MINISMG"] = { index = "m-czscorpion", nome = "Munição de CZ Scorpion" },
+	["wammo|WEAPON_SNSPISTOL"] = { index = "m-hkp7m10", nome = "Munição de HK P7M10" },
+
 	-- Pistol do porte
 	["wbody|WEAPON_PISTOL"] = { index = "m1911", nome = "M1911" },
 	["wammo|WEAPON_PISTOL"] = { index = "m-m1911", nome = "Munição de M1911" },
@@ -266,7 +291,7 @@ end
 function emP.checkPermissionSilenciador()
 	local source = source
 	local user_id = vRP.getUserId(source)
-	return vRP.hasPermission(user_id,'corarma.permissao')
+	return vRP.hasPermission(user_id,'silenciador.permissao')
 end
 
 -----------------------------------------------------------------------------------------------------------------------------------------

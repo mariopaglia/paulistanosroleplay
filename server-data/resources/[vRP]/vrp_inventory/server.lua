@@ -17,6 +17,7 @@ vGARAGE = Tunnel.getInterface("vrp_garages")
 -----------------------------------------------------------------------------------------------------------------------------------------
 local webhookinventario = "https://discord.com/api/webhooks/795672460493193266/swXw7bzSoJNVsjGoyfigHFUkNq5-du7u-mIDjqIAqvg6fFuB3B4UDkelCxKiA2ub-Mle" 
 local webhooklockpick = "https://discord.com/api/webhooks/827575258256113694/wJBb6Un4lupwPzNETxSMYfyF6gheCGGGs-hEBBZ2zhHY4ESzNCe2jRQAeah43JsGRgSb"
+local webhookadrenalina = "https://discord.com/api/webhooks/862419286136061992/44ZOdWMYN9c2doZCnGDCpBF6dZ3zQ3nSMEWdzPnU5wipGNnpSswA-Co2OV3attDGP33k"
 
 function SendWebhookMessage(webhook,message)
 	if webhook ~= nil and webhook ~= "" then
@@ -347,6 +348,43 @@ local user_id = vRP.getUserId(source)
 						end)
 					end
 				end
+			elseif itemName == "lolo" then
+				if vRP.tryGetInventoryItem(user_id,"lolo",1) then
+					local efeito = 0
+					local efeito = math.random(1,10)
+					if efeito >= 5 then
+						actived[user_id] = true
+						TriggerClientEvent('Creative:Update',source,'updateMochila')
+						vRPclient._playAnim(source,true,{{"mp_player_int_uppersmoke","mp_player_int_smoke"}},true)
+						TriggerClientEvent('cancelando',source,true)
+						TriggerClientEvent("progress",source,10000,"cheirando")
+							SetTimeout(10000,function()
+							actived[user_id] = nil
+							vRPclient._stopAnim(source,false)
+							TriggerClientEvent('energeticos',source,true)
+							TriggerClientEvent('cancelando',source,false)
+							vRPclient.playScreenEffect(source,"RaceTurbo",60)
+							vRPclient.playScreenEffect(source,"DrugsTrevorClownsFight",60)
+							TriggerClientEvent("Notify",source,"sucesso","Loló utilizada, seu coração esta acelerado!.",8000)
+						end)
+						SetTimeout(15000,function()
+							TriggerClientEvent('energeticos',source,false)
+							TriggerClientEvent("Notify",source,"importante","Seu coração voltou a bater normalmente.",8000)
+						end)
+					else
+						actived[user_id] = true
+						TriggerClientEvent('Creative:Update',source,'updateMochila')
+						vRPclient._playAnim(source,true,{{"mp_player_int_uppersmoke","mp_player_int_smoke"}},true)
+						TriggerClientEvent('cancelando',source,true)
+						TriggerClientEvent("progress",source,10000,"cheirando")
+						SetTimeout(10000,function()
+							actived[user_id] = nil
+							vRPclient._stopAnim(source,false)
+							TriggerClientEvent('cancelando',source,false)
+							TriggerClientEvent("Notify",source,"importante","sem efeito.",8000)
+						end)
+					end
+				end
 			elseif itemName == "metanfetamina" then
 				if vRP.tryGetInventoryItem(user_id,"metanfetamina",1) then
 					actived[user_id] = true
@@ -375,6 +413,40 @@ local user_id = vRP.getUserId(source)
 
 						vRP.closeMenu(nplayer)
 						TriggerClientEvent("Notify",source,"sucesso","Capuz utilizado com sucesso.",8000)
+					end
+				end
+			elseif itemName == "corda" then
+				if vRP.getInventoryItemAmount(user_id,"corda") >= 1 then
+					local nplayer = vRPclient.getNearestPlayer(source,2)
+					if nplayer and not vRPclient.inVehicle(source) then
+						TriggerClientEvent('carregar',nplayer,source)
+						TriggerClientEvent("Notify",source,"sucesso","Corda utilizada com sucesso.",5000)
+					end
+				end		
+			elseif itemName == "adrenalina" then
+				local nplayer = vRPclient.getNearestPlayer(source,2)
+				local nuser_id = vRP.getUserId(nplayer)
+				if nplayer then
+					local identity = vRP.getUserIdentity(user_id)
+					local identityu = vRP.getUserIdentity(nuser_id)
+					local crds = GetEntityCoords(GetPlayerPed(source))
+					if vRPclient.isInComa(nplayer) then
+						vRP.tryGetInventoryItem(user_id,"adrenalina",1)
+						TriggerClientEvent('cancelando',source,true)
+						vRPclient._playAnim(source,false,{{"amb@medic@standing@tendtodead@base","base"},{"mini@cpr@char_a@cpr_str","cpr_pumpchest"}},true)
+						TriggerClientEvent("progress",source,30000,"reanimando")
+						SetTimeout(30000,function()
+							vRPclient.killGod(nplayer)
+							vRPclient.setHealth(nplayer,150)
+							vRPclient._stopAnim(source,false)
+							vRPclient._stopAnim(nplayer,false)
+							vRP.giveMoney(user_id,500)
+							TriggerClientEvent('cancelando',source,false)
+							TriggerEvent("srkfive:killregisterclear",nuser_id)
+							SendWebhookMessage(webhookadrenalina,"```prolog\n[ID]: "..user_id.." "..identity.name.." "..identity.firstname.." \n[REVIVEU]: "..nuser_id.." "..identityu.name.." "..identityu.firstname.."\n[COORDENADA]: "..crds.x..","..crds.y..","..crds.z..""..os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S").." \r```")
+						end)
+					else
+					TriggerClientEvent("Notify",source,"importante","A pessoa precisa estar em coma para prosseguir.")
 					end
 				end
 			elseif itemName == "energetico" then
@@ -532,8 +604,8 @@ local user_id = vRP.getUserId(source)
 								actived[user_id] = true
 								TriggerClientEvent('cancelando',source,true)
 								vRPclient._playAnim(source,false,{{"mini@repair","fixing_a_player"}},true)
-								TriggerClientEvent("progress",source,15000,"reparando motor")
-								SetTimeout(15000,function()
+								TriggerClientEvent("progress",source,10000,"reparando motor")
+								SetTimeout(10000,function()
 									actived[user_id] = nil
 									TriggerClientEvent('cancelando',source,false)
 									TriggerClientEvent('repararmotor',source,vehicle, true)
@@ -546,8 +618,8 @@ local user_id = vRP.getUserId(source)
 								TriggerClientEvent('Creative:Update',source,'updateMochila')
 								TriggerClientEvent('cancelando',source,true)
 								vRPclient._playAnim(source,false,{{"mini@repair","fixing_a_player"}},true)
-								TriggerClientEvent("progress",source,60000,"reparando motor")
-								SetTimeout(60000,function()
+								TriggerClientEvent("progress",source,20000,"reparando motor")
+								SetTimeout(20000,function()
 									actived[user_id] = nil
 									TriggerClientEvent('cancelando',source,false)
 									TriggerClientEvent('repararmotor',source,vehicle, false)
@@ -561,26 +633,33 @@ local user_id = vRP.getUserId(source)
 				if not vRPclient.isInVehicle(source) then
 					local vehicle = vRPclient.getNearestVehicle(source,3.5)
 					if vehicle then
+
 						if vRP.hasPermission(user_id,"mecanico.permissao") then
-							if vRPNclient.isNearCds(source, vector3(-211.1,-1324.73,30.9), 25) or vRPNclient.isNearCds(source, vector3(934.52,-951.64,39.76), 40) or vRPNclient.isNearCds(source, vector3(-33.36,-1054.1,28.4), 40) then
-								-- if vRP.tryGetInventoryItem(user_id,"repairkit",1) then -- Tirar o item do inventario
-									actived[user_id] = true
-									TriggerClientEvent('cancelando',source,true)
-									vRPclient._playAnim(source,false,{{"mini@repair","fixing_a_player"}},true)
-									TriggerClientEvent("progress",source,30000,"reparando veículo")
-									SetTimeout(30000,function()
-										actived[user_id] = nil
-										TriggerClientEvent('cancelando',source,false)
-										TriggerClientEvent('reparar',source)
-										vRPclient._stopAnim(source,false)
-									end)
-								-- end -- Tirar o item do inventário
-							else
-								TriggerClientEvent("Notify",source,"negado","<b>Kit de Reparo</b> só pode ser utilizado na mecânica")
-							end
+							actived[user_id] = true
+							TriggerClientEvent('cancelando',source,true)
+							vRPclient._playAnim(source,false,{{"mini@repair","fixing_a_player"}},true)
+							TriggerClientEvent("progress",source,15000,"reparando veículo")
+							SetTimeout(15000,function()
+								actived[user_id] = nil
+								TriggerClientEvent('cancelando',source,false)
+								TriggerClientEvent('reparar',source)
+								vRPclient._stopAnim(source,false)
+							end)
 						else
-							TriggerClientEvent("Notify",source,"negado","Somente mecanicos podem utilizar <b>Kit de Reparo</b>, chame um através do <b>celular</b>")
+							if vRP.tryGetInventoryItem(user_id,"repairkit",1) then -- Tirar o item do inventario
+								actived[user_id] = true
+								TriggerClientEvent('cancelando',source,true)
+								vRPclient._playAnim(source,false,{{"mini@repair","fixing_a_player"}},true)
+								TriggerClientEvent("progress",source,30000,"reparando veículo")
+								SetTimeout(30000,function()
+									actived[user_id] = nil
+									TriggerClientEvent('cancelando',source,false)
+									TriggerClientEvent('reparar',source)
+									vRPclient._stopAnim(source,false)
+								end)
+							end -- Tirar o item do inventário	
 						end
+						
 					end
 				end	
 			elseif itemName == "pneu" then
@@ -592,8 +671,8 @@ local user_id = vRP.getUserId(source)
 								actived[user_id] = true
 								TriggerClientEvent('cancelando',source,true)
 								vRPclient._playAnim(source,false,{{"amb@medic@standing@tendtodead@idle_a","idle_a"}},true)
-								TriggerClientEvent("progress",source,10000,"trocando pneu")
-								SetTimeout(10000,function()
+								TriggerClientEvent("progress",source,5000,"trocando pneu")
+								SetTimeout(5000,function()
 									actived[user_id] = nil
 									TriggerClientEvent('cancelando',source,false)
 									local tyre, car = vRPNclient.ityrerepair(source, vehicle)
@@ -607,8 +686,8 @@ local user_id = vRP.getUserId(source)
 								TriggerClientEvent('Creative:Update',source,'updateMochila')
 								TriggerClientEvent('cancelando',source,true)
 								vRPclient._playAnim(source,false,{{"amb@medic@standing@tendtodead@idle_a","idle_a"}},true)
-								TriggerClientEvent("progress",source,30000,"trocando pneu")
-								SetTimeout(30000,function()
+								TriggerClientEvent("progress",source,10000,"trocando pneu")
+								SetTimeout(10000,function()
 									actived[user_id] = nil
 									TriggerClientEvent('cancelando',source,false)
 									local tyre, car = vRPNclient.ityrerepair(source, vehicle)

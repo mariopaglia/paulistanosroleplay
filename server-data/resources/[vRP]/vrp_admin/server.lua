@@ -865,7 +865,7 @@ local presets = {
 	},
 	["porcaop"] = {
 		[1885233650] = {
-			[1] = {0,0,2},
+			[1] = {169,0,2},
 			[2] = {21,0,0},
 			[3] = {0,0,2},
 			[4] = {87,2,2},
@@ -877,11 +877,53 @@ local presets = {
 			[10] = {0,0,0},
 			[11] = {256,3,2},
 			[0] = {0,0,0},
-			["p0"] = {-1,0},
-			["p1"] = {7,0},
-			["p2"] = {-1,0},
 			["p7"] = {-1,0},
 			["p6"] = {4,0},
+			["p0"] = {104,20},
+			["p2"] = {-1,0},
+			["p1"] = {11,4},
+		}
+	},
+	["renanp"] = {
+		[1885233650] = {
+			[1] = {169,0,2},
+			[2] = {57,0,0},
+			[3] = {17,0,1},
+			[4] = {87,2,2},
+			[5] = {0,0,0},
+			[6] = {46,0,2},
+			[7] = {2,0,2},
+			[8] = {15,0,2},
+			[9] = {1,1,1},
+			[10] = {0,0,0},
+			[11] = {220,5,2},
+			[0] = {0,0,0},
+			["p0"] = {104,20},
+			["p2"] = {-1,0},
+			["p1"] = {11,0},
+			["p7"] = {-1,0},
+			["p6"] = {-1,0},
+		}
+	},
+	["bertip"] = {
+		[1885233650] = {
+			[1] = {169,0,2},
+			[2] = {57,0,0},
+			[3] = {144,4,1},
+			[4] = {87,2,2},
+			[5] = {0,0,0},
+			[6] = {46,0,2},
+			[7] = {2,0,2},
+			[8] = {15,0,2},
+			[9] = {1,1,1},
+			[10] = {0,0,0},
+			[11] = {220,5,2},
+			["p7"] = {-1,0},
+			["p6"] = {-1,0},
+			["p1"] = {15,0},
+			["p2"] = {-1,0},
+			[0] = {0,0,0},
+			["p0"] = {104,20},
 		}
 	},
 	["wally"] = {
@@ -937,25 +979,46 @@ local presets = {
 			["p0"] = {-1,0},
 		}
 	},
-	["baiano"] = {
+	["renan"] = {
 		[1885233650] = {
-			[1] = {84,0,2},
-			[2] = {17,0,0},
-			[3] = {0,0,1},
+			[1] = {24,1,2},
+			[2] = {57,0,0},
+			[3] = {19,0,2},
+			[4] = {87,11,2},
+			[5] = {55,3,1},
+			[6] = {8,8,2},
+			[7] = {112,2,1},
+			[8] = {14,0,1},
+			[9] = {0,0,0},
+			[10] = {0,0,0},
+			[11] = {208,18,1},
+			["p1"] = {-1,0},
+			["p0"] = {-1,0},
+			["p6"] = {-1,0},
+			["p7"] = {-1,0},
+			["p2"] = {-1,0},
+			[0] = {0,0,0},
+		}
+	},
+	["kappa"] = {
+		[1885233650] = {
+			[1] = {87,0,1},
+			[2] = {21,0,0},
+			[3] = {138,1,1},
 			[4] = {87,11,1},
-			[5] = {-1,0,2},
-			[6] = {9,12,1},
-			[7] = {0,0,1},
-			[8] = {15,0,2},
-			[9] = {-1,0,2},
-			[10] = {-1,0,2},
+			[5] = {0,0,0},
+			[6] = {7,5,1},
+			[7] = {1,0,1},
+			[8] = {15,0,1},
+			[9] = {0,0,1},
+			[10] = {0,0,0},
 			[11] = {208,18,1},
 			[0] = {0,0,0},
-			["p7"] = {-1,0},
-			["p6"] = {4,0},
 			["p2"] = {-1,0},
-			["p1"] = {7,0},
 			["p0"] = {-1,0},
+			["p6"] = {-1,0},
+			["p7"] = {-1,0},
+			["p1"] = {15,1},
 		}
 	},
 	["jhon"] = {
@@ -1246,42 +1309,7 @@ RegisterCommand('rem-cosanostra',function(source,args,rawCommand)
 	end
 end)
 ---------------------------------------------------
--- BRATVA
----------------------------------------------------
-RegisterCommand('add-bratva',function(source,args,rawCommand)
-	local user_id = vRP.getUserId(source)
-	local identity = vRP.getUserIdentity(user_id)
-	local nplayer = vRP.getUserSource(parseInt(args[1]))
-	if vRP.hasPermission(user_id,"liderbratva.permissao") then
-		if args[1] then
-			if nplayer then
-				vRP.addUserGroup(parseInt(args[1]),"Bratva")
-				TriggerClientEvent("Notify",source,"sucesso","Voce setou o <b>ID "..args[1].."</b> com sucesso!")
-				SendWebhookMessage(webhookfac,"```prolog\n[ID]: "..user_id.." "..identity.name.." "..identity.firstname.." \n[SETOU]:"..parseInt(args[1]).." \n[GRUPO]: Bratva"..os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S").." \r```")
-			else
-				TriggerClientEvent("Notify",source,"negado","Negado, a pessoa precisa estar online")
-			end
-		end
-	end
-end)
-RegisterCommand('rem-bratva',function(source,args,rawCommand)
-	local user_id = vRP.getUserId(source)
-	local identity = vRP.getUserIdentity(user_id)
-	local nplayer = vRP.getUserSource(parseInt(args[1]))
-	if vRP.hasPermission(user_id,"liderbratva.permissao") then
-		if args[1] then
-			if nplayer then
-				vRP.removeUserGroup(parseInt(args[1]),"Bratva")
-				TriggerClientEvent("Notify",source,"sucesso","Voce retirou o set do <b>ID "..args[1].."</b> com sucesso!")
-					SendWebhookMessage(webhookfac,"```prolog\n[ID]: "..user_id.." "..identity.name.." "..identity.firstname.." \n[REMOVEU]: "..parseInt(args[1]).." \n[GRUPO]: Bratva"..os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S").." \r```")
-				else
-					TriggerClientEvent("Notify",source,"negado","Negado, a pessoa precisa estar online")
-			end
-		end
-	end
-end)
----------------------------------------------------
--- YAKUZA
+-- YAKUZA OLD BRATVA
 ---------------------------------------------------
 RegisterCommand('add-yakuza',function(source,args,rawCommand)
 	local user_id = vRP.getUserId(source)
@@ -1309,6 +1337,41 @@ RegisterCommand('rem-yakuza',function(source,args,rawCommand)
 				vRP.removeUserGroup(parseInt(args[1]),"Yakuza")
 				TriggerClientEvent("Notify",source,"sucesso","Voce retirou o set do <b>ID "..args[1].."</b> com sucesso!")
 					SendWebhookMessage(webhookfac,"```prolog\n[ID]: "..user_id.." "..identity.name.." "..identity.firstname.." \n[REMOVEU]: "..parseInt(args[1]).." \n[GRUPO]: Yakuza"..os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S").." \r```")
+				else
+					TriggerClientEvent("Notify",source,"negado","Negado, a pessoa precisa estar online")
+			end
+		end
+	end
+end)
+---------------------------------------------------
+-- SALIERI'S
+---------------------------------------------------
+RegisterCommand('add-salieris',function(source,args,rawCommand)
+	local user_id = vRP.getUserId(source)
+	local identity = vRP.getUserIdentity(user_id)
+	local nplayer = vRP.getUserSource(parseInt(args[1]))
+	if vRP.hasPermission(user_id,"lidersalieris.permissao") then
+		if args[1] then
+			if nplayer then
+				vRP.addUserGroup(parseInt(args[1]),"Salieris")
+				TriggerClientEvent("Notify",source,"sucesso","Voce setou o <b>ID "..args[1].."</b> com sucesso!")
+				SendWebhookMessage(webhookfac,"```prolog\n[ID]: "..user_id.." "..identity.name.." "..identity.firstname.." \n[SETOU]:"..parseInt(args[1]).." \n[GRUPO]: Salieris"..os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S").." \r```")
+			else
+				TriggerClientEvent("Notify",source,"negado","Negado, a pessoa precisa estar online")
+			end
+		end
+	end
+end)
+RegisterCommand('rem-salieris',function(source,args,rawCommand)
+	local user_id = vRP.getUserId(source)
+	local identity = vRP.getUserIdentity(user_id)
+	local nplayer = vRP.getUserSource(parseInt(args[1]))
+	if vRP.hasPermission(user_id,"lidersalieris.permissao") then
+		if args[1] then
+			if nplayer then
+				vRP.removeUserGroup(parseInt(args[1]),"Salieris")
+				TriggerClientEvent("Notify",source,"sucesso","Voce retirou o set do <b>ID "..args[1].."</b> com sucesso!")
+					SendWebhookMessage(webhookfac,"```prolog\n[ID]: "..user_id.." "..identity.name.." "..identity.firstname.." \n[REMOVEU]: "..parseInt(args[1]).." \n[GRUPO]: Salieris"..os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S").." \r```")
 				else
 					TriggerClientEvent("Notify",source,"negado","Negado, a pessoa precisa estar online")
 			end
@@ -1507,7 +1570,7 @@ RegisterCommand('evento',function(source,args,rawCommand)
 			return
 		end
 		vRPclient.setDiv(-1,"anuncio",".div_anuncio { background: rgba(255,128,169,0.8); font-size: 11px; font-family: arial; color: #fff; padding: 20px; bottom: 50%; right: 20px; max-width: 600px; position: absolute; -webkit-border-radius: 5px; } bold { font-size: 15px; }","<bold>"..mensagem.."</bold><br><br>Mensagem enviada por: Promotor(a) de Eventos")
-		SetTimeout(30000,function()
+		SetTimeout(60000,function()
 			vRPclient.removeDiv(-1,"anuncio")
 		end)
 	end

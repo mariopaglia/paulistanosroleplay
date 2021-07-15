@@ -22,7 +22,7 @@ cfg.items = {
 	["carbono"] = { "Carbono",0.0038 },
 	["radio"] = { "Radio",1.0 },
 	["placa"] = { "Placa",5.0 },
-	["pneu"] = { "Pneu",10.0 },
+	["pneu"] = { "Pneu",5.0 },
 	["cartaoinvasao"] = { "Cartão de Invasão",0.5 },
 	["gps"] = { "GPS",0.5 },
 	["rosa"] = { "rosa",0.5 },
@@ -34,11 +34,26 @@ cfg.items = {
 	["conhaque"] = { "conhaque",0.2 },
 	["absinto"] = { "absinto",0.2 },
 	["agua"] = { "agua",0.2 },
+	["corda"] = { "corda",1.0 },
+	["adrenalina"] = { "adrenalina",1.0 },
+	["gopro"] = { "gopro",1.0 },
+	["gravadordevoz"] = { "gravadordevoz",1.0 },
 
 	-- Farm Contrabando
 	["componentemetal"] = { "Componentes de Metais",0.5 },
 	["componenteeletronico"] = { "Componentes Eletrônicos",0.5 },
 	["componenteplastico"] = { "Componentes de Plásticos",0.5 },
+
+	--Itens do roubo a residencia
+	["sapatosroubado"] = { "sapatosroubado",0.2 },
+	["relogioroubado"] = { "relogioroubado",0.2 },
+	["anelroubado"] = { "anelroubado",0.2 },
+	["colarroubado"] = { "colarroubado",0.2 },
+	["notebookroubado"] = { "notebookroubado",0.2 },
+	["tabletroubado"] = { "tabletroubado",0.2 },
+	["vibradorroubado"] = { "vibradorroubado",0.2 },
+	["carteiraroubada"] = { "carteiraroubada",0.2 },
+	["perfumeroubado"] = { "perfumeroubado",0.2 },
 	
 	-- Pesca
 	["isca"] = { "Isca",0.6 },
@@ -85,6 +100,7 @@ cfg.items = {
 	["pino"] = { "Pino",0.3 },
 	["pastadecoca"] = { "Pasta de Cocaina",0.3 },
 	["cocaina"] = { "Cocaína",1.0 },
+	["lolo"] = { "Loló",1.0 },
 	
 	-- Farm de colete
 	["tecido"] = { "Tecido",0.3 },

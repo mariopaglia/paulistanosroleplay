@@ -18,6 +18,7 @@ local banks = {
 	{name="Banco", id=108, x=-112.202, y=6469.295, z=31.626},
 	{name="Banco", id=108, x=314.187, y=-278.621, z=54.170},
 	{name="Banco", id=108, x=-351.534, y=-49.529, z=49.042},
+	{name="Banco", id=108, x=4477.07, y=-4464.23, z=4.26}, -- BANCO ILHA
 	{name="Banco", id=106, x=241.727, y=220.706, z=106.286, principal = true},
 	{name="Banco", id=108, x=1175.0643310547, y=2706.6435546875, z=38.094036102295},
 	{name="Registradora", id=108, x=-31.49,y=-1121.44,z=26.55 },

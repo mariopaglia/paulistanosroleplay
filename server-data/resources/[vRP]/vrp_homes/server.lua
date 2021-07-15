@@ -553,7 +553,7 @@ local homes = {
 	["MS01"] = { 10000000,2,10000 },
 	["MS02"] = { 10000000,2,10000 },
 	["MS03"] = { 10000000,2,10000 },
-	["MS04"] = { 10000000,2,10000 },
+	["MS04"] = { 3000000,2,3000 },
 	["MS05"] = { 10000000,2,10000 },
 	["MS06"] = { 10000000,2,10000 },
 	["MS07"] = { 10000000,2,10000 },
@@ -1138,7 +1138,7 @@ Citizen.CreateThread( function()
 end)
 
 function src.takeItem(homeName,itemName,amount)
-	vRP.antiflood(source,"dumpbaucasa",3)
+	vRP.antiflood(source,"dumpbaucasa",5)
 	local source = source
 	if itemName then
 		local user_id = vRP.getUserId(source)

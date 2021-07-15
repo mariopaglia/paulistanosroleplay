@@ -1,6 +1,22 @@
 local cfg = {}
 
 cfg.chestweight = {
+	-- VIATURAS DA POLICIA
+	["av-amarok"] = 50,
+	["sbearcat"] = 50,
+	["bmwg20"] = 50,
+	["av-gt63"] = 50,
+	["av-m8"] = 50,
+	["pbus"] = 50,
+	["pdfocus"] = 50,
+	["av-nc7"] = 50,
+	["av-levante"] = 50,
+	["ghispo2"] = 50,
+	["bmwm5policia"] = 50,
+	["chevypolicia"] = 50,
+	["porschespeed"] = 50,
+	["polmav"] = 100,
+
 	["deathbike"] = 10,
 	["brioso2"] = 10,
 	["weevil"] = 5,

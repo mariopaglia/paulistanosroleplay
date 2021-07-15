@@ -29,7 +29,7 @@ local nomes = {
 	Nightstick = "Cassetete",
 	Snspistol = "HK P7M10",
 	Microsmg = "Uzi",
-	Sawnoffshotgun = "Shotgun",
+	Sawnoffshotgun = "Mossberg 500",
 	Assaultrifle = "AK-103",
 	Assaultrifle_mk2 = "AK-47",
 	Bullpuprifle_mk2 = "Famas",
@@ -41,7 +41,7 @@ local nomes = {
 	Pistol_mk2 = "FN Five Seven",
 	Vintagepistol = "M1922",
 	Assaultsmg = "MTAR-21",
-	Musket = "Winchester 22",
+	Musket = "Mosin Nagant",
 	Gusenberg = "Thompson",
 	Combatpdw = "Sig Sauer MPX",
 	Heavysniper = "M82",
@@ -50,6 +50,7 @@ local nomes = {
 	Raypistol = "Pistola ADMIN",
 	Specialcarbine_mk2 = "G36C",
 	Smg_mk2 = "MP5-MK2",
+	Minismg = "CZ Scorpion",
 	Carbinerifle_mk2 = "M4A1"
 }
 

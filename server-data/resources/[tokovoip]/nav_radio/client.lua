@@ -104,8 +104,8 @@ RegisterNUICallback("ButtonClick",function(data,cb)
 			outServers()
 			exports.tokovoip_script:addPlayerToRadio(1013)
 		end
-	elseif data == "bratva" then
-		if emP.checkPermission2("bratva.permissao","Bratva") then
+	elseif data == "salieris" then
+		if emP.checkPermission2("salieris.permissao","Salieri's") then
 			outServers()
 			exports.tokovoip_script:addPlayerToRadio(1014)
 		end			

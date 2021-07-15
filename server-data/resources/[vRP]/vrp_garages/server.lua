@@ -448,10 +448,10 @@ local garages = {
     [622] = {['name'] = "SportRace", ['payment'] = false, ['perm'] = "sportrace.permissao"}, -- SportRace
 
     [623] = {['name'] = "Cosanostra", ['payment'] = false, ['perm'] = "cn.permissao"},
-    [624] = {['name'] = "Bratva", ['payment'] = false, ['perm'] = "bratva.permissao"},
+    [624] = {['name'] = "Bratva", ['payment'] = false, ['perm'] = "yakuza.permissao"}, ------
     [625] = {['name'] = "Verdes", ['payment'] = false, ['perm'] = "verdes.permissao"},
     [626] = {['name'] = "Vermelhos", ['payment'] = false, ['perm'] = "vermelhos.permissao"},
-    [627] = {['name'] = "Yakuza", ['payment'] = false, ['perm'] = "yakuza.permissao"},
+    [627] = {['name'] = "Yakuza", ['payment'] = false, ['perm'] = "salieris.permissao"},
     [628] = {['name'] = "Roxos", ['payment'] = false, ['perm'] = "roxos.permissao"},
     [629] = {['name'] = "Motoclub", ['payment'] = false, ['perm'] = "motoclub.permissao"},
     [630] = {['name'] = "Triade", ['payment'] = false, ['perm'] = "triade.permissao"},
@@ -470,22 +470,37 @@ local garages = {
     [642] = {['name'] = "Garagem", ['payment'] = false, ['public'] = true}, -- ECLIPSE TOWER
     [643] = {['name'] = "Policia", ['payment'] = false, ['perm'] = "policia.permissao"}, -- GARAGEM PRESIDIO
     [644] = {['name'] = "Garagem", ['payment'] = false, ['public'] = true}, -- GARAGEM PESSOAL SERPENTES
+    [645] = {['name'] = "Garagem", ['payment'] = false, ['public'] = true}, -- HELIPONTO CAYO PERICO 01
+    [646] = {['name'] = "Garagem", ['payment'] = false, ['public'] = true}, -- GARAGEM CAYO PERICO 01
+    [647] = {['name'] = "Garagem", ['payment'] = false, ['public'] = true}, -- HELIPONTO CAYO PERICO 02
+    [648] = {['name'] = "Garagem", ['payment'] = false, ['public'] = true}, -- GARAGEM CAYO PERICO 02
+    [649] = {['name'] = "Policia", ['payment'] = false, ['perm'] = "policia.permissao"},
+    [650] = {['name'] = "PoliciaHeli", ['payment'] = false, ['perm'] = "policia.permissao"},
+    [651] = {['name'] = "Garagem", ['payment'] = false, ['public'] = true}, -- GARAGEM VERDES
+    [652] = {['name'] = "Garagem", ['payment'] = false, ['public'] = true}, -- GARAGEM BRATVA
+    [653] = {['name'] = "Garagem", ['payment'] = false, ['public'] = true}, -- GARAGEM YAKUZA
+    [654] = {['name'] = "Garagem", ['payment'] = false, ['public'] = true}, -- GARAGEM TRIADE
+    [655] = {['name'] = "Garagem", ['payment'] = false, ['public'] = true}, -- GARAGEM MOTOCLUB
+    [656] = {['name'] = "Garagem", ['payment'] = false, ['public'] = true}, -- GARAGEM ROXOS
+    [657] = {['name'] = "Garagem", ['payment'] = false, ['public'] = true}, -- GARAGEM COSANOSTRA
+    [658] = {['name'] = "Bennys", ['payment'] = false, ['perm'] = "sportrace.permissao"}, -- Bennys
+    [659] = {['name'] = "Bicicletario", ['payment'] = false, ['public'] = true}, -- BICICLETARIO EM FRENTE AO FENIX PLAZA
 }
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- GARAGEMS
 -----------------------------------------------------------------------------------------------------------------------------------------
 local workgarage = {
-    ["Cosanostra"] = {"burrito3"},
-    ["Bratva"] = {"burrito3"},
-    ["Verdes"] = {"burrito3"},
-    ["Vermelhos"] = {"burrito3"},
-    ["Roxos"] = {"burrito3"},
-    ["Yakuza"] = {"burrito3"},
-    ["Triade"] = {"burrito3"},
+    ["Cosanostra"] = {"burrito3", "komoda"},
+    ["Bratva"] = {"burrito3", "komoda"},
+    ["Verdes"] = {"burrito3", "komoda"},
+    ["Vermelhos"] = {"burrito3", "komoda"},
+    ["Roxos"] = {"burrito3", "komoda"},
+    ["Yakuza"] = {"burrito3", "komoda"},
+    ["Triade"] = {"burrito3", "komoda"},
     ["FARC"] = {"burrito3"},
     ["Camorra"] = {"burrito3"},
-    ["Serpentes"] = {"sanctus"},
-    ["Motoclub"] = {"sanctus"},
+    ["Serpentes"] = {"sanctus", "komoda"},
+    ["Motoclub"] = {"sanctus", "komoda"},
     ["Bennys"] = {"flatbed", "slamvan3"},
     ["NovaBennys"] = {"flatbed", "slamvan3"},
     ["SportRace"] = {"flatbed", "slamvan3"},
@@ -575,7 +590,7 @@ function src.myVehicles(work)
                             elseif vehicle[k2].detido == 1 then
                                 status = "<span class=\"orange\">R$ " .. vRP.format(parseInt(vRP.vehiclePrice(vehicle[k2].vehicle) * 0.15)) .. "</span>"
                             else
-                                status = "<span class=\"green\">R$ " .. vRP.format(parseInt(vRP.vehiclePrice(vehicle[k2].vehicle) * 0.005)) .. "</span>"
+                                status = "<span class=\"green\">Gratuita</span>"
                             end
 
                             if parseInt(os.time()) >= parseInt(vehicle[k2].ipva + 24 * 15 * 60 * 60) then

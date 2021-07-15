@@ -1,8 +1,8 @@
 local Config = {}
 vRP.prepare("vRP/get_prioridade","SELECT * FROM vrp_prioridade")
 
-Config.RequireSteam = false
-Config.PriorityOnly = false
+Config.RequireSteam = true
+Config.PriorityOnly = true
 
 Config.IsBanned = function(src,callback)
 	callback(false)

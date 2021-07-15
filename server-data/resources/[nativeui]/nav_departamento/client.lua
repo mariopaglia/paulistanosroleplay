@@ -32,6 +32,10 @@ RegisterNUICallback("ButtonClick",function(data,cb)
 		TriggerServerEvent("departamento-comprar","radio")
 	elseif data == "utilidades-comprar-militec" then
 		TriggerServerEvent("departamento-comprar","militec")
+	elseif data == "utilidades-comprar-repairkit" then
+		TriggerServerEvent("departamento-comprar","repairkit")
+	elseif data == "utilidades-comprar-pneu" then
+		TriggerServerEvent("departamento-comprar","pneu")
 
 	elseif data == "utilidades-vender-roupas" then
 		TriggerServerEvent("departamento-vender","roupas")	
@@ -77,6 +81,8 @@ local marcacoes = {
 	--{ -816.12249755859,-194.64167785645,37.590026855469 },
 	--{ -1095.4796142578,-2594.6533203125,13.925128936768 },
 	{ -1222.78,-907.22,12.32 },
+	{ 4467.48,-4464.91,4.25 }, -- LOJINHA ILHA
+	{ -949.4,-169.81,46.27 }, -- Fenix Plaza
 }
 
 Citizen.CreateThread(function()

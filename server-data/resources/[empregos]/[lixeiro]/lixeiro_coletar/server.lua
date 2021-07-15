@@ -13,24 +13,24 @@ function emP.checkPayment()
 		if vRP.getInventoryWeight(user_id)+vRP.getItemWeight("sacodelixo") <= vRP.getInventoryMaxWeight(user_id) then
 			vRP.giveInventoryItem(user_id,"sacodelixo",1)
 			
-			local sorte = math.random(1,100)
+			-- local sorte = math.random(1,100)
 		
-			if sorte >= 50 then
-				local item = math.random(1,3)
-				if item == 1 then
-					if vRP.getInventoryWeight(user_id)+vRP.getItemWeight("componentemetal") <= vRP.getInventoryMaxWeight(user_id) then
-						vRP.giveInventoryItem(user_id,"componentemetal",1)
-					end
-				elseif item == 2 then
-					if vRP.getInventoryWeight(user_id)+vRP.getItemWeight("componenteeletronico") <= vRP.getInventoryMaxWeight(user_id) then
-						vRP.giveInventoryItem(user_id,"componenteeletronico",1)
-					end
-				elseif item == 3 then
-					if vRP.getInventoryWeight(user_id)+vRP.getItemWeight("componenteplastico") <= vRP.getInventoryMaxWeight(user_id) then
-						vRP.giveInventoryItem(user_id,"componenteplastico",1)
-					end
-				end
-			end
+			-- if sorte >= 50 then
+			-- 	local item = math.random(1,3)
+			-- 	if item == 1 then
+			-- 		if vRP.getInventoryWeight(user_id)+vRP.getItemWeight("componentemetal") <= vRP.getInventoryMaxWeight(user_id) then
+			-- 			vRP.giveInventoryItem(user_id,"componentemetal",2) -- alterar para 1 (padrao)
+			-- 		end
+			-- 	elseif item == 2 then
+			-- 		if vRP.getInventoryWeight(user_id)+vRP.getItemWeight("componenteeletronico") <= vRP.getInventoryMaxWeight(user_id) then
+			-- 			vRP.giveInventoryItem(user_id,"componenteeletronico",2) -- alterar para 1 (padrao)
+			-- 		end
+			-- 	elseif item == 3 then
+			-- 		if vRP.getInventoryWeight(user_id)+vRP.getItemWeight("componenteplastico") <= vRP.getInventoryMaxWeight(user_id) then
+			-- 			vRP.giveInventoryItem(user_id,"componenteplastico",2) -- alterar para 1 (padrao)
+			-- 		end
+			-- 	end
+			-- end
 		end
 		return true
 	end

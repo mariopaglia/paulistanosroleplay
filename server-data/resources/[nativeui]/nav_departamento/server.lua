@@ -8,11 +8,13 @@ vRPclient = Tunnel.getInterface("vRP")
 local valores = {
 	{ item = "mochila", quantidade = 1, compra = 10000, venda = 5000 },
 	{ item = "alianca", quantidade = 1, compra = 1000, venda = 500 },
-	{ item = "roupas", quantidade = 1, compra = 30000, venda = 15000 },
+	{ item = "roupas", quantidade = 1, compra = 10000, venda = 5000 },
 	{ item = "celular", quantidade = 1, compra = 3000, venda = 1500 },
 	{ item = "radio", quantidade = 1, compra = 1000, venda = 500 },
 	{ item = "energetico", quantidade = 3, compra = 5000, venda = 2500 },
 	{ item = "militec", quantidade = 1, compra = 5000, venda = 100 },
+	{ item = "repairkit", quantidade = 1, compra = 8000, venda = 100 },
+	{ item = "pneu", quantidade = 1, compra = 1000, venda = 100 },
 }
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- COMPRAR

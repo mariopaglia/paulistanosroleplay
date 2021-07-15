@@ -32,7 +32,7 @@ local lojaderoupa = {
     { x=-1636.56, y=-165.45, z=57.48, provador = { x=-1636.56, y=-165.45, z=57.48, heading = 301.6 } }, -- Vermelhos
     { x=1432.63, y=-2125.38, z=57.69, provador = { x=1432.63, y=-2125.38, z=57.69, heading = 21.55 } }, -- Roxos
     { x=884.66, y=-2102.92, z=35.6, provador = { x=884.66, y=-2102.92, z=35.6, heading = 267.78 } }, -- Motoclub
-    { x=-877.02, y=-1442.25, z=7.53, provador = { x=-877.02, y=-1442.25, z=7.53, heading = 199.01 } }, -- Yakuza
+    { x=419.52, y=-1482.34, z=33.81, provador = { x=419.52, y=-1482.34, z=33.81, heading = 210.69 } }, -- Salieri's
     { x=-620.1, y=-1618.3, z=33.02, provador = { x=-620.1, y=-1618.3, z=33.02, heading = 176.91 } }, -- Triade
     { x=576.79, y=-3108.85, z=6.07, provador = { x=576.79, y=-3108.85, z=6.07, heading = 179.28 } }, -- FARC
     { x=-1881.29, y=2068.57, z=145.58, provador = { x=-1881.29, y=2068.57, z=145.58, heading = 158.7 } }, -- Camorra
@@ -45,6 +45,10 @@ local lojaderoupa = {
     { x=-797.71, y=326.82, z=190.72, provador = { x=-797.71, y=326.82, z=190.72, heading = 4.0 } }, -- casa porcao
     { x=-568.48, y=-115.12, z=33.88, provador = { x=-568.48, y=-115.12, z=33.88, heading = 24.78 } }, -- DP NOVA
     { x=-1535.56, y=123.37, z=50.06, provador = { x=-1535.56, y=123.37, z=50.06, heading = 276.93 } }, -- MANSAO PLAYBOY
+    { x=4489.09, y=-4452.21, z=4.37, provador = { x=4489.09, y=-4452.21, z=4.37, heading = 198.51 } }, -- LOJA ILHA
+    { x=-2584.42, y=1885.9, z=140.87, provador = { x=-2584.42, y=1885.9, z=140.87, heading = 189.69 } }, -- MANSAO MONTANHA
+    { x=-56.41, y=-1289.5, z=30.91, provador = { x=-56.41, y=-1289.5, z=30.91, heading = 183.18 } }, -- ACADEMIA ['x'] = -56.41, ['y'] = -1289.5, ['z'] = 30.91, ['h'] = 183.18
+    { x=-932.49, y=-177.13, z=46.29, provador = { x=-932.49, y=-177.13, z=46.29, heading = 28.19 } }, -- Fenix Plaza
 }
 
 local parts = {

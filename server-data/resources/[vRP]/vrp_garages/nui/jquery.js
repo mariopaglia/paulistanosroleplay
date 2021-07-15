@@ -57,11 +57,11 @@ const updateGarages = () => {
                         <div class="item-left"><b>M / C / G:</b></div><div class="item-right">${item.engine}% / ${item.body}% / ${item.fuel}%</div>
                     </div>
                     <div class="item-text" style="border: 0;">
-                        <div class="item-left"><b>Tax:</b></div>
+                        <div class="item-left"><b>IPVA:</b></div>
                         <div class="item-right">${item.ipva}</div>
                     </div>
                     <div class="item-text" style="border: 0;">
-                        <div class="item-left"><b>Liberação:</b></div>
+                        <div class="item-left"><b>Retirada:</b></div>
                         <div class="item-right">${item.status}</div>
                     </div>
                 </div>

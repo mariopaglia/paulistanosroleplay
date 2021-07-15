@@ -30,13 +30,17 @@ cfg.list = {
 	[24] = { text = true, hash = 631614199, ['x'] = 465.64, ['y'] = -998.35, ['z'] = 24.91, lock = true, perm = "policia.permissao" },
 	[25] = { text = true, hash = -103301619, ['x'] = 464.17, ['y'] = -1003.02, ['z'] = 24.91, lock = true, perm = "policia.permissao" },
 
-	-- YAKUZA
-	[26] = { text = true, hash = -1653461382, ['x'] = -948.44, ['y'] = -1476.89, ['z'] = 6.8, lock = true, perm = "yakuza.permissao", other = 27 },
-	[27] = { text = true, hash = -292728657, ['x'] = -949.14, ['y'] = -1475.18, ['z'] = 6.8, lock = true, perm = "yakuza.permissao", other = 26 },
-	[28] = { text = true, hash = 272205552, ['x'] = -875.77, ['y'] = -1455.05, ['z'] = 7.53, lock = true, perm = "yakuza.permissao", other = 29 },
-	[29] = { text = true, hash = 1888438146, ['x'] = -876.02, ['y'] = -1453.96, ['z'] = 7.53, lock = true, perm = "yakuza.permissao", other = 28 },
-	[30] = { text = true, hash = 272205552, ['x'] = -879.2, ['y'] = -1445.18, ['z'] = 7.53, lock = true, perm = "yakuza.permissao", other = 31 },
-	[31] = { text = true, hash = 1888438146, ['x'] = -879.69, ['y'] = -1444.25, ['z'] = 7.53, lock = true, perm = "yakuza.permissao", other = 30 },
+	-- SALIERIS
+	[26] = { text = true, hash = 1388116908, ['x'] = 427.63, ['y'] = -1514.98, ['z'] = 29.32, lock = true, perm = "salieris.permissao" }, --
+	[27] = { text = true, hash = 964838196, ['x'] = 425.73, ['y'] = -1505.89, ['z'] = 29.32, lock = true, perm = "salieris.permissao" }, --
+	[28] = { text = true, hash = 951790256, ['x'] = 412.18, ['y'] = -1488.99, ['z'] = 30.16, lock = true, perm = "salieris.permissao", other = 29 },--
+	[29] = { text = true, hash = 951790256, ['x'] = 412.88, ['y'] = -1488.54, ['z'] = 30.16, lock = true, perm = "salieris.permissao", other = 28 }, --
+	[30] = { text = true, hash = 964838196, ['x'] = 408.47, ['y'] = -1499.5, ['z'] = 30.04, lock = true, perm = "salieris.permissao" }, --
+	[31] = { text = true, hash = 964838196, ['x'] = 412.53, ['y'] = -1501.77, ['z'] = 30.16, lock = true, perm = "salieris.permissao" },--
+	[32] = { text = true, hash = 964838196, ['x'] = 419.99, ['y'] = -1481.75, ['z'] = 30.16, lock = true, perm = "salieris.permissao" },--
+	[33] = { text = true, hash = 964838196, ['x'] = 416.28, ['y'] = -1485.55, ['z'] = 30.16, lock = true, perm = "salieris.permissao" },--
+	[34] = { text = true, hash = 964838196, ['x'] = 407.78, ['y'] = -1490.37, ['z'] = 30.16, lock = true, perm = "salieris.permissao" },--
+	[35] = { text = true, hash = 964838196, ['x'] = 424.24, ['y'] = -1501.03, ['z'] = 30.16, lock = true, perm = "salieris.permissao" },--
 
 	-- VANILLA
 	--[32] = { text = true, hash = -1116041313, ['x'] = 129.08, ['y'] = -1298.43, ['z'] = 29.24, lock = true, perm = "promoter.permissao" }, -- Entrada do Vanilla
@@ -98,16 +102,16 @@ cfg.list = {
 	[80] = { text = true, hash = 631614199, ['x'] = -1091.26, ['y'] = -826.02, ['z'] = 5.47, lock = true, perm = "policia.permissao" }, -- Celas PMESP
 	[81] = { text = true, hash = 631614199, ['x'] = -1088.96, ['y'] = -829.22, ['z'] = 5.47, lock = true, perm = "policia.permissao" }, -- Celas PMESP
 
-	-- BRATVA
-	[82] = { text = true, hash = 1901183774, ['x'] = -112.78, ['y'] = 986.11, ['z'] = 235.75, lock = true, perm = "bratva.permissao" }, -- Entrada da frente
-	[83] = { text = true, hash = 1901183774, ['x'] = -62.11, ['y'] = 998.71, ['z'] = 234.68, lock = true, perm = "bratva.permissao" }, -- Entrada de trás
-	[84] = { text = true, hash = 736699661, ['x'] = -105.13, ['y'] = 992.71, ['z'] = 235.78, lock = true, perm = "bratva.permissao", other = 85 }, -- Portas secundárias (duplas)
-	[85] = { text = true, hash = 736699661, ['x'] = -104.53, ['y'] = 991.51, ['z'] = 235.78, lock = true, perm = "bratva.permissao", other = 84 }, -- Portas secundárias (duplas)
-	[86] = { text = true, hash = 736699661, ['x'] = -96.47, ['y'] = 1001.63, ['z'] = 235.77, lock = true, perm = "bratva.permissao", other = 87 }, -- Portas escritório/rota (duplas)
-	[87] = { text = true, hash = 736699661, ['x'] = -95.60, ['y'] = 1002.00, ['z'] = 235.77, lock = true, perm = "bratva.permissao", other = 86 }, -- Portas escritório/rota (duplas)
-	[88] = { text = true, hash = 736699661, ['x'] = -78.11, ['y'] = 1001.27, ['z'] = 234.56, lock = true, perm = "bratva.permissao" }, -- Portas porão/produção
-	[89] = { text = true, hash = 736699661, ['x'] = -68.11, ['y'] = 997.07, ['z'] = 234.56, lock = true, perm = "bratva.permissao" }, -- Portas porão/produção
-	[90] = { text = true, hash = 736699661, ['x'] = -61.91, ['y'] = 990.87, ['z'] = 234.57, lock = true, perm = "bratva.permissao" }, -- Porta escritório/baú
+	-- YAKUZA
+	[82] = { text = true, hash = 1901183774, ['x'] = -112.78, ['y'] = 986.11, ['z'] = 235.75, lock = true, perm = "yakuza.permissao" }, -- Entrada da frente
+	[83] = { text = true, hash = 1901183774, ['x'] = -62.11, ['y'] = 998.71, ['z'] = 234.68, lock = true, perm = "yakuza.permissao" }, -- Entrada de trás
+	[84] = { text = true, hash = 736699661, ['x'] = -105.13, ['y'] = 992.71, ['z'] = 235.78, lock = true, perm = "yakuza.permissao", other = 85 }, -- Portas secundárias (duplas)
+	[85] = { text = true, hash = 736699661, ['x'] = -104.53, ['y'] = 991.51, ['z'] = 235.78, lock = true, perm = "yakuza.permissao", other = 84 }, -- Portas secundárias (duplas)
+	[86] = { text = true, hash = 736699661, ['x'] = -96.47, ['y'] = 1001.63, ['z'] = 235.77, lock = true, perm = "yakuza.permissao", other = 87 }, -- Portas escritório/rota (duplas)
+	[87] = { text = true, hash = 736699661, ['x'] = -95.60, ['y'] = 1002.00, ['z'] = 235.77, lock = true, perm = "yakuza.permissao", other = 86 }, -- Portas escritório/rota (duplas)
+	[88] = { text = true, hash = 736699661, ['x'] = -78.11, ['y'] = 1001.27, ['z'] = 234.56, lock = true, perm = "yakuza.permissao" }, -- Portas porão/produção
+	[89] = { text = true, hash = 736699661, ['x'] = -68.11, ['y'] = 997.07, ['z'] = 234.56, lock = true, perm = "yakuza.permissao" }, -- Portas porão/produção
+	[90] = { text = true, hash = 736699661, ['x'] = -61.91, ['y'] = 990.87, ['z'] = 234.57, lock = true, perm = "yakuza.permissao" }, -- Porta escritório/baú
 	
 	-- COSANOSTRA
 	[91] = { text = true, hash = -52575179, ['x'] = 1408.64, ['y'] = 1160.43, ['z'] = 114.34, lock = true, perm = "cn.permissao", other = 92 }, -- Porta de trás
@@ -218,14 +222,14 @@ cfg.list = {
 	[176] = { text = true, hash = 100028645, ['x'] = 719.62, ['y'] = 158.65, ['z'] = 80.76, lock = true, perm = "policia.permissao" },
 	[177] = { text = true, hash = -1452632113, ['x'] = 727.23, ['y'] = 154.77, ['z'] = 80.72, lock = true, perm = "policia.permissao" },
 	--MANSAO PLAYBOY - PORTAS DE ENTRADA
-	[178] = { text = true, hash = -1563640173, ['x'] = -1522.52, ['y'] = 143.25, ['z'] = 55.67, lock = true, perm = "liderroxos.permissao" },
-	[179] = { text = true, hash = 1033441082, ['x'] = -1536.79, ['y'] = 131.04, ['z'] = 57.38, lock = true, perm = "liderroxos.permissao" },
-	[180] = { text = true, hash = -1563640173, ['x'] = -1500.84, ['y'] = 103.64, ['z'] = 55.68, lock = true, perm = "liderroxos.permissao" }, -- -1859471240
+	[178] = { text = true, hash = -1563640173, ['x'] = -1522.52, ['y'] = 143.25, ['z'] = 55.67, lock = true, perm = "liderverdes.permissao" },
+	[179] = { text = true, hash = 1033441082, ['x'] = -1536.79, ['y'] = 131.04, ['z'] = 57.38, lock = true, perm = "liderverdes.permissao" },
+	[180] = { text = true, hash = -1563640173, ['x'] = -1500.84, ['y'] = 103.64, ['z'] = 55.68, lock = true, perm = "liderverdes.permissao" }, -- -1859471240
 	--MANSAO PLAYBOY - PORTAS DE FORA
-	[181] = { text = true, hash = -1859471240, ['x'] = -1441.54, ['y'] = 172.55, ['z'] = 55.82, lock = true, perm = "liderroxos.permissao" },
-	[182] = { text = true, hash = -1859471240, ['x'] = -1434.65, ['y'] = 235.5, ['z'] = 59.95, lock = true, perm = "liderroxos.permissao" },
-	[183] = { text = true, hash = -1859471240, ['x'] = -1578.97, ['y'] = 152.77, ['z'] = 58.68, lock = true, perm = "liderroxos.permissao" },
-	[184] = { text = true, hash = -1859471240, ['x'] = -1461.75, ['y'] = 66.0, ['z'] = 52.94, lock = true, perm = "liderroxos.permissao" },
+	[181] = { text = true, hash = -1859471240, ['x'] = -1441.54, ['y'] = 172.55, ['z'] = 55.82, lock = true, perm = "liderverdes.permissao" },
+	[182] = { text = true, hash = -1859471240, ['x'] = -1434.65, ['y'] = 235.5, ['z'] = 59.95, lock = true, perm = "liderverdes.permissao" },
+	[183] = { text = true, hash = -1859471240, ['x'] = -1578.97, ['y'] = 152.77, ['z'] = 58.68, lock = true, perm = "liderverdes.permissao" },
+	[184] = { text = true, hash = -1859471240, ['x'] = -1461.75, ['y'] = 66.0, ['z'] = 52.94, lock = true, perm = "liderverdes.permissao" },
 	-- BASE NOVA SERPENTES
 	[185] = { text = true, hash = 406830232, ['x'] = 1437.21, ['y'] = -1491.41, ['z'] = 63.71, lock = true, perm = "serpentes.permissao", other = 186 },
 	[186] = { text = true, hash = -1085470028, ['x'] = 1437.96, ['y'] = -1491.53, ['z'] = 63.71, lock = true, perm = "serpentes.permissao", other = 185 },

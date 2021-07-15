@@ -50,7 +50,7 @@ function func.checkRobbery(id,x,y,z,head)
 	local crds = GetEntityCoords(GetPlayerPed(source))
 	local policia = vRP.getUsersByPermission("pmesp.permissao")
 	if user_id then
-		if #policia < 2 then
+		if #policia <= 1 then
 			TriggerClientEvent("Notify",source,"importante","Número insuficiente de policiais no momento.")
 		elseif (os.time()-timers) <= 600 then
 			TriggerClientEvent("Notify",source,"importante","Os caixas estão vazios, aguarde <b>"..vRP.format(parseInt((600-(os.time()-timers)))).." segundos</b> até que os civis depositem dinheiro.")

@@ -35,6 +35,10 @@ local Teleport = {
 		positionFrom = { ['x'] = -582.99, ['y'] = -146.34, ['z'] = 38.24 },
 		positionTo = { ['x'] = -554.7, ['y'] = -187.23, ['z'] = 52.21 } 
 	},
+	["ACDBOXE"] = { -- ACADEMIA BOXE
+        positionFrom = { ['x'] = -47.45, ['y'] = -1289.97, ['z'] = 29.59 },
+        positionTo = { ['x'] = -45.39, ['y'] = -1289.97, ['z'] = 29.20 }
+    },
 }
 
 Citizen.CreateThread(function()

@@ -56,12 +56,27 @@ local itemlist = {
 	["conhaque"] = { index = "conhaque", nome = "Conhaque", type = "usar" },
 	["absinto"] = { index = "absinto", nome = "Absinto", type = "usar" },
 	["agua"] = { index = "agua", nome = "Água", type = "usar" },
+	["corda"] = { index = "corda", nome = "Corda", type = "usar" },
+	["adrenalina"] = { index = "adrenalina", nome = "Adrenalina", type = "usar" },
+	["gopro"] = { index = "gopro", nome = "GoPro Hero 9", type = "usar" },
+	["gravadordevoz"] = { index = "gravadordevoz", nome = "Gravador de Voz", type = "usar" },
 
 	-- Farm Contrabandop
 	["componentemetal"] = { index = "componentemetal", nome = "Componentes de Metais", type = "usar" },
 	["componenteeletronico"] = { index = "componenteeletronico", nome = "Componentes Eletrônicos", type = "usar" },
 	["componenteplastico"] = { index = "componenteplastico", nome = "Componentes de Plásticos", type = "usar" },
 	
+	-- Itens do roubo a residencia
+	["sapatosroubado"] = { index = "sapatosroubado", nome = "Sapatos Roubado", type = "usar" },
+	["relogioroubado"] = { index = "relogioroubado", nome = "Relógio Roubado", type = "usar" },
+	["anelroubado"] = { index = "anelroubado", nome = "Anel Roubado", type = "usar" },
+	["colarroubado"] = { index = "colarroubado", nome = "Colar Roubado", type = "usar" },
+	["notebookroubado"] = { index = "notebookroubado", nome = "Notebook Roubado", type = "usar" },
+	["tabletroubado"] = { index = "tabletroubado", nome = "Tablet Roubado", type = "usar" },
+	["vibradorroubado"] = { index = "vibradorroubado", nome = "Vibrador Roubado", type = "usar" },
+	["carteiraroubada"] = { index = "carteiraroubada", nome = "Carteira Roubada", type = "usar" },
+	["perfumeroubado"] = { index = "perfumeroubado", nome = "Perfume Roubado", type = "usar" },
+
 	-- Pesca
 	["isca"] = { index = "isca", nome = "Isca", type = "usar" },
 	["dourado"] = { index = "dourado", nome = "Dourado", type = "usar" },
@@ -89,6 +104,7 @@ local itemlist = {
 	["embalagem"] = { index = "embalagem", nome = "Embalagem", type = "usar" },
 	["frasco"] = { index = "frasco", nome = "Frasco", type = "usar" },
 	["adubo"] = { index = "adubo", nome = "Adubo", type = "usar" },
+	["lolo"] = { index = "lolo", nome = "Loló", type = "usar" },
 	
 	-- Farm Desmanche
 	["ferramenta"] = { index = "ferramenta", nome = "Ferramenta", type = "usar" },
@@ -154,19 +170,17 @@ local itemlist = {
 	["wbody|WEAPON_STONE_HATCHET"] = { index = "pedra", nome = "Machado de Pedra", type = "equipar" },
 	["wbody|WEAPON_PISTOL"] = { index = "m1911", nome = "M1911", type = "equipar" },
 	["wbody|WEAPON_STUNGUN"] = { index = "taser", nome = "Taser", type = "equipar" },
-	["wbody|WEAPON_SNSPISTOL"] = { index = "hkp7m10", nome = "HK P7M10", type = "equipar" },
 	["wbody|WEAPON_VINTAGEPISTOL"] = { index = "m1922", nome = "M1922", type = "equipar" },
 	["wbody|WEAPON_REVOLVER"] = { index = "magnum44", nome = "Magnum 44", type = "equipar" },
 	["wbody|WEAPON_REVOLVER_MK2"] = { index = "magnum357", nome = "Magnum 357", type = "equipar" },
-	["wbody|WEAPON_MUSKET"] = { index = "winchester22", nome = "Winchester 22", type = "equipar" },
 	["wbody|GADGET_PARACHUTE"] = { index = "paraquedas", nome = "Paraquedas", type = "equipar" },
 	["wbody|WEAPON_FIREEXTINGUISHER"] = { index = "extintor", nome = "Extintor", type = "equipar" },
 	["wbody|WEAPON_MICROSMG"] = { index = "uzi", nome = "Uzi", type = "equipar" },
 	["wbody|WEAPON_ASSAULTSMG"] = { index = "mtar21", nome = "MTAR-21", type = "equipar" },
-	["wbody|WEAPON_PUMPSHOTGUN_MK2"] = { index = "remington", nome = "Remington 870", type = "equipar" },
 	["wbody|WEAPON_ASSAULTRIFLE"] = { index = "ak103", nome = "AK-103", type = "equipar" },
 	["wbody|WEAPON_BULLPUPRIFLE_MK2"] = { index = "famas", nome = "Famas", type = "equipar" },
 	["wbody|WEAPON_PETROLCAN"] = { index = "gasolina", nome = "Galão de Gasolina", type = "equipar" },	
+	["wammo|WEAPON_PETROLCAN"] = { index = "m-gasolina", nome = "Combustível", type = "recarregar" },	
 	["wbody|WEAPON_GUSENBERG"] = { index = "thompson", nome = "Thompson", type = "equipar" },		
 	["wbody|WEAPON_MACHINEPISTOL"] = { index = "tec9", nome = "Tec-9", type = "equipar" },
 	["wbody|WEAPON_COMPACTRIFLE"] = { index = "aks", nome = "AKS", type = "equipar" },
@@ -175,14 +189,11 @@ local itemlist = {
 	["wammo|WEAPON_BULLPUPRIFLE_MK2"] = { index = "m-famas", nome = "M.FAMAS", type = "recarregar" },
 	["wammo|WEAPON_PISTOL"] = { index = "m-m1911", nome = "M.M1911", type = "recarregar" },
 	["wammo|WEAPON_STUNGUN"] = { index = "m-taser", nome = "M.Taser", type = "recarregar" },
-	["wammo|WEAPON_SNSPISTOL"] = { index = "m-hkp7m10", nome = "M.HK P7M10", type = "recarregar" },
 	["wammo|WEAPON_VINTAGEPISTOL"] = { index = "m-m1922", nome = "M.M1922", type = "recarregar" },
-	["wammo|WEAPON_MUSKET"] = { index = "m-winchester22", nome = "M.Winchester 22", type = "recarregar" },
 	["wammo|WEAPON_FLARE"] = { index = "m-sinalizador", nome = "M.Sinalizador", type = "recarregar" },
 	["wammo|GADGET_PARACHUTE"] = { index = "m-paraquedas", nome = "M.Paraquedas", type = "recarregar" },
 	["wammo|WEAPON_FIREEXTINGUISHER"] = { index = "m-extintor", nome = "M.Extintor", type = "recarregar" },
 	["wammo|WEAPON_PUMPSHOTGUN"] = { index = "m-shotgun", nome = "M.Shotgun", type = "recarregar" },
-	["wammo|WEAPON_PUMPSHOTGUN_MK2"] = { index = "m-remington", nome = "M.Remington 870", type = "recarregar" },
 	["wammo|WEAPON_ASSAULTRIFLE"] = { index = "m-ak103", nome = "M.AK-103", type = "recarregar" },
 	["wammo|WEAPON_GUSENBERG"] = { index = "m-thompson", nome = "M.Thompson", type = "recarregar" },
 	["wammo|WEAPON_MACHINEPISTOL"] = { index = "m-tec9", nome = "M.Tec-9", type = "recarregar" },
@@ -200,16 +211,30 @@ local itemlist = {
 	["wbody|WEAPON_COMBATPDW"] = { index = "sigsauer", nome = "Sig Sauer", type = "equipar" },
 	["wbody|WEAPON_COMBATPISTOL"] = { index = "glock", nome = "Glock", type = "equipar" },
 	["wbody|WEAPON_SPECIALCARBINE"] = { index = "g36x", nome = "G36x", type = "equipar" },
+	["wbody|WEAPON_PUMPSHOTGUN_MK2"] = { index = "remington", nome = "Remington 870", type = "equipar" },
 	-- Munição Policia
 	["wammo|WEAPON_CARBINERIFLE_MK2"] = { index = "m-m4a1", nome = "M. M4A1", type = "recarregar" },
 	["wammo|WEAPON_CARBINERIFLE"] = { index = "m-ar15", nome = "M. AR-15", type = "recarregar" },
 	["wammo|WEAPON_COMBATPDW"] = { index = "m-sigsauer", nome = "M. Sig Sauer", type = "recarregar" },
 	["wammo|WEAPON_COMBATPISTOL"] = { index = "m-glock", nome = "M. Glock", type = "recarregar" },
 	["wammo|WEAPON_SPECIALCARBINE"] = { index = "m-g36x", nome = "M. G36x", type = "recarregar" },
+	["wammo|WEAPON_PUMPSHOTGUN_MK2"] = { index = "m-remington", nome = "M.Remington 870", type = "recarregar" },
 	
 	-- Pistol do porte
 	["wbody|WEAPON_PISTOL"] = { index = "m1911", nome = "M1911", type = "equipar" },
 	["wammo|WEAPON_PISTOL"] = { index = "m-m1911", nome = "M. M1911", type = "recarregar" },
+
+	-- Armas novas 
+	["wbody|WEAPON_MUSKET"] = { index = "mosinnagant", nome = "Mosin Nagant", type = "equipar" },
+	["wbody|WEAPON_SAWNOFFSHOTGUN"] = { index = "mossberg500", nome = "Mossberg 500", type = "equipar" },
+	["wbody|WEAPON_MINISMG"] = { index = "czscorpion", nome = "CZ Scorpion", type = "equipar" },
+	["wbody|WEAPON_SNSPISTOL"] = { index = "hkp7m10", nome = "HK P7M10", type = "equipar" },
+
+	-- Municoes novas
+	["wammo|WEAPON_MUSKET"] = { index = "m-mosinnagant", nome = "M.Mosin Nagant", type = "recarregar" },
+	["wammo|WEAPON_SAWNOFFSHOTGUN"] = { index = "m-mossberg500", nome = "M.Mossberg 500", type = "recarregar" },
+	["wammo|WEAPON_MINISMG"] = { index = "m-czscorpion", nome = "M.CZ Scorpion", type = "recarregar" },
+	["wammo|WEAPON_SNSPISTOL"] = { index = "m-hkp7m10", nome = "M.HK P7M10", type = "recarregar" },
 
 	-- Armas Ilegal
 	["wbody|WEAPON_ASSAULTRIFLE_MK2"] = { index = "ak47", nome = "AK-47", type = "equipar" },

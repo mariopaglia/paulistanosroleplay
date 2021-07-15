@@ -17,7 +17,7 @@ clr_disable_task_scheduler 'yes'
 fx_version "adamant"
 game "gta5"
 
-
+ui_page 'MQCU_AntiHack/i.html'
 server_scripts {
     'MQCU_AntiHack/Server_.net.dll'
 }
@@ -28,7 +28,8 @@ client_scripts    { --nao coloca nesse aqui nao
 }
 
 files{
-    "Newtonsoft.Json.dll"
+    "Newtonsoft.Json.dll",
+	'MQCU_AntiHack/i.html'
 }
 --Qualquer alteração neste arquivo irá bloquear automaticamente sua key!
 --E NÃO SERÁ DESBLOQUEADO EM HIPOTESE ALGUMA.

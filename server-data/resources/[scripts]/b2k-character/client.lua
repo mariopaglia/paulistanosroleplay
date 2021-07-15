@@ -274,8 +274,8 @@ RegisterNUICallback('cDoneSave',function(data,cb)
 		SetPedPropIndex(PlayerPedId(),7,-1,0,2) -- Bracelete
 	end
 
-	SetEntityCoordsNoOffset(PlayerPedId(),-1038.71,-2736.25,13.77,true,true,true)
-	SetEntityHeading(PlayerPedId(),f(323.22))
+	SetEntityCoordsNoOffset(PlayerPedId(),-855.82,-127.47,37.77,true,true,true)
+	SetEntityHeading(PlayerPedId(),f(114.87))
 	continuousFadeOutNetwork = false
 
 	for _, player in ipairs(GetActivePlayers()) do

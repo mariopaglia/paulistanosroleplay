@@ -128,6 +128,7 @@ cfg.groups = {
 		"corarma.permissao",
 		"roupavip.permissao",
 		"mochila.permissao",
+		"silenciador.permissao",
 		"player.som"
 	},
 	["Esmeralda"] = {
@@ -140,6 +141,7 @@ cfg.groups = {
 		"corarma.permissao",
 		"roupavip.permissao",
 		"mochila.permissao",
+		"silenciador.permissao",
 		"player.som"
 	},
 	["Diamante"] = {
@@ -152,6 +154,7 @@ cfg.groups = {
 		"corarma.permissao",
 		"roupavip.permissao",
 		"mochila.permissao",
+		"silenciador.permissao",
 		"player.som"
 	},
 	["Boost"] = {
@@ -363,11 +366,11 @@ cfg.groups = {
 	},
 
 	---------------------------------------------------
-	-- SPORTRACE
+	-- SPORTRACE \\ FENIX CUSTOMS
 	---------------------------------------------------
 	["SportRace"] = {
 		_config = {
-			title = "Mecânico(a) SportRace",
+			title = "Mecânico(a) Fenix Customs",
 			gtype = "job"
 		},
 		"mecanico.permissao",
@@ -639,26 +642,7 @@ cfg.groups = {
 	},
 
 	---------------------------------------------------
-	-- BRATVA
-	---------------------------------------------------
-	["BratvaL"] = {
-		_config = {
-			title = "Líder Bratva",
-			gtype = "job"
-		},
-		"liderbratva.permissao",
-		"bratva.permissao",
-	},
-	["Bratva"] = {
-		_config = {
-			title = "Bratva",
-			gtype = "job"
-		},
-		"bratva.permissao",
-	},
-
-	---------------------------------------------------
-	-- YAKUZA
+	-- YAKUZA ||| BRATVA A
 	---------------------------------------------------
 	["YakuzaL"] = {
 		_config = {
@@ -674,6 +658,25 @@ cfg.groups = {
 			gtype = "job"
 		},
 		"yakuza.permissao",
+	},
+
+	---------------------------------------------------
+	-- SALIERI'S |||YAKUZA
+	---------------------------------------------------
+	["SalierisL"] = {
+		_config = {
+			title = "Líder Salieri's",
+			gtype = "job"
+		},
+		"lidersalieris.permissao",
+		"salieris.permissao",
+	},
+	["Salieris"] = {
+		_config = {
+			title = "Salieri's",
+			gtype = "job"
+		},
+		"salieris.permissao",
 	},
 	
 	---------------------------------------------------

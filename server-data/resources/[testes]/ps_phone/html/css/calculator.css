@@ -1,0 +1,71 @@
+.calculator-app input {
+    border: none;
+}
+
+.calculator-app button {
+    height: 50px;
+    width: 50px;
+    margin: 5px 4px;
+    background: #fff;
+    border: none !important;
+    border-radius: 50%;
+    font-family: 'SFPro Display Bold';
+    color: #333;
+}
+
+.calculator-app #allClear {
+    color: #990000;
+}
+
+.calculator-app #clear {
+    color: #CC6600;
+}
+
+.calculator-app #equals {
+    color: #fff;
+    background-color: #449d44;
+}
+
+.calculator-app *:focus {
+    outline: 0 !important;
+}
+
+
+/* Hidden button for formatting sake */
+
+.calculator-app {
+    display: none;
+    background: rgb(243, 243, 243);
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+}
+
+.calculator-app #blank {
+    visibility: hidden;
+}
+
+.calculator-app .calcBG {
+    width: 100%;
+    position: absolute;
+    top: 4vh;
+}
+
+.calculator-app .screen {
+    height: 22vh;
+    border-radius: 10px;
+    padding: 10px;
+    margin: 10px 2px;
+    font-size: 16px;
+    font-weight: bold;
+    background: transparent;
+    box-shadow: inset 0 0 0.5vh 0 rgba(0, 0, 0, 0.171);
+    font-family: 'SFPro Display Bold';
+}
+
+.calculator-app small {
+    color: #333;
+    font-family: 'SFPro Display Medium';
+    font-size: 2.5vh !important;
+    margin-left: 30px;
+}

@@ -114,9 +114,9 @@ end)
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- CANCELAR
 -----------------------------------------------------------------------------------------------------------------------------------------
-RegisterKeyMapping('emp:rotacancelar', 'CancelarRota', 'keyboard', 'F7')
+RegisterKeyMapping('emp:rotacancelarbrava', 'CancelarRotaBratva', 'keyboard', 'F7')
 
-RegisterCommand('emp:rotacancelar', function()
+RegisterCommand('emp:rotacancelarbrava', function()
 	if servico then
 			servico = false
 			RemoveBlip(blips)

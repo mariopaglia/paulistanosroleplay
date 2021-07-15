@@ -1,0 +1,73 @@
+<html>
+
+<head>
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+    <link href="ui.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+    <div class="actionmenu" style="display: none;">
+        <div class="container">
+            <div class="containerInline">
+                <section class="left">
+                    <div class="centerDiv">
+                        <img class="category_arma" category="all" src="http://177.54.144.176:8080/serverlogo.png">
+                    </div>
+                    <div class="sectionItem item-category category_arma" category="utilidades">
+                        <p>Todos</p>
+                    </div>
+                    <!-- <div class="sectionItem item-category category_arma" category="comidas">
+                        <p>Comidas</p>
+                    </div>
+                    <div class="sectionItem item-category category_arma" category="bebidas">
+                        <p>Bebidas</p>
+                    </div> -->
+                    <!-- <div class="sectionItem item-category category_arma" category="armas">
+                    <p>departamento</p>
+                </div> -->
+                    <!-- <div class="sectionItem item-category category_arma" category="municoes">
+                    <p>Munições</p>
+                </div> -->
+                </section>
+
+                <section class="right">
+                    <div class="sectionContent">
+                        <!--UTILIDADES-->
+
+                        <div class="sectionItem arma-item" category="utilidades">
+                            <p>Adrenalina (x1)</p>
+
+                            <div class="imgIcon">
+                                <img src="http://177.54.144.176:8080/imagens/adrenalina.png">
+                            </div>
+                            <div class="overlayItem">
+                                <button data-action="utilidades-comprar-adrenalina" class="menuoption">Comprar</button>
+                                <!--<button data-action="utilidades-vender-mochila" class="menuoption">Vender</button>-->
+                            </div>
+
+                            <p class="priceItem">R$ 10.000</p>
+                        </div>
+
+                        <div class="sectionItem arma-item" category="utilidades">
+                            <p>Bandagem (x1)</p>
+
+                            <div class="imgIcon">
+                                <img src="http://177.54.144.176:8080/imagens/bandagem.png">
+                            </div>
+                            <div class="overlayItem">
+                                <button data-action="utilidades-comprar-bandagem" class="menuoption">Comprar</button>
+                                <!--<button data-action="utilidades-vender-alianca" class="menuoption">Vender</button>-->
+                            </div>
+
+                            <p class="priceItem">R$ 3.000</p>
+                        </div>
+
+                    </div>
+                </section>
+            </div>
+        </div>
+    </div>
+    <script src="ui.js" type="text/javascript"></script>
+</body>
+
+</html>

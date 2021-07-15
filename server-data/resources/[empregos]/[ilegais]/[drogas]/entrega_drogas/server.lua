@@ -50,11 +50,11 @@ function emP.checkPayment()
     local bonus = 0
 
     if #policia >= 0 and #policia <= 2 then
-        bonus = 1600 -- 1600
+        bonus = 2000 -- 1600
     elseif #policia >= 3 and #policia <= 6 then
-        bonus = 2000 -- 2000
+        bonus = 2400 -- 2000
     elseif #policia >= 7 then
-        bonus = 2400 -- 2400
+        bonus = 2800 -- 2400
     end
 
     if user_id then
@@ -118,11 +118,11 @@ function emP.checkPayment2()
     local bonus = 0
 
     if #policia >= 0 and #policia <= 2 then
-        bonus = 1600 -- 2000
+        bonus = 2000 -- 1600
     elseif #policia >= 3 and #policia <= 6 then
-        bonus = 2000 -- 2400
+        bonus = 2400 -- 2000
     elseif #policia >= 7 then
-        bonus = 2400 -- 2800
+        bonus = 2800 -- 2400
     end
 
 	if user_id then

@@ -63,7 +63,7 @@ Config.Veiculos = {
             {title = "Mazda RX7", model = "mazdarx7", mala = 10, preco = 1300000, estoque = 10},
             --
             {title = "Lancer Evolution 9", model = "lancerevolution9", mala = 20, preco = 1400000, estoque = 10},
-            {title = "Toyota Supra", model = "toyotasupra", mala = 0, preco = 1500000, estoque = 10},
+            {title = "Toyota Supra", model = "toyotasupra", mala = 0, preco = 1500000, estoque = 20},
             {title = "Nissan 370Z", model = "nissan370z", mala = 0, preco = 1600000, estoque = 10},
             {title = "Nissan GTR", model = "nissangtr", mala = 10, preco = 1700000, estoque = 10},
             --

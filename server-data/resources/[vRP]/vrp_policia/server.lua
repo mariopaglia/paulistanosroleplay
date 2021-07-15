@@ -800,7 +800,6 @@ local itemlist = {
 	"wbody|WEAPON_SPECIALCARBINE",
 	"wbody|WEAPON_ASSAULTRIFLE",
 	"wbody|WEAPON_BULLPUPRIFLE_MK2",
-	"wbody|WEAPON_PETROLCAN",
 	"wbody|WEAPON_GUSENBERG",
 	"wbody|WEAPON_MACHINEPISTOL",
 	"wbody|WEAPON_COMPACTRIFLE",
@@ -822,7 +821,6 @@ local itemlist = {
 	"wammo|WEAPON_GUSENBERG",
 	"wammo|WEAPON_MACHINEPISTOL",
 	"wammo|WEAPON_COMPACTRIFLE",
-	"wammo|WEAPON_PETROLCAN",
 	"wammo|WEAPON_REVOLVER",
 	"wammo|WEAPON_MICROSMG",
 	"wammo|WEAPON_REVOLVER_MK2",
@@ -844,6 +842,16 @@ local itemlist = {
 	"wammo|WEAPON_SPECIALCARBINE_MK2",
 	"wammo|WEAPON_SMG_MK2",
 	"wammo|WEAPON_PISTOL_MK2",
+	"wbody|WEAPON_MUSKET",
+	"wbody|WEAPON_SAWNOFFSHOTGUN",
+	"wbody|WEAPON_MINISMG",
+	"wbody|WEAPON_SNSPISTOL",
+	"wbody|WEAPON_PUMPSHOTGUN_MK2",
+	"wammo|WEAPON_MUSKET",
+	"wammo|WEAPON_SAWNOFFSHOTGUN",
+	"wammo|WEAPON_MINISMG",
+	"wammo|WEAPON_SNSPISTOL",
+	"wammo|WEAPON_PUMPSHOTGUN_MK2",
 }
 
 RegisterCommand('apreender',function(source,args,rawCommand)

@@ -282,7 +282,7 @@ Citizen.CreateThread(function()
     	Wait(0)
     	N_0x4757f00bc6323cfe(GetHashKey("WEAPON_STUNGUN"), 0.0) -- Tazer
     	Wait(0)
-		N_0x4757f00bc6323cfe(GetHashKey("WEAPON_PUMPSHOTGUN_MK2"), 0.0) 
+		N_0x4757f00bc6323cfe(GetHashKey("WEAPON_PUMPSHOTGUN_MK2"), 0.7) -- SHOTGUN DA POLICIA
     	Wait(0)
 		N_0x4757f00bc6323cfe(GetHashKey("WEAPON_HEAVYSHOTGUN"), 0.0) 
     	Wait(0)
@@ -330,11 +330,15 @@ Citizen.CreateThread(function()
     	Wait(0)
 		N_0x4757f00bc6323cfe(GetHashKey("WEAPON_SNIPERRIFLE"), 0.0)
     	Wait(0)
-		N_0x4757f00bc6323cfe(GetHashKey("WEAPON_SAWNOFFSHOTGUN"), 0.0)
+		N_0x4757f00bc6323cfe(GetHashKey("WEAPON_SAWNOFFSHOTGUN"), 0.7) -- SHOTGUN ILEGAL
     	Wait(0)
 		N_0x4757f00bc6323cfe(GetHashKey("WEAPON_DBSHOTGUN"), 0.0)
     	Wait(0)
 		N_0x4757f00bc6323cfe(GetHashKey("WEAPON_PISTOL_MK2"), 1.2) -- FIVE-SEVEN
+    	Wait(0)
+		N_0x4757f00bc6323cfe(GetHashKey("WEAPON_MINISMG"), 1.5) -- SCORPION
+    	Wait(0)
+		N_0x4757f00bc6323cfe(GetHashKey("WEAPON_SNSPISTOL"), 1.0) -- SNS PISTOL
     	Wait(0)
 		N_0x4757f00bc6323cfe(GetHashKey("WEAPON_PISTOL50"), 0.0)
     	Wait(0)
@@ -1264,14 +1268,19 @@ local recoils = {
 	[-1075685676] = 0.3, -- PISTOL MK2 | FIVE-SEVEN
 	[1593441988] = 0.3, -- COMBAT PISTOL | GLOCK
 	[453432689] = 0.3, -- PISTOL | M1911
+	[-1076751822] = 0.3, -- SNSPISTOL | HK
 	-------------- SMGS --------------
 	[2024373456] = 0.4, -- SMG MK2 | MP5-MK2
 	[171789620] = 0.4, -- COMBAT PDW | SIGSAUER
+	[-1121678507] = 0.4, -- MINISMG | SCORPION
 	-------------- FUZIS --------------
 	[961495388] = 0.5, -- ASSAULT RIFLE MK2 | AK-47
 	[-1768145561] = 0.5, -- SPECIAL CARBINE MK2 | G36
 	[-2084633992] = 0.4, -- CARBINE RIFLE | AR-15
 	[-86904375] = 0.5, -- CARBINE RIFLE MK2 | M4A1
+	[-1063057011] = 0.5, -- SPECIAL CARBINE | G36x
+	----------------SHOTGUN-------------------
+	[-86904375] = 0.5, -- CARBINE RIFLE MK2 | SHOTGUN
 	[-1063057011] = 0.5, -- SPECIAL CARBINE | G36x
 	-----------------------------------
 }

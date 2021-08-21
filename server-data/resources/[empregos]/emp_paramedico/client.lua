@@ -7,9 +7,9 @@ emP = Tunnel.getInterface("emp_paramedico")
 local blips = nil
 local selecionado = 0
 local emservico = false
-local CoordenadaX = 306.46 -- 306.46, -601.66, 43.28
-local CoordenadaY = -601.66
-local CoordenadaZ = 43.28
+local CoordenadaX = -812.99 -- 306.46, -601.66, 43.28 | -812.99,-1237.22,7.34
+local CoordenadaY = -1237.22
+local CoordenadaZ = 7.34
 local passageiro = nil
 local lastpassageiro = nil
 local checkped = true
@@ -48,7 +48,7 @@ local locs = {
 	[26] = { ['x'] = -334.47, ['y'] = -1418.13, ['z'] = 29.71, ['xp'] = -320.10, ['yp'] = -1389.73, ['zp'] = 36.50, ['h'] = 91.0 },
 	[27] = { ['x'] = 135.28, ['y'] = -1306.46, ['z'] = 28.65, ['xp'] = 132.91, ['yp'] = -1293.90, ['zp'] = 29.26, ['h'] = 119.0 },
 	[28] = { ['x'] = -34.00, ['y'] = -1079.86, ['z'] = 26.26, ['xp'] = -39.02, ['yp'] = -1082.46, ['zp'] = 26.42, ['h'] = 69.0 },
-	[29] = { ['x'] = 296.15, ['y'] = -582.48, ['z'] = 42.93, ['xp'] = 296.15, ['yp'] = -582.48, ['zp'] = 42.93, ['h'] = 343.0 }
+	[29] = { ['x'] = -873.32, ['y'] = -1192.51, ['z'] = 4.36, ['xp'] = -828.35, ['yp'] = -1217.91, ['zp'] = 6.36, ['h'] = 320.34 }
 }
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- PEDLIST
@@ -80,16 +80,19 @@ local pedlist = {
 -----------------------------------------------------------------------------------------------------------------------------------------
 Citizen.CreateThread(function()
 	while true do
-		Citizen.Wait(1)
+		local esperar = 1000
+		-- Citizen.Wait(1)
 		if not emservico then
 			local ped = PlayerPedId()
 			local x,y,z = table.unpack(GetEntityCoords(ped))
 			local bowz,cdz = GetGroundZFor_3dCoord(CoordenadaX,CoordenadaY,CoordenadaZ)
 			local distance = GetDistanceBetweenCoords(CoordenadaX,CoordenadaY,cdz,x,y,z,true)
 
-			if distance <= 30.0 then
+			if distance <= 5.0 then
+				esperar = 4
 				DrawMarker(23,CoordenadaX,CoordenadaY,CoordenadaZ-0.97,0,0,0,0,0,0,1.0,1.0,0.5,240,200,80,100,0,0,0,0)
 				if distance <= 1.2 then
+					DrawText3D(-812.98,-1237.26,7.34, "Aperte ~y~E~w~ para iniciar sua ~y~rota~w~.")
 					if IsControlJustPressed(0,38) and emP.checkPermission() then
 						emservico = true
 						selecionado = math.random(maxlocs)
@@ -99,6 +102,7 @@ Citizen.CreateThread(function()
 				end
 			end
 		end
+		Citizen.Wait(esperar)
 	end
 end)
 -----------------------------------------------------------------------------------------------------------------------------------------
@@ -110,7 +114,7 @@ Citizen.CreateThread(function()
 		if emservico then
 			local ped = PlayerPedId()
 			local vehicle = GetVehiclePedIsUsing(ped)
-			local vehiclespeed = GetEntitySpeed(vehicle)*2.236936
+			local vehiclespeed = GetEntitySpeed(vehicle)*3.6
 			local x,y,z = table.unpack(GetEntityCoords(ped))
 			local bowz,cdz = GetGroundZFor_3dCoord(locs[selecionado].x,locs[selecionado].y,locs[selecionado].z)
 			local distance = GetDistanceBetweenCoords(locs[selecionado].x,locs[selecionado].y,cdz,x,y,z,true)
@@ -213,7 +217,7 @@ end)
 -- REMOVENPCS
 -----------------------------------------------------------------------------------------------------------------------------------------
 function removePeds()
-	SetTimeout(20000,function()
+	SetTimeout(3000,function()
 		if emservico and lastpassageiro and passageiro == nil then
 			TriggerServerEvent("trydeleteped",PedToNet(lastpassageiro))
 		end
@@ -266,4 +270,22 @@ function CriandoBlip(locs,selecionado)
 	BeginTextCommandSetBlipName("STRING")
 	AddTextComponentString("Transporte de Paciente")
 	EndTextCommandSetBlipName(blips)
+end
+
+-- TEXTOS 3D
+
+function DrawText3D(x,y,z, text)
+    local onScreen,_x,_y=World3dToScreen2d(x,y,z)
+    local px,py,pz=table.unpack(GetGameplayCamCoords())
+    
+    SetTextScale(0.28, 0.28)
+    SetTextFont(4)
+    SetTextProportional(1)
+    SetTextColour(255, 255, 255, 215)
+    SetTextEntry("STRING")
+    SetTextCentre(1)
+    AddTextComponentString(text)
+    DrawText(_x,_y)
+    local factor = (string.len(text)) / 370
+    DrawRect(_x,_y+0.0125, 0.005+ factor, 0.03, 41, 11, 41, 68)
 end

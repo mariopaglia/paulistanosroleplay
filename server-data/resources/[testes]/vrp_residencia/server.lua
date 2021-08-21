@@ -263,49 +263,7 @@ local itemlist = {
 		[11] = { "perfumeroubado",math.random(2) }
 	}
 }
------------------------------------------------------------------------------------------------------------------------------------------
--- BOXES
------------------------------------------------------------------------------------------------------------------------------------------
-local boxes = {
-	[1] = { "boxflight1" },
-	[2] = { "boxpatrol1" },
-	[3] = { "boxmedic1" },
-	[4] = { "boxhunter1" },
-	[5] = { "boxassassin1" },
-	[6] = { "boxsmuggler1" },
-	[7] = { "boxdrivin1" },
-	[8] = { "boxtools1" },
-	[9] = { "boxtrasher1" },
-	[10] = { "boxfisher1" },
-	[11] = { "boxlumberjack1" },
-	[12] = { "boxfarmer1" },
-	[13] = { "boxjewels1" },
-	[14] = { "boxdriver1" },
-	[15] = { "boxtrucker1" },
-	[16] = { "boxmailer1" },
-	[17] = { "boxrunner1" },
-	[18] = { "boxbreak1" },
-	[19] = { "boxvalor1" },
-	[20] = { "boxflight2" },
-	[21] = { "boxpatrol2" },
-	[22] = { "boxmedic2" },
-	[23] = { "boxhunter2" },
-	[24] = { "boxassassin2" },
-	[25] = { "boxsmuggler2" },
-	[26] = { "boxdrivin2" },
-	[27] = { "boxtools2" },
-	[28] = { "boxtrasher2" },
-	[29] = { "boxfisher2" },
-	[30] = { "boxlumberjack2" },
-	[31] = { "boxfarmer2" },
-	[32] = { "boxjewels2" },
-	[33] = { "boxdriver2" },
-	[34] = { "boxtrucker2" },
-	[35] = { "boxmailer2" },
-	[36] = { "boxrunner2" },
-	[37] = { "boxbreak2" },
-	[38] = { "boxvalor2" }
-}
+
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- CHECKPAYMENT
 -----------------------------------------------------------------------------------------------------------------------------------------
@@ -322,13 +280,6 @@ function src.checkPayment(house,mod,x,y,z)
 					local randitem = math.random(#itemlist[mod])
 					vRP.giveInventoryItem(user_id,itemlist[mod][randitem][1],itemlist[mod][randitem][2])
 					TriggerClientEvent("Notify",source,"sucesso","Você encontrou <b>"..itemlist[mod][randitem][2].."x "..vRP.itemNameList(itemlist[mod][randitem][1]).."</b>.",8000)
-				elseif parseInt(randbox) >= 197 and parseInt(randbox) <= 199 then
-					local box = math.random(#boxes)
-					vRP.giveInventoryItem(user_id,boxes[box][1],1)
-					TriggerClientEvent("Notify",source,"sucesso","Você encontrou <b>1x "..vRP.itemNameList(boxes[box][1]).."</b>.",8000)
-				elseif parseInt(randbox) >= 200 then
-					vRP.execute("creative/set_coins",{ user_id = user_id, coins = 1 })
-					TriggerClientEvent("Notify",source,"sucesso","Você encontrou <b>1x Assistant Coins</b>.",8000)
 				end
 			elseif randlist >= 75 and randlist <= 90 then
 				TriggerClientEvent("Notify",source,"importante","Compartimento vazio.",8000)

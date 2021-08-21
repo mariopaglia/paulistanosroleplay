@@ -76,12 +76,13 @@ local marcacoes = {
 	{ -778.74,332.21,196.09 }, -- casa wally 
 	{ -782.18,325.59,187.32 }, -- casa porcao
 	{ -561.86,289.34,82.18 }, -- Tequila
-	{ -433.32,274.1,83.43 }, -- Split
+	{ -448.84,285.41,78.53 }, -- Split
 	{ 351.54,288.26,91.2 }, -- Galaxy em baixo
 	{ 356.7,282.63,94.2 }, -- Galaxy em cima
 	{ 131.1,-1284.17,29.28 }, -- Vanilla
 	{ -296.16,6262.69,31.49 }, -- Hen House
 	{ -1375.82,-628.93,30.82 }, -- Bahamas
+	{ 415.57,-1499.47,30.16 }, -- Salieris
 }
 
 Citizen.CreateThread(function()
@@ -96,7 +97,7 @@ Citizen.CreateThread(function()
 				TaylinSleep = 5
 				if distance <= 2.0 then
 					if not menuactive then
-						DrawText3Ds(x,y,z+0.20,"~p~[E] ~w~Para Acessar o bar")
+						DrawText3Ds(x,y,z+0.10,"~p~[E] ~w~Para Acessar o bar")
 					end
 					if IsControlJustPressed(0,38) then
 						if emP.checkPermission1() then

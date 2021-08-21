@@ -769,3 +769,107 @@ data_file 'VEHICLE_VARIATION_FILE' 'data/skylinejapao/carvariations.meta'
 data_file 'VEHICLE_LAYOUTS_FILE' 'data/skylinejapao/vehiclelayouts.meta'
 
 --\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
+--\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
+files {
+    'data/subaruimpreza/vehicles.meta',
+    'data/subaruimpreza/carvariations.meta',
+    'data/subaruimpreza/carcols.meta',
+    'data/subaruimpreza/handling.meta',
+    'data/subaruimpreza/vehiclelayouts.meta',
+}
+
+data_file 'HANDLING_FILE' 'data/subaruimpreza/handling.meta'
+data_file 'VEHICLE_METADATA_FILE' 'data/subaruimpreza/vehicles.meta'
+data_file 'CARCOLS_FILE' 'data/subaruimpreza/carcols.meta'
+data_file 'VEHICLE_VARIATION_FILE' 'data/subaruimpreza/carvariations.meta'
+data_file 'VEHICLE_LAYOUTS_FILE' 'data/subaruimpreza/vehiclelayouts.meta'
+
+--\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
+--\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
+files {
+    'data/ninjah2/vehicles.meta',
+    'data/ninjah2/carvariations.meta',
+    'data/ninjah2/carcols.meta',
+    'data/ninjah2/handling.meta',
+    'data/ninjah2/vehiclelayouts.meta',
+}
+
+data_file 'HANDLING_FILE' 'data/ninjah2/handling.meta'
+data_file 'VEHICLE_METADATA_FILE' 'data/ninjah2/vehicles.meta'
+data_file 'CARCOLS_FILE' 'data/ninjah2/carcols.meta'
+data_file 'VEHICLE_VARIATION_FILE' 'data/ninjah2/carvariations.meta'
+data_file 'VEHICLE_LAYOUTS_FILE' 'data/ninjah2/vehiclelayouts.meta'
+
+--\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+--\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
+files {
+    'data/f824slw/vehicles.meta',
+    'data/f824slw/carvariations.meta',
+    'data/f824slw/carcols.meta',
+    'data/f824slw/handling.meta',
+    'data/f824slw/vehiclelayouts.meta',
+}
+
+data_file 'HANDLING_FILE' 'data/f824slw/handling.meta'
+data_file 'VEHICLE_METADATA_FILE' 'data/f824slw/vehicles.meta'
+data_file 'CARCOLS_FILE' 'data/f824slw/carcols.meta'
+data_file 'VEHICLE_VARIATION_FILE' 'data/f824slw/carvariations.meta'
+data_file 'VEHICLE_LAYOUTS_FILE' 'data/f824slw/vehiclelayouts.meta'
+
+--\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+--\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
+files {
+    'data/bmci/vehicles.meta',
+    'data/bmci/carvariations.meta',
+    'data/bmci/carcols.meta',
+    'data/bmci/handling.meta',
+    'data/bmci/vehiclelayouts.meta',
+}
+
+data_file 'HANDLING_FILE' 'data/bmci/handling.meta'
+data_file 'VEHICLE_METADATA_FILE' 'data/bmci/vehicles.meta'
+data_file 'CARCOLS_FILE' 'data/bmci/carcols.meta'
+data_file 'VEHICLE_VARIATION_FILE' 'data/bmci/carvariations.meta'
+data_file 'VEHICLE_LAYOUTS_FILE' 'data/bmci/vehiclelayouts.meta'
+
+--\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+--\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
+files {
+    'data/fenixdrift/vehicles.meta',
+    'data/fenixdrift/carvariations.meta',
+    'data/fenixdrift/carcols.meta',
+    'data/fenixdrift/handling.meta',
+    'data/fenixdrift/vehiclelayouts.meta',
+}
+
+data_file 'HANDLING_FILE' 'data/fenixdrift/handling.meta'
+data_file 'VEHICLE_METADATA_FILE' 'data/fenixdrift/vehicles.meta'
+data_file 'CARCOLS_FILE' 'data/fenixdrift/carcols.meta'
+data_file 'VEHICLE_VARIATION_FILE' 'data/fenixdrift/carvariations.meta'
+data_file 'VEHICLE_LAYOUTS_FILE' 'data/fenixdrift/vehiclelayouts.meta'
+
+--\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+--\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
+files {
+    'data/amaroktuning/vehicles.meta',
+    'data/amaroktuning/carvariations.meta',
+    'data/amaroktuning/carcols.meta',
+    'data/amaroktuning/handling.meta',
+    'data/amaroktuning/vehiclelayouts.meta',
+}
+
+data_file 'HANDLING_FILE' 'data/amaroktuning/handling.meta'
+data_file 'VEHICLE_METADATA_FILE' 'data/amaroktuning/vehicles.meta'
+data_file 'CARCOLS_FILE' 'data/amaroktuning/carcols.meta'
+data_file 'VEHICLE_VARIATION_FILE' 'data/amaroktuning/carvariations.meta'
+data_file 'VEHICLE_LAYOUTS_FILE' 'data/amaroktuning/vehiclelayouts.meta'
+
+--\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\

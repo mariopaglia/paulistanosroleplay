@@ -16,8 +16,8 @@
       <animConvRoofWindowsAffected />
       <ptfxAssetName>null</ptfxAssetName>
       <audioNameHash>banshee2</audioNameHash>
-      <layout>LAYOUT_LOW_RESTRICTED</layout>
-      <coverBoundOffsets>ITALIGTB_COVER_OFFSET_INFO</coverBoundOffsets>
+      <layout>LAYOUT_STD_EXITFIXUP</layout>
+      <coverBoundOffsets>SULTAN_COVER_OFFSET_INFO</coverBoundOffsets>
       <explosionInfo>EXPLOSION_INFO_DEFAULT</explosionInfo>
       <scenarioLayout />
       <cameraName>FOLLOW_CHEETAH_CAMERA</cameraName>
@@ -78,12 +78,12 @@
       <trackerPathWidth value="2.000000" />
       <weaponForceMult value="1.000000" />
       <frequency value="30" />
-      <swankness>SWANKNESS_3</swankness>
+      <swankness>SWANKNESS_5</swankness>
       <maxNum value="4" />
       <flags>FLAG_SPORTS FLAG_HAS_LIVERY FLAG_PARKING_SENSORS FLAG_RICH_CAR FLAG_EXTRAS_REQUIRE</flags>
       <type>VEHICLE_TYPE_CAR</type>
       <plateType>VPT_BACK_PLATES</plateType>
-      <dashboardType>VDT_BANSHEE</dashboardType>
+      <dashboardType>VDT_GENTAXI</dashboardType>
       <vehicleClass>VC_SPORT</vehicleClass>
       <wheelType>VWT_SPORT</wheelType>
       <trailers />

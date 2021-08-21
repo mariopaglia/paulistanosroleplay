@@ -11,6 +11,7 @@ local valores = {
 	{ item = "embalagem", quantidade = 10, compra = 100, venda = 1 },
 	{ item = "frasco", quantidade = 10, compra = 100, venda = 1 },
 	{ item = "pino", quantidade = 10, compra = 100, venda = 1 },
+	{ item = "frascodeplastico", quantidade = 10, compra = 100, venda = 1 },
 }
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- COMPRAR
@@ -75,4 +76,10 @@ function emP.checkPermission3()
 	local source = source
 	local user_id = vRP.getUserId(source)
 	return vRP.hasPermission(user_id,"roxos.permissao")
+end
+
+function emP.checkPermission4()
+	local source = source
+	local user_id = vRP.getUserId(source)
+	return vRP.hasPermission(user_id,"laranjas.permissao")
 end

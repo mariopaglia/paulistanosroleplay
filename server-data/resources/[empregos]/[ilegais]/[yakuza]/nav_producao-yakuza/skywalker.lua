@@ -83,7 +83,7 @@ end)
 function oC.checkPermissao()
     local source = source
     local user_id = vRP.getUserId(source)
-    if vRP.hasPermission(user_id,"salieris.permissao") or vRP.hasPermission(user_id,"triade.permissao") then
+    if vRP.hasPermission(user_id,"salieris.permissao") or vRP.hasPermission(user_id,"triade.permissao") or vRP.hasPermission(user_id,"irmandade.permissao") then
         return true
     end
 end

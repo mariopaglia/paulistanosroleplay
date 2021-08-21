@@ -20,7 +20,7 @@ end
 function emP.checkPermission()
     local source = source
     local user_id = vRP.getUserId(source)
-    if vRP.hasPermission(user_id,"verdes.permissao") or vRP.hasPermission(user_id,"vermelhos.permissao") or vRP.hasPermission(user_id,"roxos.permissao") then
+    if vRP.hasPermission(user_id,"verdes.permissao") or vRP.hasPermission(user_id,"vermelhos.permissao") or vRP.hasPermission(user_id,"roxos.permissao") or vRP.hasPermission(user_id,"laranjas.permissao") then
         return true
     end
 end
@@ -44,6 +44,13 @@ function emP.checkPayment()
 			if vRP.getInventoryWeight(user_id)+vRP.getItemWeight("pastadecoca")*quantidade[source] <= vRP.getInventoryMaxWeight(user_id) then
 				TriggerClientEvent("Notify",source,"sucesso","Você coletou <b> "..quantidade[source].."x Pasta de Coca</b>")
 				vRP.giveInventoryItem(user_id,"pastadecoca",quantidade[source])
+				quantidade[source] = nil
+				return true
+			end
+		elseif vRP.hasPermission(user_id,"laranjas.permissao") then
+			if vRP.getInventoryWeight(user_id)+vRP.getItemWeight("papouladeopio")*quantidade[source] <= vRP.getInventoryMaxWeight(user_id) then
+				TriggerClientEvent("Notify",source,"sucesso","Você coletou <b> "..quantidade[source].."x Papoula de Ópio</b>")
+				vRP.giveInventoryItem(user_id,"papouladeopio",quantidade[source])
 				quantidade[source] = nil
 				return true
 			end

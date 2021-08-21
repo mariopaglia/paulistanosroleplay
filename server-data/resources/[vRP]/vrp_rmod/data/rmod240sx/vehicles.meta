@@ -16,8 +16,8 @@
       <animConvRoofWindowsAffected />
       <ptfxAssetName>null</ptfxAssetName>
       <audioNameHash>sultanrs</audioNameHash>
-      <layout>LAYOUT_LOW_RESTRICTED</layout>
-      <coverBoundOffsets>ITALIGTB_COVER_OFFSET_INFO</coverBoundOffsets>
+      <layout>LAYOUT_STD_EXITFIXUP</layout>
+      <coverBoundOffsets>SULTAN_COVER_OFFSET_INFO</coverBoundOffsets>
       <explosionInfo>EXPLOSION_INFO_DEFAULT</explosionInfo>
       <scenarioLayout />
       <cameraName>FOLLOW_CHEETAH_CAMERA</cameraName>
@@ -84,8 +84,8 @@
       <type>VEHICLE_TYPE_CAR</type>
       <plateType>VPT_BACK_PLATES</plateType>
       <dashboardType>VDT_GENTAXI</dashboardType>
-      <vehicleClass>VC_SUPER</vehicleClass>
-      <wheelType>VWT_HIEND</wheelType>
+      <vehicleClass>VC_SPORT</vehicleClass>
+      <wheelType>VWT_SPORT</wheelType>
       <trailers />
       <additionalTrailers />
       <drivers />

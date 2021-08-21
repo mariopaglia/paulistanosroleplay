@@ -1,0 +1,22 @@
+Tutorial de alteração no survival
+    Video demonstrativo: https://youtu.be/SF7N0bS2G4M
+
+    1 passo: Copie o arquivo survival_modules.lua
+
+    2 passo: vá ate vrp/modules e cole o arquivo survival_modules.lua
+
+    3 passo: Renomeie o arquivo survival_modules.lua para apenas survival.lua
+
+    4 passo: Volte ate o arquivo pvp-fenix
+
+    5 passo: Exclua o arquivo survival_modules.lua
+    
+    6 passo: Copie o arquivo survival_client.lua
+
+    7 passo: Va ate vrp/client e exclua o atual arquivo survival.lua (Lembre de salvar um backup dele antes)
+
+    8 passo: Cole o arquivo survival_client.lua e renomeie ele para survival.lua
+
+    9 passo: Va ate vrp/fxmanifest.lua e adicone no server_scripts a linha: 'modules/survival.lua',
+
+    10 passo: Volte ate o arquivo pvp-fenix e delete o arquivo survival_client.lua

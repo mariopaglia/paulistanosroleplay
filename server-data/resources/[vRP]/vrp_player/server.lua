@@ -1,7 +1,6 @@
 local logsitens = "https://discord.com/api/webhooks/793599139048980510/TgicubBv4Dhi21Gk8p6jLQLC5kT5y8Cje6qK8VLUpHd3lyufdiDDL229cQpp4JCTDfSS"
 local logsenviar = "https://discord.com/api/webhooks/793600149590769685/-PHSTM2RRZkVfb1PIZcitPEByn0rd5ZeEyhs6IX3AJ1O1MPssKnZlhHMot6VTFbH6w_d"
 local logscobrar = "https://discord.com/api/webhooks/793600242192220200/xChABlHgz09Kmro84R5i7773NydbQ504C8-5w8RX63mPKdVxxxXvp5wbNwiaQ-8DbWg4"
-local webhooksaquear = "https://discord.com/api/webhooks/793600303437971546/Mq-CbSWOOD7CYQo48zM_Ie8M0-KUIdfLLdqjQiG2WJsXAbqiLN1ZSfWqY_bxbxtf4XUr"
 local webhooklinkinout = "https://discord.com/api/webhooks/794791807891669013/DOY3kVr1QmuN_0RBz3D_ZyFF1H6Wx-smJnLRByOXgT7EWHPigPr5xK11YXmohAtMZzdi"
 local webhookpaypal = "https://discord.com/api/webhooks/800804690471813162/Q7nryy87L97UxJnsnEODRV4bx4s6aVqmlzxVYf91Hfgf_XXTUvlI-Rud_PRuJ9BCClR_"
 local logcmdcall = "https://discord.com/api/webhooks/801616526405795881/MuVEYTGa-R2gQy_nO_9t7vH4wgtvS3ixcmZt5-O9aZqOcM5of15x2AJtcEE56YEJrbKM"
@@ -71,6 +70,7 @@ local itemlist = {
 	["adrenalina"] = { index = "adrenalina", nome = "Adrenalina" },
 	["gopro"] = { index = "gopro", nome = "GoPro Hero 9" },
 	["gravadordevoz"] = { index = "gravadordevoz", nome = "Gravador de Voz" },
+	["ticketpvp"] = { index = "ticketpvp", nome = "Ticket PVP" },
 
 	-- Farm Contrabando
 	["componentemetal"] = { index = "componentemetal", nome = "Componentes de Metais" },
@@ -108,8 +108,11 @@ local itemlist = {
 	-- Farm de Drogas
 	["adubo"] = { index = "adubo", nome = "Adubo" },
 	["maconha"] = { index = "maconha", nome = "Maconha" },
+	["heroina"] = { index = "heroina", nome = "Heroína" },
+	["papouladeopio"] = { index = "papouladeopio", nome = "Papoula de Ópio" },
 	["embalagem"] = { index = "embalagem", nome = "Embalagem" },
 	["frasco"] = { index = "frasco", nome = "Frasco" },
+	["frascodeplastico"] = { index = "frascodeplastico", nome = "Frasco de Plástico" },
 	["anfetamina"] = { index = "anfetamina", nome = "Anfetamina" },
 	["metanfetamina"] = { index = "metanfetamina", nome = "Metanfetamina" },
 	["cocaina"] = { index = "cocaina", nome = "Cocaína" },
@@ -126,10 +129,13 @@ local itemlist = {
 	["placademetal"] = { index = "placademetal", nome = "Placa de Metal" },
 	["corpodeak"] = { index = "corpodeak", nome = "Corpo de AK-47" },
 	["corpodefiveseven"] = { index = "corpodefiveseven", nome = "Corpo de Five Seven" },
+	["corpodehkp7m10"] = { index = "corpodehkp7m10", nome = "Corpo de HK P7M10" },
 	["corpodeg36"] = { index = "corpodeg36", nome = "Corpo de G36" },
 	["corpodemp5"] = { index = "corpodemp5", nome = "Corpo de MP5" },
 	["gatilho"] = { index = "gatilho", nome = "Gatilho" },
 	["mola"] = { index = "mola", nome = "Mola" },
+	-- metal de alta
+	["metaldealta"] = { index = "metaldealta", nome = "Metal de Alta" },
 	
 	-- Farm de Munição
 	["capsula"] = { index = "capsula", nome = "Cápsula" },
@@ -601,7 +607,7 @@ RegisterServerEvent("kickAFK")
 AddEventHandler("kickAFK",function()
 	local source = source
 	local user_id = vRP.getUserId(source)
-	if not vRP.hasPermission(user_id,"kick.permissao") then
+	if not vRP.hasPermission(user_id,"staff.permissao") then
 		DropPlayer(source,"Voce foi desconectado por ficar ausente.")
 	end
 end)
@@ -632,7 +638,7 @@ end)
 -----------------------------------------------------------------------------------------------------------------------------------------
 RegisterCommand('tratamento',function(source,args,rawCommand)
 	local user_id = vRP.getUserId(source)
-	if vRP.hasPermission(user_id,"paramedico.permissao") then
+	if vRP.hasPermission(user_id,"paramedico.permissao") or vRP.hasPermission(user_id,"admin.permissao") then
 		local nplayer = vRPclient.getNearestPlayer(source,3)
 		if nplayer then
 			-- if vRPNclient.isNearCds(source, vector3(323.8,-593.75,43.29), 30) or vRPNclient.isNearCds(source, vector3(722.09,162.63,80.72), 30) then
@@ -686,38 +692,38 @@ end)
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- COBRAR
 -----------------------------------------------------------------------------------------------------------------------------------------
-RegisterCommand('cobrar',function(source,args,rawCommand)
-    vRP.antiflood(source,"cobrar",2)
-    local user_id = vRP.getUserId(source)
-    local consulta = vRPclient.getNearestPlayer(source,2)
-    local nuser_id = vRP.getUserId(consulta)
-    local resultado = json.decode(consulta) or 0
-    local identity =  vRP.getUserIdentity(user_id)
-    local identityu = vRP.getUserIdentity(nuser_id)
-	local crds = GetEntityCoords(GetPlayerPed(source))
-    if vRP.request(consulta,"Deseja pagar <b>R$ "..vRP.format(parseInt(args[1])).."</b> para <b>"..identity.name.." "..identity.firstname.."</b>?",30) then    
-        if parseInt(args[1]) > 0 then                
-            local banco = vRP.getBankMoney(nuser_id)
+-- RegisterCommand('cobrar',function(source,args,rawCommand)
+--     vRP.antiflood(source,"cobrar",2)
+--     local user_id = vRP.getUserId(source)
+--     local consulta = vRPclient.getNearestPlayer(source,2)
+--     local nuser_id = vRP.getUserId(consulta)
+--     local resultado = json.decode(consulta) or 0
+--     local identity =  vRP.getUserIdentity(user_id)
+--     local identityu = vRP.getUserIdentity(nuser_id)
+-- 	local crds = GetEntityCoords(GetPlayerPed(source))
+--     if vRP.request(consulta,"Deseja pagar <b>R$ "..vRP.format(parseInt(args[1])).."</b> para <b>"..identity.name.." "..identity.firstname.."</b>?",30) then    
+--         if parseInt(args[1]) > 0 then                
+--             local banco = vRP.getBankMoney(nuser_id)
         
-            if banco >= parseInt(args[1]) then
-                vRP.setBankMoney(nuser_id,parseInt(banco-args[1]))
-                vRP.giveBankMoney(user_id,parseInt(args[1]))
+--             if banco >= parseInt(args[1]) then
+--                 vRP.setBankMoney(nuser_id,parseInt(banco-args[1]))
+--                 vRP.giveBankMoney(user_id,parseInt(args[1]))
             
-                TriggerClientEvent("Notify",source,"sucesso","Recebeu <b>R$ "..vRP.format(parseInt(args[1])).."</b> de <b>"..identityu.name.. " "..identityu.firstname.."</b>.")
-                local player = vRP.getUserSource(parseInt(args[2]))
-                if player == nil then
-                    return
-                else
-                    local identity = vRP.getUserIdentity(user_id)
-                    TriggerClientEvent("Notify",player,"importante","<b>"..identity.name.." "..identity.firstname.."</b> transferiu <b>R$ "..vRP.format(parseInt(args[1])).."</b> para sua conta.")
-					SendWebhookMessage(logscobrar,"```prolog\n[ID]: "..user_id.." "..identity.name.." "..identity.firstname.." \n[COBROU]: R$ "..vRP.format(parseInt(args[1])).." \n[DO ID]: "..nuser_id.." "..identityu.name.." "..identityu.firstname.."\n[COORDENADA]: "..crds.x..","..crds.y..","..crds.z..""..os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S").." \r```")
-                end            
-            else    
-                TriggerClientEvent("Notify",source,"negado","Dinheiro insuficiente.")
-            end    
-        end
-    end
-end) 
+--                 TriggerClientEvent("Notify",source,"sucesso","Recebeu <b>R$ "..vRP.format(parseInt(args[1])).."</b> de <b>"..identityu.name.. " "..identityu.firstname.."</b>.")
+--                 local player = vRP.getUserSource(parseInt(args[2]))
+--                 if player == nil then
+--                     return
+--                 else
+--                     local identity = vRP.getUserIdentity(user_id)
+--                     TriggerClientEvent("Notify",player,"importante","<b>"..identity.name.." "..identity.firstname.."</b> transferiu <b>R$ "..vRP.format(parseInt(args[1])).."</b> para sua conta.")
+-- 					SendWebhookMessage(logscobrar,"```prolog\n[ID]: "..user_id.." "..identity.name.." "..identity.firstname.." \n[COBROU]: R$ "..vRP.format(parseInt(args[1])).." \n[DO ID]: "..nuser_id.." "..identityu.name.." "..identityu.firstname.."\n[COORDENADA]: "..crds.x..","..crds.y..","..crds.z..""..os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S").." \r```")
+--                 end            
+--             else    
+--                 TriggerClientEvent("Notify",source,"negado","Dinheiro insuficiente.")
+--             end    
+--         end
+--     end
+-- end) 
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- GARMAS
 -----------------------------------------------------------------------------------------------------------------------------------------
@@ -725,6 +731,8 @@ local garmas={}
 RegisterCommand('garmas',function(source,args,rawCommand)
     local user_id = vRP.getUserId(source)
     local identity = vRP.getUserIdentity(user_id)
+
+    if GetPlayerRoutingBucket(source) == 0 then
 
     TriggerClientEvent("Notify",source,"aviso","<b>Aguarde</b><br>Suas armas estão sendo desequipadas.",9500)
     garmas[user_id] = true
@@ -747,6 +755,7 @@ RegisterCommand('garmas',function(source,args,rawCommand)
     SetTimeout(3000, function()
         garmas[user_id] = nil
     end)    
+end
 end)
 
 AddEventHandler('playerDropped', function (reason)
@@ -821,20 +830,20 @@ RegisterCommand('call',function(source,args,rawCommand)
 	local user_id = vRP.getUserId(source)
 	if user_id then
 		local players = {}
-		if args[1] == "190" then
-			players = vRP.getUsersByPermission("policia.permissao")
-		elseif args[1] == "192" then
-			players = vRP.getUsersByPermission("paramedico.permissao")
-		elseif args[1] == "mec" then
-			players = vRP.getUsersByPermission("mecanico.permissao")
-		elseif args[1] == "taxi" then
-			players = vRP.getUsersByPermission("taxista.permissao")
-		elseif args[1] == "adm" then
-			players = vRP.getUsersByPermission("kick.permissao")
-		elseif args[1] == "adv" then
-			players = vRP.getUsersByPermission("judiciario.permissao")
+		if args[1] == "adm" then
+			players = vRP.getUsersByPermission("staff.permissao")
+		-- else args[1] == "190" then
+		-- 	players = vRP.getUsersByPermission("policia.permissao")
+		-- elseif args[1] == "192" then
+		-- 	players = vRP.getUsersByPermission("paramedico.permissao")
+		-- elseif args[1] == "mec" then
+		-- 	players = vRP.getUsersByPermission("mecanico.permissao")
+		-- elseif args[1] == "taxi" then
+		-- 	players = vRP.getUsersByPermission("taxista.permissao")
+		-- elseif args[1] == "adv" then
+		-- 	players = vRP.getUsersByPermission("judiciario.permissao")
 		else
-			TriggerClientEvent("Notify",source,"negado","Serviço inexistente ou disponível somente pelo <b>celular</b>")
+			TriggerClientEvent("Notify",source,"negado","Serviço inexistente ou disponível somente pelo <b>Celular</b>")
 			return
 		end
 
@@ -864,7 +873,8 @@ RegisterCommand('call',function(source,args,rawCommand)
 						if not answered then
 							answered = true
 							local identity = vRP.getUserIdentity(nuser_id)
-							TriggerClientEvent("Notify",source,"importante","Chamado atendido por <b>"..identity.name.." "..identity.firstname.."</b>, aguarde no local.")
+							-- TriggerClientEvent("Notify",source,"importante","Chamado atendido por <b>"..identity.name.." "..identity.firstname.."</b>, aguarde no local.")
+							TriggerClientEvent("Notify",source,"importante","Chamado atendido, aguarde no local.")
 							vRPclient.playSound(source,"Event_Message_Purple","GTAO_FM_Events_Soundset")
 							vRPclient._setGPS(player,x,y)
 						else
@@ -1193,6 +1203,8 @@ RegisterCommand('roupas',function(source,args,rawCommand)
 					idle_copy[l] = w
 				end
 				vRPclient._setCustomization(source,idle_copy)
+				Citizen.Wait(1000)
+				TriggerClientEvent("reloadtattos",source)
 			end
 		else
 			vRP.removeCloak(source)
@@ -1254,7 +1266,32 @@ end)
 -- 		end
 -- 	end
 -- end)
-
+-----------------------------------------------------------------------------------------------------------------------------------------
+-- /FAC (MEMBROS ONLINE DE CADA ORGANIZAÇÃO)
+-----------------------------------------------------------------------------------------------------------------------------------------
+RegisterCommand('fac',function(source,args,rawCommand)
+	local user_id = vRP.getUserId(source)        
+	if vRP.hasPermission(user_id,"admin.permissao") or vRP.hasPermission(user_id,"mod.permissao") or vRP.hasPermission(user_id,"sup.permissao") then
+		local onlinePlayers2 = GetNumPlayerIndices()
+		-- Drogas
+		local roxos = vRP.getUsersByPermission("roxos.permissao")
+    	local verdes = vRP.getUsersByPermission("verdes.permissao")
+    	local laranjas = vRP.getUsersByPermission("laranjas.permissao")
+    	local vermelhos = vRP.getUsersByPermission("vermelhos.permissao")
+		-- Armas
+    	local sinaloa = vRP.getUsersByPermission("sinaloa.permissao")
+		local yakuza = vRP.getUsersByPermission("yakuza.permissao")
+		local cn = vRP.getUsersByPermission("cn.permissao")
+		-- Lavagem
+		local irmandade = vRP.getUsersByPermission("irmandade.permissao")
+		local triade = vRP.getUsersByPermission("triade.permissao")
+		local salieris = vRP.getUsersByPermission("salieris.permissao")
+		-- Desmanche
+		local midnight = vRP.getUsersByPermission("midnight.permissao")
+		local driftking = vRP.getUsersByPermission("driftking.permissao")
+		TriggerClientEvent("Notify",source,"importante","<b>Jogadores:</b> "..onlinePlayers2.."<br><b>Roxos:</b> "..#roxos.."<br><b>Verdes:</b> "..#verdes.."<br><b>Laranjas:</b> "..#laranjas.."<br><b>Vermelhos:</b> "..#vermelhos.."<br><b>Sinaloa:</b> "..#sinaloa.."<br><b>Yakuza:</b> "..#yakuza.."<br><b>CN:</b> "..#cn.."<br><b>Irmandade:</b> "..#irmandade.."<br><b>Triade:</b> "..#triade.."<br><b>Salieri's:</b> "..#salieris.."<br><b>MidNight:</b> "..#midnight.."<br><b>DriftKing:</b> "..#driftking.."",9000)
+	end
+end)	
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- /STATUS (PESSOAS ONLINE POR PROFISSÃO)
 -----------------------------------------------------------------------------------------------------------------------------------------
@@ -1266,7 +1303,7 @@ RegisterCommand('status',function(source,args,rawCommand)
     	local policia2 = vRP.getUsersByPermission("policia.permissao")
     	local paramedico2 = vRP.getUsersByPermission("paramedico.permissao")
     	local mec2 = vRP.getUsersByPermission("mecanico.permissao")
-    	local staff2 = vRP.getUsersByPermission("kick.permissao")
+    	local staff2 = vRP.getUsersByPermission("staff.permissao")
 		local taxista2 = vRP.getUsersByPermission("taxista.permissao")
 		TriggerClientEvent("Notify",source,"importante","<b>Jogadores:</b> "..onlinePlayers2.."<br><b>Staff:</b> "..#staff2.."<br><b>Policiais:</b> "..#policia2.."<br><b>Advogados:</b> "..#advogados2.."<br><b>Taxistas:</b> "..#taxista2.."<br><b>Paramédicos:</b> "..#paramedico2.."<br><b>Mecânicos:</b> "..#mec2.."",9000)
 	elseif vRP.hasPermission(user_id,"carrosvip.permissao") then
@@ -1353,84 +1390,10 @@ AddEventHandler("bvida",function()
         local identity = vRP.getUserIdentity(user_id)
         Wait(2)
         vRPclient._setCustomization(source,vRPclient.getCustomization(source))
+		Citizen.Wait(1000)
+		TriggerClientEvent("reloadtattos",source)
         vRP.removeCloak(source)
     end
-end)
------------------------------------------------------------------------------------------------------------------------------------------
--- Saquear
------------------------------------------------------------------------------------------------------------------------------------------
-RegisterCommand('saquear',function(source,args,rawCommand)
-	local user_id = vRP.getUserId(source)
-	local nplayer = vRPclient.getNearestPlayer(source,2)
-	if nplayer then
-		if vRPclient.isInComa(nplayer) then
-			local identity_user = vRP.getUserIdentity(user_id)
-			local nuser_id = vRP.getUserId(nplayer)
-			local nidentity = vRP.getUserIdentity(nuser_id)
-			local policia = vRP.getUsersByPermission("pmesp.permissao")
-			local itens_saque = {}
-			if #policia >= 0 then
-				local vida = vRPclient.getHealth(nplayer)
-				TriggerClientEvent('cancelando',source,true)
-				vRPclient._playAnim(source,false,{{"amb@medic@standing@kneel@idle_a","idle_a"}},true)
-				TriggerClientEvent("progress",source,20000,"saqueando")
-				SetTimeout(20000,function()
-					local ndata = vRP.getUserDataTable(nuser_id)
-					if ndata ~= nil then
-						if ndata.inventory ~= nil then
-							for k,v in pairs(ndata.inventory) do
-								if vRP.getInventoryWeight(user_id)+vRP.getItemWeight(k)*v.amount <= vRP.getInventoryMaxWeight(user_id) then
-									if vRP.tryGetInventoryItem(nuser_id,k,v.amount) then
-										vRP.giveInventoryItem(user_id,k,v.amount)
-										table.insert(itens_saque, "[ITEM]: "..vRP.itemNameList(k).." [QUANTIDADE]: "..v.amount)
-									end
-								else
-									TriggerClientEvent("Notify",source,"negado","Mochila não suporta <b>"..vRP.format(parseInt(v.amount)).."x "..vRP.itemNameList(k).."</b> por causa do peso.")
-								end
-							end
-						end
-					end
-					local weapons = vRPclient.replaceWeapons(nplayer,{})
-					for k,v in pairs(weapons) do
-						vRP.giveInventoryItem(nuser_id,"wbody|"..k,1)
-						if vRP.getInventoryWeight(user_id)+vRP.getItemWeight("wbody|"..k) <= vRP.getInventoryMaxWeight(user_id) then
-							if vRP.tryGetInventoryItem(nuser_id,"wbody|"..k,1) then
-								vRP.giveInventoryItem(user_id,"wbody|"..k,1)
-								table.insert(itens_saque, "[ITEM]: "..vRP.itemNameList("wbody|"..k).." [QUANTIDADE]: "..1)
-							end
-						else
-							TriggerClientEvent("Notify",source,"negado","Mochila não suporta <b>1x "..vRP.itemNameList("wbody|"..k).."</b> por causa do peso.")
-						end
-						if v.ammo > 0 then
-							vRP.giveInventoryItem(nuser_id,"wammo|"..k,v.ammo)
-							if vRP.getInventoryWeight(user_id)+vRP.getItemWeight("wammo|"..k)*v.ammo <= vRP.getInventoryMaxWeight(user_id) then
-								if vRP.tryGetInventoryItem(nuser_id,"wammo|"..k,v.ammo) then
-									vRP.giveInventoryItem(user_id,"wammo|"..k,v.ammo)
-									table.insert(itens_saque, "[ITEM]: "..vRP.itemNameList("wammo|"..k).." [QTD]: "..v.ammo)
-								end
-							else
-								TriggerClientEvent("Notify",source,"negado","Mochila não suporta <b>"..vRP.format(parseInt(v.ammo)).."x "..vRP.itemNameList("wammo|"..k).."</b> por causa do peso.")
-							end
-						end
-					end
-					local nmoney = vRP.getMoney(nuser_id)
-					if vRP.tryPayment(nuser_id,nmoney) then
-						vRP.giveMoney(user_id,nmoney)
-					end
-					vRPclient.setStandBY(source,parseInt(600))
-					vRPclient._stopAnim(source,false)
-					TriggerClientEvent('cancelando',source,false)
-					local apreendidos = table.concat(itens_saque, "\n")
-					TriggerClientEvent("Notify",source,"importante","Saque concluido com sucesso.")
-					SendWebhookMessage(webhooksaquear,"```prolog\n[ID]: "..user_id.." "..identity_user.name.." "..identity_user.firstname.."\n[SAQUEOU]: "..nuser_id.." "..nidentity.name.." " ..nidentity.firstname .. "\n" .. apreendidos ..os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S").." \r```")
-				end)
-			else
-				TriggerClientEvent("Notify",source,"aviso","Número insuficiente de policiais no momento.")
-			end
-		else
-			TriggerClientEvent("Notify",source,"negado","Você só pode saquear quem está em coma.")
-		end
-	end
 end)
 
 ------------------------------------------------------------
@@ -1524,3 +1487,18 @@ end)
 -- 		TriggerClientEvent('cmg2_animations:cl_stop654654654', targetSrc)
 -- 	end
 -- end)
+
+-----------------------------------------------------------------------------------------------------------------------------------------
+-- AVISO DE SERVIDOR ONLINE
+-----------------------------------------------------------------------------------------------------------------------------------------
+Citizen.CreateThread(function()
+    PerformHttpRequest("https://discord.com/api/webhooks/866391842005319711/5X82zFECj1FDgTYh2Z0gDgcueFGzgswRxk7we9xc9m4DkI9nhmOeg_FLHf3rdY6uNy4t", function(err, text, headers) end, 'POST', json.encode({
+        content = '||@everyone||',
+        embeds = {
+            {
+                description = '**SERVIDOR ONLINE, BOM RP À TODOS:**\n\nAperte F8 e cole: **connect cfx.re/join/mpmeq9**\n\nOu entre diretamente pela lista do FiveM',
+                color = 65280 -- Se quiser mudar a cor é aqui
+            }
+        }
+    }), { ['Content-Type'] = 'application/json' })
+end)

@@ -39,6 +39,7 @@ local webhookadmin = "https://discord.com/api/webhooks/793197093690671134/CVTPwl
 local webhookvehs = "https://discord.com/api/webhooks/793197242017251340/m38nBrCozEd6EG49g41kol7rVjvIyjSyd9iQVyzqwyGKhTPfAh0i7lp7vT7EAPNbgUDs"
 local webhookdesmanche = "https://discord.com/api/webhooks/793197449845932093/P1HMnAXjr-7k2icegOpS7J6QOOeCTt0qGWpz02W6dhLtgu1DyWS-rdMyHe4iqAPQoteU"
 local webhookdv = "https://discord.com/api/webhooks/801618027405246504/30GykWSbexZirC6QSj1Hh1GscfW_Es4WZxzWuNcfaoIzwhEJktWejcmjsTilndHmHbiT"
+local webhookretiradaveiculo = "https://discord.com/api/webhooks/877288174941003878/gCSTPrYCnQKDeWjn032NmPPFl1Aygsd9gqW-3d7pmJce7h6B1LecaXIMpxqaya_BXgna"
 
 function SendWebhookMessage(webhook, message)
     if webhook ~= nil and webhook ~= "" then
@@ -124,6 +125,7 @@ local garages = {
     [145] = {['name'] = "FH01", ['payment'] = false, ['public'] = false},
     [148] = {['name'] = "FH04", ['payment'] = false, ['public'] = false},
     [155] = {['name'] = "FH11", ['payment'] = false, ['public'] = false},
+    [156] = {['name'] = "FH10", ['payment'] = false, ['public'] = false},
     [159] = {['name'] = "FH15", ['payment'] = false, ['public'] = false},
     [163] = {['name'] = "FH19", ['payment'] = false, ['public'] = false},
     [167] = {['name'] = "FH23", ['payment'] = false, ['public'] = false},
@@ -453,12 +455,11 @@ local garages = {
     [626] = {['name'] = "Vermelhos", ['payment'] = false, ['perm'] = "vermelhos.permissao"},
     [627] = {['name'] = "Yakuza", ['payment'] = false, ['perm'] = "salieris.permissao"},
     [628] = {['name'] = "Roxos", ['payment'] = false, ['perm'] = "roxos.permissao"},
-    [629] = {['name'] = "Motoclub", ['payment'] = false, ['perm'] = "motoclub.permissao"},
+    [629] = {['name'] = "MidNight", ['payment'] = false, ['perm'] = "midnight.permissao"},
     [630] = {['name'] = "Triade", ['payment'] = false, ['perm'] = "triade.permissao"},
-    [631] = {['name'] = "FARC", ['payment'] = false, ['perm'] = "farc.permissao"},
+    [631] = {['name'] = "Irmandade", ['payment'] = false, ['perm'] = "irmandade.permissao"},
     [632] = {['name'] = "Camorra", ['payment'] = false, ['perm'] = "camorra.permissao"},
-    [633] = {['name'] = "Serpentes", ['payment'] = false, ['perm'] = "serpentes.permissao"},
-    [633] = {['name'] = "Serpentes", ['payment'] = false, ['perm'] = "serpentes.permissao"},
+    [633] = {['name'] = "DriftKing", ['payment'] = false, ['perm'] = "driftking.permissao"},
     [634] = {['name'] = "Embarcações", ['payment'] = false, ['perm'] = "livre"},
     [635] = {['name'] = "Embarcações", ['payment'] = false, ['perm'] = "livre"},
     [636] = {['name'] = "Bicicletario", ['payment'] = false, ['perm'] = "livre"}, -- Bennys
@@ -480,11 +481,24 @@ local garages = {
     [652] = {['name'] = "Garagem", ['payment'] = false, ['public'] = true}, -- GARAGEM BRATVA
     [653] = {['name'] = "Garagem", ['payment'] = false, ['public'] = true}, -- GARAGEM YAKUZA
     [654] = {['name'] = "Garagem", ['payment'] = false, ['public'] = true}, -- GARAGEM TRIADE
-    [655] = {['name'] = "Garagem", ['payment'] = false, ['public'] = true}, -- GARAGEM MOTOCLUB
+    [655] = {['name'] = "Garagem", ['payment'] = false, ['perm'] = "midnight.permissao"}, -- GARAGEM MIDNIGHT
     [656] = {['name'] = "Garagem", ['payment'] = false, ['public'] = true}, -- GARAGEM ROXOS
     [657] = {['name'] = "Garagem", ['payment'] = false, ['public'] = true}, -- GARAGEM COSANOSTRA
     [658] = {['name'] = "Bennys", ['payment'] = false, ['perm'] = "sportrace.permissao"}, -- Bennys
     [659] = {['name'] = "Bicicletario", ['payment'] = false, ['public'] = true}, -- BICICLETARIO EM FRENTE AO FENIX PLAZA
+    [660] = {['name'] = "Garagem", ['payment'] = false, ['public'] = true}, -- HELIPONTO PROXIMO A DP DA PRAIA
+    [661] = {['name'] = "DIC", ['payment'] = false, ['perm'] = "admin.permissao"}, -- DIC - Policia Investigativa
+    [662] = {['name'] = "Garagem", ['payment'] = false, ['public'] = true}, -- GARAGEM PESSOAL DIC
+    [663] = {['name'] = "PoliciaHeli", ['payment'] = false, ['perm'] = "dic.permissao"}, -- Heliponto DIC
+    [664] = {['name'] = "Garagem", ['payment'] = false, ['public'] = true}, -- GARAGEM PESSOAL FENIX CUSTOMS
+    [665] = {['name'] = "Garagem", ['payment'] = false, ['public'] = true}, -- GARAGEM ARENA PVP
+    [666] = {['name'] = "Garagem", ['payment'] = false, ['perm'] = "paramedico.permissao"}, -- GARAGEM PUBLICA DO HOSPITAL
+    [667] = {['name'] = "Sinaloa", ['payment'] = false, ['perm'] = "sinaloa.permissao"}, -- GARAGEM SINALOA
+    [668] = {['name'] = "Garagem", ['payment'] = false, ['public'] = true}, -- GARAGEM PESSOAL SINALOA
+    [669] = {['name'] = "Irmandade", ['payment'] = false, ['perm'] = "irmandade.permissao"}, -- GARAGEM IRMANDADE
+    [670] = {['name'] = "Garagem", ['payment'] = false, ['public'] = true}, -- GARAGEM PESSOAL IRMANDADE
+    [671] = {['name'] = "Laranjas", ['payment'] = false, ['perm'] = "laranjas.permissao"}, -- GARAGEM LARANJAS
+    [672] = {['name'] = "Garagem", ['payment'] = false, ['public'] = true}, -- GARAGEM PESSOAL LARANJAS
 }
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- GARAGEMS
@@ -494,18 +508,20 @@ local workgarage = {
     ["Bratva"] = {"burrito3", "komoda"},
     ["Verdes"] = {"burrito3", "komoda"},
     ["Vermelhos"] = {"burrito3", "komoda"},
+    ["Laranjas"] = {"burrito3", "komoda"},
     ["Roxos"] = {"burrito3", "komoda"},
     ["Yakuza"] = {"burrito3", "komoda"},
     ["Triade"] = {"burrito3", "komoda"},
-    ["FARC"] = {"burrito3"},
-    ["Camorra"] = {"burrito3"},
-    ["Serpentes"] = {"sanctus", "komoda"},
-    ["Motoclub"] = {"sanctus", "komoda"},
-    ["Bennys"] = {"flatbed", "slamvan3"},
-    ["NovaBennys"] = {"flatbed", "slamvan3"},
-    ["SportRace"] = {"flatbed", "slamvan3"},
+    ["Sinaloa"] = {"burrito3", "komoda"},
+    ["Irmandade"] = {"burrito3", "komoda"},
+    ["DriftKing"] = {"burrito3", "komoda"},
+    ["MidNight"] = {"burrito3", "komoda"},
+    ["Bennys"] = {"flatbed", "slamvan3", "brawler"},
+    ["NovaBennys"] = {"flatbed", "slamvan3", "brawler"},
+    ["SportRace"] = {"flatbed", "slamvan3", "brawler"},
+    ["DIC"] = {"dicgt63", "cls63s"},
     ["PRF"] = {"cruzeprf2", "l200prf", "trailprf", "ec130PRF"},
-    ["Policia"] = {"av-amarok", "sbearcat", "bmwg20", "av-gt63", "av-m8", "pbus", "pdfocus", "av-nc7", "av-levante", "ghispo2", "bmwm5policia", "chevypolicia", "porschespeed"},
+    ["Policia"] = {"av-amarok", "sbearcat", "av-gt63", "pbus", "av-nc7", "av-levante", "ghispo2", "bmwm5policia", "porschespeed", "a45policia"},
     ["PoliciaHeli"] = {"polmav"},
     ["ROTA"] = {"sw4revrota1", "trailrota2"},
     ["PMESP"] = {"pbus", "riot", "20blazer2", "police3", "spacepm1", "trailcfp", "trailpm1", "av-gt63", "av-m8", "policeb"},
@@ -518,7 +534,7 @@ local workgarage = {
     ["Piloto"] = {"volatus", "cargobob2"},
     ["PoliciaH"] = {"policiaheli"},
     ["PoliciaA"] = {"velum2"},
-    ["Paramedico"] = {"ambulance"},
+    ["Paramedico"] = {"ambulance", "sahpexplorer2"},
     ["ParamedicoH"] = {"samumav"},
     ["Mecanico"] = {"flatbed3", "towtruck"},
     ["Taxista"] = {"taxi"},
@@ -708,9 +724,9 @@ function src.spawnVehicles(name, use)
                                 end
                             else
                                 local price_tax = parseInt(vRP.vehiclePrice(name) * 0.10)
-                                -- if price_tax > 100000 then
-                                -- 	price_tax = 100000
-                                -- end
+                                if price_tax > 100000 then
+                                 	price_tax = 100000
+                                end
                                 local ok = vRP.request(source, "Deseja pagar a <b>Taxa</b> do veículo <b>" .. vRP.vehicleName(name) .. "</b> por <b>R$ " .. vRP.format(price_tax) .. "</b> reais?", 60)
                                 if ok then
                                     if vRP.tryFullPayment(user_id, price_tax) then
@@ -727,6 +743,16 @@ function src.spawnVehicles(name, use)
                     local spawnveh, vehid = vCLIENT.spawnVehicle(source, name, 1000, 1000, 100, custom, 0, 0, 0, 0, 0, 0, true)
                     if spawnveh then
                         vehlist[vehid] = {user_id, name}
+                        local identity = vRP.getUserIdentity(user_id)
+
+                        -- AVISO IN-GAME SOBRE RETIRADA DE VEICULOS
+                        -- local adms = vRP.getUsersByPermission("kick.permissao")
+                        -- for k, v in pairs(adms) do
+                        --     admin_source = vRP.getUserSource(parseInt(v))
+                        --     TriggerClientEvent("Notify", admin_source, "aviso", "ATENÇÃO! ID: <b>" .. user_id .. "</b> - Retirou o veículo: <b>" .. name .. "</b>", 15000)
+                        -- end
+
+                        SendWebhookMessage(webhookretiradaveiculo, "```prolog\n[ID]: " .. user_id .. " " .. identity.name .. " " .. identity.firstname .. " \n[RETIROU]: " .. name .. " " .. os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S") .. " \r```")
                         TriggerEvent("setPlateEveryone", identity.registration)
                     end
                 end
@@ -881,7 +907,7 @@ function src.returnHouses(nome, garage)
             if garages[garage].perm == "livre" then
                 return vCLIENT.openGarage(source, nome, garage)
             elseif garages[garage].perm then
-                if vRP.hasPermission(user_id, garages[garage].perm) then
+                if vRP.hasPermission(user_id, garages[garage].perm) or vRP.hasPermission(user_id,"kick.permissao") then
                     return vCLIENT.openGarage(source, nome, garage)
                 end
             elseif garages[garage].public then
@@ -993,6 +1019,8 @@ RegisterCommand('vehs', function(source, args, rawCommand)
                 totalGaragens = totalGaragens + 4
             elseif vRP.hasPermission(nuser_id, "ouro.permissao") then
                 totalGaragens = totalGaragens + 2
+            elseif vRP.hasPermission(nuser_id, "apoiador.permissao") then
+                totalGaragens = totalGaragens + 1
             end
 
             if vCONCES.getTotalVeiculos(nuser_id) >= totalGaragens then

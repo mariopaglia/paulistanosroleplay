@@ -38,6 +38,7 @@ cfg.items = {
 	["adrenalina"] = { "adrenalina",1.0 },
 	["gopro"] = { "gopro",1.0 },
 	["gravadordevoz"] = { "gravadordevoz",1.0 },
+	["ticketpvp"] = { "ticketpvp",0.5 },
 
 	-- Farm Contrabando
 	["componentemetal"] = { "Componentes de Metais",0.5 },
@@ -76,25 +77,33 @@ cfg.items = {
 	["placademetal"] = { "Placa de Metal",0.5 },
 	["corpodeak"] = { "Corpo de AK-47",0.5 },
 	["corpodefiveseven"] = { "Corpo de Five Seven",0.5 },
+	["corpodehkp7m10"] = { "Corpo de HK P7M10",0.5 },
 	["corpodeg36"] = { "Corpo de G36",0.5 },
 	["corpodemp5"] = { "Corpo de MP5",0.5 },
 	["gatilho"] = { "Gatilho",0.5 },
 	["mola"] = { "Mola",0.2 },
+	["mola"] = { "Mola",0.2 },
+	--====== dominas
+	["metaldealta"] = { "Metal de alta",0.5 },
+	
 	
 	-- Farm de Munição
 	["capsula"] = { "Cápsula",0.15 },
 	["polvora"] = { "Pólvora",0.08 },
 	
 	-- Farm de Desmanche
-	["ferramenta"] = { "Ferramenta",3 },
-	["serra"] = { "Serra",1.0 },
+	["ferramenta"] = { "Ferramenta",0.5 },
+	["serra"] = { "Serra",0.5 },
 	["macarico"] = { "Maçarico",5.0 },
 	
 	-- Farm de Drogas
 	["adubo"] = { "Adubo",0.3 },
 	["embalagem"] = { "Embalagem",0.3 },
 	["maconha"] = { "Maconha",1.0 },
+	["heroina"] = { "Heroína",1.0 },
+	["papouladeopio"] = { "Papoula de Ópio",0.3 },
 	["anfetamina"] = { "Anfetamina",0.3 },
+	["frascodeplastico"] = { "Frasco de Plástico",0.3 },
 	["frasco"] = { "Frasco",0.3 },
 	["metanfetamina"] = { "Metanfetamina",1.0 },
 	["pino"] = { "Pino",0.3 },

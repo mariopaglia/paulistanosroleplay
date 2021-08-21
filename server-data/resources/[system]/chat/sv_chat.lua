@@ -174,6 +174,31 @@ AddEventHandler('onServerResourceStart', function(resName)
             SendWebhookMessage(webhook,"```prolog\n[JOGADOR]: "..user_id.." "..identity.name.." "..identity.firstname..""..os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S").."\n[Chat]: ADVOGADO\n[Mensagem]:'"..message.."'\r```")
         end
     end, false)
+
+    -- RegisterCommand('il', function(source, args, rawCommand)
+    --     local message = rawCommand:sub(4)
+    --     local user_id = vRP.getUserId(source)
+    --     local identity = vRP.getUserIdentity(user_id)
+    --         fal = identity.name.. " " .. identity.firstname
+    --         TriggerClientEvent('chat:addMessage', -1, {
+    --             template = '<div style="padding: 0.2vw; margin: 0.1vw; background-image: linear-gradient(to right, rgba(255,255,255,0.5) 3%, rgba(0, 0, 0,0) 95%); border-radius: 5px;"><img style="height: 18px" src="https://i.imgur.com/gFJTe3j.png"> &nbsp @Anônimo: {1}</div>',
+    --             args = { fal, message }
+    --         })
+    --         SendWebhookMessage(webhook,"```prolog\n[JOGADOR]: "..user_id.." "..identity.name.." "..identity.firstname..""..os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S").."\n[Chat]: Anonimo\n[Mensagem]:'"..message.."'\r```")
+    -- end, false)
+
+    -- RegisterCommand('olx', function(source, args, rawCommand)
+    --     local message = rawCommand:sub(4)
+    --     local user_id = vRP.getUserId(source)
+    --     local identity = vRP.getUserIdentity(user_id)
+    --         fal = identity.name.. " " .. identity.firstname
+    --         tel = identity.phone
+    --         TriggerClientEvent('chat:addMessage', -1, {
+    --             template = '<div style="padding: 0.2vw; margin: 0.1vw; background-image: linear-gradient(to right, rgba(255,230,0,0.5) 3%, rgba(0, 0, 0,0) 95%); border-radius: 5px;"><img style="height: 18px" src="https://i.imgur.com/tq27H06.png"> &nbsp @OLX - '..fal..' [Cel: '..tel..']: {1}</div>',
+    --             args = { fal, message }
+    --         })
+    --         SendWebhookMessage(webhook,"```prolog\n[JOGADOR]: "..user_id.." "..identity.name.." "..identity.firstname..""..os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S").."\n[Chat]: Anonimo\n[Mensagem]:'"..message.."'\r```")
+    -- end, false)
     
     RegisterCommand('admin', function(source, args, rawCommand)
         local message = rawCommand:sub(6)

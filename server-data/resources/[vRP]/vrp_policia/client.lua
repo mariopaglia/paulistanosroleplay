@@ -167,7 +167,7 @@ Citizen.CreateThread(function()
 end)
 
 --------------------------------------------------------------------------------------------------------------------------------------------------
--- DISPAROS
+-- DISPAROS CLIENT.LUA
 --------------------------------------------------------------------------------------------------------------------------------------------------
 local blacklistedWeapons = {
 	"WEAPON_DAGGER",
@@ -192,7 +192,7 @@ local blacklistedWeapons = {
 	"GADGET_PARACHUTE",
 	"WEAPON_FIREEXTINGUISHER",
 	"WEAPON_RAYPISTOL",
-	"WEAPON_PETROLCAN"
+	"WEAPON_PETROLCAN",
 }
 
 Citizen.CreateThread(function()

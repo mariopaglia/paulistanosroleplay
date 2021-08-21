@@ -25,7 +25,7 @@ end
 function emP.checkPermission()
     local source = source
     local user_id = vRP.getUserId(source)
-    return vRP.hasPermission(user_id, "verdes.permissao") or vRP.hasPermission(user_id, "vermelhos.permissao") or vRP.hasPermission(user_id, "roxos.permissao")
+    return vRP.hasPermission(user_id, "verdes.permissao") or vRP.hasPermission(user_id, "vermelhos.permissao") or vRP.hasPermission(user_id, "roxos.permissao") or vRP.hasPermission(user_id, "laranjas.permissao")
 end
 
 -- function emP.checkPermission2()
@@ -61,6 +61,7 @@ function emP.checkPayment()
         maconha = false
         cocaina = false
         metanfetamina = false
+        heroina = false
 
         if vRP.getInventoryItemAmount(user_id, "maconha") >= 1 then
             maconha = true
@@ -71,12 +72,18 @@ function emP.checkPayment()
         if vRP.getInventoryItemAmount(user_id, "metanfetamina") >= 1 then
             metanfetamina = true
         end
+        if vRP.getInventoryItemAmount(user_id, "heroina") >= 1 then
+            heroina = true
+        end
 
-        if maconha and cocaina and metanfetamina then
+        if maconha and cocaina and metanfetamina and heroina then
             vRP.tryGetInventoryItem(user_id, "maconha", 1)
             vRP.giveInventoryItem(user_id, "dinheirosujo", (parseInt(0) + bonus) * 1)
 
             vRP.tryGetInventoryItem(user_id, "cocaina", 1)
+            vRP.giveInventoryItem(user_id, "dinheirosujo", (parseInt(0) + bonus) * 1)
+
+            vRP.tryGetInventoryItem(user_id, "heroina", 1)
             vRP.giveInventoryItem(user_id, "dinheirosujo", (parseInt(0) + bonus) * 1)
 
             vRP.tryGetInventoryItem(user_id, "metanfetamina", 1)
@@ -87,6 +94,13 @@ function emP.checkPayment()
         if maconha then
             if vRP.getInventoryItemAmount(user_id, "maconha") >= 3 then
                 vRP.tryGetInventoryItem(user_id, "maconha", 3)
+                vRP.giveInventoryItem(user_id, "dinheirosujo", (parseInt(0) + bonus) * 3)
+                return true
+            end
+        end
+        if heroina then
+            if vRP.getInventoryItemAmount(user_id, "heroina") >= 3 then
+                vRP.tryGetInventoryItem(user_id, "heroina", 3)
                 vRP.giveInventoryItem(user_id, "dinheirosujo", (parseInt(0) + bonus) * 3)
                 return true
             end
@@ -129,6 +143,7 @@ function emP.checkPayment2()
         maconha = false
         cocaina = false
         metanfetamina = false
+        heroina = false
 
         if vRP.getInventoryItemAmount(user_id, "maconha") >= 1 then
             maconha = true
@@ -136,15 +151,21 @@ function emP.checkPayment2()
         if vRP.getInventoryItemAmount(user_id, "cocaina") >= 1 then
             cocaina = true
         end
+        if vRP.getInventoryItemAmount(user_id, "heroina") >= 1 then
+            heroina = true
+        end
         if vRP.getInventoryItemAmount(user_id, "metanfetamina") >= 1 then
             metanfetamina = true
         end
 
-        if maconha and cocaina and metanfetamina then
+        if maconha and cocaina and metanfetamina and heroina then
             vRP.tryGetInventoryItem(user_id, "maconha", 1)
             vRP.giveInventoryItem(user_id, "dinheirosujo", (parseInt(0) + bonus) * 1)
 
             vRP.tryGetInventoryItem(user_id, "cocaina", 1)
+            vRP.giveInventoryItem(user_id, "dinheirosujo", (parseInt(0) + bonus) * 1)
+
+            vRP.tryGetInventoryItem(user_id, "heroina", 1)
             vRP.giveInventoryItem(user_id, "dinheirosujo", (parseInt(0) + bonus) * 1)
 
             vRP.tryGetInventoryItem(user_id, "metanfetamina", 1)
@@ -162,6 +183,13 @@ function emP.checkPayment2()
         if cocaina then
             if vRP.getInventoryItemAmount(user_id, "cocaina") >= 3 then
                 vRP.tryGetInventoryItem(user_id, "cocaina", 3)
+                vRP.giveInventoryItem(user_id, "dinheirosujo", (parseInt(0) + bonus) * 3)
+                return true
+            end
+        end
+        if heroina then
+            if vRP.getInventoryItemAmount(user_id, "heroina") >= 3 then
+                vRP.tryGetInventoryItem(user_id, "heroina", 3)
                 vRP.giveInventoryItem(user_id, "dinheirosujo", (parseInt(0) + bonus) * 3)
                 return true
             end
@@ -187,12 +215,12 @@ function emP.MarcarOcorrencia()
     local identity = vRP.getUserIdentity(user_id)
     local crds = GetEntityCoords(GetPlayerPed(source))
 
-    local chance = 0
-    local chance = math.random(1,10)
+    -- local chance = 0
+    -- local chance = math.random(1,10)
 
-    if chance >= 5 then
-        return
-    end
+    -- if chance > 7 then
+    --     return
+    -- end
 
     if user_id then
         local soldado = vRP.getUsersByPermission("policia.permissao")

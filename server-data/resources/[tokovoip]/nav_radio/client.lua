@@ -40,7 +40,7 @@ RegisterNUICallback("ButtonClick",function(data,cb)
 			exports.tokovoip_script:addPlayerToRadio(1000)
 		end
 	elseif data == "staff" then
-		if emP.checkPermission2("kick.permissao","STAFF") then
+		if emP.checkPermission2("staff.permissao","STAFF") then
 			outServers()
 			exports.tokovoip_script:addPlayerToRadio(1001)
 		end
@@ -49,8 +49,8 @@ RegisterNUICallback("ButtonClick",function(data,cb)
 			outServers()
 			exports.tokovoip_script:addPlayerToRadio(1002)
 		end
-	elseif data == "serpentes" then
-		if emP.checkPermission2("serpentes.permissao","Serpentes") then
+	elseif data == "driftking" then
+		if emP.checkPermission2("driftking.permissao","Driftking") then
 			outServers()
 			exports.tokovoip_script:addPlayerToRadio(1003)
 		end	
@@ -89,8 +89,8 @@ RegisterNUICallback("ButtonClick",function(data,cb)
 			outServers()
 			exports.tokovoip_script:addPlayerToRadio(1010)
 		end
-	elseif data == "motoclub" then
-		if emP.checkPermission2("motoclub.permissao","Motoclub") then
+	elseif data == "midnight" then
+		if emP.checkPermission2("midnight.permissao","Midnight") then
 			outServers()
 			exports.tokovoip_script:addPlayerToRadio(1011)
 		end		

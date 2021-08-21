@@ -50,8 +50,8 @@ Citizen.CreateThread(function()
 					radar.info2 = string.format("~r~PLACA: ~w~%s   ~r~MODELO: ~w~%s   ~r~VELOCIDADE: ~w~%s KMH",bplate,bmodel,math.ceil(bvspeed))
 				end
 			end
-			drawTxt(radar.info,4,0.7,0.905,0.50,255,255,255,200)
-			drawTxt(radar.info2,4,0.7,0.93,0.50,255,255,255,200)
+			drawTxt(radar.info,4,0.5,0.905,0.50,255,255,255,180)
+			drawTxt(radar.info2,4,0.5,0.93,0.50,255,255,255,180)
 		end
 
 		if not IsPedInAnyVehicle(PlayerPedId()) and radar.shown then

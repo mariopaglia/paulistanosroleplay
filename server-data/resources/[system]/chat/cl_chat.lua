@@ -186,6 +186,12 @@ RegisterNUICallback('loaded', function(data, cb)
   cb('ok')
 end)
 
+local UsingPhone = false
+
+AddEventHandler('status:celular', function(b)
+  UsingPhone = b
+end)
+
 Citizen.CreateThread(function()
   SetTextChatEnabled(false)
   SetNuiFocus(false)
@@ -196,12 +202,14 @@ Citizen.CreateThread(function()
     if not chatInputActive then
       sleep = 4
       if IsControlPressed(0, 245) --[[ INPUT_MP_TEXT_CHAT_ALL ]] then
-        chatInputActive = true
-        chatInputActivating = true
+        if not UsingPhone then
+          chatInputActive = true
+          chatInputActivating = true
 
-        SendNUIMessage({
-          type = 'ON_OPEN'
-        })
+          SendNUIMessage({
+            type = 'ON_OPEN'
+          })
+        end
       end
     end
 
@@ -236,8 +244,12 @@ Citizen.CreateThread(function()
 end)
 
 Citizen.CreateThread(function()
-    TriggerEvent('chat:addSuggestion', '/olx')
-    TriggerEvent('chat:addSuggestion', '/ilegal')
+    TriggerEvent('chat:addSuggestion', '/taxi')
+    TriggerEvent('chat:addSuggestion', '/conce')
+    TriggerEvent('chat:addSuggestion', '/mec')
+    TriggerEvent('chat:addSuggestion', '/adv')
+    -- TriggerEvent('chat:addSuggestion', '/olx')
     TriggerEvent('chat:addSuggestion', '/192')
     TriggerEvent('chat:addSuggestion', '/190')
+    -- TriggerEvent('chat:addSuggestion', '/il')
 end)

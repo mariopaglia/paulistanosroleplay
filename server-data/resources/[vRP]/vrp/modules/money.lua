@@ -96,7 +96,7 @@ function vRP.tryFullPayment(user_id,amount)
 end
 
 AddEventHandler("vRP:playerJoin",function(user_id,source,name)
-	vRP.execute("vRP/money_init_user",{ user_id = user_id, wallet = 1000, bank = 30000 })
+	vRP.execute("vRP/money_init_user",{ user_id = user_id, wallet = 1000, bank = 80000 })
 	Citizen.Wait(1000)
 	local tmp = vRP.getUserTmpTable(user_id)
 	if tmp then
@@ -105,7 +105,7 @@ AddEventHandler("vRP:playerJoin",function(user_id,source,name)
 			tmp.bank = rows[1].bank
 			tmp.wallet = rows[1].wallet
 		else
-			tmp.bank = 30000
+			tmp.bank = 80000
 			tmp.wallet = 1000
 		end
 	end

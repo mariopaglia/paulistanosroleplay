@@ -62,7 +62,7 @@ Config.Veiculos = {
             {title = "Civic Type R", model = "hondafk8", mala = 30, preco = 1200000, estoque = 10},
             {title = "Mazda RX7", model = "mazdarx7", mala = 10, preco = 1300000, estoque = 10},
             --
-            {title = "Lancer Evolution 9", model = "lancerevolution9", mala = 20, preco = 1400000, estoque = 10},
+            {title = "Lancer Evolution 9", model = "lancerevolution9", mala = 20, preco = 1400000, estoque = 15},
             {title = "Toyota Supra", model = "toyotasupra", mala = 0, preco = 1500000, estoque = 20},
             {title = "Nissan 370Z", model = "nissan370z", mala = 0, preco = 1600000, estoque = 10},
             {title = "Nissan GTR", model = "nissangtr", mala = 10, preco = 1700000, estoque = 10},
@@ -341,7 +341,7 @@ Config.Veiculos = {
             {title = "Schafter6", model = "schafter6", mala = 30, preco = 850000, estoque = 3}, -- Novo - atualizar baú pra 30 | Adicionar na base (0x72934BE4) 
             {title = "XLS2", model = "xls2", mala = 50, preco = 900000, estoque = 3}, -- Novo -
             {title = "Baller6", model = "baller6", mala = 50, preco = 900000, estoque = 3}, -- Novo -
-            {title = "Rumpo3", model = "rumpo3", mala = 100, preco = 1000000, estoque = 3}, -- Novo - atualizar baú pra 100
+            {title = "Rumpo3", model = "rumpo3", mala = 100, preco = 1000000, estoque = 5}, -- Novo - atualizar baú pra 100
         },
     },
     {

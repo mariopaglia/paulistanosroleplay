@@ -8,22 +8,22 @@
       <txdName>rmodbmwm8</txdName>
       <handlingId>rmodbmwm8</handlingId>
       <gameName>rmodbmwm8</gameName>
-      <vehicleMakeName>BMW</vehicleMakeName>
+      <vehicleMakeName>BMW M8</vehicleMakeName>
       <expressionDictName>null</expressionDictName>
       <expressionName>null</expressionName>
       <animConvRoofDictName>null</animConvRoofDictName>
       <animConvRoofName>null</animConvRoofName>
       <animConvRoofWindowsAffected />
       <ptfxAssetName>null</ptfxAssetName>
-      <audioNameHash>monster</audioNameHash>
-      <layout>LAYOUT_LOW</layout>
-      <coverBoundOffsets>T20_COVER_OFFSET_INFO</coverBoundOffsets>
+      <audioNameHash>t20</audioNameHash>
+      <layout>LAYOUT_STD_EXITFIXUP</layout>
+      <coverBoundOffsets>SULTAN_COVER_OFFSET_INFO</coverBoundOffsets>
       <explosionInfo>EXPLOSION_INFO_DEFAULT</explosionInfo>
       <scenarioLayout />
-      <cameraName>FOLLOW_CHEETAH_CAMERA</cameraName>
+      <cameraName>DEFAULT_FOLLOW_VEHICLE_CAMERA</cameraName>
       <aimCameraName>DEFAULT_THIRD_PERSON_VEHICLE_AIM_CAMERA</aimCameraName>
-      <bonnetCameraName>VEHICLE_BONNET_CAMERA_LOW_LOW</bonnetCameraName>
-      <povCameraName>REDUCED_NEAR_CLIP_POV_CAMERA_NO_REVERSE</povCameraName>
+      <bonnetCameraName>VEHICLE_BONNET_CAMERA_STANDARD</bonnetCameraName>
+      <povCameraName>REDUCED_NEAR_CLIP_POV_CAMERA</povCameraName>
       <FirstPersonDriveByIKOffset x="0.000000" y="-0.060000" z="-0.025000" />
       <FirstPersonDriveByUnarmedIKOffset x="-0.035000" y="-0.065000" z="0.000000" />
 	  <FirstPersonProjectileDriveByIKOffset x="0.070000" y="-0.140000" z="-0.030000" />
@@ -84,8 +84,8 @@
       <type>VEHICLE_TYPE_CAR</type>
       <plateType>VPT_BACK_PLATES</plateType>
       <dashboardType>VDT_GENTAXI</dashboardType>
-      <vehicleClass>VC_SUPER</vehicleClass>
-      <wheelType>VWT_HIEND</wheelType>
+      <vehicleClass>VC_SPORT</vehicleClass>
+      <wheelType>VWT_SPORT</wheelType>
       <trailers />
       <additionalTrailers />
       <drivers />
@@ -107,8 +107,8 @@
       <buoyancySphereSizeScale value="1.000000" />
       <pOverrideRagdollThreshold type="NULL" />
       <firstPersonDrivebyData>
-        <Item>LOW_T20_FRONT_LEFT</Item>
-        <Item>LOW_T20_FRONT_RIGHT</Item>
+        <Item>STD_EXEMPLAR_FRONT_LEFT</Item>
+        <Item>STD_EXEMPLAR_FRONT_RIGHT</Item>
       </firstPersonDrivebyData>
     </Item>
   </InitDatas>

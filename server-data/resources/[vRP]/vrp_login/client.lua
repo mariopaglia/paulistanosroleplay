@@ -26,7 +26,7 @@ RegisterNUICallback("ButtonClick",function(data,cb)
 	elseif data == "garagem03" then
 		vRP.teleport(-772.81,5596.25,33.48)
 	elseif data == "hospital01" then
-		vRP.teleport(299.89,-575.0,43.27)
+		vRP.teleport(-826.96,-1206.21,6.89)
 	elseif data == "metro" then
 		vRP.teleport(-845.76373291016,-131.1110534668,37.520294189453)
 	elseif data == "aeroporto" then

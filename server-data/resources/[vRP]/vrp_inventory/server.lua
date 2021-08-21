@@ -311,6 +311,43 @@ local user_id = vRP.getUserId(source)
 						TriggerClientEvent("Notify",source,"sucesso","Água utilizada com sucesso.",8000)
 					end)
 				end
+			elseif itemName == "heroina" then
+				if vRP.tryGetInventoryItem(user_id,"heroina",1) then
+					local efeito = 0
+					local efeito = math.random(1,10)
+					if efeito >= 5 then
+						actived[user_id] = true
+						TriggerClientEvent('Creative:Update',source,'updateMochila')
+						vRPclient._playAnim(source,true,{{"mp_player_int_uppersmoke","mp_player_int_smoke"}},true)
+						TriggerClientEvent('cancelando',source,true)
+						TriggerClientEvent("progress",source,10000,"injetando")
+							SetTimeout(10000,function()
+							actived[user_id] = nil
+							vRPclient._stopAnim(source,false)
+							TriggerClientEvent('energeticos',source,true)
+							TriggerClientEvent('cancelando',source,false)
+							vRPclient.playScreenEffect(source,"RaceTurbo",60)
+							vRPclient.playScreenEffect(source,"DrugsTrevorClownsFight",60)
+							TriggerClientEvent("Notify",source,"sucesso","Heroína utilizada, seu coração esta acelerado!.",8000)
+						end)
+						SetTimeout(15000,function()
+							TriggerClientEvent('energeticos',source,false)
+							TriggerClientEvent("Notify",source,"importante","Seu coração voltou a bater normalmente.",8000)
+						end)
+					else
+						actived[user_id] = true
+						TriggerClientEvent('Creative:Update',source,'updateMochila')
+						vRPclient._playAnim(source,true,{{"mp_player_int_uppersmoke","mp_player_int_smoke"}},true)
+						TriggerClientEvent('cancelando',source,true)
+						TriggerClientEvent("progress",source,10000,"injetando")
+						SetTimeout(10000,function()
+							actived[user_id] = nil
+							vRPclient._stopAnim(source,false)
+							TriggerClientEvent('cancelando',source,false)
+							TriggerClientEvent("Notify",source,"importante","sem efeito.",8000)
+						end)
+					end
+				end
 			elseif itemName == "cocaina" then
 				if vRP.tryGetInventoryItem(user_id,"cocaina",1) then
 					local efeito = 0
@@ -430,23 +467,30 @@ local user_id = vRP.getUserId(source)
 					local identity = vRP.getUserIdentity(user_id)
 					local identityu = vRP.getUserIdentity(nuser_id)
 					local crds = GetEntityCoords(GetPlayerPed(source))
-					if vRPclient.isInComa(nplayer) then
-						vRP.tryGetInventoryItem(user_id,"adrenalina",1)
-						TriggerClientEvent('cancelando',source,true)
-						vRPclient._playAnim(source,false,{{"amb@medic@standing@tendtodead@base","base"},{"mini@cpr@char_a@cpr_str","cpr_pumpchest"}},true)
-						TriggerClientEvent("progress",source,30000,"reanimando")
-						SetTimeout(30000,function()
-							vRPclient.killGod(nplayer)
-							vRPclient.setHealth(nplayer,150)
-							vRPclient._stopAnim(source,false)
-							vRPclient._stopAnim(nplayer,false)
-							vRP.giveMoney(user_id,500)
-							TriggerClientEvent('cancelando',source,false)
-							TriggerEvent("srkfive:killregisterclear",nuser_id)
-							SendWebhookMessage(webhookadrenalina,"```prolog\n[ID]: "..user_id.." "..identity.name.." "..identity.firstname.." \n[REVIVEU]: "..nuser_id.." "..identityu.name.." "..identityu.firstname.."\n[COORDENADA]: "..crds.x..","..crds.y..","..crds.z..""..os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S").." \r```")
-						end)
+					local medicos = vRP.getUsersByPermission("paramedico.permissao")
+
+					if #medicos > 1 then
+						TriggerClientEvent("Notify",source,"negado","Existem médicos em serviço, faça um <b>/call 192</b>",5000)
+						return
 					else
-					TriggerClientEvent("Notify",source,"importante","A pessoa precisa estar em coma para prosseguir.")
+						if vRPclient.isInComa(nplayer) then
+							vRP.tryGetInventoryItem(user_id,"adrenalina",1)
+							TriggerClientEvent('cancelando',source,true)
+							vRPclient._playAnim(source,false,{{"amb@medic@standing@tendtodead@base","base"},{"mini@cpr@char_a@cpr_str","cpr_pumpchest"}},true)
+							TriggerClientEvent("progress",source,30000,"reanimando")
+							SetTimeout(30000,function()
+								vRPclient.killGod(nplayer)
+								vRPclient.setHealth(nplayer,150)
+								vRPclient._stopAnim(source,false)
+								vRPclient._stopAnim(nplayer,false)
+								vRP.giveMoney(user_id,500)
+								TriggerClientEvent('cancelando',source,false)
+								TriggerEvent("srkfive:killregisterclear",nuser_id)
+								SendWebhookMessage(webhookadrenalina,"```prolog\n[ID]: "..user_id.." "..identity.name.." "..identity.firstname.." \n[REVIVEU]: "..nuser_id.." "..identityu.name.." "..identityu.firstname.."\n[COORDENADA]: "..crds.x..","..crds.y..","..crds.z..""..os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S").." \r```")
+							end)
+						else
+						TriggerClientEvent("Notify",source,"importante","A pessoa precisa estar em coma para prosseguir.")
+						end
 					end
 				end
 			elseif itemName == "energetico" then
@@ -471,16 +515,23 @@ local user_id = vRP.getUserId(source)
 			elseif itemName == "lockpick" then
 				local vehicle,vnetid,placa,vname,lock,banned,trunk,model,street = vRPclient.vehList(source,7)
 				local policia = vRP.getUsersByPermission("pmesp.permissao")
-				if #policia < 2 then
-					TriggerClientEvent("Notify",source,"importante","Número insuficiente de policiais no momento para iniciar o roubo.")
-					return true
-				end
 				if vRP.hasPermission(user_id,"policia.permissao") then
 					TriggerEvent("setPlateEveryone",placa)
 					vGARAGE.vehicleClientLock(-1,vnetid,lock)
 					TriggerClientEvent("vrp_sound:source",source,'lock',0.5)
 					return
 				end
+				if #policia < 2 then
+					TriggerClientEvent("Notify",source,"importante","Número insuficiente de policiais no momento para iniciar o roubo.")
+					return true
+				end
+
+				-- FAZER A VERIFICAÇÃO SE O VEÍCULO ESTÁ TRANCADO
+				if lock == 1 then
+					TriggerClientEvent("Notify",source,"negado","Lockpick só pode ser usada em veículos que estão trancados!")
+					return true
+				end
+
 				if vRP.getInventoryItemAmount(user_id,"lockpick") >= 1 and vRP.tryGetInventoryItem(user_id,"lockpick",1) and vehicle then
 					actived[user_id] = true
 					-- if vRP.hasPermission(user_id,"polpar.permissao") then
@@ -548,6 +599,12 @@ local user_id = vRP.getUserId(source)
 			elseif itemName == "masterpick" then
 				local vehicle,vnetid,placa,vname,lock,banned,trunk,model,street = vRPclient.vehList(source,7)
 				local policia = vRP.getUsersByPermission("pmesp.permissao")
+
+				if not vRP.hasPermission(user_id,"admin.permissao") then
+					TriggerClientEvent("Notify",source,"negado","Apenas administradores podem utilizar a Masterpick.")
+					return true
+				end
+				
 				if #policia < 0 then
 					TriggerClientEvent("Notify",source,"importante","Número insuficiente de policiais no momento para iniciar o roubo.")
 					return true
@@ -705,14 +762,19 @@ local user_id = vRP.getUserId(source)
                 if vRPclient.GetVehicleSeat(source) then
                     if vRP.tryGetInventoryItem(user_id,"placa",1) then
                         local placa = vRP.generatePlate()
+						local vehicle,vnetid,placa,vname,lock,banned,trunk,model,street = vRPclient.vehList(source,7)
                         TriggerClientEvent('Creative:Update',source,'updateMochila')
                         TriggerClientEvent('cancelando',source,true)
                         TriggerClientEvent("vehicleanchor",source)
-                        TriggerClientEvent("progress",source,59500,"clonando")
-                        SetTimeout(60000,function()
+                        TriggerClientEvent("progress",source,30000,"clonando")
+                        SetTimeout(30000,function()
                             TriggerClientEvent('cancelando',source,false)
                             TriggerClientEvent("cloneplates",source,placa)
-                            --TriggerEvent("setPlateEveryone",placa)
+                            TriggerEvent("setPlateEveryone",placa)
+							if lock == 2 then
+								TriggerEvent("setPlateEveryone",placa)
+								vGARAGE.vehicleClientLock(-1,vnetid,lock)
+							end
                             TriggerClientEvent("Notify",source,"sucesso","Placa clonada com sucesso.",8000)
                         end)
                     end
@@ -769,6 +831,52 @@ local user_id = vRP.getUserId(source)
 		end
 	end
 end
+
+-----------------------------------------------------------------------------------------------------------------------------------------
+-- USE
+-----------------------------------------------------------------------------------------------------------------------------------------
+local bandagem = {}
+Citizen.CreateThread(function()
+	while true do
+		Citizen.Wait(1000)
+		for k,v in pairs(bandagem) do
+			if v > 0 then
+				bandagem[k] = v - 1
+			end
+		end
+	end
+end)
+
+RegisterCommand('use',function(source,args,rawCommand)
+	if args[1] == nil then
+		return
+	end
+	local user_id = vRP.getUserId(source)
+	if args[1] == "energetico" then
+		if vRP.tryGetInventoryItem(user_id,"energetico",1) then
+			actived[user_id] = true
+			TriggerClientEvent('Creative:Update',source,'updateMochila')
+			TriggerClientEvent('cancelando',source,true)
+			vRPclient._CarregarObjeto(source,"mp_player_intdrink","loop_bottle","prop_energy_drink",49,60309)
+			TriggerClientEvent("progress",source,12000,"bebendo")
+			SetTimeout(12000,function()
+				actived[user_id] = nil
+				TriggerClientEvent('energeticos',source,true)
+				TriggerClientEvent('cancelando',source,false)
+				vRPclient._DeletarObjeto(source)
+				TriggerClientEvent("Notify",source,"sucesso","Energético utilizado com sucesso.",8000)
+			end)
+			SetTimeout(60000,function()
+				TriggerClientEvent('energeticos',source,false)
+				TriggerClientEvent("Notify",source,"importante","O efeito do energético passou e o coração voltou a bater normalmente.",8000)
+			end)
+		else
+			TriggerClientEvent("Notify",source,"negado","Energético não encontrado na mochila.")
+		end
+	end
+	TriggerEvent('logs:ToDiscord', discord_webhook5 , "USOU", "```Player "..user_id.." usou(por comando) o item: "..args[1].."```", "https://www.tumarcafacil.com/wp-content/uploads/2017/06/RegistroDeMarca-01-1.png", false, false)
+end)
+
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- PLAYERLEAVE
 -----------------------------------------------------------------------------------------------------------------------------------------

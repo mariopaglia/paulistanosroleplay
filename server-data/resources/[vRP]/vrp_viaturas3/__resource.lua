@@ -240,9 +240,76 @@ client_script 'data/porschespeed/vehicle_names.lua'
 
 --\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 
---\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+files {
+    'data/dicgt63/vehicles.meta',
+    'data/dicgt63/carvariations.meta',
+    'data/dicgt63/carcols.meta',
+    'data/dicgt63/handling.meta'
+    
+}
+
+data_file 'HANDLING_FILE' 'data/dicgt63/handling.meta'
+data_file 'VEHICLE_METADATA_FILE' 'data/dicgt63/vehicles.meta'
+data_file 'CARCOLS_FILE' 'data/dicgt63/carcols.meta'
+data_file 'VEHICLE_VARIATION_FILE' 'data/dicgt63/carvariations.meta'
+
+
+client_script 'data/dicgt63/vehicle_names.lua'
 
 --\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
+files {
+    'data/cls63s/vehicles.meta',
+    'data/cls63s/carvariations.meta',
+    'data/cls63s/carcols.meta',
+    'data/cls63s/handling.meta'
+    
+}
+
+data_file 'HANDLING_FILE' 'data/cls63s/handling.meta'
+data_file 'VEHICLE_METADATA_FILE' 'data/cls63s/vehicles.meta'
+data_file 'CARCOLS_FILE' 'data/cls63s/carcols.meta'
+data_file 'VEHICLE_VARIATION_FILE' 'data/cls63s/carvariations.meta'
+
+
+client_script 'data/cls63s/vehicle_names.lua'
+
+--\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
+files {
+    'data/explorermedico/vehicles.meta',
+    'data/explorermedico/carvariations.meta',
+    'data/explorermedico/carcols.meta',
+    'data/explorermedico/handling.meta'
+    
+}
+
+data_file 'HANDLING_FILE' 'data/explorermedico/handling.meta'
+data_file 'VEHICLE_METADATA_FILE' 'data/explorermedico/vehicles.meta'
+data_file 'CARCOLS_FILE' 'data/explorermedico/carcols.meta'
+data_file 'VEHICLE_VARIATION_FILE' 'data/explorermedico/carvariations.meta'
+
+
+client_script 'data/explorermedico/vehicle_names.lua'
+
+--\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+--\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
+files {
+    'data/a45policia/vehicles.meta',
+    'data/a45policia/carvariations.meta',
+    'data/a45policia/carcols.meta',
+    'data/a45policia/handling.meta'
+    
+}
+
+data_file 'HANDLING_FILE' 'data/a45policia/handling.meta'
+data_file 'VEHICLE_METADATA_FILE' 'data/a45policia/vehicles.meta'
+data_file 'CARCOLS_FILE' 'data/a45policia/carcols.meta'
+data_file 'VEHICLE_VARIATION_FILE' 'data/a45policia/carvariations.meta'
+
+
+client_script 'data/a45policia/vehicle_names.lua'
 
 --\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 

@@ -26,7 +26,7 @@ function lav.checkDinheiro()
 	local source = source
 	local user_id = vRP.getUserId(source)
 	if user_id then
-		if vRP.getInventoryItemAmount(user_id,"dinheirosujo") >= 10000 and vRP.getInventoryItemAmount(user_id,"pendrivedeep") >= 1 then
+		if vRP.getInventoryItemAmount(user_id,"dinheirosujo") >= 50000 and vRP.getInventoryItemAmount(user_id,"pendrivedeep") >= 5 then
 			return true 
 		else
 			TriggerClientEvent("Notify",source,"negado","Sem <b>Dinheiro Sujo</b> ou <b>Pendrive Deepweb</b>") 
@@ -40,8 +40,8 @@ function lav.checkPayment()
     local user_id = vRP.getUserId(source)
     local policia = vRP.getUsersByPermission("policia.permissao")
     if user_id then
-        if vRP.tryGetInventoryItem(user_id,"dinheirosujo",10000) and vRP.tryGetInventoryItem(user_id,"pendrivedeep",1) then
-           vRP.giveMoney(user_id,parseInt(10000))
+        if vRP.tryGetInventoryItem(user_id,"dinheirosujo",50000) and vRP.tryGetInventoryItem(user_id,"pendrivedeep",5) then
+           vRP.giveMoney(user_id,parseInt(50000))
       end
    end
 end
@@ -76,7 +76,7 @@ end
 function lav.checkpermission()
 	local source = source
 	local user_id = vRP.getUserId(source)
-	if vRP.hasPermission(user_id,"salieris.permissao") or vRP.hasPermission(user_id,"triade.permissao") then 
+	if vRP.hasPermission(user_id,"salieris.permissao") or vRP.hasPermission(user_id,"triade.permissao") or vRP.hasPermission(user_id,"irmandade.permissao") then 
 		return true
 	end
 end

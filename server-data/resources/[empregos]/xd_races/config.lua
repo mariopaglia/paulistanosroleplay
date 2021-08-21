@@ -58,6 +58,7 @@ xD = {
 		-- end
 
 		vRP.giveInventoryItem(user_id,"dinheirosujo",parseInt(payment)) -- Para receber dinheiro sujo ao terminar a corrida.
+		vRP.giveInventoryItem(user_id,"ticketpvp",2) -- Para receber dinheiro sujo ao terminar a corrida.
 		-- vRP.giveMoney(user_id,parseInt(payment)) -- Para receber dinheiro limpo ao terminar a corrida.
     end,
 

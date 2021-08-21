@@ -40,6 +40,15 @@ local outros = {
 	{ id = 26 , x= 991.9, y= -2175.42, z= 29.98 , h = 357.49 },
 	{ id = 27 , x = 1984.1, y = 3049.81, z = 47.22 , h = 327.04 },
 	{ id = 28 , x= -86.68, y= 6237.4, z= 31.1 , h = 25.48 },
+	{ id = 29 , x=95.07, y=-1293.04, z=29.27 , h = 294.94 }, -- Vanilla
+}
+
+local barbearia = {	
+	{ id = 30 , x=-808.4, y=-179.85, z=37.57 , h = 285.89 }, -- Barbearia
+	{ id = 31 , x=141.64, y=-1705.72, z=29.3 , h = 317.18 }, -- Barbearia
+	{ id = 32 , x=-1277.92, y=-1119.2, z=7.0 , h = 265.82 }, -- Barbearia
+	{ id = 33 , x=1216.53, y=-475.91, z=66.21 , h = 245.61 }, -- Barbearia
+	{ id = 34 , x=-36.52, y=-156.13, z=57.08 , h = 160.84 }, -- Barbearia
 }
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- ROTEIRO DO ROUBO
@@ -126,6 +135,37 @@ Citizen.CreateThread(function()
 						if IsControlJustPressed(0,47) and not IsPedInAnyVehicle(ped,false) then
 							if GetEntityModel(ped) == GetHashKey("mp_m_freemode_01") or GetEntityModel(ped) == GetHashKey("mp_f_freemode_01") then
 								rob.IniciandoRoubo3(item.id,item.x,item.y,item.z,item.h)
+							else
+								TriggerEvent('chatMessage',"ALERTA",{255,70,50},"Você não pode iniciar um roubo utilizando skin de personagem.")
+							end
+						end
+					end
+				end
+			end
+		end
+		Citizen.Wait(esperar)
+	end
+end)
+
+Citizen.CreateThread(function()
+	while true do
+		local esperar = 1000
+		for _,item in pairs(barbearia) do
+			local ped = GetPlayerPed(-1)
+			local px,py,pz = table.unpack(GetEntityCoords(ped,true))
+			local unusedBool,coordz = GetGroundZFor_3dCoord(item.x,item.y,item.z,1)
+			local distancia = GetDistanceBetweenCoords(item.x,item.y,coordz,px,py,pz,true)
+			if andamento then
+				esperar = 4
+			else
+				if distancia <= 20 then
+					esperar = 4
+					DrawMarker(29,item.x,item.y,item.z,0,0,0,0,0,0,1.0,0.7,1.0,50,150,50,200,1,0,0,1)
+					if distancia <= 1.5 then
+						DisplayHelpText("Aperte ~INPUT_THROW_GRENADE~ para iniciar o roubo")
+						if IsControlJustPressed(0,47) and not IsPedInAnyVehicle(ped,false) then
+							if GetEntityModel(ped) == GetHashKey("mp_m_freemode_01") or GetEntityModel(ped) == GetHashKey("mp_f_freemode_01") then
+								rob.IniciandoRoubo4(item.id,item.x,item.y,item.z,item.h)
 							else
 								TriggerEvent('chatMessage',"ALERTA",{255,70,50},"Você não pode iniciar um roubo utilizando skin de personagem.")
 							end

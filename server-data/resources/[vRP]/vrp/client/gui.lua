@@ -381,14 +381,27 @@ RegisterCommand('vrp:anim03', function()
 	end
 end, false)
 
-RegisterKeyMapping ( 'vrp:anim05' , '[A] Puto' , 'keyboard' , 'F5' )
+RegisterKeyMapping ( 'vrp:anim05' , '[A] Cruzar braços 2' , 'keyboard' , 'F5' )
 
 RegisterCommand('vrp:anim05', function()
 	local ped = PlayerPedId()
 	if not IsPedInAnyVehicle(ped) and GetEntityHealth(ped) > 101 and not menu_state.opened and not menu_celular and not cancelando then
-		tvRP.playAnim(true,{{"misscarsteal4@actor","actor_berating_loop"}},false)
+		if IsEntityPlayingAnim(ped,"anim@amb@casino@valet_scenario@pose_d@","base_a_m_y_vinewood_01",3) then
+			tvRP.DeletarObjeto()
+		else
+			tvRP.playAnim(true,{{"anim@amb@casino@valet_scenario@pose_d@","base_a_m_y_vinewood_01"}},true)
+		end
 	end
 end, false)
+
+--RegisterKeyMapping ( 'vrp:anim05' , '[A] Puto' , 'keyboard' , 'F5' )
+--
+--RegisterCommand('vrp:anim05', function()
+--	local ped = PlayerPedId()
+--	if not IsPedInAnyVehicle(ped) and GetEntityHealth(ped) > 101 and not menu_state.opened and not menu_celular and not cancelando then
+--		tvRP.playAnim(true,{{"misscarsteal4@actor","actor_berating_loop"}},false)
+--	end
+--end, false)
 
 RegisterKeyMapping ( 'vrp:cancelAnims' , 'Cancelar animações' , 'keyboard' , 'F6' )
 
@@ -516,14 +529,14 @@ Citizen.CreateThread(function()
 		-- JOIA (ARROW LEFT)
 		if IsControlJustPressed(0,189) then
 			if not IsPedInAnyVehicle(ped) and GetEntityHealth(ped) > 101 and not menu_state.opened and not menu_celular then
-				tvRP.playAnim(true,{{"anim@mp_player_intupperthumbs_up","enter"}},false)
+				tvRP.playAnim(true,{{"anim@mp_player_intupperthumbs_up","enter"}},false) --tvRP.playAnim(true,{{"anim@mp_player_intselfiethumbs_up","idle_a"}},false)
         	end
 		end
 
 		-- FACEPALM (ARROW RIGHT)
 		if IsControlJustPressed(0,190) then
 			if not IsPedInAnyVehicle(ped) and GetEntityHealth(ped) > 101 and not menu_state.opened and not menu_celular then
-				tvRP.playAnim(true,{{"anim@mp_player_intcelebrationmale@face_palm","face_palm"}},false)
+				tvRP.playAnim(true,{{"anim@mp_player_intupperface_palm","idle_a"}},false) -- tvRP.playAnim(true,{{"anim@mp_player_intcelebrationmale@face_palm","face_palm"}},false)
         	end
 		end
 

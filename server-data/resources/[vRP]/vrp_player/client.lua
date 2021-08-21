@@ -19,6 +19,7 @@ Citizen.CreateThread(
 				local veh = GetVehiclePedIsTryingToEnter(PlayerPedId())
 				if GetVehicleDoorLockStatus(veh) >= 2 or GetPedInVehicleSeat(veh, -1) then
 					TriggerServerEvent("TryDoorsEveryone", veh, 2, GetVehicleNumberPlateText(veh))
+					Citizen.Wait(2000)
 				end
 			end
 		end
@@ -260,92 +261,92 @@ end)
 -- SMGS = 2.5 DE DANO   --
 -- PISTOLAS 3.0 DE DANO --
 --------------------------
-Citizen.CreateThread(function()
-	while true do
-		N_0x4757f00bc6323cfe(GetHashKey("weapon_knuckle"), 0.1)
-		Wait(0)
-		N_0x4757f00bc6323cfe(GetHashKey("WEAPON_SNOWBALL"), 0.00)
-		Wait(0)
-		N_0x4757f00bc6323cfe(GetHashKey("WEAPON_SMOKEGRENADE"), 0.00)
-		Wait(0)
-		N_0x4757f00bc6323cfe(GetHashKey("WEAPON_RAYPISTOL"), 0.00)
-		Wait(0)
-		N_0x4757f00bc6323cfe(GetHashKey("WEAPON_MOLOTOV"), 0.00)
-		Wait(0)
-		N_0x4757f00bc6323cfe(GetHashKey("WEAPON_BZGAS"), 0.20)
-		Wait(0)
-	    N_0x4757f00bc6323cfe(GetHashKey("WEAPON_UNARMED"), 1.0) 
-    	Wait(0)
-    	N_0x4757f00bc6323cfe(GetHashKey("WEAPON_NIGHTSTICK"), 0.0) -- Cassetete
-    	Wait(0)
-    	N_0x4757f00bc6323cfe(GetHashKey("WEAPON_FLASHLIGHT"), 0.0) -- Lanterna
-    	Wait(0)
-    	N_0x4757f00bc6323cfe(GetHashKey("WEAPON_STUNGUN"), 0.0) -- Tazer
-    	Wait(0)
-		N_0x4757f00bc6323cfe(GetHashKey("WEAPON_PUMPSHOTGUN_MK2"), 0.7) -- SHOTGUN DA POLICIA
-    	Wait(0)
-		N_0x4757f00bc6323cfe(GetHashKey("WEAPON_HEAVYSHOTGUN"), 0.0) 
-    	Wait(0)
-		N_0x4757f00bc6323cfe(GetHashKey("WEAPON_ASSAULTRIFLE"), 0.0)
-    	Wait(0)
-		N_0x4757f00bc6323cfe(GetHashKey("WEAPON_BULLPUPRIFLE"), 0.0)
-    	Wait(0)
-		N_0x4757f00bc6323cfe(GetHashKey("WEAPON_SPECIALCARBINE"), 1.5) -- G36x
-    	Wait(0)
-		N_0x4757f00bc6323cfe(GetHashKey("WEAPON_ASSAULTRIFLE_MK2"), 1.5) -- AK-47
-    	Wait(0)
-		N_0x4757f00bc6323cfe(GetHashKey("WEAPON_CARBINERIFLE_MK2"), 1.5) -- M4A1
-    	Wait(0)
-		N_0x4757f00bc6323cfe(GetHashKey("WEAPON_SPECIAlCARBINE_MK2"), 1.5) -- G36
-    	Wait(0)
-		N_0x4757f00bc6323cfe(GetHashKey("WEAPON_CARBINERIFLE"), 1.5) -- AR-15
-    	Wait(0)
-		N_0x4757f00bc6323cfe(GetHashKey("WEAPON_COMBATPISTOL"), 1.2) -- GLOCK
-    	Wait(0)
-		N_0x4757f00bc6323cfe(GetHashKey("WEAPON_MACHINEPISTOL"), 0.0)
-    	Wait(0)
-		N_0x4757f00bc6323cfe(GetHashKey("WEAPON_COMBATPDW"), 1.2) -- SIGSAUER
-    	Wait(0)
-		N_0x4757f00bc6323cfe(GetHashKey("WEAPON_SMOKEGRENADE"), 0.0)
-    	Wait(0)
-		N_0x4757f00bc6323cfe(GetHashKey("WEAPON_APPISTOL"), 0.0)
-    	Wait(0)
-		N_0x4757f00bc6323cfe(GetHashKey("WEAPON_PISTOL"), 1.2) -- M1911
-    	Wait(0)
-		N_0x4757f00bc6323cfe(GetHashKey("WEAPON_REVOLVER"), 0.0)
-    	Wait(0)
-		N_0x4757f00bc6323cfe(GetHashKey("WEAPON_VINTAGEPISTOL"), 0.0)
-		Wait(0)
-		N_0x4757f00bc6323cfe(GetHashKey("WEAPON_SMG_MK2"), 1.2) -- MP5-MK2
-    	Wait(0)
-		N_0x4757f00bc6323cfe(GetHashKey("WEAPON_SMG"), 0.0)
-    	Wait(0)
-		N_0x4757f00bc6323cfe(GetHashKey("WEAPON_ASSAULTSMG"), 0.0)
-    	Wait(0)
-		N_0x4757f00bc6323cfe(GetHashKey("WEAPON_MICROSMG"), 0.0)
-    	Wait(0)
-		N_0x4757f00bc6323cfe(GetHashKey("WEAPON_MG"), 3.0)
-    	Wait(0)
-		N_0x4757f00bc6323cfe(GetHashKey("WEAPON_HEAVYSNIPER"), 0.0)
-    	Wait(0)
-		N_0x4757f00bc6323cfe(GetHashKey("WEAPON_SNIPERRIFLE"), 0.0)
-    	Wait(0)
-		N_0x4757f00bc6323cfe(GetHashKey("WEAPON_SAWNOFFSHOTGUN"), 0.7) -- SHOTGUN ILEGAL
-    	Wait(0)
-		N_0x4757f00bc6323cfe(GetHashKey("WEAPON_DBSHOTGUN"), 0.0)
-    	Wait(0)
-		N_0x4757f00bc6323cfe(GetHashKey("WEAPON_PISTOL_MK2"), 1.2) -- FIVE-SEVEN
-    	Wait(0)
-		N_0x4757f00bc6323cfe(GetHashKey("WEAPON_MINISMG"), 1.5) -- SCORPION
-    	Wait(0)
-		N_0x4757f00bc6323cfe(GetHashKey("WEAPON_SNSPISTOL"), 1.0) -- SNS PISTOL
-    	Wait(0)
-		N_0x4757f00bc6323cfe(GetHashKey("WEAPON_PISTOL50"), 0.0)
-    	Wait(0)
-		N_0x4757f00bc6323cfe(GetHashKey("WEAPON_RAYPISTOL"), 0.0)
-    	Wait(0)
-    end
-end)
+--  Citizen.CreateThread(function()
+--  	while true do
+-- 		N_0x4757f00bc6323cfe(GetHashKey("weapon_knuckle"), 0.1)
+--  		Wait(0)
+--  		N_0x4757f00bc6323cfe(GetHashKey("WEAPON_SNOWBALL"), 0.00)
+--  		Wait(0)
+--  		N_0x4757f00bc6323cfe(GetHashKey("WEAPON_SMOKEGRENADE"), 0.00)
+--  		Wait(0)
+--  		N_0x4757f00bc6323cfe(GetHashKey("WEAPON_RAYPISTOL"), 0.00)
+--  		Wait(0)
+--  		N_0x4757f00bc6323cfe(GetHashKey("WEAPON_MOLOTOV"), 0.00)
+--  		Wait(0)
+--  		N_0x4757f00bc6323cfe(GetHashKey("WEAPON_BZGAS"), 0.20)
+--  		Wait(0)
+--  	    N_0x4757f00bc6323cfe(GetHashKey("WEAPON_UNARMED"), 1.0) 
+--      	Wait(0)
+--      	N_0x4757f00bc6323cfe(GetHashKey("WEAPON_NIGHTSTICK"), 0.0) -- Cassetete
+--      	Wait(0)
+--      	N_0x4757f00bc6323cfe(GetHashKey("WEAPON_FLASHLIGHT"), 0.0) -- Lanterna
+--      	Wait(0)
+--      	N_0x4757f00bc6323cfe(GetHashKey("WEAPON_STUNGUN"), 0.0) -- Tazer
+--      	Wait(0)
+--  		N_0x4757f00bc6323cfe(GetHashKey("WEAPON_PUMPSHOTGUN_MK2"), 0.7) -- SHOTGUN DA POLICIA
+--      	Wait(0)
+--  		N_0x4757f00bc6323cfe(GetHashKey("WEAPON_HEAVYSHOTGUN"), 0.0) 
+--      	Wait(0)
+--  		N_0x4757f00bc6323cfe(GetHashKey("WEAPON_ASSAULTRIFLE"), 0.0)
+--      	Wait(0)
+--  		N_0x4757f00bc6323cfe(GetHashKey("WEAPON_BULLPUPRIFLE"), 0.0)
+--      	Wait(0)
+--  		N_0x4757f00bc6323cfe(GetHashKey("WEAPON_SPECIALCARBINE"), 1.5) -- G36x
+--      	Wait(0)
+--  		N_0x4757f00bc6323cfe(GetHashKey("WEAPON_ASSAULTRIFLE_MK2"), 1.5) -- AK-47
+--      	Wait(0)
+--  		N_0x4757f00bc6323cfe(GetHashKey("WEAPON_CARBINERIFLE_MK2"), 1.5) -- M4A1
+--      	Wait(0)
+--  		N_0x4757f00bc6323cfe(GetHashKey("WEAPON_SPECIAlCARBINE_MK2"), 1.5) -- G36
+--      	Wait(0)
+--  		N_0x4757f00bc6323cfe(GetHashKey("WEAPON_CARBINERIFLE"), 1.5) -- AR-15
+--      	Wait(0)
+--  		N_0x4757f00bc6323cfe(GetHashKey("WEAPON_COMBATPISTOL"), 1.2) -- GLOCK
+--      	Wait(0)
+--  		N_0x4757f00bc6323cfe(GetHashKey("WEAPON_MACHINEPISTOL"), 0.0)
+--      	Wait(0)
+--  		N_0x4757f00bc6323cfe(GetHashKey("WEAPON_COMBATPDW"), 1.2) -- SIGSAUER
+--      	Wait(0)
+--  		N_0x4757f00bc6323cfe(GetHashKey("WEAPON_SMOKEGRENADE"), 0.0)
+--      	Wait(0)
+--  		N_0x4757f00bc6323cfe(GetHashKey("WEAPON_APPISTOL"), 0.0)
+--      	Wait(0)
+--  		N_0x4757f00bc6323cfe(GetHashKey("WEAPON_PISTOL"), 1.2) -- M1911
+--      	Wait(0)
+--  		N_0x4757f00bc6323cfe(GetHashKey("WEAPON_REVOLVER"), 0.0)
+--      	Wait(0)
+--  		N_0x4757f00bc6323cfe(GetHashKey("WEAPON_VINTAGEPISTOL"), 0.0)
+--  		Wait(0)
+--  		N_0x4757f00bc6323cfe(GetHashKey("WEAPON_SMG_MK2"), 1.2) -- MP5-MK2
+--      	Wait(0)
+--  		N_0x4757f00bc6323cfe(GetHashKey("WEAPON_SMG"), 0.0)
+--      	Wait(0)
+--  		N_0x4757f00bc6323cfe(GetHashKey("WEAPON_ASSAULTSMG"), 0.0)
+--      	Wait(0)
+--  		N_0x4757f00bc6323cfe(GetHashKey("WEAPON_MICROSMG"), 0.0)
+--      	Wait(0)
+--  		N_0x4757f00bc6323cfe(GetHashKey("WEAPON_MG"), 3.0)
+--      	Wait(0)
+--  		N_0x4757f00bc6323cfe(GetHashKey("WEAPON_HEAVYSNIPER"), 0.0)
+--      	Wait(0)
+--  		N_0x4757f00bc6323cfe(GetHashKey("WEAPON_SNIPERRIFLE"), 0.0)
+--      	Wait(0)
+--  		N_0x4757f00bc6323cfe(GetHashKey("WEAPON_SAWNOFFSHOTGUN"), 0.7) -- SHOTGUN ILEGAL
+--      	Wait(0)
+--  		N_0x4757f00bc6323cfe(GetHashKey("WEAPON_DBSHOTGUN"), 0.0)
+--      	Wait(0)
+--  		N_0x4757f00bc6323cfe(GetHashKey("WEAPON_PISTOL_MK2"), 1.2) -- FIVE-SEVEN
+--      	Wait(0)
+--  		N_0x4757f00bc6323cfe(GetHashKey("WEAPON_MINISMG"), 1.5) -- SCORPION
+--      	Wait(0)
+--  		N_0x4757f00bc6323cfe(GetHashKey("WEAPON_SNSPISTOL"), 1.0) -- SNS PISTOL
+--      	Wait(0)
+--  		N_0x4757f00bc6323cfe(GetHashKey("WEAPON_PISTOL50"), 0.0)
+--      	Wait(0)
+--  		N_0x4757f00bc6323cfe(GetHashKey("WEAPON_RAYPISTOL"), 0.0)
+--      	Wait(0)
+--      end
+--  end)
 
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- /ATTACHS
@@ -418,7 +419,7 @@ RegisterCommand("sil",function(source,args)
     	    GiveWeaponComponentToPed(ped,GetHashKey("WEAPON_COMBATPISTOL"),GetHashKey("COMPONENT_AT_PI_SUPP"))	
 		end
 	else
-		TriggerEvent("Notify", "negado", "Necessário <b>VIP Ouro ou superior</b> para utilizar <b>/silenciador</b>")
+		TriggerEvent("Notify", "negado", "Necessário <b>VIP Platina ou superior</b> para utilizar <b>/sil</b>")
 	end
 end)
 -----------------------------------------------------------------------------------------------------------------------------------------
@@ -516,11 +517,16 @@ Citizen.CreateThread(function()
 		if x == px and y == py then
 			if tempo > 0 then
 				tempo = tempo - 1
+				if tempo == 600 then
+					TriggerEvent("Notify", "aviso", "Mexa-se ou será desconectado(a) em <b>10 minutos</b>")
+				elseif tempo == 300 then
+					TriggerEvent("Notify", "aviso", "Mexa-se ou será desconectado(a) em <b>5 minutos</b>")
+				end
 			else
 				TriggerServerEvent("kickAFK")
 			end
 		else
-			tempo = 1200
+			tempo = 1800
 		end
 		px = x
 		py = y
@@ -1213,7 +1219,6 @@ end)
 Citizen.CreateThread(function()
    while true do
         Wait(5)
-
         SetPedSuffersCriticalHits(PlayerPedId(-1), true)
     end
 end)
@@ -1237,7 +1242,7 @@ function setHurt()
     hurt = true
     RequestAnimSet("move_m@injured")
     SetPedMovementClipset(GetPlayerPed(-1), "move_m@injured", true)
-	DisableControlAction(1, 21, true) -- Desabilita o SHIFT (Correr)
+	-- DisableControlAction(1, 21, true) -- Desabilita o SHIFT (Correr)
 	DisableControlAction(1, 22, true) -- Desabilita o Spacebar (Pular)
 end
 
@@ -1263,60 +1268,60 @@ end)
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- RECUO DAS ARMAS
 -----------------------------------------------------------------------------------------------------------------------------------------
-local recoils = {
-	-------------- PISTOLAS --------------
-	[-1075685676] = 0.3, -- PISTOL MK2 | FIVE-SEVEN
-	[1593441988] = 0.3, -- COMBAT PISTOL | GLOCK
-	[453432689] = 0.3, -- PISTOL | M1911
-	[-1076751822] = 0.3, -- SNSPISTOL | HK
-	-------------- SMGS --------------
-	[2024373456] = 0.4, -- SMG MK2 | MP5-MK2
-	[171789620] = 0.4, -- COMBAT PDW | SIGSAUER
-	[-1121678507] = 0.4, -- MINISMG | SCORPION
-	-------------- FUZIS --------------
-	[961495388] = 0.5, -- ASSAULT RIFLE MK2 | AK-47
-	[-1768145561] = 0.5, -- SPECIAL CARBINE MK2 | G36
-	[-2084633992] = 0.4, -- CARBINE RIFLE | AR-15
-	[-86904375] = 0.5, -- CARBINE RIFLE MK2 | M4A1
-	[-1063057011] = 0.5, -- SPECIAL CARBINE | G36x
-	----------------SHOTGUN-------------------
-	[-86904375] = 0.5, -- CARBINE RIFLE MK2 | SHOTGUN
-	[-1063057011] = 0.5, -- SPECIAL CARBINE | G36x
-	-----------------------------------
-}
-
-Citizen.CreateThread(function()
-	while true do
-		Citizen.Wait(0)
-		if IsPedShooting(PlayerPedId()) and not IsPedDoingDriveby(PlayerPedId()) then
-			local _,wep = GetCurrentPedWeapon(PlayerPedId())
-			_,cAmmo = GetAmmoInClip(PlayerPedId(), wep)
-			if recoils[wep] and recoils[wep] ~= 0 then
-				tv = 0
-				if GetFollowPedCamViewMode() ~= 4 then
-					repeat 
-						Wait(0)
-						p = GetGameplayCamRelativePitch()
-						SetGameplayCamRelativePitch(p+0.1, 0.2)
-						tv = tv+0.1
-					until tv >= recoils[wep]
-				else
-					repeat 
-						Wait(0)
-						p = GetGameplayCamRelativePitch()
-						if recoils[wep] > 0.1 then
-							SetGameplayCamRelativePitch(p+0.6, 1.2)
-							tv = tv+0.6
-						else
-							SetGameplayCamRelativePitch(p+0.016, 0.333)
-							tv = tv+0.1
-						end
-					until tv >= recoils[wep]
-				end
-			end
-		end
-	end
-end)
+-- local recoils = {
+-- 	-------------- PISTOLAS --------------
+-- 	[-1075685676] = 0.3, -- PISTOL MK2 | FIVE-SEVEN
+-- 	[1593441988] = 0.3, -- COMBAT PISTOL | GLOCK
+-- 	[453432689] = 0.3, -- PISTOL | M1911
+-- 	[-1076751822] = 0.3, -- SNSPISTOL | HK
+-- 	-------------- SMGS --------------
+-- 	[2024373456] = 0.4, -- SMG MK2 | MP5-MK2
+-- 	[171789620] = 0.4, -- COMBAT PDW | SIGSAUER
+-- 	[-1121678507] = 0.4, -- MINISMG | SCORPION
+-- 	-------------- FUZIS --------------
+-- 	[961495388] = 0.5, -- ASSAULT RIFLE MK2 | AK-47
+-- 	[-1768145561] = 0.5, -- SPECIAL CARBINE MK2 | G36
+-- 	[-2084633992] = 0.4, -- CARBINE RIFLE | AR-15
+-- 	[-86904375] = 0.5, -- CARBINE RIFLE MK2 | M4A1
+-- 	[-1063057011] = 0.5, -- SPECIAL CARBINE | G36x
+--	----------------SHOTGUN-------------------
+-- 	[-86904375] = 0.5, -- CARBINE RIFLE MK2 | SHOTGUN
+-- 	[-1063057011] = 0.5, -- SPECIAL CARBINE | G36x
+-- 	-----------------------------------
+-- }
+--
+-- Citizen.CreateThread(function()
+-- 	while true do
+-- 		Citizen.Wait(0)
+-- 		if IsPedShooting(PlayerPedId()) and not IsPedDoingDriveby(PlayerPedId()) then
+-- 			local _,wep = GetCurrentPedWeapon(PlayerPedId())
+-- 			_,cAmmo = GetAmmoInClip(PlayerPedId(), wep)
+-- 			if recoils[wep] and recoils[wep] ~= 0 then
+--				tv = 0
+--				if GetFollowPedCamViewMode() ~= 4 then
+--					repeat 
+--						Wait(0)
+--						p = GetGameplayCamRelativePitch()
+-- 						SetGameplayCamRelativePitch(p+0.1, 0.2)
+--						tv = tv+0.1
+-- 					until tv >= recoils[wep]
+-- 				else
+--					repeat 
+-- 						Wait(0)
+-- 						p = GetGameplayCamRelativePitch()
+-- 						if recoils[wep] > 0.1 then
+--							SetGameplayCamRelativePitch(p+0.6, 1.2)
+-- 							tv = tv+0.6
+--						else
+-- 							SetGameplayCamRelativePitch(p+0.016, 0.333)
+-- 							tv = tv+0.1
+--						end
+-- 					until tv >= recoils[wep]
+-- 				end
+-- 			end
+-- 		end
+-- 	end
+-- end)
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- /BVIDA
 -----------------------------------------------------------------------------------------------------------------------------------------
@@ -1524,7 +1529,6 @@ local hostageAllowedWeapons = {
 	"WEAPON_SNSPISTOL",
 	"WEAPON_SNSPISTOL_MK2",
 	"WEAPON_HEAVYPISTOL"
-	--etc add guns you want
 }
 
 local holdingHostageInProgress = false
@@ -1817,6 +1821,7 @@ function drawNativeNotification(text)
     DisplayHelpTextFromStringLabel(0, 0, 1, -1)
 end
 
+----------------------------------------------------------------------------------------------------------------------------------------------------
 --Limitador de Velocidade de Veiculos
 ----------------------------------------------------------------------------------------------------------------------------------------------------
 Citizen.CreateThread( function()
@@ -1832,4 +1837,43 @@ Citizen.CreateThread( function()
                 end
             end
         end
+end)
+-----------------------------------------------------------------------------------------------------------------------------------------
+-- DESABILITAR A CORONHADA
+-----------------------------------------------------------------------------------------------------------------------------------------
+Citizen.CreateThread(function()
+    while true do
+        Citizen.Wait(5)
+    local ped = PlayerPedId()
+        if IsPedArmed(ped, 6) then
+               DisableControlAction(0, 140, true)
+            DisableControlAction(1, 141, true)
+               DisableControlAction(1, 142, true)
+        end
+    end
+end)
+Citizen.CreateThread(function()
+    while true do
+        local sleep = 100
+        if IsPedArmed(PlayerPedId(),6) then
+        sleep = 4
+            DisableControlAction(1,140,true)
+            DisableControlAction(1,141,true)
+            DisableControlAction(1,142,true)
+        end
+        Citizen.Wait(sleep)
+    end
+end)
+-----------------------------------------------------------------------------------------------------------------------------------------
+-- DESABILITAR O Q
+-----------------------------------------------------------------------------------------------------------------------------------------
+Citizen.CreateThread(function()
+    while true do
+        Citizen.Wait(1)
+        local ped = PlayerPedId()
+        local health = GetEntityHealth(ped)
+        if health >= 101 then
+            DisableControlAction(0,44,true)
+        end
+    end
 end)

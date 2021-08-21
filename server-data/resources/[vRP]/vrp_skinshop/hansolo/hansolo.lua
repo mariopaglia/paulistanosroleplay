@@ -31,24 +31,28 @@ local lojaderoupa = {
     { x=1214.91, y=-165.34, z=75.26, provador = { x=1214.91, y=-165.34, z=75.26, heading = 323.92 } }, -- Verdes
     { x=-1636.56, y=-165.45, z=57.48, provador = { x=-1636.56, y=-165.45, z=57.48, heading = 301.6 } }, -- Vermelhos
     { x=1432.63, y=-2125.38, z=57.69, provador = { x=1432.63, y=-2125.38, z=57.69, heading = 21.55 } }, -- Roxos
-    { x=884.66, y=-2102.92, z=35.6, provador = { x=884.66, y=-2102.92, z=35.6, heading = 267.78 } }, -- Motoclub
+    { x=-2619.59, y=1711.64, z=146.33, provador = { x=-2619.59, y=1711.64, z=146.33, heading = 209.35 } }, -- MidNight
     { x=419.52, y=-1482.34, z=33.81, provador = { x=419.52, y=-1482.34, z=33.81, heading = 210.69 } }, -- Salieri's
     { x=-620.1, y=-1618.3, z=33.02, provador = { x=-620.1, y=-1618.3, z=33.02, heading = 176.91 } }, -- Triade
-    { x=576.79, y=-3108.85, z=6.07, provador = { x=576.79, y=-3108.85, z=6.07, heading = 179.28 } }, -- FARC
-    { x=-1881.29, y=2068.57, z=145.58, provador = { x=-1881.29, y=2068.57, z=145.58, heading = 158.7 } }, -- Camorra
-    { x=1439.82, y=-1481.7, z=66.62, provador = { x=1439.82, y=-1481.7, z=66.62, heading = 164.33 } }, -- Serpentes
+    { x=575.56, y=-3126.25, z=18.77, provador = { x=575.56, y=-3126.25, z=18.77, heading = 92.72 } }, -- Irmandade
+    { x=-1887.27, y=2070.12, z=145.58, provador = { x=-1887.27, y=2070.12, z=145.58, heading = 317.95 } }, -- Sinaloa
+    { x=815.54, y=-2357.27, z=30.33, provador = { x=815.54, y=-2357.27, z=30.33, heading = 355.98 } }, -- DriftKing
     { x=-2039.13, y=-466.48, z=16.43, provador = { x=-2039.13, y=-466.48, z=16.43, heading = 46.82 } }, -- ROTA
     { x=105.65, y=-1302.94, z=28.77, provador = { x=105.65, y=-1302.94, z=28.77, heading = 299.78 } }, -- Vanilla
     { x=393.57, y=278.96, z=95.0, provador = { x=393.57, y=278.96, z=95.0, heading = 169.65 } }, -- Galaxy
     { x=-572.94, y=293.04, z=79.18, provador = { x=-572.94, y=293.04, z=79.18, heading = 223.19 } }, -- Tequila
     { x=-763.19, y=330.79, z=199.49, provador = { x=-763.19, y=330.79, z=199.49, heading = 181.19 } }, -- casa wally
     { x=-797.71, y=326.82, z=190.72, provador = { x=-797.71, y=326.82, z=190.72, heading = 4.0 } }, -- casa porcao
+    { x=-163.97, y=905.69, z=220.22, provador = { x=-163.97, y=905.69, z=220.22, heading = 225.23 } }, -- casa porcao
     { x=-568.48, y=-115.12, z=33.88, provador = { x=-568.48, y=-115.12, z=33.88, heading = 24.78 } }, -- DP NOVA
     { x=-1535.56, y=123.37, z=50.06, provador = { x=-1535.56, y=123.37, z=50.06, heading = 276.93 } }, -- MANSAO PLAYBOY
     { x=4489.09, y=-4452.21, z=4.37, provador = { x=4489.09, y=-4452.21, z=4.37, heading = 198.51 } }, -- LOJA ILHA
     { x=-2584.42, y=1885.9, z=140.87, provador = { x=-2584.42, y=1885.9, z=140.87, heading = 189.69 } }, -- MANSAO MONTANHA
     { x=-56.41, y=-1289.5, z=30.91, provador = { x=-56.41, y=-1289.5, z=30.91, heading = 183.18 } }, -- ACADEMIA ['x'] = -56.41, ['y'] = -1289.5, ['z'] = 30.91, ['h'] = 183.18
     { x=-932.49, y=-177.13, z=46.29, provador = { x=-932.49, y=-177.13, z=46.29, heading = 28.19 } }, -- Fenix Plaza
+    { x=2512.9, y=-344.37, z=101.9, provador = { x=2512.9, y=-344.37, z=101.9, heading = 318.13 } }, -- DIC 
+    { x=835.7, y=-981.18, z=32.08, provador = { x=835.7, y=-981.18, z=32.08, heading = 181.46 } }, -- ROUPAS FÊNIX CUSTOMS 
+    { x=-826.26, y=-1233.11, z=7.34, provador = { x=-826.26, y=-1233.11, z=7.34, heading = 140.44 } }, -- HOSPITAL NOVO (VICEROY)
 }
 
 local parts = {
@@ -334,6 +338,10 @@ end)
 
 RegisterNUICallback("reset", function(data, cb)
     vRP.setCustomization(old_custom)
+    async(function()
+        Citizen.Wait(500)
+	    TriggerEvent("reloadtattos")
+    end)
     closeGuiLojaRoupa()
     ClearPedTasks(PlayerPedId())
 end)
@@ -362,6 +370,10 @@ AddEventHandler('vrp_skinshop:ReceberCompra', function(comprar)
     else
         in_loja = false
         vRP.setCustomization(old_custom)
+        async(function()
+            Citizen.Wait(500)
+            TriggerEvent("reloadtattos")
+        end)
         closeGuiLojaRoupa()
     end
 end)

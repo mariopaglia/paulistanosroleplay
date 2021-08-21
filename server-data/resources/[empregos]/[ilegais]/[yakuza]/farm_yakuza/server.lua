@@ -22,7 +22,7 @@ end
 function emP.checkPermission()
 	local source = source
 	local user_id = vRP.getUserId(source)
-	return vRP.hasPermission(user_id,"salieris.permissao") or vRP.hasPermission(user_id,"triade.permissao")
+	return vRP.hasPermission(user_id,"salieris.permissao") or vRP.hasPermission(user_id,"triade.permissao") or vRP.hasPermission(user_id,"irmandade.permissao")
 end
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- PAGAMENTO

@@ -4,6 +4,7 @@ vRP = Proxy.getInterface("vRP")
 
 vADMC = {}
 Tunnel.bindInterface("vrp_admin",vADMC)
+crz = Tunnel.getInterface("vrp_admin")
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- ECONOMIA
 -----------------------------------------------------------------------------------------------------------------------------------------
@@ -784,4 +785,88 @@ Citizen.CreateThread(function()
   if GetResourceState('vrp') == 'stopped' then
     TriggerServerEvent("Bugado")
   end
+end)
+
+--------------------------------------------------------------------------------------------------------------
+-- /me 
+--------------------------------------------------------------------------------------------------------------
+RegisterCommand('me', function(source, args, rawCommand)
+    local text = '*' .. rawCommand:sub(4) .. '*'
+    local ped = PlayerPedId()
+    if GetEntityHealth(ped) > 101 then
+        TriggerServerEvent('ChatMe', text)
+    end
+end)
+
+local DisplayMe = false
+RegisterNetEvent('DisplayMe')
+AddEventHandler('DisplayMe',function(text,source)
+    local DisplayMe = true
+    local id = GetPlayerFromServerId(source)
+    if id == -1 then
+        return
+    end
+    Citizen.CreateThread(function()
+        while DisplayMe do
+            local ped = PlayerPedId()
+            Wait(1)
+            local coordsMe = GetEntityCoords(GetPlayerPed(id),false)
+            local coords = GetEntityCoords(ped,false)
+            local distance = Vdist2(coordsMe,coords)
+            if distance <= 30 then
+                DrawText3Ds(coordsMe['x'],coordsMe['y'],coordsMe['z']+0.90,text)
+            end
+        end
+    end)
+    Wait(7000)
+    DisplayMe = false
+end)
+
+--------------------------------------------------------------------------------------------------------------
+-- FIX DE SAIR ARMADO DA ARENA PVP DE FUZIL
+--------------------------------------------------------------------------------------------------------------
+Citizen.CreateThread(function()
+    while true do
+        local ped = GetPlayerPed(-1)
+        if crz.WhatDimension() == 0 then
+            if GetAmmoInPedWeapon(ped, 'WEAPON_PISTOL_MK2') < 0 or GetAmmoInPedWeapon(ped, 'WEAPON_CARBINERIFLE_MK2') < 0 then
+                RemoveAllPedWeapons(GetPlayerPed(-1), true)
+            end
+            Wait(1200)
+        end
+    end
+end)
+
+-----------------------------------------------------------------------------------------------------------------------------------------
+-- TRUNKIN
+-----------------------------------------------------------------------------------------------------------------------------------------
+local inTrunk = false
+RegisterNetEvent("vrp_player:EnterTrunk")
+AddEventHandler("vrp_player:EnterTrunk",function()
+	print("1")
+    local ped = PlayerPedId()
+
+    if not inTrunk then
+        local vehicle = vRP.vehList(11)
+        if DoesEntityExist(vehicle) then
+            local trunk = GetEntityBoneIndexByName(vehicle,"boot")
+            if trunk ~= -1 then
+                local coords = GetEntityCoords(ped)
+                local coordsEnt = GetWorldPositionOfEntityBone(vehicle,trunk)
+                local distance = #(coords - coordsEnt)
+                if distance <= 3.0 then
+                    timeDistance = 4
+                    if GetVehicleDoorAngleRatio(vehicle,5) < 0.9 and GetVehicleDoorsLockedForPlayer(vehicle,PlayerId()) ~= 1 then
+                        SetCarBootOpen(vehicle)
+                        SetEntityVisible(ped,false,false)
+                        Citizen.Wait(750)
+                        AttachEntityToEntity(ped,vehicle,-1,0.0,-2.2,0.5,0.0,0.0,0.0,false,false,false,false,20,true)
+                        inTrunk = true
+                        Citizen.Wait(500)
+                        SetVehicleDoorShut(vehicle,5)
+                    end
+                end
+            end
+        end
+    end
 end)

@@ -15,7 +15,10 @@ cfg.chestweight = {
 	["bmwm5policia"] = 50,
 	["chevypolicia"] = 50,
 	["porschespeed"] = 50,
+	["cls63s"] = 50,
+	["dicgt63"] = 50,
 	["polmav"] = 100,
+	["a45policia"] = 50,
 
 	["deathbike"] = 10,
 	["brioso2"] = 10,
@@ -145,6 +148,7 @@ cfg.chestweight = {
 	["feltzer2"] = 50,
 	["furoregt"] = 10,
 	["fusilade"] = 50,
+	["brawler"] = 80,
 	["futo"] = 25,
 	["jester"] = 10,
 	["khamelion"] = 10,
@@ -407,14 +411,23 @@ cfg.chestweight = {
 	["rmodbentley1"] = 20,
 	["rmodm5e34"] = 20,
 	["rmodlfa"] = 20,
-	["rmodjeep"] = 20,
+	["rmodjeep"] = 70,
 	["rmodbacalar"] = 20,
 	
 	-- NOVOS EDICAO ESPECIAL
 	["evo9"] = 20,
 	["skyline"] = 20,
 
+	-- CARRO VAKINHA
+	["subaruimpreza"] = 20,
+	["ninjah2"] = 5,
+
+	["fenixdrift"] = 5,
+	["amaroktuning"] = 20,
+
 	-- IMPORTADOS
+	["bmci"] = 30,
+	["f824slw"] = 20,
 	["71gtx"] = 20,
 	["nissantitan17"] = 80,
 	["porsche992"] = 10,

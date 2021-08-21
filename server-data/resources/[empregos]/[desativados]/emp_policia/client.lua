@@ -7,9 +7,9 @@ emP = Tunnel.getInterface("emp_policia")
 local blips = false
 local servico = false
 local selecionado = 0
-local CoordenadaX = -565.62
-local CoordenadaY = -112.6
-local CoordenadaZ = 33.88
+local CoordenadaX = 441.1
+local CoordenadaY = -975.63
+local CoordenadaZ = 30.69
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- RESIDENCIAS
 -----------------------------------------------------------------------------------------------------------------------------------------
@@ -63,17 +63,18 @@ local locs = {
 -----------------------------------------------------------------------------------------------------------------------------------------
 Citizen.CreateThread(function()
 	while true do
-		Citizen.Wait(1)
+		local esperar = 1000
+		-- Citizen.Wait(1)
 		if not servico then
 			local ped = PlayerPedId()
 			local x,y,z = table.unpack(GetEntityCoords(ped))
 			local bowz,cdz = GetGroundZFor_3dCoord(CoordenadaX,CoordenadaY,CoordenadaZ)
 			local distance = GetDistanceBetweenCoords(CoordenadaX,CoordenadaY,cdz,x,y,z,true)
 
-			if distance <= 30.0 then
+			if distance <= 10.0 then
+				esperar = 4
 				DrawMarker(23,CoordenadaX,CoordenadaY,CoordenadaZ-0.97,0,0,0,0,0,0,1.0,1.0,0.5,240,200,80,100,0,0,0,0)
 				if distance <= 1.5 then
-					DrawText3D(-565.62, -112.6, 33.88, "Aperte ~y~E~w~ para iniciar sua ~y~rota de patrulha~w~.")
 					if IsControlJustPressed(0,38) and emP.checkPermission() then
 						servico = true
 						selecionado = 1
@@ -83,6 +84,7 @@ Citizen.CreateThread(function()
 				end
 			end
 		end
+		Citizen.Wait(esperar)
 	end
 end)
 -----------------------------------------------------------------------------------------------------------------------------------------
@@ -101,7 +103,7 @@ Citizen.CreateThread(function()
 				DrawMarker(21,locs[selecionado].x,locs[selecionado].y,locs[selecionado].z+0.30,0,0,0,0,180.0,130.0,2.0,2.0,1.0,240,200,80,100,1,0,0,1)
 				if distance <= 6.0 then
 					if emP.checkPermission() then
-						if IsVehicleModel(GetVehiclePedIsUsing(PlayerPedId()),GetHashKey("ghispo2")) or IsVehicleModel(GetVehiclePedIsUsing(PlayerPedId()),GetHashKey("av-amarok")) or IsVehicleModel(GetVehiclePedIsUsing(PlayerPedId()),GetHashKey("av-gt63")) or IsVehicleModel(GetVehiclePedIsUsing(PlayerPedId()),GetHashKey("av-levante")) or IsVehicleModel(GetVehiclePedIsUsing(PlayerPedId()),GetHashKey("av-nc7")) or IsVehicleModel(GetVehiclePedIsUsing(PlayerPedId()),GetHashKey("bmwg20")) or IsVehicleModel(GetVehiclePedIsUsing(PlayerPedId()),GetHashKey("pdfocus")) or IsVehicleModel(GetVehiclePedIsUsing(PlayerPedId()),GetHashKey("bmwm5policia")) or IsVehicleModel(GetVehiclePedIsUsing(PlayerPedId()),GetHashKey("chevypolicia")) or IsVehicleModel(GetVehiclePedIsUsing(PlayerPedId()),GetHashKey("porschespeed")) or IsVehicleModel(GetVehiclePedIsUsing(PlayerPedId()),GetHashKey("av-m8")) then
+						if IsVehicleModel(GetVehiclePedIsUsing(PlayerPedId()),GetHashKey("ghispo2")) or IsVehicleModel(GetVehiclePedIsUsing(PlayerPedId()),GetHashKey("av-amarok")) or IsVehicleModel(GetVehiclePedIsUsing(PlayerPedId()),GetHashKey("a45policia")) or IsVehicleModel(GetVehiclePedIsUsing(PlayerPedId()),GetHashKey("av-gt63")) or IsVehicleModel(GetVehiclePedIsUsing(PlayerPedId()),GetHashKey("av-levante")) or IsVehicleModel(GetVehiclePedIsUsing(PlayerPedId()),GetHashKey("av-nc7")) or IsVehicleModel(GetVehiclePedIsUsing(PlayerPedId()),GetHashKey("bmwg20")) or IsVehicleModel(GetVehiclePedIsUsing(PlayerPedId()),GetHashKey("pdfocus")) or IsVehicleModel(GetVehiclePedIsUsing(PlayerPedId()),GetHashKey("bmwm5policia")) or IsVehicleModel(GetVehiclePedIsUsing(PlayerPedId()),GetHashKey("chevypolicia")) or IsVehicleModel(GetVehiclePedIsUsing(PlayerPedId()),GetHashKey("porschespeed")) or IsVehicleModel(GetVehiclePedIsUsing(PlayerPedId()),GetHashKey("av-m8")) then
 							RemoveBlip(blips)
 							if selecionado == 42 then
 								selecionado = 1
@@ -145,21 +147,4 @@ function CriandoBlip(locs,selecionado)
 	BeginTextCommandSetBlipName("STRING")
 	AddTextComponentString("Rota de Patrulha")
 	EndTextCommandSetBlipName(blips)
-end
--- TEXTOS 3D
-
-function DrawText3D(x,y,z, text)
-    local onScreen,_x,_y=World3dToScreen2d(x,y,z)
-    local px,py,pz=table.unpack(GetGameplayCamCoords())
-    
-    SetTextScale(0.28, 0.28)
-    SetTextFont(4)
-    SetTextProportional(1)
-    SetTextColour(255, 255, 255, 215)
-    SetTextEntry("STRING")
-    SetTextCentre(1)
-    AddTextComponentString(text)
-    DrawText(_x,_y)
-    local factor = (string.len(text)) / 370
-    DrawRect(_x,_y+0.0125, 0.005+ factor, 0.03, 41, 11, 41, 68)
 end

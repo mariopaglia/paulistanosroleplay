@@ -37,6 +37,9 @@ RegisterNUICallback("ButtonClick",function(data,cb)
 
 	elseif data == "produzir-gps" then
 		TriggerServerEvent("produzir-contrabando","gps")
+		
+	elseif data == "produzir-corda" then
+		TriggerServerEvent("produzir-contrabando","corda")
 
 	elseif data == "produzir-placa" then
 		TriggerServerEvent("produzir-contrabando","placa")
@@ -52,6 +55,9 @@ RegisterNUICallback("ButtonClick",function(data,cb)
 	
 	elseif data == "produzir-cartaoinvasao" then
 		TriggerServerEvent("produzir-contrabando","cartaoinvasao")
+
+	elseif data == "produzir-ticketpvp" then
+		TriggerServerEvent("produzir-contrabando","ticketpvp")
 
 	elseif data == "fechar" then
 		ToggleActionMenu()

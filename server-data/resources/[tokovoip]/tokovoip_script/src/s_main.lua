@@ -42,7 +42,7 @@ AddEventHandler("TokoVoip:addPlayerToRadio", addPlayerToRadio);
 function removePlayerFromRadio(channelId, playerServerId)
 	if (channels[channelId] and channels[channelId].subscribers[playerServerId]) then
 		channels[channelId].subscribers[playerServerId] = nil;
-		if (channelId > 1034) then
+		if (channelId > 1300) then
 			if (tablelength(channels[channelId].subscribers) == 0) then
 				channels[channelId] = nil;
 			end

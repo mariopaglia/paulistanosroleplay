@@ -9,7 +9,7 @@ Tunnel.bindInterface("nav_yakuza",emP)
 -----------------------------------------------------------------------------------------------------------------------------------------
 local valores = {
 	{ item = "chipset", quantidade = 10, compra = 1000, venda = 1 },
-	{ item = "linha", quantidade = 20, compra = 10000, venda = 1 },
+	{ item = "linha", quantidade = 20, compra = 1000, venda = 1 },
 }
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- COMPRAR
@@ -61,7 +61,7 @@ end)
 function emP.checkPermission1()
 	local source = source
 	local user_id = vRP.getUserId(source)
-	return vRP.hasPermission(user_id,"salieris.permissao") or vRP.hasPermission(user_id,"triade.permissao")
+	return vRP.hasPermission(user_id,"salieris.permissao") or vRP.hasPermission(user_id,"triade.permissao") or vRP.hasPermission(user_id,"irmandade.permissao")
 end
 
 function emP.checkPermission2()

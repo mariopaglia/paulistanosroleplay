@@ -84,6 +84,7 @@ local vehList = {
 	{ ['name'] = "paredao", ['hash'] = 167397304, ['banned'] = false },
 	{ ['name'] = "SomMarqCULuz", ['hash'] = 150895758, ['banned'] = false },
 	{ ['name'] = "verus", ['hash'] = 298565713, ['banned'] = false },
+	{ ['name'] = "sahpexplorer2", ['hash'] = -1683453063, ['banned'] = false },
 	{ ['name'] = "windsor2", ['hash'] = -1930048799, ['banned'] = false },
 	{ ['name'] = "zion", ['hash'] = -1122289213, ['banned'] = false },
 	{ ['name'] = "zion2", ['hash'] = -1193103848, ['banned'] = false },
@@ -539,7 +540,6 @@ local vehList = {
 	{ ['name'] = "mercedesa45", ['hash'] = -740742391, ['banned'] = false },
 	{ ['name'] = "focusrs", ['hash'] = 819937652, ['banned'] = false },
 	{ ['name'] = "lancerevolution9", ['hash'] = -133349447, ['banned'] = false },
-	{ ['name'] = "ninjah2", ['hash'] = 1911052153, ['banned'] = false },
 	{ ['name'] = "trr", ['hash'] = -333868117, ['banned'] = false },
 	{ ['name'] = "lwhuracan", ['hash'] = 1028745873, ['banned'] = false },
 	{ ['name'] = "p1", ['hash'] = -189438188, ['banned'] = false },
@@ -664,6 +664,8 @@ local vehList = {
 	{ ['name'] = "frogger2", ['hash'] = 1949211328, ['banned'] = false },
 	{ ['name'] = "ambulance", ['hash'] = 1171614426, ['banned'] = false },
 	-- Importados
+	{ ['name'] = "bmci", ['hash'] = 1093697054, ['banned'] = false },
+	{ ['name'] = "f824slw", ['hash'] = 344072585, ['banned'] = false },
 	{ ['name'] = "71gtx", ['hash'] = -1863430482, ['banned'] = false },
 	{ ['name'] = "nissantitan17", ['hash'] = 1221510024, ['banned'] = false },
 	{ ['name'] = "porsche992", ['hash'] = 859592619, ['banned'] = false },
@@ -798,7 +800,17 @@ local vehList = {
 	{ ['name'] = "evo9", ['hash'] = -228528329, ['banned'] = false },
 	{ ['name'] = "skyline", ['hash'] = 2117711508, ['banned'] = false },
 
+	-- CARRO VAKINHA
+	{ ['name'] = "subaruimpreza", ['hash'] = -941271649, ['banned'] = false },
+	{ ['name'] = "ninjah2", ['hash'] = 1911052153, ['banned'] = false },
+
+	{ ['name'] = "fenixdrift", ['hash'] = 86412166, ['banned'] = false },
+	{ ['name'] = "amaroktuning", ['hash'] = 522112651, ['banned'] = false },
+
 	-- POLICIA 
+	{ ['name'] = "a45policia", ['hash'] = 1372921020, ['banned'] = false },
+	{ ['name'] = "cls63s", ['hash'] = 1513245066, ['banned'] = false },
+	{ ['name'] = "dicgt63", ['hash'] = 708296016, ['banned'] = false },
 	{ ['name'] = "porschespeed", ['hash'] = -119110143, ['banned'] = false },
 	{ ['name'] = "chevypolicia", ['hash'] = -1878793377, ['banned'] = false },
 	{ ['name'] = "bmwm5policia", ['hash'] = -1770984250, ['banned'] = false },

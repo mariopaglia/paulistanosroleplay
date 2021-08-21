@@ -21,7 +21,7 @@ local dayOfMonth = 0
 local voice = 2
 -- local voiceDisplay = "<span style='color:white'><img class='microfone' src='img/mic.png'> Normal</span>"
 local proximity = 3.0
-local CintoSeguranca = false
+-- local CintoSeguranca = false
 local ExNoCarro = false
 local sBuffer = {}
 local vBuffer = {}
@@ -217,7 +217,7 @@ Citizen.CreateThread(function()
 			piscaEsquerdo = piscaEsquerdo,
 			piscaDireito = piscaDireito,
 			gas = gasolina,
-			cinto = CintoSeguranca,
+			-- cinto = CintoSeguranca,
 			farol = farol,
 			cruise = cruiseIsOn,
 		 	display = displayValue,
@@ -228,78 +228,78 @@ end)
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- CINTO DE SEGURANÇA
 -----------------------------------------------------------------------------------------------------------------------------------------
-IsCar = function(veh)
-	local vc = GetVehicleClass(veh)
-	return (vc >= 0 and vc <= 7) or (vc >= 9 and vc <= 12) or (vc >= 17 and vc <= 20)
-  end
+-- IsCar = function(veh)
+-- 	local vc = GetVehicleClass(veh)
+-- 	return (vc >= 0 and vc <= 7) or (vc >= 9 and vc <= 12) or (vc >= 17 and vc <= 20)
+--   end
   
-  Fwv = function (entity)
-	local hr = GetEntityHeading(entity) + 90.0
-	if hr < 0.0 then
-	  hr = 360.0 + hr
-	end
-	hr = hr * 0.0174533
-	return { x = math.cos(hr) * 2.0, y = math.sin(hr) * 2.0 }
-  end
+--   Fwv = function (entity)
+-- 	local hr = GetEntityHeading(entity) + 90.0
+-- 	if hr < 0.0 then
+-- 	  hr = 360.0 + hr
+-- 	end
+-- 	hr = hr * 0.0174533
+-- 	return { x = math.cos(hr) * 2.0, y = math.sin(hr) * 2.0 }
+--   end
   
-  local segundos = 0
+--   local segundos = 0
   
-  Citizen.CreateThread(function()
-	while true do
-	local idle = 1000
+--   Citizen.CreateThread(function()
+-- 	while true do
+-- 	local idle = 1000
   
-	  if inCar then
-		idle = 5
-		local ped = PlayerPedId()
-		local car = GetVehiclePedIsIn(ped)
+-- 	  if inCar then
+-- 		idle = 5
+-- 		local ped = PlayerPedId()
+-- 		local car = GetVehiclePedIsIn(ped)
   
-		if car ~= 0 and (ExNoCarro or IsCar(car)) then
-		  ExNoCarro = true
+-- 		if car ~= 0 and (ExNoCarro or IsCar(car)) then
+-- 		  ExNoCarro = true
   
-		  if CintoSeguranca then
-			DisableControlAction(0,75)
-		  end
+-- 		  if CintoSeguranca then
+-- 			DisableControlAction(0,75)
+-- 		  end
   
-		  sBuffer[2] = sBuffer[1]
-		  sBuffer[1] = GetEntitySpeed(car)
-		  if sBuffer[2] ~= nil and not CintoSeguranca and GetEntitySpeedVector(car,true).y > 1.0 and sBuffer[1] > 10.25 and (sBuffer[2] - sBuffer[1]) > (sBuffer[1] * 0.255) then
-			local co = GetEntityCoords(ped)
-			local fw = Fwv(ped)
-			SetEntityHealth(ped,GetEntityHealth(ped)-150)
-			SetEntityCoords(ped,co.x+fw.x,co.y+fw.y,co.z-0.47,true,true,true)
-			SetEntityVelocity(ped,vBuffer[2].x,vBuffer[2].y,vBuffer[2].z)
-			segundos = 20
-		  end
+-- 		  sBuffer[2] = sBuffer[1]
+-- 		  sBuffer[1] = GetEntitySpeed(car)
+-- 		  if sBuffer[2] ~= nil and not CintoSeguranca and GetEntitySpeedVector(car,true).y > 1.0 and sBuffer[1] > 10.25 and (sBuffer[2] - sBuffer[1]) > (sBuffer[1] * 0.255) then
+-- 			local co = GetEntityCoords(ped)
+-- 			local fw = Fwv(ped)
+-- 			SetEntityHealth(ped,GetEntityHealth(ped)-150)
+-- 			SetEntityCoords(ped,co.x+fw.x,co.y+fw.y,co.z-0.47,true,true,true)
+-- 			SetEntityVelocity(ped,vBuffer[2].x,vBuffer[2].y,vBuffer[2].z)
+-- 			segundos = 20
+-- 		  end
   
-		  vBuffer[2] = vBuffer[1]
-		  vBuffer[1] = GetEntityVelocity(car)
+-- 		  vBuffer[2] = vBuffer[1]
+-- 		  vBuffer[1] = GetEntityVelocity(car)
   
-		  if IsControlJustReleased(1,47) then
-			TriggerEvent("cancelando",true)
-			if CintoSeguranca then
-			  TriggerEvent("vrp_sound:source",'unbelt',0.5)
-			  SetTimeout(500,function()
-				CintoSeguranca = false
-				TriggerEvent("cancelando",false)
-			  end)
-			else
-			  TriggerEvent("vrp_sound:source",'belt',0.5)
-				SetTimeout(500,function()
-				  CintoSeguranca = true
-				  TriggerEvent("cancelando",false)
-				end)
-			  end
+-- 		  if IsControlJustReleased(1,73) then
+-- 			TriggerEvent("cancelando",true)
+-- 			if CintoSeguranca then
+-- 			  TriggerEvent("vrp_sound:source",'unbelt',0.5)
+-- 			  SetTimeout(500,function()
+-- 				CintoSeguranca = false
+-- 				TriggerEvent("cancelando",false)
+-- 			  end)
+-- 			else
+-- 			  TriggerEvent("vrp_sound:source",'belt',0.5)
+-- 				SetTimeout(500,function()
+-- 				  CintoSeguranca = true
+-- 				  TriggerEvent("cancelando",false)
+-- 				end)
+-- 			  end
   
-			end
-		elseif ExNoCarro then
-		  ExNoCarro = false
-		  CintoSeguranca = false
-		  sBuffer[1],sBuffer[2] = 0.0,0.0
-		end
-	  end
-	  Citizen.Wait(idle)
-	end
-  end)
+-- 			end
+-- 		elseif ExNoCarro then
+-- 		  ExNoCarro = false
+-- 		  CintoSeguranca = false
+-- 		  sBuffer[1],sBuffer[2] = 0.0,0.0
+-- 		end
+-- 	  end
+-- 	  Citizen.Wait(idle)
+-- 	end
+--   end)
 
 
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------

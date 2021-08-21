@@ -38,6 +38,7 @@ end
 
 RegisterNetEvent('reloadtattos')
 AddEventHandler('reloadtattos',function()
+	print("ST: "..json.encode(custom))
 	if custom then
 		ClearPedDecorations(PlayerPedId())
 		for k,v in pairs(custom) do

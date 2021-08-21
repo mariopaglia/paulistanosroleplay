@@ -5,8 +5,8 @@
 
 #outerdiv {
 	background: rgba(0,0,0,0.3);
-	bottom: 80px;
-	right: -55px;
+	bottom: 10px;
+	right: -75px;
 	width: 185px;
 	height: 10px;
 	transform: translate(-50%,-50%);
@@ -16,7 +16,7 @@
 }
 
 #innerdiv {
-	background-image: linear-gradient(#fff,#fff);
+	background-image: linear-gradient(rgb(255, 255, 0),rgb(255, 255, 103));
 	height: 100%;
 	width: 0%;
 	opacity: 0.5;

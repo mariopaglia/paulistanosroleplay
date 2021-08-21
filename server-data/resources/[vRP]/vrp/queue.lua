@@ -8,6 +8,7 @@ Config.Priority = {
 	['Platina'] = 50,
 	['Esmeralda'] = 75,
 	['Diamante'] = 100,
+	['Apoiador'] = 20,
 }
 
 Config.RequireSteam = true

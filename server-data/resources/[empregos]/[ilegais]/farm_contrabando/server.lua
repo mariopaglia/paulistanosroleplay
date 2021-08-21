@@ -24,30 +24,30 @@ function emP.checkPayment()
 		item3 = math.random(1,100)
 		item4 = math.random(1,100)
 
-		if item1 >= 70 then
+		if item1 >= 50 then
 			if vRP.getInventoryWeight(user_id)+vRP.getItemWeight("componentemetal")*1 <= vRP.getInventoryMaxWeight(user_id) then
 			vRP.giveInventoryItem(user_id,"componentemetal",1)
 			item1 = nil
 			end
 		end
 
-		if item2 >= 70 then
+		if item2 >= 50 then
 			if vRP.getInventoryWeight(user_id)+vRP.getItemWeight("componenteeletronico")*1 <= vRP.getInventoryMaxWeight(user_id) then
 			vRP.giveInventoryItem(user_id,"componenteeletronico",1)
 			item2 = nil
 			end
 		end
 
-		if item3 >= 70 then
+		if item3 >= 50 then
 			if vRP.getInventoryWeight(user_id)+vRP.getItemWeight("componenteplastico")*1 <= vRP.getInventoryMaxWeight(user_id) then
 			vRP.giveInventoryItem(user_id,"componenteplastico",1)
 			item3 = nil
 			end
 		end
 
-		if item4 >= 70 then
+		if item4 >= 50 then
 			dinheirosujo = nil
-			dinheirosujo = math.random(1000,3000)
+			dinheirosujo = math.random(500,1000)
 			if vRP.getInventoryWeight(user_id)+vRP.getItemWeight("dinheirosujo")*dinheirosujo <= vRP.getInventoryMaxWeight(user_id) then
 			vRP.giveInventoryItem(user_id,"dinheirosujo",dinheirosujo)
 			item4 = nil

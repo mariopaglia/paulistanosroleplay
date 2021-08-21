@@ -2,7 +2,12 @@ local cfg = {}
 
 cfg.groups = {
 	["founder"] = {
+		_config = {
+			title = "Founder",
+			gtype = "staff"
+		},
 		"founder.permissao",
+		"staff.permissao",
 		"admin.permissao",
 		"item.permissao",
 		"group.permissao",
@@ -16,6 +21,7 @@ cfg.groups = {
 		"tp.permissao",
 		"polpar.permissao",
 		"placa.permissao",
+		"verificado.instagram",
 		"player.blips",
 		"player.noclip",
 		"player.teleport",
@@ -27,12 +33,18 @@ cfg.groups = {
 		"anuncio.permissao"
 	},
 	["admin"] = {
+		_config = {
+			title = "Administrador",
+			gtype = "staff"
+		},
 		"admin.permissao",
+		"staff.permissao",
 		"fix.permissao",
 		"item.permissao",
 		"group.permissao",
 		"dv.permissao",
 		"god.permissao",
+		"verificado.instagram",
 		"wl.permissao",
 		"kick.permissao",
 		"ban.permissao",
@@ -50,7 +62,12 @@ cfg.groups = {
 		"anuncio.permissao"
 	},
 	["mod"] = {
+		_config = {
+			title = "Moderador",
+			gtype = "staff"
+		},
 		"mod.permissao",
+		"staff.permissao",
 		"dv.permissao",
 		"god.permissao",
 		"fix.permissao",
@@ -70,7 +87,12 @@ cfg.groups = {
 		"anuncio.permissao"
 	},
 	["sup"] = {
+		_config = {
+			title = "Suporte",
+			gtype = "staff"
+		},
 		"sup.permissao",
+		"staff.permissao",
 		"wl.permissao",
 		"kick.permissao",
 		"noclip.permissao",
@@ -81,8 +103,38 @@ cfg.groups = {
 		"player.teleport",
 		"player.secret",
 	},
-	["aprovadorwl"] = {
-		"wl.permissao"
+
+	["foundertoogle"] = {
+		_config = {
+			title = "Founder Toogle",
+			gtype = "staff"
+		},
+		"founder.toogle",
+		"staff.permissao",
+	},
+	["admintoogle"] = {
+		_config = {
+			title = "Administrador Toogle",
+			gtype = "staff"
+		},
+		"admin.toogle",
+		"staff.permissao",
+	},
+	["modtoogle"] = {
+		_config = {
+			title = "Moderador Toogle",
+			gtype = "staff"
+		},
+		"mod.toogle",
+		"staff.permissao",
+	},
+	["suptoogle"] = {
+		_config = {
+			title = "Suporte Toogle",
+			gtype = "staff"
+		},
+		"sup.toogle",
+		"staff.permissao",
 	},
 
 	---------------------------------------------------
@@ -180,7 +232,108 @@ cfg.groups = {
 		},
 		"player.som"
 	},
+	["Apoiador"] = {
+		_config = {
+			title = "Apoiador",
+			gtype = "apoiador"
+		},
+		"apoiador.permissao",
+		"verificado.instagram"
+	},
+	["Verificado"] = {
+		_config = {
+			title = "Verificado",
+			gtype = "verificado"
+		},
+		"verificado.instagram"
+	},
 
+	---------------------------------------------------
+	-- DIC - POLICIA INVESTIGATIVA
+	---------------------------------------------------
+	["DICI"] = {
+		_config = {
+			title = "DIC I",
+			gtype = "job"
+		},
+		"policia.permissao",
+		"dic.permissao",
+		"dici.permissao",
+		"player.blips",
+		"polpar.permissao"
+	},
+	["DICIP"] = {
+		_config = {
+			title = "DIC Paisana",
+			gtype = "job"
+		},
+		"dicip.permissao",
+		"player.blips",
+		"nogarmas.permissao"
+	},
+-- \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+	["DICII"] = {
+		_config = {
+			title = "DIC II",
+			gtype = "job"
+		},
+		"policia.permissao",
+		"dic.permissao",
+		"dicii.permissao",
+		"player.blips",
+		"polpar.permissao"
+	},
+	["DICIIP"] = {
+		_config = {
+			title = "DIC Paisana",
+			gtype = "job"
+		},
+		"diciip.permissao",
+		"player.blips",
+		"nogarmas.permissao"
+	},
+-- \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+	["DICIII"] = {
+		_config = {
+			title = "DIC III",
+			gtype = "job"
+		},
+		"policia.permissao",
+		"dic.permissao",
+		"diciii.permissao",
+		"player.blips",
+		"polpar.permissao"
+	},
+	["DICIIIP"] = {
+		_config = {
+			title = "DIC Paisana",
+			gtype = "job"
+		},
+		"diciiip.permissao",
+		"player.blips",
+		"nogarmas.permissao"
+	},
+-- \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+	["DICIV"] = {
+		_config = {
+			title = "DIC Diretor",
+			gtype = "job"
+		},
+		"policia.permissao",
+		"dic.permissao",
+		"diciv.permissao",
+		"player.blips",
+		"polpar.permissao"
+	},
+	["DICIVP"] = {
+		_config = {
+			title = "DIC Paisana",
+			gtype = "job"
+		},
+		"dicivp.permissao",
+		"player.blips",
+		"nogarmas.permissao"
+	},
 	---------------------------------------------------
 	-- POLÍCIA MILITAR
 	---------------------------------------------------
@@ -398,6 +551,21 @@ cfg.groups = {
 	},
 
 	---------------------------------------------------
+	-- PVP
+	---------------------------------------------------
+	["PVP"] = {
+		_config = {
+			title = "Líder PvP",
+			gtype = "job"
+		},
+		"pvp.permissao",
+		"noclip.permissao",
+		"tp.permissao",
+		"god.permissao",
+		"polpar.permissao",
+	},
+
+	---------------------------------------------------
 	-- PROMOTER
 	---------------------------------------------------
 	["Promoter"] = {
@@ -545,7 +713,45 @@ cfg.groups = {
 		},
 		"vendedorpaisana.permissao"
 	},
-	
+
+	---------------------------------------------------
+	-- MIDNIGHT
+	---------------------------------------------------
+	["MidnightL"] = {
+		_config = {
+			title = "Líder MidNight",
+			gtype = "job"
+		},
+		"lidermidnight.permissao",
+		"midnight.permissao",
+	},
+	["Midnight"] = {
+		_config = {
+			title = "Midnight",
+			gtype = "job"
+		},
+		"midnight.permissao",
+	},
+
+	---------------------------------------------------
+	-- DRIFTKING
+	---------------------------------------------------
+	["DriftkingL"] = {
+		_config = {
+			title = "Líder DriftKing",
+			gtype = "job"
+		},
+		"liderdriftking.permissao",
+		"driftking.permissao",
+	},
+	["Driftking"] = {
+		_config = {
+			title = "DriftKing",
+			gtype = "job"
+		},
+		"driftking.permissao",
+	},
+
 	---------------------------------------------------
 	-- MOTOCLUB
 	---------------------------------------------------
@@ -623,6 +829,44 @@ cfg.groups = {
 	},
 
 	---------------------------------------------------
+	-- LARANJAS	
+	---------------------------------------------------
+	["LaranjasL"] = {
+		_config = {
+			title = "Líder Laranjas",
+			gtype = "job"
+		},
+		"liderlaranjas.permissao",
+		"laranjas.permissao",
+	},
+	["Laranjas"] = {
+		_config = {
+			title = "Laranjas",
+			gtype = "job"
+		},
+		"laranjas.permissao",
+	},
+
+	---------------------------------------------------
+	-- SINALOA
+	---------------------------------------------------
+	["SinaloaL"] = {
+		_config = {
+			title = "Líder Sinaloa",
+			gtype = "job"
+		},
+		"lidersinaloa.permissao",
+		"sinaloa.permissao",
+	},
+	["Sinaloa"] = {
+		_config = {
+			title = "Sinaloa",
+			gtype = "job"
+		},
+		"sinaloa.permissao",
+	},
+
+	---------------------------------------------------
 	-- COSANOSTRA
 	---------------------------------------------------
 	["CNL"] = {
@@ -658,6 +902,25 @@ cfg.groups = {
 			gtype = "job"
 		},
 		"yakuza.permissao",
+	},
+
+	---------------------------------------------------
+	-- IRMANDADE
+	---------------------------------------------------
+	["IrmandadeL"] = {
+		_config = {
+			title = "Líder Irmandade",
+			gtype = "job"
+		},
+		"liderirmandade.permissao",
+		"irmandade.permissao",
+	},
+	["Irmandade"] = {
+		_config = {
+			title = "Irmandade",
+			gtype = "job"
+		},
+		"irmandade.permissao",
 	},
 
 	---------------------------------------------------

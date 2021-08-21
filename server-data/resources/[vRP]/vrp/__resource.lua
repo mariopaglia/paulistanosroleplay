@@ -21,6 +21,7 @@ server_scripts {
 	"modules/aptitude.lua",
 	"modules/basic_items.lua",
 	"modules/basic_skinshop.lua",
+	'modules/survival.lua',
 	"modules/cloakroom.lua"
 }
 

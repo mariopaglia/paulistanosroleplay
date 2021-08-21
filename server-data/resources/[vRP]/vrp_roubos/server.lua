@@ -21,10 +21,12 @@ end
 local variavel1 = 0
 local variavel2 = 0
 local variavel3 = 0
+local variavel4 = 0
 
 local assaltante1 = false
 local assaltante2 = false
 local assaltante3 = false
+local assaltante4 = false
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- GERANDO RECOMPENSA
 -----------------------------------------------------------------------------------------------------------------------------------------
@@ -56,8 +58,17 @@ local lojas = {
 
 local outros = {
 	{ id = 26 , nome = "Açougue" , segundos = 120 , cops = 8 , recompensa = math.random(400000,500000) },
-	{ id = 27 , nome = "Yellow Jack" , segundos = 120 , cops = 4 , recompensa = math.random(300000,350000) },
+	{ id = 27 , nome = "Yellow Jack" , segundos = 120 , cops = 1 , recompensa = math.random(300000,350000) },
 	{ id = 28 , nome = "Galinheiro" , segundos = 120 , cops = 8 , recompensa = math.random(400000,500000) },
+	{ id = 29 , nome = "Vanilla" , segundos = 120 , cops = 5 , recompensa = math.random(250000,300000) },
+}
+
+local barbearia = {
+	{ id = 30 , nome = "Barbearia" , segundos = 60 , cops = 3 , recompensa = math.random(30000,40000) },
+	{ id = 31 , nome = "Barbearia" , segundos = 60 , cops = 3 , recompensa = math.random(30000,40000) },
+	{ id = 32 , nome = "Barbearia" , segundos = 60 , cops = 3 , recompensa = math.random(30000,40000) },
+	{ id = 33 , nome = "Barbearia" , segundos = 60 , cops = 3 , recompensa = math.random(30000,40000) },
+	{ id = 34 , nome = "Barbearia" , segundos = 60 , cops = 3 , recompensa = math.random(30000,40000) },
 }
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- FUNÇÕES
@@ -110,6 +121,7 @@ function rob.IniciandoRoubo1(id,x,y,z,head)
 						TriggerClientEvent('removerblip',-1)
 						vRP.antiflood(source,"roubos",3)
 						vRP.giveInventoryItem(user_id,"dinheirosujo",item.recompensa,false)
+						vRP.giveInventoryItem(user_id,"ticketpvp",20)
 						assaltante1 = false
 					end
 				end)
@@ -165,6 +177,7 @@ function rob.IniciandoRoubo2(id,x,y,z,head)
 						TriggerClientEvent('removerblip',-1)
 						vRP.antiflood(source,"roubos",3)
 						vRP.giveInventoryItem(user_id,"dinheirosujo",item.recompensa,false)
+						vRP.giveInventoryItem(user_id,"ticketpvp",8)
 						assaltante2 = false
 					end
 				end)
@@ -220,7 +233,65 @@ function rob.IniciandoRoubo3(id,x,y,z,head)
 						TriggerClientEvent('removerblip',-1)
 						vRP.antiflood(source,"roubos",3)
 						vRP.giveInventoryItem(user_id,"dinheirosujo",item.recompensa,false)
+						vRP.giveInventoryItem(user_id,"ticketpvp",10)
 						assaltante3 = false
+					end
+				end)
+			end
+		end
+	end
+end
+
+---------------------
+-- BARBEARIA
+---------------------
+function rob.IniciandoRoubo4(id,x,y,z,head)
+	local source = source
+	local user_id = vRP.getUserId(source)
+	local identity = vRP.getUserIdentity(user_id)
+	local crds = GetEntityCoords(GetPlayerPed(source))
+	local soldado = vRP.getUsersByPermission("pmesp.permissao")
+	for _,item in pairs(barbearia) do
+		if item.id == id then
+			if #soldado < item.cops then
+				TriggerClientEvent('Notify',source,"negado","Número insuficiente de policiais no momento para iniciar um roubo.")
+			elseif (os.time() - variavel4) < 3600 then
+				TriggerClientEvent('Notify',source,"negado","Os cofres estão vazios, aguarde "..(1800 - (os.time() - variavel4)).." segundos!")
+			else
+				assaltante4 = true
+				variavel4 = os.time()
+
+				SendWebhookMessage(webhookroubos,"```prolog\n[ID]: "..user_id.." "..identity.name.." "..identity.firstname.."\n[ROUBOU]: "..item.nome.."\n[RECOMPENSA]: R$ "..vRP.format(parseInt(item.recompensa)).."\n[COORDENADA]: "..crds.x..","..crds.y..","..crds.z..""..os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S").." \r```")
+				
+				TriggerClientEvent('iniciarroubo',source,item.segundos,head)
+				vRPclient.playAnim(source,false,{{"anim@heists@ornate_bank@grab_cash_heels","grab",1}},true)
+				for l,w in pairs(soldado) do
+					local player = vRP.getUserSource(parseInt(w))
+					if player then
+						async(function()
+							TriggerClientEvent('criarblip',player,x,y,z)
+							vRPclient.playSound(player,"HUD_MINI_GAME_SOUNDSET","CHECKPOINT_AHEAD")
+							vRPclient.playSound(player,"Oneshot_Final","MP_MISSION_COUNTDOWN_SOUNDSET")
+							TriggerClientEvent('chatMessage',player,"190",{65,130,255},"O roubo começou na ^1"..item.nome.."^0, dirija-se até o local e intercepte os assaltantes.")
+						end)
+					end
+				end
+				SetTimeout(item.segundos*1000,function()
+					if assaltante4 then
+						for l,w in pairs(soldado) do
+							local player = vRP.getUserSource(parseInt(w))
+							if player then
+								async(function()
+									TriggerClientEvent('chatMessage',player,"190",{65,130,255},"O roubo terminou, os assaltantes estão correndo antes que vocês cheguem.")
+								end)
+							end
+						end
+						TriggerClientEvent('removerblip',-1)
+						vRP.antiflood(source,"roubos",3)
+						vRP.giveInventoryItem(user_id,"dinheirosujo",item.recompensa,false)
+						vRP.giveInventoryItem(user_id,"ticketpvp",3)
+						vRP.giveInventoryItem(user_id,"adrenalina",1)
+						assaltante4 = false
 					end
 				end)
 			end
@@ -273,5 +344,21 @@ function rob.CancelandoRoubo3()
 		end
 		TriggerClientEvent('removerblip',-1)
 		assaltante3 = false
+	end
+end
+
+function rob.CancelandoRoubo4()
+	if assaltante4 then
+		local soldado = vRP.getUsersByPermission("policia.permissao")
+		for l,w in pairs(soldado) do
+			local player = vRP.getUserSource(parseInt(w))
+			if player then
+				async(function()
+					TriggerClientEvent('chatMessage',player,"190",{65,130,255},"O assaltante saiu correndo e deixou tudo para trás.")
+				end)
+			end
+		end
+		TriggerClientEvent('removerblip',-1)
+		assaltante4 = false
 	end
 end

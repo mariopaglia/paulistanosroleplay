@@ -29,6 +29,8 @@ RegisterNUICallback("ButtonClick",function(data,cb)
 		TriggerServerEvent("drogas-comprar","frasco")
 	elseif data == "utilidades-comprar-pino" then
 		TriggerServerEvent("drogas-comprar","pino")	
+	elseif data == "utilidades-comprar-frascodeplastico" then
+		TriggerServerEvent("drogas-comprar","frascodeplastico")	
 
 	elseif data == "utilidades-vender-embalagem" then
 		TriggerServerEvent("drogas-vender","embalagem")
@@ -67,6 +69,8 @@ Citizen.CreateThread(function()
 						elseif emP.checkPermission2() then
 							ToggleActionMenu()
 						elseif emP.checkPermission3() then
+							ToggleActionMenu()
+						elseif emP.checkPermission4() then
 							ToggleActionMenu()
 						end
 					end

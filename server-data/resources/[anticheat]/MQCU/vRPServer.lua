@@ -27,7 +27,7 @@ excecao[4] = true
 excecao[5] = true
 excecao[6] = true
 excecao[7] = true
-excecao[48] = true
+excecao[8] = true
 -- oque fica entre os [] é o id de quem não deve ser banido por mais q tenha ultrapassado o limite de bans
 ------------------------------
 Citizen.CreateThread(function()
@@ -72,20 +72,25 @@ sistemas["[Modo_Spawner]"] = true
 sistemas["[SPAWN_VEICULOS]"] = true
 sistemas["[SPAWN_PROP]"] = true
 sistemas["[SPAWN_NPC]"] = true
-sistemas["[SPAWN_VEICULO]"] = true
+sistemas["[SPAWN_VEICULO]"] = false -- Estava dando muito falso positivo (30/07)
 sistemas["[EXPLOSAO4]"] = true
 
 -- Adicionados manualmente
-sistemas["[MODMENU2]"] = true
+sistemas["[MODMENU2]"] = false -- Estava dando muito falso positivo (30/07)
 sistemas["[MODMENU3]"] = true
 sistemas["[MODMENU4]"] = true
 sistemas["[MODMENU5]"] = true
-sistemas["[SPAWN_PROP2]"] = true
+sistemas["[SPAWN_PROP2]"] = false -- Estava dando muito falso positivo (06/08)
 sistemas["[EXPLOSAO7]"] = true
 sistemas["[PROP_BLACKLIST]"] = true
-sistemas["[MULTIPLICADOR_DANO2]"] = true
+sistemas["[MULTIPLICADOR_DANO2]"] = false
 sistemas["[Monster_Injetado4]"] = true
+sistemas["[Monster_Injetado5]"] = false -- Em fase de testes
 sistemas["[SPAWN_PARTICLES]"] = true
+sistemas["[NUI_DEVTOOLS]"] = false
+sistemas["[GOD1]"] = false
+sistemas["[GOD2]"] = false
+sistemas["[GODMOD2]"] = false
 
 local banidos = {}
 AddEventHandler("MQCU:LixoDetectado", function(user_id, msg, cb)

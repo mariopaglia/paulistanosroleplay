@@ -28,6 +28,7 @@ cfg.barbershops = {
 	{ parts,393.76,276.13,95.0 }, -- Galaxy
 	{ parts,-755.51,325.43,199.49 }, -- casa wally
 	{ parts,-805.59,332.49,190.72 }, -- casa porcao
+	{ parts,-156.24,900.45,220.21 }, -- casa porcao
 	{ parts,-1516.81,103.2,55.67 }, -- mansao playboy
 }
 

@@ -60,6 +60,7 @@ local itemlist = {
 	["adrenalina"] = { index = "adrenalina", nome = "Adrenalina", type = "usar" },
 	["gopro"] = { index = "gopro", nome = "GoPro Hero 9", type = "usar" },
 	["gravadordevoz"] = { index = "gravadordevoz", nome = "Gravador de Voz", type = "usar" },
+	["ticketpvp"] = { index = "ticketpvp", nome = "Ticket PVP", type = "usar" },
 
 	-- Farm Contrabandop
 	["componentemetal"] = { index = "componentemetal", nome = "Componentes de Metais", type = "usar" },
@@ -101,7 +102,10 @@ local itemlist = {
 	["anfetamina"] = { index = "anfetamina", nome = "Anfetamina", type = "usar" },
 	["metanfetamina"] = { index = "metanfetamina", nome = "Metanfetamina", type = "usar" },
 	["maconha"] = { index = "maconha", nome = "Maconha", type = "usar" },
+	["heroina"] = { index = "heroina", nome = "Heroína", type = "usar" },
+	["papouladeopio"] = { index = "papouladeopio", nome = "Papoula de Ópio", type = "usar" },
 	["embalagem"] = { index = "embalagem", nome = "Embalagem", type = "usar" },
+	["frascodeplastico"] = { index = "frascodeplastico", nome = "Frasco de Plástico", type = "usar" },
 	["frasco"] = { index = "frasco", nome = "Frasco", type = "usar" },
 	["adubo"] = { index = "adubo", nome = "Adubo", type = "usar" },
 	["lolo"] = { index = "lolo", nome = "Loló", type = "usar" },
@@ -118,9 +122,12 @@ local itemlist = {
 	["polvora"] = { index = "polvora", nome = "Pólvora", type = "usar" },
 	["corpodeak"] = { index = "corpodeak", nome = "Corpo de AK-47", type = "usar" },
 	["corpodefiveseven"] = { index = "corpodefiveseven", nome = "Corpo de Five Seven", type = "usar" },
+	["corpodehkp7m10"] = { index = "corpodehkp7m10", nome = "Corpo de HK P7M10", type = "usar" },
 	["corpodeg36"] = { index = "corpodeg36", nome = "Corpo de G36", type = "usar" },
 	["corpodemp5"] = { index = "corpodemp5", nome = "Corpo de MP5", type = "usar" },
 	["gatilho"] = { index = "gatilho", nome = "Gatilho", type = "usar" },
+	--metal de alta
+	["metaldealta"] = { index = "metaldealta", nome = "Metal de Alta", type = "usar" },
 
 	-- Farm de Colete
 	["tecido"] = { index = "tecido", nome = "Tecido", type = "usar" },
@@ -855,6 +862,12 @@ local vehglobal = {
 	-- EDICAO ESPECIAL
 	["evo9"] = { ['name'] = "Lancer Evolution IX Fast and Furios", ['price'] = 1000000, ['tipo'] = "vip" },
 	["skyline"] = { ['name'] = "Nissan Skyline R34 Japan", ['price'] = 1000000, ['tipo'] = "vip" },
+	-- CARRO VAKINHA
+	["subaruimpreza"] = { ['name'] = "Subaru Impreza WRX STI", ['price'] = 1000000, ['tipo'] = "vip" },
+	["ninjah2"] = { ['name'] = "Kawasaki Ninja H2/H2R", ['price'] = 1000000, ['tipo'] = "vip" },
+
+	["fenixdrift"] = { ['name'] = "BMW Fenix Drift", ['price'] = 1000, ['tipo'] = "vip" },
+	["amaroktuning"] = { ['name'] = "Amarok Rebaixada", ['price'] = 1000000, ['tipo'] = "vip" },
 
 	-- RMOD VIP
 	["rmodi8ks"] = { ['name'] = "BMW i8 Coupe K.S Edition", ['price'] = 1000000, ['tipo'] = "vip" },
@@ -951,6 +964,8 @@ local vehglobal = {
 	["daemon2"]  = { ['name'] = "Daemon2", ['price'] = 310000, ['tipo'] = "motos" },
 	
 	-- VEÍCULOS VIP
+	["bmci"] = { ['name'] = "BMW M5", ['price'] = 1000000, ['tipo'] = "vip" },
+	["f824slw"] = { ['name'] = "BMW M4 SLW", ['price'] = 1000000, ['tipo'] = "vip" },
 	["lamborghinihuracan"] = { ['name'] = "Lamborghini Huracan", ['price'] = 1000000, ['tipo'] = "vip" },
 	["corvette"] = { ['name'] = "Corvette", ['price'] = 1000000, ['tipo'] = "vip" },
 	["nissangtrnismo"] = { ['name'] = "Nissan GTR Nismo", ['price'] = 1000000, ['tipo'] = "vip" },
@@ -1032,6 +1047,10 @@ local vehglobal = {
 	["chevette"] = { ['name'] = "Chevette", ['price'] = 85000, ['tipo'] = "carros" },
 	
 	-- POLICIA
+	["a45policia"] = { ['name'] = "Mercedes A45 Policia", ['price'] = 1000, ['tipo'] = "work" },
+	["cls63s"] = { ['name'] = "Mercedes CLS 63 S", ['price'] = 1000, ['tipo'] = "work" },
+	["sahpexplorer2"] = { ['name'] = "Explorer SAMU", ['price'] = 1, ['tipo'] = "work" },
+	["dicgt63"] = { ['name'] = "Mercedes GT63s Desc.", ['price'] = 1000, ['tipo'] = "work" },
 	["porschespeed"] = { ['name'] = "Porsche 718 Cayman S", ['price'] = 1000, ['tipo'] = "work" },
 	["chevypolicia"] = { ['name'] = "Chevy PMFC", ['price'] = 1000, ['tipo'] = "work" },
 	["bmwm5policia"] = { ['name'] = "BMW M5 PMFC", ['price'] = 1000, ['tipo'] = "work" },

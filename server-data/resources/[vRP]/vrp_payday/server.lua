@@ -32,6 +32,8 @@ salarii = {
   {"juiz.permissao", 8000, "Juíz"},
   -- Promotores de Eventos
   {"lojinha.permissao", 1000, "Promotor de Eventos"},
+  -- Apoiador Vaquinha
+  {"apoiador.permissao", 3000, "Apoiador Fênix City"},
 }
 
 RegisterServerEvent('offred:salar464651684')

@@ -23,3 +23,15 @@ data_file "VEHICLE_VARIATION_FILE" "data/carvariations.meta"
 data_file "AUDIO_WAVEPACK" "audio/elegyx/dlc_elegyx"
 data_file "AUDIO_GAMEDATA" "audio/elegyx/elegyx_game.dat"
 data_file "AUDIO_SOUNDDATA" "audio/elegyx/elegyx_sounds.dat"
+
+data_file "AUDIO_WAVEPACK" "audio/rb26dett/dlc_rb26dett"
+data_file "AUDIO_GAMEDATA" "audio/rb26dett/rb26dett_game.dat"
+data_file "AUDIO_SOUNDDATA" "audio/rb26dett/rb26dett_sounds.dat"
+
+data_file "AUDIO_WAVEPACK" "audio/rotary7/dlc_rotary7"
+data_file "AUDIO_GAMEDATA" "audio/rotary7/rotary7_game.dat"
+data_file "AUDIO_SOUNDDATA" "audio/rotary7/rotary7_sounds.dat"
+
+data_file "AUDIO_WAVEPACK" "audio/toysupmk4/dlc_toysupmk4"
+data_file "AUDIO_GAMEDATA" "audio/toysupmk4/toysupmk4_game.dat"
+data_file "AUDIO_SOUNDDATA" "audio/toysupmk4/toysupmk4_sounds.dat"

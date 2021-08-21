@@ -152,12 +152,59 @@ Citizen.CreateThread(function()
 	end
 end)
 
+-- COORDENADAS DE SPAWN DA ARENA PVP
+local random = {
+    [1] = { ['x'] = 2360.43, ['y'] = 3126.18, ['z'] = 48.21 },
+    [2] = { ['x'] = 2366.56, ['y'] = 3157.83, ['z'] = 48.21 },
+    [3] = { ['x'] = 2402.39, ['y'] = 3136.97, ['z'] = 48.16 },
+    [4] = { ['x'] = 2432.1, ['y'] = 3095.41, ['z'] = 48.35 },
+    [5] = { ['x'] = 2398.97, ['y'] = 3052.36, ['z'] = 48.16 },
+    [6] = { ['x'] = 2353.12, ['y'] = 3055.89, ['z'] = 48.16 },
+    [7] = { ['x'] = 2335.32, ['y'] = 3120.24, ['z'] = 48.21 },
+}
+
+Citizen.CreateThread(function()
+	while true do
+		local idle = 1000
+		if nocauteado then
+			idle = 5
+			if vRPserver.getDimension() ~= 0 then 
+				SetEntityHealth(PlayerPedId(),400)
+				vRPserver._updateHealth(400)
+				tvRP.killGod()
+				FreezeEntityPosition(PlayerPedId(),false)
+				AnimpostfxStopAll()
+				tvRP.stopAnim(true)
+				tvRP.stopAnim(false)
+				ClearPedBloodDamage(PlayerPedId())
+				ClearPedEnvDirt(PlayerPedId())
+				selecionado = math.random(7)
+				SetEntityCoords(
+					PlayerPedId(),
+					random[selecionado].x,
+					random[selecionado].y,
+					random[selecionado].z
+				)
+				while IsEntityPlayingAnim(PlayerPedId(),"misslamar1dead_body","dead_idle",3) do
+					AnimpostfxStopAll()
+					tvRP.stopAnim(true)
+					tvRP.stopAnim(false)
+					Citizen.Wait(500)
+					
+				end
+			end
+		end
+		Citizen.Wait(idle)
+	end
+end)
+
 Citizen.CreateThread(function()
 	while true do
 		local idle = 1000
 		if nocauteado then
 			idle = 5
 			if timedeath <= 0 and IsControlJustPressed(0,38) then
+				if vRPserver.getDimension() == 0 then 
 				idle = 1000
 				SetEntityHealth(PlayerPedId(),400)
 				vRPserver._updateHealth(400)
@@ -180,6 +227,7 @@ Citizen.CreateThread(function()
 				end
 			end
 		end
+	end
 		Citizen.Wait(idle)
 	end
 end)

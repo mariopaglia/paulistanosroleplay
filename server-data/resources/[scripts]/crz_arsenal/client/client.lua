@@ -8,8 +8,9 @@ local Menu = true
 local player = PlayerPedId()
 
 local arsenal = {
-	--{ 452.22,-980.1,30.69 }, -- Policia Praça
+	{ 452.18,-980.18,30.69 }, -- Policia Praça
 	{ -580.35,-110.17,33.89 }, -- Policia nova
+	{ 2525.65,-342.43,101.9 }, -- DIC
 }
 
 if Menu then
@@ -23,7 +24,7 @@ if Menu then
 			if distance <= 3 then
 				DrawMarker(27,x,y+0,z-0.97,0,0,0,0,0,0,0.7,0.7,0.5,214,29,0,100,0,0,0,0)
 				--DrawMarker(23,x,y+0.33,z-0.90,0,0,0,0,180.0,130.0,2.0,2.0,1.0,25,25,122,50,0,0,0,0)
-				DrawText3Ds(x,y,z+0.20,"~r~[E] ~w~Para Acessar o ~r~arsenal")
+				DrawText3Ds(x,y,z+0.10,"~r~[E] ~w~Para Acessar o ~r~arsenal")
 				idle = 5
 			end
 		end

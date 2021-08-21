@@ -111,3 +111,16 @@ AddEventHandler("vRP:playerSpawn",function(user_id,source,first_spawn)
 		end
 	end
 end)
+
+Citizen.CreateThread(function()
+	Citizen.Wait(1500)
+	for user_id, source in pairs(vRP.getUsers()) do
+		build_client_tattooshops(source)
+		local custom = {}
+		local data = vRP.getUData(user_id,"vRP:tattoos")
+		if data then
+			custom = json.decode(data)
+			TSclient.setTattoos(source,custom)
+		end
+	end
+end)

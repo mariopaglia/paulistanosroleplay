@@ -18,6 +18,7 @@ local segundos = 0
 local pegarBlips = {
 	{ ['x'] = 412.04, ['y'] = -1503.97, ['z'] = 33.81 }, -- 412.0,-1503.94,33.81 (Yakuza)
 	{ ['x'] = -591.0, ['y'] = -1617.87, ['z'] = 33.02 }, -- -591.0,-1617.87,33.02 (Triade)
+	{ ['x'] = 570.96, ['y'] = -3123.47, ['z'] = 18.77 }, -- 570.95,-3123.47,18.77 (Irmandade)
 }
 
 -----------------------------------------------------------------------------------------------------------------------------------------
@@ -172,6 +173,6 @@ function CriandoBlip(locs,selecionado)
 	SetBlipAsShortRange(blips,false)
 	SetBlipRoute(blips,true)
 	BeginTextCommandSetBlipName("STRING")
-	AddTextComponentString("Coletar Placas de Metal")
+	AddTextComponentString("Coletar Componentes")
 	EndTextCommandSetBlipName(blips)
 end

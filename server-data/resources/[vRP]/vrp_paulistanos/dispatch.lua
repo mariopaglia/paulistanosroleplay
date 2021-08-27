@@ -9,8 +9,35 @@ end)
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- REMOVER ARMA ABAIXO DE 40MPH DENTRO DO CARRO
 -----------------------------------------------------------------------------------------------------------------------------------------
+-- Citizen.CreateThread(function()
+-- 	while true do
+-- 		Citizen.Wait(1)
+-- 		local ped = PlayerPedId()
+-- 		local vehicle = GetVehiclePedIsIn(ped)
+-- 		if IsVehicleModel(GetVehiclePedIsUsing(PlayerPedId()),GetHashKey("polmav")) then
+-- 			SetPlayerCanDoDriveBy(PlayerId(),true)
+--  		else	
+--  			SetPlayerCanDoDriveBy(PlayerId(),false)
+--  		end
+-- 	end
+-- end)
+
 Citizen.CreateThread(function()
-	SetPlayerCanDoDriveBy(PlayerId(),false)
+	while true do
+		Citizen.Wait(1)
+		local ped = PlayerPedId()
+		local vehicle = GetVehiclePedIsIn(ped)
+		if IsEntityAVehicle(vehicle) then
+			local speed = GetEntitySpeed(vehicle)*3.6
+			if GetPedInVehicleSeat(vehicle,-1) == ped then
+				if speed >= 40 then
+					SetPlayerCanDoDriveBy(PlayerId(),false)
+				else
+					SetPlayerCanDoDriveBy(PlayerId(),true)
+				end
+			end
+		end
+	end
 end)
 
 -----------------------------------------------------------------------------------------------------------------------------------------

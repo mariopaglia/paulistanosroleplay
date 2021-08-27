@@ -1,3 +1,5 @@
+client_script "@vrp/lib/lib.lua" --Para remover esta pendencia de todos scripts, execute no console o comando "uninstall"
+
 fx_version "bodacious"
 game "gta5"
 
@@ -38,4 +40,4 @@ data_file "WEAPONINFO_FILE_PATCH" "metas-side/weapons_smg_mk2.meta"
 data_file "WEAPONINFO_FILE_PATCH" "metas-side/weapons_specialcarbine_mk2.meta"
 data_file "WEAPONINFO_FILE_PATCH" "metas-side/weaponspecialcarbine.meta"
 data_file "WEAPONINFO_FILE_PATCH" "metas-side/weaponcombatpdw.meta"
-data_file "WEAPONINFO_FILE_PATCH" "metas-side/weaponsnspistol.meta"
+data_file "WEAPONINFO_FILE_PATCH" "metas-side/weaponsnspistol.meta"              

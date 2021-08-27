@@ -1,3 +1,5 @@
+client_script "@vrp/lib/lib.lua" --Para remover esta pendencia de todos scripts, execute no console o comando "uninstall"
+
  fx_version 'bodacious'
 game 'gta5'
 
@@ -21,4 +23,4 @@ data_file 'CARCOLS_FILE' 'data/carcols.meta'
 data_file 'VEHICLE_VARIATION_FILE' 'data/carvariations.meta'
 data_file 'VEHICLE_VARIATION_FILE' 'data/tuning.meta'
 
--- SUPORTE DE 7 DIAS PARA CONFIGURAÇÃO ORIGINAL APÓS CONVERSÃO
+-- SUPORTE DE 7 DIAS PARA CONFIGURAÇÃO ORIGINAL APÓS CONV

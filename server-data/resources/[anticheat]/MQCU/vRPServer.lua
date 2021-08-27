@@ -243,7 +243,7 @@ AddEventHandler('MarqCU#4374:wall', function(user_id)
 end)
 
 function alertarADM(user_id, msg)
-    local adms = vRP.getUsersByPermission("ban.permissao")
+    local adms = vRP.getUsersByPermission("staff.permissao")
     for k, v in pairs(adms) do
         admin_source = vRP.getUserSource(parseInt(v))
         TriggerClientEvent("Notify", admin_source, "aviso", "Jogador Suspeito: <b>" .. user_id .. "</b> - Motivo: " .. msg .. "", 15000)

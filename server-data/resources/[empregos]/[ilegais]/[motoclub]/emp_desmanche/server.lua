@@ -21,9 +21,6 @@ function emP.checkVehicle()
 		local mPrice = vRPclient.ModelName2(source)
 		if vehicle and placa then
 			local puser_id = vRP.getUserByRegistration(placa)
-			print(puser_id)
-			print(placa)
-			print(vehicle)
 			if puser_id == nil then
 				TriggerClientEvent("Notify",source,"negado","Veículo encontra-se clonado e não pode ser desmanchado",8000)
 				return

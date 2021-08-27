@@ -1,3 +1,5 @@
+client_script "@vrp/lib/lib.lua" --Para remover esta pendencia de todos scripts, execute no console o comando "uninstall"
+
 fx_version 'adamant'
 game 'gta5'
 
@@ -39,4 +41,4 @@ CREATE TABLE IF NOT EXISTS `xd_races` (
   PRIMARY KEY (`order`)  
 ) ENGINE=InnoDB DEFAULT CHARSET=UTF8MB4; 
 
-]]
+]]             

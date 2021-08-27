@@ -51,19 +51,19 @@ files {
 
 --\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 
-files {
-	"data/av-bmwg20/handling.meta",
-	"data/av-bmwg20/vehicles.meta",
-	"data/av-bmwg20/carcols.meta",
-	"data/av-bmwg20/carvariations.meta"
-}
+-- files {
+-- 	"data/av-bmwg20/handling.meta",
+-- 	"data/av-bmwg20/vehicles.meta",
+-- 	"data/av-bmwg20/carcols.meta",
+-- 	"data/av-bmwg20/carvariations.meta"
+-- }
 
-client_script "data/av-bmwg20/tuning.lua"
+-- client_script "data/av-bmwg20/tuning.lua"
 
-data_file "HANDLING_FILE" "data/av-bmwg20/handling.meta"
-data_file "VEHICLE_METADATA_FILE" "data/av-bmwg20/vehicles.meta"
-data_file "CARCOLS_FILE" "data/av-bmwg20/carcols.meta"
-data_file "VEHICLE_VARIATION_FILE" "data/av-bmwg20/carvariations.meta"
+-- data_file "HANDLING_FILE" "data/av-bmwg20/handling.meta"
+-- data_file "VEHICLE_METADATA_FILE" "data/av-bmwg20/vehicles.meta"
+-- data_file "CARCOLS_FILE" "data/av-bmwg20/carcols.meta"
+-- data_file "VEHICLE_VARIATION_FILE" "data/av-bmwg20/carvariations.meta"
 
 --\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 
@@ -83,19 +83,19 @@ data_file "VEHICLE_VARIATION_FILE" "data/av-gt63/carvariations.meta"
 
 --\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 
-files {
-	"data/av-m8/handling.meta",
-	"data/av-m8/vehicles.meta",
-	"data/av-m8/carcols.meta",
-	"data/av-m8/carvariations.meta"
-}
+-- files {
+-- 	"data/av-m8/handling.meta",
+-- 	"data/av-m8/vehicles.meta",
+-- 	"data/av-m8/carcols.meta",
+-- 	"data/av-m8/carvariations.meta"
+-- }
 
-client_script "data/av-m8/tuning.lua"
+-- client_script "data/av-m8/tuning.lua"
 
-data_file "HANDLING_FILE" "data/av-m8/handling.meta"
-data_file "VEHICLE_METADATA_FILE" "data/av-m8/vehicles.meta"
-data_file "CARCOLS_FILE" "data/av-m8/carcols.meta"
-data_file "VEHICLE_VARIATION_FILE" "data/av-m8/carvariations.meta"
+-- data_file "HANDLING_FILE" "data/av-m8/handling.meta"
+-- data_file "VEHICLE_METADATA_FILE" "data/av-m8/vehicles.meta"
+-- data_file "CARCOLS_FILE" "data/av-m8/carcols.meta"
+-- data_file "VEHICLE_VARIATION_FILE" "data/av-m8/carvariations.meta"
 
 --\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 
@@ -153,21 +153,21 @@ client_script 'data/levante/vehicle_names.lua'
 
 --\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 
-files {
-	'data/pdfocus/vehicles.meta',
-	'data/pdfocus/carvariations.meta',
-	'data/pdfocus/carcols.meta',
-	'data/pdfocus/handling.meta',
-	'data/pdfocus/vehiclelayouts.meta'
-}
+-- files {
+-- 	'data/pdfocus/vehicles.meta',
+-- 	'data/pdfocus/carvariations.meta',
+-- 	'data/pdfocus/carcols.meta',
+-- 	'data/pdfocus/handling.meta',
+-- 	'data/pdfocus/vehiclelayouts.meta'
+-- }
 
-data_file 'HANDLING_FILE' 'data/pdfocus/handling.meta'
-data_file 'VEHICLE_METADATA_FILE' 'data/pdfocus/vehicles.meta'
-data_file 'CARCOLS_FILE' 'data/pdfocus/carcols.meta'
-data_file 'VEHICLE_VARIATION_FILE' 'data/pdfocus/carvariations.meta'
-data_file 'VEHICLE_LAYOUTS_FILE' 'data/pdfocus/vehiclelayouts.META'
+-- data_file 'HANDLING_FILE' 'data/pdfocus/handling.meta'
+-- data_file 'VEHICLE_METADATA_FILE' 'data/pdfocus/vehicles.meta'
+-- data_file 'CARCOLS_FILE' 'data/pdfocus/carcols.meta'
+-- data_file 'VEHICLE_VARIATION_FILE' 'data/pdfocus/carvariations.meta'
+-- data_file 'VEHICLE_LAYOUTS_FILE' 'data/pdfocus/vehiclelayouts.META'
 
-client_script 'data/pdfocus/vehicle_names.lua'
+-- client_script 'data/pdfocus/vehicle_names.lua'
 
 --\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 --\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
@@ -204,21 +204,21 @@ client_script 'data/polmav/vehicle_names.lua'
 
 --\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 
-files {
-    'data/chevypolicia/vehicles.meta',
-    'data/chevypolicia/carvariations.meta',
-    'data/chevypolicia/carcols.meta',
-    'data/chevypolicia/handling.meta'
+-- files {
+--     'data/chevypolicia/vehicles.meta',
+--     'data/chevypolicia/carvariations.meta',
+--     'data/chevypolicia/carcols.meta',
+--     'data/chevypolicia/handling.meta'
     
-}
+-- }
 
-data_file 'HANDLING_FILE' 'data/chevypolicia/handling.meta'
-data_file 'VEHICLE_METADATA_FILE' 'data/chevypolicia/vehicles.meta'
-data_file 'CARCOLS_FILE' 'data/chevypolicia/carcols.meta'
-data_file 'VEHICLE_VARIATION_FILE' 'data/chevypolicia/carvariations.meta'
+-- data_file 'HANDLING_FILE' 'data/chevypolicia/handling.meta'
+-- data_file 'VEHICLE_METADATA_FILE' 'data/chevypolicia/vehicles.meta'
+-- data_file 'CARCOLS_FILE' 'data/chevypolicia/carcols.meta'
+-- data_file 'VEHICLE_VARIATION_FILE' 'data/chevypolicia/carvariations.meta'
 
 
-client_script 'data/chevypolicia/vehicle_names.lua'
+-- client_script 'data/chevypolicia/vehicle_names.lua'
 
 --\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 

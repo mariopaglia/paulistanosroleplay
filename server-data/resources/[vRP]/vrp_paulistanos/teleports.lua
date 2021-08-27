@@ -17,8 +17,8 @@ local Teleport = {
 	-- 	positionTo = { ['x'] = 327.25, ['y'] = -603.84, ['z'] = 43.29 }
 	-- },
 	["HOSPITALHELI"] = {
-		positionFrom = { ['x'] = -862.59, ['y'] = -1227.42, ['z'] = 6.45 },
-		positionTo = { ['x'] = -859.33, ['y'] = -1231.64, ['z'] = 14.84 }
+		positionFrom = { ['x'] = 338.53, ['y'] = -583.77, ['z'] = 74.17 },
+		positionTo = { ['x'] = 332.43, ['y'] = -595.65, ['z'] = 43.29 }
 	},
 	["TELEFERICO"] = {
 		positionFrom = { ['x'] = -741.06, ['y'] = 5593.12, ['z'] = 41.65 },

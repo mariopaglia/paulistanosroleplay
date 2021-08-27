@@ -76,6 +76,15 @@ AddEventHandler("vRP:playerJoin",function(user_id,source,name)
 	end
 end)
 
+-- ENTREGAR CELULAR AO ENTRAR NA CIDADE PELA PRIMEIRA VEZ
+AddEventHandler("vRP:playerJoin",function(user_id,source,name)
+	if not vRP.getUserIdentity(user_id) then
+		print(user_id)
+		print("Celular entregue no primeiro spawn")
+		vRP.giveInventoryItem(user_id,"celular",1)
+	end
+end)
+
 AddEventHandler("vRP:playerSpawn",function(user_id, source, first_spawn)
 	local identity = vRP.getUserIdentity(user_id)
 	if identity then

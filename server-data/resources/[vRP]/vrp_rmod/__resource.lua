@@ -1,3 +1,5 @@
+client_script "@vrp/lib/lib.lua" --Para remover esta pendencia de todos scripts, execute no console o comando "uninstall"
+
 resource_manifest_version '77731fab-63ca-442c-a67b-abc70f28dfa5'
  
 files {
@@ -858,18 +860,18 @@ data_file 'VEHICLE_LAYOUTS_FILE' 'data/fenixdrift/vehiclelayouts.meta'
 --\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 --\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 
-files {
-    'data/amaroktuning/vehicles.meta',
-    'data/amaroktuning/carvariations.meta',
-    'data/amaroktuning/carcols.meta',
-    'data/amaroktuning/handling.meta',
-    'data/amaroktuning/vehiclelayouts.meta',
-}
+-- files {
+--     'data/amaroktuning/vehicles.meta',
+--     'data/amaroktuning/carvariations.meta',
+--     'data/amaroktuning/carcols.meta',
+--     'data/amaroktuning/handling.meta',
+--     'data/amaroktuning/vehiclelayouts.meta',
+-- }
 
-data_file 'HANDLING_FILE' 'data/amaroktuning/handling.meta'
-data_file 'VEHICLE_METADATA_FILE' 'data/amaroktuning/vehicles.meta'
-data_file 'CARCOLS_FILE' 'data/amaroktuning/carcols.meta'
-data_file 'VEHICLE_VARIATION_FILE' 'data/amaroktuning/carvariations.meta'
-data_file 'VEHICLE_LAYOUTS_FILE' 'data/amaroktuning/vehiclelayouts.meta'
+-- data_file 'HANDLING_FILE' 'data/amaroktuning/handling.meta'
+-- data_file 'VEHICLE_METADATA_FILE' 'data/amaroktuning/vehicles.meta'
+-- data_file 'CARCOLS_FILE' 'data/amaroktuning/carcols.meta'
+-- data_file 'VEHICLE_VARIATION_FILE' 'data/amaroktuning/carvariations.meta'
+-- data_file 'VEHICLE_LAYOUTS_FILE' 'data/amaroktuning/vehiclelayouts.meta'
 
---\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+--\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\              

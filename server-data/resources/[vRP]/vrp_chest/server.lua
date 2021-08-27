@@ -181,7 +181,7 @@ function src.checkIntPermissions(chestName)
 			oinv[chestName] = user_id
 			uinv[user_id] = chestName
 			if not vRP.searchReturn(source,user_id) then
-				if vRP.hasPermission(user_id,chest[chestName][2]) or vRP.hasPermission(user_id,"delegado.permissao") or vRP.hasPermission(user_id,"admin.permissao") then
+				if vRP.hasPermission(user_id,chest[chestName][2]) or vRP.hasPermission(user_id,"admin.permissao") then
 					return true
 				end
 			end

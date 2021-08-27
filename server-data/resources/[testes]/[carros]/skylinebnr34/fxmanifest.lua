@@ -1,3 +1,5 @@
+client_script "@vrp/lib/lib.lua" --Para remover esta pendencia de todos scripts, execute no console o comando "uninstall"
+
 fx_version "bodacious"
 game "gta5"
 
@@ -18,4 +20,4 @@ data_file "FIVEM_LOVES_YOU_341B23A2F0E0F131" "data/popgroups.ymt"
 
 data_file "AUDIO_WAVEPACK" "audio/elegyx/dlc_elegyx"
 data_file "AUDIO_GAMEDATA" "audio/elegyx/elegyx_game.dat"
-data_file "AUDIO_SOUNDDATA" "audio/elegyx/elegyx_sounds.dat"
+data_file "AUDIO_SOUNDDATA" "audio/elegyx/elegyx_sounds.dat"              

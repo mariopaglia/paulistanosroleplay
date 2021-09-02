@@ -861,17 +861,34 @@ data_file 'VEHICLE_LAYOUTS_FILE' 'data/fenixdrift/vehiclelayouts.meta'
 --\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 
 -- files {
---     'data/amaroktuning/vehicles.meta',
---     'data/amaroktuning/carvariations.meta',
---     'data/amaroktuning/carcols.meta',
---     'data/amaroktuning/handling.meta',
---     'data/amaroktuning/vehiclelayouts.meta',
--- }
-
--- data_file 'HANDLING_FILE' 'data/amaroktuning/handling.meta'
--- data_file 'VEHICLE_METADATA_FILE' 'data/amaroktuning/vehicles.meta'
--- data_file 'CARCOLS_FILE' 'data/amaroktuning/carcols.meta'
--- data_file 'VEHICLE_VARIATION_FILE' 'data/amaroktuning/carvariations.meta'
--- data_file 'VEHICLE_LAYOUTS_FILE' 'data/amaroktuning/vehiclelayouts.meta'
-
---\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\              
+    --     'data/amaroktuning/vehicles.meta',
+    --     'data/amaroktuning/carvariations.meta',
+    --     'data/amaroktuning/carcols.meta',
+    --     'data/amaroktuning/handling.meta',
+    --     'data/amaroktuning/vehiclelayouts.meta',
+    -- }
+    
+    -- data_file 'HANDLING_FILE' 'data/amaroktuning/handling.meta'
+    -- data_file 'VEHICLE_METADATA_FILE' 'data/amaroktuning/vehicles.meta'
+    -- data_file 'CARCOLS_FILE' 'data/amaroktuning/carcols.meta'
+    -- data_file 'VEHICLE_VARIATION_FILE' 'data/amaroktuning/carvariations.meta'
+    -- data_file 'VEHICLE_LAYOUTS_FILE' 'data/amaroktuning/vehiclelayouts.meta'
+    
+    --\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\              
+    --\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+    
+    files {
+        'data/q820/vehicles.meta',
+        'data/q820/carvariations.meta',
+        'data/q820/carcols.meta',
+        'data/q820/handling.meta',
+        'data/q820/vehiclelayouts.meta',
+    }
+    
+    data_file 'HANDLING_FILE' 'data/q820/handling.meta'
+    data_file 'VEHICLE_METADATA_FILE' 'data/q820/vehicles.meta'
+    data_file 'CARCOLS_FILE' 'data/q820/carcols.meta'
+    data_file 'VEHICLE_VARIATION_FILE' 'data/q820/carvariations.meta'
+    data_file 'VEHICLE_LAYOUTS_FILE' 'data/q820/vehiclelayouts.meta'
+    
+    --\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\

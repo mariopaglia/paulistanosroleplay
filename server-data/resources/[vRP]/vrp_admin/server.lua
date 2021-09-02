@@ -8,6 +8,11 @@ Tunnel.bindInterface("vrp_admin",crz)
 
 vADMC = Tunnel.getInterface("vrp_admin","vrp_admin")
 
+-----------------------------------------------------------------------------------------------------------------------------------------
+-- PREPARES
+-----------------------------------------------------------------------------------------------------------------------------------------
+vRP._prepare("admin/resetarpersonagem","DELETE FROM vrp_user_data WHERE user_id = @user_id AND dkey ='currentCharacterMode'")
+
 local webhookaddremcar = "https://discord.com/api/webhooks/795671123299663893/-CZgy7czgUO7BeEHlYJpdCm00mxjG11oSrEHkhUC1r2mmXgGm93p9vq4VWp6gTzyi9vK"
 local webhookmoney = "https://discord.com/api/webhooks/795667756493963304/4Azax194qMKWm6y1KfADk8ernA8YpUF1CKWvHdlaG2tNSd_NHhy3-fycr9RvpTAp41qa"
 local webhookcarros = "https://discord.com/api/webhooks/793197093690671134/CVTPwlTgBR2CVOKsyTEXCXau6KX4L8eZFijtmOY06S6wnCs2BRh3urrUUut3NzHPWQi2"
@@ -440,10 +445,11 @@ RegisterCommand('reset',function(source,args,rawCommand)
                 local id = vRP.getUserId(nplayer)
                 if id then
                     vRP.kick(nplayer,"Aparência resetada, entre novamente!")
-                    vRP.setUData(id,"vRP:spawnController",json.encode(1))
-                    vRP.setUData(id,"vRP:currentCharacterMode",json.encode(1))
-                    vRP.setUData(id,"vRP:tattoos",json.encode(1))
                 end
+				vRP.setUData(args[1],"vRP:spawnController",json.encode(1))
+				vRP.setUData(args[1],"vRP:currentCharacterMode",json.encode(1))
+				vRP.setUData(args[1],"vRP:tattoos",json.encode(1))
+				vRP.execute("admin/resetarpersonagem",{ user_id = parseInt(args[1]) })
             end
         end
     end
@@ -466,6 +472,7 @@ RegisterCommand('plastica',function(source,args,rawCommand)
 							vRP.setUData(id,"vRP:spawnController",json.encode(1))
 							vRP.setUData(id,"vRP:currentCharacterMode",json.encode(1))
 							vRP.setUData(id,"vRP:tattoos",json.encode(1))
+							vRP.execute("admin/resetarpersonagem",{ user_id = parseInt(args[1]) })
 							return true
 						else
 							TriggerClientEvent("Notify",source,"negado","Voce não possui dinheiro suficiente")
@@ -1065,12 +1072,12 @@ local presets = {
 			[9] = {0,0,1},
 			[10] = {-1,0,2},
 			[11] = {10,4,2},
-			["p7"] = {-1,0},
-			["p6"] = {-1,0},
-			[0] = {0,0,0},
-			["p2"] = {-1,0},
-			["p0"] = {130,1},
 			["p1"] = {11,3},
+			["p2"] = {-1,0},
+			[0] = {0,0,0},
+			["p0"] = {130,0},
+			["p6"] = {-1,0},
+			["p7"] = {-1,0},
 		}
 	},
 	["kappa"] = {
@@ -1929,16 +1936,4 @@ RegisterCommand('saquear',function(source,args,rawCommand)
            end
 		end
 	end
-end)
-
------------------------------------------------------------------------------------------------------------------------------------------
--- TRUNKIN
------------------------------------------------------------------------------------------------------------------------------------------
-RegisterCommand("trunkin",function(source,args,rawCommand)
-    local user_id = vRP.getUserId(source)
-    if user_id then
-        if vRPclient.getHealth(source) > 101  and not vCLIENT.getHandcuff(source) then
-            TriggerClientEvent("vrp_player:EnterTrunk",source)
-        end
-    end
 end)

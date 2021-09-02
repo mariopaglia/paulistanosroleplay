@@ -29,9 +29,9 @@ function searchIdDoor()
 	return 0
 end
 
-RegisterKeyMapping('vrp_doors:open', 'Porta', 'keyboard', 'E')
+RegisterKeyMapping('vrp_doors:open_fenix', 'Porta', 'keyboard', 'E')
 
-RegisterCommand('vrp_doors:open', function()
+RegisterCommand('vrp_doors:open_fenix', function()
 	local id = searchIdDoor()
 	if id ~= 0 then
 		TriggerServerEvent("vrpdoorsystem:open",id)

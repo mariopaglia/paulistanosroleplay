@@ -29,9 +29,9 @@ end)
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- ABRIR INVENTARIO
 -----------------------------------------------------------------------------------------------------------------------------------------
-RegisterKeyMapping('vrp_inventory:openInv', 'Inventário', 'keyboard', 'OEM_3')
+RegisterKeyMapping('vrp_inventory:abririnv_fenix', 'Abrir Inventário', 'keyboard', 'OEM_3')
 
-RegisterCommand('vrp_inventory:openInv', function()
+RegisterCommand('vrp_inventory:abririnv_fenix', function()
 	local ped = PlayerPedId()
 	if GetEntityHealth(ped) > 101 and not vRP.isHandcuffed() and not IsPedBeingStunned(ped) and not IsPlayerFreeAiming(ped) then
 		if not invOpen then

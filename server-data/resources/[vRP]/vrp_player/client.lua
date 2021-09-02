@@ -6,8 +6,6 @@ Tunnel.bindInterface("vrp_player",vRPNclient)
 
 emP = Tunnel.getInterface("vrp_player")
 
-
-
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- NOCARJACK
 -----------------------------------------------------------------------------------------------------------------------------------------
@@ -510,28 +508,28 @@ Citizen.CreateThread(
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- AFKSYSTEM
 -----------------------------------------------------------------------------------------------------------------------------------------
-Citizen.CreateThread(function()
-	while true do
-		Citizen.Wait(1000)
-		local x,y,z = table.unpack(GetEntityCoords(PlayerPedId()))
-		if x == px and y == py then
-			if tempo > 0 then
-				tempo = tempo - 1
-				if tempo == 600 then
-					TriggerEvent("Notify", "aviso", "Mexa-se ou será desconectado(a) em <b>10 minutos</b>")
-				elseif tempo == 300 then
-					TriggerEvent("Notify", "aviso", "Mexa-se ou será desconectado(a) em <b>5 minutos</b>")
-				end
-			else
-				TriggerServerEvent("kickAFK")
-			end
-		else
-			tempo = 1800
-		end
-		px = x
-		py = y
-	end
-end)
+-- Citizen.CreateThread(function()
+-- 	while true do
+-- 		Citizen.Wait(1000)
+-- 		local x,y,z = table.unpack(GetEntityCoords(PlayerPedId()))
+-- 		if x == px and y == py then
+-- 			if tempo > 0 then
+-- 				tempo = tempo - 1
+-- 				if tempo == 600 then
+-- 					TriggerEvent("Notify", "aviso", "Mexa-se ou será desconectado(a) em <b>10 minutos</b>")
+-- 				elseif tempo == 300 then
+-- 					TriggerEvent("Notify", "aviso", "Mexa-se ou será desconectado(a) em <b>5 minutos</b>")
+-- 				end
+-- 			else
+-- 				TriggerServerEvent("kickAFK")
+-- 			end
+-- 		else
+-- 			tempo = 1800
+-- 		end
+-- 		px = x
+-- 		py = y
+-- 	end
+-- end)
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- ABRIR PORTA-MALAS DO VEICULO
 -----------------------------------------------------------------------------------------------------------------------------------------
@@ -1874,6 +1872,19 @@ Citizen.CreateThread(function()
         local health = GetEntityHealth(ped)
         if health >= 101 then
             DisableControlAction(0,44,true)
+        end
+    end
+end)
+
+-----------------------------------------------------------------------------------------------------------------------------------------
+-- DESABILITAR AUTO-CAPACETE NA MOTO
+-----------------------------------------------------------------------------------------------------------------------------------------
+Citizen.CreateThread( function()
+    while true do
+        Citizen.Wait(5)  
+        local veh = GetVehiclePedIsUsing(PlayerPedId())
+        if veh ~= 0 then 
+            SetPedConfigFlag(PlayerPedId(),35,false) 
         end
     end
 end)

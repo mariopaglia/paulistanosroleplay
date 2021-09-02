@@ -39,9 +39,9 @@ AddEventHandler("trunkchest:Open",function()
 		TriggerEvent("Notify","negado","Tente novamente.",4000)
 	end
 end)
-RegisterKeyMapping('vrp_trunkchest:open', 'Abrir Portamalas', 'keyboard', 'PAGEUP')
+RegisterKeyMapping('vrp_trunkchest:abrirportamalas_fenix', 'Abrir Portamalas', 'keyboard', 'PAGEUP')
 
-RegisterCommand('vrp_trunkchest:open', function()
+RegisterCommand('vrp_trunkchest:abrirportamalas_fenix', function()
 	if not IsPedBeingStunned(ped) and not IsPlayerFreeAiming(PlayerId()) and GetEntityHealth(PlayerPedId()) > 101 then
 		local r = vRPNserver.chestOpen()
 		if not r then

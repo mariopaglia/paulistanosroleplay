@@ -20,7 +20,7 @@ end
 function emP.checkPermission2(perm,grupo)
 	local source = source
 	local user_id = vRP.getUserId(source)
-	if vRP.hasPermission(user_id,perm) then
+	if vRP.hasPermission(user_id,perm) or vRP.hasPermission(user_id, "admin.permissao") then
 		TriggerClientEvent("Notify",source,"sucesso","Entrou no rádio da <b>"..grupo.."</b>.",8000)
 		return true
 	else

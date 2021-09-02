@@ -2,7 +2,7 @@
 -- PEDS
 -------------------------------------------------
 Citizen.CreateThread(function()
-	AddTextEntry("FE_THDR_GTAO","Fênix City")
+	AddTextEntry("FE_THDR_GTAO","Fênix City - discord.gg/fenixcity")
 	while true do
 		Citizen.Wait(4)
 		N_0xf4f2c0d4ee209e20()
@@ -18,6 +18,7 @@ Citizen.CreateThread(function()
 		HideHudComponentThisFrame(11)
 		HideHudComponentThisFrame(12)
 		HideHudComponentThisFrame(13)
+		-- ShowHudComponentThisFrame(14) -- "X" na mira
 		HideHudComponentThisFrame(15)
 		HideHudComponentThisFrame(17)
 		HideHudComponentThisFrame(18)
@@ -62,6 +63,9 @@ Citizen.CreateThread(function()
 		local r, wh = GetCurrentPedWeapon(PlayerPedId(),1)
 		if r and wh == GetHashKey("WEAPON_FIREEXTINGUISHER") then
 			SetPedInfiniteAmmo(PlayerPedId(),true,GetHashKey("WEAPON_FIREEXTINGUISHER"))
+		end
+		if r and wh == GetHashKey("WEAPON_PETROLCAN") then
+			SetPedInfiniteAmmo(PlayerPedId(),true,GetHashKey("WEAPON_PETROLCAN"))
 		end
 		
 	end

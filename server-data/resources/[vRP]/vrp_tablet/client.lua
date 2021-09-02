@@ -18,8 +18,8 @@ end)
 
 
 
-RegisterKeyMapping('vrp_tablet:open', 'Tablet', 'keyboard', 'F9')
+RegisterKeyMapping('vrp_tablet:abrirtablet_fenix', 'Abrir Tablet', 'keyboard', 'F9')
 
-RegisterCommand('vrp_tablet:open', function()
+RegisterCommand('vrp_tablet:abrirtablet_fenix', function()
 	ToggleActionMenu()
 end, false)

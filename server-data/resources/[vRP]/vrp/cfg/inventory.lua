@@ -19,6 +19,8 @@ cfg.chestweight = {
 	["dicgt63"] = 50,
 	["polmav"] = 100,
 	["a45policia"] = 50,
+	["pmfcevo9"] = 50,
+	["corleo"] = 50,
 
 	["deathbike"] = 10,
 	["brioso2"] = 10,
@@ -426,6 +428,7 @@ cfg.chestweight = {
 	["amaroktuning"] = 20,
 
 	-- IMPORTADOS
+	["q820"] = 70,
 	["bmci"] = 30,
 	["f824slw"] = 20,
 	["71gtx"] = 20,

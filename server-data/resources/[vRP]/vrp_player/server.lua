@@ -603,14 +603,14 @@ end)
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- AFKSYSTEM
 -----------------------------------------------------------------------------------------------------------------------------------------
-RegisterServerEvent("kickAFK")
-AddEventHandler("kickAFK",function()
-	local source = source
-	local user_id = vRP.getUserId(source)
-	if not vRP.hasPermission(user_id,"staff.permissao") then
-		DropPlayer(source,"Voce foi desconectado por ficar ausente.")
-	end
-end)
+-- RegisterServerEvent("kickAFK")
+-- AddEventHandler("kickAFK",function()
+-- 	local source = source
+-- 	local user_id = vRP.getUserId(source)
+-- 	if not vRP.hasPermission(user_id,"staff.permissao") then
+-- 		DropPlayer(source,"Voce foi desconectado por ficar ausente.")
+-- 	end
+-- end)
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- /SEQUESTRO
 -----------------------------------------------------------------------------------------------------------------------------------------
@@ -1312,7 +1312,7 @@ RegisterCommand('status',function(source,args,rawCommand)
     	local paramedico3 = vRP.getUsersByPermission("paramedico.permissao")
     	local mec3 = vRP.getUsersByPermission("mecanico.permissao")
     	local taxista3 = vRP.getUsersByPermission("taxista.permissao")
-		TriggerClientEvent("Notify",source,"importante","<b>Advogados:</b> "..#advogados3.."<br><b>Policiais:</b> "..#policia3.."<br><b>Taxistas:</b> "..#taxista3.."<br><b>Paramédicos:</b> "..#paramedico3.."<br><b>Mecânicos:</b> "..#mec3.."",9000)
+		TriggerClientEvent("Notify",source,"importante","<b>Advogados:</b> "..#advogados3.."<br><b>Taxistas:</b> "..#taxista3.."<br><b>Paramédicos:</b> "..#paramedico3.."<br><b>Mecânicos:</b> "..#mec3.."",9000)
 	else
     	local advogados = vRP.getUsersByPermission("judiciario.permissao")
     	local paramedico = vRP.getUsersByPermission("paramedico.permissao")
@@ -1492,7 +1492,7 @@ end)
 -- AVISO DE SERVIDOR ONLINE
 -----------------------------------------------------------------------------------------------------------------------------------------
 Citizen.CreateThread(function()
-    PerformHttpRequest("https://discord.com/api/webhooks/866391842005319711/5X82zFECj1FDgTYh2Z0gDgcueFGzgswRxk7we9xc9m4DkI9nhmOeg_FLHf3rdY6uNy4t", function(err, text, headers) end, 'POST', json.encode({
+    PerformHttpRequest("https://discord.com/api/webhooks/881267755339350058/GXZaLxLl490YXq01HNCB1Sw-hlDHtcuwgng-2vI5Zizgz9TwrBUv4f3uU9_rUnBM7iXk", function(err, text, headers) end, 'POST', json.encode({
         content = '||@everyone||',
         embeds = {
             {

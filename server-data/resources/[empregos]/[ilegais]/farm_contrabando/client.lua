@@ -138,9 +138,9 @@ end)
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- CANCELAR
 -----------------------------------------------------------------------------------------------------------------------------------------
-RegisterKeyMapping('emp:rotacancelar', 'CancelarRota', 'keyboard', 'F7')
+RegisterKeyMapping('emp:farmcontrabando_fenix', 'Cancelar Farm Contrabando', 'keyboard', 'F7')
 
-RegisterCommand('emp:rotacancelar', function()
+RegisterCommand('emp:farmcontrabando_fenix', function()
 	if servico then
 			servico = false
 			RemoveBlip(blips)

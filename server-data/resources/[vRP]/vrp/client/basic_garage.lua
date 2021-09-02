@@ -664,6 +664,7 @@ local vehList = {
 	{ ['name'] = "frogger2", ['hash'] = 1949211328, ['banned'] = false },
 	{ ['name'] = "ambulance", ['hash'] = 1171614426, ['banned'] = false },
 	-- Importados
+	{ ['name'] = "q820", ['hash'] = -2006731729, ['banned'] = false },
 	{ ['name'] = "bmci", ['hash'] = 1093697054, ['banned'] = false },
 	{ ['name'] = "f824slw", ['hash'] = 344072585, ['banned'] = false },
 	{ ['name'] = "71gtx", ['hash'] = -1863430482, ['banned'] = false },
@@ -808,6 +809,8 @@ local vehList = {
 	{ ['name'] = "amaroktuning", ['hash'] = 522112651, ['banned'] = false },
 
 	-- POLICIA 
+	{ ['name'] = "corleo", ['hash'] = 562121842, ['banned'] = false },
+	{ ['name'] = "pmfcevo9", ['hash'] = 239962922, ['banned'] = false },
 	{ ['name'] = "a45policia", ['hash'] = 1372921020, ['banned'] = false },
 	{ ['name'] = "cls63s", ['hash'] = 1513245066, ['banned'] = false },
 	{ ['name'] = "dicgt63", ['hash'] = 708296016, ['banned'] = false },

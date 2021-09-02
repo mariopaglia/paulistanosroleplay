@@ -109,10 +109,30 @@ RegisterNUICallback("ButtonClick",function(data,cb)
 			outServers()
 			exports.tokovoip_script:addPlayerToRadio(1014)
 		end			
+	elseif data == "laranjas" then
+		if emP.checkPermission2("laranjas.permissao","Laranjas") then
+			outServers()
+			exports.tokovoip_script:addPlayerToRadio(1016)
+		end			
+	elseif data == "sinaloa" then
+		if emP.checkPermission2("sinaloa.permissao","Sinaloa") then
+			outServers()
+			exports.tokovoip_script:addPlayerToRadio(1017)
+		end			
+	elseif data == "irmandade" then
+		if emP.checkPermission2("irmandade.permissao","Irmandade") then
+			outServers()
+			exports.tokovoip_script:addPlayerToRadio(1018)
+		end			
 	elseif data == "taxista" then
 		if emP.checkPermission2("taxista.permissao","Taxistas") then
 			outServers()
 			exports.tokovoip_script:addPlayerToRadio(1015)
+		end	
+	elseif data == "judiciario" then
+		if emP.checkPermission2("judiciario.permissao","Judiciario") then
+			outServers()
+			exports.tokovoip_script:addPlayerToRadio(1019)
 		end	
 	elseif data == "desconectar" then
 		outServers()

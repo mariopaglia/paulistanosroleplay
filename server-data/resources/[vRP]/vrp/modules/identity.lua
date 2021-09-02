@@ -79,8 +79,6 @@ end)
 -- ENTREGAR CELULAR AO ENTRAR NA CIDADE PELA PRIMEIRA VEZ
 AddEventHandler("vRP:playerJoin",function(user_id,source,name)
 	if not vRP.getUserIdentity(user_id) then
-		print(user_id)
-		print("Celular entregue no primeiro spawn")
 		vRP.giveInventoryItem(user_id,"celular",1)
 	end
 end)

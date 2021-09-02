@@ -539,7 +539,7 @@ Citizen.CreateThread(function()
 					return
 				end
 
-				local msg = string_format("Fênix City\n\n"..Config.Language.pos.."%s\nhttps://discord.gg/F3Jp5J2.\nAtualizações frequentes, deixe sua sugestão em nosso Discord.",pos,Queue:GetSize(),dots)
+				local msg = string_format("Fênix City\n\n"..Config.Language.pos.."%s\nhttps://discord.gg/fenixcity.\nAtualizações frequentes, deixe sua sugestão em nosso Discord.",pos,Queue:GetSize(),dots)
 				data.deferrals.update(msg)
 			end
 		end)

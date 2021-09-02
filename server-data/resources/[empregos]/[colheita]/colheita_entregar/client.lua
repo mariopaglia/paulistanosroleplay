@@ -119,9 +119,9 @@ end)
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- CANCELAR
 -----------------------------------------------------------------------------------------------------------------------------------------
-RegisterKeyMapping('emp:rotacancelar', 'CancelarRota', 'keyboard', 'F7')
+RegisterKeyMapping('emp:colheitaentregar_fenix', 'Cancelar Rota Colheita', 'keyboard', 'F7')
 
-RegisterCommand('emp:rotacancelar', function()
+RegisterCommand('emp:colheitaentregar_fenix', function()
 	if servico then
 			servico = false
 			RemoveBlip(blips)

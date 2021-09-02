@@ -87,8 +87,8 @@ end)
 -- VARIAVEIS
 -----------------------------------------------------------------------------------------------------------------------------------------
 local chest = {
-	{"policiamilitar", 475.63,-989.7,24.92}, -- -547.66,-105.03,33.87
-	{"policiacivil", 481.67,-985.74,24.92}, -- -552.83,-98.9,33.87
+	{"policiamilitar", 625.36,-22.11,82.78}, -- -547.66,-105.03,33.87
+	{"policiacivil", 626.01,-28.97,82.78}, -- -552.83,-98.9,33.87
 	{"cosanostra", 1403.79,1144.68,114.34},
 	{"yakuza", -57.94,981.87,234.58},
 	{"verdes", 1227.1,-171.77,79.89},
@@ -138,22 +138,22 @@ Citizen.CreateThread(
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- CHEST
 -----------------------------------------------------------------------------------------------------------------------------------------
-RegisterCommand("chest", function(source, args)
-		local ped = PlayerPedId()
-		local x, y, z = table.unpack(GetEntityCoords(ped))
-		for k, v in pairs(chest) do
-			local distance = Vdist(x, y, z, v[2], v[3], v[4])
-			if distance <= 2.0 and chestTimer <= 0 then
-				chestTimer = 3
-				if vSERVER.checkIntPermissions(v[1]) then
-					SetNuiFocus(true, true)
-					SendNUIMessage({action = "showMenu"})
-					chestOpen = v[1]
-				end
-			end
-		end
-	end
-)
+-- RegisterCommand("chest", function(source, args)
+-- 		local ped = PlayerPedId()
+-- 		local x, y, z = table.unpack(GetEntityCoords(ped))
+-- 		for k, v in pairs(chest) do
+-- 			local distance = Vdist(x, y, z, v[2], v[3], v[4])
+-- 			if distance <= 2.0 and chestTimer <= 0 then
+-- 				chestTimer = 3
+-- 				if vSERVER.checkIntPermissions(v[1]) then
+-- 					SetNuiFocus(true, true)
+-- 					SendNUIMessage({action = "showMenu"})
+-- 					chestOpen = v[1]
+-- 				end
+-- 			end
+-- 		end
+-- 	end
+-- )
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- MARKER
 -----------------------------------------------------------------------------------------------------------------------------------------

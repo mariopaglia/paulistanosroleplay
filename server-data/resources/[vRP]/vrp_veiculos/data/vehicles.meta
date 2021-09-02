@@ -8572,16 +8572,16 @@
 			<txdName>911R</txdName>
 			<handlingId>911R</handlingId>
 			<gameName>911R</gameName>
-			<vehicleMakeName>Porsche991</vehicleMakeName>
+			<vehicleMakeName>Porsche 911R</vehicleMakeName>
 			<expressionDictName>null</expressionDictName>
 			<expressionName>null</expressionName>
 			<animConvRoofDictName>null</animConvRoofDictName>
 			<animConvRoofName>null</animConvRoofName>
 			<animConvRoofWindowsAffected />
 			<ptfxAssetName>null</ptfxAssetName>
-			<audioNameHash>coquette</audioNameHash>
-			<layout>LAYOUT_LOW</layout>
-			<coverBoundOffsets>COMET_COVER_OFFSET_INFO</coverBoundOffsets>
+			<audioNameHash>xa21</audioNameHash>
+			<layout>LAYOUT_LOW_RESTRICTED</layout>
+			<coverBoundOffsets>ISSI7_COVER_OFFSET_INFO</coverBoundOffsets>
 			<explosionInfo>EXPLOSION_INFO_DEFAULT</explosionInfo>
 			<scenarioLayout />
 			<cameraName>DEFAULT_FOLLOW_VEHICLE_CAMERA</cameraName>
@@ -8648,9 +8648,9 @@
 			<flags>FLAG_HAS_LIVERY FLAG_BOOT_IN_FRONT FLAG_SPORTS FLAG_SPAWN_ON_TRAILER FLAG_PARKING_SENSORS FLAG_RICH_CAR FLAG_NO_BROKEN_DOWN_SCENARIO FLAG_CAN_HAVE_NEONS</flags>
 			<type>VEHICLE_TYPE_CAR</type>
 			<plateType>VPT_BACK_PLATES</plateType>
-			<dashboardType>VDT_ZTYPE</dashboardType>
+			<dashboardType>VDT_SULTAN</dashboardType>
 			<vehicleClass>VC_SUPER</vehicleClass>
-			<wheelType>VWT_SUPER</wheelType>
+			<wheelType>VWT_SPORT</wheelType>
 			<trailers />
 			<additionalTrailers />
 			<drivers />

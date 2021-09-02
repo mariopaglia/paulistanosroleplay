@@ -964,6 +964,7 @@ local vehglobal = {
 	["daemon2"]  = { ['name'] = "Daemon2", ['price'] = 310000, ['tipo'] = "motos" },
 	
 	-- VEÍCULOS VIP
+	["q820"] = { ['name'] = "Audi Q8 50TDI 2020", ['price'] = 1000000, ['tipo'] = "vip" },
 	["bmci"] = { ['name'] = "BMW M5", ['price'] = 1000000, ['tipo'] = "vip" },
 	["f824slw"] = { ['name'] = "BMW M4 SLW", ['price'] = 1000000, ['tipo'] = "vip" },
 	["lamborghinihuracan"] = { ['name'] = "Lamborghini Huracan", ['price'] = 1000000, ['tipo'] = "vip" },
@@ -1047,6 +1048,8 @@ local vehglobal = {
 	["chevette"] = { ['name'] = "Chevette", ['price'] = 85000, ['tipo'] = "carros" },
 	
 	-- POLICIA
+	["corleo"] = { ['name'] = "Corvette PMFC", ['price'] = 1000, ['tipo'] = "work" },
+	["pmfcevo9"] = { ['name'] = "Lancer Evo 10 Policia", ['price'] = 1000, ['tipo'] = "work" },
 	["a45policia"] = { ['name'] = "Mercedes A45 Policia", ['price'] = 1000, ['tipo'] = "work" },
 	["cls63s"] = { ['name'] = "Mercedes CLS 63 S", ['price'] = 1000, ['tipo'] = "work" },
 	["sahpexplorer2"] = { ['name'] = "Explorer SAMU", ['price'] = 1, ['tipo'] = "work" },

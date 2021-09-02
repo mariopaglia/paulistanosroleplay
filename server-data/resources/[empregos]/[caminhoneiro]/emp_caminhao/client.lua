@@ -155,7 +155,7 @@ Citizen.CreateThread(function()
 					if IsControlJustPressed(0,38) then
 						local vehicle = getVehicleInDirection(GetEntityCoords(PlayerPedId()),GetOffsetFromEntityInWorldCoords(PlayerPedId(),0.0,5.0,0.0))
 						if GetEntityModel(vehicle) == servehicle then
-							emP.checkPayment(random,modules,parseInt(GetVehicleBodyHealth(GetPlayersLastVehicle())))
+							emP.checkPayment(random,modules)
 							vSERVER.deleteVehicles(vehicle)
 							RemoveBlip(blips)
 							servico = false

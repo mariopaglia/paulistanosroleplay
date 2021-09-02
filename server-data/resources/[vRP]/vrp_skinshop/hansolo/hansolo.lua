@@ -53,6 +53,8 @@ local lojaderoupa = {
     { x=2512.9, y=-344.37, z=101.9, provador = { x=2512.9, y=-344.37, z=101.9, heading = 318.13 } }, -- DIC 
     { x=835.7, y=-981.18, z=32.08, provador = { x=835.7, y=-981.18, z=32.08, heading = 181.46 } }, -- ROUPAS FÊNIX CUSTOMS 
     { x=-826.26, y=-1233.11, z=7.34, provador = { x=-826.26, y=-1233.11, z=7.34, heading = 140.44 } }, -- HOSPITAL NOVO (VICEROY)
+    { x=-1105.71, y=-1640.51, z=4.65, provador = { x=-1105.71, y=-1640.51, z=4.65, heading = 64.08 } }, -- Laranjas
+    { x=619.68, y=14.38, z=82.78, provador = { x=619.68, y=14.38, z=82.78, heading = 159.91 } }, -- DP Vinewood
 }
 
 local parts = {

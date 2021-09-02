@@ -56,20 +56,20 @@ end)
 Citizen.CreateThread(function()
 	while true do
 		Citizen.Wait(30000)
-		players = {}
-		for _, i in pairs(GetActivePlayers()) do
-            if NetworkIsPlayerActive(i) then
-                table.insert(players,i)
-            end
-        end
+		-- players = {}
+		-- for _, i in pairs(GetActivePlayers()) do
+        --     if NetworkIsPlayerActive(i) then
+        --         table.insert(players,i)
+        --     end
+        -- end
 		SetDiscordAppId(756846972077342781)
 		SetDiscordRichPresenceAsset('logo')
-        SetRichPresence("discord.gg/F3Jp5J2")
+        SetRichPresence("discord.gg/fenixcity")
         -- SetRichPresence("Jogadores Online: "..#players)
 
-        SetDiscordRichPresenceAssetText('discord.gg/F3Jp5J2')
-		-- SetDiscordRichPresenceAction(0, "Entrar na Cidade", "fivem://connect/paulistanosrp.com") -- Botão 1
-		SetDiscordRichPresenceAction(1, "Discord", "https://discord.gg/F3Jp5J2") -- Botão 2
+        SetDiscordRichPresenceAssetText('discord.gg/fenixcity')
+		SetDiscordRichPresenceAction(0, "Discord", "https://discord.gg/fenixcity") -- Botão 1
+		SetDiscordRichPresenceAction(1, "Entrar na Cidade", "fivem://connect/cfx.re/join/mpmeq9") -- Botão 2
 	end
 end)
 -----------------------------------------------------------------------------------------------------------------------------------------

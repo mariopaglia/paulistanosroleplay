@@ -275,76 +275,76 @@ end)
 
 --[  ]-----------------------------------------------------------------------------
 
-RegisterKeyMapping ( 'vrp:accept' , 'Aceitar' , 'keyboard' , 'Y' )
+RegisterKeyMapping ( 'vrp:accept_fenix' , 'Aceitar' , 'keyboard' , 'Y' )
 
-RegisterCommand('vrp:accept', function()
+RegisterCommand('vrp:accept_fenix', function()
     SendNUIMessage({ act = "event", event = "Y" })
 end, false)
 
-RegisterKeyMapping ( 'vrp:decline' , 'Negar' , 'keyboard' , 'U' )
+RegisterKeyMapping ( 'vrp:decline_fenix' , 'Negar' , 'keyboard' , 'U' )
 
-RegisterCommand('vrp:decline', function()
+RegisterCommand('vrp:decline_fenix', function()
     SendNUIMessage({ act = "event", event = "U" })
 end, false)
 
 --[  ]-----------------------------------------------------------------------------
 
- RegisterKeyMapping ( 'vrp:up' , 'Cima' , 'keyboard' , 'UP' )
+ RegisterKeyMapping ( 'vrp:up_fenix' , 'Cima' , 'keyboard' , 'UP' )
 
- RegisterCommand('vrp:up', function()
+ RegisterCommand('vrp:up_fenix', function()
  	if menu_state.opened then
  		SendNUIMessage({ act = "event", event = "UP" }) 
          tvRP.playSound("NAV_UP_DOWN","HUD_FRONTEND_DEFAULT_SOUNDSET") 
  	end
  end, false)
 
- RegisterKeyMapping ( 'vrp:down' , 'Baixo' , 'keyboard' , 'DOWN' )
+ RegisterKeyMapping ( 'vrp:down_fenix' , 'Baixo' , 'keyboard' , 'DOWN' )
 
- RegisterCommand('vrp:down', function()
+ RegisterCommand('vrp:down_fenix', function()
  	if menu_state.opened then
  		SendNUIMessage({ act = "event", event = "DOWN" })
          tvRP.playSound("NAV_UP_DOWN","HUD_FRONTEND_DEFAULT_SOUNDSET")
  	end
  end, false)
 
-RegisterKeyMapping ( 'vrp:left' , 'Esquerda' , 'keyboard' , 'LEFT' )
+RegisterKeyMapping ( 'vrp:left_fenix' , 'Esquerda' , 'keyboard' , 'LEFT' )
 
-RegisterCommand('vrp:left', function()
+RegisterCommand('vrp:left_fenix', function()
 	if menu_state.opened then
 		SendNUIMessage({ act = "event", event = "LEFT" })
         tvRP.playSound("NAV_LEFT_RIGHT","HUD_FRONTEND_DEFAULT_SOUNDSET")
 	end
 end, false)
 
-RegisterKeyMapping ( 'vrp:right' , 'Direita' , 'keyboard' , 'RIGHT' )
+RegisterKeyMapping ( 'vrp:right_fenix' , 'Direita' , 'keyboard' , 'RIGHT' )
 
-RegisterCommand('vrp:right', function()
+RegisterCommand('vrp:right_fenix', function()
 	if menu_state.opened then
 		SendNUIMessage({ act = "event", event = "RIGHT" }) 
         tvRP.playSound("NAV_LEFT_RIGHT","HUD_FRONTEND_DEFAULT_SOUNDSET")
 	end
 end, false)
 
-RegisterKeyMapping ( 'vrp:select' , 'Selecionar' , 'keyboard' , 'RETURN' )
+RegisterKeyMapping ( 'vrp:select_fenix' , 'Selecionar' , 'keyboard' , 'RETURN' )
 
-RegisterCommand('vrp:select', function()
+RegisterCommand('vrp:select_fenix', function()
 	if menu_state.opened then
 		SendNUIMessage({ act = "event", event = "SELECT" })
 		tvRP.playSound("SELECT","HUD_FRONTEND_DEFAULT_SOUNDSET") 
 	end
 end, false)
 
-RegisterKeyMapping ( 'vrp:cancel' , 'Cancelar' , 'keyboard' , 'BACK' )
+RegisterKeyMapping ( 'vrp:cancel_fenix' , 'Cancelar' , 'keyboard' , 'BACK' )
 
-RegisterCommand('vrp:cancel', function()
+RegisterCommand('vrp:cancel_fenix', function()
 	SendNUIMessage({ act = "event", event = "CANCEL" })
 end, false)
 
 --[  ]-----------------------------------------------------------------------------
 
-RegisterKeyMapping ( 'vrp:anim01' , '[A] Cruzar os braços' , 'keyboard' , 'F1' )
+RegisterKeyMapping ( 'vrp:anim01_fenix' , '[A] Cruzar os braços' , 'keyboard' , 'F1' )
 
-RegisterCommand('vrp:anim01', function()
+RegisterCommand('vrp:anim01_fenix', function()
 	local ped = PlayerPedId()
 	if not IsPedInAnyVehicle(ped) and GetEntityHealth(ped) > 101 and not menu_state.opened and not menu_celular and not cancelando then
 		if IsEntityPlayingAnim(ped,"anim@heists@heist_corona@single_team","single_team_loop_boss",3) then
@@ -355,9 +355,9 @@ RegisterCommand('vrp:anim01', function()
 	end
 end, false)
 
-RegisterKeyMapping ( 'vrp:anim02' , '[A] Aguardar' , 'keyboard' , 'F2' )
+RegisterKeyMapping ( 'vrp:anim02_fenix' , '[A] Aguardar' , 'keyboard' , 'F2' )
 
-RegisterCommand('vrp:anim02', function()
+RegisterCommand('vrp:anim02_fenix', function()
 	local ped = PlayerPedId()
 	if not IsPedInAnyVehicle(ped) and GetEntityHealth(ped) > 101 and not menu_state.opened and not menu_celular and not cancelando then
 		if IsEntityPlayingAnim(ped,"mini@strip_club@idles@bouncer@base","base",3) then
@@ -368,9 +368,9 @@ RegisterCommand('vrp:anim02', function()
 	end
 end, false)
 
-RegisterKeyMapping ( 'vrp:anim03' , '[A] Dedo do meio' , 'keyboard' , 'F3' )
+RegisterKeyMapping ( 'vrp:anim03_fenix' , '[A] Dedo do meio' , 'keyboard' , 'F3' )
 
-RegisterCommand('vrp:anim03', function()
+RegisterCommand('vrp:anim03_fenix', function()
 	local ped = PlayerPedId()
 	if not IsPedInAnyVehicle(ped) and GetEntityHealth(ped) > 101 and not menu_state.opened and not menu_celular and not cancelando then
 		if IsEntityPlayingAnim(ped,"anim@mp_player_intupperfinger","idle_a_fp",3) then
@@ -381,9 +381,9 @@ RegisterCommand('vrp:anim03', function()
 	end
 end, false)
 
-RegisterKeyMapping ( 'vrp:anim05' , '[A] Cruzar braços 2' , 'keyboard' , 'F5' )
+RegisterKeyMapping ( 'vrp:anim05_fenix' , '[A] Cruzar braços 2' , 'keyboard' , 'F5' )
 
-RegisterCommand('vrp:anim05', function()
+RegisterCommand('vrp:anim05_fenix', function()
 	local ped = PlayerPedId()
 	if not IsPedInAnyVehicle(ped) and GetEntityHealth(ped) > 101 and not menu_state.opened and not menu_celular and not cancelando then
 		if IsEntityPlayingAnim(ped,"anim@amb@casino@valet_scenario@pose_d@","base_a_m_y_vinewood_01",3) then
@@ -394,18 +394,18 @@ RegisterCommand('vrp:anim05', function()
 	end
 end, false)
 
---RegisterKeyMapping ( 'vrp:anim05' , '[A] Puto' , 'keyboard' , 'F5' )
+--RegisterKeyMapping ( 'vrp:anim05_fenix' , '[A] Puto' , 'keyboard' , 'F5' )
 --
---RegisterCommand('vrp:anim05', function()
+--RegisterCommand('vrp:anim05_fenix', function()
 --	local ped = PlayerPedId()
 --	if not IsPedInAnyVehicle(ped) and GetEntityHealth(ped) > 101 and not menu_state.opened and not menu_celular and not cancelando then
 --		tvRP.playAnim(true,{{"misscarsteal4@actor","actor_berating_loop"}},false)
 --	end
 --end, false)
 
-RegisterKeyMapping ( 'vrp:cancelAnims' , 'Cancelar animações' , 'keyboard' , 'F6' )
+RegisterKeyMapping ( 'vrp:cancelAnims_fenix' , 'Cancelar animações' , 'keyboard' , 'F6' )
 
-RegisterCommand('vrp:cancelAnims', function()
+RegisterCommand('vrp:cancelAnims_fenix', function()
 	local ped = PlayerPedId()
 	if cooldown < 1 then
 		cooldown = 20
@@ -418,9 +418,9 @@ RegisterCommand('vrp:cancelAnims', function()
 	end
 end, false)
 
-RegisterKeyMapping ( 'vrp:anim10' , '[A] Mãos na cabeça' , 'keyboard' , 'F10' )
+RegisterKeyMapping ( 'vrp:anim10_fenix' , '[A] Mãos na cabeça' , 'keyboard' , 'F10' )
 
-RegisterCommand('vrp:anim10', function()
+RegisterCommand('vrp:anim10_fenix', function()
 	local ped = PlayerPedId()
 	if GetEntityHealth(ped) > 101 and not menu_state.opened and not menu_celular and not cancelando then
 		if IsEntityPlayingAnim(ped,"random@arrests@busted","idle_a",3) then
@@ -432,9 +432,9 @@ RegisterCommand('vrp:anim10', function()
 	end
 end, false)
 
-RegisterKeyMapping ( 'vrp:animX' , '[A] Levantar as mãos' , 'keyboard' , 'X' )
+RegisterKeyMapping ( 'vrp:animX_fenix' , '[A] Levantar as mãos' , 'keyboard' , 'X' )
 
-RegisterCommand('vrp:animX', function()
+RegisterCommand('vrp:animX_fenix', function()
 	local ped = PlayerPedId()
 	if not IsPedInAnyVehicle(ped) and GetEntityHealth(ped) > 101 and not menu_celular and not cancelando then
 		SetCurrentPedWeapon(ped,GetHashKey("WEAPON_UNARMED"),true)
@@ -446,9 +446,9 @@ RegisterCommand('vrp:animX', function()
 	end
 end, false)
 
-RegisterKeyMapping ( 'vrp:vehicleZ' , '[V] Ligar motor' , 'keyboard' , 'Z' )
+RegisterKeyMapping ( 'vrp:vehicleZ_fenix' , '[V] Ligar motor' , 'keyboard' , 'Z' )
 
-RegisterCommand('vrp:vehicleZ', function()
+RegisterCommand('vrp:vehicleZ_fenix', function()
 	local ped = PlayerPedId()
 	if IsPedInAnyVehicle(ped) then
 		local vehicle = GetVehiclePedIsIn(ped,false)
@@ -465,9 +465,9 @@ RegisterCommand('vrp:vehicleZ', function()
 	end
 end, false)
 
-RegisterKeyMapping ( 'vrp:animB' , '[A] Apontar o dedo' , 'keyboard' , 'B' )
+RegisterKeyMapping ( 'vrp:animB_fenix' , '[A] Apontar o dedo' , 'keyboard' , 'B' )
 
-RegisterCommand('vrp:animB', function()
+RegisterCommand('vrp:animB_fenix', function()
 	local ped = PlayerPedId()
 	if GetEntityHealth(ped) > 101 and not menu_celular then
 		tvRP.CarregarAnim("anim@mp_point")
@@ -491,9 +491,9 @@ RegisterCommand('vrp:animB', function()
 	end
 end, false)
 
-RegisterKeyMapping ( 'vrp:ctrl' , '[A] Agachar' , 'keyboard' , 'LCONTROL' )
+RegisterKeyMapping ( 'vrp:ctrl_fenix' , '[A] Agachar' , 'keyboard' , 'LCONTROL' )
 
-RegisterCommand('vrp:ctrl', function()
+RegisterCommand('vrp:ctrl_fenix', function()
 	local ped = PlayerPedId()
 	if not IsPedInAnyVehicle(ped) then
 		RequestAnimSet("move_ped_crouched")

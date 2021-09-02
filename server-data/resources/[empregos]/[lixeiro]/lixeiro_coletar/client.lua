@@ -122,9 +122,9 @@ end)
 -- CANCELAR
 -----------------------------------------------------------------------------------------------------------------------------------------
 
-RegisterKeyMapping('vrp_lixeiro:cancel', 'Cancelar Lixeiro', 'keyboard', 'F7')
+RegisterKeyMapping('vrp_lixeiro:cancel_fenix', 'Cancelar Lixeiro', 'keyboard', 'F7')
 
-RegisterCommand('vrp_lixeiro:cancel', function()
+RegisterCommand('vrp_lixeiro:cancel_fenix', function()
 	if servico then
 		servico = false
 		TriggerEvent("Notify","aviso","Você saiu do serviço de <b>lixeiro</b>")

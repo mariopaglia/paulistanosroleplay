@@ -469,8 +469,8 @@ local user_id = vRP.getUserId(source)
 					local crds = GetEntityCoords(GetPlayerPed(source))
 					local medicos = vRP.getUsersByPermission("paramedico.permissao")
 
-					if #medicos > 1 then
-						TriggerClientEvent("Notify",source,"negado","Existem médicos em serviço, faça um <b>/call 192</b>",5000)
+					if #medicos >= 1 then
+						TriggerClientEvent("Notify",source,"negado","Existem médicos em serviço, faça um chamado pelo <b>celular</b>",5000)
 						return
 					else
 						if vRPclient.isInComa(nplayer) then

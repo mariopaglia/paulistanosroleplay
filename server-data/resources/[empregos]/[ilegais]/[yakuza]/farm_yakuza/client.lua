@@ -125,9 +125,9 @@ end)
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- CANCELAR
 -----------------------------------------------------------------------------------------------------------------------------------------
-RegisterKeyMapping('emp:rotacancelar42', 'cancelarrota42', 'keyboard', 'F7')
+RegisterKeyMapping('emp:farmyakuza_fenix', 'Cancelar Farm Yakuza', 'keyboard', 'F7')
 
-RegisterCommand('emp:rotacancelar42', function()
+RegisterCommand('emp:farmyakuza_fenix', function()
 	if servico then
 			servico = false
 			RemoveBlip(blips)

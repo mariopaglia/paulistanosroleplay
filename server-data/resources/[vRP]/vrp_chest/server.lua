@@ -183,9 +183,13 @@ function src.checkIntPermissions(chestName)
 			if not vRP.searchReturn(source,user_id) then
 				if vRP.hasPermission(user_id,chest[chestName][2]) or vRP.hasPermission(user_id,"admin.permissao") then
 					return true
+				else
+					TriggerClientEvent("Notify",source,"negado","Sem permissão",8000)
+					uinv[oinv[chestName]] = nil
+					oinv[chestName] = nil
+					return false
 				end
 			end
-			return false
 		elseif oinv[chestName] then
 			TriggerClientEvent("Notify",source,"negado","Bau já aberto",8000)
 		end

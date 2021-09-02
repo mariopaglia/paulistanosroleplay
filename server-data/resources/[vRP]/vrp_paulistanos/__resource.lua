@@ -11,10 +11,9 @@ client_scripts {
 	"realisticvehicle.lua",
 	"peds.lua",
 	"doors.lua",
-	--"recoil.lua",
+	"recoil.lua",
 }
 
 server_scripts {
 	"@vrp/lib/utils.lua",
-	"permissao.lua"
 }   

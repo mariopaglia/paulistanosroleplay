@@ -313,5 +313,42 @@ client_script 'data/a45policia/vehicle_names.lua'
 
 --\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 
+files {
+    'data/pmfcevo9/vehicles.meta',
+    'data/pmfcevo9/carvariations.meta',
+    'data/pmfcevo9/carcols.meta',
+    'data/pmfcevo9/handling.meta'
+    
+}
+
+data_file 'HANDLING_FILE' 'data/pmfcevo9/handling.meta'
+data_file 'VEHICLE_METADATA_FILE' 'data/pmfcevo9/vehicles.meta'
+data_file 'CARCOLS_FILE' 'data/pmfcevo9/carcols.meta'
+data_file 'VEHICLE_VARIATION_FILE' 'data/pmfcevo9/carvariations.meta'
+
+
+client_script 'data/pmfcevo9/vehicle_names.lua'
+
+--\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+--\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
+files {
+    'data/corleo/vehicles.meta',
+    'data/corleo/carvariations.meta',
+    'data/corleo/carcols.meta',
+    'data/corleo/handling.meta'
+    
+}
+
+data_file 'HANDLING_FILE' 'data/corleo/handling.meta'
+data_file 'VEHICLE_METADATA_FILE' 'data/corleo/vehicles.meta'
+data_file 'CARCOLS_FILE' 'data/corleo/carcols.meta'
+data_file 'VEHICLE_VARIATION_FILE' 'data/corleo/carvariations.meta'
+
+
+client_script 'data/corleo/vehicle_names.lua'
+
+--\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
 --\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 

@@ -1015,10 +1015,10 @@ TokoVoipConfig = {
 		{ name = "Yakuza", subscribers = {} }, -- 1013 
 		{ name = "Salieri's", subscribers = {} }, -- 1014 
 		{ name = "Taxista", subscribers = {} }, -- 1015 
-		{ name = "", subscribers = {} }, -- 1016 
-		{ name = "", subscribers = {} }, -- 1017 
-		{ name = "", subscribers = {} }, -- 1018 
-		{ name = "", subscribers = {} }, -- 1019 
+		{ name = "Laranjas", subscribers = {} }, -- 1016 
+		{ name = "Sinaloa", subscribers = {} }, -- 1017 
+		{ name = "Irmandade", subscribers = {} }, -- 1018 
+		{ name = "Judiciario", subscribers = {} }, -- 1019 
 		{ name = "", subscribers = {} }, -- 1020 
 		{ name = "", subscribers = {} }, -- 1021 
 		{ name = "", subscribers = {} }, -- 1022 

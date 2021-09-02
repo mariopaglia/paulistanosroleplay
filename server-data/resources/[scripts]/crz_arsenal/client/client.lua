@@ -8,8 +8,9 @@ local Menu = true
 local player = PlayerPedId()
 
 local arsenal = {
-	{ 452.18,-980.18,30.69 }, -- Policia Praça
-	{ -580.35,-110.17,33.89 }, -- Policia nova
+	--{ 452.18,-980.18,30.69 }, -- Policia Praça
+	{ 621.42,-18.76,82.78 }, -- Policia Vinewood
+	--{ -580.35,-110.17,33.89 }, -- Policia nova
 	{ 2525.65,-342.43,101.9 }, -- DIC
 }
 
@@ -34,9 +35,9 @@ if Menu then
 	end)
 end
 
-RegisterKeyMapping('vrp_arsenal:open', 'Arsenal', 'keyboard', 'E')
+RegisterKeyMapping('vrp_arsenal:open_fenix', 'Arsenal', 'keyboard', 'E')
 
-RegisterCommand('vrp_arsenal:open', function()
+RegisterCommand('vrp_arsenal:open_fenix', function()
 	for _,lugares in pairs(arsenal) do
 		local x,y,z = table.unpack(lugares)
 		local distance = GetDistanceBetweenCoords(GetEntityCoords(GetPlayerPed(-1)),x,y,z,true)

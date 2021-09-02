@@ -104,9 +104,9 @@ end)
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- CANCELANDO ENTREGA
 -----------------------------------------------------------------------------------------------------------------------------------------
-RegisterKeyMapping('emp:motoristacancelar', 'CancelarMotorista', 'keyboard', 'F7')
+RegisterKeyMapping('emp:motoristacancelar_fenix', 'Cancelar Rota Motorista', 'keyboard', 'F7')
 
-RegisterCommand('emp:motoristacancelar', function()
+RegisterCommand('emp:motoristacancelar_fenix', function()
 	if emservico then
 		emservico = false
 		RemoveBlip(blip)

@@ -165,9 +165,9 @@ end)
 -- CANCELAR
 -----------------------------------------------------------------------------------------------------------------------------------------
 
-RegisterKeyMapping('emp:rotacancelar4', 'cancelarrota4', 'keyboard', 'F7')
+RegisterKeyMapping('emp:entregadrogas_fenix', 'Cancelar Rota Drogas', 'keyboard', 'F7')
 
-RegisterCommand('emp:rotacancelar4', function()
+RegisterCommand('emp:entregadrogas_fenix', function()
 	if servico then
 			servico = false
 			RemoveBlip(blips)

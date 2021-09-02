@@ -13,9 +13,9 @@ vRPNserver = Tunnel.getInterface("vrp_identidade")
 -----------------------------------------------------------------------------------------------------------------------------------------
 local identity = false
 
-RegisterKeyMapping('vrp_identidade:open', 'vrp_identidade:open', 'keyboard', 'F11')
+RegisterKeyMapping('vrp_identidade:open_fenix', 'Abrir Identidade', 'keyboard', 'F11')
 
-RegisterCommand('vrp_identidade:open', function()
+RegisterCommand('vrp_identidade:open_fenix', function()
 	if GetEntityHealth(PlayerPedId()) > 101 then
 		if identity then
 			identity = false

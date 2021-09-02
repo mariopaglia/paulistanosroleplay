@@ -13,7 +13,7 @@ function emP.checkServices()
 		local paramedicos = vRP.getUsersByPermission("paramedico.permissao")
 
 		if parseInt(#paramedicos) >= 1 then
-			TriggerClientEvent("Notify",source,"negado","Existem médicos em serviço, caso não tenha um médico no local faça um <b>/call 192</b>",5000)
+			TriggerClientEvent("Notify",source,"negado","Existem médicos em serviço, caso não tenha um médico no local faça um chamado pelo <b>celular</b>",5000)
 			return false
 		else
 			if vRP.request(source,"Deseja pagar <b>R$ 2.000</b> pelo tratamento?",15) then

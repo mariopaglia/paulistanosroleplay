@@ -74,7 +74,7 @@ end)
 -----------------------------------------------------------------------------------------------------------------------------------------
 local garages = {
     [1] = {['name'] = "Garagem", ['payment'] = false, ['public'] = true},
-    [2] = {['name'] = "Garagem", ['payment'] = false, ['public'] = true},
+--    [2] = {['name'] = "Garagem", ['payment'] = false, ['public'] = true},
     [3] = {['name'] = "Garagem", ['payment'] = false, ['public'] = true},
     [4] = {['name'] = "Garagem", ['payment'] = false, ['public'] = true},
     [5] = {['name'] = "Garagem", ['payment'] = false, ['public'] = true},
@@ -499,6 +499,9 @@ local garages = {
     [670] = {['name'] = "Garagem", ['payment'] = false, ['public'] = true}, -- GARAGEM PESSOAL IRMANDADE
     [671] = {['name'] = "Laranjas", ['payment'] = false, ['perm'] = "laranjas.permissao"}, -- GARAGEM LARANJAS
     [672] = {['name'] = "Garagem", ['payment'] = false, ['public'] = true}, -- GARAGEM PESSOAL LARANJAS
+    [673] = {['name'] = "DIC", ['payment'] = false, ['perm'] = "pmfciv.permissao"}, -- DIC DP PRACA
+    [674] = {['name'] = "Policia", ['payment'] = false, ['perm'] = "policia.permissao"},
+    [675] = {['name'] = "PoliciaHeli", ['payment'] = false, ['perm'] = "policia.permissao"}, -- Heliponto DP VINEWOOD
 }
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- GARAGEMS
@@ -521,7 +524,7 @@ local workgarage = {
     ["SportRace"] = {"flatbed", "slamvan3", "brawler"},
     ["DIC"] = {"dicgt63", "cls63s"},
     ["PRF"] = {"cruzeprf2", "l200prf", "trailprf", "ec130PRF"},
-    ["Policia"] = {"av-amarok", "riot", "av-gt63", "pbus", "av-nc7", "av-levante", "ghispo2", "bmwm5policia", "porschespeed", "a45policia"}, -- sbearcat
+    ["Policia"] = {"av-amarok", "riot", "av-gt63", "pbus", "av-nc7", "av-levante", "ghispo2", "bmwm5policia", "porschespeed", "a45policia", "pmfcevo9", "corleo"}, -- sbearcat
     ["PoliciaHeli"] = {"polmav"},
     ["ROTA"] = {"sw4revrota1", "trailrota2"},
     ["PMESP"] = {"pbus", "riot", "20blazer2", "police3", "spacepm1", "trailcfp", "trailpm1", "av-gt63", "av-m8", "policeb"},

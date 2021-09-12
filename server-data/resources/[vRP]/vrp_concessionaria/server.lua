@@ -11,14 +11,14 @@ Proxy.addInterface("vrp_concessionaria", func)
 
 -- WEBHOOK DISCORD
 
-local webhookconce = "https://discord.com/api/webhooks/816685442522546216/0mkSXwKwXId-1VY7zUYspGoTW7KuIcvhH27xQ18RN_kJCe6LoqXVBL3sI23ZaDVxnyhh"
+-- local webhookconce = "https://discord.com/api/webhooks/816685442522546216/0mkSXwKwXId-1VY7zUYspGoTW7KuIcvhH27xQ18RN_kJCe6LoqXVBL3sI23ZaDVxnyhh"
 
-function SendWebhookMessage(webhook, message)
-    if webhook ~= nil and webhook ~= "" then
-        PerformHttpRequest(webhook, function(err, text, headers)
-        end, 'POST', json.encode({content = message}), {['Content-Type'] = 'application/json'})
-    end
-end
+-- function SendWebhookMessage(webhook, message)
+--     if webhook ~= nil and webhook ~= "" then
+--         PerformHttpRequest(webhook, function(err, text, headers)
+--         end, 'POST', json.encode({content = message}), {['Content-Type'] = 'application/json'})
+--     end
+-- end
 
 vRP._prepare("vRP/add_vehicle", "INSERT IGNORE INTO vrp_user_vehicles(user_id,vehicle,ipva) VALUES(@user_id,@vehicle,@ipva)")
 vRP._prepare("vRP/remove_vehicle", "DELETE FROM vrp_user_vehicles WHERE user_id = @user_id AND vehicle = @vehicle")
@@ -118,7 +118,7 @@ function func.comprarVeiculo(categoria, modelo)
                         local identity = vRP.getUserIdentity(user_id)
                         vRP.execute("vRP/add_vehicle", {user_id = user_id, vehicle = veiculo.model, ipva = parseInt(os.time())})
                         TriggerClientEvent("vrp_concessionaria:notify", source, "Oba!", "Pagou <b>R$" .. vRP.format(parseInt(valor)) .. "</b>.", "success")
-                        SendWebhookMessage(webhookconce, "```prolog\n[ID]: " .. user_id .. " " .. identity.name .. " " .. identity.firstname .. " \n[COMRPROU]: " .. veiculo.model .. "\n[VALOR]: R$ " .. vRP.format(parseInt(valor)) .. "" .. os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S") .. "```")
+                        vRP.Log("```prolog\n[ID]: " .. user_id .. " " .. identity.name .. " " .. identity.firstname .. " \n[COMRPROU]: " .. veiculo.model .. "\n[VALOR]: R$ " .. vRP.format(parseInt(valor)) .. "" .. os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S") .. "```", "CONCE")
                         return true
                     else
                         TriggerClientEvent("vrp_concessionaria:notify", source, "Ops!", "Dinheiro insuficiente.", "error")
@@ -193,7 +193,7 @@ function func.venderVeiculo(categoria, modelo)
             if parseInt(price) > 0 then
                 local identity = vRP.getUserIdentity(user_id)
                 TriggerClientEvent("vrp_concessionaria:notify", source, "Oba!", "Recebeu <b>R$" .. vRP.format(parseInt(price)) .. "</b>.", "success")
-                SendWebhookMessage(webhookconce, "```prolog\n[ID]: " .. user_id .. " " .. identity.name .. " " .. identity.firstname .. " \n[VENDEU]: " .. veiculo.model .. "\n[VALOR]: R$ " .. vRP.format(parseInt(price)) .. "" .. os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S") .. "```")
+                vRP.Log("```prolog\n[ID]: " .. user_id .. " " .. identity.name .. " " .. identity.firstname .. " \n[VENDEU]: " .. veiculo.model .. "\n[VALOR]: R$ " .. vRP.format(parseInt(price)) .. "" .. os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S") .. "```", "CONCE")
             end
             vRP.closeMenu(source)
 

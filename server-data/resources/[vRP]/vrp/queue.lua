@@ -11,7 +11,7 @@ Config.Priority = {
 	['Apoiador'] = 20,
 }
 
-Config.RequireSteam = true
+Config.RequireSteam = false
 Config.PriorityOnly = false
 
 Config.IsBanned = function(src,callback)

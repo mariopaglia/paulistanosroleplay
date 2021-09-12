@@ -73,6 +73,7 @@ Citizen.CreateThread(function()
 		local health = GetEntityHealth(ped)
 		if health <= 100 and timedeath > 0 then
 			if not nocauteado then
+				Citizen.Wait(600)
 				if IsEntityDead(ped) then
 					local x,y,z = tvRP.getPosition()
 					NetworkResurrectLocalPlayer(x,y,z,true,true,false)

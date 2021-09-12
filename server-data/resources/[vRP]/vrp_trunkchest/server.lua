@@ -15,13 +15,13 @@ local inventory = module("vrp","cfg/inventory")
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- WEBHOOK
 -----------------------------------------------------------------------------------------------------------------------------------------
-local webhookbaucarro = "https://discord.com/api/webhooks/796968859604090910/a_RqvYnTZs3NSeR0JMrnnk9oSRqr0NfFf-yO1NtC5rEw0iYJ_vv9d90HURRVpzscjQCn"
+-- local webhookbaucarro = "https://discord.com/api/webhooks/796968859604090910/a_RqvYnTZs3NSeR0JMrnnk9oSRqr0NfFf-yO1NtC5rEw0iYJ_vv9d90HURRVpzscjQCn"
 
-function SendWebhookMessage(webhook,message)
-	if webhook ~= nil and webhook ~= "" then
-		PerformHttpRequest(webhook, function(err, text, headers) end, 'POST', json.encode({content = message}), { ['Content-Type'] = 'application/json' })
-	end
-end
+-- function SendWebhookMessage(webhook,message)
+-- 	if webhook ~= nil and webhook ~= "" then
+-- 		PerformHttpRequest(webhook, function(err, text, headers) end, 'POST', json.encode({content = message}), { ['Content-Type'] = 'application/json' })
+-- 	end
+-- end
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- VARIÁVEIS
 -----------------------------------------------------------------------------------------------------------------------------------------
@@ -106,7 +106,7 @@ function vRPN.storeItem(itemName,amount)
 							else
 								items[itemName] = { amount = parseInt(amount) }
 							end
-							SendWebhookMessage(webhookbaucarro,"```prolog\n[ID]: "..user_id.." "..identity.name.." "..identity.firstname.." \n[GUARDOU]: "..vRP.format(parseInt(items[itemName].amount)).." "..vRP.itemNameList(itemName).." \n[BAU]: "..uchests[user_id].." "..os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S").." \r```")
+							vRP.Log("```prolog\n[ID]: "..user_id.." "..identity.name.." "..identity.firstname.." \n[GUARDOU]: "..vRP.format(parseInt(items[itemName].amount)).." "..vRP.itemNameList(itemName).." \n[BAU]: "..uchests[user_id].." "..os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S").." \r```", "BAU_CARROS")
 							actived[parseInt(user_id)] = 2
 						end
 					else
@@ -124,7 +124,7 @@ function vRPN.storeItem(itemName,amount)
 									else
 										items[itemName] = { amount = parseInt(v.amount) }
 									end
-									SendWebhookMessage(webhookbaucarro,"```prolog\n[ID]: "..user_id.." "..identity.name.." "..identity.firstname.." \n[GUARDOU]: "..vRP.format(parseInt(v.amount)).." "..vRP.itemNameList(itemName).." \n[BAU]: "..uchests[user_id].." "..os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S").." \r```")
+									vRP.Log("```prolog\n[ID]: "..user_id.." "..identity.name.." "..identity.firstname.." \n[GUARDOU]: "..vRP.format(parseInt(v.amount)).." "..vRP.itemNameList(itemName).." \n[BAU]: "..uchests[user_id].." "..os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S").." \r```", "BAU_CARROS")
 									actived[parseInt(user_id)] = 2
 								end
 							else
@@ -156,7 +156,7 @@ function vRPN.takeItem(itemName,amount)
 				if parseInt(amount) > 0 then
 					if items[itemName] ~= nil and items[itemName].amount >= parseInt(amount) then
 						if vRP.getInventoryWeight(user_id)+vRP.getItemWeight(itemName)*parseInt(amount) <= vRP.getInventoryMaxWeight(user_id) then
-							SendWebhookMessage(webhookbaucarro,"```prolog\n[ID]: "..user_id.." "..identity.name.." "..identity.firstname.." \n[RETIROU]: "..vRP.format(parseInt(amount)).." "..vRP.itemNameList(itemName).." \n[BAU]: "..uchests[user_id].." "..os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S").." \r```")
+							vRP.Log("```prolog\n[ID]: "..user_id.." "..identity.name.." "..identity.firstname.." \n[RETIROU]: "..vRP.format(parseInt(amount)).." "..vRP.itemNameList(itemName).." \n[BAU]: "..uchests[user_id].." "..os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S").." \r```", "BAU_CARROS")
 							vRP.giveInventoryItem(user_id,itemName,parseInt(amount))
 							items[itemName].amount = items[itemName].amount - parseInt(amount)
 							if items[itemName].amount <= 0 then
@@ -171,7 +171,7 @@ function vRPN.takeItem(itemName,amount)
 					if items[itemName] ~= nil and items[itemName].amount >= parseInt(amount) then
 						if vRP.getInventoryWeight(user_id)+vRP.getItemWeight(itemName)*parseInt(items[itemName].amount) <= vRP.getInventoryMaxWeight(user_id) then
 							vRP.giveInventoryItem(user_id,itemName,parseInt(items[itemName].amount))
-							SendWebhookMessage(webhookbaucarro,"```prolog\n[ID]: "..user_id.." "..identity.name.." "..identity.firstname.." \n[RETIROU]: "..vRP.format(parseInt(items[itemName].amount)).." "..vRP.itemNameList(itemName).." \n[BAU]: "..uchests[user_id].." "..os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S").." \r```")
+							vRP.Log("```prolog\n[ID]: "..user_id.." "..identity.name.." "..identity.firstname.." \n[RETIROU]: "..vRP.format(parseInt(items[itemName].amount)).." "..vRP.itemNameList(itemName).." \n[BAU]: "..uchests[user_id].." "..os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S").." \r```", "BAU_CARROS")
 							items[itemName] = nil
 							actived[parseInt(user_id)] = 2
 						else

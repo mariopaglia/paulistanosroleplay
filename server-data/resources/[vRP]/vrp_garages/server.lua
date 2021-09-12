@@ -15,7 +15,7 @@ vCLIENT = Tunnel.getInterface("vrp_garages")
 local inventory = module("vrp", "cfg/inventory")
 local idgens = Tools.newIDGenerator()
 
-vCONCES = Proxy.getInterface("vrp_concessionaria","vrp_concessionaria")
+vCONCES = Proxy.getInterface("vrp_concessionaria", "vrp_concessionaria")
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- PREPARE
 -----------------------------------------------------------------------------------------------------------------------------------------
@@ -35,18 +35,18 @@ vRP._prepare("creative/get_users", "SELECT * FROM vrp_users WHERE id = @user_id"
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- WEBHOOK
 -----------------------------------------------------------------------------------------------------------------------------------------
-local webhookadmin = "https://discord.com/api/webhooks/793197093690671134/CVTPwlTgBR2CVOKsyTEXCXau6KX4L8eZFijtmOY06S6wnCs2BRh3urrUUut3NzHPWQi2"
-local webhookvehs = "https://discord.com/api/webhooks/793197242017251340/m38nBrCozEd6EG49g41kol7rVjvIyjSyd9iQVyzqwyGKhTPfAh0i7lp7vT7EAPNbgUDs"
-local webhookdesmanche = "https://discord.com/api/webhooks/793197449845932093/P1HMnAXjr-7k2icegOpS7J6QOOeCTt0qGWpz02W6dhLtgu1DyWS-rdMyHe4iqAPQoteU"
-local webhookdv = "https://discord.com/api/webhooks/801618027405246504/30GykWSbexZirC6QSj1Hh1GscfW_Es4WZxzWuNcfaoIzwhEJktWejcmjsTilndHmHbiT"
-local webhookretiradaveiculo = "https://discord.com/api/webhooks/877288174941003878/gCSTPrYCnQKDeWjn032NmPPFl1Aygsd9gqW-3d7pmJce7h6B1LecaXIMpxqaya_BXgna"
+-- local webhookadmin = "https://discord.com/api/webhooks/793197093690671134/CVTPwlTgBR2CVOKsyTEXCXau6KX4L8eZFijtmOY06S6wnCs2BRh3urrUUut3NzHPWQi2"
+-- local webhookvehs = "https://discord.com/api/webhooks/793197242017251340/m38nBrCozEd6EG49g41kol7rVjvIyjSyd9iQVyzqwyGKhTPfAh0i7lp7vT7EAPNbgUDs"
+-- local webhookdesmanche = "https://discord.com/api/webhooks/793197449845932093/P1HMnAXjr-7k2icegOpS7J6QOOeCTt0qGWpz02W6dhLtgu1DyWS-rdMyHe4iqAPQoteU"
+-- local webhookdv = "https://discord.com/api/webhooks/801618027405246504/30GykWSbexZirC6QSj1Hh1GscfW_Es4WZxzWuNcfaoIzwhEJktWejcmjsTilndHmHbiT"
+-- local webhookbandesmanche = "https://discord.com/api/webhooks/800148956649750558/BYP4AcXNkOfOosRVVW7NUhPiM8WNDiKAoMn2g4-SUYFayTm-mHrrya4ppsF89aB8jUxS"
 
-function SendWebhookMessage(webhook, message)
-    if webhook ~= nil and webhook ~= "" then
-        PerformHttpRequest(webhook, function(err, text, headers)
-        end, 'POST', json.encode({content = message}), {['Content-Type'] = 'application/json'})
-    end
-end
+-- function SendWebhookMessage(webhook, message)
+--     if webhook ~= nil and webhook ~= "" then
+--         PerformHttpRequest(webhook, function(err, text, headers)
+--         end, 'POST', json.encode({content = message}), {['Content-Type'] = 'application/json'})
+--     end
+-- end
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- VARIAVEIS
 -----------------------------------------------------------------------------------------------------------------------------------------
@@ -74,7 +74,7 @@ end)
 -----------------------------------------------------------------------------------------------------------------------------------------
 local garages = {
     [1] = {['name'] = "Garagem", ['payment'] = false, ['public'] = true},
---    [2] = {['name'] = "Garagem", ['payment'] = false, ['public'] = true},
+    --    [2] = {['name'] = "Garagem", ['payment'] = false, ['public'] = true},
     [3] = {['name'] = "Garagem", ['payment'] = false, ['public'] = true},
     [4] = {['name'] = "Garagem", ['payment'] = false, ['public'] = true},
     [5] = {['name'] = "Garagem", ['payment'] = false, ['public'] = true},
@@ -426,11 +426,11 @@ local garages = {
     -----------------------------------------------------------------------------------------------------------------------------------------
     --													POLICIA
     -----------------------------------------------------------------------------------------------------------------------------------------
-    [637] = {['name'] = "Garagem", ['payment'] = false, ['public'] = true}, 
+    [637] = {['name'] = "Garagem", ['payment'] = false, ['public'] = true},
     [612] = {['name'] = "PMESP", ['payment'] = false, ['perm'] = "pmesp.permissao"},
     [613] = {['name'] = "PoliciaHeli", ['payment'] = false, ['perm'] = "policia.permissao"},
     [618] = {['name'] = "PoliciaHeli", ['payment'] = false, ['perm'] = "policia.permissao"},
-    [614] = { ['name'] = "ROTA", ['payment'] = false, ['perm'] = "rota.permissao" },
+    [614] = {['name'] = "ROTA", ['payment'] = false, ['perm'] = "rota.permissao"},
     [615] = {['name'] = "Policia", ['payment'] = false, ['perm'] = "policia.permissao"},
     [616] = {['name'] = "PRF", ['payment'] = false, ['perm'] = "prf.permissao"},
     --	[] = { ['name'] = "", ['payment'] = false, ['perm'] = "suapermissao" },
@@ -500,7 +500,7 @@ local garages = {
     [671] = {['name'] = "Laranjas", ['payment'] = false, ['perm'] = "laranjas.permissao"}, -- GARAGEM LARANJAS
     [672] = {['name'] = "Garagem", ['payment'] = false, ['public'] = true}, -- GARAGEM PESSOAL LARANJAS
     [673] = {['name'] = "DIC", ['payment'] = false, ['perm'] = "pmfciv.permissao"}, -- DIC DP PRACA
-    [674] = {['name'] = "Policia", ['payment'] = false, ['perm'] = "policia.permissao"},
+    [674] = {['name'] = "Garagem", ['payment'] = false, ['public'] = true}, -- GARAGEM PESSOAL SERPENTES
     [675] = {['name'] = "PoliciaHeli", ['payment'] = false, ['perm'] = "policia.permissao"}, -- Heliponto DP VINEWOOD
 }
 -----------------------------------------------------------------------------------------------------------------------------------------
@@ -524,7 +524,7 @@ local workgarage = {
     ["SportRace"] = {"flatbed", "slamvan3", "brawler"},
     ["DIC"] = {"dicgt63", "cls63s"},
     ["PRF"] = {"cruzeprf2", "l200prf", "trailprf", "ec130PRF"},
-    ["Policia"] = {"av-amarok", "riot", "av-gt63", "pbus", "av-nc7", "av-levante", "ghispo2", "bmwm5policia", "porschespeed", "a45policia", "pmfcevo9", "corleo"}, -- sbearcat
+    ["Policia"] = {"riot", "pbus", "ghispo2", "porschespeed", "VRa3", "VRa4", "VRrs5", "VRrs6", "VRrs6av", "VRraptor", "VRtahoe", "VRdm1200", "VRq8"},
     ["PoliciaHeli"] = {"polmav"},
     ["ROTA"] = {"sw4revrota1", "trailrota2"},
     ["PMESP"] = {"pbus", "riot", "20blazer2", "police3", "spacepm1", "trailcfp", "trailpm1", "av-gt63", "av-m8", "policeb"},
@@ -659,7 +659,7 @@ function src.spawnVehicles(name, use)
             -- BLOQUEAR RETIRADA DE VEÍCULOS COM X VALOR DE MULTA PENDENTE
             if vRP.vehicleType(tostring(name)) ~= "work" then
                 if multas >= 50000 then
-                    TriggerClientEvent("Notify", source, "negado", "Você tem <b>R$ " ..vRP.format(parseInt(multas)).. "</b> em multas pendentes, pague-as no banco para retirar seus veículos", 15000)
+                    TriggerClientEvent("Notify", source, "negado", "Você tem <b>R$ " .. vRP.format(parseInt(multas)) .. "</b> em multas pendentes, pague-as no banco para retirar seus veículos", 15000)
                     return
                 end
             end
@@ -728,7 +728,7 @@ function src.spawnVehicles(name, use)
                             else
                                 local price_tax = parseInt(vRP.vehiclePrice(name) * 0.10)
                                 if price_tax > 100000 then
-                                 	price_tax = 100000
+                                    price_tax = 100000
                                 end
                                 local ok = vRP.request(source, "Deseja pagar a <b>Taxa</b> do veículo <b>" .. vRP.vehicleName(name) .. "</b> por <b>R$ " .. vRP.format(price_tax) .. "</b> reais?", 60)
                                 if ok then
@@ -747,15 +747,6 @@ function src.spawnVehicles(name, use)
                     if spawnveh then
                         vehlist[vehid] = {user_id, name}
                         local identity = vRP.getUserIdentity(user_id)
-
-                        -- AVISO IN-GAME SOBRE RETIRADA DE VEICULOS
-                        -- local adms = vRP.getUsersByPermission("kick.permissao")
-                        -- for k, v in pairs(adms) do
-                        --     admin_source = vRP.getUserSource(parseInt(v))
-                        --     TriggerClientEvent("Notify", admin_source, "aviso", "ATENÇÃO! ID: <b>" .. user_id .. "</b> - Retirou o veículo: <b>" .. name .. "</b>", 15000)
-                        -- end
-
-                        SendWebhookMessage(webhookretiradaveiculo, "```prolog\n[ID]: " .. user_id .. " " .. identity.name .. " " .. identity.firstname .. " \n[RETIROU]: " .. name .. " " .. os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S") .. " \r```")
                         TriggerEvent("setPlateEveryone", identity.registration)
                     end
                 end
@@ -788,17 +779,25 @@ AddEventHandler("desmancheVehicles", function()
     local user_id = vRP.getUserId(source)
     vRP.antiflood(source, "DesmancheVehicles", 3)
     if user_id then
-        local vehicle, vnetid, placa, vname, lock, banned = vRPclient.vehList(source, 7)
-        if vehicle and placa then
-            local puser_id = vRP.getUserByRegistration(placa)
-            if puser_id then
-                vRP.execute("creative/set_detido", {user_id = parseInt(puser_id), vehicle = vname, detido = 1, time = parseInt(os.time())})
-                vRP.giveInventoryItem(user_id, "dinheirosujo", parseInt(vRP.vehiclePrice(vname) * 0.2))
-                TriggerClientEvent("Notify", source, "sucesso", "Veículo <b>desmanchado</b> com sucesso, você recebeu <b>" .. vRP.format(parseInt(vRP.vehiclePrice(vname) * 0.2)) .. "x em Dinheiro Sujo</b>", 8000)
-                vCLIENT.deleteVehicle(source, vehicle)
-                local identity = vRP.getUserIdentity(user_id)
-                SendWebhookMessage(webhookdesmanche, "```prolog\n[ID]: " .. user_id .. " " .. identity.name .. " " .. identity.firstname .. " \n[DESMANCHOU]: " .. vname .. " [ID]: " .. puser_id .. " \n[VALOR]: R$ " .. vRP.format(parseInt(vRP.vehiclePrice(vname) * 0.2)) .. " " .. os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S") .. " \r```")
+        if vRP.hasPermission(user_id, "midnight.permissao") or vRP.hasPermission(user_id, "driftking.permissao") then
+            local vehicle, vnetid, placa, vname, lock, banned = vRPclient.vehList(source, 7)
+            if vehicle and placa then
+                local puser_id = vRP.getUserByRegistration(placa)
+                if puser_id then
+                    vRP.execute("creative/set_detido", {user_id = parseInt(puser_id), vehicle = vname, detido = 1, time = parseInt(os.time())})
+                    vRP.giveInventoryItem(user_id, "dinheirosujo", parseInt(vRP.vehiclePrice(vname) * 0.2))
+                    TriggerClientEvent("Notify", source, "sucesso", "Veículo <b>desmanchado</b> com sucesso, você recebeu <b>" .. vRP.format(parseInt(vRP.vehiclePrice(vname) * 0.2)) .. "x em Dinheiro Sujo</b>", 8000)
+                    vCLIENT.deleteVehicle(source, vehicle)
+                    local identity = vRP.getUserIdentity(user_id)
+                    vRP.Log("```prolog\n[ID]: " .. user_id .. " " .. identity.name .. " " .. identity.firstname .. " \n[DESMANCHOU]: " .. vname .. " [ID]: " .. puser_id .. " \n[VALOR]: R$ " .. vRP.format(parseInt(vRP.vehiclePrice(vname) * 0.2)) .. " " .. os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S") .. " \r```", "DESMANCHE")
+                end
             end
+        else
+            -- FIX: BANIR CASO NÃO TENHA PERMISSÃO PARA DESMANCHAR
+            vRP.setBanned(parseInt(user_id), true)
+            vRP.setWhitelisted(parseInt(user_id), false)
+            vRP.kick(user_id, "Banido! Motivo: Tentando desmanchar veículos sem permissão!")
+            vRP.Log("```prolog\n[ID]: " .. user_id .. "\n[BANIDO POR]: TENTATIVA DE DESMANCHE SEM PERMISSÃO " .. os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S") .. " \r```", "AC_BAN")
         end
     end
 end)
@@ -814,7 +813,7 @@ RegisterCommand('dv', function(source, args, rawCommand)
             local identity = vRP.getUserIdentity(user_id)
             local crds = GetEntityCoords(GetPlayerPed(source))
             vCLIENT.deleteVehicle(source, vehicle)
-            SendWebhookMessage(webhookdv, "```prolog\n[ID]: " .. user_id .. " " .. identity.name .. " " .. identity.firstname .. " \n[VEICULO]: " .. nome .. "\n[Coordenada]: " .. crds.x .. "," .. crds.y .. "," .. crds.z .. "" .. os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S") .. " \r```")
+            vRP.Log("```prolog\n[ID]: " .. user_id .. " " .. identity.name .. " " .. identity.firstname .. " \n[VEICULO]: " .. nome .. "\n[Coordenada]: " .. crds.x .. "," .. crds.y .. "," .. crds.z .. "" .. os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S") .. " \r```", "CMD_DV")
         end
     end
 end)
@@ -910,7 +909,7 @@ function src.returnHouses(nome, garage)
             if garages[garage].perm == "livre" then
                 return vCLIENT.openGarage(source, nome, garage)
             elseif garages[garage].perm then
-                if vRP.hasPermission(user_id, garages[garage].perm) or vRP.hasPermission(user_id,"kick.permissao") then
+                if vRP.hasPermission(user_id, garages[garage].perm) or vRP.hasPermission(user_id, "kick.permissao") then
                     return vCLIENT.openGarage(source, nome, garage)
                 end
             elseif garages[garage].public then
@@ -1070,7 +1069,8 @@ RegisterCommand('vehs', function(source, args, rawCommand)
                                             -- local resultado = json.decode(consulta) or 0
                                             -- vRP.setUData(user_id,"vRP:paypal",json.encode(parseInt(resultado + price)))
                                             vRP.giveMoney(user_id, parseInt(price))
-                                            SendWebhookMessage(webhookvehs, "```prolog\n[ID]: " .. user_id .. " " .. identity2.name .. " " .. identity2.firstname .. " \n[VENDEU]: " .. vRP.vehicleName(tostring(args[1])) .. " \n[PARA]: " .. (args[2]) .. " " .. identity.name .. " " .. identity.firstname .. " \n[VALOR]: R$ " .. vRP.format(parseInt(price)) .. " " .. os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S") .. " \r```")
+                                            vRP.Log("```prolog\n[ID]: " .. user_id .. " " .. identity2.name .. " " .. identity2.firstname .. " \n[VENDEU]: " .. vRP.vehicleName(tostring(args[1])) .. " \n[PARA]: " .. (args[2]) .. " " .. identity.name .. " " .. identity.firstname .. " \n[VALOR]: R$ " .. vRP.format(parseInt(price)) .. " " ..
+                                                os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S") .. " \r```", "CMD_VEHS")
                                         end
                                     else
                                         TriggerClientEvent("Notify", nplayer, "negado", "Dinheiro insuficiente.", 8000)

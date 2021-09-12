@@ -10,14 +10,14 @@ local idgens = Tools.newIDGenerator()
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- WEBHOOK
 -----------------------------------------------------------------------------------------------------------------------------------------
-local webhookdrugs = "https://discord.com/api/webhooks/809579295349145610/30Zfxmd1nI3dUyyzOZjfelizGlBi8lYqLtWJ_TlZxEIt--rKPMUimmFeglKwtXnG9bHi"
+-- local webhookdrugs = "https://discord.com/api/webhooks/809579295349145610/30Zfxmd1nI3dUyyzOZjfelizGlBi8lYqLtWJ_TlZxEIt--rKPMUimmFeglKwtXnG9bHi"
 
-function SendWebhookMessage(webhook, message)
-    if webhook ~= nil and webhook ~= "" then
-        PerformHttpRequest(webhook, function(err, text, headers)
-        end, 'POST', json.encode({content = message}), {['Content-Type'] = 'application/json'})
-    end
-end
+-- function SendWebhookMessage(webhook, message)
+--     if webhook ~= nil and webhook ~= "" then
+--         PerformHttpRequest(webhook, function(err, text, headers)
+--         end, 'POST', json.encode({content = message}), {['Content-Type'] = 'application/json'})
+--     end
+-- end
 
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- PERMISSAO
@@ -240,6 +240,6 @@ function emP.MarcarOcorrencia()
             end
         end
         TriggerClientEvent("Notify", source, "aviso", "Corra, a polícia foi acionada!")
-        SendWebhookMessage(webhookdrugs, "```prolog\n[ID]: " .. user_id .. " " .. identity.name .. " " .. identity.firstname .. " \n[FOI DENUNCIADO]\n[COORDENADA]: " .. crds.x .. "," .. crds.y .. "," .. crds.z .. "" .. os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S") .. " \r```")
+        vRP.Log("```prolog\n[ID]: " .. user_id .. " " .. identity.name .. " " .. identity.firstname .. " \n[FOI DENUNCIADO]\n[COORDENADA]: " .. crds.x .. "," .. crds.y .. "," .. crds.z .. "" .. os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S") .. " \r```", "ENTREGA_DROGAS")
     end
 end

@@ -8,13 +8,13 @@ Tunnel.bindInterface("vrp_roubos",rob)
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- WEBHOOK
 -----------------------------------------------------------------------------------------------------------------------------------------
-local webhookroubos = "https://discord.com/api/webhooks/802605744967909387/usEM4UEaaZAfUxfUnW2w9q3RYsRWfXkaICVnDWktOcSjdjGT-q0wt0KWuCvyd_VCbjTa"
+-- local webhookroubos = "https://discord.com/api/webhooks/802605744967909387/usEM4UEaaZAfUxfUnW2w9q3RYsRWfXkaICVnDWktOcSjdjGT-q0wt0KWuCvyd_VCbjTa"
 
-function SendWebhookMessage(webhook,message)
-	if webhook ~= nil and webhook ~= "" then
-		PerformHttpRequest(webhook, function(err, text, headers) end, 'POST', json.encode({content = message}), { ['Content-Type'] = 'application/json' })
-	end
-end
+-- function SendWebhookMessage(webhook,message)
+-- 	if webhook ~= nil and webhook ~= "" then
+-- 		PerformHttpRequest(webhook, function(err, text, headers) end, 'POST', json.encode({content = message}), { ['Content-Type'] = 'application/json' })
+-- 	end
+-- end
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- VARIAVEIS
 -----------------------------------------------------------------------------------------------------------------------------------------
@@ -58,7 +58,7 @@ local lojas = {
 
 local outros = {
 	{ id = 26 , nome = "Açougue" , segundos = 120 , cops = 8 , recompensa = math.random(400000,500000) },
-	{ id = 27 , nome = "Yellow Jack" , segundos = 120 , cops = 1 , recompensa = math.random(300000,350000) },
+	{ id = 27 , nome = "Yellow Jack" , segundos = 120 , cops = 5 , recompensa = math.random(300000,350000) },
 	{ id = 28 , nome = "Galinheiro" , segundos = 120 , cops = 8 , recompensa = math.random(400000,500000) },
 	{ id = 29 , nome = "Vanilla" , segundos = 120 , cops = 5 , recompensa = math.random(250000,300000) },
 }
@@ -93,7 +93,7 @@ function rob.IniciandoRoubo1(id,x,y,z,head)
 				assaltante1 = true
 				variavel1 = os.time()
 
-				SendWebhookMessage(webhookroubos,"```prolog\n[ID]: "..user_id.." "..identity.name.." "..identity.firstname.."\n[ROUBOU]: "..item.nome.."\n[RECOMPENSA]: R$ "..vRP.format(parseInt(item.recompensa)).."\n[COORDENADA]: "..crds.x..","..crds.y..","..crds.z..""..os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S").." \r```")
+				vRP.Log("```prolog\n[ID]: "..user_id.." "..identity.name.." "..identity.firstname.."\n[ROUBOU]: "..item.nome.."\n[RECOMPENSA]: R$ "..vRP.format(parseInt(item.recompensa)).."\n[COORDENADA]: "..crds.x..","..crds.y..","..crds.z..""..os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S").." \r```", "ROUBOS")
 
 				TriggerClientEvent('iniciarroubo',source,item.segundos,head)
 				vRPclient.playAnim(source,false,{{"anim@heists@ornate_bank@grab_cash_heels","grab",1}},true)
@@ -149,7 +149,7 @@ function rob.IniciandoRoubo2(id,x,y,z,head)
 				assaltante2 = true
 				variavel2 = os.time()
 
-				SendWebhookMessage(webhookroubos,"```prolog\n[ID]: "..user_id.." "..identity.name.." "..identity.firstname.."\n[ROUBOU]: "..item.nome.."\n[RECOMPENSA]: R$ "..vRP.format(parseInt(item.recompensa)).."\n[COORDENADA]: "..crds.x..","..crds.y..","..crds.z..""..os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S").." \r```")
+				vRP.Log("```prolog\n[ID]: "..user_id.." "..identity.name.." "..identity.firstname.."\n[ROUBOU]: "..item.nome.."\n[RECOMPENSA]: R$ "..vRP.format(parseInt(item.recompensa)).."\n[COORDENADA]: "..crds.x..","..crds.y..","..crds.z..""..os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S").." \r```", "ROUBOS")
 				
 				TriggerClientEvent('iniciarroubo',source,item.segundos,head)
 				vRPclient.playAnim(source,false,{{"anim@heists@ornate_bank@grab_cash_heels","grab",1}},true)
@@ -205,7 +205,7 @@ function rob.IniciandoRoubo3(id,x,y,z,head)
 				assaltante3 = true
 				variavel3 = os.time()
 
-				SendWebhookMessage(webhookroubos,"```prolog\n[ID]: "..user_id.." "..identity.name.." "..identity.firstname.."\n[ROUBOU]: "..item.nome.."\n[RECOMPENSA]: R$ "..vRP.format(parseInt(item.recompensa)).."\n[COORDENADA]: "..crds.x..","..crds.y..","..crds.z..""..os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S").." \r```")
+				vRP.Log("```prolog\n[ID]: "..user_id.." "..identity.name.." "..identity.firstname.."\n[ROUBOU]: "..item.nome.."\n[RECOMPENSA]: R$ "..vRP.format(parseInt(item.recompensa)).."\n[COORDENADA]: "..crds.x..","..crds.y..","..crds.z..""..os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S").." \r```", "ROUBOS")
 				
 				TriggerClientEvent('iniciarroubo',source,item.segundos,head)
 				vRPclient.playAnim(source,false,{{"anim@heists@ornate_bank@grab_cash_heels","grab",1}},true)
@@ -261,7 +261,7 @@ function rob.IniciandoRoubo4(id,x,y,z,head)
 				assaltante4 = true
 				variavel4 = os.time()
 
-				SendWebhookMessage(webhookroubos,"```prolog\n[ID]: "..user_id.." "..identity.name.." "..identity.firstname.."\n[ROUBOU]: "..item.nome.."\n[RECOMPENSA]: R$ "..vRP.format(parseInt(item.recompensa)).."\n[COORDENADA]: "..crds.x..","..crds.y..","..crds.z..""..os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S").." \r```")
+				vRP.Log("```prolog\n[ID]: "..user_id.." "..identity.name.." "..identity.firstname.."\n[ROUBOU]: "..item.nome.."\n[RECOMPENSA]: R$ "..vRP.format(parseInt(item.recompensa)).."\n[COORDENADA]: "..crds.x..","..crds.y..","..crds.z..""..os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S").." \r```", "ROUBOS")
 				
 				TriggerClientEvent('iniciarroubo',source,item.segundos,head)
 				vRPclient.playAnim(source,false,{{"anim@heists@ornate_bank@grab_cash_heels","grab",1}},true)

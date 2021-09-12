@@ -12,21 +12,11 @@ vADMC = Tunnel.getInterface("vrp_admin","vrp_admin")
 -- PREPARES
 -----------------------------------------------------------------------------------------------------------------------------------------
 vRP._prepare("admin/resetarpersonagem","DELETE FROM vrp_user_data WHERE user_id = @user_id AND dkey ='currentCharacterMode'")
+vRP._prepare("admin/removertatuagens","DELETE FROM vrp_user_data WHERE user_id = @user_id AND dkey ='vRP:tattoos'")
 
-local webhookaddremcar = "https://discord.com/api/webhooks/795671123299663893/-CZgy7czgUO7BeEHlYJpdCm00mxjG11oSrEHkhUC1r2mmXgGm93p9vq4VWp6gTzyi9vK"
-local webhookmoney = "https://discord.com/api/webhooks/795667756493963304/4Azax194qMKWm6y1KfADk8ernA8YpUF1CKWvHdlaG2tNSd_NHhy3-fycr9RvpTAp41qa"
-local webhookcarros = "https://discord.com/api/webhooks/793197093690671134/CVTPwlTgBR2CVOKsyTEXCXau6KX4L8eZFijtmOY06S6wnCs2BRh3urrUUut3NzHPWQi2"
-local webhookgrupos = "https://discord.com/api/webhooks/795669087896338462/QeH-0wMplpMq8pfvuxIlA_XmQKyWcERkOzy0c5yBjLidBa7W6EkndzS-ul4s4hq3t33-"
-local webhookcmdgod = "https://discord.com/api/webhooks/797212560821977100/0gudVRGoejjBJrrKGrYRREhIbnMpD5Ts1s4MqPivDoGLS4vXIuqci9n6jinY5pXv40VG"
-local webhookfac = "https://discord.com/api/webhooks/809981445413666827/bkCHxarpInZ3p8KccORt1PKVqjwUaeeGRHyLerogeOW0y486XXyxSfOl8Vlvc51KWVb6"
-local webhookeconomia = "https://discord.com/api/webhooks/811814703176089672/h_NGmW7k60R5DyH23-Q958bk0NdTjelpmNupK5ekk4sLF0o6jxj4UAZKRGpVQN73TZry"
-local webhooksaquear = "https://discord.com/api/webhooks/793600303437971546/Mq-CbSWOOD7CYQo48zM_Ie8M0-KUIdfLLdqjQiG2WJsXAbqiLN1ZSfWqY_bxbxtf4XUr"
-
-function SendWebhookMessage(webhook,message)
-	if webhook ~= nil and webhook ~= "" then
-		PerformHttpRequest(webhook, function(err, text, headers) end, 'POST', json.encode({content = message}), { ['Content-Type'] = 'application/json' })
-	end
-end
+-----------------------------------------------------------------------------------------------------------------------------------------
+-- LOG DE ECONOMIA ENVIADA PARA O DISCORD
+-----------------------------------------------------------------------------------------------------------------------------------------
 
 vRP._prepare("vRP/money_rank",
              "SELECT SUM(wallet+bank) AS total,user_id FROM vrp.vrp_user_moneys GROUP BY user_id ORDER BY total DESC LIMIT 50")
@@ -43,12 +33,12 @@ Citizen.CreateThread(function()
     	for k,v in pairs(carteira) do
     	    msg=msg.."ID: "..v.user_id.." => Total: R$ "..vRP.format(parseInt(v.total)).."\n" 
     	end
-		SendWebhookMessage(webhookeconomia,"```prolog\nRELATORIO DE ECONOMIA: "..os.date("%d/%m/%Y - %H:%M:%S").."``` ```prolog\n"..msg.."```")
+		vRP.Log("```prolog\nRELATORIO DE ECONOMIA: "..os.date("%d/%m/%Y - %H:%M:%S").."``` ```prolog\n"..msg.."```", "ECONOMIA")
 		economiatotal = ""
 		for k,v in pairs(economia) do
 			economiatotal=economiatotal.."Economia atual: R$ "..vRP.format(parseInt(v.economia)).."\n"
 		end
-		SendWebhookMessage(webhookeconomia,"```prolog\n"..economiatotal.."```")
+		vRP.Log("```prolog\n"..economiatotal.."```", "ECONOMIA")
 	end
 end)
 
@@ -261,7 +251,7 @@ RegisterCommand('god',function(source,args,rawCommand)
 				vRPclient._stopAnim(nplayer,false)
 				vRPclient.setHealth(nplayer,400)
 				TriggerEvent("srkfive:killregisterclear",nuser_id)
-				SendWebhookMessage(webhookcmdgod,"```prolog\n[ID]: "..user_id.." "..identity.name.." "..identity.firstname.." \n[GOD EM]: "..nuser_id.." "..identitynu.name.." "..identitynu.firstname.."\n[COORDENADA]: "..crds.x..","..crds.y..","..crds.z..""..os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S").." \r```") 
+				vRP.Log("```prolog\n[ID]: "..user_id.." "..identity.name.." "..identity.firstname.." \n[GOD EM]: "..nuser_id.." "..identitynu.name.." "..identitynu.firstname.."\n[COORDENADA]: "..crds.x..","..crds.y..","..crds.z..""..os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S").." \r```","CMD_GOD") 
 			end
 		else
 			local raio = vRPclient.getNearestPlayers(source,30)
@@ -274,7 +264,7 @@ RegisterCommand('god',function(source,args,rawCommand)
 			vRPclient.setHealth(source,400) -- Vida
 			-- vRPclient.setArmour(source,100) -- Colete
 			TriggerEvent("srkfive:killregisterclear",user_id)
-			SendWebhookMessage(webhookcmdgod,"```prolog\n[GOD PROPRIO]: "..user_id.." "..identity.name.." "..identity.firstname.."\n[COORDENADA]: "..crds.x..","..crds.y..","..crds.z..""..os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S").." \r```")
+			vRP.Log("```prolog\n[GOD PROPRIO]: "..user_id.." "..identity.name.." "..identity.firstname.."\n[COORDENADA]: "..crds.x..","..crds.y..","..crds.z..""..os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S").." \r```","CMD_GOD")
 		end
 	end
 end)
@@ -322,7 +312,7 @@ RegisterCommand('addcar',function(source,args,rawCommand)
 				vRP.execute("creative/add_vehicle",{ user_id = parseInt(args[2]), vehicle = args[1], ipva = parseInt(os.time()) }) 
 				vRP.execute("creative/set_ipva",{ user_id = parseInt(args[2]), vehicle = args[1], ipva = parseInt(os.time()) })
 				TriggerClientEvent("Notify",source,"sucesso","Voce adicionou o veículo <b>"..args[1].."</b> para o Passaporte: <b>"..parseInt(args[2]).."</b>.") 
-				SendWebhookMessage(webhookaddremcar,"```prolog\n[ID]: "..user_id.." "..identity.name.." "..identity.firstname.." \n[ADICIONOU]: "..args[1].." \n[PARA O ID]: "..nuser_id.." "..identitynu.name.." "..identitynu.firstname.." "..os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S").." \r```") 
+				vRP.Log("```prolog\n[ID]: "..user_id.." "..identity.name.." "..identity.firstname.." \n[ADICIONOU]: "..args[1].." \n[PARA O ID]: "..nuser_id.." "..identitynu.name.." "..identitynu.firstname.." "..os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S").." \r```", "CMD_ADDCAR") 
 			else
 				TriggerClientEvent("Notify",source,"negado","Nome incorreto para o veículo.") 
 			end
@@ -342,7 +332,7 @@ RegisterCommand('remcar',function(source,args,rawCommand)
             local identitynu = vRP.getUserIdentity(nuser_id)
             vRP.execute("creative/rem_vehicle",{ user_id = parseInt(args[2]), vehicle = args[1], ipva = parseInt(os.time())  }) 
             TriggerClientEvent("Notify",source,"sucesso","Voce removeu o veículo <b>"..args[1].."</b> do Passaporte: <b>"..parseInt(args[2]).."</b>.") 
-            SendWebhookMessage(webhookaddremcar,"```prolog\n[ID]: "..user_id.." "..identity.name.." "..identity.firstname.." \n[REMOVEU]: "..args[1].." \n[PARA O ID]: "..nuser_id.." "..identitynu.name.." "..identitynu.firstname.." "..os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S").." \r```")
+            vRP.Log("```prolog\n[ID]: "..user_id.." "..identity.name.." "..identity.firstname.." \n[REMOVEU]: "..args[1].." \n[PARA O ID]: "..nuser_id.." "..identitynu.name.." "..identitynu.firstname.." "..os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S").." \r```", "CMD_ADDCAR")
         end
     end
 end)
@@ -447,9 +437,10 @@ RegisterCommand('reset',function(source,args,rawCommand)
                     vRP.kick(nplayer,"Aparência resetada, entre novamente!")
                 end
 				vRP.setUData(args[1],"vRP:spawnController",json.encode(1))
-				vRP.setUData(args[1],"vRP:currentCharacterMode",json.encode(1))
-				vRP.setUData(args[1],"vRP:tattoos",json.encode(1))
+				-- vRP.setUData(args[1],"vRP:currentCharacterMode",json.encode(1))
+				-- vRP.setUData(args[1],"vRP:tattoos",json.encode(1))
 				vRP.execute("admin/resetarpersonagem",{ user_id = parseInt(args[1]) })
+				vRP.execute("admin/removertatuagens",{ user_id = parseInt(args[1]) })
             end
         end
     end
@@ -470,9 +461,10 @@ RegisterCommand('plastica',function(source,args,rawCommand)
 						if vRP.tryFullPayment(user_id,parseInt(400000)) then
 							vRP.kick(nplayer,"Aparência resetada, entre novamente!")
 							vRP.setUData(id,"vRP:spawnController",json.encode(1))
-							vRP.setUData(id,"vRP:currentCharacterMode",json.encode(1))
-							vRP.setUData(id,"vRP:tattoos",json.encode(1))
+							-- vRP.setUData(id,"vRP:currentCharacterMode",json.encode(1))
+							-- vRP.setUData(id,"vRP:tattoos",json.encode(1))
 							vRP.execute("admin/resetarpersonagem",{ user_id = parseInt(args[1]) })
+							vRP.execute("admin/removertatuagens",{ user_id = parseInt(args[1]) })
 							return true
 						else
 							TriggerClientEvent("Notify",source,"negado","Voce não possui dinheiro suficiente")
@@ -492,7 +484,7 @@ RegisterCommand('money',function(source,args,rawCommand)
 	if vRP.hasPermission(user_id,"founder.permissao") then
 		if args[1] then
 			vRP.giveMoney(user_id,parseInt(args[1]))
-			SendWebhookMessage(webhookmoney,"```prolog\n[ID]: "..user_id.." "..identity.name.." "..identity.firstname.." \n[FEZ]: R$ "..vRP.format(parseInt(args[1])).." "..os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S").." \r```")
+			vRP.Log("```prolog\n[ID]: "..user_id.." "..identity.name.." "..identity.firstname.." \n[FEZ]: R$ "..vRP.format(parseInt(args[1])).." "..os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S").." \r```", "CMD_MONEY")
 		end
 	end
 end)
@@ -507,7 +499,7 @@ RegisterCommand('getmoney',function(source,args,rawCommand)
 			-- local bankMoney = vRP.getBankMoney(user_id)
 			vRP.tryPayment(user_id,parseInt(args[1]))
 			-- vRP.setBankMoney(user_id, bankMoney-parseInt(args[1]))
-			SendWebhookMessage(webhookmoney,"```prolog\n[ID]: "..user_id.." "..identity.name.." "..identity.firstname.." \n[DESTRUIU]: R$ "..vRP.format(parseInt(args[1])).." "..os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S").." \r```")
+			vRP.Log("```prolog\n[ID]: "..user_id.." "..identity.name.." "..identity.firstname.." \n[DESTRUIU]: R$ "..vRP.format(parseInt(args[1])).." "..os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S").." \r```", "CMD_MONEY")
 		end
 	end
 end)
@@ -583,7 +575,7 @@ RegisterCommand('group',function(source,args,rawCommand)
 			else
 				vRP.addUserGroup(parseInt(args[1]),args[2])
 				TriggerClientEvent("Notify",source,"sucesso","Voce setou o passaporte <b>"..parseInt(args[1]).."</b> no grupo <b>"..args[2].."</b>")
-				SendWebhookMessage(webhookgrupos,"```prolog\n[ID]: "..user_id.." "..identity.name.." "..identity.firstname.." \n[SETOU]: "..args[1].." \n[GRUPO]: "..args[2].." "..os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S").." \r```")
+				vRP.Log("```prolog\n[ID]: "..user_id.." "..identity.name.." "..identity.firstname.." \n[SETOU]: "..args[1].." \n[GRUPO]: "..args[2].." "..os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S").." \r```", "CMD_GROUP")
 			end
 		end
 	end
@@ -598,7 +590,7 @@ RegisterCommand('ungroup',function(source,args,rawCommand)
 		if args[1] and args[2] then
 			vRP.removeUserGroup(parseInt(args[1]),args[2])
 			TriggerClientEvent("Notify",source,"sucesso","Voce removeu o passaporte <b>"..parseInt(args[1]).."</b> do grupo <b>"..args[2].."</b>.")
-			SendWebhookMessage(webhookgrupos,"```prolog\n[ID]: "..user_id.." "..identity.name.." "..identity.firstname.." \n[REMOVEU]: "..args[1].." \n[GRUPO]: "..args[2].." "..os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S").." \r```")
+				vRP.Log("```prolog\n[ID]: "..user_id.." "..identity.name.." "..identity.firstname.." \n[REMOVEU]: "..args[1].." \n[GRUPO]: "..args[2].." "..os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S").." \r```", "CMD_GROUP")
 		end
 	end
 end)
@@ -650,7 +642,7 @@ RegisterCommand('car',function(source,args,rawCommand)
 	if vRP.hasPermission(user_id,"admin.permissao") then
 		if args[1] then
 			TriggerClientEvent('spawnarveiculo654687687',source,args[1])
-			SendWebhookMessage(webhookcarros,"```prolog\n[ID]: "..user_id.." "..identity.name.." "..identity.firstname.." \n[SPAWNOU]: "..(args[1]).."\n[COORDENADA]: "..crds.x..","..crds.y..","..crds.z..""..os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S").." \r```")
+			vRP.Log("```prolog\n[ID]: "..user_id.." "..identity.name.." "..identity.firstname.." \n[SPAWNOU]: "..(args[1]).."\n[COORDENADA]: "..crds.x..","..crds.y..","..crds.z..""..os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S").." \r```", "CMD_CAR")
 		end
 	end
 end)
@@ -829,21 +821,21 @@ end)
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- CORREÇÃO DE SPAWNAR ARMA
 -----------------------------------------------------------------------------------------------------------------------------------------
-local webhooksuspeito= "https://discord.com/api/webhooks/800148956649750558/BYP4AcXNkOfOosRVVW7NUhPiM8WNDiKAoMn2g4-SUYFayTm-mHrrya4ppsF89aB8jUxS"
+local webhookspawnarma= "https://discord.com/api/webhooks/800186893186236416/xi0jk6NfSDR3lWLBF2FfgX6VVxkNWELBcXKEClJv3HvHPa0ziMlrsn2ehvAHi31iiWoQ"
 
 RegisterServerEvent('LOG:ARMAS654654684')
 AddEventHandler('LOG:ARMAS654654684', function()
     local user_id = vRP.getUserId(source)
     if user_id~=nil then
-		-- vRP.setBanned(parseInt(user_id),true)
-    	-- vRP.setWhitelisted(parseInt(user_id),false)
-		-- vRP.kick(user_id,"Você foi banido da cidade.")
+		vRP.setBanned(parseInt(user_id),true)
+    	vRP.setWhitelisted(parseInt(user_id),false)
+		vRP.kick(user_id,"Você foi banido da cidade.")
 		local adms = vRP.getUsersByPermission("ban.permissao")
     	for k, v in pairs(adms) do
     	    admin_source = vRP.getUserSource(parseInt(v))
     	    TriggerClientEvent("Notify", admin_source, "aviso", "Jogador Suspeito: <b>" .. user_id .. "</b> - Motivo: SPAWN DE ARMAS",15000)
     	end
-    	PerformHttpRequest(webhooksuspeito, function(err, text, headers) end, 'POST', json.encode({content = "[BANIDO] SPAWN DE ARMAS "..user_id}), { ['Content-Type'] = 'application/json' })
+    	PerformHttpRequest(webhookspawnarma, function(err, text, headers) end, 'POST', json.encode({content = "[BANIDO] SPAWN DE ARMAS "..user_id}), { ['Content-Type'] = 'application/json' })
     end
 end)
 
@@ -1218,7 +1210,7 @@ end)
 ---------------------------------------------------
 -- VERMELHOS
 ---------------------------------------------------
-RegisterCommand('add-vermelhos',function(source,args,rawCommand)
+--[[ RegisterCommand('add-vermelhos',function(source,args,rawCommand)
 	local user_id = vRP.getUserId(source)
 	local identity = vRP.getUserIdentity(user_id)
 	local nplayer = vRP.getUserSource(parseInt(args[1]))
@@ -1774,7 +1766,7 @@ RegisterCommand('rem-driftking',function(source,args,rawCommand)
 			end
 		end
 	end
-end)
+end) ]]
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- /rev
 -----------------------------------------------------------------------------------------------------------------------------------------
@@ -1926,7 +1918,7 @@ RegisterCommand('saquear',function(source,args,rawCommand)
 					TriggerClientEvent('cancelando',source,false)
 					local apreendidos = table.concat(itens_saque, "\n")
 					TriggerClientEvent("Notify",source,"importante","Saque concluido com sucesso.")
-					SendWebhookMessage(webhooksaquear,"```prolog\n[ID]: "..user_id.." "..identity_user.name.." "..identity_user.firstname.."\n[SAQUEOU]: "..nuser_id.." "..nidentity.name.." " ..nidentity.firstname .. "\n" .. apreendidos ..os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S").." \r```")
+					vRP.Log("```prolog\n[ID]: "..user_id.." "..identity_user.name.." "..identity_user.firstname.."\n[SAQUEOU]: "..nuser_id.." "..nidentity.name.." " ..nidentity.firstname .. "\n" .. apreendidos ..os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S").." \r```", "CMD_SAQUEAR")
 				end)
 			else
 				TriggerClientEvent("Notify",source,"aviso","Número insuficiente de policiais no momento.")
@@ -1936,4 +1928,30 @@ RegisterCommand('saquear',function(source,args,rawCommand)
            end
 		end
 	end
+end)
+
+-----------------------------------------------------------------------------------------------------------------------------------------
+-- TRENA
+-----------------------------------------------------------------------------------------------------------------------------------------
+RegisterCommand('trena',function(source,args,rawCommand)
+    local source = source
+    local user_id = vRP.getUserId(source)
+    if user_id then
+        if vRP.hasPermission(user_id,"kick.permissao") then -- ALTERAR A PERMISSÃO!!!!
+            local medir = vRP.prompt(source,"Coordenada:","")
+            if medir == "" then
+                return
+            end
+            local coords = {}
+            for coord in string.gmatch(medir or "0,0,0","[^,]+") do
+                table.insert(coords,parseInt(coord))
+            end
+            local ped = GetPlayerPed(source)
+            local loc = GetEntityCoords(ped)
+            local cds = vector3(coords[1], coords[2], coords[3])
+            local dist = #(loc - cds)
+            print(dist) -- Print no console
+            TriggerClientEvent("Notify",source,"sucesso","Distância: <b>"..dist.." metros</b>!") -- Alterar caso preferir
+        end
+    end
 end)

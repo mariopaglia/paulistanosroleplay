@@ -35,16 +35,16 @@ vRP._prepare("homes/rem_allpermissions","DELETE FROM vrp_homes_permissions WHERE
 vRP._prepare("homes/get_allhomes","SELECT * FROM vrp_homes_permissions WHERE owner = @owner")
 vRP._prepare("homes/get_allvehs","SELECT * FROM vrp_vehicles")
 
------------------------------------------------------------------------------------------------------------------------------------------
--- WEBHOOK DISCORD (LOGS)
------------------------------------------------------------------------------------------------------------------------------------------
-local webhookbaucasa = "https://discord.com/api/webhooks/873989193129394237/R0TSe7B_3RH4l9NMJ_YupdCPYF2kjouanLvuYZhK3WXDZF75tv8sHxMHRhBg1XwutFWV"
+-- -----------------------------------------------------------------------------------------------------------------------------------------
+-- -- WEBHOOK DISCORD (LOGS)
+-- -----------------------------------------------------------------------------------------------------------------------------------------
+-- local webhookbaucasa = "https://discord.com/api/webhooks/873989193129394237/R0TSe7B_3RH4l9NMJ_YupdCPYF2kjouanLvuYZhK3WXDZF75tv8sHxMHRhBg1XwutFWV"
 
-function SendWebhookMessage(webhook,message)
-	if webhook ~= nil and webhook ~= "" then
-		PerformHttpRequest(webhook, function(err, text, headers) end, 'POST', json.encode({content = message}), { ['Content-Type'] = 'application/json' })
-	end
-end
+-- function SendWebhookMessage(webhook,message)
+-- 	if webhook ~= nil and webhook ~= "" then
+-- 		PerformHttpRequest(webhook, function(err, text, headers) end, 'POST', json.encode({content = message}), { ['Content-Type'] = 'application/json' })
+-- 	end
+-- end
 
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- HOMESINFO
@@ -1093,7 +1093,7 @@ function src.storeItem(homeName,itemName,amount)
 					if new_weight <= parseInt(homes[tostring(homeName)][3]) then
 						if vRP.tryGetInventoryItem(parseInt(user_id),itemName,parseInt(amount)) then
 							local identity = vRP.getUserIdentity(user_id)
-							SendWebhookMessage(webhookbaucasa,"```prolog\n[ID]: "..user_id.." "..identity.name.." "..identity.firstname.." \n[GUARDOU]: "..vRP.format(parseInt(amount)).." "..vRP.itemNameList(itemName).." \n[BAU]: "..homeName.." "..os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S").." \r```")
+							vRP.Log("```prolog\n[ID]: "..user_id.." "..identity.name.." "..identity.firstname.." \n[GUARDOU]: "..vRP.format(parseInt(amount)).." "..vRP.itemNameList(itemName).." \n[BAU]: "..homeName.." "..os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S").." \r```", "BAU_CASAS")
 							if items[itemName] ~= nil then
 								items[itemName].amount = parseInt(items[itemName].amount) + parseInt(amount)
 							else
@@ -1113,7 +1113,7 @@ function src.storeItem(homeName,itemName,amount)
 							if new_weight <= parseInt(homes[tostring(homeName)][3]) then
 								if vRP.tryGetInventoryItem(parseInt(user_id),itemName,parseInt(v.amount)) then
 								local identity = vRP.getUserIdentity(user_id)
-								SendWebhookMessage(webhookbaucasa,"```prolog\n[ID]: "..user_id.." "..identity.name.." "..identity.firstname.." \n[GUARDOU]: "..vRP.format(parseInt(v.amount)).." "..vRP.itemNameList(itemName).." \n[BAU]: "..homeName.." "..os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S").." \r```")
+								vRP.Log("```prolog\n[ID]: "..user_id.." "..identity.name.." "..identity.firstname.." \n[GUARDOU]: "..vRP.format(parseInt(v.amount)).." "..vRP.itemNameList(itemName).." \n[BAU]: "..homeName.." "..os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S").." \r```", "BAU_CASAS")
 									if items[itemName] ~= nil then
 										items[itemName].amount = parseInt(items[itemName].amount) + parseInt(v.amount)
 									else
@@ -1168,7 +1168,7 @@ function src.takeItem(homeName,itemName,amount)
 					if items[itemName] ~= nil and parseInt(items[itemName].amount) >= parseInt(amount) then
 						if vRP.getInventoryWeight(parseInt(user_id))+vRP.getItemWeight(itemName)*parseInt(amount) <= vRP.getInventoryMaxWeight(parseInt(user_id)) and not has_value(lock_table, user_id) then
 							local identity = vRP.getUserIdentity(user_id)
-							SendWebhookMessage(webhookbaucasa,"```prolog\n[ID]: "..user_id.." "..identity.name.." "..identity.firstname.." \n[RETIROU]: "..vRP.format(parseInt(amount)).." "..vRP.itemNameList(itemName).." \n[BAU]: "..homeName.." "..os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S").." \r```")
+							vRP.Log("```prolog\n[ID]: "..user_id.." "..identity.name.." "..identity.firstname.." \n[RETIROU]: "..vRP.format(parseInt(amount)).." "..vRP.itemNameList(itemName).." \n[BAU]: "..homeName.." "..os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S").." \r```", "BAU_CASAS")
 							table.insert(lock_table, user_id)
 							vRP.giveInventoryItem(parseInt(user_id),itemName,parseInt(amount))
 							items[itemName].amount = parseInt(items[itemName].amount) - parseInt(amount)
@@ -1185,7 +1185,7 @@ function src.takeItem(homeName,itemName,amount)
 					if items[itemName] ~= nil and parseInt(items[itemName].amount) >= parseInt(amount) then
 						if vRP.getInventoryWeight(parseInt(user_id))+vRP.getItemWeight(itemName)*parseInt(items[itemName].amount) <= vRP.getInventoryMaxWeight(parseInt(user_id)) then
 							local identity = vRP.getUserIdentity(user_id)
-							SendWebhookMessage(webhookbaucasa,"```prolog\n[ID]: "..user_id.." "..identity.name.." "..identity.firstname.." \n[RETIROU]: "..vRP.format(parseInt(items[itemName].amount)).." "..vRP.itemNameList(itemName).." \n[BAU]: "..homeName.." "..os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S").." \r```")
+							vRP.Log("```prolog\n[ID]: "..user_id.." "..identity.name.." "..identity.firstname.." \n[RETIROU]: "..vRP.format(parseInt(items[itemName].amount)).." "..vRP.itemNameList(itemName).." \n[BAU]: "..homeName.." "..os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S").." \r```", "BAU_CASAS")
 							vRP.giveInventoryItem(parseInt(user_id),itemName,parseInt(items[itemName].amount))
 							items[itemName] = nil
 							actived[parseInt(user_id)] = 2

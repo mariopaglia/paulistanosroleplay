@@ -12,13 +12,13 @@ local blips = {}
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- WEBHOOK
 -----------------------------------------------------------------------------------------------------------------------------------------
-local webhookroubos = "https://discord.com/api/webhooks/802605744967909387/usEM4UEaaZAfUxfUnW2w9q3RYsRWfXkaICVnDWktOcSjdjGT-q0wt0KWuCvyd_VCbjTa"
+-- local webhookroubos = "https://discord.com/api/webhooks/802605744967909387/usEM4UEaaZAfUxfUnW2w9q3RYsRWfXkaICVnDWktOcSjdjGT-q0wt0KWuCvyd_VCbjTa"
 
-function SendWebhookMessage(webhook,message)
-	if webhook ~= nil and webhook ~= "" then
-		PerformHttpRequest(webhook, function(err, text, headers) end, 'POST', json.encode({content = message}), { ['Content-Type'] = 'application/json' })
-	end
-end
+-- function SendWebhookMessage(webhook,message)
+-- 	if webhook ~= nil and webhook ~= "" then
+-- 		PerformHttpRequest(webhook, function(err, text, headers) end, 'POST', json.encode({content = message}), { ['Content-Type'] = 'application/json' })
+-- 	end
+-- end
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- TEMPO
 -----------------------------------------------------------------------------------------------------------------------------------------
@@ -77,7 +77,7 @@ function func.checkRobbery(id,x,y,z,head)
 					
 					vRP.giveInventoryItem(user_id,"dinheirosujo",qntdinheiro) -- Ajuste do pagamento em dinheiro sujo
 					TriggerClientEvent("Notify",source,"importante","Você recebeu <b>R$ "..vRP.format(parseInt(qntdinheiro)).."</b> de <b>dinheiro sujo</b>",8000)
-					SendWebhookMessage(webhookroubos,"```prolog\n[ID]: "..user_id.." "..identity.name.." "..identity.firstname.."\n[ROUBOU]: Caixa Registradora\n[RECOMPENSA]: R$ "..vRP.format(parseInt(qntdinheiro)).."\n[COORDENADA]: "..crds.x..","..crds.y..","..crds.z..""..os.date("\n[Data]:%d/%m/%Y [Hora]: %H:%M:%S").." \r```")
+					vRP.Log("```prolog\n[ID]: "..user_id.." "..identity.name.." "..identity.firstname.."\n[ROUBOU]: Caixa Registradora\n[RECOMPENSA]: R$ "..vRP.format(parseInt(qntdinheiro)).."\n[COORDENADA]: "..crds.x..","..crds.y..","..crds.z..""..os.date("\n[Data]:%d/%m/%Y [Hora]: %H:%M:%S").." \r```", "ROUBOS")
 				end)
 			else
 				TriggerClientEvent('cancelaranimacao',source,head,x,y,z)

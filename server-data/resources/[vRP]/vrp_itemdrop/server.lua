@@ -10,12 +10,12 @@ local items = {}
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- WEBHOOK
 -----------------------------------------------------------------------------------------------------------------------------------------
-local webhookpegaritem = "https://discord.com/api/webhooks/846557271420174386/vlIYNKeTe03sIQzzsc77nKNnqvbtJ59IqbjsKQB0ec3Ol9WoMftRPUAH0wdhmMDQnSPQ"
-function SendWebhookMessage(webhook,message)
-	if webhook ~= nil and webhook ~= "" then
-		PerformHttpRequest(webhook, function(err, text, headers) end, 'POST', json.encode({content = message}), { ['Content-Type'] = 'application/json' })
-	end
-end
+-- local webhookpegaritem = "https://discord.com/api/webhooks/846557271420174386/vlIYNKeTe03sIQzzsc77nKNnqvbtJ59IqbjsKQB0ec3Ol9WoMftRPUAH0wdhmMDQnSPQ"
+-- function SendWebhookMessage(webhook,message)
+-- 	if webhook ~= nil and webhook ~= "" then
+-- 		PerformHttpRequest(webhook, function(err, text, headers) end, 'POST', json.encode({content = message}), { ['Content-Type'] = 'application/json' })
+-- 	end
+-- end
 
 AddEventHandler('DropSystem:create',function(item,count,px,py,pz,tempo)
 	local id = markers_ids:gen()
@@ -56,7 +56,7 @@ AddEventHandler('DropSystem:take',function(id)
 				vRP.giveInventoryItem(user_id,items[id].item,items[id].count)
 				vRPclient._playAnim(source,true,{{"pickup_object","pickup_low"}},false)
 				local identity = vRP.getUserIdentity(user_id)
-				SendWebhookMessage(webhookpegaritem,"```prolog\n[ID]: "..user_id.." "..identity.name.." "..identity.firstname.." \n[PEGOU]: "..items[id].name.." \n[QUANTIDADE]: "..items[id].count.." "..os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S").." \r```")
+				vRP.Log("```prolog\n[ID]: "..user_id.." "..identity.name.." "..identity.firstname.." \n[PEGOU]: "..items[id].name.." \n[QUANTIDADE]: "..items[id].count.." "..os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S").." \r```", "PEGAR_ITEM")
 				items[id] = nil
 				markers_ids:free(id)
 				TriggerClientEvent('DropSystem:remove',-1,id)

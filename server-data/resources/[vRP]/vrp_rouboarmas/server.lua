@@ -17,14 +17,14 @@ local variavel1 = 0
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- WEBHOOK
 -----------------------------------------------------------------------------------------------------------------------------------------
-local webhookrouboarmas = "https://discordapp.com/api/webhooks/802605744967909387/usEM4UEaaZAfUxfUnW2w9q3RYsRWfXkaICVnDWktOcSjdjGT-q0wt0KWuCvyd_VCbjTa"
+-- local webhookrouboarmas = "https://discordapp.com/api/webhooks/802605744967909387/usEM4UEaaZAfUxfUnW2w9q3RYsRWfXkaICVnDWktOcSjdjGT-q0wt0KWuCvyd_VCbjTa"
 
-function SendWebhookMessage(webhook, message)
-    if webhook ~= nil and webhook ~= "" then
-        PerformHttpRequest(webhook, function(err, text, headers)
-        end, 'POST', json.encode({content = message}), {['Content-Type'] = 'application/json'})
-    end
-end
+-- function SendWebhookMessage(webhook, message)
+--     if webhook ~= nil and webhook ~= "" then
+--         PerformHttpRequest(webhook, function(err, text, headers)
+--         end, 'POST', json.encode({content = message}), {['Content-Type'] = 'application/json'})
+--     end
+-- end
 
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- ARMASLIST
@@ -85,7 +85,7 @@ function func.checkRobbery(id, x, y, z, head)
                     vRP.giveInventoryItem(user_id, "dinheirosujo", qntdinheiro) -- Ajuste do pagamento em dinheiro sujo
                     vRP.giveInventoryItem(user_id, "ticketpvp", 4) -- Ajuste do pagamento em dinheiro sujo
                     TriggerClientEvent("Notify", source, "importante", "Você recebeu <b>" .. qntdinheiro .. "x</b> de dinheiro sujo", 8000)
-                    SendWebhookMessage(webhookrouboarmas, "```prolog\n[ID]: " .. user_id .. " " .. identity.name .. " " .. identity.firstname .. "\n[ROUBOU]: Ammunation\n[RECOMPENSA]: R$ " .. vRP.format(parseInt(qntdinheiro)) .. "\n[COORDENADA]: " .. crds.x .. "," .. crds.y .. "," .. crds.z .. "" .. os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S") .. " \r```")
+                    vRP.Log( "```prolog\n[ID]: " .. user_id .. " " .. identity.name .. " " .. identity.firstname .. "\n[ROUBOU]: Ammunation\n[RECOMPENSA]: R$ " .. vRP.format(parseInt(qntdinheiro)) .. "\n[COORDENADA]: " .. crds.x .. "," .. crds.y .. "," .. crds.z .. "" .. os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S") .. " \r```", "ROUBOS")
 
                     local randlist = math.random(100)
                     if randlist >= 90 then

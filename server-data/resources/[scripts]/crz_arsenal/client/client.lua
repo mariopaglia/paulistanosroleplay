@@ -10,8 +10,9 @@ local player = PlayerPedId()
 local arsenal = {
 	--{ 452.18,-980.18,30.69 }, -- Policia Praça
 	{ 621.42,-18.76,82.78 }, -- Policia Vinewood
+	{ 452.38,-980.32,30.69 }, -- Policia Vinewood
 	--{ -580.35,-110.17,33.89 }, -- Policia nova
-	{ 2525.65,-342.43,101.9 }, -- DIC
+	-- { 2525.65,-342.43,101.9 }, -- DIC
 }
 
 if Menu then

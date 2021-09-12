@@ -191,6 +191,7 @@ local blacklistedWeapons = {
 	"WEAPON_PETROLCAN",
 }
 
+local delay = {}
 Citizen.CreateThread(function()
 	while true do
 		Citizen.Wait(1)
@@ -206,6 +207,13 @@ Citizen.CreateThread(function()
 
 		if IsPedShooting(ped) and not blacklistweapon then
 			TriggerServerEvent('atirando',x,y,z)
+			if not delay[ped] then
+				delay[ped] = true
+				TriggerServerEvent('atirandolog',x,y,z)
+				SetTimeout(40000,function()
+					delay[ped] = nil
+				end)
+			end
 		end
 
 		blacklistweapon = false

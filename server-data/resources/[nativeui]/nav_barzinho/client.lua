@@ -83,6 +83,7 @@ local marcacoes = {
 	{ -296.16,6262.69,31.49 }, -- Hen House
 	{ -1375.82,-628.93,30.82 }, -- Bahamas
 	{ 415.57,-1499.47,30.16 }, -- Salieris
+	{ 958.27,69.57,112.56 }, -- Cassino
 }
 
 Citizen.CreateThread(function()
@@ -100,9 +101,7 @@ Citizen.CreateThread(function()
 						DrawText3Ds(x,y,z+0.10,"~p~[E] ~w~Para Acessar o bar")
 					end
 					if IsControlJustPressed(0,38) then
-						if emP.checkPermission1() then
-							ToggleActionMenu()
-						elseif emP.checkPermission2() then
+						if not emP.checkPermission1() then
 							ToggleActionMenu()
 						end
 					end

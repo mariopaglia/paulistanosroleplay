@@ -10,14 +10,13 @@ local blips = {}
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- WEBHOOK
 -----------------------------------------------------------------------------------------------------------------------------------------
-local webhookmafia = "https://discord.com/api/webhooks/800596157775872001/skIZvZegSayBpWSG4myKwcH8FYJV8m8PiorEH9SN4hdj_nbKsn0NtwbxUh_xbSExOuZJ"
+-- local webhookmafia = "https://discord.com/api/webhooks/800596157775872001/skIZvZegSayBpWSG4myKwcH8FYJV8m8PiorEH9SN4hdj_nbKsn0NtwbxUh_xbSExOuZJ"
 
-
-function SendWebhookMessage(webhook,message)
-	if webhook ~= nil and webhook ~= "" then
-		PerformHttpRequest(webhook, function(err, text, headers) end, 'POST', json.encode({content = message}), { ['Content-Type'] = 'application/json' })
-	end
-end
+-- function SendWebhookMessage(webhook,message)
+-- 	if webhook ~= nil and webhook ~= "" then
+-- 		PerformHttpRequest(webhook, function(err, text, headers) end, 'POST', json.encode({content = message}), { ['Content-Type'] = 'application/json' })
+-- 	end
+-- end
 
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- CHECAR DINHEIRO SUJO
@@ -81,8 +80,8 @@ function lav.checkpermission()
 	end
 end
 
-function lav.webhookmafia ()
-	local user_id = vRP.getUserId(source)
-	local identity = vRP.getUserIdentity(user_id)
-	return SendWebhookMessage(webhookmafia,"```prolog\n[ID]: "..user_id.." "..identity.name.." "..identity.firstname.." "..os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S").." \r```")
-end
+-- function lav.webhookmafia ()
+-- 	local user_id = vRP.getUserId(source)
+-- 	local identity = vRP.getUserIdentity(user_id)
+-- 	return SendWebhookMessage(webhookmafia,"```prolog\n[ID]: "..user_id.." "..identity.name.." "..identity.firstname.." "..os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S").." \r```")
+-- end

@@ -4,15 +4,15 @@ vRP = Proxy.getInterface("vRP")
 vRPclient = Tunnel.getInterface("vRP", "vRP")
 
 -------LOG BANIMENTOS--------
-ac_webhook_anthack = "https://discord.com/api/webhooks/800148956649750558/BYP4AcXNkOfOosRVVW7NUhPiM8WNDiKAoMn2g4-SUYFayTm-mHrrya4ppsF89aB8jUxS"
+--ac_webhook_anthack = "https://discord.com/api/webhooks/800148956649750558/BYP4AcXNkOfOosRVVW7NUhPiM8WNDiKAoMn2g4-SUYFayTm-mHrrya4ppsF89aB8jUxS"
 -----------------------------
 
 -------LOG SUSPEITOS---------
-ac_webhook_suspeitos = "https://discord.com/api/webhooks/800148997599789087/23_7W_qlPDszannE5ugMw_K-g8PjvL3d7DWgy8XITzag7SSr_htMuzIllcj39lTyu8_v"
+--ac_webhook_suspeitos = "https://discord.com/api/webhooks/800148997599789087/23_7W_qlPDszannE5ugMw_K-g8PjvL3d7DWgy8XITzag7SSr_htMuzIllcj39lTyu8_v"
 -----------------------------
 
 -------LOG COMANDOS----------
-ac_webhook_logstaff = "https://discord.com/api/webhooks/800149038112440370/Ajh4RmH1paDI8ySaGLrRt2ae39pudz1b0UZv1Fj1krpU4ovHQki79IBQxC13uUYjQr9Z"
+--ac_webhook_logstaff = "https://discord.com/api/webhooks/800149038112440370/Ajh4RmH1paDI8ySaGLrRt2ae39pudz1b0UZv1Fj1krpU4ovHQki79IBQxC13uUYjQr9Z"
 -----------------------------
 
 -------------------------------
@@ -30,14 +30,16 @@ excecao[7] = true
 excecao[8] = true
 -- oque fica entre os [] é o id de quem não deve ser banido por mais q tenha ultrapassado o limite de bans
 ------------------------------
-Citizen.CreateThread(function()
-    function SendWebhookMessage(webhook, message)
-        if webhook ~= "none" then
-            PerformHttpRequest(webhook, function(err, text, headers)
-            end, 'POST', json.encode({content = message}), {['Content-Type'] = 'application/json'})
-        end
-    end
-end)
+
+-- Citizen.CreateThread(function()
+--     function SendWebhookMessage(webhook, message)
+--         if webhook ~= "none" then
+--             PerformHttpRequest(webhook, function(err, text, headers)
+--             end, 'POST', json.encode({content = message}), {['Content-Type'] = 'application/json'})
+--         end
+--     end
+-- end)
+
 
 local sistemas = {}
 sistemas["[COLETE_HACK]"] = true
@@ -76,21 +78,23 @@ sistemas["[SPAWN_VEICULO]"] = false -- Estava dando muito falso positivo (30/07)
 sistemas["[EXPLOSAO4]"] = true
 
 -- Adicionados manualmente
-sistemas["[MODMENU2]"] = false -- Estava dando muito falso positivo (30/07)
+sistemas["[MODMENU2]"] = true
 sistemas["[MODMENU3]"] = true
 sistemas["[MODMENU4]"] = true
 sistemas["[MODMENU5]"] = true
 sistemas["[SPAWN_PROP2]"] = false -- Estava dando muito falso positivo (06/08)
 sistemas["[EXPLOSAO7]"] = true
 sistemas["[PROP_BLACKLIST]"] = true
-sistemas["[MULTIPLICADOR_DANO2]"] = false
+sistemas["[MULTIPLICADOR_DANO2]"] = true
 sistemas["[Monster_Injetado4]"] = true
-sistemas["[Monster_Injetado5]"] = false -- Em fase de testes
+sistemas["[Monster_Injetado5]"] = true -- Em fase de testes
 sistemas["[SPAWN_PARTICLES]"] = true
 sistemas["[NUI_DEVTOOLS]"] = false
 sistemas["[GOD1]"] = false
 sistemas["[GOD2]"] = false
 sistemas["[GODMOD2]"] = false
+sistemas["[MODMENU6]"] = false -- Nova função adicionada em 03/09
+sistemas["[SPAWN_VEICULO2]"] = true -- Nova função adicionada em 04/09
 
 local banidos = {}
 AddEventHandler("MQCU:LixoDetectado", function(user_id, msg, cb)
@@ -99,31 +103,44 @@ AddEventHandler("MQCU:LixoDetectado", function(user_id, msg, cb)
             if (banidos[user_id] == nil) then
                 banidos[user_id] = true
                 local id = user_id
-                local source = vRP.getUserSource(user_id)
-                local ped = GetPlayerPed(source)
-                local loc = GetEntityCoords(ped)
-                local reason = "ANTI HACK:     localização:    " .. loc.x .. "," .. loc.y .. "," .. loc.z
-                vRP.setBanned(id, true)
-                local temp = os.date("%x  %X")
-                -- vRP.logs("savedata/BANIMENTOS.txt","ANTI HACK	[ID]: "..id.."		"..temp.."[BAN]		[MOTIVO:"..msg.."]	"..reason)
-                SendWebhookMessage(ac_webhook_anthack, "ANTI HACK	[ID]: " .. id .. "		" .. temp .. "[BAN]		[MOTIVO:" .. msg .. "]	" .. reason)
-
-                local source = vRP.getUserSource(id)
-                if source ~= nil then
+				local source = vRP.getUserSource(user_id)
+				local identity = vRP.getUserIdentity(user_id)
+				local ped = GetPlayerPed(source)
+				local loc = GetEntityCoords(ped)
+				local reason = "[LOCAL]: "..loc.x..","..loc.y..","..loc.z
+				vRP.setBanned(id,true)
+                --local temp = os.date("%x  %X")
+                --vRP.logs("savedata/BANIMENTOS.txt","ANTI HACK	[ID]: "..id.."		"..temp.."[BAN]		[MOTIVO:"..msg.."]	"..reason)
+                vRP.Log("```prolog\n[ANTI HACK] \n[ID]: "..user_id.." "..identity.name.." "..identity.firstname.." \n[BAN] - [MOTIVO]: "..msg.." \n"..reason.." "..os.date("\n[DATA]: %d/%m/%Y [HORA]: %H:%M:%S").." \r```","AC_BAN")
+				vRP.LogPrint("```prolog\n[ANTI HACK] \n[ID]: "..user_id.." "..identity.name.." "..identity.firstname.." \n[BAN] - [MOTIVO]: "..msg.." \n"..reason.." "..os.date("\n[DATA]: %d/%m/%Y [HORA]: %H:%M:%S").." \r```","AC_BAN",user_id)
+				local source = vRP.getUserSource(id)
+				if source ~= nil then
                     -- TriggerClientEvent("vrp_sound:source",source,"ban",1.0)
-                    -- Citizen.Wait(1000)
+                    Citizen.Wait(1500)
                     vRP.kick(source, "Você foi banido da cidade!")
                 end
                 cb()
                 banidos[user_id] = nil
             end
         else
-            local temp = os.date("%x  %X")
-            SendWebhookMessage(ac_webhook_suspeitos, "ANTI HACK     Suspeito	[ID]: " .. user_id .. "		" .. temp .. "[BAN]		[MOTIVO:" .. msg .. "]	")
-            alertarADM(user_id, msg)
+            --local temp = os.date("%x  %X")
+            local source = vRP.getUserSource(user_id)
+			local identity = vRP.getUserIdentity(user_id)
+			local ped = GetPlayerPed(source)
+            local loc = GetEntityCoords(ped)
+            local reason = "[LOCAL]: "..loc.x..","..loc.y..","..loc.z
+			vRP.Log("```prolog\n[ANTI HACK Suspeito] \n[ID]: "..user_id.." "..identity.name.." "..identity.firstname.." \n[BAN] - [MOTIVO]: "..msg.." \n"..reason.." "..os.date("\n[DATA]: %d/%m/%Y [HORA]: %H:%M:%S").." \r```","AC_SUSPEITOS")
+			vRP.LogPrint("```prolog\n[ANTI HACK Suspeito] \n[ID]: "..user_id.." "..identity.name.." "..identity.firstname.." \n[BAN] - [MOTIVO]: "..msg.." \n"..reason.." "..os.date("\n[DATA]: %d/%m/%Y [HORA]: %H:%M:%S").." \r```","AC_SUSPEITOS",user_id)
+		    alertarADM(user_id, msg)
         end
     else
-        SendWebhookMessage(ac_webhook_suspeitos, "Função não mapeada => " .. msg .. "          [" .. user_id .. "]")
+        local source = vRP.getUserSource(user_id)
+		local identity = vRP.getUserIdentity(user_id)
+        local ped = GetPlayerPed(source)
+        local loc = GetEntityCoords(ped)
+		local reason = "[LOCAL]: "..loc.x..","..loc.y..","..loc.z
+		vRP.Log("```prolog\n[ANTI HACK Suspeito] \n[ID]: "..user_id.." "..identity.name.." "..identity.firstname.." \nFUNÇÃO NÃO MAPEADA => "..msg.." \n"..reason.." "..os.date("\n[DATA]: %d/%m/%Y [HORA]: %H:%M:%S").." \r```","AC_SUSPEITOS")
+		vRP.LogPrint("```prolog\n[ANTI HACK Suspeito] \n[ID]: "..user_id.." "..identity.name.." "..identity.firstname.." \nFUNÇÃO NÃO MAPEADA => "..msg.." \n"..reason.." "..os.date("\n[DATA]: %d/%m/%Y [HORA]: %H:%M:%S").." \r```","AC_SUSPEITOS",user_id)
         alertarADM(user_id, msg)
     end
 end)
@@ -209,7 +226,7 @@ end
 local logprop = false
 AddEventHandler("MQCU:LogProp", function(msg, flag)
     if (flag or logprop) then
-        SendWebhookMessage(ac_webhook_suspeitos, msg)
+        vRP.Log("msg","AC_SUSPEITOS")
         alertarADM(user_id, msg)
     end
 end)
@@ -218,7 +235,8 @@ AddEventHandler('MQCU:BlackList', function(user_id, qtd)
     if (banir_blacklisted and parseInt(qtd) >= minimo_bans and excecao[user_id] == nil) then
         vRP.setBanned(user_id, true)
         local temp = os.date("%x  %X")
-        GravaLog("[ID]: " .. user_id .. "        " .. temp .. "[BAN]        [MOTIVO:BLACKLIST (QTD BANIMENTOS:" .. qtd .. ")]")
+        --GravaLog("[ID]: " .. user_id .. "        " .. temp .. "[BAN]        [MOTIVO:BLACKLIST (QTD BANIMENTOS:" .. qtd .. ")]")
+        GravaLog("[ID]: "..user_id.." - [BAN BLACKLIST]: QTD BANS: "..qtd.." - [DATA]: "..temp.."")
     end
 end)
 
@@ -229,17 +247,18 @@ AddEventHandler('MarqCU#4374:wall', function(user_id)
     end
     wallstatus[user_id] = not wallstatus[user_id]
     local source = vRP.getUserSource(user_id)
+    local identity = vRP.getUserIdentity(user_id)
     local x, y, z = vRPclient.getPosition(source)
-    local temp = os.date("%x  %X")
-    local loc = "localização: " .. x .. "," .. y .. "," .. z
+    --local temp = os.date("%x  %X")
+    --local loc = "localização: " .. x .. "," .. y .. "," .. z
     local estado = ""
     if (wallstatus[user_id]) then
         estado = "True"
     else
         estado = "False"
     end
-    SendWebhookMessage(ac_webhook_logstaff, "[ID]: " .. user_id .. "/wall \t[" .. estado .. "]\t" .. loc .. "\t[" .. temp .. "]")
-    -- GravaLog("[ID]: " .. user_id .. "/wall \t[" .. estado .. "]\t" .. loc .. "\t[" .. temp .. "]")
+    vRP.Log("```prolog\n[STAFF] [ID]: "..user_id.." "..identity.name.." "..identity.firstname.." \n[WALL]: "..estado.." \n[LOCAL]: "..x..","..y..","..z.." "..os.date("\n[DATA]: %d/%m/%Y [HORA]: %H:%M:%S").." \r```","AC_WALL")
+	-- GravaLog("[ID]: " .. user_id .. "/wall \t[" .. estado .. "]\t" .. loc .. "\t[" .. temp .. "]")
 end)
 
 function alertarADM(user_id, msg)

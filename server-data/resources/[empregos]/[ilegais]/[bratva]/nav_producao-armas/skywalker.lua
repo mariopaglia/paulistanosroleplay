@@ -9,14 +9,14 @@ local nomesnui = "fechar-nui"
 -----------------------------------------------------------------------------------------------------------------------------------
 -- [ WEBHOOK DISCORD ]-------------------------------------------------------------------------------------------------------------
 -----------------------------------------------------------------------------------------------------------------------------------
-local webhookprodarmas = "https://discord.com/api/webhooks/881292316894191636/WabSDknEiN1iRSPljfbCj41pSUex4qFLFwe1_CZFFzdydeYlyy39Gdi3lz83ipQzN9PP"
+-- local webhookprodarmas = "https://discord.com/api/webhooks/881292316894191636/WabSDknEiN1iRSPljfbCj41pSUex4qFLFwe1_CZFFzdydeYlyy39Gdi3lz83ipQzN9PP"
 
-function SendWebhookMessage(webhook, message)
-    if webhook ~= nil and webhook ~= "" then
-        PerformHttpRequest(webhook, function(err, text, headers)
-        end, 'POST', json.encode({content = message}), {['Content-Type'] = 'application/json'})
-    end
-end
+-- function SendWebhookMessage(webhook, message)
+--     if webhook ~= nil and webhook ~= "" then
+--         PerformHttpRequest(webhook, function(err, text, headers)
+--         end, 'POST', json.encode({content = message}), {['Content-Type'] = 'application/json'})
+--     end
+-- end
 
 -----------------------------------------------------------------------------------------------------------------------------------
 -- [ ARRAY ]-----------------------------------------------------------------------------------------------------------------------
@@ -50,7 +50,7 @@ AddEventHandler("produzir-arma", function(item)
                                     vRPclient._stopAnim(source, false)
                                     vRP.giveInventoryItem(user_id, "wbody|WEAPON_SPECIALCARBINE_MK2", 1)
                                     TriggerClientEvent("Notify", source, "sucesso", "Você montou uma <b>" .. itemupper .. "</b>.")
-                                    SendWebhookMessage(webhookprodarmas, "```prolog\n[ID]: " .. user_id .. " " .. identity.name .. " " .. identity.firstname .. " \n[PRODUZIU]: " .. itemupper .. "\n[COORDENADA]: " .. crds.x .. "," .. crds.y .. "," .. crds.z .. "" .. os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S") .. "```")
+                                    vRP.Log("```prolog\n[ID]: " .. user_id .. " " .. identity.name .. " " .. identity.firstname .. " \n[PRODUZIU]: " .. itemupper .. "\n[COORDENADA]: " .. crds.x .. "," .. crds.y .. "," .. crds.z .. "" .. os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S") .. "```", "PRODUCAO_ARMA")
                                 end)
                             end
                         else
@@ -74,7 +74,7 @@ AddEventHandler("produzir-arma", function(item)
                                     vRPclient._stopAnim(source, false)
                                     vRP.giveInventoryItem(user_id, "wbody|WEAPON_ASSAULTRIFLE_MK2", 1)
                                     TriggerClientEvent("Notify", source, "sucesso", "Você montou uma <b>" .. itemupper .. "</b>.")
-                                    SendWebhookMessage(webhookprodarmas, "```prolog\n[ID]: " .. user_id .. " " .. identity.name .. " " .. identity.firstname .. " \n[PRODUZIU]: " .. itemupper .. "\n[COORDENADA]: " .. crds.x .. "," .. crds.y .. "," .. crds.z .. "" .. os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S") .. "```")
+                                    vRP.Log("```prolog\n[ID]: " .. user_id .. " " .. identity.name .. " " .. identity.firstname .. " \n[PRODUZIU]: " .. itemupper .. "\n[COORDENADA]: " .. crds.x .. "," .. crds.y .. "," .. crds.z .. "" .. os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S") .. "```", "PRODUCAO_ARMA")
                                 end)
                             end
                         else
@@ -99,7 +99,7 @@ AddEventHandler("produzir-arma", function(item)
                                     vRP.giveInventoryItem(user_id, "wbody|WEAPON_SMG_MK2", 1)
                                     local itemupper = string.upper(item)
                                     TriggerClientEvent("Notify", source, "sucesso", "Você montou uma <b>" .. itemupper .. "</b>.")
-                                    SendWebhookMessage(webhookprodarmas, "```prolog\n[ID]: " .. user_id .. " " .. identity.name .. " " .. identity.firstname .. " \n[PRODUZIU]: " .. itemupper .. "\n[COORDENADA]: " .. crds.x .. "," .. crds.y .. "," .. crds.z .. "" .. os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S") .. "```")
+                                    vRP.Log("```prolog\n[ID]: " .. user_id .. " " .. identity.name .. " " .. identity.firstname .. " \n[PRODUZIU]: " .. itemupper .. "\n[COORDENADA]: " .. crds.x .. "," .. crds.y .. "," .. crds.z .. "" .. os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S") .. "```", "PRODUCAO_ARMA")
                                 end)
                             end
                         else
@@ -124,7 +124,7 @@ AddEventHandler("produzir-arma", function(item)
                                     vRP.giveInventoryItem(user_id, "wbody|WEAPON_PISTOL_MK2", 1)
                                     local itemupper = string.upper(item)
                                     TriggerClientEvent("Notify", source, "sucesso", "Você montou uma <b>" .. itemupper .. "</b>.")
-                                    SendWebhookMessage(webhookprodarmas, "```prolog\n[ID]: " .. user_id .. " " .. identity.name .. " " .. identity.firstname .. " \n[PRODUZIU]: " .. itemupper .. "\n[COORDENADA]: " .. crds.x .. "," .. crds.y .. "," .. crds.z .. "" .. os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S") .. "```")
+                                    vRP.Log("```prolog\n[ID]: " .. user_id .. " " .. identity.name .. " " .. identity.firstname .. " \n[PRODUZIU]: " .. itemupper .. "\n[COORDENADA]: " .. crds.x .. "," .. crds.y .. "," .. crds.z .. "" .. os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S") .. "```", "PRODUCAO_ARMA")
                                 end)
                             end
                         else
@@ -149,7 +149,7 @@ AddEventHandler("produzir-arma", function(item)
                                     vRP.giveInventoryItem(user_id, "wbody|WEAPON_SNSPISTOL", 1)
                                     local itemupper = string.upper(item)
                                     TriggerClientEvent("Notify", source, "sucesso", "Você montou uma <b>" .. itemupper .. "</b>.")
-                                    SendWebhookMessage(webhookprodarmas, "```prolog\n[ID]: " .. user_id .. " " .. identity.name .. " " .. identity.firstname .. " \n[PRODUZIU]: " .. itemupper .. "\n[COORDENADA]: " .. crds.x .. "," .. crds.y .. "," .. crds.z .. "" .. os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S") .. "```")
+                                    vRP.Log("```prolog\n[ID]: " .. user_id .. " " .. identity.name .. " " .. identity.firstname .. " \n[PRODUZIU]: " .. itemupper .. "\n[COORDENADA]: " .. crds.x .. "," .. crds.y .. "," .. crds.z .. "" .. os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S") .. "```", "PRODUCAO_ARMA")
                                 end)
                             end
                         else
@@ -173,7 +173,7 @@ AddEventHandler("produzir-arma", function(item)
                                     vRPclient._stopAnim(source, false)
                                     vRP.giveInventoryItem(user_id, "wammo|WEAPON_SPECIALCARBINE_MK2", 50)
                                     TriggerClientEvent("Notify", source, "sucesso", "Você produziu <b>" .. itemupper .. "</b>")
-                                    SendWebhookMessage(webhookprodarmas, "```prolog\n[ID]: " .. user_id .. " " .. identity.name .. " " .. identity.firstname .. " \n[PRODUZIU]: 50x " .. itemupper .. "\n[COORDENADA]: " .. crds.x .. "," .. crds.y .. "," .. crds.z .. "" .. os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S") .. "```")
+                                    vRP.Log("```prolog\n[ID]: " .. user_id .. " " .. identity.name .. " " .. identity.firstname .. " \n[PRODUZIU]: 50x " .. itemupper .. "\n[COORDENADA]: " .. crds.x .. "," .. crds.y .. "," .. crds.z .. "" .. os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S") .. "```", "PRODUCAO_ARMA")
                                 end)
                             end
                         else
@@ -197,7 +197,7 @@ AddEventHandler("produzir-arma", function(item)
                                     vRPclient._stopAnim(source, false)
                                     vRP.giveInventoryItem(user_id, "wammo|WEAPON_ASSAULTRIFLE_MK2", 50)
                                     TriggerClientEvent("Notify", source, "sucesso", "Você produziu <b>" .. itemupper .. "</b>")
-                                    SendWebhookMessage(webhookprodarmas, "```prolog\n[ID]: " .. user_id .. " " .. identity.name .. " " .. identity.firstname .. " \n[PRODUZIU]: 50x " .. itemupper .. "\n[COORDENADA]: " .. crds.x .. "," .. crds.y .. "," .. crds.z .. "" .. os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S") .. "```")
+                                    vRP.Log("```prolog\n[ID]: " .. user_id .. " " .. identity.name .. " " .. identity.firstname .. " \n[PRODUZIU]: 50x " .. itemupper .. "\n[COORDENADA]: " .. crds.x .. "," .. crds.y .. "," .. crds.z .. "" .. os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S") .. "```", "PRODUCAO_ARMA")
                                 end)
                             end
                         else
@@ -222,7 +222,7 @@ AddEventHandler("produzir-arma", function(item)
                                     vRP.giveInventoryItem(user_id, "wammo|WEAPON_SMG_MK2", 50)
                                     local itemupper = string.upper(item)
                                     TriggerClientEvent("Notify", source, "sucesso", "Você produziu <b>" .. itemupper .. "</b>")
-                                    SendWebhookMessage(webhookprodarmas, "```prolog\n[ID]: " .. user_id .. " " .. identity.name .. " " .. identity.firstname .. " \n[PRODUZIU]: 50x " .. itemupper .. "\n[COORDENADA]: " .. crds.x .. "," .. crds.y .. "," .. crds.z .. "" .. os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S") .. "```")
+                                    vRP.Log("```prolog\n[ID]: " .. user_id .. " " .. identity.name .. " " .. identity.firstname .. " \n[PRODUZIU]: 50x " .. itemupper .. "\n[COORDENADA]: " .. crds.x .. "," .. crds.y .. "," .. crds.z .. "" .. os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S") .. "```", "PRODUCAO_ARMA")
                                 end)
                             end
                         else
@@ -247,7 +247,7 @@ AddEventHandler("produzir-arma", function(item)
                                     vRP.giveInventoryItem(user_id, "wammo|WEAPON_SNSPISTOL", 50)
                                     local itemupper = string.upper(item)
                                     TriggerClientEvent("Notify", source, "sucesso", "Você produziu <b>" .. itemupper .. "</b>")
-                                    SendWebhookMessage(webhookprodarmas, "```prolog\n[ID]: " .. user_id .. " " .. identity.name .. " " .. identity.firstname .. " \n[PRODUZIU]: 50x " .. itemupper .. "\n[COORDENADA]: " .. crds.x .. "," .. crds.y .. "," .. crds.z .. "" .. os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S") .. "```")
+                                    vRP.Log("```prolog\n[ID]: " .. user_id .. " " .. identity.name .. " " .. identity.firstname .. " \n[PRODUZIU]: 50x " .. itemupper .. "\n[COORDENADA]: " .. crds.x .. "," .. crds.y .. "," .. crds.z .. "" .. os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S") .. "```", "PRODUCAO_ARMA")
                                 end)
                             end
                         else
@@ -272,7 +272,7 @@ AddEventHandler("produzir-arma", function(item)
                                     vRP.giveInventoryItem(user_id, "wammo|WEAPON_PISTOL_MK2", 50)
                                     local itemupper = string.upper(item)
                                     TriggerClientEvent("Notify", source, "sucesso", "Você produziu <b>" .. itemupper .. "</b>")
-                                    SendWebhookMessage(webhookprodarmas, "```prolog\n[ID]: " .. user_id .. " " .. identity.name .. " " .. identity.firstname .. " \n[PRODUZIU]: 50x " .. itemupper .. "\n[COORDENADA]: " .. crds.x .. "," .. crds.y .. "," .. crds.z .. "" .. os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S") .. "```")
+                                    vRP.Log("```prolog\n[ID]: " .. user_id .. " " .. identity.name .. " " .. identity.firstname .. " \n[PRODUZIU]: 50x " .. itemupper .. "\n[COORDENADA]: " .. crds.x .. "," .. crds.y .. "," .. crds.z .. "" .. os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S") .. "```", "PRODUCAO_ARMA")
                                 end)
                             end
                         else

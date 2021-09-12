@@ -37,7 +37,6 @@ local lojaderoupa = {
     { x=575.56, y=-3126.25, z=18.77, provador = { x=575.56, y=-3126.25, z=18.77, heading = 92.72 } }, -- Irmandade
     { x=-1887.27, y=2070.12, z=145.58, provador = { x=-1887.27, y=2070.12, z=145.58, heading = 317.95 } }, -- Sinaloa
     { x=815.54, y=-2357.27, z=30.33, provador = { x=815.54, y=-2357.27, z=30.33, heading = 355.98 } }, -- DriftKing
-    { x=-2039.13, y=-466.48, z=16.43, provador = { x=-2039.13, y=-466.48, z=16.43, heading = 46.82 } }, -- ROTA
     { x=105.65, y=-1302.94, z=28.77, provador = { x=105.65, y=-1302.94, z=28.77, heading = 299.78 } }, -- Vanilla
     { x=393.57, y=278.96, z=95.0, provador = { x=393.57, y=278.96, z=95.0, heading = 169.65 } }, -- Galaxy
     { x=-572.94, y=293.04, z=79.18, provador = { x=-572.94, y=293.04, z=79.18, heading = 223.19 } }, -- Tequila

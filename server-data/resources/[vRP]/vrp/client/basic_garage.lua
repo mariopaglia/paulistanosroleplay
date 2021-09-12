@@ -824,6 +824,15 @@ local vehList = {
 	{ ['name'] = "av-nc7", ['hash'] = 896587425, ['banned'] = false },
 	{ ['name'] = "av-levante", ['hash'] = -774585533, ['banned'] = false },
 	{ ['name'] = "ghispo2", ['hash'] = -304857564, ['banned'] = false },
+	{ ['name'] = "VRa3", ['hash'] = 762294175, ['banned'] = false },
+	{ ['name'] = "VRa4", ['hash'] = -2128390391, ['banned'] = false },
+	{ ['name'] = "VRq8", ['hash'] = -1313551921, ['banned'] = false },
+	{ ['name'] = "VRrs5", ['hash'] = -1509752196, ['banned'] = false },
+	{ ['name'] = "VRrs6", ['hash'] = 364700142, ['banned'] = false },
+	{ ['name'] = "VRrs6av", ['hash'] = -722708199, ['banned'] = false },
+	{ ['name'] = "VRraptor", ['hash'] = -411423717, ['banned'] = false },
+	{ ['name'] = "VRtahoe", ['hash'] = -1976092471, ['banned'] = false },
+	{ ['name'] = "VRdm1200", ['hash'] = -673061815, ['banned'] = false },
 	
 }
 -----------------------------------------------------------------------------------------------------------------------------------------

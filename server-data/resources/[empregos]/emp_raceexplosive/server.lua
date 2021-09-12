@@ -8,13 +8,13 @@ Tunnel.bindInterface("emp_raceexplosive",emP)
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- WEBHOOK
 -----------------------------------------------------------------------------------------------------------------------------------------
-local webhookcorrida = "https://discord.com/api/webhooks/811974130471665675/LlKFKfPdmypLrxP8gXBAq9lzb9B5EsVes6gbnh2CkZHOc_JwKYvBLldnHixokqdCrnqR"
+-- local webhookcorrida = "https://discord.com/api/webhooks/811974130471665675/LlKFKfPdmypLrxP8gXBAq9lzb9B5EsVes6gbnh2CkZHOc_JwKYvBLldnHixokqdCrnqR"
 
-function SendWebhookMessage(webhook,message)
-	if webhook ~= nil and webhook ~= "" then
-		PerformHttpRequest(webhook, function(err, text, headers) end, 'POST', json.encode({content = message}), { ['Content-Type'] = 'application/json' })
-	end
-end
+-- function SendWebhookMessage(webhook,message)
+-- 	if webhook ~= nil and webhook ~= "" then
+-- 		PerformHttpRequest(webhook, function(err, text, headers) end, 'POST', json.encode({content = message}), { ['Content-Type'] = 'application/json' })
+-- 	end
+-- end
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- FUNÇÕES
 -----------------------------------------------------------------------------------------------------------------------------------------
@@ -70,7 +70,7 @@ function emP.startBombRace()
 			end)
 		end
 	end
-	SendWebhookMessage(webhookcorrida,"```prolog\n[ID]: "..user_id.." "..identity.name.." "..identity.firstname.." "..os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S").." \r```")
+	-- SendWebhookMessage(webhookcorrida,"```prolog\n[ID]: "..user_id.." "..identity.name.." "..identity.firstname.." "..os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S").." \r```")
 end
 
 function emP.setSearchTimer()

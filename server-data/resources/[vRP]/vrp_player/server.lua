@@ -1,10 +1,3 @@
-local logsitens = "https://discord.com/api/webhooks/793599139048980510/TgicubBv4Dhi21Gk8p6jLQLC5kT5y8Cje6qK8VLUpHd3lyufdiDDL229cQpp4JCTDfSS"
-local logsenviar = "https://discord.com/api/webhooks/793600149590769685/-PHSTM2RRZkVfb1PIZcitPEByn0rd5ZeEyhs6IX3AJ1O1MPssKnZlhHMot6VTFbH6w_d"
-local logscobrar = "https://discord.com/api/webhooks/793600242192220200/xChABlHgz09Kmro84R5i7773NydbQ504C8-5w8RX63mPKdVxxxXvp5wbNwiaQ-8DbWg4"
-local webhooklinkinout = "https://discord.com/api/webhooks/794791807891669013/DOY3kVr1QmuN_0RBz3D_ZyFF1H6Wx-smJnLRByOXgT7EWHPigPr5xK11YXmohAtMZzdi"
-local webhookpaypal = "https://discord.com/api/webhooks/800804690471813162/Q7nryy87L97UxJnsnEODRV4bx4s6aVqmlzxVYf91Hfgf_XXTUvlI-Rud_PRuJ9BCClR_"
-local logcmdcall = "https://discord.com/api/webhooks/801616526405795881/MuVEYTGa-R2gQy_nO_9t7vH4wgtvS3ixcmZt5-O9aZqOcM5of15x2AJtcEE56YEJrbKM"
-local ac_webhook = "https://discord.com/api/webhooks/800148956649750558/BYP4AcXNkOfOosRVVW7NUhPiM8WNDiKAoMn2g4-SUYFayTm-mHrrya4ppsF89aB8jUxS"
 local discord_webhook4 = ""
 local discord_webhook5 = ""
 local Tunnel = module("vrp","lib/Tunnel")
@@ -22,11 +15,18 @@ vRPNclient = Tunnel.getInterface("vrp_player","vrp_player")
 emP = {}
 Tunnel.bindInterface("vrp_player",emP)
 
-function SendWebhookMessage(webhook,message)
-	if webhook ~= nil and webhook ~= "" then
-		PerformHttpRequest(webhook, function(err, text, headers) end, 'POST', json.encode({content = message}), { ['Content-Type'] = 'application/json' })
-	end
-end
+-- local logsitens = "https://discord.com/api/webhooks/793599139048980510/TgicubBv4Dhi21Gk8p6jLQLC5kT5y8Cje6qK8VLUpHd3lyufdiDDL229cQpp4JCTDfSS"
+-- local logsenviar = "https://discord.com/api/webhooks/793600149590769685/-PHSTM2RRZkVfb1PIZcitPEByn0rd5ZeEyhs6IX3AJ1O1MPssKnZlhHMot6VTFbH6w_d"
+-- local logscobrar = "https://discord.com/api/webhooks/793600242192220200/xChABlHgz09Kmro84R5i7773NydbQ504C8-5w8RX63mPKdVxxxXvp5wbNwiaQ-8DbWg4"
+-- local webhooklinkinout = "https://discord.com/api/webhooks/794791807891669013/DOY3kVr1QmuN_0RBz3D_ZyFF1H6Wx-smJnLRByOXgT7EWHPigPr5xK11YXmohAtMZzdi"
+-- local webhookpaypal = "https://discord.com/api/webhooks/800804690471813162/Q7nryy87L97UxJnsnEODRV4bx4s6aVqmlzxVYf91Hfgf_XXTUvlI-Rud_PRuJ9BCClR_"
+-- local logcmdcall = "https://discord.com/api/webhooks/801616526405795881/MuVEYTGa-R2gQy_nO_9t7vH4wgtvS3ixcmZt5-O9aZqOcM5of15x2AJtcEE56YEJrbKM"
+-- local ac_webhook = "https://discord.com/api/webhooks/800148956649750558/BYP4AcXNkOfOosRVVW7NUhPiM8WNDiKAoMn2g4-SUYFayTm-mHrrya4ppsF89aB8jUxS"
+-- function SendWebhookMessage(webhook,message)
+-- 	if webhook ~= nil and webhook ~= "" then
+-- 		PerformHttpRequest(webhook, function(err, text, headers) end, 'POST', json.encode({content = message}), { ['Content-Type'] = 'application/json' })
+-- 	end
+-- end
 
 
 -----------------------------------------------------------------------------------------------------------------------------------------
@@ -277,7 +277,7 @@ RegisterCommand('item',function(source,args,rawCommand)
 	if vRP.hasPermission(user_id,"item.permissao") then
 		if args[1] and args[2] and itemlist[args[1]] ~= nil then
 			vRP.giveInventoryItem(user_id,args[1],parseInt(args[2]))
-			SendWebhookMessage(logsitens, "```prolog\n[ID]: "..user_id.." "..identity.name.." "..identity.firstname.." \n[CRIOU]: "..args[1].."\n[QNT]: "..args[2]..""..os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S").."```")
+			vRP.Log("```prolog\n[ID]: "..user_id.." "..identity.name.." "..identity.firstname.." \n[CRIOU]: "..args[1].."\n[QNT]: "..args[2]..""..os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S").."```", "CMD_ITEM")
 		end
 	end
 end)
@@ -670,7 +670,7 @@ RegisterCommand('enviar',function(source,args,rawCommand)
 						vRPclient._playAnim(source,true,{{"mp_common","givetake1_a"}},false)
 						TriggerClientEvent("Notify",source,"sucesso","Enviou <b>"..parseInt(args[2]).."x "..v.nome.."</b>.")
 						TriggerClientEvent("Notify",nplayer,"sucesso","Recebeu <b>"..parseInt(args[2]).."x "..v.nome.."</b>.")
-						SendWebhookMessage(logsenviar, "```Player "..user_id.." enviou(por comando) o item: "..k.. " para o ID "..nuser_id.." [QTD]: "..args[2].."\n[COORDENADA]: "..crds.x..","..crds.y..","..crds.z.."```")
+						vRP.Log("```Player "..user_id.." enviou(por comando) o item: "..k.. " para o ID "..nuser_id.." [QTD]: "..args[2].."\n[COORDENADA]: "..crds.x..","..crds.y..","..crds.z.."```", "CMD_ENVIAR")
 						vRP.logs("savedata/enviar.txt","[ID]: "..user_id.." / [NID]: "..nuser_id.." / [ITEM]: "..k)
 						-- TriggerEvent('logs:ToDiscord', discord_webhook , "ENVIAR", "```Player "..user_id.." enviou(por comando) o item: "..k.. " para o ID "..nuser_id.." [QTD]: "..args[2].."```", "https://www.tumarcafacil.com/wp-content/uploads/2017/06/RegistroDeMarca-01-1.png", false, false)
 					end
@@ -683,7 +683,7 @@ RegisterCommand('enviar',function(source,args,rawCommand)
 			vRPclient._playAnim(source,true,{{"mp_common","givetake1_a"}},false)
 			TriggerClientEvent("Notify",source,"sucesso","Enviou <b>R$"..vRP.format(parseInt(args[1])).." reais</b>.")
 			TriggerClientEvent("Notify",nplayer,"sucesso","Recebeu <b>R$"..vRP.format(parseInt(args[1])).." reais</b>.")
-			SendWebhookMessage(logsenviar,"```prolog\n[ID]: "..user_id.." "..identity.name.." "..identity.firstname.." \n[ENVIOU]: R$ "..vRP.format(parseInt(args[1])).." \n[PARA O ID]: "..nuser_id.." "..identityu.name.." "..identityu.firstname.."\n[COORDENADA]: "..crds.x..","..crds.y..","..crds.z..""..os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S").." \r```")
+			vRP.Log("```prolog\n[ID]: "..user_id.." "..identity.name.." "..identity.firstname.." \n[ENVIOU]: R$ "..vRP.format(parseInt(args[1])).." \n[PARA O ID]: "..nuser_id.." "..identityu.name.." "..identityu.firstname.."\n[COORDENADA]: "..crds.x..","..crds.y..","..crds.z..""..os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S").." \r```", "CMD_ENVIAR")
 		else
 			TriggerClientEvent("Notify",source,"negado","Não tem a quantia que deseja enviar.")
 		end
@@ -768,7 +768,7 @@ AddEventHandler('playerDropped', function (reason)
 			vRP.setBanned(parseInt(user_id),true)
     		vRP.setWhitelisted(parseInt(user_id),false)
 			vRP.kick(user_id,"Você foi banido da cidade.")
-			SendWebhookMessage(webhookbanimento, "```prolog\n[ID]: "..user_id.." "..identity.name.." "..identity.firstname.." \n[MOTIVO]: Bugando /garmas"..os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S").."```")
+			vRP.Log("```prolog\n[ID]: "..user_id.." "..identity.name.." "..identity.firstname.." \n[MOTIVO]: Bugando /garmas"..os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S").."```", "AC_BAN")
         end
     end
 end)
@@ -855,8 +855,7 @@ RegisterCommand('call',function(source,args,rawCommand)
 		local identitys = vRP.getUserIdentity(user_id)
 		local crds = GetEntityCoords(GetPlayerPed(source))
 		TriggerClientEvent("Notify",source,"sucesso","Chamado enviado com sucesso.")
-		SendWebhookMessage(logcmdcall, "```prolog\n[ID]: "..user_id.." "..identitys.name.." "..identitys.firstname.." \n[CHAMOU]: "..args[1].."\n[MENSAGEM]: '"..descricao.."'\n[COORDENADA]: "..crds.x..","..crds.y..","..crds.z..""..os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S").."```")
-		-- SendWebhookMessage(discordwebhook, "```prolog\n[====CHAMADOS====]\n[ID]: "..user_id.." \n[CHAMADO PARA]: "..args[1].."\n[MENSAGEM]: '"..descricao.."'```")
+		vRP.Log("```prolog\n[ID]: "..user_id.." "..identitys.name.." "..identitys.firstname.." \n[CHAMOU]: "..args[1].."\n[MENSAGEM]: '"..descricao.."'\n[COORDENADA]: "..crds.x..","..crds.y..","..crds.z..""..os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S").."```", "CMD_CALL")
 		for l,w in pairs(players) do
 			local player = vRP.getUserSource(parseInt(w))
 			local nuser_id = vRP.getUserId(player)
@@ -1356,14 +1355,14 @@ end)
 AddEventHandler("vRP:playerJoin",function(user_id,source,name,last_login)
 	local identity = vRP.getUserIdentity(user_id)
 	if identity ~= nil then
-		SendWebhookMessage(webhooklinkinout, "```"..os.date("[%d/%m/%Y %H:%M:%S]").." "..identity.name.." "..identity.firstname.." [".. user_id .."] entrou```")
+		vRP.Log("```"..os.date("[%d/%m/%Y %H:%M:%S]").." "..identity.name.." "..identity.firstname.." [".. user_id .."] entrou```", "ENTRADA_SAIDA")
 	end
 end)
 
 AddEventHandler("vRP:playerLeave",function(user_id, source)
 	local crds = GetEntityCoords(GetPlayerPed(source))
 	local identity = vRP.getUserIdentity(user_id)
-	SendWebhookMessage(webhooklinkinout, "```"..os.date("[%d/%m/%Y %H:%M:%S]").." "..identity.name.." "..identity.firstname.." [".. user_id .."] saiu na coordenada: "..crds.x..","..crds.y..","..crds.z.."```")
+	vRP.Log("```"..os.date("[%d/%m/%Y %H:%M:%S]").." "..identity.name.." "..identity.firstname.." [".. user_id .."] saiu na coordenada: "..crds.x..","..crds.y..","..crds.z.."```", "ENTRADA_SAIDA")
 end)
 
 -----------------------------------------------------------------------------------------------------------------------------------------

@@ -7,28 +7,31 @@ vRPclient = Tunnel.getInterface("vRP")
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- WEBHOOK
 -----------------------------------------------------------------------------------------------------------------------------------------
-local webhookarsenal = "https://discord.com/api/webhooks/808411223833182218/IVVL1jdarDhdXkULG9VEPcs_o5FeshCU7g7nNsmLvZ3wT6YDyb43769D-iZtGOW9VWL4"
-local webhookarsenalpcesp = "https://discord.com/api/webhooks/809892497487560724/NFn3r_xSySCodHZPcrMTEIEAFN1e6z_F8_4V9QiEVilwV5OQqwspSdS8CbtbqdhYa3OP"
+-- local webhookarsenal = "https://discord.com/api/webhooks/808411223833182218/IVVL1jdarDhdXkULG9VEPcs_o5FeshCU7g7nNsmLvZ3wT6YDyb43769D-iZtGOW9VWL4"
+-- local webhookarsenalpcesp = "https://discord.com/api/webhooks/809892497487560724/NFn3r_xSySCodHZPcrMTEIEAFN1e6z_F8_4V9QiEVilwV5OQqwspSdS8CbtbqdhYa3OP"
+-- local ac_webhook = "https://discord.com/api/webhooks/800148956649750558/BYP4AcXNkOfOosRVVW7NUhPiM8WNDiKAoMn2g4-SUYFayTm-mHrrya4ppsF89aB8jUxS"
 
-function SendWebhookMessage(webhook, message)
-    if webhook ~= nil and webhook ~= "" then
-        PerformHttpRequest(webhook, function(err, text, headers)
-        end, 'POST', json.encode({content = message}), {['Content-Type'] = 'application/json'})
-    end
-end
+-- function SendWebhookMessage(webhook, message)
+--     if webhook ~= nil and webhook ~= "" then
+--         PerformHttpRequest(webhook, function(err, text, headers)
+--         end, 'POST', json.encode({content = message}), {['Content-Type'] = 'application/json'})
+--     end
+-- end
 
-local ac_webhook = "https://discord.com/api/webhooks/800148956649750558/BYP4AcXNkOfOosRVVW7NUhPiM8WNDiKAoMn2g4-SUYFayTm-mHrrya4ppsF89aB8jUxS"
 function banir(user_id, motivo)
     source = vRP.getUserSource(user_id)
     if source ~= nil then
+		local user_id = vRP.getUserId(source)
+		local identity = vRP.getUserIdentity(user_id)
         local ped = GetPlayerPed(source)
         local loc = GetEntityCoords(ped)
-        local reason = "ANTI HACK:     localização:    " .. loc.x .. "," .. loc.y .. "," .. loc.z
+        local reason = "[LOCAL]: " .. loc.x .. "," .. loc.y .. "," .. loc.z
         vRP.setBanned(user_id, true)
-        local temp = os.date("%x  %X")
-        PerformHttpRequest(ac_webhook, function(err, text, headers)
-        end, 'POST', json.encode({content = "ANTI HACK    [ID]: " .. user_id .. "        " .. temp .. "[BAN]        [MOTIVO:" .. motivo .. "]    " .. reason}), {['Content-Type'] = 'application/json'})
-        TriggerClientEvent("vrp_sound:source", source, "ban", 1.0)
+        --local temp = os.date("%x  %X")
+        --PerformHttpRequest(ac_webhook, function(err, text, headers)
+        --end, 'POST', json.encode({content = "ANTI HACK    [ID]: " .. user_id .. "        " .. temp .. "[BAN]        [MOTIVO:" .. motivo .. "]    " .. reason}), {['Content-Type'] = 'application/json'})
+         vRP.Log("```prolog\n[ANTI-HACK]\n[ID]: " .. user_id .. " " .. identity.name .. " " .. identity.firstname .. " \n[BAN - MOTIVO]: " .. motivo .. " \n"..reason.." " .. os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S") .. " \r```", "AC_BANIR")
+		TriggerClientEvent("vrp_sound:source", source, "ban", 1.0)
         Citizen.Wait(1000)
         vRP.kick(source, "Tentativa de bug!")
     end
@@ -67,13 +70,13 @@ AddEventHandler('crz_arsenal:logs', function(arma)
     local source = source
     local user_id = vRP.getUserId(source)
     local identity = vRP.getUserIdentity(user_id)
-    SendWebhookMessage(webhookarsenal, "```prolog\n[ID]: " .. user_id .. " " .. identity.name .. " " .. identity.firstname .. " \n[RETIROU]: " .. arma .. " " .. os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S") .. " \r```")
+    vRP.Log("```prolog\n[ID]: " .. user_id .. " " .. identity.name .. " " .. identity.firstname .. " \n[RETIROU]: " .. arma .. " " .. os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S") .. " \r```", "ARSENAL_POLICIA")
 end)
 
-RegisterServerEvent('crz_arsenal:logspcesp')
-AddEventHandler('crz_arsenal:logspcesp', function(arma)
-    local source = source
-    local user_id = vRP.getUserId(source)
-    local identity = vRP.getUserIdentity(user_id)
-    SendWebhookMessage(webhookarsenalpcesp, "```prolog\n[ID]: " .. user_id .. " " .. identity.name .. " " .. identity.firstname .. " \n[RETIROU]: " .. arma .. " " .. os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S") .. " \r```")
-end)
+-- RegisterServerEvent('crz_arsenal:logspcesp')
+-- AddEventHandler('crz_arsenal:logspcesp', function(arma)
+--     local source = source
+--     local user_id = vRP.getUserId(source)
+--     local identity = vRP.getUserIdentity(user_id)
+--     SendWebhookMessage(webhookarsenalpcesp, "```prolog\n[ID]: " .. user_id .. " " .. identity.name .. " " .. identity.firstname .. " \n[RETIROU]: " .. arma .. " " .. os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S") .. " \r```")
+-- end)

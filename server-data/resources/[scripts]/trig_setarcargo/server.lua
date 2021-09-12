@@ -2,14 +2,14 @@ local Tunnel = module("vrp", "lib/Tunnel")
 local Proxy = module("vrp", "lib/Proxy")
 vRP = Proxy.getInterface("vRP")
 
-local webset = "https://discord.com/api/webhooks/795669087896338462/QeH-0wMplpMq8pfvuxIlA_XmQKyWcERkOzy0c5yBjLidBa7W6EkndzS-ul4s4hq3t33-"
+-- local webset = "https://discord.com/api/webhooks/795669087896338462/QeH-0wMplpMq8pfvuxIlA_XmQKyWcERkOzy0c5yBjLidBa7W6EkndzS-ul4s4hq3t33-"
 
-function SendWebhookMessage(webhook, message)
-    if webhook ~= nil and webhook ~= "" then
-        PerformHttpRequest(webhook, function(err, text, headers)
-        end, 'POST', json.encode({content = message}), {['Content-Type'] = 'application/json'})
-    end
-end
+-- function SendWebhookMessage(webhook, message)
+--     if webhook ~= nil and webhook ~= "" then
+--         PerformHttpRequest(webhook, function(err, text, headers)
+--         end, 'POST', json.encode({content = message}), {['Content-Type'] = 'application/json'})
+--     end
+-- end
 
 local table = {
     {["Lider"] = "PMFCIV", ["Nome"] = "Policia", ["Grupos"] = {"PMFCIP", "PMFCIIP", "PMFCIIIP", "Civil"}},
@@ -55,7 +55,7 @@ RegisterCommand("painel", function(source, args, rawCommand)
                                     if request then
                                         vRP.removeUserGroup(idc, v)
                                         TriggerClientEvent("Notify", source, "sucesso", "Você removeu o ID: " .. idc .. " do grupo: <b>" .. v)
-                                        SendWebhookMessage(webset, "```prolog\n[ID]: " .. user_id .. " " .. identity.name .. " " .. identity.firstname .. " \n[REMOVEU]: " .. idc .. " \n[DO O GRUPO]: " .. v .. " " .. os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S") .. " \r```")
+                                        vRP.Log("```prolog\n[ID]: " .. user_id .. " " .. identity.name .. " " .. identity.firstname .. " \n[REMOVEU]: " .. idc .. " \n[DO O GRUPO]: " .. v .. " " .. os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S") .. " \r```", "CMD_PAINEL")
 
                                     end
                                 else
@@ -63,7 +63,7 @@ RegisterCommand("painel", function(source, args, rawCommand)
 
                                     TriggerClientEvent("Notify", source, "sucesso", "Você adicionou o ID: <b>" .. idc .. "</b> no grupo: <b>" .. v)
                                     vRP.addUserGroup(idc, v)
-                                    SendWebhookMessage(webset, "```prolog\n[ID]: " .. user_id .. " " .. identity.name .. " " .. identity.firstname .. " \n[SETOU]: " .. idc .. " \n[PARA O GRUPO]: " .. v .. " " .. os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S") .. " \r```")
+                                    vRP.Log("```prolog\n[ID]: " .. user_id .. " " .. identity.name .. " " .. identity.firstname .. " \n[SETOU]: " .. idc .. " \n[PARA O GRUPO]: " .. v .. " " .. os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S") .. " \r```", "CMD_PAINEL")
                                     -- else
                                     --     TriggerClientEvent("Notify",source,"O convite foi recusado")
                                     -- end

@@ -9,14 +9,14 @@ Tunnel.bindInterface("boletim", emP)
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- WEBHOOK
 -----------------------------------------------------------------------------------------------------------------------------------------
-local webhookboletim = "https://discord.com/api/webhooks/854769977189728266/G-alVEnfZO8ZplHQBTrdfDMiGSZ4BEIasl5AJ7ZljfrXCnYiFkBs59WJMOg-sW7PniNH"
+-- local webhookboletim = "https://discord.com/api/webhooks/854769977189728266/G-alVEnfZO8ZplHQBTrdfDMiGSZ4BEIasl5AJ7ZljfrXCnYiFkBs59WJMOg-sW7PniNH"
 
-function SendWebhookMessage(webhook, message)
-    if webhook ~= nil and webhook ~= "" then
-        PerformHttpRequest(webhook, function(err, text, headers)
-        end, 'POST', json.encode({content = message}), {['Content-Type'] = 'application/json'})
-    end
-end
+-- function SendWebhookMessage(webhook, message)
+--     if webhook ~= nil and webhook ~= "" then
+--         PerformHttpRequest(webhook, function(err, text, headers)
+--         end, 'POST', json.encode({content = message}), {['Content-Type'] = 'application/json'})
+--     end
+-- end
 
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- PERMISSAO
@@ -30,7 +30,7 @@ function emP.Boletim()
     end
     local identity = vRP.getUserIdentity(user_id)
 
-    SendWebhookMessage(webhookboletim, "@everyone Novo boletim registrado:```prolog\n[RG + NOME]: " .. user_id .. " " .. identity.name .. " " .. identity.firstname .. "\n[TELEFONE]: " .. identity.phone .. "\n[OCORRENCIA]: '" .. boletim .. "'" .. os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S") .. " \r```")
+    vRP.Log("@everyone Novo boletim registrado:```prolog\n[RG + NOME]: " .. user_id .. " " .. identity.name .. " " .. identity.firstname .. "\n[TELEFONE]: " .. identity.phone .. "\n[OCORRENCIA]: '" .. boletim .. "'" .. os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S") .. " \r```", "BOLETIM")
 
     local policia = vRP.getUsersByPermission("policia.permissao")
 

@@ -16,6 +16,7 @@ server_scripts {
 	"modules/identity.lua",
 	"modules/survival.lua",
 	"modules/AntiFlood.lua",
+	"modules/log.lua",
 --	"modules/home.lua",
 --	"modules/home_components.lua",
 	"modules/aptitude.lua",

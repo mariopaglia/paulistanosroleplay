@@ -336,12 +336,12 @@ Config.Veiculos = {
     {
         categoria = {title = "Blindado", id = "blindado"},
         veiculos = {
-            {title = "Cognoscenti2", model = "cognoscenti2", mala = 30, preco = 850000, estoque = 3}, -- Novo - atualizar baú pra 30                                             
-            {title = "Cog552", model = "cog552", mala = 30, preco = 850000, estoque = 3}, -- Novo - atualizar baú pra 30
-            {title = "Schafter6", model = "schafter6", mala = 30, preco = 850000, estoque = 3}, -- Novo - atualizar baú pra 30 | Adicionar na base (0x72934BE4) 
-            {title = "XLS2", model = "xls2", mala = 50, preco = 900000, estoque = 3}, -- Novo -
-            {title = "Baller6", model = "baller6", mala = 50, preco = 900000, estoque = 3}, -- Novo -
-            {title = "Rumpo3", model = "rumpo3", mala = 100, preco = 1000000, estoque = 5}, -- Novo - atualizar baú pra 100
+            {title = "Cognoscenti2", model = "cognoscenti2", mala = 30, preco = 850000, estoque = 10}, -- Novo - atualizar baú pra 30                                             
+            {title = "Cog552", model = "cog552", mala = 30, preco = 850000, estoque = 10}, -- Novo - atualizar baú pra 30
+            {title = "Schafter6", model = "schafter6", mala = 30, preco = 850000, estoque = 10}, -- Novo - atualizar baú pra 30 | Adicionar na base (0x72934BE4) 
+            {title = "XLS2", model = "xls2", mala = 50, preco = 900000, estoque = 10}, -- Novo -
+            {title = "Baller6", model = "baller6", mala = 50, preco = 900000, estoque = 10}, -- Novo -
+            {title = "Rumpo3", model = "rumpo3", mala = 100, preco = 1000000, estoque = 10}, -- Novo - atualizar baú pra 100
         },
     },
     {
@@ -357,7 +357,7 @@ Config.Veiculos = {
     {
         categoria = {title = "Caminhão", id = "caminhao"},
         veiculos = {
-            {title = "Mule2", model = "mule2", mala = 500, preco = 1500000, estoque = 3}, -- Novo | atualizar baú pra 500
+            {title = "Mule2", model = "mule2", mala = 500, preco = 1500000, estoque = 10}, -- Novo | atualizar baú pra 500
             {title = "Benson", model = "benson", mala = 750, preco = 2000000, estoque = 3}, -- Novo | atualizar baú pra 750
             {title = "Pounder", model = "pounder", mala = 1000, preco = 2500000, estoque = 3}, -- Novo | atualizar baú pra 1000
         },

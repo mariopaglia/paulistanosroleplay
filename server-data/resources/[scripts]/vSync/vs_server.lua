@@ -1,5 +1,6 @@
 local Tunnel = module("vrp", "lib/Tunnel")
 local Proxy = module("vrp", "lib/Proxy")
+vRPclient = Tunnel.getInterface("vRP")
 
 vRP = Proxy.getInterface("vRP")
 
@@ -309,7 +310,7 @@ Citizen.CreateThread(function()
     end
 end)
 
-local salarr = vRP.getWebhook("anunciorr")
+local salarr = vRP.getWebhook("ANUNCIO_RR")
 
 Citizen.CreateThread(function()
     while true do

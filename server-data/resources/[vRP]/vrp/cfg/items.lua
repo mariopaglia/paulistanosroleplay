@@ -95,6 +95,7 @@ cfg.items = {
 	["ferramenta"] = { "Ferramenta",0.5 },
 	["serra"] = { "Serra",0.5 },
 	["macarico"] = { "Maçarico",5.0 },
+	["listadesmanche"] = { "Lista Desmanche",0.2 },
 	
 	-- Farm de Drogas
 	["adubo"] = { "Adubo",0.3 },

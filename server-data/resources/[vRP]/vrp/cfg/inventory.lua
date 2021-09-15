@@ -437,6 +437,7 @@ cfg.chestweight = {
 	["amaroktuning"] = 20,
 
 	-- IMPORTADOS
+	["911r"] = 20,
 	["q820"] = 70,
 	["bmci"] = 30,
 	["f824slw"] = 20,

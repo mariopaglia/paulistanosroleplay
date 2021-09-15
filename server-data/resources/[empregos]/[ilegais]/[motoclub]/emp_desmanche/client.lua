@@ -7,52 +7,103 @@ vRP = Proxy.getInterface("vRP")
 -----------------------------------------------------------------------------------------------------------------------------------------
 local segundos = 0
 local roubando = false
+local emrota = false
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- LOCAIS
 -----------------------------------------------------------------------------------------------------------------------------------------
 local locais = {
     -- DESMANCHES MIDNIGHT
-    {['x'] = 2140.73, ['y'] = 4782.53, ['z'] = 40.98, ['perm'] = "midnight.permissao"}, -- 2140.73, 4782.53, 40.98
-    {['x'] = -1173.9, ['y'] = -2062.62, ['z'] = 14.35, ['perm'] = "midnight.permissao"}, -- -1173.9, -2062.62, 14.35
-    {['x'] = -441.55, ['y'] = 6342.22, ['z'] = 12.73, ['perm'] = "midnight.permissao"}, -- -441.55,6342.22,12.73
-    --
-    {['x'] = 1540.21, ['y'] = 6336.91, ['z'] = 24.08, ['perm'] = "driftking.permissao"}, -- 1540.21,6336.91,24.08
-    {['x'] = 870.75, ['y'] = 2871.6, ['z'] = 56.91, ['perm'] = "driftking.permissao"}, -- 870.75,2871.6,56.91
-    {['x'] = 132.41, ['y'] = -3210.44, ['z'] = 5.86, ['perm'] = "driftking.permissao"}, -- 132.41,-3210.44,5.86
+    [1] = { 2140.73,4782.53,40.98 }, -- 2140.73, 4782.53, 40.98
+    [2] = { -1173.9,-2062.62,14.35 }, -- -1173.9, -2062.62, 14.35
+    [3] = { -441.55,6342.22,12.73 }, -- -441.55,6342.22,12.73
+    [4] = { 1540.21,6336.91,24.08 }, -- 1540.21,6336.91,24.08
+    [5] = { 870.75,2871.6,56.91 }, -- 870.75,2871.6,56.91
+    [6] = { 132.41,-3210.44,5.86 }, -- 132.41,-3210.44,5.86
 }
+-----------------------------------------------------------------------------------------------------------------------------------------
+-- INICIAR ROTA
+-----------------------------------------------------------------------------------------------------------------------------------------
+RegisterNetEvent("rotadesmanche")
+AddEventHandler('rotadesmanche', function()
+	if not emrota and not roubando then
+		if emP.checkItem() then
+			selecionada = math.random(#locais)
+			CreateBlip(selecionada)
+			emP.addGroup()
+			TriggerEvent("Notify","importante","Rota iniciada com sucesso!", 5000)
+		end
+	else
+		TriggerEvent("Notify","importante","Algo deu errado!", 5000)
+	end
+end)
+-----------------------------------------------------------------------------------------------------------------------------------------
+-- CRIAR BLIP
+-----------------------------------------------------------------------------------------------------------------------------------------
+function CreateBlip(rota)
+	emrota = true
+	blip = AddBlipForCoord(locais[rota][1],locais[rota][2],locais[rota][3])
+	SetBlipSprite(blip,162)
+	SetBlipColour(blip,5)
+	SetBlipScale(blip,0.4)
+	SetBlipAsShortRange(blip,false)
+	SetBlipRoute(blip,true)
+	BeginTextCommandSetBlipName("STRING")
+	AddTextComponentString("Desmanche")
+	EndTextCommandSetBlipName(blip)
+end
+---------------------------------------------------------------------
+-- CANCELAR A ROTA
+---------------------------------------------------------------------
+Citizen.CreateThread(function()
+	while true do
+    	local sleep = 1000
+    	local ped = PlayerPedId()
+        if emrota and not roubando then
+            sleep = 5
+    		if IsControlJustPressed(0,168) then
+				TriggerEvent("Notify","importante","Você cancelou a rota!",5000)
+				RemoveBlip(blip)
+				emP.removeGroup()
+				emrota = false
+    		end	
+    	end
+        Citizen.Wait(sleep)
+	end
+end)
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- DESMANCHE
 -----------------------------------------------------------------------------------------------------------------------------------------
 Citizen.CreateThread(function()
-    while true do
-        local idle = 1000
-        if not roubando then
-            for _, v in pairs(locais) do
-                local ped = PlayerPedId()
-                local x, y, z = table.unpack(v)
-                local distance = GetDistanceBetweenCoords(GetEntityCoords(ped), v.x, v.y, v.z)
-                if distance <= 30 and GetPedInVehicleSeat(GetVehiclePedIsUsing(ped), -1) == ped then
-                    idle = 5
-                    DrawMarker(23, v.x, v.y, v.z - 0.96, 0, 0, 0, 0, 0, 0, 5.0, 5.0, 0.5, 255, 0, 0, 50, 0, 0, 0, 0)
-                    if distance <= 3.1 and IsControlJustPressed(0, 38) then
-                        if emP.checkVehicle() and emP.checkPermission(v.perm) and emP.checkItem() then
-                            roubando = true
-                            segundos = 60
-                            FreezeEntityPosition(GetVehiclePedIsUsing(ped), true)
-
-                            repeat
-                                Citizen.Wait(60)
-                            until segundos == 0
-
-                            TriggerServerEvent("desmancheVehicles")
-                            roubando = false
-                        end
-                    end
-                end
-            end
-        end
-        Citizen.Wait(idle)
-    end
+	while true do
+		local sleep = 1000
+		local ped = PlayerPedId()
+		local coords = vector3(GetEntityCoords(ped))
+		if emrota and not roubando then
+			local distance = #(coords - vector3(locais[selecionada][1],locais[selecionada][2],locais[selecionada][3]))
+			if distance <= 30 and GetPedInVehicleSeat(GetVehiclePedIsUsing(ped), -1) == ped then
+				sleep = 5
+				DrawMarker(23, locais[selecionada][1],locais[selecionada][2],locais[selecionada][3] - 0.96, 0, 0, 0, 0, 0, 0, 5.0, 5.0, 0.5, 255, 0, 0, 50, 0, 0, 0, 0)
+				if distance <= 3.1 and IsControlJustPressed(0,38) then
+					if emP.checkVehicle() and emP.checkPermission() then
+						RemoveBlip(blip)
+						roubando = true
+						segundos = 60
+						FreezeEntityPosition(GetVehiclePedIsUsing(ped), true)
+						repeat
+							Citizen.Wait(60)
+						until segundos == 0
+						TriggerServerEvent("desmancheVehicles")
+						roubando = false
+						emrota = false
+						SetTimeout(3000, function()
+							emP.removeGroup()
+						end)
+					end
+				end
+			end
+		end
+		Citizen.Wait(sleep)
+	end
 end)
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- TEXTO

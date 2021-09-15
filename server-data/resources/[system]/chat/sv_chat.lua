@@ -98,7 +98,7 @@ AddEventHandler('onServerResourceStart', function(resName)
         fal = identity.name.. " " .. identity.firstname
         if vRP.hasPermission(user_id, "taxista.permissao") then
             TriggerClientEvent('chat:addMessage', -1, {
-                template = '<div style="padding: 0.2vw; margin: 0.1vw; background-image: linear-gradient(to right, rgba(255,215,0,0.5) 3%, rgba(0, 0, 0,0) 95%); border-radius: 5px;"><img style="height: 15px" src="https://www.flaticon.com/svg/static/icons/svg/3485/3485591.svg"> &nbsp Taxista - '..fal..' ['..user_id..']: {1}</div>',
+                template = '<div style="padding: 0.2vw; margin: 0.1vw; background-image: linear-gradient(to right, rgba(255,215,0,0.5) 3%, rgba(0, 0, 0,0) 95%); border-radius: 5px;"><img style="height: 15px" src="http://177.54.144.176:8080/img_chat/taxi.png"> &nbsp Taxista - '..fal..' ['..user_id..']: {1}</div>',
                 args = { fal, message }
             })
             vRP.Log("```prolog\n[JOGADOR]: "..user_id.." "..identity.name.." "..identity.firstname..""..os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S").."\n[Chat]: Taxista\n[Mensagem]:'"..message.."'\r```", "CHAT")
@@ -112,7 +112,7 @@ AddEventHandler('onServerResourceStart', function(resName)
         fal = identity.name.. " " .. identity.firstname
         if vRP.hasPermission(user_id, "concessionaria.permissao") then
             TriggerClientEvent('chat:addMessage', -1, {
-                template = '<div style="padding: 0.2vw; margin: 0.1vw; background-image: linear-gradient(to right, rgba(128,0,128,0.5) 3%, rgba(0, 0, 0,0) 95%); border-radius: 5px;"><img style="height: 15px" src="https://www.flaticon.com/svg/static/icons/svg/741/741407.svg"> &nbsp Concessionária - '..fal..' ['..user_id..']: {1}</div>',
+                template = '<div style="padding: 0.2vw; margin: 0.1vw; background-image: linear-gradient(to right, rgba(128,0,128,0.5) 3%, rgba(0, 0, 0,0) 95%); border-radius: 5px;"><img style="height: 15px" src="http://177.54.144.176:8080/img_chat/concessionaria.png"> &nbsp Concessionária - '..fal..' ['..user_id..']: {1}</div>',
                 args = { fal, message }
             })
             vRP.Log("```prolog\n[JOGADOR]: "..user_id.." "..identity.name.." "..identity.firstname..""..os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S").."\n[Chat]: Concessionária\n[Mensagem]:'"..message.."'\r```", "CHAT")
@@ -126,7 +126,7 @@ AddEventHandler('onServerResourceStart', function(resName)
         fal = identity.name.. " " .. identity.firstname
         if vRP.hasPermission(user_id, "mecanico.permissao") then
             TriggerClientEvent('chat:addMessage', -1, {
-                template = '<div style="padding: 0.2vw; margin: 0.1vw; background-image: linear-gradient(to right, rgba(255,140,0,0.5) 3%, rgba(0, 0, 0,0) 95%); border-radius: 5px;"><img style="height: 15px" src="https://www.flaticon.com/svg/static/icons/svg/748/748847.svg"> &nbsp Mecânica - '..fal..' ['..user_id..']: {1}</div>',
+                template = '<div style="padding: 0.2vw; margin: 0.1vw; background-image: linear-gradient(to right, rgba(255,140,0,0.5) 3%, rgba(0, 0, 0,0) 95%); border-radius: 5px;"><img style="height: 15px" src="http://177.54.144.176:8080/img_chat/mecanico.png"> &nbsp Mecânica - '..fal..' ['..user_id..']: {1}</div>',
                 args = { fal, message }
             })
             vRP.Log("```prolog\n[JOGADOR]: "..user_id.." "..identity.name.." "..identity.firstname..""..os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S").."\n[Chat]: Mecanica\n[Mensagem]:'"..message.."'\r```", "CHAT")
@@ -141,7 +141,7 @@ AddEventHandler('onServerResourceStart', function(resName)
         fal = identity.name.. " " .. identity.firstname
         if vRP.hasPermission(user_id, "policia.permissao") then
             TriggerClientEvent('chat:addMessage', -1, {
-                template = "<div style='padding: 0.2vw; margin: 0.1vw; background-image: linear-gradient(to right, rgba(44,168,253,0.5) 3%, rgba(0, 0, 0,0) 95%); border-radius: 5px;'><img style='height: 18px' src='https://image.flaticon.com/icons/svg/1022/1022484.svg'> &nbsp 190 - "..fal.." ["..user_id.."]: {1}</div>",
+                template = "<div style='padding: 0.2vw; margin: 0.1vw; background-image: linear-gradient(to right, rgba(44,168,253,0.5) 3%, rgba(0, 0, 0,0) 95%); border-radius: 5px;'><img style='height: 18px' src='http://177.54.144.176:8080/img_chat/policia.png'> &nbsp 190 - "..fal.." ["..user_id.."]: {1}</div>",
                 args = { fal, message }
             })
             vRP.Log("```prolog\n[JOGADOR]: "..user_id.." "..identity.name.." "..identity.firstname..""..os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S").."\n[Chat]: Policia (190)\n[Mensagem]:'"..message.."'\r```", "CHAT")
@@ -155,7 +155,7 @@ AddEventHandler('onServerResourceStart', function(resName)
         if vRP.hasPermission(user_id, "paramedico.permissao") then
             fal = identity.name.. " " .. identity.firstname
             TriggerClientEvent('chat:addMessage', -1, {
-                template = '<div style="padding: 0.2vw; margin: 0.1vw; background-image: linear-gradient(to right, rgba(255, 0, 0,0.5) 3%, rgba(0, 0, 0,0) 95%); border-radius: 5px;"><img style="height: 18px" src="https://image.flaticon.com/icons/svg/1142/1142131.svg"> &nbsp 192 - '..fal..' ['..user_id..']: {1}</div>',
+                template = '<div style="padding: 0.2vw; margin: 0.1vw; background-image: linear-gradient(to right, rgba(255, 0, 0,0.5) 3%, rgba(0, 0, 0,0) 95%); border-radius: 5px;"><img style="height: 18px" src="http://177.54.144.176:8080/img_chat/medico.png"> &nbsp 192 - '..fal..' ['..user_id..']: {1}</div>',
                 args = { fal, message }
             })
             vRP.Log("```prolog\n[JOGADOR]: "..user_id.." "..identity.name.." "..identity.firstname..""..os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S").."\n[Chat]: SAMU (192)\n[Mensagem]:'"..message.."'\r```", "CHAT")
@@ -169,7 +169,7 @@ AddEventHandler('onServerResourceStart', function(resName)
         if vRP.hasPermission(user_id, "judiciario.permissao") then
             fal = identity.name.. " " .. identity.firstname
             TriggerClientEvent('chat:addMessage', -1, {
-                template = '<div style="padding: 0.2vw; margin: 0.1vw; background-image: linear-gradient(to right, rgba(148,0,211,0.5) 3%, rgba(0, 0, 0,0) 95%); border-radius: 5px;"><img style="height: 18px" src="https://i.imgur.com/rOUSUmH.png"> &nbsp Advogado - '..fal..' ['..user_id..']: {1}</div>',
+                template = '<div style="padding: 0.2vw; margin: 0.1vw; background-image: linear-gradient(to right, rgba(148,0,211,0.5) 3%, rgba(0, 0, 0,0) 95%); border-radius: 5px;"><img style="height: 18px" src="http://177.54.144.176:8080/img_chat/advogado.png"> &nbsp Advogado - '..fal..' ['..user_id..']: {1}</div>',
                 args = { fal, message }
             })
             vRP.Log("```prolog\n[JOGADOR]: "..user_id.." "..identity.name.." "..identity.firstname..""..os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S").."\n[Chat]: ADVOGADO\n[Mensagem]:'"..message.."'\r```", "CHAT")
@@ -208,7 +208,7 @@ AddEventHandler('onServerResourceStart', function(resName)
         fal = identity.name.. " " .. identity.firstname
         if vRP.hasPermission(user_id, "admin.permissao") or vRP.hasPermission(user_id, "mod.permissao") or vRP.hasPermission(user_id, "sup.permissao") then
         TriggerClientEvent('chat:addMessage', -1, {
-            template = '<div style="padding: 0.2vw; margin: 0.1vw; background-image: linear-gradient(to right, rgba(0,255,255,0.5) 3%, rgba(0, 0, 0,0) 95%); border-radius: 5px;"><img style="height: 17px" src="https://image.flaticon.com/icons/svg/138/138304.svg"> &nbsp PREFEITURA: {1}</div>',
+            template = '<div style="padding: 0.2vw; margin: 0.1vw; background-image: linear-gradient(to right, rgba(0,255,255,0.5) 3%, rgba(0, 0, 0,0) 95%); border-radius: 5px;"><img style="height: 17px" src="http://177.54.144.176:8080/img_chat/prefeitura.png"> &nbsp PREFEITURA: {1}</div>',
             args = { fal, message }
         })
         vRP.Log("```prolog\n[JOGADOR]: "..user_id.." "..identity.name.." "..identity.firstname..""..os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S").."\n[Chat]: Admin\n[Mensagem]:'"..message.."'\r```", "CHAT")

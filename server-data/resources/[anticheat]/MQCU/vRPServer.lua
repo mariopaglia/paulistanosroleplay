@@ -69,7 +69,7 @@ sistemas["[STOPCLIENT2]"] = false
 sistemas["[STOPCLIENT3]"] = true
 
 sistemas["[WALL2]"] = true
-sistemas["[EXPLOSAO3]"] = true
+sistemas["[EXPLOSAO3]"] = false -- Estava dando muito falso positivo em (15/09)
 sistemas["[Modo_Spawner]"] = true
 sistemas["[SPAWN_VEICULOS]"] = true
 sistemas["[SPAWN_PROP]"] = true
@@ -116,7 +116,7 @@ AddEventHandler("MQCU:LixoDetectado", function(user_id, msg, cb)
 				local source = vRP.getUserSource(id)
 				if source ~= nil then
                     -- TriggerClientEvent("vrp_sound:source",source,"ban",1.0)
-                    Citizen.Wait(1500)
+                    Citizen.Wait(2000)
                     vRP.kick(source, "Você foi banido da cidade!")
                 end
                 cb()

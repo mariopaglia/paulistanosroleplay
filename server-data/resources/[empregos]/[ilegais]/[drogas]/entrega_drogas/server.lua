@@ -27,18 +27,6 @@ function emP.checkPermission()
     local user_id = vRP.getUserId(source)
     return vRP.hasPermission(user_id, "verdes.permissao") or vRP.hasPermission(user_id, "vermelhos.permissao") or vRP.hasPermission(user_id, "roxos.permissao") or vRP.hasPermission(user_id, "laranjas.permissao")
 end
-
--- function emP.checkPermission2()
--- 	local source = source
--- 	local user_id = vRP.getUserId(source)
--- 	return vRP.hasPermission(user_id,"vermelhos.permissao")
--- end
-
--- function emP.checkPermission3()
--- 	local source = source
--- 	local user_id = vRP.getUserId(source)
--- 	return vRP.hasPermission(user_id,"roxos.permissao")
--- end
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- PAGAMENTO CIVIL
 -----------------------------------------------------------------------------------------------------------------------------------------
@@ -50,11 +38,11 @@ function emP.checkPayment()
     local bonus = 0
 
     if #policia >= 0 and #policia <= 2 then
-        bonus = 2000 -- 1600
+        bonus = 3500 -- 1600
     elseif #policia >= 3 and #policia <= 6 then
-        bonus = 2400 -- 2000
+        bonus = 4200 -- 2000
     elseif #policia >= 7 then
-        bonus = 2800 -- 2400
+        bonus = 5000 -- 2400
     end
 
     if user_id then
@@ -132,11 +120,11 @@ function emP.checkPayment2()
     local bonus = 0
 
     if #policia >= 0 and #policia <= 2 then
-        bonus = 2000 -- 1600
+        bonus = 3500 -- 1600
     elseif #policia >= 3 and #policia <= 6 then
-        bonus = 2400 -- 2000
+        bonus = 4200 -- 2000
     elseif #policia >= 7 then
-        bonus = 2800 -- 2400
+        bonus = 5000 -- 2400
     end
 
 	if user_id then

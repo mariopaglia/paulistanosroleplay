@@ -92,6 +92,7 @@ local itemlist = {
 	["ferramenta"] = { index = "ferramenta", nome = "Ferramenta", type = "usar" },
 	["serra"] = { index = "serra", nome = "Serra", type = "usar" },
 	["macarico"] = { index = "macarico", nome = "Maçarico", type = "usar" },
+	["listadesmanche"] = { index = "listadesmanche", nome = "Lista Desmanche", type = "usar" },
 	
 	-- Farm de Armas
 	["placademetal"] = { index = "placademetal", nome = "Placa de Metal", type = "usar" },

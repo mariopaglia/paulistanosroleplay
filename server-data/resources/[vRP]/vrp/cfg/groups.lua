@@ -157,9 +157,6 @@ cfg.groups = {
 		},
 		"prata.permissao",
 		"carrosvip.permissao",
-		"corarma.permissao",
-		"mochila.permissao",
-		"player.som"
 	},
 	["Ouro"] = {
 		_config = {
@@ -167,6 +164,7 @@ cfg.groups = {
 			gtype = "vip3"
 		},
 		"ouro.permissao",
+		"mochila.permissao",
 		"carrosvip.permissao",
 		"player.som"
 	},
@@ -211,7 +209,7 @@ cfg.groups = {
 	},
 	["Boost"] = {
 		_config = {
-			title = "Nitro Boost",
+			title = "Nitro Boost 1",
 			gtype = "boost1"
 		},
 		"boost.permissao",
@@ -750,6 +748,14 @@ cfg.groups = {
 			gtype = "job"
 		},
 		"driftking.permissao",
+	},
+
+	["Desmanche"] = {
+		_config = {
+			title = "Desmanche",
+			gtype = "desmanche"
+		},
+		"desmanche.permissao",
 	},
 
 	---------------------------------------------------

@@ -589,7 +589,7 @@ function src.myVehicles(work)
                             if parseInt(os.time()) <= parseInt(vehicle[k2].time + 24 * 60 * 60) then
                                 status = "<span class=\"red\">R$ " .. vRP.format(parseInt(vRP.vehiclePrice(vehicle[k2].vehicle) * 0.2)) .. "</span>"
                             elseif vehicle[k2].detido == 1 then
-                                status = "<span class=\"orange\">R$ " .. vRP.format(parseInt(vRP.vehiclePrice(vehicle[k2].vehicle) * 0.15)) .. "</span>"
+                                status = "<span class=\"orange\">R$ " .. vRP.format(parseInt(vRP.vehiclePrice(vehicle[k2].vehicle) * 0.2)) .. "</span>"
                             else
                                 status = "<span class=\"green\">Gratuita</span>"
                             end
@@ -607,7 +607,7 @@ function src.myVehicles(work)
                             if parseInt(os.time()) <= parseInt(vehicle[k2].time + 24 * 60 * 60) then
                                 status = "<span class=\"red\">R$ " .. vRP.format(parseInt(vRP.vehiclePrice(vehicle[k2].vehicle) * 0.2)) .. "</span>"
                             elseif vehicle[k2].detido == 1 then
-                                status = "<span class=\"orange\">R$ " .. vRP.format(parseInt(vRP.vehiclePrice(vehicle[k2].vehicle) * 0.15)) .. "</span>"
+                                status = "<span class=\"orange\">R$ " .. vRP.format(parseInt(vRP.vehiclePrice(vehicle[k2].vehicle) * 0.2)) .. "</span>"
                             else
                                 status = "<span class=\"green\">Gratuita</span>"
                             end
@@ -627,7 +627,7 @@ function src.myVehicles(work)
                     if parseInt(os.time()) <= parseInt(vehicle[k].time + 24 * 60 * 60) then
                         status = "<span class=\"red\">R$ " .. vRP.format(parseInt(vRP.vehiclePrice(vehicle[k].vehicle) * 0.2)) .. "</span>"
                     elseif vehicle[k].detido == 1 then
-                        status = "<span class=\"orange\">R$ " .. vRP.format(parseInt(vRP.vehiclePrice(vehicle[k].vehicle) * 0.15)) .. "</span>"
+                        status = "<span class=\"orange\">R$ " .. vRP.format(parseInt(vRP.vehiclePrice(vehicle[k].vehicle) * 0.2)) .. "</span>"
                     else
                         status = "<span class=\"green\">R$ " .. vRP.format(parseInt(vRP.vehiclePrice(vehicle[k].vehicle) * 0.005)) .. "</span>"
                     end
@@ -659,7 +659,7 @@ function src.spawnVehicles(name, use)
             -- BLOQUEAR RETIRADA DE VEÍCULOS COM X VALOR DE MULTA PENDENTE
             if vRP.vehicleType(tostring(name)) ~= "work" then
                 if multas >= 50000 then
-                    TriggerClientEvent("Notify", source, "negado", "Você tem <b>R$ " .. vRP.format(parseInt(multas)) .. "</b> em multas pendentes, pague-as no banco para retirar seus veículos", 15000)
+                    TriggerClientEvent("Notify", source, "negado", "Você tem <b>R$ " .. vRP.format(parseInt(multas)) .. "</b> em multas pendentes, pague-as no banco ou no celular para retirar seus veículos", 15000)
                     return
                 end
             end
@@ -670,7 +670,7 @@ function src.spawnVehicles(name, use)
                 local custom = json.decode(tuning) or {}
                 if vehicle[1] ~= nil then
                     if parseInt(os.time()) <= parseInt(vehicle[1].time + 24 * 60 * 60) then
-                        local ok = vRP.request(source, "Veículo na retenção, deseja acionar o seguro pagando <b>R$ " .. vRP.format(parseInt(vRP.vehiclePrice(name) * 0.2)) .. "</b> reais ?", 60)
+                        local ok = vRP.request(source, "Seu veículo foi desmanchado, deseja acionar o seguro pagando <b>R$ " .. vRP.format(parseInt(vRP.vehiclePrice(name) * 0.2)) .. "</b> reais ?", 60)
                         if ok then
                             if vRP.tryFullPayment(user_id, parseInt(vRP.vehiclePrice(name) * 0.2)) then
                                 vRP.execute("creative/set_detido", {user_id = parseInt(user_id), vehicle = name, detido = 0, time = 0})
@@ -680,9 +680,9 @@ function src.spawnVehicles(name, use)
                             end
                         end
                     elseif parseInt(vehicle[1].detido) >= 1 then
-                        local ok = vRP.request(source, "Veículo na detenção, deseja acionar o seguro pagando <b>R$ " .. vRP.format(parseInt(vRP.vehiclePrice(name) * 0.10)) .. "</b> reais ?", 60)
+                        local ok = vRP.request(source, "Seu veículo foi detido pela policia, deseja acionar o seguro pagando <b>R$ " .. vRP.format(parseInt(vRP.vehiclePrice(name) * 0.2)) .. "</b> reais ?", 60)
                         if ok then
-                            if vRP.tryFullPayment(user_id, parseInt(vRP.vehiclePrice(name) * 0.10)) then
+                            if vRP.tryFullPayment(user_id, parseInt(vRP.vehiclePrice(name) * 0.2)) then
                                 vRP.execute("creative/set_detido", {user_id = parseInt(user_id), vehicle = name, detido = 0, time = 0})
                                 TriggerClientEvent("Notify", source, "sucesso", "Veículo liberado.", 10000)
                             else
@@ -774,30 +774,30 @@ end
 -----------------------------------------------------------------------------------------------------------------------------------------
 RegisterServerEvent("desmancheVehicles")
 AddEventHandler("desmancheVehicles", function()
-    vRP.antiflood(source, "desmancheVehicles", 3)
+    vRP.antiflood(source, "desmancheVehicles", 2)
     local source = source
     local user_id = vRP.getUserId(source)
-    vRP.antiflood(source, "DesmancheVehicles", 3)
     if user_id then
-        if vRP.hasPermission(user_id, "midnight.permissao") or vRP.hasPermission(user_id, "driftking.permissao") then
+        if vRP.hasPermission(user_id, "desmanche.permissao") then
             local vehicle, vnetid, placa, vname, lock, banned = vRPclient.vehList(source, 7)
             if vehicle and placa then
                 local puser_id = vRP.getUserByRegistration(placa)
                 if puser_id then
                     vRP.execute("creative/set_detido", {user_id = parseInt(puser_id), vehicle = vname, detido = 1, time = parseInt(os.time())})
-                    vRP.giveInventoryItem(user_id, "dinheirosujo", parseInt(vRP.vehiclePrice(vname) * 0.2))
-                    TriggerClientEvent("Notify", source, "sucesso", "Veículo <b>desmanchado</b> com sucesso, você recebeu <b>" .. vRP.format(parseInt(vRP.vehiclePrice(vname) * 0.2)) .. "x em Dinheiro Sujo</b>", 8000)
+                    vRP.giveInventoryItem(user_id, "dinheirosujo", parseInt(vRP.vehiclePrice(vname) * 0.1))
+                    TriggerClientEvent("Notify", source, "sucesso", "Veículo <b>desmanchado</b> com sucesso, você recebeu <b>" .. vRP.format(parseInt(vRP.vehiclePrice(vname) * 0.1)) .. "x em Dinheiro Sujo</b>", 8000)
                     vCLIENT.deleteVehicle(source, vehicle)
                     local identity = vRP.getUserIdentity(user_id)
-                    vRP.Log("```prolog\n[ID]: " .. user_id .. " " .. identity.name .. " " .. identity.firstname .. " \n[DESMANCHOU]: " .. vname .. " [ID]: " .. puser_id .. " \n[VALOR]: R$ " .. vRP.format(parseInt(vRP.vehiclePrice(vname) * 0.2)) .. " " .. os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S") .. " \r```", "DESMANCHE")
+                    vRP.removeUserGroup(user_id, "Desmanche") -- Remover a pessoa da setagem de desmanche
+                    vRP.Log("```prolog\n[ID]: " .. user_id .. " " .. identity.name .. " " .. identity.firstname .. " \n[DESMANCHOU]: " .. vname .. " [ID]: " .. puser_id .. " \n[VALOR]: R$ " .. vRP.format(parseInt(vRP.vehiclePrice(vname) * 0.1)) .. " " .. os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S") .. " \r```", "DESMANCHE")
                 end
             end
         else
-            -- FIX: BANIR CASO NÃO TENHA PERMISSÃO PARA DESMANCHAR
-            vRP.setBanned(parseInt(user_id), true)
-            vRP.setWhitelisted(parseInt(user_id), false)
-            vRP.kick(user_id, "Banido! Motivo: Tentando desmanchar veículos sem permissão!")
-            vRP.Log("```prolog\n[ID]: " .. user_id .. "\n[BANIDO POR]: TENTATIVA DE DESMANCHE SEM PERMISSÃO " .. os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S") .. " \r```", "AC_BAN")
+        -- FIX: BANIR CASO NÃO TENHA PERMISSÃO PARA DESMANCHAR
+			vRP.setBanned(user_id,true)
+			vRP.setWhitelisted(user_id,false)
+			vRP.kick(user_id, "Banido! Motivo: Tentando desmanchar veículos sem permissão!")
+			vRP.Log("```prolog\n[ID]: " .. user_id .. "\n[BANIDO POR]: TENTATIVA DE DESMANCHE SEM PERMISSÃO " .. os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S") .. " \r```", "AC_BAN")
         end
     end
 end)
@@ -1020,6 +1020,8 @@ RegisterCommand('vehs', function(source, args, rawCommand)
             elseif vRP.hasPermission(nuser_id, "platina.permissao") then
                 totalGaragens = totalGaragens + 4
             elseif vRP.hasPermission(nuser_id, "ouro.permissao") then
+                totalGaragens = totalGaragens + 2
+            elseif vRP.hasPermission(nuser_id, "prata.permissao") then
                 totalGaragens = totalGaragens + 2
             elseif vRP.hasPermission(nuser_id, "apoiador.permissao") then
                 totalGaragens = totalGaragens + 1

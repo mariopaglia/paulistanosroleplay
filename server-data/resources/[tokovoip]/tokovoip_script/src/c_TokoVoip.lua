@@ -177,7 +177,7 @@ function TokoVoip.initialize(self)
 			elseif (IsControlPressed(0, self.radioKey) and self.plugin_data.radioChannel ~= -1 and self.config.radioEnabled) then -- Talk on radio
 				self.plugin_data.radioTalking = true;
 				self.plugin_data.localRadioClicks = true;
-				DisableControlAction(0,25,true) -- Desabilita a mira
+				-- DisableControlAction(0,25,true) -- Desabilita a mira
 				DisablePlayerFiring(PlayerPedId(),true) -- Desabilita atirar
 				if (self.plugin_data.radioChannel > self.config.radioClickMaxChannel) then
 					self.plugin_data.localRadioClicks = false;

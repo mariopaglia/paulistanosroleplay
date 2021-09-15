@@ -8,6 +8,7 @@ salarii = {
   -- VIPS
   {"boost.permissao", 2500, "Nitro Boost 1"},
   {"boostii.permissao", 5000, "Nitro Boost 2"},
+  {"prata.permissao", 3000, "VIP Prata"},
   {"ouro.permissao", 8000, "VIP Ouro"},
   {"platina.permissao", 8000, "VIP Platina"},
   {"esmeralda.permissao", 8000, "VIP Esmeralda"},

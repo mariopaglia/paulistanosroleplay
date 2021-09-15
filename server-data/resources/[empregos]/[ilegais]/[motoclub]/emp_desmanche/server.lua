@@ -7,12 +7,6 @@ Tunnel.bindInterface("emp_desmanche",emP)
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- FUNÇÕES
 -----------------------------------------------------------------------------------------------------------------------------------------
-function emP.checkPermission(perm)
-	local source = source
-	local user_id = vRP.getUserId(source)
-	return vRP.hasPermission(user_id,perm)
-end
-
 function emP.checkVehicle()
 	local source = source
 	local user_id = vRP.getUserId(source)
@@ -40,19 +34,36 @@ function emP.checkVehicle()
 						return
 					end
 				end
-
 			return true
 		end
 	end
 end
 
+function emP.addGroup()
+	local source = source
+	local user_id = vRP.getUserId(source)
+	vRP.addUserGroup(user_id,"Desmanche")
+end
+
+function emP.removeGroup()
+	local source = source
+	local user_id = vRP.getUserId(source)
+	vRP.removeUserGroup(user_id,"Desmanche")
+end
+
+function emP.checkPermission()
+	local source = source
+	local user_id = vRP.getUserId(source)
+	return vRP.hasPermission(user_id,"desmanche.permissao")
+end
+
 function emP.checkItem()
 	local source = source
 	local user_id = vRP.getUserId(source)
-	if vRP.getInventoryItemAmount(user_id,"macarico") >= 1 then
-		vRP.tryGetInventoryItem(user_id,"macarico",1)
+	if vRP.getInventoryItemAmount(user_id,"listadesmanche") >= 1 then
+		vRP.tryGetInventoryItem(user_id,"listadesmanche",1)
 		return true
 	else
-		TriggerClientEvent("Notify",source,"negado","Você necessita de <b>1x Maçarico</b> para realizar o desmanche",5000)
+		TriggerClientEvent("Notify",source,"negado","Você necessita de <b>1 x Maçarico</b> para realizar o desmanche",5000)
 	end
 end

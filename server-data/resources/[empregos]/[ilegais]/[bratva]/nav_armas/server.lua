@@ -13,7 +13,7 @@ local valores = {
 	{ item = "corpodemp5", quantidade = 1, compra = 25000, venda = 10 },
 	{ item = "corpodefiveseven", quantidade = 1, compra = 10000, venda = 10 }, -- Antigo valor R$ 83000
 	{ item = "corpodehkp7m10", quantidade = 1, compra = 8000, venda = 10 },
-	{ item = "mola", quantidade = 1, compra = 1000, venda = 10 },
+	{ item = "mola", quantidade = 10, compra = 10000, venda = 10 },
 	{ item = "gatilho", quantidade = 1, compra = 5000, venda = 10 },
 	{ item = "capsula", quantidade = 25, compra = 2500, venda = 10 },
 }

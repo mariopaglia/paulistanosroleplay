@@ -187,6 +187,10 @@ local user_id = vRP.getUserId(source)
 					vRP.varyExp(user_id,"physical","strength",650)
 					TriggerClientEvent("Notify",source,"sucesso","Mochila utilizada com sucesso.",8000)
 				end
+			elseif itemName == "listadesmanche" then
+				if vRP.getInventoryItemAmount(user_id,"listadesmanche") >= 1 then
+					TriggerClientEvent('rotadesmanche',source)
+				end
 			elseif itemName == "maconha" then
 				if vRP.tryGetInventoryItem(user_id,"maconha",1) then
 					actived[user_id] = true

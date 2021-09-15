@@ -4,6 +4,7 @@ Config.Priority = {
 	['founder'] = 100,
 	['admin'] = 100,
 	['Boost'] = 10,
+	['Prata'] = 10,
 	['Ouro'] = 25,
 	['Platina'] = 50,
 	['Esmeralda'] = 75,

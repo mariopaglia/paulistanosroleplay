@@ -29,6 +29,10 @@ local Teleport = {
 	positionFrom = { ['x'] = 616.38, ['y'] = -1.62, ['z'] = 82.79, ['perm'] = "policia.permissao" }, -- 
 	positionTo = { ['x'] = 565.68, ['y'] = 4.89, ['z'] = 103.24, ['perm'] = "policia.permissao" },
 	},
+	["VANILLA"] = {
+	positionFrom = { ['x'] = 133.16, ['y'] = -1293.63, ['z'] = 29.27, ['perm'] = "vanilla.permissao" }, -- 
+	positionTo = { ['x'] = 132.65, ['y'] = -1287.28, ['z'] = 29.28, ['perm'] = "vanilla.permissao" },
+	},
 }
 
 Citizen.CreateThread(function()

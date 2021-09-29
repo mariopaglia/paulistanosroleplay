@@ -310,7 +310,7 @@ Citizen.CreateThread(function()
     end
 end)
 
-local salarr = vRP.getWebhook("ANUNCIO_RR")
+-- local salarr = vRP.getWebhook("ANUNCIO_RR")
 
 Citizen.CreateThread(function()
     while true do
@@ -318,25 +318,25 @@ Citizen.CreateThread(function()
         hora = os.date("%H:%M")
 		if hora == "5:49" or hora == "16:49" then
 			TriggerClientEvent("cloud:raios",-1,30)
-			PerformHttpRequest(salarr, function(err, text, headers) end, 'POST', json.encode({
-				embeds = {
-					{ 
-						title = "**DEFESA CIVIL INFORMA:**",
-						fields = {
-							{ 
-								name = "\nUMA TEMPESTADE ESTÁ SE APROXIMANDO EM 10 MINUTOS!\n\n", 
-								value = "**PROCUREM ABRIGO E PROTEJAM-SE!** \n"
-							},
-						}, 
-						footer = { 
-							text = 'Atenciosamente Fenix City', 
-							icon_url = "https://media.discordapp.net/attachments/876988159706157136/886347892724477992/GIF.gif"
-						},
-						color = 0xff0000
-					}
-				}
-			}), { ['Content-Type'] = 'application/json' })
-			vRP.Log("@everyone","ANUNCIO_RR")
+			-- PerformHttpRequest(salarr, function(err, text, headers) end, 'POST', json.encode({
+			-- 	embeds = {
+			-- 		{ 
+			-- 			title = "**DEFESA CIVIL INFORMA:**",
+			-- 			fields = {
+			-- 				{ 
+			-- 					name = "\nUMA TEMPESTADE ESTÁ SE APROXIMANDO EM 10 MINUTOS!\n\n", 
+			-- 					value = "**PROCUREM ABRIGO E PROTEJAM-SE!** \n"
+			-- 				},
+			-- 			}, 
+			-- 			footer = { 
+			-- 				text = 'Atenciosamente Fenix City', 
+			-- 				icon_url = "https://media.discordapp.net/attachments/876988159706157136/886347892724477992/GIF.gif"
+			-- 			},
+			-- 			color = 0xff0000
+			-- 		}
+			-- 	}
+			-- }), { ['Content-Type'] = 'application/json' })
+			-- vRP.Log("@everyone","ANUNCIO_RR")
         end
 		if hora == "5:50" or hora == "16:50" then
 			CurrentWeather = "THUNDER"

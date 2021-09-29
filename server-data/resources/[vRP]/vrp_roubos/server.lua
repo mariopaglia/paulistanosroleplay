@@ -54,13 +54,21 @@ local lojas = {
 	{ id = 23 , nome = "Loja de Departamento" , segundos = 120 , cops = 4 , recompensa = math.random(200000,250000) },
 	{ id = 24 , nome = "Loja de Departamento" , segundos = 120 , cops = 4 , recompensa = math.random(200000,250000) },
 	{ id = 25 , nome = "Loja de Departamento" , segundos = 120 , cops = 4 , recompensa = math.random(200000,250000) },
+	{ id = 38 , nome = "Loja de Bebidas" , segundos = 60 , cops = 3 , recompensa = math.random(150000,200000) },
+	{ id = 39 , nome = "Loja de Bebidas" , segundos = 60 , cops = 3 , recompensa = math.random(150000,200000) },
+	{ id = 40 , nome = "Loja de Bebidas" , segundos = 60 , cops = 3 , recompensa = math.random(150000,200000) },
+	{ id = 41 , nome = "Loja de Bebidas" , segundos = 60 , cops = 3 , recompensa = math.random(150000,200000) },
 }
 
 local outros = {
 	{ id = 26 , nome = "Açougue" , segundos = 120 , cops = 8 , recompensa = math.random(400000,500000) },
 	{ id = 27 , nome = "Yellow Jack" , segundos = 120 , cops = 5 , recompensa = math.random(300000,350000) },
 	{ id = 28 , nome = "Galinheiro" , segundos = 120 , cops = 8 , recompensa = math.random(400000,500000) },
-	{ id = 29 , nome = "Vanilla" , segundos = 120 , cops = 5 , recompensa = math.random(250000,300000) },
+	{ id = 29 , nome = "Teatro" , segundos = 60 , cops = 8 , recompensa = math.random(350000,400000) },
+	{ id = 35 , nome = "Pier" , segundos = 60 , cops = 6 , recompensa = math.random(250000,300000) },
+	{ id = 36 , nome = "Porto" , segundos = 60 , cops = 6 , recompensa = math.random(250000,300000) },
+	{ id = 37 , nome = "Liquor Ice" , segundos = 60 , cops = 5 , recompensa = math.random(250000,300000) },
+	{ id = 42 , nome = "Aeroporto Norte (Trevor)" , segundos = 60 , cops = 5 , recompensa = math.random(200000,250000) },
 }
 
 local barbearia = {

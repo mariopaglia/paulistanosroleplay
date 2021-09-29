@@ -20,6 +20,10 @@ local Teleport = {
 		positionFrom = { ['x'] = 338.53, ['y'] = -583.77, ['z'] = 74.17 },
 		positionTo = { ['x'] = 332.43, ['y'] = -595.65, ['z'] = 43.29 }
 	},
+	["MOTELVANILLA"] = {
+		positionFrom = { ['x'] = 106.36, ['y'] = -1281.0, ['z'] = 29.27 },
+		positionTo = { ['x'] = 170.83, ['y'] = -1340.94, ['z'] = -37.52 }
+	},
 	["TELEFERICO"] = {
 		positionFrom = { ['x'] = -741.06, ['y'] = 5593.12, ['z'] = 41.65 },
 		positionTo = { ['x'] = 446.15, ['y'] = 5571.72, ['z'] = 781.18 }

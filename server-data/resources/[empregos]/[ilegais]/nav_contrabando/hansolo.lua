@@ -59,6 +59,9 @@ RegisterNUICallback("ButtonClick",function(data,cb)
 	elseif data == "produzir-ticketpvp" then
 		TriggerServerEvent("produzir-contrabando","ticketpvp")
 
+	elseif data == "produzir-listadesmanche" then
+		TriggerServerEvent("produzir-contrabando","listadesmanche")
+
 	elseif data == "fechar" then
 		ToggleActionMenu()
 		onmenu = false

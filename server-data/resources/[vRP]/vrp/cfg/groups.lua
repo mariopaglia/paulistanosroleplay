@@ -8,7 +8,6 @@ cfg.groups = {
 		},
 		"founder.permissao",
 		"staff.permissao",
-		"admin.permissao",
 		"item.permissao",
 		"group.permissao",
 		"fix.permissao",
@@ -95,9 +94,13 @@ cfg.groups = {
 		"staff.permissao",
 		"wl.permissao",
 		"kick.permissao",
+		"ban.permissao",
+		"dv.permissao",
 		"noclip.permissao",
 		"tp.permissao",
 		"polpar.permissao",
+		"player.spec", -- Comando /spec
+		"player.wall", -- Comando /wall
 		"player.blips",
 		"player.noclip",
 		"player.teleport",
@@ -148,6 +151,7 @@ cfg.groups = {
 		"bronze.permissao",
 		"carrosvip.permissao",
 		"mochila.permissao",
+		"vip.permissao",
 		"player.som"
 	},
 	["Prata"] = {
@@ -157,6 +161,7 @@ cfg.groups = {
 		},
 		"prata.permissao",
 		"carrosvip.permissao",
+		"vip.permissao",
 	},
 	["Ouro"] = {
 		_config = {
@@ -166,6 +171,7 @@ cfg.groups = {
 		"ouro.permissao",
 		"mochila.permissao",
 		"carrosvip.permissao",
+		"vip.permissao",
 		"player.som"
 	},
 	["Platina"] = {
@@ -179,6 +185,7 @@ cfg.groups = {
 		"roupavip.permissao",
 		"mochila.permissao",
 		"silenciador.permissao",
+		"vip.permissao",
 		"player.som"
 	},
 	["Esmeralda"] = {
@@ -192,6 +199,7 @@ cfg.groups = {
 		"roupavip.permissao",
 		"mochila.permissao",
 		"silenciador.permissao",
+		"vip.permissao",
 		"player.som"
 	},
 	["Diamante"] = {
@@ -205,6 +213,7 @@ cfg.groups = {
 		"roupavip.permissao",
 		"mochila.permissao",
 		"silenciador.permissao",
+		"vip.permissao",
 		"player.som"
 	},
 	["Boost"] = {
@@ -519,6 +528,23 @@ cfg.groups = {
 	---------------------------------------------------
 	-- SPORTRACE \\ FENIX CUSTOMS
 	---------------------------------------------------
+	["SportRaceL"] = {
+		_config = {
+			title = "Líder Fenix Customs",
+			gtype = "job"
+		},
+		"mecanico.permissao",
+		"sportracel.permissao",
+		"player.blips",
+	},
+	["SportRaceLP"] = {
+		_config = {
+			title = "Paisana Mecanico",
+			gtype = "job"
+		},
+		"player.blips",
+		"sportracelp.permissao",
+	},
 	["SportRace"] = {
 		_config = {
 			title = "Mecânico(a) Fenix Customs",
@@ -577,6 +603,14 @@ cfg.groups = {
 	---------------------------------------------------
 	-- VANILLA
 	---------------------------------------------------
+	["VanillaL"] = {
+		_config = {
+			title = "Líder Vanilla",
+			gtype = "promoter"
+		},
+		"vanilla.permissao",
+		"lojinha.permissao",
+	},
 	["Vanilla"] = {
 		_config = {
 			title = "Vanilla",

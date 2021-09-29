@@ -2,7 +2,7 @@
 -- PEDS
 -------------------------------------------------
 Citizen.CreateThread(function()
-	AddTextEntry("FE_THDR_GTAO","Fênix City - discord.gg/fenixcity")
+	AddTextEntry("FE_THDR_GTAO","Fênix City - discord.gg/F3Jp5J2")
 	while true do
 		Citizen.Wait(4)
 		N_0xf4f2c0d4ee209e20()

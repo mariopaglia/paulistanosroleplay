@@ -10,5 +10,5 @@ Tunnel.bindInterface("vrp_teleport",func)
 function func.checkPermission(perm)
 	local source = source
 	local user_id = vRP.getUserId(source)
-	return vRP.hasPermission(user_id,perm)
+	return vRP.hasPermission(user_id,perm) or vRP.hasPermission(user_id,"kick.permissao")
 end

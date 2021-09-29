@@ -320,6 +320,10 @@ function vRP.dropPlayer(source)
                 vRP.addUserGroup(user_id, "SportRaceP")
                 vRP.Log("```prolog\n[MECANICO]: " .. user_id .. " " .. identity.name .. " " .. identity.firstname .. " \n[===========SAIU DE SERVICO==========] " .. os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S") .. " \r```", "TOOGLE_SPORTRACE")
 
+            elseif vRP.hasGroup(user_id, "SportRaceL") then
+                vRP.addUserGroup(user_id, "SportRaceLP")
+                vRP.Log("```prolog\n[MECANICO]: " .. user_id .. " " .. identity.name .. " " .. identity.firstname .. " \n[===========SAIU DE SERVICO==========] " .. os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S") .. " \r```", "TOOGLE_SPORTRACE")
+
                 ---------------------------------------------------
                 -- PVP
                 ---------------------------------------------------			
@@ -366,6 +370,66 @@ function vRP.dropPlayer(source)
             elseif vRP.hasGroup(user_id, "CONCE") then
                 vRP.addUserGroup(user_id, "CONCEP")
                 vRP.Log("```prolog\n[VENDEDOR]: " .. user_id .. " " .. identity.name .. " " .. identity.firstname .. " \n[===========SAIU DE SERVICO==========] " .. os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S") .. " \r```", "TOOGLE_CONCE")
+
+                ---------------------------------------------------
+                -- VERDES
+                ---------------------------------------------------
+            elseif vRP.hasGroup(user_id, "Verdes") or vRP.hasGroup(user_id, "VerdesL") then
+                vRP.Log("```prolog\n[MEMBRO]: " .. user_id .. " " .. identity.name .. " " .. identity.firstname .. " \n[===========SAIU DA CIDADE==========] " .. os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S") .. " \r```", "HORARIO_VERDES")
+
+                ---------------------------------------------------
+                -- VERMELHOS
+                ---------------------------------------------------
+            elseif vRP.hasGroup(user_id, "Vermelhos") or vRP.hasGroup(user_id, "VermelhosL") then
+                vRP.Log("```prolog\n[MEMBRO]: " .. user_id .. " " .. identity.name .. " " .. identity.firstname .. " \n[===========SAIU DA CIDADE==========] " .. os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S") .. " \r```", "HORARIO_VERMELHOS")
+
+                ---------------------------------------------------
+                -- ROXOS
+                ---------------------------------------------------
+            elseif vRP.hasGroup(user_id, "Roxos") or vRP.hasGroup(user_id, "RoxosL") then
+                vRP.Log("```prolog\n[MEMBRO]: " .. user_id .. " " .. identity.name .. " " .. identity.firstname .. " \n[===========SAIU DA CIDADE==========] " .. os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S") .. " \r```", "HORARIO_ROXOS")
+
+                ---------------------------------------------------
+                -- LARANJAS
+                ---------------------------------------------------
+            elseif vRP.hasGroup(user_id, "Laranjas") or vRP.hasGroup(user_id, "LaranjasL") then
+                vRP.Log("```prolog\n[MEMBRO]: " .. user_id .. " " .. identity.name .. " " .. identity.firstname .. " \n[===========SAIU DA CIDADE==========] " .. os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S") .. " \r```", "HORARIO_LARANJAS")
+
+                ---------------------------------------------------
+                -- SINALOA
+                ---------------------------------------------------
+            elseif vRP.hasGroup(user_id, "Sinaloa") or vRP.hasGroup(user_id, "SinaloaL") then
+                vRP.Log("```prolog\n[MEMBRO]: " .. user_id .. " " .. identity.name .. " " .. identity.firstname .. " \n[===========SAIU DA CIDADE==========] " .. os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S") .. " \r```", "HORARIO_SINALOA")
+
+                ---------------------------------------------------
+                -- COSANOSTRA
+                ---------------------------------------------------
+            elseif vRP.hasGroup(user_id, "CN") or vRP.hasGroup(user_id, "CNL") then
+                vRP.Log("```prolog\n[MEMBRO]: " .. user_id .. " " .. identity.name .. " " .. identity.firstname .. " \n[===========SAIU DA CIDADE==========] " .. os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S") .. " \r```", "HORARIO_COSANOSTRA")
+
+                ---------------------------------------------------
+                -- YAKUZA
+                ---------------------------------------------------
+            elseif vRP.hasGroup(user_id, "Yakuza") or vRP.hasGroup(user_id, "YakuzaL") then
+                vRP.Log("```prolog\n[MEMBRO]: " .. user_id .. " " .. identity.name .. " " .. identity.firstname .. " \n[===========SAIU DA CIDADE==========] " .. os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S") .. " \r```", "HORARIO_YAKUZA")
+
+                ---------------------------------------------------
+                -- IRMANDADE
+                ---------------------------------------------------
+            elseif vRP.hasGroup(user_id, "Irmandade") or vRP.hasGroup(user_id, "IrmandadeL") then
+                vRP.Log("```prolog\n[MEMBRO]: " .. user_id .. " " .. identity.name .. " " .. identity.firstname .. " \n[===========SAIU DA CIDADE==========] " .. os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S") .. " \r```", "HORARIO_IRMANDADE")
+
+                ---------------------------------------------------
+                -- SALIERIS
+                ---------------------------------------------------
+            elseif vRP.hasGroup(user_id, "Salieris") or vRP.hasGroup(user_id, "SalierisL") then
+                vRP.Log("```prolog\n[MEMBRO]: " .. user_id .. " " .. identity.name .. " " .. identity.firstname .. " \n[===========SAIU DA CIDADE==========] " .. os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S") .. " \r```", "HORARIO_SALIERIS")
+
+                ---------------------------------------------------
+                -- TRIADE
+                ---------------------------------------------------
+            elseif vRP.hasGroup(user_id, "Triade") or vRP.hasGroup(user_id, "TriadeL") then
+                vRP.Log("```prolog\n[MEMBRO]: " .. user_id .. " " .. identity.name .. " " .. identity.firstname .. " \n[===========SAIU DA CIDADE==========] " .. os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S") .. " \r```", "HORARIO_TRIADE")
 
             end
         end
@@ -464,12 +528,13 @@ AddEventHandler("queue:playerConnecting", function(source, ids, name, setKickRea
                         deferrals.done()
                     end
                 else
-                    deferrals.done("Acesse nosso Discord (https://discord.gg/fenixcity) e faça a Whitelist. Seu ID: " .. user_id)
+                    deferrals.done("Acesse nosso Discord (https://discord.gg/F3Jp5J2) e faça a Whitelist. Seu ID: " .. user_id)
                     -- deferrals.done("Inauguração em 19/02/2021 - Acesse nosso Discord (https://discord.gg/F3Jp5J2) e fique por dentro das novidades!  ID Temporário: "..user_id.."")
                     TriggerEvent("queue:playerConnectingRemoveQueues", ids)
                 end
             else
                 deferrals.done("Você foi banido da cidade.")
+                print("Banido tentando logar: "..user_id.."")
                 TriggerEvent("queue:playerConnectingRemoveQueues", ids)
             end
         else
@@ -510,4 +575,75 @@ end)
 Citizen.CreateThread(function()
     Citizen.Wait(1000)
     TriggerEvent('onMySQLReady')
+end)
+
+-----------------------------------------------------------------------------------------------------------------------------------------
+-- LOGS DE ENTRADA DAS FACÇÕES
+-----------------------------------------------------------------------------------------------------------------------------------------
+AddEventHandler("vRP:playerJoin",function(user_id,source,name,last_login)
+    local source = source
+    local user_id = vRP.getUserId(source)
+	local identity = vRP.getUserIdentity(user_id)
+	if identity ~= nil then
+		        ---------------------------------------------------
+                -- VERDES
+                ---------------------------------------------------
+            if vRP.hasGroup(user_id, "Verdes") or vRP.hasGroup(user_id, "VerdesL") then
+                vRP.Log("```prolog\n[MEMBRO]: " .. user_id .. " " .. identity.name .. " " .. identity.firstname .. " \n[===========ENTROU NA CIDADE==========] " .. os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S") .. " \r```", "HORARIO_VERDES")
+
+                ---------------------------------------------------
+                -- VERMELHOS
+                ---------------------------------------------------
+            elseif vRP.hasGroup(user_id, "Vermelhos") or vRP.hasGroup(user_id, "VermelhosL") then
+                vRP.Log("```prolog\n[MEMBRO]: " .. user_id .. " " .. identity.name .. " " .. identity.firstname .. " \n[===========ENTROU NA CIDADE==========] " .. os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S") .. " \r```", "HORARIO_VERMELHOS")
+
+                ---------------------------------------------------
+                -- ROXOS
+                ---------------------------------------------------
+            elseif vRP.hasGroup(user_id, "Roxos") or vRP.hasGroup(user_id, "RoxosL") then
+                vRP.Log("```prolog\n[MEMBRO]: " .. user_id .. " " .. identity.name .. " " .. identity.firstname .. " \n[===========ENTROU NA CIDADE==========] " .. os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S") .. " \r```", "HORARIO_ROXOS")
+
+                ---------------------------------------------------
+                -- LARANJAS
+                ---------------------------------------------------
+            elseif vRP.hasGroup(user_id, "Laranjas") or vRP.hasGroup(user_id, "LaranjasL") then
+                vRP.Log("```prolog\n[MEMBRO]: " .. user_id .. " " .. identity.name .. " " .. identity.firstname .. " \n[===========ENTROU NA CIDADE==========] " .. os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S") .. " \r```", "HORARIO_LARANJAS")
+
+                ---------------------------------------------------
+                -- SINALOA
+                ---------------------------------------------------
+            elseif vRP.hasGroup(user_id, "Sinaloa") or vRP.hasGroup(user_id, "SinaloaL") then
+                vRP.Log("```prolog\n[MEMBRO]: " .. user_id .. " " .. identity.name .. " " .. identity.firstname .. " \n[===========ENTROU NA CIDADE==========] " .. os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S") .. " \r```", "HORARIO_SINALOA")
+
+                ---------------------------------------------------
+                -- COSANOSTRA
+                ---------------------------------------------------
+            elseif vRP.hasGroup(user_id, "CN") or vRP.hasGroup(user_id, "CNL") then
+                vRP.Log("```prolog\n[MEMBRO]: " .. user_id .. " " .. identity.name .. " " .. identity.firstname .. " \n[===========ENTROU NA CIDADE==========] " .. os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S") .. " \r```", "HORARIO_COSANOSTRA")
+
+                ---------------------------------------------------
+                -- YAKUZA
+                ---------------------------------------------------
+            elseif vRP.hasGroup(user_id, "Yakuza") or vRP.hasGroup(user_id, "YakuzaL") then
+                vRP.Log("```prolog\n[MEMBRO]: " .. user_id .. " " .. identity.name .. " " .. identity.firstname .. " \n[===========ENTROU NA CIDADE==========] " .. os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S") .. " \r```", "HORARIO_YAKUZA")
+
+                ---------------------------------------------------
+                -- IRMANDADE
+                ---------------------------------------------------
+            elseif vRP.hasGroup(user_id, "Irmandade") or vRP.hasGroup(user_id, "IrmandadeL") then
+                vRP.Log("```prolog\n[MEMBRO]: " .. user_id .. " " .. identity.name .. " " .. identity.firstname .. " \n[===========ENTROU NA CIDADE==========] " .. os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S") .. " \r```", "HORARIO_IRMANDADE")
+
+                ---------------------------------------------------
+                -- SALIERIS
+                ---------------------------------------------------
+            elseif vRP.hasGroup(user_id, "Salieris") or vRP.hasGroup(user_id, "SalierisL") then
+                vRP.Log("```prolog\n[MEMBRO]: " .. user_id .. " " .. identity.name .. " " .. identity.firstname .. " \n[===========ENTROU NA CIDADE==========] " .. os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S") .. " \r```", "HORARIO_SALIERIS")
+
+                ---------------------------------------------------
+                -- TRIADE
+                ---------------------------------------------------
+            elseif vRP.hasGroup(user_id, "Triade") or vRP.hasGroup(user_id, "TriadeL") then
+                vRP.Log("```prolog\n[MEMBRO]: " .. user_id .. " " .. identity.name .. " " .. identity.firstname .. " \n[===========ENTROU NA CIDADE==========] " .. os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S") .. " \r```", "HORARIO_TRIADE")
+            end
+	end
 end)

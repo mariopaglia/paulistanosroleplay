@@ -74,7 +74,7 @@ Citizen.CreateThread(function()
 				local distance = GetDistanceBetweenCoords(v.x,v.y,cdz,x,y,z,true)
 				local pegarBlips = pegarBlips[k]
 
-				if distance <= 3 then
+				if distance <= 5 then
 					idle = 5
 					DrawMarker(21,pegarBlips.x, pegarBlips.y, pegarBlips.z-0.6,0,0,0,0.0,0,0,0.5,0.5,0.4,255,0,0,50,0,0,0,1)
 					if distance <= 1.2 then

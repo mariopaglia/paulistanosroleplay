@@ -7,7 +7,7 @@ Config.LocalSaida = {
 }
 
 Config.bliplocal = {
-    { 1730.6500244141,3308.9821777344,41.223449707031 }   -- LOCAL DO BLIP DE ENTRADA
+    { 2350.37,3133.22,48.21 }   -- LOCAL DO BLIP DE ENTRADA
 }
 
 

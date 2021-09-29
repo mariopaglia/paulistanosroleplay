@@ -15,9 +15,9 @@
       <animConvRoofName>null</animConvRoofName>
       <animConvRoofWindowsAffected />
       <ptfxAssetName>null</ptfxAssetName>
-      <audioNameHash>sultanrs</audioNameHash>
+      <audioNameHash>visione</audioNameHash>
       <layout>LAYOUT_LOW</layout>
-      <coverBoundOffsets>T20_COVER_OFFSET_INFO</coverBoundOffsets>
+      <coverBoundOffsets>OSIRIS_COVER_OFFSET_INFO</coverBoundOffsets>
       <explosionInfo>EXPLOSION_INFO_DEFAULT</explosionInfo>
       <scenarioLayout />
       <cameraName>FOLLOW_CHEETAH_CAMERA</cameraName>

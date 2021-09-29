@@ -15,9 +15,9 @@
       <animConvRoofName>null</animConvRoofName>
       <animConvRoofWindowsAffected />
       <ptfxAssetName>veh_ba_oppressor2</ptfxAssetName>
-      <audioNameHash>sultanrs</audioNameHash>
+      <audioNameHash>casco</audioNameHash>
       <layout>LAYOUT_LOW</layout>
-      <coverBoundOffsets>ELEGYRETRO_COVER_OFFSET_INFO</coverBoundOffsets>
+      <coverBoundOffsets>ISSI7_COVER_OFFSET_INFO</coverBoundOffsets>
       <explosionInfo>EXPLOSION_INFO_DEFAULT</explosionInfo>
       <scenarioLayout />
       <cameraName>DEFAULT_FOLLOW_VEHICLE_CAMERA</cameraName>

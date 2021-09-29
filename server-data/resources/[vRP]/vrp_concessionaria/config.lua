@@ -358,8 +358,8 @@ Config.Veiculos = {
         categoria = {title = "Caminhão", id = "caminhao"},
         veiculos = {
             {title = "Mule2", model = "mule2", mala = 500, preco = 1500000, estoque = 10}, -- Novo | atualizar baú pra 500
-            {title = "Benson", model = "benson", mala = 750, preco = 2000000, estoque = 3}, -- Novo | atualizar baú pra 750
-            {title = "Pounder", model = "pounder", mala = 1000, preco = 2500000, estoque = 3}, -- Novo | atualizar baú pra 1000
+            {title = "Benson", model = "benson", mala = 750, preco = 2000000, estoque = 10}, -- Novo | atualizar baú pra 750
+            {title = "Pounder", model = "pounder", mala = 1000, preco = 2500000, estoque = 10}, -- Novo | atualizar baú pra 1000
         },
     },
     {

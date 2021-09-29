@@ -42,8 +42,8 @@ function func.checkRobbery(id,x,y,z,head)
 	local identity = vRP.getUserIdentity(user_id)
 	local crds = GetEntityCoords(GetPlayerPed(source))
 	if user_id then
-		local policia = vRP.getUsersByPermission("pmesp.permissao")
-		if #policia >= 0 then
+		local policia = vRP.getUsersByPermission("policia.permissao")
+		if #policia >= 1 then
 			vRPclient._playAnim(source,false,{{"amb@prop_human_atm@male@idle_a","idle_a"}},true)
 			if timers[id] == 0 or not timers[id] then
 				timers[id] = 1800

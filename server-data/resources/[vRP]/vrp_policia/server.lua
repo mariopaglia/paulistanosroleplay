@@ -321,6 +321,22 @@ RegisterCommand('toogle', function(source, args, rawCommand)
         -- SPORTRACE
         -----------------------------------------------------------------------------------------------------------------------------------------
         ---------------------
+        -- LÍDER FÊNIX CUSTOMS
+        ---------------------
+    elseif vRP.hasPermission(user_id, "sportracel.permissao") then
+        -- TriggerEvent('eblips:remove',source)
+        vRP.addUserGroup(user_id, "SportRaceLP")
+        TriggerClientEvent("Notify", source, "sucesso", "Você saiu de serviço.")
+        vRP.Log("```prolog\n[MECANICO]: " .. user_id .. " " .. identity.name .. " " .. identity.firstname .. " \n[===========SAIU DE SERVICO==========] " .. os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S") .. " \r```", "TOOGLE_SPORTRACE")
+        TriggerClientEvent('desligarRadios', source)
+
+    elseif vRP.hasPermission(user_id, "sportracelp.permissao") then
+        vRP.addUserGroup(user_id, "SportRaceL")
+        -- TriggerEvent('eblips:add',{ name = "Mecanico", src = source, color = 48 })
+        TriggerClientEvent("Notify", source, "sucesso", "Você entrou em serviço.")
+        vRP.Log("```prolog\n[MECANICO]: " .. user_id .. " " .. identity.name .. " " .. identity.firstname .. " \n[==========ENTROU EM SERVICO=========] " .. os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S") .. " \r```", "TOOGLE_SPORTRACE")
+
+        ---------------------
         -- MECANICO
         ---------------------
     elseif vRP.hasPermission(user_id, "sportrace.permissao") then
@@ -329,6 +345,7 @@ RegisterCommand('toogle', function(source, args, rawCommand)
         TriggerClientEvent("Notify", source, "sucesso", "Você saiu de serviço.")
         vRP.Log("```prolog\n[MECANICO]: " .. user_id .. " " .. identity.name .. " " .. identity.firstname .. " \n[===========SAIU DE SERVICO==========] " .. os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S") .. " \r```", "TOOGLE_SPORTRACE")
         TriggerClientEvent('desligarRadios', source)
+
     elseif vRP.hasPermission(user_id, "paisanasportrace.permissao") then
         vRP.addUserGroup(user_id, "SportRace")
         -- TriggerEvent('eblips:add',{ name = "Mecanico", src = source, color = 48 })
@@ -620,7 +637,7 @@ end)
 RegisterCommand('algemar', function(source, args, rawCommand)
     local source = source
     local user_id = vRP.getUserId(source)
-    if vRP.hasPermission(user_id, "admin.permissao") then
+    if vRP.hasPermission(user_id, "founder.permissao") then
         if args[1] then
             local nplayer = vRP.getUserSource(parseInt(args[1]))
             if vRPclient.isHandcuffed(nplayer) then
@@ -1023,7 +1040,7 @@ local itemlist = {
 
 RegisterCommand('apreender', function(source, args, rawCommand)
     local user_id = vRP.getUserId(source)
-    if vRP.hasPermission(user_id, "policia.permissao") or vRP.hasPermission(user_id, "admin.permissao") then
+    if vRP.hasPermission(user_id, "policia.permissao") or vRP.hasPermission(user_id, "kick.permissao") then
         local user_id = vRP.getUserId(source)
         local nplayer = vRPclient.getNearestPlayer(source, 2)
         if nplayer then

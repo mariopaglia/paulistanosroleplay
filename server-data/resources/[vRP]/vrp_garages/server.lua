@@ -484,7 +484,7 @@ local garages = {
     [655] = {['name'] = "Garagem", ['payment'] = false, ['perm'] = "midnight.permissao"}, -- GARAGEM MIDNIGHT
     [656] = {['name'] = "Garagem", ['payment'] = false, ['public'] = true}, -- GARAGEM ROXOS
     [657] = {['name'] = "Garagem", ['payment'] = false, ['public'] = true}, -- GARAGEM COSANOSTRA
-    [658] = {['name'] = "Bennys", ['payment'] = false, ['perm'] = "sportrace.permissao"}, -- Bennys
+    [658] = {['name'] = "Bennys", ['payment'] = false, ['perm'] = "mecanico.permissao"}, -- Bennys
     [659] = {['name'] = "Bicicletario", ['payment'] = false, ['public'] = true}, -- BICICLETARIO EM FRENTE AO FENIX PLAZA
     [660] = {['name'] = "Garagem", ['payment'] = false, ['public'] = true}, -- HELIPONTO PROXIMO A DP DA PRAIA
     [661] = {['name'] = "DIC", ['payment'] = false, ['perm'] = "admin.permissao"}, -- DIC - Policia Investigativa
@@ -502,6 +502,7 @@ local garages = {
     [673] = {['name'] = "DIC", ['payment'] = false, ['perm'] = "pmfciv.permissao"}, -- DIC DP PRACA
     [674] = {['name'] = "Garagem", ['payment'] = false, ['public'] = true}, -- GARAGEM PESSOAL SERPENTES
     [675] = {['name'] = "PoliciaHeli", ['payment'] = false, ['perm'] = "policia.permissao"}, -- Heliponto DP VINEWOOD
+    [676] = {['name'] = "Bicicletario", ['payment'] = false, ['public'] = true}, -- Heliponto DP VINEWOOD
 }
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- GARAGEMS
@@ -524,7 +525,7 @@ local workgarage = {
     ["SportRace"] = {"flatbed", "slamvan3", "brawler"},
     ["DIC"] = {"dicgt63", "cls63s"},
     ["PRF"] = {"cruzeprf2", "l200prf", "trailprf", "ec130PRF"},
-    ["Policia"] = {"riot", "pbus", "ghispo2", "porschespeed", "VRa3", "VRa4", "VRrs5", "VRrs6", "VRrs6av", "VRraptor", "VRtahoe", "VRdm1200", "VRq8"},
+    ["Policia"] = {"riot", "pbus", "ghispo2", "porschespeed", "VRa3", "VRa4", "VRrs5", "VRrs6", "VRrs6av", "VRraptor", "VRtahoe", "VRdm1200", "VRq8", "flatbed"},
     ["PoliciaHeli"] = {"polmav"},
     ["ROTA"] = {"sw4revrota1", "trailrota2"},
     ["PMESP"] = {"pbus", "riot", "20blazer2", "police3", "spacepm1", "trailcfp", "trailpm1", "av-gt63", "av-m8", "policeb"},
@@ -806,7 +807,7 @@ end)
 -----------------------------------------------------------------------------------------------------------------------------------------
 RegisterCommand('dv', function(source, args, rawCommand)
     local user_id = vRP.getUserId(source)
-    if vRP.hasPermission(user_id, "dv.permissao") then
+    if vRP.hasPermission(user_id, "dv.permissao") or vRP.hasPermission(user_id, "founder.permissao") then
         local vehicle = vRPclient.getNearestVehicle(source, 7)
         local vnetid, placa, vname, nome, banned = vRPclient.vehList(source, 7)
         if vehicle then
@@ -1125,7 +1126,7 @@ end)
 RegisterCommand('savelivery', function(source, args, rawCommand)
     local source = source
     local user_id = vRP.getUserId(source)
-    if vRP.hasPermission(user_id, "admin.permissao") then
+    if vRP.hasPermission(user_id, "founder.permissao") then
         local vehicle, vnetid, placa, vname = vRPclient.vehList(source, 7)
         if vehicle and placa then
             local puser_id = vRP.getUserByRegistration(placa)
@@ -1145,14 +1146,14 @@ end)
 function src.CheckLiveryPermission()
     local source = source
     local user_id = vRP.getUserId(source)
-    return vRP.hasPermission(user_id, "admin.permissao")
+    return vRP.hasPermission(user_id, "founder.permissao")
 end
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- HASH
 -----------------------------------------------------------------------------------------------------------------------------------------
 RegisterCommand('hash', function(source, args, rawCommand)
     local user_id = vRP.getUserId(source)
-    if vRP.hasPermission(user_id, "admin.permissao") then
+    if vRP.hasPermission(user_id, "admin.permissao") or vRP.hasPermission(user_id, "founder.permissao") then
         local vehassh = vCLIENT.getHash(source, vehiclehash)
         vRP.prompt(source, "Hash:", "" .. vehassh)
     end

@@ -43,11 +43,11 @@ cfg.list = {
 	[35] = { text = true, hash = 964838196, ['x'] = 424.24, ['y'] = -1501.03, ['z'] = 30.16, lock = true, perm = "salieris.permissao" },--
 
 	-- VANILLA
-	--[32] = { text = true, hash = -1116041313, ['x'] = 129.08, ['y'] = -1298.43, ['z'] = 29.24, lock = true, perm = "promoter.permissao" }, -- Entrada do Vanilla
-	--[33] = { text = true, hash = -1243191778, ['x'] = 116.57, ['y'] = -1294.65, ['z'] = 29.28, lock = true, perm = "promoter.permissao", other = 34 }, -- Cortina da direita
-	--[34] = { text = true, hash = -731110611, ['x'] = 116.77, ['y'] = -1295.35, ['z'] = 29.27, lock = true, perm = "promoter.permissao", other = 33 }, -- Cortina da esquerda
-	--[35] = { text = true, hash = -495720969, ['x'] = 113.94, ['y'] = -1296.36, ['z'] = 29.27, lock = true, perm = "promoter.permissao" }, -- Entrada do camarin
-	--[36] = { text = true, hash = 2966018, ['x'] = 95.01, ['y'] = -1284.93, ['z'] = 29.28, lock = true, perm = "promoter.permissao" }, -- Entrada dos fundos
+	[32] = { text = true, hash = -1116041313, ['x'] = 129.08, ['y'] = -1298.43, ['z'] = 29.24, lock = true, perm = "vanilla.permissao" }, -- Entrada do Vanilla
+	--[33] = { text = true, hash = -1243191778, ['x'] = 116.57, ['y'] = -1294.65, ['z'] = 29.28, lock = true, perm = "vanilla.permissao", other = 34 }, -- Cortina da direita
+	--[34] = { text = true, hash = -731110611, ['x'] = 116.77, ['y'] = -1295.35, ['z'] = 29.27, lock = true, perm = "vanilla.permissao", other = 33 }, -- Cortina da esquerda
+	--[35] = { text = true, hash = -495720969, ['x'] = 113.94, ['y'] = -1296.36, ['z'] = 29.27, lock = true, perm = "vanilla.permissao" }, -- Entrada do camarin
+	[36] = { text = true, hash = 2966018, ['x'] = 95.01, ['y'] = -1284.93, ['z'] = 29.28, lock = true, perm = "vanilla.permissao" }, -- Entrada dos fundos
 	
 	-- HOSPITAL DA PRAÇA
 	[37] = { text = true, hash = 854291622, ['x'] = 339.87, ['y'] = -586.51, ['z'] = 43.29, lock = true, perm = "samuiv.permissao" },

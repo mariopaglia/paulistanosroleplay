@@ -302,6 +302,15 @@ function emP.checkPermissionSilenciador()
 end
 
 -----------------------------------------------------------------------------------------------------------------------------------------
+-- CHECAR PERMISSÃO ANIMAÇÕES (CAVALINHO/CARREGAR)
+-----------------------------------------------------------------------------------------------------------------------------------------
+function emP.checkPermAnimacao()
+	local source = source
+	local user_id = vRP.getUserId(source)
+	return vRP.hasPermission(user_id,'vip.permissao')
+end
+
+-----------------------------------------------------------------------------------------------------------------------------------------
 -- GUARDAR COLETE
 -----------------------------------------------------------------------------------------------------------------------------------------
 RegisterCommand('gcolete',function(source,args,rawCommand)
@@ -515,7 +524,7 @@ RegisterCommand('revistar',function(source,args,rawCommand)
 		local money = vRP.getMoney(nuser_id)
 		local data = vRP.getUserDataTable(nuser_id)
 
-		if vRP.hasPermission(user_id,"policia.permissao") or vRP.hasPermission(user_id,"admin.permissao") then
+		if vRP.hasPermission(user_id,"policia.permissao") or vRP.hasPermission(user_id,"kick.permissao") then
 
 			TriggerClientEvent('cancelando',source,true)
 			TriggerClientEvent('cancelando',nplayer,true)
@@ -639,7 +648,7 @@ end)
 -----------------------------------------------------------------------------------------------------------------------------------------
 RegisterCommand('tratamento',function(source,args,rawCommand)
 	local user_id = vRP.getUserId(source)
-	if vRP.hasPermission(user_id,"paramedico.permissao") or vRP.hasPermission(user_id,"admin.permissao") then
+	if vRP.hasPermission(user_id,"paramedico.permissao") or vRP.hasPermission(user_id,"founder.permissao") then
 		local nplayer = vRPclient.getNearestPlayer(source,3)
 		if nplayer then
 			-- if vRPNclient.isNearCds(source, vector3(323.8,-593.75,43.29), 30) or vRPNclient.isNearCds(source, vector3(722.09,162.63,80.72), 30) then
@@ -821,75 +830,76 @@ RegisterServerEvent("trydoors")
 AddEventHandler("trydoors",function(nveh,door)
 	TriggerClientEvent("syncdoors",-1,nveh,door)
 end)
------------------------------------------------------------------------------------------------------------------------------------------
--- CALL
------------------------------------------------------------------------------------------------------------------------------------------
-local blips = {}
-RegisterCommand('call',function(source,args,rawCommand)
-	local source = source
-	local answered = false
-	local user_id = vRP.getUserId(source)
-	if user_id then
-		local players = {}
-		if args[1] == "adm" then
-			players = vRP.getUsersByPermission("staff.permissao")
-		-- else args[1] == "190" then
-		-- 	players = vRP.getUsersByPermission("policia.permissao")
-		-- elseif args[1] == "192" then
-		-- 	players = vRP.getUsersByPermission("paramedico.permissao")
-		-- elseif args[1] == "mec" then
-		-- 	players = vRP.getUsersByPermission("mecanico.permissao")
-		-- elseif args[1] == "taxi" then
-		-- 	players = vRP.getUsersByPermission("taxista.permissao")
-		-- elseif args[1] == "adv" then
-		-- 	players = vRP.getUsersByPermission("judiciario.permissao")
-		else
-			TriggerClientEvent("Notify",source,"negado","Serviço inexistente ou disponível somente pelo <b>Celular</b>")
-			return
-		end
+-- -----------------------------------------------------------------------------------------------------------------------------------------
+-- -- CALL
+-- -----------------------------------------------------------------------------------------------------------------------------------------
+-- local blips = {}
+-- RegisterCommand('call',function(source,args,rawCommand)
+-- 	local source = source
+-- 	local answered = false
+-- 	local user_id = vRP.getUserId(source)
+-- 	if user_id then
+-- 		local players = {}
+-- 		if args[1] == "adm" then
+-- 			players = vRP.getUsersByPermission("staff.permissao")
+-- 		-- else args[1] == "190" then
+-- 		-- 	players = vRP.getUsersByPermission("policia.permissao")
+-- 		-- elseif args[1] == "192" then
+-- 		-- 	players = vRP.getUsersByPermission("paramedico.permissao")
+-- 		-- elseif args[1] == "mec" then
+-- 		-- 	players = vRP.getUsersByPermission("mecanico.permissao")
+-- 		-- elseif args[1] == "taxi" then
+-- 		-- 	players = vRP.getUsersByPermission("taxista.permissao")
+-- 		-- elseif args[1] == "adv" then
+-- 		-- 	players = vRP.getUsersByPermission("judiciario.permissao")
+-- 		else
+-- 			TriggerClientEvent("Notify",source,"negado","Serviço inexistente ou disponível somente pelo <b>Celular</b>")
+-- 			return
+-- 		end
 
-		local descricao = vRP.prompt(source,"Descrição:","")
-		if descricao == "" then
-			return
-		end
+-- 		local descricao = vRP.prompt(source,"Descrição:","")
+-- 		if descricao == "" then
+-- 			return
+-- 		end
 
-		local identitys = vRP.getUserIdentity(user_id)
-		local crds = GetEntityCoords(GetPlayerPed(source))
-		TriggerClientEvent("Notify",source,"sucesso","Chamado enviado com sucesso.")
-		vRP.Log("```prolog\n[ID]: "..user_id.." "..identitys.name.." "..identitys.firstname.." \n[CHAMOU]: "..args[1].."\n[MENSAGEM]: '"..descricao.."'\n[COORDENADA]: "..crds.x..","..crds.y..","..crds.z..""..os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S").."```", "CMD_CALL")
-		for l,w in pairs(players) do
-			local player = vRP.getUserSource(parseInt(w))
-			local nuser_id = vRP.getUserId(player)
-			local x,y,z = vRPclient.getPosition(source)
-			local uplayer = vRP.getUserSource(user_id)
+-- 		local identitys = vRP.getUserIdentity(user_id)
+-- 		local crds = GetEntityCoords(GetPlayerPed(source))
+-- 		TriggerClientEvent("Notify",source,"sucesso","Chamado enviado com sucesso.")
+-- 		vRP.Log("```prolog\n[ID]: "..user_id.." "..identitys.name.." "..identitys.firstname.." \n[CHAMOU]: "..args[1].."\n[MENSAGEM]: '"..descricao.."'\n[COORDENADA]: "..crds.x..","..crds.y..","..crds.z..""..os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S").."```", "CMD_CALL")
+-- 		for l,w in pairs(players) do
+-- 			local player = vRP.getUserSource(parseInt(w))
+-- 			local nuser_id = vRP.getUserId(player)
+-- 			local x,y,z = vRPclient.getPosition(source)
+-- 			local uplayer = vRP.getUserSource(user_id)
 			
 
-			if player and player ~= uplayer then
-				async(function()
-					vRPclient.playSound(player,"Out_Of_Area","DLC_Lowrider_Relay_Race_Sounds")
-					TriggerClientEvent('chatMessage',player,"CHAMADO",{255,0,0},"Enviado por ^1"..identitys.name.." "..identitys.firstname.."^0 ["..user_id.."]: "..descricao)
-					local ok = vRP.request(player,"Aceitar o chamado de <b>"..identitys.name.." "..identitys.firstname.."</b>?",30)
-					if ok then
-						if not answered then
-							answered = true
-							local identity = vRP.getUserIdentity(nuser_id)
-							-- TriggerClientEvent("Notify",source,"importante","Chamado atendido por <b>"..identity.name.." "..identity.firstname.."</b>, aguarde no local.")
-							TriggerClientEvent("Notify",source,"importante","Chamado atendido, aguarde no local.")
-							vRPclient.playSound(source,"Event_Message_Purple","GTAO_FM_Events_Soundset")
-							vRPclient._setGPS(player,x,y)
-						else
-							TriggerClientEvent("Notify",player,"negado","Chamado ja foi atendido por outra pessoa.")
-							vRPclient.playSound(player,"CHECKPOINT_MISSED","HUD_MINI_GAME_SOUNDSET")
-						end
-					end
-					local id = idgens:gen()
-					blips[id] = vRPclient.addBlip(player,x,y,z,358,71,"Chamado",0.6,false)
-					SetTimeout(300000,function() vRPclient.removeBlip(player,blips[id]) idgens:free(id) end)
-				end)
-			end
-		end
-	end
-end)
+-- 			if player and player ~= uplayer then
+-- 				async(function()
+-- 					vRPclient.playSound(player,"Out_Of_Area","DLC_Lowrider_Relay_Race_Sounds")
+-- 					TriggerClientEvent('chatMessage',player,"CHAMADO",{255,0,0},"Enviado por ^1"..identitys.name.." "..identitys.firstname.."^0 ["..user_id.."]: "..descricao)
+-- 					local ok = vRP.request(player,"Aceitar o chamado de <b>"..identitys.name.." "..identitys.firstname.."</b>?",30)
+-- 					if ok then
+-- 						if not answered then
+-- 							answered = true
+-- 							local identity = vRP.getUserIdentity(nuser_id)
+-- 							vRP.Log("```prolog\n[QUEM ACEITOU]: "..nuser_id.." "..identity.name.." "..identity.firstname.." \n[CHAMADO]:"..descricao.."\n[FEITO POR]: "..user_id.." "..identitys.name.." "..identitys.firstname..""..os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S").."```", "CALL_ADM_ATENDIDO")
+-- 							-- TriggerClientEvent("Notify",source,"importante","Chamado atendido por <b>"..identity.name.." "..identity.firstname.."</b>, aguarde no local.")
+-- 							TriggerClientEvent("Notify",source,"importante","Chamado atendido, aguarde no local.")
+-- 							vRPclient.playSound(source,"Event_Message_Purple","GTAO_FM_Events_Soundset")
+-- 							vRPclient._setGPS(player,x,y)
+-- 						else
+-- 							TriggerClientEvent("Notify",player,"negado","Chamado ja foi atendido por outra pessoa.")
+-- 							vRPclient.playSound(player,"CHECKPOINT_MISSED","HUD_MINI_GAME_SOUNDSET")
+-- 						end
+-- 					end
+-- 					local id = idgens:gen()
+-- 					blips[id] = vRPclient.addBlip(player,x,y,z,358,71,"Chamado",0.6,false)
+-- 					SetTimeout(300000,function() vRPclient.removeBlip(player,blips[id]) idgens:free(id) end)
+-- 				end)
+-- 			end
+-- 		end
+-- 	end
+-- end)
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- P
 -----------------------------------------------------------------------------------------------------------------------------------------
@@ -959,6 +969,43 @@ local roupas = {
 			[10] = { -1,0 },
 			[11] = { 286,0 },
 			["p1"] = { 25,0 }
+		}
+	},
+	["picuinha"] = {
+		[1885233650] = { -- Masculino                          
+			[1] = {169,14,2},
+			[2] = {21,0,0},
+			[3] = {146,1,2},
+			[4] = {78,6,2},
+			[5] = {29,12,1},
+			[6] = {9,3,1},
+			[7] = {0,0,2},
+			[8] = {15,0,2},
+			[9] = {0,0,1},
+			[10] = {-1,0,2},
+			[11] = {10,4,2},
+			[0] = {0,0,0},
+			["p1"] = {11,3},
+			["p2"] = {-1,0},
+			["p7"] = {-1,0},
+			["p6"] = {-1,0},
+			["p0"] = {130,0},
+		},
+		[-1667301416] = { -- Feminino
+			[1] = {169,14,1},
+			[2] = {75,0,0},
+			[3] = {179,1,1},
+			[4] = {80,6,1},
+			[5] = {26,12,1},
+			[6] = {32,0,1},
+			[7] = {5,6,1},
+			[8] = {6,0,1},
+			[9] = {-1,0,0},
+			[10] = {-1,0,0},
+			[11] = {74,0,1},
+			[0] = {0,0,0},
+			["p7"] = {-1,0},
+			["p6"] = {-1,0},
 		}
 	},
     ["lixeiro"] = {
@@ -1271,7 +1318,7 @@ end)
 -----------------------------------------------------------------------------------------------------------------------------------------
 RegisterCommand('fac',function(source,args,rawCommand)
 	local user_id = vRP.getUserId(source)        
-	if vRP.hasPermission(user_id,"admin.permissao") or vRP.hasPermission(user_id,"mod.permissao") or vRP.hasPermission(user_id,"sup.permissao") then
+	if vRP.hasPermission(user_id,"founder.permissao") then
 		local onlinePlayers2 = GetNumPlayerIndices()
 		-- Drogas
 		local roxos = vRP.getUsersByPermission("roxos.permissao")
@@ -1286,10 +1333,7 @@ RegisterCommand('fac',function(source,args,rawCommand)
 		local irmandade = vRP.getUsersByPermission("irmandade.permissao")
 		local triade = vRP.getUsersByPermission("triade.permissao")
 		local salieris = vRP.getUsersByPermission("salieris.permissao")
-		-- Desmanche
-		local midnight = vRP.getUsersByPermission("midnight.permissao")
-		local driftking = vRP.getUsersByPermission("driftking.permissao")
-		TriggerClientEvent("Notify",source,"importante","<b>Jogadores:</b> "..onlinePlayers2.."<br><b>Roxos:</b> "..#roxos.."<br><b>Verdes:</b> "..#verdes.."<br><b>Laranjas:</b> "..#laranjas.."<br><b>Vermelhos:</b> "..#vermelhos.."<br><b>Sinaloa:</b> "..#sinaloa.."<br><b>Yakuza:</b> "..#yakuza.."<br><b>CN:</b> "..#cn.."<br><b>Irmandade:</b> "..#irmandade.."<br><b>Triade:</b> "..#triade.."<br><b>Salieri's:</b> "..#salieris.."<br><b>MidNight:</b> "..#midnight.."<br><b>DriftKing:</b> "..#driftking.."",9000)
+		TriggerClientEvent("Notify",source,"importante","<b>Jogadores:</b> "..onlinePlayers2.."<br><b>Roxos:</b> "..#roxos.."<br><b>Verdes:</b> "..#verdes.."<br><b>Laranjas:</b> "..#laranjas.."<br><b>Vermelhos:</b> "..#vermelhos.."<br><b>Sinaloa:</b> "..#sinaloa.."<br><b>Yakuza:</b> "..#yakuza.."<br><b>CN:</b> "..#cn.."<br><b>Irmandade:</b> "..#irmandade.."<br><b>Triade:</b> "..#triade.."<br><b>Salieri's:</b> "..#salieris.."",9000)
 	end
 end)	
 -----------------------------------------------------------------------------------------------------------------------------------------
@@ -1297,7 +1341,7 @@ end)
 -----------------------------------------------------------------------------------------------------------------------------------------
 RegisterCommand('status',function(source,args,rawCommand)
 	local user_id = vRP.getUserId(source)        
-	if vRP.hasPermission(user_id,"admin.permissao") or vRP.hasPermission(user_id,"mod.permissao") or vRP.hasPermission(user_id,"sup.permissao") then
+	if vRP.hasPermission(user_id,"staff.permissao") then
 		local onlinePlayers2 = GetNumPlayerIndices()
 		local advogados2 = vRP.getUsersByPermission("judiciario.permissao")
     	local policia2 = vRP.getUsersByPermission("policia.permissao")
@@ -1399,40 +1443,40 @@ end)
 ------------------------------------------------------------
 --  CARREGAR NO OMBRO
 ----------------------------------------------------------------
--- RegisterServerEvent('cmg2_animations:sync654654654')
--- AddEventHandler('cmg2_animations:sync654654654', function(target, animationLib,animationLib2, animation, animation2, distans, distans2, height,targetSrc,length,spin,controlFlagSrc,controlFlagTarget,animFlagTarget)
--- 	vRP.antiflood(source,"cmg2_animations:sync654654654",3)
--- 	function getDistance(coords, ncoords) return #(vector3(coords.x, coords.y, coords.z) - vector3(ncoords.x, ncoords.y, ncoords.z))end
+RegisterServerEvent('cmg2_animations:sync654654654')
+AddEventHandler('cmg2_animations:sync654654654', function(target, animationLib,animationLib2, animation, animation2, distans, distans2, height,targetSrc,length,spin,controlFlagSrc,controlFlagTarget,animFlagTarget)
+	vRP.antiflood(source,"cmg2_animations:sync654654654",3)
+	function getDistance(coords, ncoords) return #(vector3(coords.x, coords.y, coords.z) - vector3(ncoords.x, ncoords.y, ncoords.z))end
 
--- 	local ped = GetPlayerPed(source) 
--- 	local loc = GetEntityCoords(ped) 
--- 	local nped = GetPlayerPed(targetSrc) 
--- 	local nloc = GetEntityCoords(nped)
+	local ped = GetPlayerPed(source) 
+	local loc = GetEntityCoords(ped) 
+	local nped = GetPlayerPed(targetSrc) 
+	local nloc = GetEntityCoords(nped)
 	
--- 	if(getDistance(nloc,loc)<8)then	
--- 		TriggerClientEvent('cmg2_animations:syncTarget654654654', targetSrc, source, animationLib2, animation2, distans, distans2, height, length,spin,controlFlagTarget,animFlagTarget)
--- 		TriggerClientEvent('cmg2_animations:syncMe654654654', source, animationLib, animation,length,controlFlagSrc,animFlagTarget)
--- 	else
--- 		local user_id = vRP.getUserId(source)
--- 		source = vRP.getUserSource(user_id)
--- 		if source ~= nil then
--- 			local reason = "ANTI HACK: 	localização:	"..loc.x..","..loc.y..","..loc.z
--- 			vRP.setBanned(user_id,true)					
--- 			local temp = os.date("%x  %X")
--- 			local msg = "Puxando todos players!"
--- 			PerformHttpRequest(ac_webhook, function(err, text, headers) end, 'POST', json.encode({content = "ANTI HACK	[ID]: "..user_id.."		"..temp.."[BAN]		[MOTIVO:"..msg.."]	"..reason}), { ['Content-Type'] = 'application/json' }) 		
--- 			TriggerClientEvent("vrp_sound:source",source,"ban",1.0)
--- 			Citizen.Wait(4000)
--- 			source = vRP.getUserSource(user_id)						
--- 		end
--- 	end
--- end)
+	if(getDistance(nloc,loc)<8)then	
+		TriggerClientEvent('cmg2_animations:syncTarget654654654', targetSrc, source, animationLib2, animation2, distans, distans2, height, length,spin,controlFlagTarget,animFlagTarget)
+		TriggerClientEvent('cmg2_animations:syncMe654654654', source, animationLib, animation,length,controlFlagSrc,animFlagTarget)
+	else
+		local user_id = vRP.getUserId(source)
+		source = vRP.getUserSource(user_id)
+		if source ~= nil then
+			local reason = "ANTI HACK: 	localização:	"..loc.x..","..loc.y..","..loc.z
+			vRP.setBanned(user_id,true)					
+			local temp = os.date("%x  %X")
+			local msg = "Puxando todos players!"
+			PerformHttpRequest(ac_webhook, function(err, text, headers) end, 'POST', json.encode({content = "ANTI HACK	[ID]: "..user_id.."		"..temp.."[BAN]		[MOTIVO:"..msg.."]	"..reason}), { ['Content-Type'] = 'application/json' }) 		
+			TriggerClientEvent("vrp_sound:source",source,"ban",1.0)
+			Citizen.Wait(4000)
+			source = vRP.getUserSource(user_id)						
+		end
+	end
+end)
 
 
--- RegisterServerEvent('cmg2_animations:stop654654654')
--- AddEventHandler('cmg2_animations:stop654654654', function(targetSrc)
--- 	TriggerClientEvent('cmg2_animations:cl_stop654654654', targetSrc)
--- end)
+RegisterServerEvent('cmg2_animations:stop654654654')
+AddEventHandler('cmg2_animations:stop654654654', function(targetSrc)
+	TriggerClientEvent('cmg2_animations:cl_stop654654654', targetSrc)
+end)
 
 ------------------------------------------------------------
 -- PEGAR DE REFEM
@@ -1452,53 +1496,63 @@ end)
 ------------------------------------------------------------
 -- CAVALINHO
 ----------------------------------------------------------------
--- RegisterServerEvent('cmg2_animations:sync654654654_2')
--- AddEventHandler('cmg2_animations:sync654654654_2', function(target, animationLib, animation, animation2, distans, distans2, height,targetSrc,length,spin,controlFlagSrc,controlFlagTarget,animFlagTarget)	
--- 	vRP.antiflood(source,"cmg2_animations:sync654654654",3)
--- 	function getDistance(coords, ncoords) return #(vector3(coords.x, coords.y, coords.z) - vector3(ncoords.x, ncoords.y, ncoords.z))end
+RegisterServerEvent('cmg2_animations:sync654654654_2')
+AddEventHandler('cmg2_animations:sync654654654_2', function(target, animationLib, animation, animation2, distans, distans2, height,targetSrc,length,spin,controlFlagSrc,controlFlagTarget,animFlagTarget)	
+	vRP.antiflood(source,"cmg2_animations:sync654654654",3)
+	function getDistance(coords, ncoords) return #(vector3(coords.x, coords.y, coords.z) - vector3(ncoords.x, ncoords.y, ncoords.z))end
 
--- 	local ped = GetPlayerPed(source) 
--- 	local loc = GetEntityCoords(ped) 
--- 	local nped = GetPlayerPed(targetSrc) 
--- 	local nloc = GetEntityCoords(nped)
+	local ped = GetPlayerPed(source) 
+	local loc = GetEntityCoords(ped) 
+	local nped = GetPlayerPed(targetSrc) 
+	local nloc = GetEntityCoords(nped)
 	
--- 	if(getDistance(nloc,loc)<8)then	
--- 		TriggerClientEvent('cmg2_animations:syncTarget654654654', targetSrc, source, animationLib, animation2, distans, distans2, height, length,spin,controlFlagTarget,animFlagTarget)
--- 		TriggerClientEvent('cmg2_animations:syncMe654654654', source, animationLib, animation,length,controlFlagSrc,animFlagTarget)
--- 	else
--- 		local user_id = vRP.getUserId(source)
--- 		source = vRP.getUserSource(user_id)
--- 		if source ~= nil then
--- 			local reason = "ANTI HACK: 	localização:	"..loc.x..","..loc.y..","..loc.z
--- 			vRP.setBanned(user_id,true)					
--- 			local temp = os.date("%x  %X")
--- 			local msg = "Puxando todos players!"
--- 			PerformHttpRequest(ac_webhook, function(err, text, headers) end, 'POST', json.encode({content = "ANTI HACK	[ID]: "..user_id.."		"..temp.."[BAN]		[MOTIVO:"..msg.."]	"..reason}), { ['Content-Type'] = 'application/json' }) 		
--- 			TriggerClientEvent("vrp_sound:source",source,"ban",1.0)
--- 			Citizen.Wait(4000)
--- 			source = vRP.getUserSource(user_id)						
--- 		end
--- 	end	
--- end)
+	if(getDistance(nloc,loc)<8)then	
+		TriggerClientEvent('cmg2_animations:syncTarget654654654', targetSrc, source, animationLib, animation2, distans, distans2, height, length,spin,controlFlagTarget,animFlagTarget)
+		TriggerClientEvent('cmg2_animations:syncMe654654654', source, animationLib, animation,length,controlFlagSrc,animFlagTarget)
+	else
+		local user_id = vRP.getUserId(source)
+		source = vRP.getUserSource(user_id)
+		if source ~= nil then
+			local reason = "ANTI HACK: 	localização:	"..loc.x..","..loc.y..","..loc.z
+			vRP.setBanned(user_id,true)					
+			local temp = os.date("%x  %X")
+			local msg = "Puxando todos players!"
+			PerformHttpRequest(ac_webhook, function(err, text, headers) end, 'POST', json.encode({content = "ANTI HACK	[ID]: "..user_id.."		"..temp.."[BAN]		[MOTIVO:"..msg.."]	"..reason}), { ['Content-Type'] = 'application/json' }) 		
+			TriggerClientEvent("vrp_sound:source",source,"ban",1.0)
+			Citizen.Wait(4000)
+			source = vRP.getUserSource(user_id)						
+		end
+	end	
+end)
 
--- RegisterServerEvent('cmg2_animations:stop654654654')
--- AddEventHandler('cmg2_animations:stop654654654', function(targetSrc)
--- 	if targetSrc then
--- 		TriggerClientEvent('cmg2_animations:cl_stop654654654', targetSrc)
--- 	end
--- end)
+RegisterServerEvent('cmg2_animations:stop654654654')
+AddEventHandler('cmg2_animations:stop654654654', function(targetSrc)
+	if targetSrc then
+		TriggerClientEvent('cmg2_animations:cl_stop654654654', targetSrc)
+	end
+end)
 
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- AVISO DE SERVIDOR ONLINE
 -----------------------------------------------------------------------------------------------------------------------------------------
 Citizen.CreateThread(function()
     PerformHttpRequest("https://discord.com/api/webhooks/881267755339350058/GXZaLxLl490YXq01HNCB1Sw-hlDHtcuwgng-2vI5Zizgz9TwrBUv4f3uU9_rUnBM7iXk", function(err, text, headers) end, 'POST', json.encode({
-        content = '||@everyone||',
+        username = "Fênix City",
+        avatar_url = "https://cdn.discordapp.com/attachments/795675862350430288/844269660882862101/v2.gif",
+        content = '||<@&748524310939041808>||',
         embeds = {
             {
-                description = '**SERVIDOR ONLINE, BOM RP À TODOS:**\n\nAperte F8 e cole: **connect cfx.re/join/mpmeq9**\n\nOu entre diretamente pela lista do FiveM',
-                color = 65280 -- Se quiser mudar a cor é aqui
+                title = "SERVIDOR ONLINE, BOM RP À TODOS!",
+                color = 65280,
+                description = "**Para entrar na cidade, utilize um dos métodos abaixo:**\n\n**Método 1:**\nAbra o FiveM > Aperte F8 > Cole: **connect cfx.re/join/mpmeq9**\n\n**Método 2:**\nAbra o FiveM > Pesquise por **Fenix City** > **Connect**\n\nLembrando que para jogar é necessário estar conectado em nosso <#756544512691667035>",
+                thumbnail = {
+                    url = "https://cdn.discordapp.com/attachments/795675862350430288/844269660882862101/v2.gif"
+                },
+                footer = {
+                    text = "Equipe Fênix City",
+                    icon_url = "https://cdn.discordapp.com/attachments/795675862350430288/844269660882862101/v2.gif"
+                },
             }
-        }
+        },
     }), { ['Content-Type'] = 'application/json' })
 end)

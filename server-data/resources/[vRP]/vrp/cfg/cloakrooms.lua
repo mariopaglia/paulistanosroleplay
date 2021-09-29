@@ -16,7 +16,7 @@ end
 
 cfg.cloakroom_types = {
 	["Uniforme Fenix Customs"] = {
-		_config = {permissions = {"sportrace.permissao"}},
+		_config = {permissions = {"mecanico.permissao"}},
 		["Mecanico [1]"] = {
 			[1] = {0,0,0},
 			[3] = {30,0,2},

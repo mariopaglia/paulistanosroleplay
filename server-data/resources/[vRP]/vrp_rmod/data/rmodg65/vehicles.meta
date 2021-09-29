@@ -15,9 +15,9 @@
       <animConvRoofName>null</animConvRoofName>
       <animConvRoofWindowsAffected />
       <ptfxAssetName>null</ptfxAssetName>
-      <audioNameHash>hotknife</audioNameHash>
+      <audioNameHash>verlierer2</audioNameHash>
       <layout>LAYOUT_STANDARD</layout>
-      <coverBoundOffsets>XLS_COVER_OFFSET_INFO</coverBoundOffsets>
+      <coverBoundOffsets>OSIRIS_COVER_OFFSET_INFO</coverBoundOffsets>
       <explosionInfo>EXPLOSION_INFO_DEFAULT</explosionInfo>
       <scenarioLayout />
       <cameraName>DEFAULT_FOLLOW_VEHICLE_CAMERA</cameraName>

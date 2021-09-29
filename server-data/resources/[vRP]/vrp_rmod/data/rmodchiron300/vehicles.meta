@@ -8,16 +8,16 @@
       <txdName>rmodchiron300</txdName>
       <handlingId>rmodchiron300</handlingId>
       <gameName>rmodchiron300</gameName>
-      <vehicleMakeName>BUGATTI</vehicleMakeName>
+      <vehicleMakeName>Chiron 300</vehicleMakeName>
       <expressionDictName>null</expressionDictName>
       <expressionName>null</expressionName>
       <animConvRoofDictName>null</animConvRoofDictName>
       <animConvRoofName>null</animConvRoofName>
       <animConvRoofWindowsAffected />
       <ptfxAssetName>null</ptfxAssetName>
-      <audioNameHash>monster</audioNameHash>
+      <audioNameHash>prototipo</audioNameHash>
       <layout>LAYOUT_LOW</layout>
-      <coverBoundOffsets>PROTO_COVER_OFFSET_INFO</coverBoundOffsets>
+      <coverBoundOffsets>OSIRIS_COVER_OFFSET_INFO</coverBoundOffsets>
       <explosionInfo>EXPLOSION_INFO_DEFAULT</explosionInfo>
       <scenarioLayout />
       <cameraName>FOLLOW_CHEETAH_CAMERA</cameraName>

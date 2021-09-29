@@ -546,9 +546,12 @@ local user_id = vRP.getUserId(source)
 					-- end
 
 					TriggerClientEvent('cancelando',source,true)
-					vRPclient._playAnim(source,false,{{"amb@prop_human_parking_meter@female@idle_a","idle_a_female"}},true)
-					TriggerClientEvent("progress",source,30000,"roubando")
-					SetTimeout(30000,function()
+					-- vRPclient._playAnim(source,false,{{"amb@prop_human_parking_meter@female@idle_a","idle_a_female"}},true) -- Antiga
+					-- vRPclient._playAnim(source,false,{{"oddjobs@shop_robbery@rob_till","loop"}},true) -- Registradora
+					-- vRPclient.playAnim(source,false,{{"missheistfbi3b_ig7","lift_fibagent_loop"}},false) -- Toctoc
+					vRPclient._playAnim(source,false,{{"missfbi_s4mop","clean_mop_back_player"}},true)
+					TriggerClientEvent("progress",source,15000,"roubando")
+					SetTimeout(15000,function()
 						actived[user_id] = nil
 						TriggerClientEvent('cancelando',source,false)
 						vRPclient._stopAnim(source,false)
@@ -604,7 +607,7 @@ local user_id = vRP.getUserId(source)
 				local vehicle,vnetid,placa,vname,lock,banned,trunk,model,street = vRPclient.vehList(source,7)
 				local policia = vRP.getUsersByPermission("pmesp.permissao")
 
-				if not vRP.hasPermission(user_id,"admin.permissao") then
+				if not vRP.hasPermission(user_id,"admin.permissao") or vRP.hasPermission(user_id, "founder.permissao") then
 					TriggerClientEvent("Notify",source,"negado","Apenas administradores podem utilizar a Masterpick.")
 					return true
 				end
@@ -613,7 +616,7 @@ local user_id = vRP.getUserId(source)
 					TriggerClientEvent("Notify",source,"importante","Número insuficiente de policiais no momento para iniciar o roubo.")
 					return true
 				end
-				if vRP.hasPermission(user_id,"policia.permissao") or vRP.hasPermission(user_id,"admin.permissao") then
+				if vRP.hasPermission(user_id,"policia.permissao") or vRP.hasPermission(user_id,"admin.permissao") or vRP.hasPermission(user_id, "founder.permissao") then
 					TriggerEvent("setPlateEveryone",placa)
 					vGARAGE.vehicleClientLock(-1,vnetid,lock)
 					TriggerClientEvent("vrp_sound:source",source,'lock',0.5)

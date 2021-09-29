@@ -12,7 +12,7 @@ CONF_.webhook = "https://discord.com/api/webhooks/885643958481457193/a1VX1spw9d0
 -- FEED DE MORTES IN GAME
 -------------------------------------------------------------------------------------------------------------------------
 CONF_.notify = "notify" -- **false** desativa, **chat** receberá via chat, **notify** via notify em cima do mini-mapa e **notifykill** via notify com imagem
-CONF_.feedOnOff = "admin.permissao" -- permissão para ativar ou desativar as notificações in-game, exemplo abaixo:
+CONF_.feedOnOff = "founder.permissao" -- permissão para ativar ou desativar as notificações in-game, exemplo abaixo:
 -- utilizando o comando in-game "/feedmortes chat" altera para modo chat
 -- utilizando o comando in-game "/feedmortes notify" altera para modo notificação em cima do mini-mapa
 -- utilizando o comando in-game "/feedmortes notifykill" altera para modo notificação com imagem
@@ -40,6 +40,7 @@ CONF_.creative = false -- Caso a sua base seja Creative (tipo Bahamas) deixar tr
 CONF_.safezone = true  -- Para habilitar a detecção de morte em safezone alterar para TRUE
 
 CONF_.safes = {
+	{ ['x'] = 194.02, ['y'] = -933.99, ['z'] = 32.98, ['range'] = 90, ['nome'] = "Praça" },
 	{ ['x'] = 46.72, ['y'] = -867.54, ['z'] = 30.51, ['range'] = 60, ['nome'] = "Garagem 1" },
 	{ ['x'] = 341.42, ['y'] = 2626.26, ['z'] = 44.51, ['range'] = 60, ['nome'] = "Garagem 2" },
 	{ ['x'] = -774.7, ['y'] = 5578.64, ['z'] = 33.49, ['range'] = 60, ['nome'] = "Garagem 3" },

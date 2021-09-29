@@ -64,11 +64,11 @@ Citizen.CreateThread(function()
         -- end
 		SetDiscordAppId(756846972077342781)
 		SetDiscordRichPresenceAsset('logo')
-        SetRichPresence("discord.gg/fenixcity")
+        SetRichPresence("discord.gg/F3Jp5J2")
         -- SetRichPresence("Jogadores Online: "..#players)
 
-        SetDiscordRichPresenceAssetText('discord.gg/fenixcity')
-		SetDiscordRichPresenceAction(0, "Discord", "https://discord.gg/fenixcity") -- Botão 1
+        SetDiscordRichPresenceAssetText('discord.gg/F3Jp5J2')
+		SetDiscordRichPresenceAction(0, "Discord", "https://discord.gg/F3Jp5J2") -- Botão 1
 		SetDiscordRichPresenceAction(1, "Entrar na Cidade", "fivem://connect/cfx.re/join/mpmeq9") -- Botão 2
 	end
 end)

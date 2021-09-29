@@ -37,7 +37,8 @@ Salas["CMD_CAR"] = "https://discord.com/api/webhooks/793197093690671134/CVTPwlTg
 Salas["CMD_GROUP"] = "https://discord.com/api/webhooks/795669087896338462/QeH-0wMplpMq8pfvuxIlA_XmQKyWcERkOzy0c5yBjLidBa7W6EkndzS-ul4s4hq3t33-"
 Salas["CMD_GOD"] = "https://discord.com/api/webhooks/797212560821977100/0gudVRGoejjBJrrKGrYRREhIbnMpD5Ts1s4MqPivDoGLS4vXIuqci9n6jinY5pXv40VG"
 Salas["CMD_SAQUEAR"] = "https://discord.com/api/webhooks/793600303437971546/Mq-CbSWOOD7CYQo48zM_Ie8M0-KUIdfLLdqjQiG2WJsXAbqiLN1ZSfWqY_bxbxtf4XUr"
-Salas["CMD_PAINEL"] = "https://discord.com/api/webhooks/795669087896338462/QeH-0wMplpMq8pfvuxIlA_XmQKyWcERkOzy0c5yBjLidBa7W6EkndzS-ul4s4hq3t33-"
+Salas["CMD_PAINEL"] = "https://discord.com/api/webhooks/809981445413666827/bkCHxarpInZ3p8KccORt1PKVqjwUaeeGRHyLerogeOW0y486XXyxSfOl8Vlvc51KWVb6"
+Salas["CMD_ROUBAR"] = "https://discord.com/api/webhooks/888464144339202078/lZeIYe9JtT7UdtvOVhUu3DHc0_QMMw8tYmIzCdV_emjASj_ta6YF6YmQYINYuut3fryn"
 
 ---------------------------------------------------------------------------------------------------------------------------------------------------
 -- DIVERSOS
@@ -59,6 +60,7 @@ Salas["ECONOMIA"] = "https://discord.com/api/webhooks/811814703176089672/h_NGmW7
 Salas["ARSENAL_POLICIA"] = "https://discord.com/api/webhooks/808411223833182218/IVVL1jdarDhdXkULG9VEPcs_o5FeshCU7g7nNsmLvZ3wT6YDyb43769D-iZtGOW9VWL4"
 Salas["ANUNCIO_RR"] = "https://discord.com/api/webhooks/881267755339350058/GXZaLxLl490YXq01HNCB1Sw-hlDHtcuwgng-2vI5Zizgz9TwrBUv4f3uU9_rUnBM7iXk"
 Salas["DISPAROS"] = "https://discord.com/api/webhooks/886442176744132648/S3pjOZUVQr17Nz7Rz2ZP6tc6WVTdi4SRL4Z6owTF2BvhPkBuYaGJibspdp4XqaW-OsrC"
+Salas["CONTRABANDO"] = "https://discord.com/api/webhooks/888476335813586984/opZeFnnZ9D_UyMhyykpsxqK0BU7KbjZTl1XFv9p4WUf63NEcaPAhXUAExLFfHq-x035w"
 
 ---------------------------------------------------------------------------------------------------------------------------------------------------
 -- VRP_CHEST (BÁUS)
@@ -102,6 +104,20 @@ Salas["TOOGLE_BENNYS"] = "https://discord.com/api/webhooks/793597828386521108/Us
 Salas["TOOGLE_SPORTRACE"] = "https://discord.com/api/webhooks/809191208429158421/aeVf8HgBwbKprnhaz4Za3HSirDrp6U1-ANqZUtvVlo4L_BFYvx-Jih6vPT3kSkOcJBpg"
 Salas["TOOGLE_DIC"] = "https://discord.com/api/webhooks/867470805986574346/c-nsvapMVxjSaPC4_6JmsnVGsX6TNjNcV7MbZROdK6fxh4KFotTvkBp_i4zfwyJGFhr5"
 Salas["TOOGLE_STAFF"] = "https://discord.com/api/webhooks/877567284598693908/uqbZqlB7CDwJ-o9eSR23naEQgE0WF378AUPqtqZctZZw_-Uf1zwOgD6X3G3EswohOfs9"
+
+---------------------------------------------------------------------------------------------------------------------------------------------------
+-- ENTRADA E SAÍDA DE FACÇÕES
+---------------------------------------------------------------------------------------------------------------------------------------------------
+Salas["HORARIO_VERDES"] = "https://discord.com/api/webhooks/889378938135138304/yO9I7478kfMdB0eWJx5wn83Mt6aeNPGb1e-ePOE_gnZVki58GreY_ikDWpEiJZKX5RWA"
+Salas["HORARIO_VERMELHOS"] = "https://discord.com/api/webhooks/889379001427165195/hVH9UEGnsFW2VNUC31AkdkIfVcR4-idQ_QjUA6AHiNedzF5_hV4LSM2vHpDaG8kMU5p2"
+Salas["HORARIO_ROXOS"] = "https://discord.com/api/webhooks/889379153911103518/qjFuV_i1tukmHd0j2lJKrhiLt61m9IBVSfic2vOnrKh765oSUR2Ip8h89y0SvyjC5PUt"
+Salas["HORARIO_LARANJAS"] = "https://discord.com/api/webhooks/889379201143152660/YoKlQ9QnZq1Z-gKtJU7o3R_PCillKM5WsxHDwLZ0JDcSarbwX1WD1qE37v0Ez-89if-1"
+Salas["HORARIO_SINALOA"] = "https://discord.com/api/webhooks/889379539694813234/r7bHu8IFCc2AwyEr7Qg0Mihzfrxj8z6FTf6vdaSXv_X6Yz39-vtaW4tzAoSj4OOkqaHz"
+Salas["HORARIO_COSANOSTRA"] = "https://discord.com/api/webhooks/889379249021153350/Vh-NfXjtF4VVWty6pEsI36SJ9_-Efn97Rdy3KNanzUm9La736WgU5d7od4gyYNKtWgTH"
+Salas["HORARIO_YAKUZA"] = "https://discord.com/api/webhooks/889379304247550023/LeGNRJ8-EI86a6-slZad19pJwI06odhb-VJb-nat5UAqJ5_ZBGX7MrnokmOwkUvGO4eL"
+Salas["HORARIO_IRMANDADE"] = "https://discord.com/api/webhooks/889379498221518870/-nHP7lc0aBNjhtsHDXFDKtDOrfN_ReiGb0urryGj9PPk7RH5NGVjr7aGjgBIMzfOTb1m"
+Salas["HORARIO_SALIERIS"] = "https://discord.com/api/webhooks/889379377765314642/CVgLBUnuDoJ9CgNxvqODt0ZbF-4oORl3azIYgAn-nS3AAGTz46TKmRKwg_Uk82LSP6eN"
+Salas["HORARIO_TRIADE"] = "https://discord.com/api/webhooks/889379429208449044/81Xc1plCQsgRmWVg6FzOhIjsX0s9ThNfFDn1-XgVvcoFs6uRCEjb1bru0TPHb40nkoKY"
 
 ---------------------------------------------------------------------------------------------------------------------------------------------------
 -- FUNCTION

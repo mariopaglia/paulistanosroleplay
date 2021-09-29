@@ -17,7 +17,7 @@
       <ptfxAssetName>null</ptfxAssetName>
       <audioNameHash>monster3</audioNameHash>
       <layout>LAYOUT_LOW</layout>
-      <coverBoundOffsets>PROTO_COVER_OFFSET_INFO</coverBoundOffsets>
+      <coverBoundOffsets>OSIRIS_COVER_OFFSET_INFO</coverBoundOffsets>
       <explosionInfo>EXPLOSION_INFO_DEFAULT</explosionInfo>
       <scenarioLayout />
       <cameraName>FOLLOW_CHEETAH_CAMERA</cameraName>

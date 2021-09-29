@@ -1,55 +1,54 @@
 {
-  "token": "adbed3cf-6ca6-4333-82b2-76958cf60a8d",
-
-  "client": {
-    "bankType": "nubank",
-    "uploadServer": "https://discord.com/api/webhooks/876847897013014589/ni2GicgewvvDuitQk8n0vZTngiY6sVv2UqdgMGjPIVS_PbJVlYh73NKiHUetslU7i7gn",
-    "videoServer": "ws://177.54.144.176:8090",
-    "case": "iphonexs",
-    "isAndroid": false,
-    "useGameClock": false,
-    "phone_template": "XXX-XXX",
-    "backgroundURL": "https://fivem.jesteriruka.dev/stock/wallpapers/iphonex.webp",
-    "disabledApps": ["yellowpages"]
-  },
-
-  "call_mode": "tokovoip",
-  "webhookURL": "https://discord.com/api/webhooks/876847960208601088/mrmLXeftJAyJQoJz2AqcQk5heyOK1FS0Tv458VAISpdyJO3LvrfWBRY3RKNkGUBmKJPZ",
-  "instagram_verify": "verificado.instagram",
-  "moderator": "admin.permissao",
-  "item": "celular",
-
-  "services": [
-    { "name": "Policia", "number":"Chamar Polícia", "permission":"policia.permissao" },
-    { "name": "Hospital", "number":"Chamar Médico", "permission":"paramedico.permissao" },
-    { "name": "Mecânico", "number":"Chamar Mecânico", "permission":"mecanico.permissao" },
-    { "name": "Taxi", "number":"Chamar Taxi", "permission":"taxista.permissao" },
-    { "name": "Advogado", "number":"Chamar Advogado", "permission":"judiciario.permissao" }
-  ],
-  
-  "messages": {
-    "player_not_found": "Este jogador não existe",
-    "phone_not_found": "Este telefone não existe",
-    "invalid_value": "Valor inválido",
-
-    "transfer": {
-      "lock": "Você já está fazendo uma transferência",
-      "no_funds": "Saldo insuficiente",
-      "self_transfer": "Você não pode transferir para si mesmo"
+    "token": "adbed3cf-6ca6-4333-82b2-76958cf60a8d",
+    "client": {
+        "bankType": "nubank",
+        "uploadServer": "https://discord.com/api/webhooks/876847897013014589/ni2GicgewvvDuitQk8n0vZTngiY6sVv2UqdgMGjPIVS_PbJVlYh73NKiHUetslU7i7gn",
+        "videoServer": "ws://177.54.144.176:8090",
+        "case": "iphonexs",
+        "isAndroid": false,
+        "useGameClock": false,
+        "phone_template": "XXX-XXX",
+        "backgroundURL": "https://fivem.jesteriruka.dev/stock/wallpapers/iphonex.webp",
+        "disabledApps": []
     },
-
-    "whatsapp": {
-      "group_not_found": "Grupo não encontrado",
-      "not_owner": "Você não é o dono do grupo",
-      "owner_leave": "Você não pode sair do grupo",
-      "group_full": "Seu grupo está cheio!",
-      "already_in_group": "Este jogador já está no grupo",
-      "not_in_group": "Você não participa deste grupo",
-      "other_not_in_group": "Este jogador não está no grupo"
+    "call_mode": "tokovoip",
+    "webhookURL": "https://discord.com/api/webhooks/876847960208601088/mrmLXeftJAyJQoJz2AqcQk5heyOK1FS0Tv458VAISpdyJO3LvrfWBRY3RKNkGUBmKJPZ",
+    "instagram_verify": "verificado.instagram",
+    "instagram_accounts": {
+        "apoiador.permissao": 3,
+        "prata.permissao": 2,
+        "ouro.permissao": 3,
+        "platina.permissao": 4,
+        "esmeralda.permissao": 5,
+        "diamante.permissao": 6
     },
-
-    "instagram": {
-      "post_unavailable": "Essa postagem não existe mais"
-    }
-  }
+    "moderator": "kick.permissao",
+    "item": "celular",
+    "services": [
+        {
+            "name": "Policia",
+            "number": "Chamar Polícia",
+            "permission": "policia.permissao"
+        },
+        {
+            "name": "Hospital",
+            "number": "Chamar Médico",
+            "permission": "paramedico.permissao"
+        },
+        {
+            "name": "Mecânico",
+            "number": "Chamar Mecânico",
+            "permission": "mecanico.permissao"
+        },
+        {
+            "name": "Taxi",
+            "number": "Chamar Taxi",
+            "permission": "taxista.permissao"
+        },
+        {
+            "name": "Advogado",
+            "number": "Chamar Advogado",
+            "permission": "judiciario.permissao"
+        }
+    ]
 }

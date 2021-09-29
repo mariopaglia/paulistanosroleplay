@@ -7,6 +7,9 @@ crz = {}
 Tunnel.bindInterface("vrp_admin", crz)
 
 vADMC = Tunnel.getInterface("vrp_admin", "vrp_admin")
+local Tools = module("vrp","lib/Tools")
+local idgens = Tools.newIDGenerator()
+local blips = {}
 
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- PREPARES
@@ -114,7 +117,7 @@ end)
 RegisterCommand('dm', function(source, args, rawCommand)
     local user_id = vRP.getUserId(source)
     local nplayer = vRP.getUserSource(parseInt(args[1]))
-    if vRP.hasPermission(user_id, "staff.permissao") then
+    if vRP.hasPermission(user_id, "kick.permissao") then
         if args[1] == nil then
             TriggerClientEvent("Notify", source, "negado", "Necessário passar o ID após o comando, exemplo: <b>/dm 1</b>")
             return
@@ -138,7 +141,7 @@ RegisterCommand('debug', function(source, args, rawCommand)
     local user_id = vRP.getUserId(source)
     if user_id ~= nil then
         local player = vRP.getUserSource(user_id)
-        if vRP.hasPermission(user_id, "admin.permissao") then
+        if vRP.hasPermission(user_id, "admin.permissao") or vRP.hasPermission(user_id, "founder.permissao") then
             TriggerClientEvent("ToggleDebug", player)
         end
     end
@@ -163,7 +166,7 @@ end)
 -----------------------------------------------------------------------------------------------------------------------------------------
 RegisterCommand('limparinv', function(source, args, rawCommand)
     local user_id = vRP.getUserId(source)
-    if vRP.hasPermission(user_id, "admin.permissao") or vRP.hasPermission(user_id, "mod.permissao") then
+    if vRP.hasPermission(user_id, "admin.permissao") or vRP.hasPermission(user_id, "mod.permissao") or vRP.hasPermission(user_id, "founder.permissao") then
         vRP.clearInventory(user_id)
         TriggerClientEvent("Notify", source, "importante", "Seu <b>inventario</b> foi limpo.")
     end
@@ -174,7 +177,7 @@ end)
 RegisterServerEvent("trydeleteped")
 RegisterCommand('reviveall', function(source, args, rawCommand)
     local user_id = vRP.getUserId(source)
-    if vRP.hasPermission(user_id, "admin.permissao") then
+    if vRP.hasPermission(user_id, "admin.permissao") or vRP.hasPermission(user_id, "founder.permissao") then
         local rusers = vRP.getUsers()
         for k, v in pairs(rusers) do
             local rsource = vRP.getUserSource(k)
@@ -223,7 +226,7 @@ end)
 RegisterCommand('limparea', function(source, args, rawCommand)
     local user_id = vRP.getUserId(source)
     local x, y, z = vRPclient.getPosition(source)
-    if vRP.hasPermission(user_id, "admin.permissao") or vRP.hasPermission(user_id, "mod.permissao") then
+    if vRP.hasPermission(user_id, "admin.permissao") or vRP.hasPermission(user_id, "mod.permissao") or vRP.hasPermission(user_id, "founder.permissao") then
         TriggerClientEvent("syncarea", -1, x, y, z)
     end
 end)
@@ -272,7 +275,7 @@ end)
 -----------------------------------------------------------------------------------------------------------------------------------------
 RegisterCommand('godall', function(source, args, rawCommand)
     local user_id = vRP.getUserId(source)
-    if vRP.hasPermission(user_id, "admin.permissao") then
+    if vRP.hasPermission(user_id, "admin.permissao") or vRP.hasPermission(user_id, "founder.permissao") then
         local users = vRP.getUsers()
         for k, v in pairs(users) do
             local id = vRP.getUserSource(parseInt(k))
@@ -289,7 +292,7 @@ end)
 -----------------------------------------------------------------------------------------------------------------------------------------
 RegisterCommand('estoque', function(source, args, rawCommand)
     local user_id = vRP.getUserId(source)
-    if vRP.hasPermission(user_id, "admin.permissao") then
+    if vRP.hasPermission(user_id, "admin.permissao") or vRP.hasPermission(user_id, "founder.permissao") then
         if args[1] and args[2] then
             vRP.execute("creative/set_estoque", {vehicle = args[1], quantidade = args[2]})
             TriggerClientEvent("Notify", source, "sucesso", "Voce colocou mais <b>" .. args[2] .. "</b> no estoque, para o carro <b>" .. args[1] .. "</b>.")
@@ -302,7 +305,7 @@ end)
 RegisterCommand('addcar', function(source, args, rawCommand)
     local user_id = vRP.getUserId(source)
     local nplayer = vRP.getUserSource(parseInt(args[2]))
-    if vRP.hasPermission(user_id, "admin.permissao") then
+    if vRP.hasPermission(user_id, "admin.permissao") or vRP.hasPermission(user_id, "founder.permissao") then
         if args[1] and args[2] then
             if vRPclient.vehicleExist(source, args[1]) then
                 local nuser_id = vRP.getUserId(nplayer)
@@ -324,7 +327,7 @@ end)
 RegisterCommand('remcar', function(source, args, rawCommand)
     local user_id = vRP.getUserId(source)
     local nplayer = vRP.getUserSource(parseInt(args[2]))
-    if vRP.hasPermission(user_id, "admin.permissao") then
+    if vRP.hasPermission(user_id, "admin.permissao") or vRP.hasPermission(user_id, "founder.permissao") then
         if args[1] and args[2] then
             local nuser_id = vRP.getUserId(nplayer)
             local identity = vRP.getUserIdentity(user_id)
@@ -353,7 +356,7 @@ end)
 -----------------------------------------------------------------------------------------------------------------------------------------
 RegisterCommand('tuning', function(source, args, rawCommand)
     local user_id = vRP.getUserId(source)
-    if vRP.hasPermission(user_id, "admin.permissao") then
+    if vRP.hasPermission(user_id, "admin.permissao") or vRP.hasPermission(user_id, "founder.permissao") then
         local vehicle = vRPclient.getNearestVehicle(source, 7)
         if vehicle then
             TriggerClientEvent('vehtuning', source, vehicle)
@@ -428,7 +431,7 @@ end)
 RegisterCommand('reset', function(source, args, rawCommand)
     local user_id = vRP.getUserId(source)
     if user_id then
-        if vRP.hasPermission(user_id, "admin.permissao") then
+        if vRP.hasPermission(user_id, "kick.permissao") then
             if args[1] then
                 local nplayer = vRP.getUserSource(parseInt(args[1]))
                 local id = vRP.getUserId(nplayer)
@@ -638,7 +641,7 @@ RegisterCommand('car', function(source, args, rawCommand)
     local user_id = vRP.getUserId(source)
     local identity = vRP.getUserIdentity(user_id)
     local crds = GetEntityCoords(GetPlayerPed(source))
-    if vRP.hasPermission(user_id, "admin.permissao") then
+    if vRP.hasPermission(user_id, "admin.permissao") or vRP.hasPermission(user_id, "founder.permissao") then
         if args[1] then
             TriggerClientEvent('spawnarveiculo654687687', source, args[1])
             vRP.Log("```prolog\n[ID]: " .. user_id .. " " .. identity.name .. " " .. identity.firstname .. " \n[SPAWNOU]: " .. (args[1]) .. "\n[COORDENADA]: " .. crds.x .. "," .. crds.y .. "," .. crds.z .. "" .. os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S") .. " \r```", "CMD_CAR")
@@ -665,7 +668,7 @@ end)
 -----------------------------------------------------------------------------------------------------------------------------------------
 RegisterCommand('delnpcs', function(source, args, rawCommand)
     local user_id = vRP.getUserId(source)
-    if vRP.hasPermission(user_id, "admin.permissao") then
+    if vRP.hasPermission(user_id, "kick.permissao") then
         TriggerClientEvent('delnpcs', source)
     end
 end)
@@ -674,7 +677,7 @@ end)
 -----------------------------------------------------------------------------------------------------------------------------------------
 RegisterCommand('adm', function(source, args, rawCommand)
     local user_id = vRP.getUserId(source)
-    if vRP.hasPermission(user_id, "admin.permissao") or vRP.hasPermission(user_id, "anuncio.permissao") then
+    if vRP.hasPermission(user_id, "admin.permissao") or vRP.hasPermission(user_id, "anuncio.permissao") or vRP.hasPermission(user_id, "founder.permissao") then
         local identity = vRP.getUserIdentity(user_id)
         local mensagem = vRP.prompt(source, "Mensagem:", "")
         if mensagem == "" then
@@ -756,7 +759,7 @@ end)
 RegisterCommand('pegarip', function(source, args, rawCommand)
     local user_id = vRP.getUserId(source)
     local tplayer = vRP.getUserSource(parseInt(args[1]))
-    if vRP.hasPermission(user_id, "admin.permissao") then
+    if vRP.hasPermission(user_id, "founder.permissao") then
         if args[1] and tplayer then
             TriggerClientEvent('chatMessage', source, "^1IP do Usuário: " .. GetPlayerEndpoint(tplayer))
         end
@@ -810,7 +813,7 @@ end)
 RegisterCommand('algema', function(source, args, rawCommand)
     local user_id = vRP.getUserId(source)
     if user_id then
-        if vRP.hasPermission(user_id, "admin.permissao") or vRP.hasPermission(user_id, "mod.permissao") or vRP.hasPermission(user_id, "helper.permissao") then
+        if vRP.hasPermission(user_id, "admin.permissao") or vRP.hasPermission(user_id, "founder.permissao") or vRP.hasPermission(user_id, "mod.permissao") or vRP.hasPermission(user_id, "helper.permissao") then
             TriggerClientEvent("admcuff", source)
             TriggerClientEvent("Notify", source, "sucesso", "Você foi <b>desalgemado</b> com sucesso.")
         end
@@ -844,7 +847,7 @@ end)
 -----------------------------------------------------------------------------------------------------------------------------------------
 RegisterCommand('kickbugados', function(source, args, rawCommand)
     local user_id = vRP.getUserId(source)
-    if vRP.hasPermission(user_id, "admin.permissao") then
+    if vRP.hasPermission(user_id, "kick.permissao") then
         TriggerClientEvent('MQCU:bugado', -1)
     end
 end)
@@ -864,16 +867,62 @@ end)
 -- PRESET
 -----------------------------------------------------------------------------------------------------------------------------------------
 local presets = {
-    ["staff"] = {[1885233650] = {[3] = {0, 0, 1}, [4] = {87, 11, 1}, [6] = {9, 12, 1}, [8] = {15, 0, 2}, [11] = {208, 18, 1}, ["p0"] = {-1, 0}}, [-1667301416] = {[3] = {14, 0, 1}, [4] = {90, 15, 1}, [6] = {74, 0, 1}, [8] = {15, 0, 2}, [11] = {224, 0, 1}, ["p0"] = {-1, 0}}},
-    ["porcao"] = {[1885233650] = {[1] = {5, 0, 2}, [3] = {0, 0, 1}, [4] = {87, 11, 1}, [6] = {9, 12, 1}, [8] = {15, 0, 2}, [11] = {208, 18, 1}, ["p0"] = {-1, 0}}},
-    ["porcaop"] = {[1885233650] = {[1] = {0, 0, 2}, [2] = {21, 0, 0}, [3] = {0, 0, 2}, [4] = {87, 2, 2}, [5] = {0, 0, 0}, [6] = {46, 0, 2}, [7] = {4, 0, 2}, [8] = {40, 0, 2}, [9] = {0, 0, 0}, [10] = {0, 0, 0}, [11] = {256, 3, 2}, [0] = {0, 0, 0}, ["p7"] = {-1, 0}, ["p6"] = {4, 0}, ["p2"] = {-1, 0}, ["p1"] = {7, 0}, ["p0"] = {-1, 0}}},
+    ["staff"] = {
+        [1885233650] = {
+            [3] = {0, 0, 1},
+            [4] = {87, 11, 1},
+            [5] = {0,0,1},
+            [6] = {9, 12, 1},
+            [8] = {15, 0, 2},
+            [11] = {208, 18, 1},
+            ["p0"] = {-1, 0}
+        },
+        [-1667301416] = {
+            [3] = {14, 0, 1}, 
+            [4] = {90, 15, 1}, 
+            [5] = {0,0,1},
+            [6] = {74, 0, 1}, 
+            [8] = {15, 0, 2}, 
+            [11] = {224, 0, 1}, 
+            ["p0"] = {-1, 0}
+        }
+    },
+    ["porcao"] = {
+        [1885233650] = {
+        [1] = {5, 0, 2},
+        [3] = {0, 0, 1},
+        [4] = {87, 11, 1},
+        [5] = {0,0,1},
+        [6] = {9, 12, 1},
+        [8] = {15, 0, 2},
+        [11] = {208, 18, 1},
+        ["p0"] = {-1, 0}
+        }
+    },
+    ["day"] = {
+        [-1667301416] = {
+        [1] = {21,0,1},
+        [2] = {75,0,0},
+        [3] = {14,0,1},
+        [4] = {90,15,1},
+        [5] = {0,0,1},
+        [6] = {74,0,1},
+        [7] = {5,6,1},
+        [8] = {15,0,2},
+        [9] = {-1,0,0},
+        [10] = {-1,0,0},
+        [11] = {224,0,1},
+        [0] = {0,0,0},
+        ["p2"] = {15,0},
+        ["p1"] = {12,0},
+        ["p0"] = {-1,0},
+        ["p6"] = {-1,0},
+        ["p7"] = {-1,0},
+        }
+    },
     ["dudu"] = {[1885233650] = {[1] = {20, 0, 1}, [2] = {14, 0, 0}, [3] = {138, 1, 1}, [4] = {87, 11, 1}, [5] = {0, 0, 1}, [6] = {9, 3, 1}, [7] = {149, 1, 1}, [8] = {14, 0, 1}, [9] = {-1, 0, 0}, [10] = {-1, 0, 0}, [11] = {208, 18, 1}, ["p7"] = {8, 1}, ["p6"] = {40, 1}, ["p2"] = {-1, 0}, ["p1"] = {-1, 0}, [0] = {0, 0, 0}, ["p0"] = {-1, 0}}},
-    ["renanp"] = {[1885233650] = {[1] = {169, 0, 2}, [2] = {57, 0, 0}, [3] = {17, 0, 1}, [4] = {87, 2, 2}, [5] = {0, 0, 0}, [6] = {46, 0, 2}, [7] = {2, 0, 2}, [8] = {15, 0, 2}, [9] = {1, 1, 1}, [10] = {0, 0, 0}, [11] = {220, 5, 2}, [0] = {0, 0, 0}, ["p0"] = {104, 20}, ["p2"] = {-1, 0}, ["p1"] = {11, 0}, ["p7"] = {-1, 0}, ["p6"] = {-1, 0}}},
-    ["bertip"] = {[1885233650] = {[1] = {169, 0, 2}, [2] = {57, 0, 0}, [3] = {144, 4, 1}, [4] = {87, 2, 2}, [5] = {0, 0, 0}, [6] = {46, 0, 2}, [7] = {2, 0, 2}, [8] = {15, 0, 2}, [9] = {1, 1, 1}, [10] = {0, 0, 0}, [11] = {220, 5, 2}, ["p7"] = {-1, 0}, ["p6"] = {-1, 0}, ["p1"] = {15, 0}, ["p2"] = {-1, 0}, [0] = {0, 0, 0}, ["p0"] = {104, 20}}},
     ["wally"] = {[1885233650] = {[1] = {26, 1, 2}, [3] = {52, 0, 2}, [4] = {87, 11, 1}, [6] = {6, 6, 2}, [8] = {15, 0, 2}, [11] = {208, 18, 1}, ["p0"] = {-1, 0}}},
-    ["jack"] = {[1885233650] = {[1] = {182, 1, 2}, [2] = {21, 0, 0}, [3] = {171, 0, 2}, [4] = {87, 11, 1}, [5] = {-1, 0, 2}, [6] = {9, 12, 1}, [7] = {31, 4, 2}, [8] = {15, 0, 2}, [9] = {0, 5, 1}, [10] = {-1, 0, 2}, [11] = {208, 18, 1}, ["p6"] = {-1, 0}, ["p2"] = {-1, 0}, ["p1"] = {15, 10}, ["p0"] = {-1, 0}, [0] = {0, 0, 0}, ["p7"] = {-1, 0}}},
     ["berti"] = {[1885233650] = {[1] = {100, 1, 2}, [2] = {57, 0, 0}, [3] = {138, 1, 2}, [4] = {87, 11, 1}, [5] = {0, 0, 1}, [6] = {9, 12, 1}, [7] = {2, 0, 2}, [8] = {15, 0, 2}, [9] = {0, 0, 1}, [10] = {-1, 0, 2}, [11] = {208, 18, 1}, [0] = {0, 0, 0}, ["p1"] = {-1, 0}, ["p2"] = {-1, 0}, ["p7"] = {-1, 0}, ["p6"] = {-1, 0}, ["p0"] = {-1, 0}}},
-    ["renan"] = {[1885233650] = {[1] = {24, 1, 2}, [2] = {57, 0, 0}, [3] = {19, 0, 2}, [4] = {87, 11, 2}, [5] = {55, 3, 1}, [6] = {8, 8, 2}, [7] = {112, 2, 1}, [8] = {14, 0, 1}, [9] = {0, 0, 0}, [10] = {0, 0, 0}, [11] = {208, 18, 1}, ["p1"] = {-1, 0}, ["p0"] = {-1, 0}, ["p6"] = {-1, 0}, ["p7"] = {-1, 0}, ["p2"] = {-1, 0}, [0] = {0, 0, 0}}},
     ["inguica"] = {[1885233650] = {[1] = {169, 14, 2}, [2] = {21, 0, 0}, [3] = {146, 1, 2}, [4] = {78, 6, 2}, [5] = {29, 12, 1}, [6] = {9, 3, 1}, [7] = {0, 0, 2}, [8] = {15, 0, 2}, [9] = {0, 0, 1}, [10] = {-1, 0, 2}, [11] = {10, 4, 2}, ["p1"] = {11, 3}, ["p2"] = {-1, 0}, [0] = {0, 0, 0}, ["p0"] = {130, 0}, ["p6"] = {-1, 0}, ["p7"] = {-1, 0}}},
     ["kappa"] = {[1885233650] = {[1] = {87, 0, 1}, [2] = {21, 0, 0}, [3] = {138, 1, 1}, [4] = {87, 11, 1}, [5] = {0, 0, 0}, [6] = {7, 5, 1}, [7] = {1, 0, 1}, [8] = {15, 0, 1}, [9] = {0, 0, 1}, [10] = {0, 0, 0}, [11] = {208, 18, 1}, [0] = {0, 0, 0}, ["p2"] = {-1, 0}, ["p0"] = {-1, 0}, ["p6"] = {-1, 0}, ["p7"] = {-1, 0}, ["p1"] = {15, 1}}},
     ["jhon"] = {[1885233650] = {[1] = {9, 0, 2}, [2] = {21, 0, 0}, [3] = {0, 0, 1}, [4] = {87, 11, 1}, [5] = {-1, 0, 2}, [6] = {9, 12, 1}, [7] = {0, 0, 2}, [8] = {15, 0, 2}, [9] = {0, 0, 1}, [10] = {-1, 0, 2}, [11] = {208, 18, 1}, [0] = {0, 0, 0}, ["p7"] = {-1, 0}, ["p6"] = {-1, 0}, ["p0"] = {-1, 0}, ["p1"] = {15, 8}, ["p2"] = {4, 0}}},
@@ -912,570 +961,7 @@ RegisterCommand('preset', function(source, args, rawCommand)
 end)
 
 -----------------------------------------------------------------------------------------------------------------------------------------
--- SETAGENS LIDERES
------------------------------------------------------------------------------------------------------------------------------------------
----------------------------------------------------
--- VERMELHOS
----------------------------------------------------
---[[ RegisterCommand('add-vermelhos',function(source,args,rawCommand)
-	local user_id = vRP.getUserId(source)
-	local identity = vRP.getUserIdentity(user_id)
-	local nplayer = vRP.getUserSource(parseInt(args[1]))
-	if vRP.hasPermission(user_id,"lidervermelhos.permissao") then
-		if args[1] then
-			if nplayer then
-				vRP.addUserGroup(parseInt(args[1]),"Vermelhos")
-				TriggerClientEvent("Notify",source,"sucesso","Voce setou o <b>ID "..args[1].."</b> com sucesso!")
-				SendWebhookMessage(webhookfac,"```prolog\n[ID]: "..user_id.." "..identity.name.." "..identity.firstname.." \n[SETOU]:"..parseInt(args[1]).." \n[GRUPO]: Vermelhos"..os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S").." \r```")
-			else
-				TriggerClientEvent("Notify",source,"negado","Negado, a pessoa precisa estar online")
-			end
-		end
-	end
-end)
-RegisterCommand('rem-vermelhos',function(source,args,rawCommand)
-	local user_id = vRP.getUserId(source)
-	local identity = vRP.getUserIdentity(user_id)
-	local nplayer = vRP.getUserSource(parseInt(args[1]))
-	if vRP.hasPermission(user_id,"lidervermelhos.permissao") then
-		if args[1] then
-			if nplayer then
-				vRP.removeUserGroup(parseInt(args[1]),"Vermelhos")
-				TriggerClientEvent("Notify",source,"sucesso","Voce retirou o set do <b>ID "..args[1].."</b> com sucesso!")
-					SendWebhookMessage(webhookfac,"```prolog\n[ID]: "..user_id.." "..identity.name.." "..identity.firstname.." \n[REMOVEU]: "..parseInt(args[1]).." \n[GRUPO]: Vermelhos"..os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S").." \r```")
-				else
-					TriggerClientEvent("Notify",source,"negado","Negado, a pessoa precisa estar online")
-			end
-		end
-	end
-end)
----------------------------------------------------
--- VERDES
----------------------------------------------------
-RegisterCommand('add-verdes',function(source,args,rawCommand)
-	local user_id = vRP.getUserId(source)
-	local identity = vRP.getUserIdentity(user_id)
-	local nplayer = vRP.getUserSource(parseInt(args[1]))
-	if vRP.hasPermission(user_id,"liderverdes.permissao") then
-		if args[1] then
-			if nplayer then
-				vRP.addUserGroup(parseInt(args[1]),"Verdes")
-				TriggerClientEvent("Notify",source,"sucesso","Voce setou o <b>ID "..args[1].."</b> com sucesso!")
-				SendWebhookMessage(webhookfac,"```prolog\n[ID]: "..user_id.." "..identity.name.." "..identity.firstname.." \n[SETOU]:"..parseInt(args[1]).." \n[GRUPO]: Verdes"..os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S").." \r```")
-			else
-				TriggerClientEvent("Notify",source,"negado","Negado, a pessoa precisa estar online")
-			end
-		end
-	end
-end)
-RegisterCommand('rem-verdes',function(source,args,rawCommand)
-	local user_id = vRP.getUserId(source)
-	local identity = vRP.getUserIdentity(user_id)
-	local nplayer = vRP.getUserSource(parseInt(args[1]))
-	if vRP.hasPermission(user_id,"liderverdes.permissao") then
-		if args[1] then
-			if nplayer then
-				vRP.removeUserGroup(parseInt(args[1]),"Verdes")
-				TriggerClientEvent("Notify",source,"sucesso","Voce retirou o set do <b>ID "..args[1].."</b> com sucesso!")
-					SendWebhookMessage(webhookfac,"```prolog\n[ID]: "..user_id.." "..identity.name.." "..identity.firstname.." \n[REMOVEU]: "..parseInt(args[1]).." \n[GRUPO]: Verdes"..os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S").." \r```")
-				else
-					TriggerClientEvent("Notify",source,"negado","Negado, a pessoa precisa estar online")
-			end
-		end
-	end
-end)
----------------------------------------------------
--- ROXOS
----------------------------------------------------
-RegisterCommand('add-roxos',function(source,args,rawCommand)
-	local user_id = vRP.getUserId(source)
-	local identity = vRP.getUserIdentity(user_id)
-	local nplayer = vRP.getUserSource(parseInt(args[1]))
-	if vRP.hasPermission(user_id,"liderroxos.permissao") then
-		if args[1] then
-			if nplayer then
-				vRP.addUserGroup(parseInt(args[1]),"Roxos")
-				TriggerClientEvent("Notify",source,"sucesso","Voce setou o <b>ID "..args[1].."</b> com sucesso!")
-				SendWebhookMessage(webhookfac,"```prolog\n[ID]: "..user_id.." "..identity.name.." "..identity.firstname.." \n[SETOU]:"..parseInt(args[1]).." \n[GRUPO]: Roxos"..os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S").." \r```")
-			else
-				TriggerClientEvent("Notify",source,"negado","Negado, a pessoa precisa estar online")
-			end
-		end
-	end
-end)
-RegisterCommand('rem-roxos',function(source,args,rawCommand)
-	local user_id = vRP.getUserId(source)
-	local identity = vRP.getUserIdentity(user_id)
-	local nplayer = vRP.getUserSource(parseInt(args[1]))
-	if vRP.hasPermission(user_id,"liderroxos.permissao") then
-		if args[1] then
-			if nplayer then
-				vRP.removeUserGroup(parseInt(args[1]),"Roxos")
-				TriggerClientEvent("Notify",source,"sucesso","Voce retirou o set do <b>ID "..args[1].."</b> com sucesso!")
-					SendWebhookMessage(webhookfac,"```prolog\n[ID]: "..user_id.." "..identity.name.." "..identity.firstname.." \n[REMOVEU]: "..parseInt(args[1]).." \n[GRUPO]: Roxos"..os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S").." \r```")
-				else
-					TriggerClientEvent("Notify",source,"negado","Negado, a pessoa precisa estar online")
-			end
-		end
-	end
-end)
----------------------------------------------------
--- LARANJAS
----------------------------------------------------
-RegisterCommand('add-laranjas',function(source,args,rawCommand)
-	local user_id = vRP.getUserId(source)
-	local identity = vRP.getUserIdentity(user_id)
-	local nplayer = vRP.getUserSource(parseInt(args[1]))
-	if vRP.hasPermission(user_id,"liderlaranjas.permissao") then
-		if args[1] then
-			if nplayer then
-				vRP.addUserGroup(parseInt(args[1]),"Laranjas")
-				TriggerClientEvent("Notify",source,"sucesso","Voce setou o <b>ID "..args[1].."</b> com sucesso!")
-				SendWebhookMessage(webhookfac,"```prolog\n[ID]: "..user_id.." "..identity.name.." "..identity.firstname.." \n[SETOU]:"..parseInt(args[1]).." \n[GRUPO]: Laranjas"..os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S").." \r```")
-			else
-				TriggerClientEvent("Notify",source,"negado","Negado, a pessoa precisa estar online")
-			end
-		end
-	end
-end)
-RegisterCommand('rem-laranjas',function(source,args,rawCommand)
-	local user_id = vRP.getUserId(source)
-	local identity = vRP.getUserIdentity(user_id)
-	local nplayer = vRP.getUserSource(parseInt(args[1]))
-	if vRP.hasPermission(user_id,"liderlaranjas.permissao") then
-		if args[1] then
-			if nplayer then
-				vRP.removeUserGroup(parseInt(args[1]),"Laranjas")
-				TriggerClientEvent("Notify",source,"sucesso","Voce retirou o set do <b>ID "..args[1].."</b> com sucesso!")
-					SendWebhookMessage(webhookfac,"```prolog\n[ID]: "..user_id.." "..identity.name.." "..identity.firstname.." \n[REMOVEU]: "..parseInt(args[1]).." \n[GRUPO]: Laranjas"..os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S").." \r```")
-				else
-					TriggerClientEvent("Notify",source,"negado","Negado, a pessoa precisa estar online")
-			end
-		end
-	end
-end)
----------------------------------------------------
--- MOTOCLUB
----------------------------------------------------
-RegisterCommand('add-motoclub',function(source,args,rawCommand)
-	local user_id = vRP.getUserId(source)
-	local identity = vRP.getUserIdentity(user_id)
-	local nplayer = vRP.getUserSource(parseInt(args[1]))
-	if vRP.hasPermission(user_id,"lidermotoclub.permissao") then
-		if args[1] then
-			if nplayer then
-				vRP.addUserGroup(parseInt(args[1]),"Motoclub")
-				TriggerClientEvent("Notify",source,"sucesso","Voce setou o <b>ID "..args[1].."</b> com sucesso!")
-				SendWebhookMessage(webhookfac,"```prolog\n[ID]: "..user_id.." "..identity.name.." "..identity.firstname.." \n[SETOU]:"..parseInt(args[1]).." \n[GRUPO]: Motoclub"..os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S").." \r```")
-			else
-				TriggerClientEvent("Notify",source,"negado","Negado, a pessoa precisa estar online")
-			end
-		end
-	end
-end)
-RegisterCommand('rem-motoclub',function(source,args,rawCommand)
-	local user_id = vRP.getUserId(source)
-	local identity = vRP.getUserIdentity(user_id)
-	local nplayer = vRP.getUserSource(parseInt(args[1]))
-	if vRP.hasPermission(user_id,"lidermotoclub.permissao") then
-		if args[1] then
-			if nplayer then
-				vRP.removeUserGroup(parseInt(args[1]),"Motoclub")
-				TriggerClientEvent("Notify",source,"sucesso","Voce retirou o set do <b>ID "..args[1].."</b> com sucesso!")
-					SendWebhookMessage(webhookfac,"```prolog\n[ID]: "..user_id.." "..identity.name.." "..identity.firstname.." \n[REMOVEU]: "..parseInt(args[1]).." \n[GRUPO]: Motoclub"..os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S").." \r```")
-				else
-					TriggerClientEvent("Notify",source,"negado","Negado, a pessoa precisa estar online")
-			end
-		end
-	end
-end)
----------------------------------------------------
--- COSANOSTRA
----------------------------------------------------
-RegisterCommand('add-cosanostra',function(source,args,rawCommand)
-	local user_id = vRP.getUserId(source)
-	local identity = vRP.getUserIdentity(user_id)
-	local nplayer = vRP.getUserSource(parseInt(args[1]))
-	if vRP.hasPermission(user_id,"lidercn.permissao") then
-		if args[1] then
-			if nplayer then
-				vRP.addUserGroup(parseInt(args[1]),"CN")
-				TriggerClientEvent("Notify",source,"sucesso","Voce setou o <b>ID "..args[1].."</b> com sucesso!")
-				SendWebhookMessage(webhookfac,"```prolog\n[ID]: "..user_id.." "..identity.name.." "..identity.firstname.." \n[SETOU]:"..parseInt(args[1]).." \n[GRUPO]: CN"..os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S").." \r```")
-			else
-				TriggerClientEvent("Notify",source,"negado","Negado, a pessoa precisa estar online")
-			end
-		end
-	end
-end)
-RegisterCommand('rem-cosanostra',function(source,args,rawCommand)
-	local user_id = vRP.getUserId(source)
-	local identity = vRP.getUserIdentity(user_id)
-	local nplayer = vRP.getUserSource(parseInt(args[1]))
-	if vRP.hasPermission(user_id,"lidercn.permissao") then
-		if args[1] then
-			if nplayer then
-				vRP.removeUserGroup(parseInt(args[1]),"CN")
-				TriggerClientEvent("Notify",source,"sucesso","Voce retirou o set do <b>ID "..args[1].."</b> com sucesso!")
-					SendWebhookMessage(webhookfac,"```prolog\n[ID]: "..user_id.." "..identity.name.." "..identity.firstname.." \n[REMOVEU]: "..parseInt(args[1]).." \n[GRUPO]: CN"..os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S").." \r```")
-				else
-					TriggerClientEvent("Notify",source,"negado","Negado, a pessoa precisa estar online")
-			end
-		end
-	end
-end)
----------------------------------------------------
--- YAKUZA OLD BRATVA
----------------------------------------------------
-RegisterCommand('add-yakuza',function(source,args,rawCommand)
-	local user_id = vRP.getUserId(source)
-	local identity = vRP.getUserIdentity(user_id)
-	local nplayer = vRP.getUserSource(parseInt(args[1]))
-	if vRP.hasPermission(user_id,"lideryakuza.permissao") then
-		if args[1] then
-			if nplayer then
-				vRP.addUserGroup(parseInt(args[1]),"Yakuza")
-				TriggerClientEvent("Notify",source,"sucesso","Voce setou o <b>ID "..args[1].."</b> com sucesso!")
-				SendWebhookMessage(webhookfac,"```prolog\n[ID]: "..user_id.." "..identity.name.." "..identity.firstname.." \n[SETOU]:"..parseInt(args[1]).." \n[GRUPO]: Yakuza"..os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S").." \r```")
-			else
-				TriggerClientEvent("Notify",source,"negado","Negado, a pessoa precisa estar online")
-			end
-		end
-	end
-end)
-RegisterCommand('rem-yakuza',function(source,args,rawCommand)
-	local user_id = vRP.getUserId(source)
-	local identity = vRP.getUserIdentity(user_id)
-	local nplayer = vRP.getUserSource(parseInt(args[1]))
-	if vRP.hasPermission(user_id,"lideryakuza.permissao") then
-		if args[1] then
-			if nplayer then
-				vRP.removeUserGroup(parseInt(args[1]),"Yakuza")
-				TriggerClientEvent("Notify",source,"sucesso","Voce retirou o set do <b>ID "..args[1].."</b> com sucesso!")
-					SendWebhookMessage(webhookfac,"```prolog\n[ID]: "..user_id.." "..identity.name.." "..identity.firstname.." \n[REMOVEU]: "..parseInt(args[1]).." \n[GRUPO]: Yakuza"..os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S").." \r```")
-				else
-					TriggerClientEvent("Notify",source,"negado","Negado, a pessoa precisa estar online")
-			end
-		end
-	end
-end)
----------------------------------------------------
--- IRMANDADE
----------------------------------------------------
-RegisterCommand('add-irmandade',function(source,args,rawCommand)
-	local user_id = vRP.getUserId(source)
-	local identity = vRP.getUserIdentity(user_id)
-	local nplayer = vRP.getUserSource(parseInt(args[1]))
-	if vRP.hasPermission(user_id,"liderirmandade.permissao") then
-		if args[1] then
-			if nplayer then
-				vRP.addUserGroup(parseInt(args[1]),"Irmandade")
-				TriggerClientEvent("Notify",source,"sucesso","Voce setou o <b>ID "..args[1].."</b> com sucesso!")
-				SendWebhookMessage(webhookfac,"```prolog\n[ID]: "..user_id.." "..identity.name.." "..identity.firstname.." \n[SETOU]:"..parseInt(args[1]).." \n[GRUPO]: Irmandade"..os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S").." \r```")
-			else
-				TriggerClientEvent("Notify",source,"negado","Negado, a pessoa precisa estar online")
-			end
-		end
-	end
-end)
-RegisterCommand('rem-irmandade',function(source,args,rawCommand)
-	local user_id = vRP.getUserId(source)
-	local identity = vRP.getUserIdentity(user_id)
-	local nplayer = vRP.getUserSource(parseInt(args[1]))
-	if vRP.hasPermission(user_id,"liderirmandade.permissao") then
-		if args[1] then
-			if nplayer then
-				vRP.removeUserGroup(parseInt(args[1]),"Irmandade")
-				TriggerClientEvent("Notify",source,"sucesso","Voce retirou o set do <b>ID "..args[1].."</b> com sucesso!")
-					SendWebhookMessage(webhookfac,"```prolog\n[ID]: "..user_id.." "..identity.name.." "..identity.firstname.." \n[REMOVEU]: "..parseInt(args[1]).." \n[GRUPO]: Irmandade"..os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S").." \r```")
-				else
-					TriggerClientEvent("Notify",source,"negado","Negado, a pessoa precisa estar online")
-			end
-		end
-	end
-end)
----------------------------------------------------
--- SINALOA
----------------------------------------------------
-RegisterCommand('add-bratva',function(source,args,rawCommand)
-	local user_id = vRP.getUserId(source)
-	local identity = vRP.getUserIdentity(user_id)
-	local nplayer = vRP.getUserSource(parseInt(args[1]))
-	if vRP.hasPermission(user_id,"lidersinaloa.permissao") then
-		if args[1] then
-			if nplayer then
-				vRP.addUserGroup(parseInt(args[1]),"Sinaloa")
-				TriggerClientEvent("Notify",source,"sucesso","Voce setou o <b>ID "..args[1].."</b> com sucesso!")
-				SendWebhookMessage(webhookfac,"```prolog\n[ID]: "..user_id.." "..identity.name.." "..identity.firstname.." \n[SETOU]:"..parseInt(args[1]).." \n[GRUPO]: Sinaloa"..os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S").." \r```")
-			else
-				TriggerClientEvent("Notify",source,"negado","Negado, a pessoa precisa estar online")
-			end
-		end
-	end
-end)
-RegisterCommand('rem-bratva',function(source,args,rawCommand)
-	local user_id = vRP.getUserId(source)
-	local identity = vRP.getUserIdentity(user_id)
-	local nplayer = vRP.getUserSource(parseInt(args[1]))
-	if vRP.hasPermission(user_id,"lidersinaloa.permissao") then
-		if args[1] then
-			if nplayer then
-				vRP.removeUserGroup(parseInt(args[1]),"Sinaloa")
-				TriggerClientEvent("Notify",source,"sucesso","Voce retirou o set do <b>ID "..args[1].."</b> com sucesso!")
-					SendWebhookMessage(webhookfac,"```prolog\n[ID]: "..user_id.." "..identity.name.." "..identity.firstname.." \n[REMOVEU]: "..parseInt(args[1]).." \n[GRUPO]: Sinaloa"..os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S").." \r```")
-				else
-					TriggerClientEvent("Notify",source,"negado","Negado, a pessoa precisa estar online")
-			end
-		end
-	end
-end)
----------------------------------------------------
--- SALIERI'S
----------------------------------------------------
-RegisterCommand('add-salieris',function(source,args,rawCommand)
-	local user_id = vRP.getUserId(source)
-	local identity = vRP.getUserIdentity(user_id)
-	local nplayer = vRP.getUserSource(parseInt(args[1]))
-	if vRP.hasPermission(user_id,"lidersalieris.permissao") then
-		if args[1] then
-			if nplayer then
-				vRP.addUserGroup(parseInt(args[1]),"Salieris")
-				TriggerClientEvent("Notify",source,"sucesso","Voce setou o <b>ID "..args[1].."</b> com sucesso!")
-				SendWebhookMessage(webhookfac,"```prolog\n[ID]: "..user_id.." "..identity.name.." "..identity.firstname.." \n[SETOU]:"..parseInt(args[1]).." \n[GRUPO]: Salieris"..os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S").." \r```")
-			else
-				TriggerClientEvent("Notify",source,"negado","Negado, a pessoa precisa estar online")
-			end
-		end
-	end
-end)
-RegisterCommand('rem-salieris',function(source,args,rawCommand)
-	local user_id = vRP.getUserId(source)
-	local identity = vRP.getUserIdentity(user_id)
-	local nplayer = vRP.getUserSource(parseInt(args[1]))
-	if vRP.hasPermission(user_id,"lidersalieris.permissao") then
-		if args[1] then
-			if nplayer then
-				vRP.removeUserGroup(parseInt(args[1]),"Salieris")
-				TriggerClientEvent("Notify",source,"sucesso","Voce retirou o set do <b>ID "..args[1].."</b> com sucesso!")
-					SendWebhookMessage(webhookfac,"```prolog\n[ID]: "..user_id.." "..identity.name.." "..identity.firstname.." \n[REMOVEU]: "..parseInt(args[1]).." \n[GRUPO]: Salieris"..os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S").." \r```")
-				else
-					TriggerClientEvent("Notify",source,"negado","Negado, a pessoa precisa estar online")
-			end
-		end
-	end
-end)
----------------------------------------------------
--- CAMORRA
----------------------------------------------------
-RegisterCommand('add-camorra',function(source,args,rawCommand)
-	local user_id = vRP.getUserId(source)
-	local identity = vRP.getUserIdentity(user_id)
-	local nplayer = vRP.getUserSource(parseInt(args[1]))
-	if vRP.hasPermission(user_id,"lidercamorra.permissao") then
-		if args[1] then
-			if nplayer then
-				vRP.addUserGroup(parseInt(args[1]),"Camorra")
-				TriggerClientEvent("Notify",source,"sucesso","Voce setou o <b>ID "..args[1].."</b> com sucesso!")
-				SendWebhookMessage(webhookfac,"```prolog\n[ID]: "..user_id.." "..identity.name.." "..identity.firstname.." \n[SETOU]:"..parseInt(args[1]).." \n[GRUPO]: Camorra"..os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S").." \r```")
-			else
-				TriggerClientEvent("Notify",source,"negado","Negado, a pessoa precisa estar online")
-			end
-		end
-	end
-end)
-RegisterCommand('rem-camorra',function(source,args,rawCommand)
-	local user_id = vRP.getUserId(source)
-	local identity = vRP.getUserIdentity(user_id)
-	local nplayer = vRP.getUserSource(parseInt(args[1]))
-	if vRP.hasPermission(user_id,"lidercamorra.permissao") then
-		if args[1] then
-			if nplayer then
-				vRP.removeUserGroup(parseInt(args[1]),"Camorra")
-				TriggerClientEvent("Notify",source,"sucesso","Voce retirou o set do <b>ID "..args[1].."</b> com sucesso!")
-					SendWebhookMessage(webhookfac,"```prolog\n[ID]: "..user_id.." "..identity.name.." "..identity.firstname.." \n[REMOVEU]: "..parseInt(args[1]).." \n[GRUPO]: Camorra"..os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S").." \r```")
-				else
-					TriggerClientEvent("Notify",source,"negado","Negado, a pessoa precisa estar online")
-			end
-		end
-	end
-end)
----------------------------------------------------
--- TRIADE
----------------------------------------------------
-RegisterCommand('add-triade',function(source,args,rawCommand)
-	local user_id = vRP.getUserId(source)
-	local identity = vRP.getUserIdentity(user_id)
-	local nplayer = vRP.getUserSource(parseInt(args[1]))
-	if vRP.hasPermission(user_id,"lidertriade.permissao") then
-		if args[1] then
-			if nplayer then
-				vRP.addUserGroup(parseInt(args[1]),"Triade")
-				TriggerClientEvent("Notify",source,"sucesso","Voce setou o <b>ID "..args[1].."</b> com sucesso!")
-				SendWebhookMessage(webhookfac,"```prolog\n[ID]: "..user_id.." "..identity.name.." "..identity.firstname.." \n[SETOU]:"..parseInt(args[1]).." \n[GRUPO]: Triade"..os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S").." \r```")
-			else
-				TriggerClientEvent("Notify",source,"negado","Negado, a pessoa precisa estar online")
-			end
-		end
-	end
-end)
-RegisterCommand('rem-triade',function(source,args,rawCommand)
-	local user_id = vRP.getUserId(source)
-	local identity = vRP.getUserIdentity(user_id)
-	local nplayer = vRP.getUserSource(parseInt(args[1]))
-	if vRP.hasPermission(user_id,"lidertriade.permissao") then
-		if args[1] then
-			if nplayer then
-				vRP.removeUserGroup(parseInt(args[1]),"Triade")
-				TriggerClientEvent("Notify",source,"sucesso","Voce retirou o set do <b>ID "..args[1].."</b> com sucesso!")
-					SendWebhookMessage(webhookfac,"```prolog\n[ID]: "..user_id.." "..identity.name.." "..identity.firstname.." \n[REMOVEU]: "..parseInt(args[1]).." \n[GRUPO]: Triade"..os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S").." \r```")
-				else
-					TriggerClientEvent("Notify",source,"negado","Negado, a pessoa precisa estar online")
-			end
-		end
-	end
-end)
----------------------------------------------------
--- FARC
----------------------------------------------------
-RegisterCommand('add-farc',function(source,args,rawCommand)
-	local user_id = vRP.getUserId(source)
-	local identity = vRP.getUserIdentity(user_id)
-	local nplayer = vRP.getUserSource(parseInt(args[1]))
-	if vRP.hasPermission(user_id,"liderfarc.permissao") then
-		if args[1] then
-			if nplayer then
-				vRP.addUserGroup(parseInt(args[1]),"FARC")
-				TriggerClientEvent("Notify",source,"sucesso","Voce setou o <b>ID "..args[1].."</b> com sucesso!")
-				SendWebhookMessage(webhookfac,"```prolog\n[ID]: "..user_id.." "..identity.name.." "..identity.firstname.." \n[SETOU]:"..parseInt(args[1]).." \n[GRUPO]: FARC"..os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S").." \r```")
-			else
-				TriggerClientEvent("Notify",source,"negado","Negado, a pessoa precisa estar online")
-			end
-		end
-	end
-end)
-RegisterCommand('rem-farc',function(source,args,rawCommand)
-	local user_id = vRP.getUserId(source)
-	local identity = vRP.getUserIdentity(user_id)
-	local nplayer = vRP.getUserSource(parseInt(args[1]))
-	if vRP.hasPermission(user_id,"liderfarc.permissao") then
-		if args[1] then
-			if nplayer then
-				vRP.removeUserGroup(parseInt(args[1]),"FARC")
-				TriggerClientEvent("Notify",source,"sucesso","Voce retirou o set do <b>ID "..args[1].."</b> com sucesso!")
-					SendWebhookMessage(webhookfac,"```prolog\n[ID]: "..user_id.." "..identity.name.." "..identity.firstname.." \n[REMOVEU]: "..parseInt(args[1]).." \n[GRUPO]: FARC"..os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S").." \r```")
-				else
-					TriggerClientEvent("Notify",source,"negado","Negado, a pessoa precisa estar online")
-			end
-		end
-	end
-end)
----------------------------------------------------
--- SERPENTES
----------------------------------------------------
-RegisterCommand('add-serpentes',function(source,args,rawCommand)
-	local user_id = vRP.getUserId(source)
-	local identity = vRP.getUserIdentity(user_id)
-	local nplayer = vRP.getUserSource(parseInt(args[1]))
-	if vRP.hasPermission(user_id,"liderserpentes.permissao") then
-		if args[1] then
-			if nplayer then
-				vRP.addUserGroup(parseInt(args[1]),"Serpentes")
-				TriggerClientEvent("Notify",source,"sucesso","Voce setou o <b>ID "..args[1].."</b> com sucesso!")
-				SendWebhookMessage(webhookfac,"```prolog\n[ID]: "..user_id.." "..identity.name.." "..identity.firstname.." \n[SETOU]:"..parseInt(args[1]).." \n[GRUPO]: Serpentes"..os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S").." \r```")
-			else
-				TriggerClientEvent("Notify",source,"negado","Negado, a pessoa precisa estar online")
-			end
-		end
-	end
-end)
-RegisterCommand('rem-serpentes',function(source,args,rawCommand)
-	local user_id = vRP.getUserId(source)
-	local identity = vRP.getUserIdentity(user_id)
-	local nplayer = vRP.getUserSource(parseInt(args[1]))
-	if vRP.hasPermission(user_id,"liderserpentes.permissao") then
-		if args[1] then
-			if nplayer then
-				vRP.removeUserGroup(parseInt(args[1]),"Serpentes")
-				TriggerClientEvent("Notify",source,"sucesso","Voce retirou o set do <b>ID "..args[1].."</b> com sucesso!")
-					SendWebhookMessage(webhookfac,"```prolog\n[ID]: "..user_id.." "..identity.name.." "..identity.firstname.." \n[REMOVEU]: "..parseInt(args[1]).." \n[GRUPO]: Serpentes"..os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S").." \r```")
-				else
-					TriggerClientEvent("Notify",source,"negado","Negado, a pessoa precisa estar online")
-			end
-		end
-	end
-end)
----------------------------------------------------
--- MIDNIGHT
----------------------------------------------------
-RegisterCommand('add-midnight',function(source,args,rawCommand)
-	local user_id = vRP.getUserId(source)
-	local identity = vRP.getUserIdentity(user_id)
-	local nplayer = vRP.getUserSource(parseInt(args[1]))
-	if vRP.hasPermission(user_id,"lidermidnight.permissao") then
-		if args[1] then
-			if nplayer then
-				vRP.addUserGroup(parseInt(args[1]),"Midnight")
-				TriggerClientEvent("Notify",source,"sucesso","Voce setou o <b>ID "..args[1].."</b> com sucesso!")
-				SendWebhookMessage(webhookfac,"```prolog\n[ID]: "..user_id.." "..identity.name.." "..identity.firstname.." \n[SETOU]:"..parseInt(args[1]).." \n[GRUPO]: Midnight"..os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S").." \r```")
-			else
-				TriggerClientEvent("Notify",source,"negado","Negado, a pessoa precisa estar online")
-			end
-		end
-	end
-end)
-RegisterCommand('rem-midnight',function(source,args,rawCommand)
-	local user_id = vRP.getUserId(source)
-	local identity = vRP.getUserIdentity(user_id)
-	local nplayer = vRP.getUserSource(parseInt(args[1]))
-	if vRP.hasPermission(user_id,"lidermidnight.permissao") then
-		if args[1] then
-			if nplayer then
-				vRP.removeUserGroup(parseInt(args[1]),"Midnight")
-				TriggerClientEvent("Notify",source,"sucesso","Voce retirou o set do <b>ID "..args[1].."</b> com sucesso!")
-					SendWebhookMessage(webhookfac,"```prolog\n[ID]: "..user_id.." "..identity.name.." "..identity.firstname.." \n[REMOVEU]: "..parseInt(args[1]).." \n[GRUPO]: Midnight"..os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S").." \r```")
-				else
-					TriggerClientEvent("Notify",source,"negado","Negado, a pessoa precisa estar online")
-			end
-		end
-	end
-end)
----------------------------------------------------
--- DRIFTKING
----------------------------------------------------
-RegisterCommand('add-driftking',function(source,args,rawCommand)
-	local user_id = vRP.getUserId(source)
-	local identity = vRP.getUserIdentity(user_id)
-	local nplayer = vRP.getUserSource(parseInt(args[1]))
-	if vRP.hasPermission(user_id,"liderdriftking.permissao") then
-		if args[1] then
-			if nplayer then
-				vRP.addUserGroup(parseInt(args[1]),"Driftking")
-				TriggerClientEvent("Notify",source,"sucesso","Voce setou o <b>ID "..args[1].."</b> com sucesso!")
-				SendWebhookMessage(webhookfac,"```prolog\n[ID]: "..user_id.." "..identity.name.." "..identity.firstname.." \n[SETOU]:"..parseInt(args[1]).." \n[GRUPO]: Driftking"..os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S").." \r```")
-			else
-				TriggerClientEvent("Notify",source,"negado","Negado, a pessoa precisa estar online")
-			end
-		end
-	end
-end)
-RegisterCommand('rem-driftking',function(source,args,rawCommand)
-	local user_id = vRP.getUserId(source)
-	local identity = vRP.getUserIdentity(user_id)
-	local nplayer = vRP.getUserSource(parseInt(args[1]))
-	if vRP.hasPermission(user_id,"liderdriftking.permissao") then
-		if args[1] then
-			if nplayer then
-				vRP.removeUserGroup(parseInt(args[1]),"Driftking")
-				TriggerClientEvent("Notify",source,"sucesso","Voce retirou o set do <b>ID "..args[1].."</b> com sucesso!")
-					SendWebhookMessage(webhookfac,"```prolog\n[ID]: "..user_id.." "..identity.name.." "..identity.firstname.." \n[REMOVEU]: "..parseInt(args[1]).." \n[GRUPO]: Driftking"..os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S").." \r```")
-				else
-					TriggerClientEvent("Notify",source,"negado","Negado, a pessoa precisa estar online")
-			end
-		end
-	end
-end) ]]
------------------------------------------------------------------------------------------------------------------------------------------
--- /rev
+-- REVISTAR DE LONGE
 -----------------------------------------------------------------------------------------------------------------------------------------
 RegisterCommand('rev', function(source, args, rawCommand)
     local user_id = vRP.getUserId(source)
@@ -1666,7 +1152,7 @@ end)
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- RG ADM
 -----------------------------------------------------------------------------------------------------------------------------------------
-RegisterCommand('rg2', function(source, args, rawCommand)
+RegisterCommand('r', function(source, args, rawCommand)
     local user_id = vRP.getUserId(source)
     if vRP.hasPermission(user_id, "kick.permissao") then
         if args[1] then
@@ -1687,8 +1173,8 @@ RegisterCommand('rg2', function(source, args, rawCommand)
                 local promoter = vRP.getUserGroupByType(nuser_id, "promoter")
                 local value2 = vRP.getUData(nuser_id, "vRP:prisao")
                 local tempoPreso = json.decode(value2) or 0
-				local banco = vRP.getBankMoney(nuser_id)
-				local seminfo = "-"
+                local banco = vRP.getBankMoney(nuser_id)
+                local seminfo = "-"
 
                 if tempoPreso == -1 or tempoPreso == nil or tempoPreso == 0 then
                     tempoPreso = "-"
@@ -1702,9 +1188,9 @@ RegisterCommand('rg2', function(source, args, rawCommand)
                     boost = "-"
                 end
 
-				if promoter == "" or promoter == nil then
-					promoter = "-"
-				end
+                if promoter == "" or promoter == nil then
+                    promoter = "-"
+                end
 
                 if vRP.getUserGroupByType(nuser_id, "vip6") == "Diamante" then
                     vip = vRP.getUserGroupByType(nuser_id, "vip6")
@@ -1725,7 +1211,8 @@ RegisterCommand('rg2', function(source, args, rawCommand)
                 vRPclient.setDiv(source, "completerg",
                     ".div_completerg { background-color: rgba(0,0,0,0.60); font-size: 13px; font-family: arial; color: #fff; width: 420px; padding: 20px 20px 5px; bottom: 25%; right: 20px; position: absolute; border: 1px solid rgba(255,255,255,0.2); letter-spacing: 0.5px; } .local { width: 220px; padding-bottom: 15px; float: left; } .local2 { width: 200px; padding-bottom: 15px; float: left; } .local b, .local2 b { color: #00BFFF; }",
                     "<div class=\"local\"><b>Nome:</b> " .. identity.name .. " " .. identity.firstname .. " ( " .. vRP.format(identity.user_id) .. " )</div><div class=\"local2\"><b>Identidade:</b> " .. identity.registration .. "</div><div class=\"local\"><b>Idade:</b> " .. identity.age .. " Anos</div><div class=\"local2\"><b>Telefone:</b> " .. identity.phone ..
-                        "</div><div class=\"local\"><b>Multas pendentes:</b> R$ " .. vRP.format(parseInt(valormultas)) .. "</div><div class=\"local2\"><b>Carteira:</b> R$ " .. vRP.format(parseInt(carteira)) .. "</div> <div class=\"local\"><b>Promoter: </b> " .. promoter .. "</div> <div class=\"local2\"><b>Banco:</b> R$ " .. vRP.format(parseInt(banco)) .. "</div> <div class=\"local\"><b>Setagem:</b> " .. job .. "</div></div><div class=\"local2\"><b>Prisão:</b> " .. tempoPreso .. "</div></div> <div class=\"local\"><b>VIP:</b> " .. vip .. "</div> <div class=\"local2\"><b>Boost:</b> " .. boost .. "</div>")
+                        "</div><div class=\"local\"><b>Multas pendentes:</b> R$ " .. vRP.format(parseInt(valormultas)) .. "</div><div class=\"local2\"><b>Carteira:</b> R$ " .. vRP.format(parseInt(carteira)) .. "</div> <div class=\"local\"><b>Promoter: </b> " .. promoter .. "</div> <div class=\"local2\"><b>Banco:</b> R$ " .. vRP.format(parseInt(banco)) ..
+                        "</div> <div class=\"local\"><b>Setagem:</b> " .. job .. "</div></div><div class=\"local2\"><b>Prisão:</b> " .. tempoPreso .. "</div></div> <div class=\"local\"><b>VIP:</b> " .. vip .. "</div> <div class=\"local2\"><b>Boost:</b> " .. boost .. "</div>")
                 vRP.request(source, "Você deseja fechar o registro geral?", 1000)
                 vRPclient.removeDiv(source, "completerg")
             end
@@ -1737,56 +1224,427 @@ end)
 -- LIBERAR "START/STOP/ENSURE POR PERMISSÃO"
 -----------------------------------------------------------------------------------------------------------------------------------------
 
-local permensure = "admin.permissao"
+local permensure = "founder.permissao"
 
 RegisterCommand('start', function(source, args)
-	if source ~= 0 then
-		local user_id = vRP.getUserId(source)
-		if not vRP.hasPermission(user_id,permensure) then
-			TriggerClientEvent("Notify",source,"negado","Sem permissão!")
-			return
-		end
-	end
-	if #args > 0 then
-		StartResource(args[1])
-	elseif source ~= 0 then
-		TriggerClientEvent("Notify",source,"negado","Sem argumentos para o seu comando!")
-	else
-		print("Seu comando não possui argumentos!")
-	end
+    if source ~= 0 then
+        local user_id = vRP.getUserId(source)
+        if not vRP.hasPermission(user_id, permensure) then
+            TriggerClientEvent("Notify", source, "negado", "Sem permissão!")
+            return
+        end
+    end
+    if #args > 0 then
+        StartResource(args[1])
+    elseif source ~= 0 then
+        TriggerClientEvent("Notify", source, "negado", "Sem argumentos para o seu comando!")
+    else
+        print("Seu comando não possui argumentos!")
+    end
 end)
 
 RegisterCommand('stop', function(source, args)
-	if source ~= 0 then
-		local user_id = vRP.getUserId(source)
-		if not vRP.hasPermission(user_id,permensure) then
-			TriggerClientEvent("Notify",source,"negado","Sem permissão!")
-			return
-		end
-	end
-	if #args > 0 then
-		StopResource(args[1])
-	elseif source ~= 0 then
-		TriggerClientEvent("Notify",source,"negado","Sem argumentos para o seu comando!")
-	else
-		print("Seu comando não possui argumentos!")
-	end
+    if source ~= 0 then
+        local user_id = vRP.getUserId(source)
+        if not vRP.hasPermission(user_id, permensure) then
+            TriggerClientEvent("Notify", source, "negado", "Sem permissão!")
+            return
+        end
+    end
+    if #args > 0 then
+        StopResource(args[1])
+    elseif source ~= 0 then
+        TriggerClientEvent("Notify", source, "negado", "Sem argumentos para o seu comando!")
+    else
+        print("Seu comando não possui argumentos!")
+    end
 end)
 
 RegisterCommand('ensure', function(source, args)
-	if source ~= 0 then
-		local user_id = vRP.getUserId(source)
-		if not vRP.hasPermission(user_id,permensure) then
-			TriggerClientEvent("Notify",source,"negado","Sem permissão!")
+    if source ~= 0 then
+        local user_id = vRP.getUserId(source)
+        if not vRP.hasPermission(user_id, permensure) then
+            TriggerClientEvent("Notify", source, "negado", "Sem permissão!")
+            return
+        end
+    end
+    if #args > 0 then
+        StopResource(args[1])
+        StartResource(args[1])
+    elseif source ~= 0 then
+        TriggerClientEvent("Notify", source, "negado", "Sem argumentos para o seu comando!")
+    else
+        print("Seu comando não possui argumentos!")
+    end
+end)
+
+-----------------------------------------------------------------------------------------------------------------------------------------
+-- KICKAR JOGADORES PELA SOURCE
+-----------------------------------------------------------------------------------------------------------------------------------------
+RegisterCommand("kicksrc", function(source, args, command)
+    local user_id = vRP.getUserId(source)
+    if user_id then
+        if vRP.hasPermission(user_id, "kick.permissao") then
+            DropPlayer(args[1], "VOCE FOI KIKADO!")
+        end
+    end
+end)
+
+-----------------------------------------------------------------------------------------------------------------------------------------
+-- ROUBAR
+-----------------------------------------------------------------------------------------------------------------------------------------
+-- RegisterCommand('roubar', function(source, args, rawCommand)
+--     local user_id = vRP.getUserId(source)
+--     -- BLOQUEAR PARA NÃO PODER ROUBAR EM OUTRAS DIMENSÕES (ARENA PVP)
+--     if GetPlayerRoutingBucket(source) ~= 0 then
+--         return TriggerClientEvent("Notify", source, "negado", "Não é possível roubar em outras dimensões")
+--     end
+--     -- BLOQUEAR PARA POLICIAIS NÃO PODEREM USAR O COMANDO
+--     if vRP.hasPermission(user_id, "nogarmas.permissao") or vRP.hasPermission(user_id, "policia.permissao") then
+--         return TriggerClientEvent("Notify", source, "negado", "Policiais não podem utilizar o comando /roubar")
+--     end
+--     local nplayer = vRPclient.getNearestPlayer(source, 2)
+--     if nplayer then
+--         local nuser_id = vRP.getUserId(nplayer)
+--         local policia = vRP.getUsersByPermission("policia.permissao")
+--         local identity = vRP.getUserIdentity(user_id)
+--         local identityu = vRP.getUserIdentity(nuser_id)
+--         local crds = GetEntityCoords(GetPlayerPed(source))
+--         local itens_roubo = {}
+--         if #policia >= 2 then
+--             if vRP.request(nplayer, "Você está sendo roubado, deseja passar tudo?", 30) then
+--                 local ndata = vRP.getUserDataTable(nuser_id)
+--                 local weapons = vRPclient.replaceWeapons(nplayer, {})
+--                 local data = vRP.getUserDataTable(vRP.getUserId(nplayer))
+--                 if data then
+--                     data.weapons = {}
+--                 end
+--                 if ndata ~= nil then
+--                     if ndata.inventory ~= nil then
+--                         -- for qnt, item in pairs(whitelistRoubo) do
+--                         --     -- print(item)
+--                         -- end
+--                         for k, v in pairs(ndata.inventory) do
+--                             if vRP.getInventoryWeight(user_id) + vRP.getItemWeight(k) * v.amount <= vRP.getInventoryMaxWeight(user_id) then
+--                                 if k ~= 'sacodelixo' and k ~= 'garrafavazia' and k ~= 'garrafadeleite' and k ~= 'celular' and k ~= 'roupas' and k ~= 'mochila' and k ~= 'radio' and k ~= 'isca' and k ~= 'dourado' and k ~= 'corvina' and k ~= 'salmao' and k ~= 'pacu' and k ~= 'pintado' and k ~= 'pirarucu' and k ~= 'tilapia' and k ~= 'tucunare' and k ~= 'lambari' and k ~= 'ametista2' and k ~= 'bronze2' and k ~= 'diamante2' and k ~= 'esmeralda2' and k ~= 'ferro2' and k ~= 'ouro2' and k ~= 'rubi2' and k ~= 'safira2' and k ~= 'topazio2' and k ~= 'ametista' and k ~= 'bronze' and k ~= 'diamante' and k ~= 'esmeralda' and k ~= 'ferro' and k ~= 'ouro' and k ~= 'rubi' and k ~= 'safira' and k ~= 'topazio' and k ~= 'alianca' then
+--                                     if vRP.tryGetInventoryItem(nuser_id, k, v.amount) then
+--                                         vRP.giveInventoryItem(user_id, k, v.amount)
+--                                         table.insert(itens_roubo, "[ITEM]: " .. vRP.itemNameList(k) .. " [QUANTIDADE]: " .. v.amount)
+--                                     end
+--                                 else
+--                                     TriggerClientEvent("Notify", source, "aviso", "<b>" .. vRP.format(parseInt(v.amount)) .. "x " .. vRP.itemNameList(k) .. "</b> são proíbidos de serem roubados.")
+--                                 end
+--                             else
+--                                 TriggerClientEvent("Notify", source, "negado", "Mochila não suporta <b>" .. vRP.format(parseInt(v.amount)) .. "x " .. vRP.itemNameList(k) .. "</b> por causa do peso.")
+--                             end
+--                         end
+--                     end
+--                 end
+--                 for k, v in pairs(weapons) do
+--                     vRP.giveInventoryItem(nuser_id, "wbody|" .. k, 1)
+--                     if vRP.getInventoryWeight(user_id) + vRP.getItemWeight("wbody|" .. k) <= vRP.getInventoryMaxWeight(user_id) then
+--                         if vRP.tryGetInventoryItem(nuser_id, "wbody|" .. k, 1) then
+--                             vRP.giveInventoryItem(user_id, "wbody|" .. k, 1)
+--                             table.insert(itens_roubo, "[ITEM]: " .. vRP.itemNameList("wbody|" .. k) .. " [QUANTIDADE]: " .. 1)
+--                         end
+--                     else
+--                         TriggerClientEvent("Notify", source, "negado", "Mochila não suporta <b>1x " .. vRP.itemNameList(k) .. "</b> por causa do peso.")
+--                     end
+--                     if v.ammo > 0 then
+--                         vRP.giveInventoryItem(nuser_id, "wammo|" .. k, v.ammo)
+--                         if vRP.getInventoryWeight(user_id) + vRP.getItemWeight("wammo|" .. k) * v.ammo <= vRP.getInventoryMaxWeight(user_id) then
+--                             if vRP.tryGetInventoryItem(nuser_id, "wammo|" .. k, v.ammo) then
+--                                 vRP.giveInventoryItem(user_id, "wammo|" .. k, v.ammo)
+--                                 table.insert(itens_roubo, "[ITEM]: " .. vRP.itemNameList("wammo|" .. k) .. " [QTD]: " .. v.ammo)
+--                             end
+--                         else
+--                             TriggerClientEvent("Notify", source, "negado", "Mochila não suporta <b>" .. vRP.format(parseInt(v.ammo)) .. "x " .. vRP.itemNameList(k) .. "</b> por causa do peso.")
+--                         end
+--                     end
+--                 end
+--                 local nmoney = vRP.getMoney(nuser_id)
+--                 if vRP.tryPayment(nuser_id, nmoney) then
+--                     vRP.giveMoney(user_id, nmoney)
+--                 end
+--                 -- ACIONAR A POLICIA
+--                 for l, w in pairs(policia) do
+--                     local player = vRP.getUserSource(parseInt(w))
+--                     if player then
+--                         async(function()
+--                             TriggerClientEvent('blipassalto:criar:assalto', player, crds.x, crds.y, crds.z)
+--                             vRPclient.playSound(player, "Oneshot_Final", "MP_MISSION_COUNTDOWN_SOUNDSET")
+--                             TriggerClientEvent('chatMessage', player, "190", {65, 130, 255}, "Assalto de Rua em andamento, dirija-se até o local e intercepte o assaltante.")
+--                             SetTimeout(20000, function()
+--                                 TriggerClientEvent('blipassalto:remover:assalto', player)
+--                             end)
+--                         end)
+--                     end
+--                 end
+--                 vRPclient.setStandBY(source, parseInt(600))
+--                 local itensroubados = table.concat(itens_roubo, "\n")
+--                 TriggerClientEvent("Notify", source, "importante", "Roubo concluido com sucesso, corra, a polícia foi acionada")
+--                 vRP.Log("```prolog\n[ASSALTANTE]: " .. user_id .. " " .. identity.name .. " " .. identity.firstname .. " \n[ASSALTADO]: " .. nuser_id .. " " .. identityu.name .. " " .. identityu.firstname .. "\n"..itensroubados.."\n[COORDENADA]: " .. crds.x .. "," .. crds.y .. "," .. crds.z .. "" .. os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S") .. " \r```", "CMD_ROUBAR")
+--             else
+--                 TriggerClientEvent("Notify", source, "importante", "A pessoa está resistindo ao roubo.")
+--                 vRP.Log("```prolog\n[ASSALTANTE]: " .. user_id .. " " .. identity.name .. " " .. identity.firstname .. " \n[ASSALTADO]: " .. nuser_id .. " " .. identityu.name .. " " .. identityu.firstname .. "\n[A PESSOA RESISTIU AO ROUBO]\n[COORDENADA]: " .. crds.x .. "," .. crds.y .. "," .. crds.z .. "" .. os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S") .. " \r```", "CMD_ROUBAR")
+--             end
+--         else
+--             TriggerClientEvent("Notify", source, "negado", "Número insuficiente de policiais no momento.")
+--         end
+--     end
+-- end)
+
+-----------------------------------------------------------------------------------------------------------------------------------------
+-- JOB
+-----------------------------------------------------------------------------------------------------------------------------------------
+RegisterCommand('job2', function(source, args, rawCommand)
+    local user_id = vRP.getUserId(source)
+    local membros = 0
+    local membros_nomes = ""
+    if vRP.hasPermission(user_id, "founder.permissao") then
+        if args[1] == nil then
+            return TriggerClientEvent("Notify", source, "importante", "<b>Comandos disponíveis:</b><br>/job Verdes<br>/job Vermelhos<br>/job Roxos<br>/job Laranjas<br>/job Sinaloa<br>/job Cosanostra<br>/job Yakuza<br>/job Irmandade<br>/job Salieris<br>/job Triade")
+        elseif args[1] == "Verdes" then
+            listaMembros = vRP.getUsersByPermission("verdes.permissao")
+        elseif args[1] == "Vermelhos" then
+            listaMembros = vRP.getUsersByPermission("vermelhos.permissao")
+        elseif args[1] == "Roxos" then
+            listaMembros = vRP.getUsersByPermission("roxos.permissao")
+        elseif args[1] == "Laranjas" then
+            listaMembros = vRP.getUsersByPermission("laranjas.permissao")
+        elseif args[1] == "Sinaloa" then
+            listaMembros = vRP.getUsersByPermission("sinaloa.permissao")
+        elseif args[1] == "Cosanostra" then
+            listaMembros = vRP.getUsersByPermission("cn.permissao")
+        elseif args[1] == "Yakuza" then
+            listaMembros = vRP.getUsersByPermission("yakuza.permissao")
+        elseif args[1] == "Irmandade" then
+            listaMembros = vRP.getUsersByPermission("irmandade.permissao")
+        elseif args[1] == "Salieris" then
+            listaMembros = vRP.getUsersByPermission("salieris.permissao")
+        elseif args[1] == "Triade" then
+            listaMembros = vRP.getUsersByPermission("triade.permissao")
+        else
+            return TriggerClientEvent("Notify", source, "importante", "<b>Comandos disponíveis:</b><br>/job Verdes<br>/job Vermelhos<br>/job Roxos<br>/job Laranjas<br>/job Sinaloa<br>/job Cosanostra<br>/job Yakuza<br>/job Irmandade<br>/job Salieris<br>/job Triade")
+        end
+        for k, v in ipairs(listaMembros) do
+            local identity = vRP.getUserIdentity(parseInt(v))
+            membros_nomes = membros_nomes .. "<b>" .. v .. "</b>: " .. identity.name .. " " .. identity.firstname .. "<br>"
+            membros = membros + 1
+        end
+        TriggerClientEvent("Notify", source, "importante", "Atualmente <b>" .. membros .. " membros</b> ativos.")
+        if parseInt(membros) > 0 then
+            TriggerClientEvent("Notify", source, "importante", membros_nomes)
+        end
+    end
+end)
+
+-----------------------------------------------------------------------------------------------------------------------------------------
+-- JOB - PARA PLAYERS VEREM OS MEMBROS ONLINE DE SUAS FACÇÕES
+-----------------------------------------------------------------------------------------------------------------------------------------
+RegisterNetEvent('MostrarMembrosJob')
+AddEventHandler('MostrarMembrosJob', function(source, listaMembros, membros_nomes, membros, nomeJob)
+    for k, v in ipairs(listaMembros) do
+        local identity = vRP.getUserIdentity(parseInt(v))
+        membros_nomes = membros_nomes .. "<b>" .. v .. "</b>: " .. identity.name .. " " .. identity.firstname .. "<br>"
+        membros = membros + 1
+    end
+    TriggerClientEvent("Notify", source, "importante", "Atualmente <b>" .. membros .. " "..nomeJob.."</b> ativos.")
+    if parseInt(membros) > 0 then
+        TriggerClientEvent("Notify", source, "importante", membros_nomes)
+    end
+end)
+
+RegisterCommand('job', function(source, args, rawCommand)
+    local user_id = vRP.getUserId(source)
+    local membros = 0
+    local membros_nomes = ""
+
+    if vRP.hasPermission(user_id, "verdes.permissao") then
+        listaMembros = vRP.getUsersByPermission("verdes.permissao")
+        TriggerEvent('MostrarMembrosJob', source, listaMembros, membros_nomes, membros, "Verdes")
+    elseif vRP.hasPermission(user_id, "vermelhos.permissao") then
+        listaMembros = vRP.getUsersByPermission("vermelhos.permissao")
+        TriggerEvent('MostrarMembrosJob', source, listaMembros, membros_nomes, membros, "Vermelhos")
+    elseif vRP.hasPermission(user_id, "roxos.permissao") then
+        listaMembros = vRP.getUsersByPermission("roxos.permissao")
+        TriggerEvent('MostrarMembrosJob', source, listaMembros, membros_nomes, membros, "Roxos")
+    elseif vRP.hasPermission(user_id, "laranjas.permissao") then
+        listaMembros = vRP.getUsersByPermission("laranjas.permissao")
+        TriggerEvent('MostrarMembrosJob', source, listaMembros, membros_nomes, membros, "Laranjas")
+    elseif vRP.hasPermission(user_id, "sinaloa.permissao") then
+        listaMembros = vRP.getUsersByPermission("sinaloa.permissao")
+        TriggerEvent('MostrarMembrosJob', source, listaMembros, membros_nomes, membros, "Sinaloa")
+    elseif vRP.hasPermission(user_id, "cn.permissao") then
+        listaMembros = vRP.getUsersByPermission("cn.permissao")
+        TriggerEvent('MostrarMembrosJob', source, listaMembros, membros_nomes, membros, "Cosanostra")
+    elseif vRP.hasPermission(user_id, "yakuza.permissao") then
+        listaMembros = vRP.getUsersByPermission("yakuza.permissao")
+        TriggerEvent('MostrarMembrosJob', source, listaMembros, membros_nomes, membros, "Yakuza")
+    elseif vRP.hasPermission(user_id, "irmandade.permissao") then
+        listaMembros = vRP.getUsersByPermission("irmandade.permissao")
+        TriggerEvent('MostrarMembrosJob', source, listaMembros, membros_nomes, membros, "Irmandade")
+    elseif vRP.hasPermission(user_id, "salieris.permissao") then
+        listaMembros = vRP.getUsersByPermission("salieris.permissao")
+        TriggerEvent('MostrarMembrosJob', source, listaMembros, membros_nomes, membros, "Salieris")
+    elseif vRP.hasPermission(user_id, "triade.permissao") then
+        listaMembros = vRP.getUsersByPermission("triade.permissao")
+        TriggerEvent('MostrarMembrosJob', source, listaMembros, membros_nomes, membros, "Triade")
+    elseif vRP.hasPermission(user_id, "policia.permissao") then
+        listaMembros = vRP.getUsersByPermission("policia.permissao")
+        TriggerEvent('MostrarMembrosJob', source, listaMembros, membros_nomes, membros, "Policiais")
+    elseif vRP.hasPermission(user_id, "paramedico.permissao") then
+        listaMembros = vRP.getUsersByPermission("paramedico.permissao")
+        TriggerEvent('MostrarMembrosJob', source, listaMembros, membros_nomes, membros, "Médicos")
+    elseif vRP.hasPermission(user_id, "mecanico.permissao") then
+        listaMembros = vRP.getUsersByPermission("mecanico.permissao")
+        TriggerEvent('MostrarMembrosJob', source, listaMembros, membros_nomes, membros, "Mecânicos")
+    else
+        return TriggerClientEvent("Notify", source, "negado", "Você não tem permissão para utilizar este comando")
+    end
+end)
+
+-----------------------------------------------------------------------------------------------------------------------------------------
+-- CALL ADM
+-----------------------------------------------------------------------------------------------------------------------------------------
+local blips = {}
+RegisterCommand('call',function(source,args,rawCommand)
+	local source = source
+	local answered = false
+	local user_id = vRP.getUserId(source)
+    local identificador = math.random(100000,999999)
+	if user_id then
+		local players = {}
+		if args[1] == "adm" then
+			players = vRP.getUsersByPermission("staff.permissao")
+		-- else args[1] == "190" then
+		-- 	players = vRP.getUsersByPermission("policia.permissao")
+		-- elseif args[1] == "192" then
+		-- 	players = vRP.getUsersByPermission("paramedico.permissao")
+		-- elseif args[1] == "mec" then
+		-- 	players = vRP.getUsersByPermission("mecanico.permissao")
+		-- elseif args[1] == "taxi" then
+		-- 	players = vRP.getUsersByPermission("taxista.permissao")
+		-- elseif args[1] == "adv" then
+		-- 	players = vRP.getUsersByPermission("judiciario.permissao")
+		else
+			TriggerClientEvent("Notify",source,"negado","Serviço inexistente ou disponível somente pelo <b>Celular</b>")
 			return
 		end
+
+		local descricao = vRP.prompt(source,"Descrição:","")
+		if descricao == "" then
+			return
+		end
+
+		local identitys = vRP.getUserIdentity(user_id)
+		local crds = GetEntityCoords(GetPlayerPed(source))
+		TriggerClientEvent("Notify",source,"sucesso","Chamado enviado com sucesso.")
+		vRP.Log("```prolog\n[IDENTIFICADOR]: #"..identificador.."\n[FEITO POR]: "..user_id.." "..identitys.name.." "..identitys.firstname.." \n[MENSAGEM]: '"..descricao.."'\n[COORDENADA]: "..crds.x..","..crds.y..","..crds.z..""..os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S").."```", "CMD_CALL")
+		for l,w in pairs(players) do
+			local player = vRP.getUserSource(parseInt(w))
+			local nuser_id = vRP.getUserId(player)
+			local x,y,z = vRPclient.getPosition(source)
+			local uplayer = vRP.getUserSource(user_id)
+			
+
+			if player and player ~= uplayer then
+				async(function()
+					vRPclient.playSound(player,"Out_Of_Area","DLC_Lowrider_Relay_Race_Sounds")
+					TriggerClientEvent('chatMessage',player,"CHAMADO",{255,0,0},"Enviado por ^1"..identitys.name.." "..identitys.firstname.."^0 ["..user_id.."]: "..descricao)
+					local ok = vRP.request(player,"Aceitar o chamado de <b>"..identitys.name.." "..identitys.firstname.."</b>?",60)
+					if ok then
+						if not answered then
+							answered = true
+							local identity = vRP.getUserIdentity(nuser_id)
+							vRP.Log("```prolog\n[IDENTIFICADOR]: #"..identificador.."\n[QUEM ACEITOU]: "..nuser_id.." "..identity.name.." "..identity.firstname.."\n[FEITO POR]: "..user_id.." "..identitys.name.." "..identitys.firstname.."\n[MENSAGEM]: '"..descricao.."'\n[COORDENADA]: "..crds.x..","..crds.y..","..crds.z..""..os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S").."```", "CMD_CALL")
+							-- TriggerClientEvent("Notify",source,"importante","Chamado atendido por <b>"..identity.name.." "..identity.firstname.."</b>, aguarde no local.")
+							TriggerClientEvent("Notify",source,"importante","Chamado atendido, aguarde no local.")
+							vRPclient.playSound(source,"Event_Message_Purple","GTAO_FM_Events_Soundset")
+							vRPclient._setGPS(player,x,y)
+						else
+							TriggerClientEvent("Notify",player,"negado","Chamado ja foi atendido por outra pessoa.")
+							vRPclient.playSound(player,"CHECKPOINT_MISSED","HUD_MINI_GAME_SOUNDSET")
+						end
+					end
+					local id = idgens:gen()
+					blips[id] = vRPclient.addBlip(player,x,y,z,358,71,"Chamado",0.6,false)
+					SetTimeout(300000,function() vRPclient.removeBlip(player,blips[id]) idgens:free(id) end)
+				end)
+			end
+		end
 	end
-	if #args > 0 then
-		StopResource(args[1])
-		StartResource(args[1])
-	elseif source ~= 0 then
-		TriggerClientEvent("Notify",source,"negado","Sem argumentos para o seu comando!")
-	else
-		print("Seu comando não possui argumentos!")
-	end
+end)
+
+-----------------------------------------------------------------------------------------------------------------------------------------
+-- /PAINEL
+-----------------------------------------------------------------------------------------------------------------------------------------
+local table = {
+    {["Lider"] = "PMFCIV", ["Nome"] = "Policia", ["Grupos"] = {"PMFCIP", "PMFCIIP", "PMFCIIIP", "Retirar Set"}},
+    {["Lider"] = "SAMUIV", ["Nome"] = "Hospital", ["Grupos"] = {"SAMUIP", "SAMUIIP", "SAMUIIP", "SAMUIIIP", "Retirar Set"}},
+    {["Lider"] = "MidnightL", ["Nome"] = "Midnight", ["Grupos"] = {"Midnight", "Retirar Set"}},
+    {["Lider"] = "DriftkingL", ["Nome"] = "Driftking", ["Grupos"] = {"Driftking", "Retirar Set"}},
+    {["Lider"] = "MotoclubL", ["Nome"] = "Motoclub", ["Grupos"] = {"Motoclub", "Retirar Set"}},
+    {["Lider"] = "VerdesL", ["Nome"] = "Verdes", ["Grupos"] = {"Verdes", "Retirar Set"}},
+    {["Lider"] = "VermelhosL", ["Nome"] = "Vermelhos", ["Grupos"] = {"Vermelhos", "Retirar Set"}},
+    {["Lider"] = "RoxosL", ["Nome"] = "Roxos", ["Grupos"] = {"Roxos", "Retirar Set"}},
+    {["Lider"] = "LaranjasL", ["Nome"] = "Laranjas", ["Grupos"] = {"Laranjas", "Retirar Set"}},
+    {["Lider"] = "SinaloaL", ["Nome"] = "Sinaloa", ["Grupos"] = {"Sinaloa", "Retirar Set"}},
+    {["Lider"] = "CNL", ["Nome"] = "CN", ["Grupos"] = {"CN", "Retirar Set"}},
+    {["Lider"] = "YakuzaL", ["Nome"] = "Yakuza", ["Grupos"] = {"Yakuza", "Retirar Set"}},
+    {["Lider"] = "IrmandadeL", ["Nome"] = "Irmandade", ["Grupos"] = {"Irmandade", "Retirar Set"}},
+    {["Lider"] = "SalierisL", ["Nome"] = "Salieris", ["Grupos"] = {"Salieris", "Retirar Set"}},
+    {["Lider"] = "CamorraL", ["Nome"] = "Camorra", ["Grupos"] = {"Camorra", "Retirar Set"}},
+    {["Lider"] = "TriadeL", ["Nome"] = "Triade", ["Grupos"] = {"Triade", "Retirar Set"}},
+    {["Lider"] = "FARCL", ["Nome"] = "FARC", ["Grupos"] = {"FARC", "Retirar Set"}},
+    {["Lider"] = "SerpentesL", ["Nome"] = "Serpentes", ["Grupos"] = {"Serpentes", "Retirar Set"}},
+    {["Lider"] = "SportRaceL", ["Nome"] = "Fenix Customs", ["Grupos"] = {"SportRace", "Retirar Set"}},
+    {["Lider"] = "VanillaL", ["Nome"] = "Vanilla Unicorn", ["Grupos"] = {"Vanilla", "Retirar Set"}},
+}
+
+RegisterCommand('painel', function(source, args, rawCommand)
+    local source = source
+    local user_id = vRP.getUserId(source)
+    local player = vRP.getUserId(user_id)
+    local identity = vRP.getUserIdentity(user_id)
+    for k, v in pairs(table) do
+        if vRP.hasGroup(user_id, v.Lider) then
+            local menu = {name = v.Nome, css = {top = "75px", header_color = "rgba(42, 112, 190, 0.8)"}}
+            for t, v in pairs(v.Grupos) do
+                menu[v] = {
+                    function(player, choice)
+                        local console = vRP.prompt(source, "ID do usuário", "")
+                        local sourcec = vRP.getUserSource(parseInt(console))
+                        local idc = vRP.getUserId(sourcec)
+                        if console ~= "" then
+                            if idc then
+                                if v == "Retirar Set" then
+                                    vRP.addUserGroup(idc, "Civil")
+                                    TriggerClientEvent('desligarRadios', source)
+                                    vRP.Log("```prolog\n[ID]: " .. user_id .. " " .. identity.name .. " " .. identity.firstname .. " \n[RETIROU O SET]: " .. idc .. " \n[PARA O GRUPO]: Civil " .. os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S") .. " \r```", "CMD_PAINEL")
+                                    TriggerClientEvent("Notify", source, "sucesso", "Você retirou o set do ID <b>" .. idc .. "</b> com sucesso!")
+                                    TriggerClientEvent("Notify", sourcec, "sucesso", "Você teve seu set removido pelo ID <b>"..user_id.."</b>")
+                                    vRP.closeMenu(source)
+                                    return true
+                                end
+                                if vRP.request(sourcec, "Você deseja se ingressar ao grupo " .. v .. " ?", 60) then
+                                    TriggerClientEvent("Notify", source, "sucesso", "Você adicionou o ID <b>" .. idc .. "</b> no grupo <b>" .. v)
+                                    TriggerClientEvent("Notify", sourcec, "sucesso", "Você entrou para o grupo <b>".. v.."</b> setado pelo ID <b>"..user_id.."</b>")
+                                    vRP.addUserGroup(idc, v)
+                                    vRP.Log("```prolog\n[ID]: " .. user_id .. " " .. identity.name .. " " .. identity.firstname .. " \n[SETOU]: " .. idc .. " \n[PARA O GRUPO]: " .. v .. " " .. os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S") .. " \r```", "CMD_PAINEL")
+                                else
+                                    TriggerClientEvent("Notify", source, "O convite foi recusado")
+                                end
+                            else
+                                TriggerClientEvent("Notify", source, "negado", "Usuário não está online")
+                            end
+                        end
+                        vRP.closeMenu(source)
+                    end,
+                    "",
+                }
+            end
+            vRP.openMenu(source, menu)
+        end
+    end
 end)

@@ -9,20 +9,20 @@ cfg.items = {
 	["bandagem"] = { "Bandagem",0.7 },
 	["roupas"] = { "Roupas",8.0 },
 	["dinheirosujo"] = { "Dinheiro Sujo",0.0 },
-	["repairkit"] = { "Kit de Reparos",10.0 },
+	["repairkit"] = { "Kit de Reparos",5.0 },
 	["algemas"] = { "Algemas",1.0 },
 	["celular"] = { "Celular",0.5 },
 	["capuz"] = { "Capuz",0.5 },
-	["lockpick"] = { "Lockpick",10 },
-	["masterpick"] = { "Masterpick",10 },
-	["militec"] = { "Militec",5.0 },
+	["lockpick"] = { "Lockpick",2 },
+	["masterpick"] = { "Masterpick",2 },
+	["militec"] = { "Militec",2.5 },
 	["c4"] = { "C4",5.0 },
 	["energetico"] = { "Energético",0.3 },
 	["mochila"] = { "Mochila",1 },
 	["carbono"] = { "Carbono",0.0038 },
 	["radio"] = { "Radio",1.0 },
-	["placa"] = { "Placa",5.0 },
-	["pneu"] = { "Pneu",5.0 },
+	["placa"] = { "Placa",2.0 },
+	["pneu"] = { "Pneu",3.0 },
 	["cartaoinvasao"] = { "Cartão de Invasão",0.5 },
 	["gps"] = { "GPS",0.5 },
 	["rosa"] = { "rosa",0.5 },
@@ -38,7 +38,7 @@ cfg.items = {
 	["adrenalina"] = { "adrenalina",1.0 },
 	["gopro"] = { "gopro",1.0 },
 	["gravadordevoz"] = { "gravadordevoz",1.0 },
-	["ticketpvp"] = { "ticketpvp",0.5 },
+	["ticketpvp"] = { "ticketpvp",0.1 },
 
 	-- Farm Contrabando
 	["componentemetal"] = { "Componentes de Metais",0.5 },
@@ -74,7 +74,7 @@ cfg.items = {
 	["chipset"] = { "Chipset",0.3 },
 	
 	-- Farm de Armas
-	["placademetal"] = { "Placa de Metal",0.5 },
+	["placademetal"] = { "Placa de Metal",0.3 },
 	["corpodeak"] = { "Corpo de AK-47",0.5 },
 	["corpodefiveseven"] = { "Corpo de Five Seven",0.5 },
 	["corpodehkp7m10"] = { "Corpo de HK P7M10",0.5 },
@@ -82,14 +82,13 @@ cfg.items = {
 	["corpodemp5"] = { "Corpo de MP5",0.5 },
 	["gatilho"] = { "Gatilho",0.5 },
 	["mola"] = { "Mola",0.2 },
-	["mola"] = { "Mola",0.2 },
 	--====== dominas
 	["metaldealta"] = { "Metal de alta",0.5 },
 	
 	
 	-- Farm de Munição
-	["capsula"] = { "Cápsula",0.15 },
-	["polvora"] = { "Pólvora",0.08 },
+	["capsula"] = { "Cápsula",0.05 },
+	["polvora"] = { "Pólvora",0.05 },
 	
 	-- Farm de Desmanche
 	["ferramenta"] = { "Ferramenta",0.5 },

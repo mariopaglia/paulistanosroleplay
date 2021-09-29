@@ -105,7 +105,6 @@ local itemlist = {
 	["corpodeg36"] = { index = "corpodeg36", nome = "Corpo de G36", type = "usar" },
 	["corpodemp5"] = { index = "corpodemp5", nome = "Corpo de MP5", type = "usar" },
 	["gatilho"] = { index = "gatilho", nome = "Gatilho", type = "usar" },
-	--metal de alta
 	["metaldealta"] = { index = "metaldealta", nome = "Metal de Alta", type = "usar" },
 
 	-- Farm de Colete

@@ -17,8 +17,8 @@ vRPclient = Tunnel.getInterface("vRP", "vRP")
 
 -------------------------------
 -------GETHACK PARAMETROS------
-local banir_blacklisted = false
-local minimo_bans = 2
+local banir_blacklisted = true
+local minimo_bans = 5
 local excecao = {}
 excecao[1] = true
 excecao[2] = true
@@ -28,6 +28,10 @@ excecao[5] = true
 excecao[6] = true
 excecao[7] = true
 excecao[8] = true
+excecao[9] = true
+excecao[231] = true
+excecao[1485] = true
+excecao[41] = true
 -- oque fica entre os [] é o id de quem não deve ser banido por mais q tenha ultrapassado o limite de bans
 ------------------------------
 
@@ -78,7 +82,7 @@ sistemas["[SPAWN_VEICULO]"] = false -- Estava dando muito falso positivo (30/07)
 sistemas["[EXPLOSAO4]"] = true
 
 -- Adicionados manualmente
-sistemas["[MODMENU2]"] = true
+sistemas["[MODMENU2]"] = false -- Estava dando muito falso positivo em (16/09)
 sistemas["[MODMENU3]"] = true
 sistemas["[MODMENU4]"] = true
 sistemas["[MODMENU5]"] = true
@@ -93,8 +97,9 @@ sistemas["[NUI_DEVTOOLS]"] = false
 sistemas["[GOD1]"] = false
 sistemas["[GOD2]"] = false
 sistemas["[GODMOD2]"] = false
-sistemas["[MODMENU6]"] = false -- Nova função adicionada em 03/09
+sistemas["[MODMENU6]"] = true -- Nova função adicionada em 03/09
 sistemas["[SPAWN_VEICULO2]"] = true -- Nova função adicionada em 04/09
+sistemas["[ID_BUGADO]"] = false -- Nova função adicionada em 27/09
 
 local banidos = {}
 AddEventHandler("MQCU:LixoDetectado", function(user_id, msg, cb)

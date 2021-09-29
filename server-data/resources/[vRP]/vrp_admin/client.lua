@@ -886,3 +886,47 @@ Citizen.CreateThread(function()
         end
     end
 end)
+
+-----------------------------------------------------------------------------------------------------------------------------------------
+-- MARCAÇÃO PARA POLICIA NO ASSALTO DE RUA
+-----------------------------------------------------------------------------------------------------------------------------------------
+local blipassalto = nil
+RegisterNetEvent('blipassalto:criar:assalto')
+AddEventHandler('blipassalto:criar:assalto',function(x,y,z)
+	if not DoesBlipExist(blipassalto) then
+		blipassalto = AddBlipForCoord(x,y,z)
+		SetBlipScale(blipassalto,0.5)
+		SetBlipSprite(blipassalto,1)
+		SetBlipColour(blipassalto,59)
+		BeginTextCommandSetBlipName("STRING")
+		AddTextComponentString("Roubo: Assalto de Rua")
+		EndTextCommandSetBlipName(blipassalto)
+		SetBlipAsShortRange(blipassalto,false)
+		SetBlipRoute(blipassalto,true)
+	end
+end)
+
+RegisterNetEvent('blipassalto:remover:assalto')
+AddEventHandler('blipassalto:remover:assalto',function()
+	if DoesBlipExist(blipassalto) then
+		RemoveBlip(blipassalto)
+		blipassalto = nil
+	end
+end)
+
+-- function CalculateTimeToDisplay()
+-- 	horario = GetClockHours()
+-- 	if horario <= 9 then
+-- 		horario = "0" .. horario
+-- 	end
+-- end
+
+-- RegisterCommand('roubar', function(source, args, RawCommand)
+-- 	CalculateTimeToDisplay()
+-- 	if parseInt(horario) >= 14 or parseInt(horario) <= 06 then
+-- 		TriggerServerEvent('roubar')
+-- 	else
+-- 		TriggerEvent("Notify","aviso","Roubos só são permitidos entre <b>22h e 06h</b> (horário local da cidade)")
+-- 	end
+-- end)
+

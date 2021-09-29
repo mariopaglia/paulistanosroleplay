@@ -36,7 +36,7 @@ Config.Language = {
     pos = "[FILA] Você está em %d/%d na fila",
     connectingerr = "Erro ao te adicionar na lista",
     timedout = "Desconectado?",
-    wlonly = "Inauguração em 19/02/2021 - Acesse nosso Discord (https://discord.gg/fenixcity) e fique por dentro das novidades!",
+    wlonly = "Inauguração em 19/02/2021 - Acesse nosso Discord (https://discord.gg/F3Jp5J2) e fique por dentro das novidades!",
     banned = "Banido | motivo: %s",
     steam = "Error: Steam precisa estar aberta"
 }

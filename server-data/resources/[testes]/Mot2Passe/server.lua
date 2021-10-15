@@ -1,20 +1,23 @@
 -- Config
 Config = {}
-Config.UseWhitelist = false                        -- Use whitelist? Only people that are whitelisted are allowed to join.
+Config.UseWhitelist = true                        -- Use whitelist? Only people that are whitelisted are allowed to join.
 Config.UsePassword  = true                        -- Use password? If whitelist and password are true, you have to be whitelisted and know the password.
 Config.Password     = 'fenix789'                   -- Password
 Config.Attempts     = 3                            -- How many attempts a user has to enter the correct password
 Config.CleverMode   = true                         -- Use clever mode? If this is true, you will have to either be whitelisted *or* know the password. Recommended.
 Config.DiscordLink  = 'https://discord.gg/F3Jp5J2' -- Your Discord server invite link.
 Config.Whitelist    = {                            -- You normally only need one identifier per person.
-    'steam:110000115bc0c5b',                               -- Puntherline: Steam                              -- Puntherline: IP
-    'steam:11000010b5d5948',                               -- Puntherline: Steam                              -- Puntherline: IP
-    'steam:11000011789f9c2',                               -- Puntherline: Steam                              -- Puntherline: IP
-    'steam:110000106bf62a9',                               -- Puntherline: Steam                              -- Puntherline: IP
-    'steam:110000110842fde',                               -- Puntherline: Steam                              -- Puntherline: IP
-    'steam:11000010bda8210',                               -- Puntherline: Steam                              -- Puntherline: IP
-    'steam:11000011094c516',                               -- Puntherline: Steam                              -- Puntherline: IP
-    'steam:110000104dcdf67',                               -- Puntherline: Steam                              -- Puntherline: IP
+    'discord:289036328136474624', -- Porcão
+    'discord:310595405979058176', -- Wally
+    'discord:223642833817567233', -- Chloe
+    'steam:110000106bf62a9', -- Berti
+    'discord:377834240936771585', -- Kappa
+    'discord:475152638460297226', -- Dudu
+    'discord:149192965363859456', -- Mike
+    'discord:423268235732058113', -- Coruja
+    'discord:191353472220790785', -- Jhon
+    'discord:856013474257698827', -- Dayanne
+    'discord:326059070018682883', -- Cortez
 }
 
 
@@ -38,7 +41,7 @@ AddEventHandler('playerConnecting', function(name, setKickReason, deferrals)
     -- Stopping user from joining
     deferrals.defer()
     Wait(100) -- May be tweaked, seems to cause issues closer to 0 on some servers.
-    deferrals.update('Please wait...')
+    deferrals.update('Nosso servidor está fechado para melhorias e será reaberto no dia 20/10 às 18:00h. Discord: https://discord.gg/F3Jp5J2')
     Wait(100) -- May be tweaked, seems to cause issues closer to 0 on some servers.
 
     -- Whitelist only

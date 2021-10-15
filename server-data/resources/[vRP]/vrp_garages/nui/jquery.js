@@ -41,7 +41,7 @@ const formatarNumero = (n) => {
 const sendData = (name,data) => {
 	$.post("http://vrp_garages/"+name,JSON.stringify(data),function(datab){});
 }
-
+// <div class="item-left"><b>Nome:</b></div>
 const updateGarages = () => {
     $.post('http://vrp_garages/myVehicles',JSON.stringify({}),(data) => {
         const nameList = data.vehicles.sort((a,b) => (a.name2 > b.name2) ? 1: -1);
@@ -50,11 +50,10 @@ const updateGarages = () => {
             ${nameList.map((item) => (`
                 <div class="item" data-item-name="${item.name}">
                     <div class="item-text">
-                        <div class="item-left"><b>Nome:</b></div>
-                        <div class="item-right">${item.name2}</div>
+                        <div class="item-nome">${item.name2}</div>
                     </div>
                     <div class="item-text">
-                        <div class="item-left"><b>M / C / G:</b></div><div class="item-right">${item.engine}% / ${item.body}% / ${item.fuel}%</div>
+                        <div class="item-left"><b>M/C/G:</b></div><div class="item-right">${item.engine}% / ${item.body}% / ${item.fuel}%</div>
                     </div>
                     <div class="item-text" style="border: 0;">
                         <div class="item-left"><b>IPVA:</b></div>

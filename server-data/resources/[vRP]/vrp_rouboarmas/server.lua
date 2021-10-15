@@ -57,8 +57,8 @@ function func.checkRobbery(id, x, y, z, head)
     if user_id then
         local policia = vRP.getUsersByPermission("pmesp.permissao")
         if #policia >= 2 then
-            if (os.time() - variavel1) < 2400 then
-                TriggerClientEvent('Notify',source,"negado","Os cofres estão vazios, aguarde "..(2400 - (os.time() - variavel1)).." segundos!")
+            if (os.time() - variavel1) < 1200 then
+                TriggerClientEvent('Notify',source,"negado","Os cofres estão vazios, aguarde "..(1200 - (os.time() - variavel1)).." segundos!")
             else
                 variavel1 = os.time()
                 TriggerClientEvent('iniciandolojadearmas', source, head, x, y, z)

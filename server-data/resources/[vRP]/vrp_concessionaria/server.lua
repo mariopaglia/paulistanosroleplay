@@ -86,10 +86,17 @@ function func.comprarVeiculo(categoria, modelo)
 
             if #getVeiculo == 0 then
                 local rows = vRP.query("vRP/count_vehicle", {vehicle = veiculo.model})
-                if parseInt(rows[1].qtd) >= veiculo.estoque then
-                    TriggerClientEvent("vrp_concessionaria:notify", source, "Ops!", "Estoque indisponivel.", "error")
-                    return
-                else
+                -- if parseInt(rows[1].qtd) >= veiculo.estoque then
+                --     TriggerClientEvent("vrp_concessionaria:notify", source, "Ops!", "Estoque indisponivel.", "error")
+                --     return
+                -- else
+
+                    -- BLOQUEAR PARA COMPRAR VEICULOS VIP E EDIÇÃO ESPECIAL
+                    if categoria == 3.0 or categoria == 4.0 then
+                        TriggerClientEvent("vrp_concessionaria:notify", source, "Acesse nossa Loja Virtual!", "Para comprar este veículo acesse:<br><b>five-m.store/loja/fenixcityrp</b>", "error")
+                        return
+                    end
+            
                     local totalGaragens = Config.TotalGaragem
 
                     if vRP.hasPermission(user_id, "diamante.permissao") then
@@ -126,7 +133,7 @@ function func.comprarVeiculo(categoria, modelo)
                         TriggerClientEvent("vrp_concessionaria:notify", source, "Ops!", "Dinheiro insuficiente.", "error")
                         return
                     end
-                end
+                -- end
             else
                 TriggerClientEvent("vrp_concessionaria:notify", source, "Ops!", "Você já possui este veículo!", "error")
                 return
@@ -168,7 +175,12 @@ function func.venderVeiculo(categoria, modelo)
         modelo = parseInt(modelo + 1)
 
         local veiculo = Config.Veiculos[categoria].veiculos[modelo]
-
+        
+        if vRP.vehicleType(veiculo.model) == "vip" then
+            TriggerClientEvent("vrp_concessionaria:notify", source, "Ops!", "Você não pode vender veículos de benefícios", "error")
+            return 
+        end
+        
         if veiculo then
             local price = math.ceil(veiculo.preco * 0.7)
 

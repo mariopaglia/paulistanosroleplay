@@ -503,11 +503,15 @@ local garages = {
     [674] = {['name'] = "Garagem", ['payment'] = false, ['public'] = true}, -- GARAGEM PESSOAL SERPENTES
     [675] = {['name'] = "PoliciaHeli", ['payment'] = false, ['perm'] = "policia.permissao"}, -- Heliponto DP VINEWOOD
     [676] = {['name'] = "Bicicletario", ['payment'] = false, ['public'] = true}, -- Heliponto DP VINEWOOD
+    [677] = {['name'] = "Tecidos", ['payment'] = false, ['public'] = true}, -- Emprego de tecidos
+    [678] = {['name'] = "Salvavidas", ['payment'] = false, ['public'] = true}, -- Emprego de Salva-vidas
 }
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- GARAGEMS
 -----------------------------------------------------------------------------------------------------------------------------------------
 local workgarage = {
+    ["Salvavidas"] = {"blazer"},
+    ["Tecidos"] = {"speedo"},
     ["Cosanostra"] = {"burrito3", "komoda"},
     ["Bratva"] = {"burrito3", "komoda"},
     ["Verdes"] = {"burrito3", "komoda"},
@@ -525,7 +529,7 @@ local workgarage = {
     ["SportRace"] = {"flatbed", "slamvan3", "brawler"},
     ["DIC"] = {"dicgt63", "cls63s"},
     ["PRF"] = {"cruzeprf2", "l200prf", "trailprf", "ec130PRF"},
-    ["Policia"] = {"riot", "pbus", "ghispo2", "porschespeed", "VRa3", "VRa4", "VRrs5", "VRrs6", "VRrs6av", "VRraptor", "VRtahoe", "VRdm1200", "VRq8", "flatbed"},
+    ["Policia"] = {"riot", "pbus", "ghispo2", "porschespeed", "VRa3", "VRa4", "VRrs5", "VRrs6", "VRrs6av", "VRraptor", "VRtahoe", "VRdm1200", "VRq8", "flatbed", "av-amarok"},
     ["PoliciaHeli"] = {"polmav"},
     ["ROTA"] = {"sw4revrota1", "trailrota2"},
     ["PMESP"] = {"pbus", "riot", "20blazer2", "police3", "spacepm1", "trailcfp", "trailpm1", "av-gt63", "av-m8", "policeb"},
@@ -829,6 +833,10 @@ function src.vehicleLock()
         if vehicle and placa then
             local placa_user_id = vRP.getUserByRegistration(placa)
             if user_id == placa_user_id then
+                if vRPclient.getHealth(source) <= 100 then
+                    TriggerClientEvent("Notify", source, "negado", "Você está desmaiado, não pode destrancar veículos.", 8000)
+                    return
+                end
                 vCLIENT.vehicleClientLock(-1, vnetid, lock)
                 TriggerClientEvent("vrp_sound:source", source, 'lock', 0.5)
                 vRPclient.playAnim(source, true, {{"anim@mp_player_intmenu@key_fob@", "fob_click"}}, false)

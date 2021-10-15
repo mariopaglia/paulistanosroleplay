@@ -64,19 +64,19 @@ local outros = {
 	{ id = 26 , nome = "Açougue" , segundos = 120 , cops = 8 , recompensa = math.random(400000,500000) },
 	{ id = 27 , nome = "Yellow Jack" , segundos = 120 , cops = 5 , recompensa = math.random(300000,350000) },
 	{ id = 28 , nome = "Galinheiro" , segundos = 120 , cops = 8 , recompensa = math.random(400000,500000) },
-	{ id = 29 , nome = "Teatro" , segundos = 60 , cops = 8 , recompensa = math.random(350000,400000) },
-	{ id = 35 , nome = "Pier" , segundos = 60 , cops = 6 , recompensa = math.random(250000,300000) },
-	{ id = 36 , nome = "Porto" , segundos = 60 , cops = 6 , recompensa = math.random(250000,300000) },
-	{ id = 37 , nome = "Liquor Ice" , segundos = 60 , cops = 5 , recompensa = math.random(250000,300000) },
+	{ id = 29 , nome = "Teatro" , segundos = 60 , cops = 8 , recompensa = math.random(400000,500000) },
+	{ id = 35 , nome = "Pier" , segundos = 60 , cops = 6 , recompensa = math.random(400000,500000) },
+	{ id = 36 , nome = "Porto" , segundos = 60 , cops = 6 , recompensa = math.random(400000,500000) },
+	{ id = 37 , nome = "Loja de Bebidas" , segundos = 60 , cops = 3 , recompensa = math.random(150000,200000) },
 	{ id = 42 , nome = "Aeroporto Norte (Trevor)" , segundos = 60 , cops = 5 , recompensa = math.random(200000,250000) },
 }
 
 local barbearia = {
-	{ id = 30 , nome = "Barbearia" , segundos = 60 , cops = 3 , recompensa = math.random(30000,40000) },
-	{ id = 31 , nome = "Barbearia" , segundos = 60 , cops = 3 , recompensa = math.random(30000,40000) },
-	{ id = 32 , nome = "Barbearia" , segundos = 60 , cops = 3 , recompensa = math.random(30000,40000) },
-	{ id = 33 , nome = "Barbearia" , segundos = 60 , cops = 3 , recompensa = math.random(30000,40000) },
-	{ id = 34 , nome = "Barbearia" , segundos = 60 , cops = 3 , recompensa = math.random(30000,40000) },
+	{ id = 30 , nome = "Barbearia" , segundos = 60 , cops = 2 , recompensa = math.random(30000,40000) },
+	{ id = 31 , nome = "Barbearia" , segundos = 60 , cops = 2 , recompensa = math.random(30000,40000) },
+	{ id = 32 , nome = "Barbearia" , segundos = 60 , cops = 2 , recompensa = math.random(30000,40000) },
+	{ id = 33 , nome = "Barbearia" , segundos = 60 , cops = 2 , recompensa = math.random(30000,40000) },
+	{ id = 34 , nome = "Barbearia" , segundos = 60 , cops = 2 , recompensa = math.random(30000,40000) },
 }
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- FUNÇÕES

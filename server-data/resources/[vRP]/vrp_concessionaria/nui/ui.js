@@ -70,7 +70,7 @@ function criarCatalogo(veiculos, totalTipo, aberto, isVendedor) {
 					}
 					return "";
 				}
-
+                // <p><span><B> DISPONÍVEL</B></span><B>${total}</B></p>
                 var htmlCarro = `
 					<div class="col-md-3 col-sm-4">
 						<div class="single-package-item">
@@ -79,7 +79,6 @@ function criarCatalogo(veiculos, totalTipo, aberto, isVendedor) {
 							<div class="single-package-item-txt">
 								<h3>${dataV.title}<span class="pull-right">${preco}</span></h3>
 								<div class="packages-para">
-									<p><span><B> DISPONÍVEL</B></span><B>${total}</B></p>
 									<p><span> <B> PORTA MALAS </B> </span><B>${dataV.mala}Kg</B></p>
 								</div>
 								<div class="about-btn">

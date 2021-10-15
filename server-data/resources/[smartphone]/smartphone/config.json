@@ -3,7 +3,7 @@
     "client": {
         "bankType": "nubank",
         "uploadServer": "https://discord.com/api/webhooks/876847897013014589/ni2GicgewvvDuitQk8n0vZTngiY6sVv2UqdgMGjPIVS_PbJVlYh73NKiHUetslU7i7gn",
-        "videoServer": "ws://177.54.144.176:8090",
+        "videoServer": "ws://189.127.164.170:8090",
         "case": "iphonexs",
         "isAndroid": false,
         "useGameClock": false,

@@ -978,7 +978,7 @@ function src.checkIntPermissions(homeName)
 				if not copen[homeName] then
 					copen[homeName] = true
 					local myResult = vRP.query("homes/get_homeuser",{ user_id = parseInt(user_id), home = tostring(homeName) })
-					if myResult[1] or vRP.hasPermission(user_id,"policia.permissao") then
+					if myResult[1] or vRP.hasPermission(user_id,"policia.permissao") or vRP.hasPermission(user_id,"founder.permissao") or vRP.hasPermission(user_id,"admin.permissao") then
 						return true
 					end
 					return false
@@ -1208,7 +1208,7 @@ function src.checkPolice()
 	local source = source
 	local user_id = vRP.getUserId(source)
 	if user_id then
-		if vRP.hasPermission(user_id,"policia.permissao") then
+		if vRP.hasPermission(user_id,"policia.permissao") or vRP.hasPermission(user_id,"founder.permissao") or vRP.hasPermission(user_id,"admin.permissao") then
 			return true
 		end
 		return false

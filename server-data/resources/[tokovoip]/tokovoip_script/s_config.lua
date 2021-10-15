@@ -1006,14 +1006,14 @@ TokoVoipConfig = {
 		{ name = "Triade", subscribers = {} }, -- 1004 
 		{ name = "SAMU", subscribers = {} }, -- 1005 
 		{ name = "Bennys", subscribers = {} }, -- 1006 
-		{ name = "SportRace", subscribers = {} }, -- 1007 
+		{ name = "Fenix Custom", subscribers = {} }, -- 1007 
 		{ name = "Verdes", subscribers = {} }, -- 1008 
 		{ name = "Vermelhos", subscribers = {} }, -- 1009 
 		{ name = "Roxos", subscribers = {} }, -- 1010 
 		{ name = "Midnight", subscribers = {} }, -- 1011 
 		{ name = "Cosanostra", subscribers = {} }, -- 1012 
 		{ name = "Yakuza", subscribers = {} }, -- 1013 
-		{ name = "Salieri's", subscribers = {} }, -- 1014 
+		{ name = "Salieris", subscribers = {} }, -- 1014 
 		{ name = "Taxista", subscribers = {} }, -- 1015 
 		{ name = "Laranjas", subscribers = {} }, -- 1016 
 		{ name = "Sinaloa", subscribers = {} }, -- 1017 

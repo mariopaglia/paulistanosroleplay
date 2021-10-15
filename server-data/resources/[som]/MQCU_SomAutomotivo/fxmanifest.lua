@@ -1,5 +1,3 @@
-client_script "@vrp/lib/lib.lua" --Para remover esta pendencia de todos scripts, execute no console o comando "uninstall"
-
 --Qualquer alteração neste arquivo irá bloquear automaticamente sua key!
 --E NÃO SERÁ DESBLOQUEADO EM HIPOTESE ALGUMA.
 --MarqCU#4374
@@ -49,4 +47,5 @@ files{
 --MarqCU#4374
 
 --Qualquer alteração neste arquivo irá bloquear automaticamente sua key!
---E NÃO SERÁ DESBLOQUEADO EM HIPO
+--E NÃO SERÁ DESBLOQUEADO EM HIPOTESE ALGUMA.
+--MarqCU#4374

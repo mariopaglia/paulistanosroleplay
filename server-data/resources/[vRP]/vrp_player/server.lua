@@ -65,12 +65,15 @@ local itemlist = {
 	["whisky"] = { index = "whisky", nome = "Whisky" },
 	["conhaque"] = { index = "conhaque", nome = "Conhaque" },
 	["absinto"] = { index = "absinto", nome = "Absinto" },
-	["agua"] = { index = "agua", nome = "Água" },
 	["corda"] = { index = "corda", nome = "Corda" },
 	["adrenalina"] = { index = "adrenalina", nome = "Adrenalina" },
 	["gopro"] = { index = "gopro", nome = "GoPro Hero 9" },
 	["gravadordevoz"] = { index = "gravadordevoz", nome = "Gravador de Voz" },
 	["ticketpvp"] = { index = "ticketpvp", nome = "Ticket PVP" },
+
+	-- Fome e Sede
+	["agua"] = { index = "agua", nome = "Água" },
+	["hamburguer"] = { index = "hamburguer", nome = "Hamburguer" },
 
 	-- Farm Contrabando
 	["componentemetal"] = { index = "componentemetal", nome = "Componentes de Metais" },
@@ -930,337 +933,6 @@ RegisterCommand('p',function(source,args,rawCommand)
 	end
 end)
 -----------------------------------------------------------------------------------------------------------------------------------------
--- ROUPAS
------------------------------------------------------------------------------------------------------------------------------------------
-local roupas = {
--- [1] = { -1,0 }, -- máscara
--- [3] = { 20,0 }, -- maos
--- [4] = { 75,0 }, -- calça
--- [5] = { 34,0 }, -- mochila
--- [6] = { 24,0 }, -- sapato
--- [7] = { -1,0 }, -- acessorios
--- [8] = { -1,0 }, -- blusa
--- [9] = { -1,0 }, -- colete
--- [10] = { -1,0 }, -- adesivo
--- [11] = { 86,1 }, -- jaqueta
-	["minerador"] = {
-		[1885233650] = {                                      
-			[1] = { -1,0 },
-			[3] = { 99,1 },
-			[4] = { 89,20 },
-			[5] = { -1,0 },
-			[6] = { 82,2 },
-			[7] = { -1,0 },
-			[8] = { 90,0 },
-			[9] = { -1,0 },
-			[10] = { -1,0 },
-			[11] = { 273,0 },
-			["p1"] = { 23,0 }
-		},
-		[-1667301416] = {
-			[1] = { -1,0 },
-			[3] = { 114,1 },
-			[4] = { 92,20 },
-			[5] = { -1,0 },
-			[6] = { 86,2 },
-			[7] = { -1,0 },
-			[8] = { 54,0 },
-			[9] = { -1,0 },
-			[10] = { -1,0 },
-			[11] = { 286,0 },
-			["p1"] = { 25,0 }
-		}
-	},
-	["picuinha"] = {
-		[1885233650] = { -- Masculino                          
-			[1] = {169,14,2},
-			[2] = {21,0,0},
-			[3] = {146,1,2},
-			[4] = {78,6,2},
-			[5] = {29,12,1},
-			[6] = {9,3,1},
-			[7] = {0,0,2},
-			[8] = {15,0,2},
-			[9] = {0,0,1},
-			[10] = {-1,0,2},
-			[11] = {10,4,2},
-			[0] = {0,0,0},
-			["p1"] = {11,3},
-			["p2"] = {-1,0},
-			["p7"] = {-1,0},
-			["p6"] = {-1,0},
-			["p0"] = {130,0},
-		},
-		[-1667301416] = { -- Feminino
-			[1] = {169,14,1},
-			[2] = {75,0,0},
-			[3] = {179,1,1},
-			[4] = {80,6,1},
-			[5] = {26,12,1},
-			[6] = {32,0,1},
-			[7] = {5,6,1},
-			[8] = {6,0,1},
-			[9] = {-1,0,0},
-			[10] = {-1,0,0},
-			[11] = {74,0,1},
-			[0] = {0,0,0},
-			["p7"] = {-1,0},
-			["p6"] = {-1,0},
-		}
-	},
-    ["lixeiro"] = {
-		[1885233650] = {                                      
-			[1] = { -1,0 },
-			[3] = { 17,0 },
-			[4] = { 36,0 },
-			[5] = { -1,0 },
-			[6] = { 27,0 },
-			[7] = { -1,0 },
-			[8] = { 59,0 },
-			[10] = { -1,0 },
-			[11] = { 57,0 }
-		},
-		[-1667301416] = {
-			[1] = { -1,0 },
-			[3] = { 18,0 },
-			[4] = { 35,0 },
-			[5] = { -1,0 },
-			[6] = { 26,0 },
-			[7] = { -1,0 },
-			[8] = { 36,0 },
-			[9] = { -1,0 },
-			[10] = { -1,0 },
-			[11] = { 50,0 }
-		}
-	},
-	["taxista"] = {
-		[1885233650] = {                                      
-			[1] = { -1,0 },
-			[3] = { 11,0 },
-			[4] = { 35,0 },
-			[5] = { -1,0 },
-			[6] = { 10,0 },
-			[7] = { -1,0 },
-			[8] = { 15,0 },
-			[10] = { -1,0 },
-			[11] = { 13,0 }
-		},
-		[-1667301416] = {
-			[1] = { -1,0 },
-			[3] = { 0,0 },
-			[4] = { 112,0 },
-			[5] = { -1,0 },
-			[6] = { 6,0 },
-			[7] = { -1,0 },
-			[8] = { 6,0 },
-			[9] = { -1,0 },
-			[10] = { -1,0 },
-			[11] = { 27,0 }
-		}
-	},
-	["caminhoneiro"] = {
-		[1885233650] = {                                      
-			[1] = { -1,0 },
-			[3] = { 0,0 },
-			[4] = { 63,0 },
-			[5] = { -1,0 },
-			[6] = { 27,0 },
-			[7] = { -1,0 },
-			[8] = { 81,0 },
-			[10] = { -1,0 },
-			[11] = { 173,3 },
-			["p1"] = { 8,0 }
-		},
-		[-1667301416] = {
-			[1] = { -1,0 },
-			[3] = { 14,0 },
-			[4] = { 74,5 },
-			[5] = { -1,0 },
-			[6] = { 9,0 },
-			[7] = { -1,0 },
-			[8] = { 92,0 },
-			[9] = { -1,0 },
-			[10] = { -1,0 },
-			[11] = { 175,3 },
-			["p1"] = { 11,0 }
-		}
-	},
-	["pelado"] = {
-		[1885233650] = {                                      
-			[1] = {-1,0,2},
-			[2] = {21,0,0},
-			[3] = {126,0,2},
-			[4] = {72,0,2},
-			[5] = {-1,0,2},
-			[6] = {34,0,2},
-			[7] = {-1,0,2},
-			[8] = {83,2,2},
-			[9] = {0,5,1},
-			[10] = {-1,0,2},
-			[11] = {15,0,2},
-			["p6"] = {-1,0},
-			["p7"] = {-1,0},
-			["p1"] = {-1,0},
-			["p0"] = {-1,0},
-			["p2"] = {-1,0},
-			[0] = {0,0,0}			
-		},
-		[-1667301416] = {
-			[1] = { -1,0 },
-			[3] = { 15,0 },
-			[4] = { 21,0 },
-			[5] = { -1,0 },
-			[6] = { 35,0 },
-			[7] = { -1,0 },
-			[8] = { 6,0 },
-			[9] = { -1,0 },
-			[10] = { -1,0 },
-			[11] = { 82,0 }
-		}
-	},
-	["paciente"] = {
-		[1885233650] = {
-			[1] = { -1,0 },
-			[3] = { 15,0 },
-			[4] = { 61,0 },
-			[5] = { -1,0 },
-			[6] = { 16,0 },
-			[7] = { -1,0 },			
-			[8] = { 15,0 },
-			[9] = { -1,0 },
-			[10] = { -1,0 },
-			[11] = { 104,0 },			
-			["p0"] = { -1,0 },
-			["p1"] = { -1,0 },
-			["p2"] = { -1,0 },
-			["p6"] = { -1,0 },
-			["p7"] = { -1,0 }
-		},
-		[-1667301416] = {
-			[1] = { -1,0 },
-			[3] = { 0,0 },
-			[4] = { 57,0 },
-			[5] = { -1,0 },
-			[6] = { 16,0 },
-			[7] = { -1,0 },		
-			[8] = { 7,0 },
-			[9] = { -1,0 },
-			[10] = { -1,0 },
-			[11] = { 105,0 },
-			["p0"] = { -1,0 },
-			["p1"] = { -1,0 },
-			["p2"] = { -1,0 },
-			["p6"] = { -1,0 },
-			["p7"] = { -1,0 }
-		},
-	},
-	["gesso"] = {
-		[1885233650] = {
-			[1] = {-1,0,2},
-			[2] = {57,0,0},
-			[3] = {4,0,1},
-			[4] = {84,9,2},
-			[5] = {-1,0,2},
-			[6] = {13,0,2},
-			[7] = {-1,0,2},
-			[8] = {-1,0,2},
-			[9] = {-1,0,2},
-			[10] = {-1,0,2},
-			[11] = {186,9,2},
-			["p1"] = {-1,0},
-			["p0"] = {-1,0},
-			["p2"] = {-1,0},
-			[0] = {0,0,0},
-			["p7"] = {-1,0},
-			["p6"] = {-1,0}		
-		},
-		[-1667301416] = {
-			[1] = { -1,0 },
-			[3] = { 3,0 },
-			[4] = { 86,9 },
-			[5] = { -1,0 },
-			[6] = { 12,0 },
-			[7] = { -1,0 },		
-			[8] = { -1,0 },
-			[9] = { -1,0 },
-			[10] = { -1,0 },
-			[11] = { 188,9 },
-			["p0"] = { -1,0 },
-			["p1"] = { -1,0 },
-			["p2"] = { -1,0 },
-			["p6"] = { -1,0 },
-			["p7"] = { -1,0 }
-		}
-	},
-	["mergulho"] = {
-		[1885233650] = {
-			[1] = {-1,0,2},
-			[2] = {21,0,0},
-			[3] = {17,0,2},
-			[4] = {94,24,2},
-			[5] = {-1,0,2},
-			[6] = {67,24,2},
-			[7] = {-1,0,2},
-			[8] = {123,0,2},
-			[9] = {0,5,1},
-			[10] = {-1,0,2},
-			[11] = {243,24,2},
-			["p2"] = {-1,0},
-			["p0"] = {-1,0},
-			["p7"] = {-1,0},
-			["p6"] = {-1,0},
-			[0] = {0,0,0},
-			["p1"] = {26,24},
-		},
-		[-1667301416] = {
-			[1] = {-1,0,2},
-			[2] = {15,0,0},
-			[3] = {18,0,2},
-			[4] = {97,24,2},
-			[5] = {-1,0,2},
-			[6] = {70,24,2},
-			[7] = {-1,0,2},
-			[8] = {153,0,2},
-			[9] = {-1,0,2},
-			[10] = {-1,0,2},
-			[11] = {251,24,2},
-			[0] = {0,0,0},
-			["p2"] = {-1,0},
-			["p1"] = {28,24},
-			["p7"] = {-1,0},
-			["p6"] = {-1,0},
-			["p0"] = {-1,0},
-		},
-	},
-}
-
-RegisterCommand('roupas',function(source,args,rawCommand)
-	local user_id = vRP.getUserId(source)
-	if vRP.getInventoryItemAmount(user_id,"roupas") >= 0 then
-		if args[1] then
-			local custom = roupas[tostring(args[1])]
-			if custom then
-				local old_custom = vRPclient.getCustomization(source)
-				local idle_copy = {}
-
-				idle_copy = vRP.save_idle_custom(source,old_custom)
-				idle_copy.modelhash = nil
-
-				for l,w in pairs(custom[old_custom.modelhash]) do
-					idle_copy[l] = w
-				end
-				vRPclient._setCustomization(source,idle_copy)
-				Citizen.Wait(1000)
-				TriggerClientEvent("reloadtattos",source)
-			end
-		else
-			vRP.removeCloak(source)
-		end
-		else
-		TriggerClientEvent('chatMessage',source,"ALERTA",{255,70,50},"Você precisa de ^1Roupas ^0para mudar de roupa.")
-	end
-end)
------------------------------------------------------------------------------------------------------------------------------------------
 -- /PAYPAL
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- RegisterCommand('paypal',function(source,args,rawCommand)
@@ -1334,35 +1006,6 @@ RegisterCommand('fac',function(source,args,rawCommand)
 		local triade = vRP.getUsersByPermission("triade.permissao")
 		local salieris = vRP.getUsersByPermission("salieris.permissao")
 		TriggerClientEvent("Notify",source,"importante","<b>Jogadores:</b> "..onlinePlayers2.."<br><b>Roxos:</b> "..#roxos.."<br><b>Verdes:</b> "..#verdes.."<br><b>Laranjas:</b> "..#laranjas.."<br><b>Vermelhos:</b> "..#vermelhos.."<br><b>Sinaloa:</b> "..#sinaloa.."<br><b>Yakuza:</b> "..#yakuza.."<br><b>CN:</b> "..#cn.."<br><b>Irmandade:</b> "..#irmandade.."<br><b>Triade:</b> "..#triade.."<br><b>Salieri's:</b> "..#salieris.."",9000)
-	end
-end)	
------------------------------------------------------------------------------------------------------------------------------------------
--- /STATUS (PESSOAS ONLINE POR PROFISSÃO)
------------------------------------------------------------------------------------------------------------------------------------------
-RegisterCommand('status',function(source,args,rawCommand)
-	local user_id = vRP.getUserId(source)        
-	if vRP.hasPermission(user_id,"staff.permissao") then
-		local onlinePlayers2 = GetNumPlayerIndices()
-		local advogados2 = vRP.getUsersByPermission("judiciario.permissao")
-    	local policia2 = vRP.getUsersByPermission("policia.permissao")
-    	local paramedico2 = vRP.getUsersByPermission("paramedico.permissao")
-    	local mec2 = vRP.getUsersByPermission("mecanico.permissao")
-    	local staff2 = vRP.getUsersByPermission("staff.permissao")
-		local taxista2 = vRP.getUsersByPermission("taxista.permissao")
-		TriggerClientEvent("Notify",source,"importante","<b>Jogadores:</b> "..onlinePlayers2.."<br><b>Staff:</b> "..#staff2.."<br><b>Policiais:</b> "..#policia2.."<br><b>Advogados:</b> "..#advogados2.."<br><b>Taxistas:</b> "..#taxista2.."<br><b>Paramédicos:</b> "..#paramedico2.."<br><b>Mecânicos:</b> "..#mec2.."",9000)
-	elseif vRP.hasPermission(user_id,"carrosvip.permissao") then
-    	local advogados3 = vRP.getUsersByPermission("judiciario.permissao")
-		local policia3 = vRP.getUsersByPermission("policia.permissao")
-    	local paramedico3 = vRP.getUsersByPermission("paramedico.permissao")
-    	local mec3 = vRP.getUsersByPermission("mecanico.permissao")
-    	local taxista3 = vRP.getUsersByPermission("taxista.permissao")
-		TriggerClientEvent("Notify",source,"importante","<b>Advogados:</b> "..#advogados3.."<br><b>Taxistas:</b> "..#taxista3.."<br><b>Paramédicos:</b> "..#paramedico3.."<br><b>Mecânicos:</b> "..#mec3.."",9000)
-	else
-    	local advogados = vRP.getUsersByPermission("judiciario.permissao")
-    	local paramedico = vRP.getUsersByPermission("paramedico.permissao")
-    	local mec = vRP.getUsersByPermission("mecanico.permissao")
-    	local taxista = vRP.getUsersByPermission("taxista.permissao")
-		TriggerClientEvent("Notify",source,"importante","<b>Advogados:</b> "..#advogados.."<br><b>Taxistas:</b> "..#taxista.."<br><b>Paramédicos:</b> "..#paramedico.."<br><b>Mecânicos:</b> "..#mec.."",9000)
 	end
 end)	
 -----------------------------------------------------------------------------------------------------------------------------------------
@@ -1535,24 +1178,27 @@ end)
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- AVISO DE SERVIDOR ONLINE
 -----------------------------------------------------------------------------------------------------------------------------------------
-Citizen.CreateThread(function()
-    PerformHttpRequest("https://discord.com/api/webhooks/881267755339350058/GXZaLxLl490YXq01HNCB1Sw-hlDHtcuwgng-2vI5Zizgz9TwrBUv4f3uU9_rUnBM7iXk", function(err, text, headers) end, 'POST', json.encode({
-        username = "Fênix City",
-        avatar_url = "https://cdn.discordapp.com/attachments/795675862350430288/844269660882862101/v2.gif",
-        content = '||<@&748524310939041808>||',
-        embeds = {
-            {
-                title = "SERVIDOR ONLINE, BOM RP À TODOS!",
-                color = 65280,
-                description = "**Para entrar na cidade, utilize um dos métodos abaixo:**\n\n**Método 1:**\nAbra o FiveM > Aperte F8 > Cole: **connect cfx.re/join/mpmeq9**\n\n**Método 2:**\nAbra o FiveM > Pesquise por **Fenix City** > **Connect**\n\nLembrando que para jogar é necessário estar conectado em nosso <#756544512691667035>",
-                thumbnail = {
-                    url = "https://cdn.discordapp.com/attachments/795675862350430288/844269660882862101/v2.gif"
-                },
-                footer = {
-                    text = "Equipe Fênix City",
-                    icon_url = "https://cdn.discordapp.com/attachments/795675862350430288/844269660882862101/v2.gif"
-                },
-            }
-        },
-    }), { ['Content-Type'] = 'application/json' })
-end)
+-- Citizen.CreateThread(function()
+--     PerformHttpRequest("https://discord.com/api/webhooks/881267755339350058/GXZaLxLl490YXq01HNCB1Sw-hlDHtcuwgng-2vI5Zizgz9TwrBUv4f3uU9_rUnBM7iXk", function(err, text, headers) end, 'POST', json.encode({
+--         username = "Fênix City",
+--         avatar_url = "https://cdn.discordapp.com/attachments/795675862350430288/844269660882862101/v2.gif",
+--         content = '||<@&748524310939041808>||',
+--         embeds = {
+--             {
+--                 title = "SERVIDOR ONLINE, BOM RP À TODOS!",
+--                 color = 65280,
+--                 description = "**Para entrar na cidade, utilize um dos métodos abaixo:**\n\n**Método 1:**\nAbra o FiveM > Aperte F8 > Cole: **connect cfx.re/join/mpmeq9**\n\n**Método 2:**\nAbra o FiveM > Pesquise por **Fenix City** > **Connect**\n\nLembrando que para jogar é necessário estar conectado em nosso <#756544512691667035>",
+--                 image = {
+--                     url = "https://cdn.discordapp.com/attachments/863117377558675516/893272997622865970/FiveM_b2189_GTAProcess_QZrMcghnb5.jpg"
+--                 },
+--                 thumbnail = {
+--                     url = "https://cdn.discordapp.com/attachments/795675862350430288/844269660882862101/v2.gif"
+--                 },
+--                 footer = {
+--                     text = "Equipe Fênix City",
+--                     icon_url = "https://cdn.discordapp.com/attachments/795675862350430288/844269660882862101/v2.gif"
+--                 },
+--             }
+--         },
+--     }), { ['Content-Type'] = 'application/json' })
+-- end)

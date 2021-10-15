@@ -33,12 +33,15 @@ local itemlist = {
 	["whisky"] = { index = "whisky", nome = "Whisky", type = "usar" },
 	["conhaque"] = { index = "conhaque", nome = "Conhaque", type = "usar" },
 	["absinto"] = { index = "absinto", nome = "Absinto", type = "usar" },
-	["agua"] = { index = "agua", nome = "Água", type = "usar" },
 	["corda"] = { index = "corda", nome = "Corda", type = "usar" },
 	["adrenalina"] = { index = "adrenalina", nome = "Adrenalina", type = "usar" },
 	["gopro"] = { index = "gopro", nome = "GoPro Hero 9", type = "usar" },
 	["gravadordevoz"] = { index = "gravadordevoz", nome = "Gravador de Voz", type = "usar" },
 	["ticketpvp"] = { index = "ticketpvp", nome = "Ticket PVP", type = "usar" },
+	
+	-- Fome e Sede
+	["agua"] = { index = "agua", nome = "Água", type = "usar" },
+	["hamburguer"] = { index = "hamburguer", nome = "Hamburguer", type = "usar" },
 
 	-- Farm Contrabandop
 	["componentemetal"] = { index = "componentemetal", nome = "Componentes de Metais", type = "usar" },

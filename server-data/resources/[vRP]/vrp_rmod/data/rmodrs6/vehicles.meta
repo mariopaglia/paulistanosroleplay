@@ -17,7 +17,7 @@
       <ptfxAssetName>null</ptfxAssetName>
       <audioNameHash>hotknife</audioNameHash>
       <layout>LAYOUT_STANDARD</layout>
-      <coverBoundOffsets>NEON_COVER_OFFSET_INFO</coverBoundOffsets>
+      <coverBoundOffsets>OSIRIS_COVER_OFFSET_INFO</coverBoundOffsets>
       <explosionInfo>EXPLOSION_INFO_DEFAULT</explosionInfo>
       <scenarioLayout />
       <cameraName>FOLLOW_CHEETAH_CAMERA</cameraName>

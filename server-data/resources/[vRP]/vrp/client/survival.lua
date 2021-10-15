@@ -256,7 +256,7 @@ Citizen.CreateThread(function()
 			DisableControlAction(0,140,true)
 			DisableControlAction(0,141,true)
 			DisableControlAction(0,142,true)
-			DisableControlAction(0,245,true)
+			-- DisableControlAction(0,245,true) -- Tecla "T"
 			DisableControlAction(0,143,true)
 			DisableControlAction(0,75,true)
 			DisableControlAction(0,22,true)

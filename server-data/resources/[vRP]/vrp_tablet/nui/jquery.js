@@ -3269,6 +3269,7 @@ $(function () {
 	};
 })
 
+
 $('#actionbuttom').click(function (e) {
 	sendData("ButtonClick", "exit")
 });

@@ -28,10 +28,10 @@ img { border:none; }
 	position: fixed;
 	transform: translate(-50%,-50%);
 	padding: 25px;
-	background: rgb(217,217,217);
-    background: linear-gradient(180deg, rgba(217,217,217,0) 0%, rgba(0,0,0,0.5) 72%);
+	background: rgba(0,0,0,0.4);
+    /* background: linear-gradient(180deg, rgba(217,217,217,0) 0%, rgba(0,0,0,0.5) 72%); */
 	border-radius: 10px;
-	border-bottom: 2px solid #f6c23e;
+	border-bottom: 2px solid #e59b28;
 }
 
 #buttons {
@@ -43,8 +43,9 @@ img { border:none; }
 }
 
 .item {
-	background: rgba(0,0,0,0.4);
+	background: rgba(0,0,0,0.6);
 	width: 250px;
+	height: 150px;
 	margin: 10px;
 	float: left;
 	border-radius: 5px;
@@ -56,7 +57,7 @@ img { border:none; }
 	float: left;
 	width: 220px;
 	margin: 0 15px;
-	border-bottom: 1px solid rgba(255,255,255,0.05);
+	border-bottom: 1px solid rgba(255, 255, 255, 0.05);
 }
 
 .item-left {
@@ -75,12 +76,25 @@ img { border:none; }
 	float: left;
 }
 
+.item-nome {
+	font-size: 14px;
+	text-transform: uppercase;
+	color: #e59b28;
+	font-weight: 700;
+	text-align: center;
+	/* width: 250px; */
+	padding: 10px;
+	/* float: left; */
+}
+
 .item:hover {
-	background: rgba(0,0,0,0.7);
+	background: rgba(153, 153, 153,0.3);
+	/* color: rgb(153, 153, 153) */
 }
 
 .item.active {
-	background: rgba(0,0,0,0.9);
+	background: rgba(153, 153, 153,0.3);
+	/* background: rgba(0,0,0,0.9); */
 }
 
 .retirar {
@@ -90,7 +104,7 @@ img { border:none; }
 	padding: 10px 0;
 	text-align: center;
 	font-weight: 700;
-	border-radius: 4px;
+	border-radius: 10px;
 	float: left;
 	margin: 0 10px;
 	border-bottom: 3px solid #043310;
@@ -103,7 +117,7 @@ img { border:none; }
 	padding: 10px 0;
 	text-align: center;
 	font-weight: 700;
-	border-radius: 4px;
+	border-radius: 10px;
 	float: left;
 	margin: 0 10px;
 	border-bottom: 3px solid #2d2204;

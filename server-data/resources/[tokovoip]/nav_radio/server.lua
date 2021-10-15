@@ -21,7 +21,7 @@ function emP.checkPermission2(perm,grupo)
 	local source = source
 	local user_id = vRP.getUserId(source)
 	if vRP.hasPermission(user_id,perm) or vRP.hasPermission(user_id, "founder.permissao") then
-		TriggerClientEvent("Notify",source,"sucesso","Entrou no rádio da <b>"..grupo.."</b>.",8000)
+		TriggerClientEvent("Notify",source,"sucesso","Entrou no rádio <b>"..grupo.."</b>.",8000)
 		return true
 	else
 		TriggerClientEvent("Notify",source,"negado","Você não tem permissão.",8000)
@@ -49,7 +49,7 @@ function emP.checkRadio()
 	if vRP.getInventoryItemAmount(user_id,"radio") >= 1 then
 		return true
 	else
-		TriggerClientEvent("Notify",source,"importante","Você precisa comprar o <b>Rádio</b> em uma <b>Loja de Departamento</b>.",8000)
+		TriggerClientEvent("Notify",source,"importante","Você precisa comprar o <b>Rádio</b> em uma <b>Loja de Eletrônicos</b>.",8000)
 		return false
 	end
 end

@@ -49,28 +49,23 @@ RegisterNUICallback("ButtonClick",function(data,cb)
 			outServers()
 			exports.tokovoip_script:addPlayerToRadio(1002)
 		end
-	elseif data == "driftking" then
-		if emP.checkPermission2("driftking.permissao","Driftking") then
-			outServers()
-			exports.tokovoip_script:addPlayerToRadio(1003)
-		end	
 	elseif data == "triade" then
 		if emP.checkPermission2("triade.permissao","Triade") then
 			outServers()
 			exports.tokovoip_script:addPlayerToRadio(1004)
 		end
 	elseif data == "samu" then
-		if emP.checkPermission2("paramedico.permissao","Hospital (SAMU)") then
+		if emP.checkPermission2("paramedico.permissao","Hospital") then
 			outServers()
 			exports.tokovoip_script:addPlayerToRadio(1005)
 		end
-	elseif data == "bennys" then
-		if emP.checkPermission2("bennys.permissao","Bennys (Mecânicos)") then
+	elseif data == "policia3" then
+		if emP.checkPermission2("policia.permissao","Polícia 03") then
 			outServers()
 			exports.tokovoip_script:addPlayerToRadio(1006)
 		end	
-	elseif data == "sportrace" then
-		if emP.checkPermission2("sportrace.permissao","SportRace (Mêcanicos)") then
+	elseif data == "fenixcustoms" then
+		if emP.checkPermission2("mecanico.permissao","Fenix Customs") then
 			outServers()
 			exports.tokovoip_script:addPlayerToRadio(1007)
 		end		
@@ -88,12 +83,7 @@ RegisterNUICallback("ButtonClick",function(data,cb)
 		if emP.checkPermission2("roxos.permissao","Roxos") then
 			outServers()
 			exports.tokovoip_script:addPlayerToRadio(1010)
-		end
-	elseif data == "midnight" then
-		if emP.checkPermission2("midnight.permissao","Midnight") then
-			outServers()
-			exports.tokovoip_script:addPlayerToRadio(1011)
-		end		
+		end	
 	elseif data == "cosanostra" then
 		if emP.checkPermission2("cn.permissao","Cosanostra") then
 			outServers()

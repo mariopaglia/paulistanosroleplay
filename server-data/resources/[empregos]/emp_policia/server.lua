@@ -15,7 +15,7 @@ end
 function emP.checkPayment()
     local source = source
     local user_id = vRP.getUserId(source)
-	local buffado = false -- true (emprego buffado) / false (emprego normal)
+	local buffado = true -- true (emprego buffado) / false (emprego normal)
 
 	-- BUFFAR AUTOMATICAMENTE EMPREGOS AOS FINAIS DE SEMANA
     local diaSemana = os.date("%w")

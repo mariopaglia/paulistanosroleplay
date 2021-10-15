@@ -33,12 +33,16 @@ cfg.items = {
 	["whisky"] = { "whisky",0.2 },
 	["conhaque"] = { "conhaque",0.2 },
 	["absinto"] = { "absinto",0.2 },
-	["agua"] = { "agua",0.2 },
 	["corda"] = { "corda",1.0 },
 	["adrenalina"] = { "adrenalina",1.0 },
 	["gopro"] = { "gopro",1.0 },
 	["gravadordevoz"] = { "gravadordevoz",1.0 },
 	["ticketpvp"] = { "ticketpvp",0.1 },
+	
+	-- Fome e Sede
+	["agua"] = { "agua",0.2 },
+	["hamburguer"] = { "hamburguer",0.2 },
+
 
 	-- Farm Contrabando
 	["componentemetal"] = { "Componentes de Metais",0.5 },

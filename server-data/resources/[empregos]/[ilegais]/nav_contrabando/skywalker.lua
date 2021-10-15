@@ -84,7 +84,6 @@ AddEventHandler("produzir-contrabando", function(item)
                                     vRPclient._stopAnim(source, false)
                                     vRP.giveInventoryItem(user_id, "listadesmanche", 1)
                                     TriggerClientEvent("Notify", source, "sucesso", "Você produziu <b>" .. vRP.itemNameList(item) .. "</b>.")
-                                    print(identity.firstname)
                                     oC.EnvioLog(user_id, identity, item)
                                 end)
                             end

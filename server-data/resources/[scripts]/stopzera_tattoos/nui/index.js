@@ -62,7 +62,7 @@ const updateBoxRefresh = () => {
             $("#"+boxIndex).append(`
                 <div class="box ${valueOfElement._owned}" data-index="${valueOfElement._index}">
                     <a>Modelo ${valueOfElement._name}</a>
-                    <img src="http://177.54.144.176:8080/img-tattoos/${valueOfElement._index}.png">
+                    <img src="http://189.127.164.170:8080/img-tattoos/${valueOfElement._index}.png">
                     <a class="dolar">R$ ${valueOfElement._price}</a>
                 </div>
             `)
@@ -95,7 +95,7 @@ const refreshBoxedTypes = () => {
                     $("#"+boxIndex).append(`
                         <div class="box ${valueOfElement._owned}" data-index="${valueOfElement._index}">
                             <a>Modelo ${valueOfElement._name}</a>
-                            <img src="http://177.54.144.176:8080/img-tattoos/${valueOfElement._index}.png">
+                            <img src="http://189.127.164.170:8080/img-tattoos/${valueOfElement._index}.png">
                             <a class="dolar">R$ ${valueOfElement._price}</a>
                         </div>
                     `)

@@ -1,0 +1,172 @@
+<link href="css.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript">
+	function calcular() {
+		var Multa = 0;
+		var Fianca = 0;
+
+		/* Crimes */
+		var crimes = document.getElementsByName('crime');
+		for (var i = 0; i < crimes.length; i++) {
+			if (crimes[i].checked) {
+				var valores_crime = crimes[i].value.split("|");
+				Multa += parseInt(valores_crime[1]);
+				Fianca += parseInt(valores_crime[2]);
+			}
+		}
+		// /* TENTATIVA DE HOMICIDIO */
+		// var drogas = parseInt(document.getElementById("drogas").value);
+		// if (drogas > 0) {
+		// 	Multa += 620;
+		// 	Fianca += drogas * 25;
+		// }
+
+		// /* TENTATIVA DE HOMICIDIO A OFICIAL */
+		// var sujo = parseInt(document.getElementById("sujo").value);
+		// if (sujo > 0) {
+		// 	Multa += 1000;
+		// 	Fianca += sujo * 35;
+		// }
+		// /* HOMICIDIO */
+		// var multas = parseInt(document.getElementById("multas").value);
+		// if (multas > 0) {
+		// 	Multa += 620;
+		// 	Fianca += multas * 30;
+		// }
+		// /* HOMICIDIO A OFICIAL */
+		// var muniçao = parseInt(document.getElementById("muniçao").value);
+		// if (muniçao > 0) {
+		// 	Multa += 1000;
+		// 	Fianca += muniçao * 40;
+		// }
+
+		var multa_txt = document.getElementById("multa");
+		multa_txt.value = "R$ " + Multa.toLocaleString('pt-br', {
+			minimumFractionDigits: 0
+		});
+		var fianca_txt = document.getElementById("fianca");
+		fianca_txt.value = Fianca + " Meses";
+	}
+
+	function limpar() {
+		var crimes = document.getElementsByName('crime');
+		for (var i = 0; i < crimes.length; i++) {
+			crimes[i].checked = false;
+		}
+
+		document.getElementById("multa").value = "0";
+		document.getElementById("fianca").value = "0";
+
+	}
+</script>
+
+<div style="text-align: center; font-size: 16px;" class="calculo">
+	<strong style="font-size: 18px; color: #e89400;">CÁLCULO TOTAL:</strong> <br> <br>
+	<strong>MULTA:</strong> <input type="text" id="multa" name="multa" onlyread="true" size=10 style="margin-right:10px">
+	<strong>PENA:</strong> <input type="text" id="fianca" name="fianca" size=10 />
+	<button onclick="limpar()">LIMPAR</button>
+</div>
+
+<div class="central">
+	<div class="fc quadro">
+		<h3>INFRAÇÕES DE TRÂNSITO:</h3>
+		<p><input type="checkbox" name="crime" value="0|5000|0" onclick="calcular()">ESTACIONAR EM LOCAL PROÍBIDO</p>
+		<p><input type="checkbox" name="crime" value="0|10000|0" onclick="calcular()">VEÍCULO ABANDONADO</p>
+		<p><input type="checkbox" name="crime" value="0|3000|0" onclick="calcular()">ANDAR COM VEÍCULO DANIFICADO</p>
+		<p><input type="checkbox" name="crime" value="0|7000|0" onclick="calcular()">DIREÇÃO PERIGOSA</p>
+		<p><input type="checkbox" name="crime" value="0|3000|0" onclick="calcular()">ALTA VELOCIDADE</p>
+		<p><input type="checkbox" name="crime" value="0|1000|0" onclick="calcular()">ULTRAPASSAR SINAL VERMELHO</p>
+		<p><input type="checkbox" name="crime" value="0|50000|0" onclick="calcular()">POUSAR EM LOCAL PROÍBIDO</p>
+
+		<h3 style="margin-top: 30px;">AÇÕES FECHADAS</h3>
+		<p><input type="checkbox" name="crime" value="0|40000|100" onclick="calcular()">BANCO CENTRAL/PALETO</p>
+		<p><input type="checkbox" name="crime" value="0|30000|80" onclick="calcular()">JOALHERIA</p>
+		<p><input type="checkbox" name="crime" value="0|30000|60" onclick="calcular()">AÇOUGUE</p>
+		<p><input type="checkbox" name="crime" value="0|30000|60" onclick="calcular()">GALINHEIRO</p>
+		<p><input type="checkbox" name="crime" value="0|30000|50" onclick="calcular()">YELLOW JACK</p>
+		<p><input type="checkbox" name="crime" value="0|30000|50" onclick="calcular()">TREVOR</p>
+		<p><input type="checkbox" name="crime" value="0|30000|50" onclick="calcular()">TEATRO</p>
+		<p><input type="checkbox" name="crime" value="0|30000|50" onclick="calcular()">PORTO</p>
+		<p><input type="checkbox" name="crime" value="0|30000|50" onclick="calcular()">PIER</p>
+		<p><input type="checkbox" name="crime" value="0|25000|40" onclick="calcular()">LOJA DE DEPARTAMENTO</p>
+		<p><input type="checkbox" name="crime" value="0|20000|30" onclick="calcular()">BEBIDAS</p>
+		<p><input type="checkbox" name="crime" value="0|20000|30" onclick="calcular()">AMMUNATION</p>
+		<p><input type="checkbox" name="crime" value="0|10000|0" onclick="calcular()">BARBEARIA</p>
+		<p><input type="checkbox" name="crime" value="0|5000|10" onclick="calcular()">CAIXA ELETRÔNICO</p>
+		<p><input type="checkbox" name="crime" value="0|5000|10" onclick="calcular()">CAIXA REGISTRADORA</p>
+		<h3>PORTE ILEGAL:</h3>
+		<p><input type="checkbox" name="crime" value="0|15000|25" onclick="calcular()">ARMAMENTO LEVE</p>
+		<p><input type="checkbox" name="crime" value="0|30000|40" onclick="calcular()">ARMAMENTO PESADO</p>
+		<p><input type="checkbox" name="crime" value="0|15000|25" onclick="calcular()">MUNIÇÕES</p>
+	</div>
+
+	<div class="quadro">
+		<h3>CRIMES NÍVEL 1:</h3>
+		<p><input type="checkbox" name="crime" value="0|15000|25" onclick="calcular()">OBSTRUÇÃO FACIAL</p>
+		<p><input type="checkbox" name="crime" value="0|10000|0" onclick="calcular()">CAPACETE BALÍSTICO</p>
+		<p><input type="checkbox" name="crime" value="0|10000|0" onclick="calcular()">USO DE COLDRE</p>
+		<p><input type="checkbox" name="crime" value="0|10000|0" onclick="calcular()">COLETE BALÍSTICO</p>
+		<p><input type="checkbox" name="crime" value="0|30000|30" onclick="calcular()">FARDAMENTO POLICIAL</p>
+		<p><input type="checkbox" name="crime" value="0|5000|10" onclick="calcular()">RESISTENCIA À PRISÃO</p>
+		<p><input type="checkbox" name="crime" value="0|10000|15" onclick="calcular()">FUGA DA ABORDAGEM POLICIAL</p>
+		<p><input type="checkbox" name="crime" value="0|5000|20" onclick="calcular()">CORRIDA ILEGAL</p>
+		<p><input type="checkbox" name="crime" value="0|5000|15" onclick="calcular()">TENTATIVA DE FURTO OU ROUBO</p>
+		<p><input type="checkbox" name="crime" value="0|10000|25" onclick="calcular()">FURTO OU ROUBO</p>
+		<p><input type="checkbox" name="crime" value="0|10000|10" onclick="calcular()">MULTAS PENDENTES</p>
+		<p><input type="checkbox" name="crime" value="0|5000|10" onclick="calcular()">OMISSÃO DE SOCORRO</p>
+		<p><input type="checkbox" name="crime" value="0|10000|10" onclick="calcular()">DANO AO PATRIMÔNIO</p>
+		<p><input type="checkbox" name="crime" value="0|5000|10" onclick="calcular()">DIFAMAÇÃO</p>
+		<p><input type="checkbox" name="crime" value="0|10000|20" onclick="calcular()">OBSTRUÇÃO DE JUSTIÇA</p>
+		<h3>CRIMES NÍVEL 2:</h3>
+		<p><input type="checkbox" name="crime" value="0|30000|30" onclick="calcular()">DESACATO À AUTORIDADE</p>
+		<p><input type="checkbox" name="crime" value="0|15000|20" onclick="calcular()">DESOBEDIÊNCIA</p>
+		<p><input type="checkbox" name="crime" value="0|20000|30" onclick="calcular()">EXTORSÃO</p>
+		<p><input type="checkbox" name="crime" value="0|10000|15" onclick="calcular()">FALSIDADE IDEOLÓGICA</p>
+		<p><input type="checkbox" name="crime" value="0|20000|25" onclick="calcular()">PERJÚRIO</p>
+		<p><input type="checkbox" name="crime" value="0|30000|50" onclick="calcular()">SUBORNO</p>
+		<p><input type="checkbox" name="crime" value="0|150000|100" onclick="calcular()">CORRUPÇÃO</p>
+		<p><input type="checkbox" name="crime" value="0|5000|15" onclick="calcular()">AMEAÇA</p>
+		<p><input type="checkbox" name="crime" value="0|10000|15" onclick="calcular()">CALÚNIA</p>
+		<p><input type="checkbox" name="crime" value="0|25000|30" onclick="calcular()">LESÃO CORPORAL</p>
+		<p><input type="checkbox" name="crime" value="0|20000|40" onclick="calcular()">SEQUESTRO</p>
+		<p><input type="checkbox" name="crime" value="0|50000|50" onclick="calcular()">APOLOGIA AO CRIME</p>
+		<p><input type="checkbox" name="crime" value="0|50000|50" onclick="calcular()">FURTO OU ROUBO DE VIATURA</p>
+	</div>
+
+	<div class="quadro">
+		<h3>CRIMES NÍVEL 3:</h3>
+		<p><input type="checkbox" name="crime" value="0|30000|60" onclick="calcular()">HOMICÍDIO DOLOSO</p>
+		<p><input type="checkbox" name="crime" value="0|25000|50" onclick="calcular()">HOMICÍDIO CULPOSO</p>
+		<p><input type="checkbox" name="crime" value="0|50000|100" onclick="calcular()">GENOCÍDIO</p>
+		<p><input type="checkbox" name="crime" value="0|20000|40" onclick="calcular()">TENTATIVA DE HOMICÍDIO</p>
+		<p><input type="checkbox" name="crime" value="0|50000|100" onclick="calcular()">HOMICÍDIO À OFICIAL</p>
+		<h3>TRÁFICO/DINHEIRO SUJO:</h3>
+		<p><input type="checkbox" name="crime" value="0|10000|15" onclick="calcular()">TRÁFICO DE DROGAS</p>
+		<p><input type="checkbox" name="crime" value="0|7500|10" onclick="calcular()">POSSE DE DROGAS</p>
+		<p><input type="checkbox" name="crime" value="0|15000|25" onclick="calcular()">TRÁFICO DE ARMAS</p>
+		<p><input type="checkbox" name="crime" value="0|15000|20" onclick="calcular()">TRÁFICO DE MUNIÇÕES</p>
+		<p><input type="checkbox" name="crime" value="0|10000|10" onclick="calcular()">DINHEIRO SUJO</p>
+		<h3>ITENS ILEGAIS:</h3>
+		<p><input type="checkbox" name="crime" value="0|10000|15" onclick="calcular()">ALGEMA</p>
+		<p><input type="checkbox" name="crime" value="0|10000|15" onclick="calcular()">CAPUZ</p>
+		<p><input type="checkbox" name="crime" value="0|10000|15" onclick="calcular()">LOCKPICK</p>
+		<p><input type="checkbox" name="crime" value="0|20000|30" onclick="calcular()">C4</p>
+		<p><input type="checkbox" name="crime" value="0|10000|15" onclick="calcular()">CARTÃO DE INVASÃO</p>
+		<p><input type="checkbox" name="crime" value="0|10000|15" onclick="calcular()">PLACA VEÍCULAR</p>
+		<p><input type="checkbox" name="crime" value="0|10000|15" onclick="calcular()">COLETE BALÍSTICO</p>
+		<p><input type="checkbox" name="crime" value="0|10000|15" onclick="calcular()">PEÇAS DE ARMA</p>
+		<p><input type="checkbox" name="crime" value="0|10000|15" onclick="calcular()">CÁPSULA</p>
+		<p><input type="checkbox" name="crime" value="0|10000|15" onclick="calcular()">PÓLVORA</p>
+		<p><input type="checkbox" name="crime" value="0|10000|15" onclick="calcular()">PASTA DE COCA, ADUBO E ANFETAMINA</p>
+		<p><input type="checkbox" name="crime" value="0|10000|15" onclick="calcular()">PLACA DE CIRCUITO</p>
+		<p><input type="checkbox" name="crime" value="0|10000|15" onclick="calcular()">CHIPSET</p>
+
+		<!-- <h3 style="margin-top: 30px;">NUMERO DE TENTATIVAS DE HOMICÍDIO:</h3>
+	<p><input type="number" id="drogas" name="TENTATIVA DE HOMICÍDIO" onchange="calcular()" size=4> TENTATIVAS</p>
+	<h3>NUMERO DE TENTATIVAS DE HOMICÍDIO A OFICIAL:</h3>
+	<p><input type="number" id="sujo" name="sujo" onchange="calcular()" size=4> TENTATIVAS</p>
+	<h3>NUMERO DE HOMICIDIO:</h3>
+	<p><input type="number" id="multas" name="multas" onchange="calcular()" size=4> HOMICIDIOS</p>
+	<h3>NUMERO DE HOMICIDIO A OFICIAL:</h3>
+	<p><input type="number" id="muniçao" name="muniçao" onchange="calcular()" size=4> HOMICIDIOS</p> -->
+	</div>
+</div>

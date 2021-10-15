@@ -84,6 +84,7 @@ local marcacoes = {
 	{ -1375.82,-628.93,30.82 }, -- Bahamas
 	{ 415.57,-1499.47,30.16 }, -- Salieris
 	{ 958.27,69.57,112.56 }, -- Cassino
+	-- { -2107.18,-544.53,6.47 }, -- Casamento/Praia
 }
 
 Citizen.CreateThread(function()

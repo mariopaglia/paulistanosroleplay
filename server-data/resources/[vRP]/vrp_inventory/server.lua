@@ -311,9 +311,30 @@ local user_id = vRP.getUserId(source)
 					SetTimeout(10000,function()
 						actived[user_id] = nil
 						TriggerClientEvent('cancelando',source,false)
+						vRP.varyThirst(user_id,-100)
+						vRP.varyHunger(user_id,0)
 						vRPclient._DeletarObjeto(source)
 						TriggerClientEvent("Notify",source,"sucesso","Água utilizada com sucesso.",8000)
 					end)
+				end
+			elseif itemName == "hamburguer" then
+				local src = source
+				if vRP.tryGetInventoryItem(user_id,"hamburguer",1) then
+
+					actived[user_id] = true
+					TriggerClientEvent('Creative:Update',source,'updateMochila')
+					TriggerClientEvent("emotes",source,"comer")
+					TriggerClientEvent("progress",source,10000,"comendo")
+
+					SetTimeout(10000,function()
+						actived[user_id] = nil
+						vRPclient._stopAnim(source,false)
+						vRP.varyThirst(user_id,0)
+						vRP.varyHunger(user_id,-100)
+						vRPclient._DeletarObjeto(src)
+						TriggerClientEvent("Notify",source,"sucesso","Você comeu um <b>Sanduíche</b>.")
+					end)
+
 				end
 			elseif itemName == "heroina" then
 				if vRP.tryGetInventoryItem(user_id,"heroina",1) then
@@ -525,10 +546,10 @@ local user_id = vRP.getUserId(source)
 					TriggerClientEvent("vrp_sound:source",source,'lock',0.5)
 					return
 				end
-				if #policia < 2 then
-					TriggerClientEvent("Notify",source,"importante","Número insuficiente de policiais no momento para iniciar o roubo.")
-					return true
-				end
+				-- if #policia < 2 then
+				-- 	TriggerClientEvent("Notify",source,"importante","Número insuficiente de policiais no momento para iniciar o roubo.")
+				-- 	return true
+				-- end
 
 				-- FAZER A VERIFICAÇÃO SE O VEÍCULO ESTÁ TRANCADO
 				if lock == 1 then
@@ -607,7 +628,7 @@ local user_id = vRP.getUserId(source)
 				local vehicle,vnetid,placa,vname,lock,banned,trunk,model,street = vRPclient.vehList(source,7)
 				local policia = vRP.getUsersByPermission("pmesp.permissao")
 
-				if not vRP.hasPermission(user_id,"admin.permissao") or vRP.hasPermission(user_id, "founder.permissao") then
+				if not vRP.hasPermission(user_id,"kick.permissao") then
 					TriggerClientEvent("Notify",source,"negado","Apenas administradores podem utilizar a Masterpick.")
 					return true
 				end

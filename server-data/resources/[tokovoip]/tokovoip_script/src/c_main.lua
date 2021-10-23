@@ -51,7 +51,7 @@ end);
 -- Receives data from the TS plugin on microphone toggle
 RegisterNUICallback("setPlayerTalking", function(data)
 	voip.talking = tonumber(data.state);
-
+	TriggerEvent("nation_hud:updateTalking", voip.talking == 1) -- HUD NATION
 	if (voip.talking == 1) then
 		setPlayerData(voip.serverId, "voip:talking", 1, true);
 		PlayFacialAnim(GetPlayerPed(PlayerId()), "mic_chatter", "mp_facial");

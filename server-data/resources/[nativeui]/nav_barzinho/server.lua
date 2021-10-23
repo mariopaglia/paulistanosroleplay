@@ -14,7 +14,21 @@ local valores = {
 	{ item = "whisky", quantidade = 1, compra = 200, venda = 0 },
 	{ item = "conhaque", quantidade = 1, compra = 200, venda = 0 },
 	{ item = "absinto", quantidade = 1, compra = 200, venda = 0 },
-	{ item = "agua", quantidade = 1, compra = 50, venda = 0 },
+	{ item = "agua", quantidade = 1, compra = 80, venda = 0 },
+	{ item = "hamburguer", quantidade = 1, compra = 100, venda = 0 },
+	{ item = "pizza", quantidade = 1, compra = 100, venda = 0 },
+	{ item = "rosquinha", quantidade = 1, compra = 100, venda = 0 },
+	{ item = "sanduiche", quantidade = 1, compra = 100, venda = 0 },
+	{ item = "frangofrito", quantidade = 1, compra = 100, venda = 0 },
+	{ item = "batatafrita", quantidade = 1, compra = 100, venda = 0 },
+	{ item = "cachorroquente", quantidade = 1, compra = 100, venda = 0 },
+	{ item = "sprite", quantidade = 1, compra = 80, venda = 0 },
+	{ item = "leite", quantidade = 1, compra = 80, venda = 0 },
+	{ item = "mamadeira", quantidade = 1, compra = 80, venda = 0 },
+	{ item = "cafe", quantidade = 1, compra = 80, venda = 0 },
+	{ item = "cappuccino", quantidade = 1, compra = 80, venda = 0 },
+	{ item = "suco", quantidade = 1, compra = 80, venda = 0 },
+	{ item = "cocacola", quantidade = 1, compra = 80, venda = 0 },
 }
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- COMPRAR

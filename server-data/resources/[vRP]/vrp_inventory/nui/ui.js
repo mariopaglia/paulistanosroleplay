@@ -72,9 +72,7 @@ var updateMochila = () => {
 
   $.post("http://vrp_inventory/requestMochila", JSON.stringify({}), data => {
     var nameList = data.inventario.sort((a, b) => (a.name > b.name ? 1 : -1));
-    $('.inventory-title').html(`
-      Inventário <small>(<i><b>${data.peso.toFixed(2)}kg</b> em uso | <b>${(data.maxpeso - data.peso).toFixed(2)}kg</b> livre de <b>${data.maxpeso.toFixed(2)}kg</b> no total</i>)</small>
-    `);
+    $('.inventory-title').html(`Inventário Fenix City<br><small><i><b>Usando:</b> ${data.peso.toFixed(2)}Kg | <b>Livre:</b> ${(data.maxpeso - data.peso).toFixed(2)}Kg | <b>Total:</b> ${data.maxpeso.toFixed(2)}Kg</i></small>`);
     $(".row.objects").html(`
     ${nameList
       .map(

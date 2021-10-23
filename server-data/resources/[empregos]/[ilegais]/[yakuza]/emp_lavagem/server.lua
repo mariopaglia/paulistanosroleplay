@@ -63,7 +63,7 @@ function lav.lavagemPolicia(id,x,y,z,head)
 					async(function()
 						local ids = idgens:gen()
 						blips[ids] = vRPclient.addBlip(player,x,y,z,1,59,"Ocorrencia",0.5,true)
-						TriggerClientEvent('chatMessage',player,"190",{64,64,255},"^1Lavagem^0 de dinheiro em andamento.")
+						TriggerClientEvent('chatMessage',player,"CENTRAL:",{65,130,255},"^1Lavagem^0 de dinheiro em andamento.")
 						SetTimeout(5000,function() vRPclient.removeBlip(player,blips[ids]) idgens:free(ids) end)
 					end)
 				end

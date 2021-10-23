@@ -5,7 +5,7 @@ Citizen.CreateThread(function()
         SetPedDensityMultiplierThisFrame(cfg.density.peds)
         SetScenarioPedDensityMultiplierThisFrame(cfg.density.peds, cfg.density.peds)
         SetVehicleDensityMultiplierThisFrame(cfg.density.vehicles)
-        SetRandomVehicleDensityMultiplierThisFrame(0.0)
+        SetRandomVehicleDensityMultiplierThisFrame(0.3)
         SetParkedVehicleDensityMultiplierThisFrame(0.0)
         Citizen.Wait(0)
     end

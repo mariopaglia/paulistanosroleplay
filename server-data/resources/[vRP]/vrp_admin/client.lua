@@ -5,6 +5,7 @@ vRP = Proxy.getInterface("vRP")
 vADMC = {}
 Tunnel.bindInterface("vrp_admin", vADMC)
 crz = Tunnel.getInterface("vrp_admin")
+
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- ECONOMIA
 -----------------------------------------------------------------------------------------------------------------------------------------
@@ -324,6 +325,83 @@ AddEventHandler('spawnarveiculo654687687', function(name)
 
         SetModelAsNoLongerNeeded(mhash)
     end
+end)
+---------------------------------------------------------------------------------------------------------------------------------------
+-- /ATTACHS
+-----------------------------------------------------------------------------------------------------------------------------------------
+RegisterCommand("attachs",function(source,args)
+	local ped = PlayerPedId()
+	if GetSelectedPedWeapon(ped) == GetHashKey("WEAPON_SPECIALCARBINE_MK2") then -- G36C
+        GiveWeaponComponentToPed(ped,GetHashKey("WEAPON_SPECIALCARBINE_MK2"),GetHashKey("COMPONENT_AT_SCOPE_MEDIUM_MK2")) -- MIRA GRANDE
+        GiveWeaponComponentToPed(ped,GetHashKey("WEAPON_SPECIALCARBINE_MK2"),GetHashKey("COMPONENT_AT_MUZZLE_02")) -- FREIO DE BOCA TATICO
+        GiveWeaponComponentToPed(ped,GetHashKey("WEAPON_SPECIALCARBINE_MK2"),GetHashKey("COMPONENT_AT_AR_AFGRIP_02")) -- EMPUNHADURA
+	elseif GetSelectedPedWeapon(ped) == GetHashKey("WEAPON_SPECIALCARBINE") then -- G36x
+        --GiveWeaponComponentToPed(ped,GetHashKey("WEAPON_SPECIALCARBINE"),GetHashKey("COMPONENT_AT_SCOPE_MEDIUM")) -- MIRA GRANDE
+        --GiveWeaponComponentToPed(ped,GetHashKey("WEAPON_SPECIALCARBINE"),GetHashKey("COMPONENT_AT_AR_FLSH")) -- LANTERNA
+        GiveWeaponComponentToPed(ped,GetHashKey("WEAPON_SPECIALCARBINE"),GetHashKey("COMPONENT_AT_AR_AFGRIP")) -- EMPUNHADURA
+	elseif GetSelectedPedWeapon(ped) == GetHashKey("WEAPON_ASSAULTRIFLE_MK2") then -- AK-47
+        GiveWeaponComponentToPed(ped,GetHashKey("WEAPON_ASSAULTRIFLE_MK2"),GetHashKey("COMPONENT_AT_SCOPE_MEDIUM_MK2")) -- MIRA GRANDE
+        GiveWeaponComponentToPed(ped,GetHashKey("WEAPON_ASSAULTRIFLE_MK2"),GetHashKey("COMPONENT_AT_MUZZLE_02")) -- FREIO DE BOCA TATICO
+        GiveWeaponComponentToPed(ped,GetHashKey("WEAPON_ASSAULTRIFLE_MK2"),GetHashKey("COMPONENT_AT_AR_AFGRIP_02")) -- EMPUNHADURA
+        GiveWeaponComponentToPed(ped,GetHashKey("WEAPON_ASSAULTRIFLE_MK2"),GetHashKey("COMPONENT_ASSAULTRIFLE_MK2_CAMO_IND_01")) -- TEXTURA
+	elseif GetSelectedPedWeapon(ped) == GetHashKey("WEAPON_SMG_MK2") then -- MP5-MK2
+        GiveWeaponComponentToPed(ped,GetHashKey("WEAPON_SMG_MK2"),GetHashKey("COMPONENT_AT_SCOPE_SMALL_SMG_MK2")) -- MIRA MEDIA
+        GiveWeaponComponentToPed(ped,GetHashKey("WEAPON_SMG_MK2"),GetHashKey("COMPONENT_AT_MUZZLE_02")) -- FREIO DE BOCA TATICO
+        GiveWeaponComponentToPed(ped,GetHashKey("WEAPON_SMG_MK2"),GetHashKey("COMPONENT_AT_SB_BARREL_01")) -- CANO PESADO
+	elseif GetSelectedPedWeapon(ped) == GetHashKey("WEAPON_PISTOL_MK2") then -- FIVE-SEVEN
+        GiveWeaponComponentToPed(ped,GetHashKey("WEAPON_PISTOL_MK2"),GetHashKey("COMPONENT_AT_PI_COMP")) -- COMPENSADOR
+        GiveWeaponComponentToPed(ped,GetHashKey("WEAPON_PISTOL_MK2"),GetHashKey("COMPONENT_AT_PI_RAIL")) -- MIRA
+        GiveWeaponComponentToPed(ped,GetHashKey("WEAPON_PISTOL_MK2"),GetHashKey("COMPONENT_AT_PI_FLSH_02")) -- LANTERNA
+        GiveWeaponComponentToPed(ped,GetHashKey("WEAPON_PISTOL_MK2"),GetHashKey("COMPONENT_PISTOL_MK2_CLIP_02")) -- CARREGADOR ESTENDIDO
+	elseif GetSelectedPedWeapon(ped) == GetHashKey("WEAPON_PISTOL") then -- M1911
+        GiveWeaponComponentToPed(ped,GetHashKey("WEAPON_PISTOL"),GetHashKey("COMPONENT_AT_PI_FLSH")) -- LANTERNA
+        GiveWeaponComponentToPed(ped,GetHashKey("WEAPON_PISTOL"),GetHashKey("COMPONENT_PISTOL_CLIP_02")) -- CARREGADOR ESTENDIDO
+	elseif GetSelectedPedWeapon(ped) == GetHashKey("WEAPON_CARBINERIFLE_MK2") then -- M4A1
+        GiveWeaponComponentToPed(ped,GetHashKey("WEAPON_CARBINERIFLE_MK2"),GetHashKey("COMPONENT_AT_SCOPE_MEDIUM_MK2")) -- MIRA GRANDE
+        GiveWeaponComponentToPed(ped,GetHashKey("WEAPON_CARBINERIFLE_MK2"),GetHashKey("COMPONENT_AT_MUZZLE_02")) -- FREIO DE BOCA TATICO
+        GiveWeaponComponentToPed(ped,GetHashKey("WEAPON_CARBINERIFLE_MK2"),GetHashKey("COMPONENT_AT_AR_AFGRIP_02")) -- EMPUNHADURA
+	elseif GetSelectedPedWeapon(ped) == GetHashKey("WEAPON_CARBINERIFLE") then -- AR-15
+        GiveWeaponComponentToPed(ped,GetHashKey("WEAPON_CARBINERIFLE"),GetHashKey("COMPONENT_AT_SCOPE_MEDIUM")) -- MIRA GRANDE
+        GiveWeaponComponentToPed(ped,GetHashKey("WEAPON_CARBINERIFLE"),GetHashKey("COMPONENT_AT_AR_AFGRIP")) -- EMPUNHADURA
+	elseif GetSelectedPedWeapon(ped) == GetHashKey("WEAPON_COMBATPDW") then -- SIG SAUER
+        GiveWeaponComponentToPed(ped,GetHashKey("WEAPON_COMBATPDW"),GetHashKey("COMPONENT_AT_SCOPE_SMALL")) -- MIRA
+        GiveWeaponComponentToPed(ped,GetHashKey("WEAPON_COMBATPDW"),GetHashKey("COMPONENT_AT_AR_AFGRIP")) -- EMPUNHADURA
+        GiveWeaponComponentToPed(ped,GetHashKey("WEAPON_COMBATPDW"),GetHashKey("COMPONENT_AT_AR_FLSH")) -- LANTERNA
+	elseif GetSelectedPedWeapon(ped) == GetHashKey("WEAPON_MINISMG") then -- SCORPION
+        GiveWeaponComponentToPed(ped,GetHashKey("WEAPON_MINISMG"),GetHashKey("COMPONENT_MINISMG_CLIP_02")) -- CARREGADOR ESTENDIDO
+	elseif GetSelectedPedWeapon(ped) == GetHashKey("WEAPON_COMBATPISTOL") then -- GLOCK
+        GiveWeaponComponentToPed(ped,GetHashKey("WEAPON_COMBATPISTOL"),GetHashKey("COMPONENT_AT_PI_FLSH")) -- LANTERNA
+        GiveWeaponComponentToPed(ped,GetHashKey("WEAPON_COMBATPISTOL"),GetHashKey("COMPONENT_COMBATPISTOL_CLIP_02")) -- CARREGADOR ESTENDIDO	
+	end
+end)
+-----------------------------------------------------------------------------------------------------------------------------------------
+-- /SILENCIADOR
+-----------------------------------------------------------------------------------------------------------------------------------------
+RegisterCommand("sil",function(source,args)
+	if crz.checkPermissionSilenciador() then
+		local ped = PlayerPedId()
+		if GetSelectedPedWeapon(ped) == GetHashKey("WEAPON_SPECIALCARBINE_MK2") then -- G36C
+    	    GiveWeaponComponentToPed(ped,GetHashKey("WEAPON_SPECIALCARBINE_MK2"),GetHashKey("COMPONENT_AT_AR_SUPP_02"))
+		elseif GetSelectedPedWeapon(ped) == GetHashKey("WEAPON_ASSAULTRIFLE_MK2") then -- AK-47
+    	    GiveWeaponComponentToPed(ped,GetHashKey("WEAPON_ASSAULTRIFLE_MK2"),GetHashKey("COMPONENT_AT_AR_SUPP_02"))
+		elseif GetSelectedPedWeapon(ped) == GetHashKey("WEAPON_SMG_MK2") then -- MP5-MK2
+    	    GiveWeaponComponentToPed(ped,GetHashKey("WEAPON_SMG_MK2"),GetHashKey("COMPONENT_AT_PI_SUPP"))
+		elseif GetSelectedPedWeapon(ped) == GetHashKey("WEAPON_PISTOL_MK2") then -- FIVE-SEVEN
+    	    GiveWeaponComponentToPed(ped,GetHashKey("WEAPON_PISTOL_MK2"),GetHashKey("COMPONENT_AT_PI_SUPP_02"))
+		elseif GetSelectedPedWeapon(ped) == GetHashKey("WEAPON_PISTOL") then -- M1911
+    	    GiveWeaponComponentToPed(ped,GetHashKey("WEAPON_PISTOL"),GetHashKey("COMPONENT_AT_PI_SUPP_02"))
+		elseif GetSelectedPedWeapon(ped) == GetHashKey("WEAPON_SPECIALCARBINE") then -- G36X
+    	    GiveWeaponComponentToPed(ped,GetHashKey("WEAPON_SPECIALCARBINE"),GetHashKey("COMPONENT_AT_AR_SUPP_02"))
+		elseif GetSelectedPedWeapon(ped) == GetHashKey("WEAPON_CARBINERIFLE_MK2") then -- M4A1
+    	    GiveWeaponComponentToPed(ped,GetHashKey("WEAPON_CARBINERIFLE_MK2"),GetHashKey("COMPONENT_AT_AR_SUPP"))
+		elseif GetSelectedPedWeapon(ped) == GetHashKey("WEAPON_CARBINERIFLE") then -- AR-15
+    	    GiveWeaponComponentToPed(ped,GetHashKey("WEAPON_CARBINERIFLE"),GetHashKey("COMPONENT_AT_AR_SUPP"))
+		elseif GetSelectedPedWeapon(ped) == GetHashKey("WEAPON_COMBATPISTOL") then -- GLOCK
+    	    GiveWeaponComponentToPed(ped,GetHashKey("WEAPON_COMBATPISTOL"),GetHashKey("COMPONENT_AT_PI_SUPP"))	
+		end
+	else
+		TriggerEvent("Notify", "negado", "Necessário <b>VIP Platina ou superior</b> para utilizar <b>/sil</b>")
+	end
 end)
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- TELEPORTAR PARA O LOCAL MARCADO
@@ -987,3 +1065,34 @@ function getTouchedPlayers()
     end
     return touchedPlayer
 end
+
+---------------------------------------------------------------
+-- CONGELAR
+---------------------------------------------------------------
+RegisterNetEvent('Congelar')
+AddEventHandler('Congelar',function(source)
+    local ped = PlayerPedId(-1)
+    if not congelar then
+        congelar = true
+        Citizen.Wait(100)
+        FreezeEntityPosition(ped, true);
+    else
+        congelar = false
+        FreezeEntityPosition(ped, false);
+    end
+end)
+---------------------------------------------------------------
+-- FIRE
+---------------------------------------------------------------
+RegisterNetEvent('FOGO')
+AddEventHandler('FOGO',function(source)
+    local ped = PlayerPedId(-1)
+    if not kravinho then
+        kravinho = true
+        Citizen.Wait(100)
+        StartEntityFire(ped);
+    else
+        kravinho = false
+        StopEntityFire(ped);
+    end
+end)

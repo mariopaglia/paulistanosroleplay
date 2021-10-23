@@ -43,6 +43,49 @@ RegisterNUICallback("ButtonClick",function(data,cb)
 
 	elseif data == "barzinho-comprar-agua" then
 		TriggerServerEvent("barzinho-comprar","agua")
+		
+	elseif data == "barzinho-comprar-hamburguer" then
+		TriggerServerEvent("barzinho-comprar","hamburguer")
+		
+	elseif data == "barzinho-comprar-pizza" then
+		TriggerServerEvent("barzinho-comprar","pizza")
+		
+	elseif data == "barzinho-comprar-rosquinha" then
+		TriggerServerEvent("barzinho-comprar","rosquinha")
+		
+	elseif data == "barzinho-comprar-sanduiche" then
+		TriggerServerEvent("barzinho-comprar","sanduiche")
+		
+	elseif data == "barzinho-comprar-frangofrito" then
+		TriggerServerEvent("barzinho-comprar","frangofrito")
+		
+	elseif data == "barzinho-comprar-batatafrita" then
+		TriggerServerEvent("barzinho-comprar","batatafrita")
+		
+	elseif data == "barzinho-comprar-cachorroquente" then
+		TriggerServerEvent("barzinho-comprar","cachorroquente")
+		
+	elseif data == "barzinho-comprar-sprite" then
+		TriggerServerEvent("barzinho-comprar","sprite")
+		
+	elseif data == "barzinho-comprar-leite" then
+		TriggerServerEvent("barzinho-comprar","leite")
+		
+	elseif data == "barzinho-comprar-mamadeira" then
+		TriggerServerEvent("barzinho-comprar","mamadeira")
+		
+	elseif data == "barzinho-comprar-cafe" then
+		TriggerServerEvent("barzinho-comprar","cafe")
+		
+	elseif data == "barzinho-comprar-cappuccino" then
+		TriggerServerEvent("barzinho-comprar","cappuccino")
+		
+	elseif data == "barzinho-comprar-suco" then
+		TriggerServerEvent("barzinho-comprar","suco")
+		
+	elseif data == "barzinho-comprar-cocacola" then
+		TriggerServerEvent("barzinho-comprar","cocacola")
+--
 
 	elseif data == "barzinho-vender-tequila" then
 		TriggerServerEvent("barzinho-vender","tequila")

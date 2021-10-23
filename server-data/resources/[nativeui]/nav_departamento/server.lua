@@ -6,15 +6,23 @@ vRPclient = Tunnel.getInterface("vRP")
 -- ARRAY
 -----------------------------------------------------------------------------------------------------------------------------------------
 local valores = {
-	{ item = "mochila", quantidade = 1, compra = 10000, venda = 5000 },
-	{ item = "alianca", quantidade = 1, compra = 1000, venda = 500 },
-	{ item = "roupas", quantidade = 1, compra = 10000, venda = 5000 },
-	{ item = "celular", quantidade = 1, compra = 3000, venda = 1500 },
-	{ item = "radio", quantidade = 1, compra = 1000, venda = 500 },
-	{ item = "energetico", quantidade = 3, compra = 5000, venda = 2500 },
-	{ item = "militec", quantidade = 1, compra = 5000, venda = 100 },
-	{ item = "repairkit", quantidade = 1, compra = 8000, venda = 100 },
-	{ item = "pneu", quantidade = 1, compra = 1000, venda = 100 },
+	{ item = "mochila", quantidade = 1, compra = 10000, venda = 0 },
+	{ item = "alianca", quantidade = 1, compra = 1000, venda = 0 },
+	{ item = "alianca2", quantidade = 1, compra = 1000, venda = 0 },
+	{ item = "roupas", quantidade = 1, compra = 10000, venda = 0 },
+	{ item = "celular", quantidade = 1, compra = 3000, venda = 0 },
+	{ item = "radio", quantidade = 1, compra = 1000, venda = 0 },
+	{ item = "energetico", quantidade = 3, compra = 5000, venda = 0 },
+	{ item = "militec", quantidade = 1, compra = 5000, venda = 0 },
+	{ item = "repairkit", quantidade = 1, compra = 8000, venda = 0 },
+	{ item = "pneu", quantidade = 1, compra = 1000, venda = 0 },
+	{ item = "hamburguer", quantidade = 1, compra = 350, venda = 0 },
+	{ item = "pizza", quantidade = 1, compra = 350, venda = 0 },
+	{ item = "rosquinha", quantidade = 1, compra = 350, venda = 0 },
+	{ item = "agua", quantidade = 1, compra = 350, venda = 0 },
+	{ item = "sprite", quantidade = 1, compra = 350, venda = 0 },
+	{ item = "leite", quantidade = 1, compra = 350, venda = 0 },
+	{ item = "mamadeira", quantidade = 1, compra = 400, venda = 0 },
 }
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- COMPRAR

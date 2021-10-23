@@ -50,7 +50,8 @@ RegisterCommand('placa', function(source, args, rawCommand)
                 local identity = vRP.getUserIdentity(user_id)
                 if identity then
                     vRPclient.playSound(source, "Event_Message_Purple", "GTAO_FM_Events_Soundset")
-                    TriggerClientEvent('chatMessage', source, "190", {64, 64, 255}, "^1Passaporte: ^0" .. identity.user_id .. "   ^2|   ^1Placa: ^0" .. identity.registration .. "   ^2|   ^1Proprietário: ^0" .. identity.name .. " " .. identity.firstname .. "   ^2|   ^1Idade: ^0" .. identity.age .. " anos   ^2|   ^1Telefone: ^0" .. identity.phone)
+                    TriggerClientEvent("Notify", source, "policia", "<b>INFORMAÇÕES DO VEÍCULO</b><br>Passaporte: <b>" .. identity.user_id .. "</b> <br> Placa: <b>" .. identity.registration .. "</b> <br> Proprietário: <b>" .. identity.name .. " " .. identity.firstname .. "</b> <br> Idade: <b>" .. identity.age .. "</b> <br> Telefone: <b>" .. identity.phone.."</b>", 20000)
+                    TriggerClientEvent('chatMessage', source, "CENTRAL:",{65,130,255}, "^1Passaporte: ^0" .. identity.user_id .. "   ^2|   ^1Placa: ^0" .. identity.registration .. "   ^2|   ^1Proprietário: ^0" .. identity.name .. " " .. identity.firstname .. "   ^2|   ^1Idade: ^0" .. identity.age .. " anos   ^2|   ^1Telefone: ^0" .. identity.phone)
                 end
             else
                 TriggerClientEvent("Notify", source, "importante", "Placa inválida ou veículo de americano.")
@@ -64,7 +65,8 @@ RegisterCommand('placa', function(source, args, rawCommand)
                     if identity then
                         local vehicleName = vRP.vehicleName(vname)
                         vRPclient.playSound(source, "Event_Message_Purple", "GTAO_FM_Events_Soundset")
-                        TriggerClientEvent('chatMessage', source, "190", {64, 64, 255}, "^1Passaporte: ^0" .. identity.user_id .. "   ^2|   ^1Placa: ^0" .. identity.registration .. "   ^2|   ^1Placa: ^0" .. identity.registration .. "   ^2|   ^1Proprietário: ^0" .. identity.name .. " " .. identity.firstname .. "   ^2|   ^1Modelo: ^0" .. vehicleName ..
+                        TriggerClientEvent("Notify", source, "policia", "<b>INFORMAÇÕES DO VEÍCULO</b><br>Passaporte: <b>" .. identity.user_id .. "</b> <br> Placa: <b>" .. identity.registration .. "</b> <br> Proprietário: <b>" .. identity.name .. " " .. identity.firstname .. "</b> <br> Idade: <b>" .. identity.age .. "</b> <br> Telefone: <b>" .. identity.phone.."</b>", 20000)
+                        TriggerClientEvent('chatMessage', source, "CENTRAL:",{65,130,255}, "^1Passaporte: ^0" .. identity.user_id .. "   ^2|   ^1Placa: ^0" .. identity.registration .. "   ^2|   ^1Placa: ^0" .. identity.registration .. "   ^2|   ^1Proprietário: ^0" .. identity.name .. " " .. identity.firstname .. "   ^2|   ^1Modelo: ^0" .. vehicleName ..
                             "   ^2|   ^1Idade: ^0" .. identity.age .. " anos   ^2|   ^1Telefone: ^0" .. identity.phone)
                     end
                 else
@@ -829,11 +831,15 @@ RegisterCommand('re', function(source, args, rawCommand)
                 SetTimeout(30000, function()
                     vRPclient.killGod(nplayer)
                     vRPclient.setHealth(nplayer, 150)
+                    if vRP.getHunger(nuser_id) > 80 then
+                    vRP.varyHunger(nuser_id,-20)
+                    end
+                    if vRP.getThirst(nuser_id) > 80 then
+                        vRP.varyThirst(nuser_id,-20)
+                    end
                     vRPclient._stopAnim(source, false)
                     vRPclient._stopAnim(nplayer, false)
-                    vRP.giveMoney(user_id, 500)
                     TriggerClientEvent('cancelando', source, false)
-                    TriggerEvent("srkfive:killregisterclear", nuser_id)
                     vRP.Log("```prolog\n[ID]: " .. user_id .. " " .. identity.name .. " " .. identity.firstname .. " \n[REVIVEU]: " .. nuser_id .. " " .. identityu.name .. " " .. identityu.firstname .. "\n[COORDENADA]: " .. crds.x .. "," .. crds.y .. "," .. crds.z .. "" .. os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S") .. " \r```", "CMD_REANIMAR")
                 end)
             else
@@ -867,7 +873,6 @@ end)
 --					TriggerClientEvent('cancelando',source,false)
 --					pulso = nil
 --					upulso = 0
---					TriggerEvent("srkfive:killregisterclear",nuser_id)
 --					SendWebhookMessage(webhookre,"```prolog\n[ID]: "..user_id.." "..identity.name.." "..identity.firstname.." \n[REVIVEU]: "..nuser_id.." "..identityu.name.." "..identityu.firstname.."\n[COORDENADA]: "..crds.x..","..crds.y..","..crds.z..""..os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S").." \r```")
 --				end)
 --			elseif pulso == nil then

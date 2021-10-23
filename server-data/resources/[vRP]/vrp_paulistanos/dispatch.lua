@@ -75,55 +75,55 @@ end)
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- BLACKOUT
 -----------------------------------------------------------------------------------------------------------------------------------------
-local isBlackout = false
-local oldSpeed = 0
+-- local isBlackout = false
+-- local oldSpeed = 0
 
-Citizen.CreateThread(function()
-	while true do
-		local idle = 1000
-		local vehicle = GetVehiclePedIsIn(PlayerPedId())
-		if IsEntityAVehicle(vehicle) and GetPedInVehicleSeat(vehicle,-1) == PlayerPedId() then
-			idle = 100
-			local currentSpeed = GetEntitySpeed(vehicle)*2.236936
-			if currentSpeed ~= oldSpeed then
-				if not isBlackout and (currentSpeed < oldSpeed) and ((oldSpeed - currentSpeed) >= 50) then
-					blackout()
-				end
-				oldSpeed = currentSpeed
-			end
-		else
-			if oldSpeed ~= 0 then
-				oldSpeed = 0
-			end
-		end
+-- Citizen.CreateThread(function()
+-- 	while true do
+-- 		local idle = 1000
+-- 		local vehicle = GetVehiclePedIsIn(PlayerPedId())
+-- 		if IsEntityAVehicle(vehicle) and GetPedInVehicleSeat(vehicle,-1) == PlayerPedId() then
+-- 			idle = 100
+-- 			local currentSpeed = GetEntitySpeed(vehicle)*2.236936
+-- 			if currentSpeed ~= oldSpeed then
+-- 				if not isBlackout and (currentSpeed < oldSpeed) and ((oldSpeed - currentSpeed) >= 50) then
+-- 					blackout()
+-- 				end
+-- 				oldSpeed = currentSpeed
+-- 			end
+-- 		else
+-- 			if oldSpeed ~= 0 then
+-- 				oldSpeed = 0
+-- 			end
+-- 		end
 
-		if isBlackout then
-			DisableControlAction(0,63,true)
-			DisableControlAction(0,64,true)
-			DisableControlAction(0,71,true)
-			DisableControlAction(0,72,true)
-			DisableControlAction(0,75,true)
-		end
-		Citizen.Wait(idle)
-	end
-end)
+-- 		if isBlackout then
+-- 			DisableControlAction(0,63,true)
+-- 			DisableControlAction(0,64,true)
+-- 			DisableControlAction(0,71,true)
+-- 			DisableControlAction(0,72,true)
+-- 			DisableControlAction(0,75,true)
+-- 		end
+-- 		Citizen.Wait(idle)
+-- 	end
+-- end)
 
-function blackout()
-	TriggerEvent("vrp_sound:source",'heartbeat',0.5)
-	if not isBlackout then
-		isBlackout = true
-		SetEntityHealth(PlayerPedId(),GetEntityHealth(PlayerPedId())-50)
-		Citizen.CreateThread(function()
-			DoScreenFadeOut(500)
-			while not IsScreenFadedOut() do
-				Citizen.Wait(10)
-			end
-			Citizen.Wait(5000)
-			DoScreenFadeIn(5000)
-			isBlackout = false
-		end)
-	end
-end
+-- function blackout()
+-- 	TriggerEvent("vrp_sound:source",'heartbeat',0.5)
+-- 	if not isBlackout then
+-- 		isBlackout = true
+-- 		SetEntityHealth(PlayerPedId(),GetEntityHealth(PlayerPedId())-50)
+-- 		Citizen.CreateThread(function()
+-- 			DoScreenFadeOut(500)
+-- 			while not IsScreenFadedOut() do
+-- 				Citizen.Wait(10)
+-- 			end
+-- 			Citizen.Wait(5000)
+-- 			DoScreenFadeIn(5000)
+-- 			isBlackout = false
+-- 		end)
+-- 	end
+-- end
 
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- BLIPS

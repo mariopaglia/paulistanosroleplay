@@ -115,6 +115,7 @@ local banks = {
 	{name="Registradora", id=108, x=-3240.59,y=1008.60,z=12.83 },
 	{name="Registradora", id=108, x=-1091.5, y=2708.67, z=18.96 },
 	{name="Registradora", id=108, x=-809.41, y=-1238.22, z=7.34 },
+	{name="Registradora", id=108, x=-677.35, y=5834.57, z=17.34 }, -- caixinha do cacador
 }
 
 -- Citizen.CreateThread(function()

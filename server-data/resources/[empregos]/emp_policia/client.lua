@@ -7,9 +7,9 @@ emP = Tunnel.getInterface("emp_policia")
 local blips = false
 local servico = false
 local selecionado = 0
-local CoordenadaX = 441.15
-local CoordenadaY = -975.72
-local CoordenadaZ = 30.69
+local CoordenadaX = -565.24 -- -565.24,-112.97,33.88
+local CoordenadaY = -112.97
+local CoordenadaZ = 33.88
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- RESIDENCIAS
 -----------------------------------------------------------------------------------------------------------------------------------------

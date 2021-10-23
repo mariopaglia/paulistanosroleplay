@@ -60,7 +60,8 @@ function func.checkRobbery(id,x,y,z,head)
 							async(function()
 								TriggerClientEvent('blip:criar:registradora',player,x,y,z)
 								vRPclient.playSound(player,"Oneshot_Final","MP_MISSION_COUNTDOWN_SOUNDSET")
-								TriggerClientEvent('chatMessage',player,"190",{65,130,255},"O roubo começou na ^1Caixa Registradora^0, dirija-se até o local e intercepte o assaltante.")
+								TriggerClientEvent("Notify", player, "policia", "O roubo começou na <b>Caixa Registradora</b>, dirija-se até o local e intercepte o assaltante.", 20000)
+								TriggerClientEvent('chatMessage',player,"CENTRAL:",{65,130,255},"O roubo começou na ^1Caixa Registradora^0, dirija-se até o local e intercepte o assaltante.")
 								SetTimeout(20000,function() TriggerClientEvent('blip:remover:registradora',player) end)
 							end)
 						end
@@ -69,11 +70,6 @@ function func.checkRobbery(id,x,y,z,head)
 				SetTimeout(10000,function()
 					vRP.antiflood(source,"registradora",3)
 					local qntdinheiro = math.random(4000,6000) -- 2000,4000
-					local ticketpvp = math.random(10)
-					
-					if ticketpvp >= 8 then
-						vRP.giveInventoryItem(user_id,"ticketpvp",1) -- Ajuste do pagamento em Ticket PvP
-					end
 					
 					vRP.giveInventoryItem(user_id,"dinheirosujo",qntdinheiro) -- Ajuste do pagamento em dinheiro sujo
 					TriggerClientEvent("Notify",source,"importante","Você recebeu <b>R$ "..vRP.format(parseInt(qntdinheiro)).."</b> de <b>dinheiro sujo</b>",8000)

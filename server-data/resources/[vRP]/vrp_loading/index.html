@@ -72,18 +72,18 @@
 		var music = document.getElementById("loading-music");
 music.volume = 0.1;
 document.addEventListener('keypress', (event) => {
-  if(event.key == "p") {
+  if(event.key == "p" || event.key == "P") {
       if(music.paused) {
           music.play();
       }else{
           music.pause();
       }
-  }else if(event.key == "s") {
+  }else if(event.key == "s" || event.key == "S") {
       music.volume = music.volume-0.05;
-  }else if(event.key == "w") {
+  }else if(event.key == "w" || event.key == "W") {
       music.volume = music.volume+0.05;
   }
-});
+});	
 	</script>
 
 </body></html>

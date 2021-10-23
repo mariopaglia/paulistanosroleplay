@@ -24,6 +24,8 @@ RegisterNUICallback("ButtonClick",function(data,cb)
 		TriggerServerEvent("departamento-comprar","mochila")
 	elseif data == "utilidades-comprar-alianca" then
 		TriggerServerEvent("departamento-comprar","alianca")	
+	elseif data == "utilidades-comprar-alianca2" then
+		TriggerServerEvent("departamento-comprar","alianca2")	
 	elseif data == "bebidas-comprar-energetico" then
 		TriggerServerEvent("departamento-comprar","energetico")
 	elseif data == "utilidades-comprar-celular" then
@@ -36,6 +38,20 @@ RegisterNUICallback("ButtonClick",function(data,cb)
 		TriggerServerEvent("departamento-comprar","repairkit")
 	elseif data == "utilidades-comprar-pneu" then
 		TriggerServerEvent("departamento-comprar","pneu")
+	elseif data == "utilidades-comprar-hamburguer" then
+		TriggerServerEvent("departamento-comprar","hamburguer")
+	elseif data == "utilidades-comprar-pizza" then
+		TriggerServerEvent("departamento-comprar","pizza")
+	elseif data == "utilidades-comprar-rosquinha" then
+		TriggerServerEvent("departamento-comprar","rosquinha")
+	elseif data == "utilidades-comprar-agua" then
+		TriggerServerEvent("departamento-comprar","agua")
+	elseif data == "utilidades-comprar-sprite" then
+		TriggerServerEvent("departamento-comprar","sprite")
+	elseif data == "utilidades-comprar-leite" then
+		TriggerServerEvent("departamento-comprar","leite")
+	elseif data == "utilidades-comprar-mamadeira" then
+		TriggerServerEvent("departamento-comprar","mamadeira")
 
 	elseif data == "utilidades-vender-roupas" then
 		TriggerServerEvent("departamento-vender","roupas")	

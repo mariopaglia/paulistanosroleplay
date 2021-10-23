@@ -11,15 +11,15 @@ local segundos = 0
 local selectnpc = nil
 
 local functions = {
-	[1] = { hash = 1457690978, item = "carnedecormorao", nome = "Cormorão" },
-	[2] = { hash = 402729631, item = "carnedecorvo", nome = "Corvo" },
-	[3] = { hash = -1430839454, item = "carnedeaguia", nome = "Águia" },
-	[4] = { hash = -664053099, item = "carnedecervo", nome = "Cervo" },
-	[5] = { hash = -541762431, item = "carnedecoelho", nome = "Coelho" },
-	[6] = { hash = 1682622302, item = "carnedecoyote", nome = "Coyote" },
-	[7] = { hash = 1318032802, item = "carnedelobo", nome = "Lobo" },
-	[8] = { hash = 307287994, item = "carnedepuma", nome = "Puma" },
-	[9] = { hash = -832573324, item = "carnedejavali", nome = "Javali" }
+	[1] = { hash = 1457690978, item = "corda", nome = "Corda" },
+	[2] = { hash = 402729631, item = "corda", nome = "Corda" },
+	[3] = { hash = -1430839454, item = "corda", nome = "Corda" },
+	[4] = { hash = -664053099, item = "corda", nome = "Corda" },
+	[5] = { hash = -541762431, item = "corda", nome = "Corda" },
+	[6] = { hash = 1682622302, item = "corda", nome = "Corda" },
+	[7] = { hash = 1318032802, item = "corda", nome = "Corda" },
+	[8] = { hash = 307287994, item = "corda", nome = "Corda" },
+	[9] = { hash = -832573324, item = "corda", nome = "Corda" }
 }
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- PROCESSO
@@ -41,8 +41,10 @@ Citizen.CreateThread(function()
 								if emP.checkPayment(v.item,quantidade) then
 									selectnpc = npc
 									pedlist[npc] = true
-									segundos = 10
-									vRP._playAnim(false,{{"amb@medic@standing@kneel@idle_a","idle_a"}},true)
+									segundos = 6
+									--vRP._playAnim(false,{{"amb@medic@standing@kneel@idle_a","idle_a"}},true)
+									vRP._playAnim(false,{{"anim@gangops@facility@servers@bodysearch@","player_search"}},true)
+									
 									SetEntityHeading(ped,GetEntityHeading(npc))
 									TriggerServerEvent("trydeleteped",PedToNet(npc))
 									TriggerEvent('cancelando',true)
@@ -55,6 +57,8 @@ Citizen.CreateThread(function()
 									vRP._DeletarObjeto()
 									concluido = true
 								end
+							else
+								TriggerEvent("Notify","aviso","Voce precisa de uma <b>faca</b>!")
 							end
 						end
 					end

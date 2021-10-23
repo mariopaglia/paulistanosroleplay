@@ -345,81 +345,6 @@ end)
 --      	Wait(0)
 --      end
 --  end)
-
------------------------------------------------------------------------------------------------------------------------------------------
--- /ATTACHS
------------------------------------------------------------------------------------------------------------------------------------------
-RegisterCommand("attachs",function(source,args)
-	local ped = PlayerPedId()
-	if GetSelectedPedWeapon(ped) == GetHashKey("WEAPON_SPECIALCARBINE_MK2") then -- G36C
-        GiveWeaponComponentToPed(ped,GetHashKey("WEAPON_SPECIALCARBINE_MK2"),GetHashKey("COMPONENT_AT_SCOPE_MEDIUM_MK2")) -- MIRA GRANDE
-        GiveWeaponComponentToPed(ped,GetHashKey("WEAPON_SPECIALCARBINE_MK2"),GetHashKey("COMPONENT_AT_MUZZLE_02")) -- FREIO DE BOCA TATICO
-        GiveWeaponComponentToPed(ped,GetHashKey("WEAPON_SPECIALCARBINE_MK2"),GetHashKey("COMPONENT_AT_AR_AFGRIP_02")) -- EMPUNHADURA
-	elseif GetSelectedPedWeapon(ped) == GetHashKey("WEAPON_SPECIALCARBINE") then -- G36x
-        GiveWeaponComponentToPed(ped,GetHashKey("WEAPON_SPECIALCARBINE"),GetHashKey("COMPONENT_AT_SCOPE_MEDIUM")) -- MIRA GRANDE
-        GiveWeaponComponentToPed(ped,GetHashKey("WEAPON_SPECIALCARBINE"),GetHashKey("COMPONENT_AT_AR_FLSH")) -- LANTERNA
-        GiveWeaponComponentToPed(ped,GetHashKey("WEAPON_SPECIALCARBINE"),GetHashKey("COMPONENT_AT_AR_AFGRIP")) -- EMPUNHADURA
-	elseif GetSelectedPedWeapon(ped) == GetHashKey("WEAPON_ASSAULTRIFLE_MK2") then -- AK-47
-        GiveWeaponComponentToPed(ped,GetHashKey("WEAPON_ASSAULTRIFLE_MK2"),GetHashKey("COMPONENT_AT_SCOPE_MEDIUM_MK2")) -- MIRA GRANDE
-        GiveWeaponComponentToPed(ped,GetHashKey("WEAPON_ASSAULTRIFLE_MK2"),GetHashKey("COMPONENT_AT_MUZZLE_02")) -- FREIO DE BOCA TATICO
-        GiveWeaponComponentToPed(ped,GetHashKey("WEAPON_ASSAULTRIFLE_MK2"),GetHashKey("COMPONENT_AT_AR_AFGRIP_02")) -- EMPUNHADURA
-	elseif GetSelectedPedWeapon(ped) == GetHashKey("WEAPON_SMG_MK2") then -- MP5-MK2
-        GiveWeaponComponentToPed(ped,GetHashKey("WEAPON_SMG_MK2"),GetHashKey("COMPONENT_AT_SCOPE_SMALL_SMG_MK2")) -- MIRA MEDIA
-        GiveWeaponComponentToPed(ped,GetHashKey("WEAPON_SMG_MK2"),GetHashKey("COMPONENT_AT_MUZZLE_02")) -- FREIO DE BOCA TATICO
-        GiveWeaponComponentToPed(ped,GetHashKey("WEAPON_SMG_MK2"),GetHashKey("COMPONENT_AT_SB_BARREL_01")) -- CANO PESADO
-	elseif GetSelectedPedWeapon(ped) == GetHashKey("WEAPON_PISTOL_MK2") then -- FIVE-SEVEN
-        GiveWeaponComponentToPed(ped,GetHashKey("WEAPON_PISTOL_MK2"),GetHashKey("COMPONENT_AT_PI_COMP")) -- COMPENSADOR
-        GiveWeaponComponentToPed(ped,GetHashKey("WEAPON_PISTOL_MK2"),GetHashKey("COMPONENT_AT_PI_RAIL")) -- MIRA
-        GiveWeaponComponentToPed(ped,GetHashKey("WEAPON_PISTOL_MK2"),GetHashKey("COMPONENT_AT_PI_FLSH_02")) -- LANTERNA
-        GiveWeaponComponentToPed(ped,GetHashKey("WEAPON_PISTOL_MK2"),GetHashKey("COMPONENT_PISTOL_MK2_CLIP_02")) -- CARREGADOR ESTENDIDO
-	elseif GetSelectedPedWeapon(ped) == GetHashKey("WEAPON_PISTOL") then -- M1911
-        GiveWeaponComponentToPed(ped,GetHashKey("WEAPON_PISTOL"),GetHashKey("COMPONENT_AT_PI_FLSH")) -- LANTERNA
-        GiveWeaponComponentToPed(ped,GetHashKey("WEAPON_PISTOL"),GetHashKey("COMPONENT_PISTOL_CLIP_02")) -- CARREGADOR ESTENDIDO
-	elseif GetSelectedPedWeapon(ped) == GetHashKey("WEAPON_CARBINERIFLE_MK2") then -- M4A1
-        GiveWeaponComponentToPed(ped,GetHashKey("WEAPON_CARBINERIFLE_MK2"),GetHashKey("COMPONENT_AT_SCOPE_MEDIUM_MK2")) -- MIRA GRANDE
-        GiveWeaponComponentToPed(ped,GetHashKey("WEAPON_CARBINERIFLE_MK2"),GetHashKey("COMPONENT_AT_MUZZLE_02")) -- FREIO DE BOCA TATICO
-        GiveWeaponComponentToPed(ped,GetHashKey("WEAPON_CARBINERIFLE_MK2"),GetHashKey("COMPONENT_AT_AR_AFGRIP_02")) -- EMPUNHADURA
-	elseif GetSelectedPedWeapon(ped) == GetHashKey("WEAPON_CARBINERIFLE") then -- AR-15
-        GiveWeaponComponentToPed(ped,GetHashKey("WEAPON_CARBINERIFLE"),GetHashKey("COMPONENT_AT_SCOPE_MEDIUM")) -- MIRA GRANDE
-        GiveWeaponComponentToPed(ped,GetHashKey("WEAPON_CARBINERIFLE"),GetHashKey("COMPONENT_AT_AR_AFGRIP")) -- EMPUNHADURA
-	elseif GetSelectedPedWeapon(ped) == GetHashKey("WEAPON_COMBATPDW") then -- SIG SAUER
-        GiveWeaponComponentToPed(ped,GetHashKey("WEAPON_COMBATPDW"),GetHashKey("COMPONENT_AT_SCOPE_SMALL")) -- MIRA
-        GiveWeaponComponentToPed(ped,GetHashKey("WEAPON_COMBATPDW"),GetHashKey("COMPONENT_AT_AR_AFGRIP")) -- EMPUNHADURA
-        GiveWeaponComponentToPed(ped,GetHashKey("WEAPON_COMBATPDW"),GetHashKey("COMPONENT_AT_AR_FLSH")) -- LANTERNA
-	elseif GetSelectedPedWeapon(ped) == GetHashKey("WEAPON_COMBATPISTOL") then -- GLOCK
-        GiveWeaponComponentToPed(ped,GetHashKey("WEAPON_COMBATPISTOL"),GetHashKey("COMPONENT_AT_PI_FLSH")) -- LANTERNA
-        GiveWeaponComponentToPed(ped,GetHashKey("WEAPON_COMBATPISTOL"),GetHashKey("COMPONENT_COMBATPISTOL_CLIP_02")) -- CARREGADOR ESTENDIDO	
-	end
-end)
------------------------------------------------------------------------------------------------------------------------------------------
--- /SILENCIADOR
------------------------------------------------------------------------------------------------------------------------------------------
-RegisterCommand("sil",function(source,args)
-	if emP.checkPermissionSilenciador() then
-		local ped = PlayerPedId()
-		if GetSelectedPedWeapon(ped) == GetHashKey("WEAPON_SPECIALCARBINE_MK2") then -- G36C
-    	    GiveWeaponComponentToPed(ped,GetHashKey("WEAPON_SPECIALCARBINE_MK2"),GetHashKey("COMPONENT_AT_AR_SUPP_02"))
-		elseif GetSelectedPedWeapon(ped) == GetHashKey("WEAPON_ASSAULTRIFLE_MK2") then -- AK-47
-    	    GiveWeaponComponentToPed(ped,GetHashKey("WEAPON_ASSAULTRIFLE_MK2"),GetHashKey("COMPONENT_AT_AR_SUPP_02"))
-		elseif GetSelectedPedWeapon(ped) == GetHashKey("WEAPON_SMG_MK2") then -- MP5-MK2
-    	    GiveWeaponComponentToPed(ped,GetHashKey("WEAPON_SMG_MK2"),GetHashKey("COMPONENT_AT_PI_SUPP"))
-		elseif GetSelectedPedWeapon(ped) == GetHashKey("WEAPON_PISTOL_MK2") then -- FIVE-SEVEN
-    	    GiveWeaponComponentToPed(ped,GetHashKey("WEAPON_PISTOL_MK2"),GetHashKey("COMPONENT_AT_PI_SUPP_02"))
-		elseif GetSelectedPedWeapon(ped) == GetHashKey("WEAPON_PISTOL") then -- M1911
-    	    GiveWeaponComponentToPed(ped,GetHashKey("WEAPON_PISTOL"),GetHashKey("COMPONENT_AT_PI_SUPP_02"))
-		elseif GetSelectedPedWeapon(ped) == GetHashKey("WEAPON_SPECIALCARBINE") then -- G36X
-    	    GiveWeaponComponentToPed(ped,GetHashKey("WEAPON_SPECIALCARBINE"),GetHashKey("COMPONENT_AT_AR_SUPP_02"))
-		elseif GetSelectedPedWeapon(ped) == GetHashKey("WEAPON_CARBINERIFLE_MK2") then -- M4A1
-    	    GiveWeaponComponentToPed(ped,GetHashKey("WEAPON_CARBINERIFLE_MK2"),GetHashKey("COMPONENT_AT_AR_SUPP"))
-		elseif GetSelectedPedWeapon(ped) == GetHashKey("WEAPON_CARBINERIFLE") then -- AR-15
-    	    GiveWeaponComponentToPed(ped,GetHashKey("WEAPON_CARBINERIFLE"),GetHashKey("COMPONENT_AT_AR_SUPP"))
-		elseif GetSelectedPedWeapon(ped) == GetHashKey("WEAPON_COMBATPISTOL") then -- GLOCK
-    	    GiveWeaponComponentToPed(ped,GetHashKey("WEAPON_COMBATPISTOL"),GetHashKey("COMPONENT_AT_PI_SUPP"))	
-		end
-	else
-		TriggerEvent("Notify", "negado", "Necessário <b>VIP Platina ou superior</b> para utilizar <b>/sil</b>")
-	end
-end)
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- BEBIDAS ENERGETICAS
 -----------------------------------------------------------------------------------------------------------------------------------------
@@ -699,65 +624,230 @@ AddEventHandler(
 	end
 )
 -----------------------------------------------------------------------------------------------------------------------------------------
--- /MASCARA
+-- SETMASCARA
 -----------------------------------------------------------------------------------------------------------------------------------------
-RegisterNetEvent("mascara")
-AddEventHandler(
-	"mascara",
-	function(index, color)
-		local ped = GetPlayerPed(-1)
-		if index == nil then
-			vRP.playAnim(true, {{"misscommon@std_take_off_masks", "take_off_mask_ps", 1}}, false)
-			Wait(700)
+RegisterNetEvent('setmascara')
+AddEventHandler('setmascara',function(modelo,cor)
+	local ped = PlayerPedId()
+	if GetEntityHealth(ped) > 101 and emP.checkRoupas() then
+		if modelo == nil then
+			vRP._playAnim(true,{{"mp_masks@standard_car@ds@","put_on_mask"}},false)
+			Wait(1100)
 			ClearPedTasks(ped)
-			SetPedComponentVariation(ped, 1, 0, 0, 2)
+			SetPedComponentVariation(ped,1,0,0,2)
 			return
 		end
 		if GetEntityModel(ped) == GetHashKey("mp_m_freemode_01") or GetEntityModel(ped) == GetHashKey("mp_f_freemode_01") then
-			vRP.playAnim(true, {{"misscommon@van_put_on_masks", "put_on_mask_ps", 1}}, false)
+			vRP._playAnim(true,{{"misscommon@van_put_on_masks","put_on_mask_ps"}},false)
 			Wait(1500)
 			ClearPedTasks(ped)
-			SetPedComponentVariation(ped, 1, parseInt(index), parseInt(color), 2)
+			SetPedComponentVariation(ped,1,parseInt(modelo),parseInt(cor),2)
 		end
 	end
-)
+end)
 -----------------------------------------------------------------------------------------------------------------------------------------
--- /blusa
+-- SETBLUSA
 -----------------------------------------------------------------------------------------------------------------------------------------
-RegisterNetEvent("blusa")
-AddEventHandler(
-	"blusa",
-	function(index, color)
-		local ped = GetPlayerPed(-1)
-		if index == nil then
-			SetPedComponentVariation(ped, 8, 15, 0, 2)
+RegisterNetEvent('setblusa')
+AddEventHandler('setblusa',function(modelo,cor)
+	local ped = PlayerPedId()
+	if GetEntityHealth(ped) > 101 and emP.checkPermVip() then
+		if not modelo then
+			vRP._playAnim(true,{{"clothingtie","try_tie_negative_a"}},false)
+			Wait(2500)
+			ClearPedTasks(ped)
+			SetPedComponentVariation(ped,8,15,0,2)
 			return
 		end
 		if GetEntityModel(ped) == GetHashKey("mp_m_freemode_01") then
-			SetPedComponentVariation(ped, 8, parseInt(index), parseInt(color), 2)
+			vRP._playAnim(true,{{"clothingtie","try_tie_negative_a"}},false)
+			Wait(2500)
+			ClearPedTasks(ped)
+			SetPedComponentVariation(ped,8,parseInt(modelo),parseInt(cor),2)
 		elseif GetEntityModel(ped) == GetHashKey("mp_f_freemode_01") then
-			SetPedComponentVariation(ped, 8, parseInt(index), parseInt(color), 2)
+			vRP._playAnim(true,{{"clothingtie","try_tie_negative_a"}},false)
+			Wait(2500)
+			ClearPedTasks(ped)
+			SetPedComponentVariation(ped,8,parseInt(modelo),parseInt(cor),2)
 		end
 	end
-)
-
-
+end)
+-----------------------------------------------------------------------------------------------------------------------------------------
+-- SETCOLETE
+-----------------------------------------------------------------------------------------------------------------------------------------
+RegisterNetEvent('setcolete')
+AddEventHandler('setcolete',function(modelo,cor)
+	local ped = PlayerPedId()
+	if GetEntityHealth(ped) > 101 and emP.checkPermVip() then
+		if not modelo then
+			vRP._playAnim(true,{{"clothingtie","try_tie_negative_a"}},false)
+			Wait(2500)
+			ClearPedTasks(ped)
+			SetPedComponentVariation(ped,9,0,0,2)
+			return
+		end
+		if GetEntityModel(ped) == GetHashKey("mp_m_freemode_01") then
+			vRP._playAnim(true,{{"clothingtie","try_tie_negative_a"}},false)
+			Wait(2500)
+			ClearPedTasks(ped)
+			SetPedComponentVariation(ped,9,parseInt(modelo),parseInt(cor),2)
+		elseif GetEntityModel(ped) == GetHashKey("mp_f_freemode_01") then
+			vRP._playAnim(true,{{"clothingtie","try_tie_negative_a"}},false)
+			Wait(2500)
+			ClearPedTasks(ped)
+			SetPedComponentVariation(ped,9,parseInt(modelo),parseInt(cor),2)
+		end
+	end
+end)
+-----------------------------------------------------------------------------------------------------------------------------------------
+-- SETJAQUETA
+-----------------------------------------------------------------------------------------------------------------------------------------
+RegisterNetEvent('setjaqueta')
+AddEventHandler('setjaqueta',function(modelo,cor)
+	local ped = PlayerPedId()
+	if GetEntityHealth(ped) > 101 and emP.checkPermVip() then
+		if not modelo then
+			vRP._playAnim(true,{{"clothingtie","try_tie_negative_a"}},false)
+			Wait(2500)
+			ClearPedTasks(ped)
+			SetPedComponentVariation(ped,11,15,0,2)
+			return
+		end
+		if GetEntityModel(ped) == GetHashKey("mp_m_freemode_01") then
+			vRP._playAnim(true,{{"clothingtie","try_tie_negative_a"}},false)
+			Wait(2500)
+			ClearPedTasks(ped)
+			SetPedComponentVariation(ped,11,parseInt(modelo),parseInt(cor),2)
+		elseif GetEntityModel(ped) == GetHashKey("mp_f_freemode_01") then
+			vRP._playAnim(true,{{"clothingtie","try_tie_negative_a"}},false)
+			Wait(2500)
+			ClearPedTasks(ped)
+			SetPedComponentVariation(ped,11,parseInt(modelo),parseInt(cor),2)
+		end
+	end
+end)
+-----------------------------------------------------------------------------------------------------------------------------------------
+-- SETJAQUETA
+-----------------------------------------------------------------------------------------------------------------------------------------
+RegisterNetEvent('setmochila')
+AddEventHandler('setmochila',function(modelo,cor)
+	local ped = PlayerPedId()
+	if GetEntityHealth(ped) > 101 and emP.checkPermVip() then
+		if not modelo then
+			vRP._playAnim(true,{{"clothingtie","try_tie_negative_a"}},false)
+			Wait(2500)
+			ClearPedTasks(ped)
+			SetPedComponentVariation(ped,5,15,0,2)
+			return
+		end
+		if GetEntityModel(ped) == GetHashKey("mp_m_freemode_01") then
+			vRP._playAnim(true,{{"clothingtie","try_tie_negative_a"}},false)
+			Wait(2500)
+			ClearPedTasks(ped)
+			SetPedComponentVariation(ped,5,parseInt(modelo),parseInt(cor),2)
+		elseif GetEntityModel(ped) == GetHashKey("mp_f_freemode_01") then
+			vRP._playAnim(true,{{"clothingtie","try_tie_negative_a"}},false)
+			Wait(2500)
+			ClearPedTasks(ped)
+			SetPedComponentVariation(ped,5,parseInt(modelo),parseInt(cor),2)
+		end
+	end
+end)
+-----------------------------------------------------------------------------------------------------------------------------------------
+-- SETMAOS
+-----------------------------------------------------------------------------------------------------------------------------------------
+RegisterNetEvent('setmaos')
+AddEventHandler('setmaos',function(modelo,cor)
+	local ped = PlayerPedId()
+	if GetEntityHealth(ped) > 101 and emP.checkRoupas() then
+		if not modelo then
+			vRP._playAnim(true,{{"nmt_3_rcm-10","cs_nigel_dual-10"}},false)
+			Wait(2500)
+			ClearPedTasks(ped)
+			SetPedComponentVariation(ped,3,15,0,2)
+			return
+		end
+		if GetEntityModel(ped) == GetHashKey("mp_m_freemode_01") then
+			vRP._playAnim(true,{{"nmt_3_rcm-10","cs_nigel_dual-10"}},false)
+			Wait(2500)
+			ClearPedTasks(ped)
+			SetPedComponentVariation(ped,3,parseInt(modelo),parseInt(cor),2)
+		elseif GetEntityModel(ped) == GetHashKey("mp_f_freemode_01") then
+			vRP._playAnim(true,{{"nmt_3_rcm-10","cs_nigel_dual-10"}},false)
+			Wait(2500)
+			ClearPedTasks(ped)
+			SetPedComponentVariation(ped,3,parseInt(modelo),parseInt(cor),2)
+		end
+	end
+end)
+-----------------------------------------------------------------------------------------------------------------------------------------
+-- SETCALCA
+-----------------------------------------------------------------------------------------------------------------------------------------
+RegisterNetEvent('setcalca')
+AddEventHandler('setcalca',function(modelo,cor)
+	local ped = PlayerPedId()
+	if GetEntityHealth(ped) > 101 and emP.checkPermVip() then
+		if not modelo then
+			if GetEntityModel(ped) == GetHashKey("mp_m_freemode_01") then
+				vRP._playAnim(true,{{"re@construction","out_of_breath"}},false)
+				Wait(2500)
+				ClearPedTasks(ped)
+				SetPedComponentVariation(ped,4,18,0,2)
+			elseif GetEntityModel(ped) == GetHashKey("mp_f_freemode_01") then
+				vRP._playAnim(true,{{"re@construction","out_of_breath"}},false)
+				Wait(2500)
+				ClearPedTasks(ped)
+				SetPedComponentVariation(ped,4,15,0,2)
+			end
+			return
+		end
+		if GetEntityModel(ped) == GetHashKey("mp_m_freemode_01") then
+			vRP._playAnim(true,{{"re@construction","out_of_breath"}},false)
+			Wait(2500)
+			ClearPedTasks(ped)
+			SetPedComponentVariation(ped,4,parseInt(modelo),parseInt(cor),2)
+		elseif GetEntityModel(ped) == GetHashKey("mp_f_freemode_01") then
+			vRP._playAnim(true,{{"re@construction","out_of_breath"}},false)
+			Wait(2500)
+			ClearPedTasks(ped)
+			SetPedComponentVariation(ped,4,parseInt(modelo),parseInt(cor),2)
+		end
+	end
+end)
+-----------------------------------------------------------------------------------------------------------------------------------------
+-- SETACESSORIOS
+-----------------------------------------------------------------------------------------------------------------------------------------
+RegisterNetEvent('setacessorios')
+AddEventHandler('setacessorios',function(modelo,cor)
+	local ped = PlayerPedId()
+	if GetEntityHealth(ped) > 101 and emP.checkPermVip() then
+		if not modelo then
+			SetPedComponentVariation(ped,7,0,0,2)
+			return
+		end
+		if GetEntityModel(ped) == GetHashKey("mp_m_freemode_01") then
+			SetPedComponentVariation(ped,7,parseInt(modelo),parseInt(cor),2)
+		elseif GetEntityModel(ped) == GetHashKey("mp_f_freemode_01") then
+			SetPedComponentVariation(ped,7,parseInt(modelo),parseInt(cor),2)
+		end
+	end
+end)
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- SETSAPATOS
 -----------------------------------------------------------------------------------------------------------------------------------------
 RegisterNetEvent('setsapatos')
 AddEventHandler('setsapatos',function(modelo,cor)
 	local ped = PlayerPedId()
-	if GetEntityHealth(ped) > 101 and src.checkRoupas() and not IsPedInAnyVehicle(ped) then
+	if GetEntityHealth(ped) > 101 and emP.checkPermVip() and not IsPedInAnyVehicle(ped) then
 		if not modelo then
 			if GetEntityModel(ped) == GetHashKey("mp_m_freemode_01") then
-				vRP._playAnim(false,{{"clothingshoes","try_shoes_positive_d"}},false)
+				vRP._playAnim(false,{{"clothingshoes","check_out_a"}},false)
 				Wait(2200)
 				SetPedComponentVariation(ped,6,34,0,2)
 				Wait(500)
 				ClearPedTasks(ped)
 			elseif GetEntityModel(ped) == GetHashKey("mp_f_freemode_01") then
-				vRP._playAnim(false,{{"clothingshoes","try_shoes_positive_d"}},false)
+				vRP._playAnim(false,{{"clothingshoes","check_out_a"}},false)
 				Wait(2200)
 				SetPedComponentVariation(ped,6,35,0,2)
 				Wait(500)
@@ -766,13 +856,13 @@ AddEventHandler('setsapatos',function(modelo,cor)
 			return
 		end
 		if GetEntityModel(ped) == GetHashKey("mp_m_freemode_01") then
-			vRP._playAnim(false,{{"clothingshoes","try_shoes_positive_d"}},false)
+			vRP._playAnim(false,{{"clothingshoes","check_out_a"}},false)
 			Wait(2200)
 			SetPedComponentVariation(ped,6,parseInt(modelo),parseInt(cor),2)
 			Wait(500)
 			ClearPedTasks(ped)
 		elseif GetEntityModel(ped) == GetHashKey("mp_f_freemode_01") then
-			vRP._playAnim(false,{{"clothingshoes","try_shoes_positive_d"}},false)
+			vRP._playAnim(false,{{"clothingshoes","check_out_a"}},false)
 			Wait(2200)
 			SetPedComponentVariation(ped,6,parseInt(modelo),parseInt(cor),2)
 			Wait(500)
@@ -781,161 +871,56 @@ AddEventHandler('setsapatos',function(modelo,cor)
 	end
 end)
 -----------------------------------------------------------------------------------------------------------------------------------------
--- /jaqueta
+-- SETCHAPEU
 -----------------------------------------------------------------------------------------------------------------------------------------
-RegisterNetEvent("jaqueta")
-AddEventHandler(
-	"jaqueta",
-	function(index, color)
-		local ped = GetPlayerPed(-1)
-		if index == nil then
-			SetPedComponentVariation(ped, 11, 15, 0, 2)
+RegisterNetEvent('setchapeu')
+AddEventHandler('setchapeu',function(modelo,cor)
+	local ped = PlayerPedId()
+	if GetEntityHealth(ped) > 101 and emP.checkRoupas() then
+		if not modelo then
+			vRP._playAnim(true,{{"missheist_agency2ahelmet","take_off_helmet_stand"}},false)
+			Wait(1200)
+			ClearPedProp(ped,0)
 			return
 		end
-		if GetEntityModel(ped) == GetHashKey("mp_m_freemode_01") then
-			SetPedComponentVariation(ped, 11, parseInt(index), parseInt(color), 2)
-		elseif GetEntityModel(ped) == GetHashKey("mp_f_freemode_01") then
-			SetPedComponentVariation(ped, 11, parseInt(index), parseInt(color), 2)
+		if GetEntityModel(ped) == GetHashKey("mp_m_freemode_01") and parseInt(modelo) ~= 39 then
+			vRP._playAnim(true,{{"missheist_agency2ahelmet","take_off_helmet_stand"}},false)
+			Wait(600)
+			SetPedPropIndex(ped,0,parseInt(modelo),parseInt(cor),2)
+		elseif GetEntityModel(ped) == GetHashKey("mp_f_freemode_01") and parseInt(modelo) ~= 38 then
+			vRP._playAnim(true,{{"missheist_agency2ahelmet","take_off_helmet_stand"}},false)
+			Wait(600)
+			SetPedPropIndex(ped,0,parseInt(modelo),parseInt(cor),2)
 		end
 	end
-)
+end)
 -----------------------------------------------------------------------------------------------------------------------------------------
--- /calca
+-- SETOCULOS
 -----------------------------------------------------------------------------------------------------------------------------------------
-RegisterNetEvent("calca")
-AddEventHandler(
-	"calca",
-	function(index, color)
-		local ped = GetPlayerPed(-1)
-		if index == nil then
-			if GetEntityModel(ped) == GetHashKey("mp_m_freemode_01") then
-				SetPedComponentVariation(ped, 4, 18, 0, 2)
-			elseif GetEntityModel(ped) == GetHashKey("mp_f_freemode_01") then
-				SetPedComponentVariation(ped, 4, 15, 0, 2)
-			end
-			return
-		end
-		if GetEntityModel(ped) == GetHashKey("mp_m_freemode_01") then
-			SetPedComponentVariation(ped, 4, parseInt(index), parseInt(color), 2)
-		elseif GetEntityModel(ped) == GetHashKey("mp_f_freemode_01") then
-			SetPedComponentVariation(ped, 4, parseInt(index), parseInt(color), 2)
-		end
-	end
-)
------------------------------------------------------------------------------------------------------------------------------------------
--- /maos
------------------------------------------------------------------------------------------------------------------------------------------
-RegisterNetEvent("maos")
-AddEventHandler(
-	"maos",
-	function(index, color)
-		local ped = GetPlayerPed(-1)
-		if index == nil then
-			SetPedComponentVariation(ped, 3, 15, 0, 2)
-			return
-		end
-		if GetEntityModel(ped) == GetHashKey("mp_m_freemode_01") then
-			SetPedComponentVariation(ped, 3, parseInt(index), parseInt(color), 2)
-		elseif GetEntityModel(ped) == GetHashKey("mp_f_freemode_01") then
-			SetPedComponentVariation(ped, 3, parseInt(index), parseInt(color), 2)
-		end
-	end
-)
------------------------------------------------------------------------------------------------------------------------------------------
--- /acessorios
------------------------------------------------------------------------------------------------------------------------------------------
-RegisterNetEvent("acessorios")
-AddEventHandler(
-	"acessorios",
-	function(index, color)
-		local ped = GetPlayerPed(-1)
-		if index == nil then
-			SetPedComponentVariation(ped, 7, 0, 0, 2)
-			return
-		end
-		if GetEntityModel(ped) == GetHashKey("mp_m_freemode_01") then
-			SetPedComponentVariation(ped, 7, parseInt(index), parseInt(color), 2)
-		elseif GetEntityModel(ped) == GetHashKey("mp_f_freemode_01") then
-			SetPedComponentVariation(ped, 7, parseInt(index), parseInt(color), 2)
-		end
-	end
-)
------------------------------------------------------------------------------------------------------------------------------------------
--- /sapatos
------------------------------------------------------------------------------------------------------------------------------------------
-RegisterNetEvent("sapatos")
-AddEventHandler(
-	"sapatos",
-	function(index, color)
-		local ped = GetPlayerPed(-1)
-		if index == nil then
-			if GetEntityModel(ped) == GetHashKey("mp_m_freemode_01") then
-				SetPedComponentVariation(ped, 6, 34, 0, 2)
-			elseif GetEntityModel(ped) == GetHashKey("mp_f_freemode_01") then
-				SetPedComponentVariation(ped, 6, 35, 0, 2)
-			end
-			return
-		end
-		if GetEntityModel(ped) == GetHashKey("mp_m_freemode_01") then
-			SetPedComponentVariation(ped, 6, parseInt(index), parseInt(color), 2)
-		elseif GetEntityModel(ped) == GetHashKey("mp_f_freemode_01") then
-			SetPedComponentVariation(ped, 6, parseInt(index), parseInt(color), 2)
-		end
-	end
-)
------------------------------------------------------------------------------------------------------------------------------------------
--- /CHAPEU
------------------------------------------------------------------------------------------------------------------------------------------
-RegisterNetEvent("chapeu")
-AddEventHandler(
-	"chapeu",
-	function(index, color)
-		local ped = GetPlayerPed(-1)
-		if index == nil then
-			vRP.playAnim(true, {{"veh@common@fp_helmet@", "take_off_helmet_stand", 1}}, false)
-			Wait(700)
-			ClearPedProp(ped, 0)
-			return
-		end
-		if GetEntityModel(ped) == GetHashKey("mp_m_freemode_01") then
-			vRP.playAnim(true, {{"veh@common@fp_helmet@", "put_on_helmet", 1}}, false)
-			Wait(1700)
-			SetPedPropIndex(ped, 0, parseInt(index), parseInt(color), 2)
-		elseif GetEntityModel(ped) == GetHashKey("mp_f_freemode_01") then
-			vRP.playAnim(true, {{"veh@common@fp_helmet@", "put_on_helmet", 1}}, false)
-			Wait(1700)
-			SetPedPropIndex(ped, 0, parseInt(index), parseInt(color), 2)
-		end
-	end
-)
------------------------------------------------------------------------------------------------------------------------------------------
--- /OCULOS
------------------------------------------------------------------------------------------------------------------------------------------
-RegisterNetEvent("oculos")
-AddEventHandler(
-	"oculos",
-	function(index, color)
-		local ped = GetPlayerPed(-1)
-		if index == nil then
-			vRP.playAnim(true, {{"misscommon@std_take_off_masks", "take_off_mask_ps", 1}}, false)
-			Wait(400)
+RegisterNetEvent('setoculos')
+AddEventHandler('setoculos',function(modelo,cor)
+	local ped = PlayerPedId()
+	if GetEntityHealth(ped) > 101 and emP.checkRoupas() then
+		if not modelo then
+			vRP._playAnim(true,{{"mp_masks@standard_car@ds@","put_on_mask"}},false)
+			Wait(1200)
 			ClearPedTasks(ped)
-			ClearPedProp(ped, 1)
+			ClearPedProp(ped,1)
 			return
 		end
 		if GetEntityModel(ped) == GetHashKey("mp_m_freemode_01") then
-			vRP.playAnim(true, {{"misscommon@van_put_on_masks", "put_on_mask_ps", 1}}, false)
-			Wait(800)
+			vRP._playAnim(true,{{"mp_masks@standard_car@ds@","put_on_mask"}},false)
+			Wait(600)
 			ClearPedTasks(ped)
-			SetPedPropIndex(ped, 1, parseInt(index), parseInt(color), 2)
+			SetPedPropIndex(ped,1,parseInt(modelo),parseInt(cor),2)
 		elseif GetEntityModel(ped) == GetHashKey("mp_f_freemode_01") then
-			vRP.playAnim(true, {{"misscommon@van_put_on_masks", "put_on_mask_ps", 1}}, false)
-			Wait(800)
+			vRP._playAnim(true,{{"mp_masks@standard_car@ds@","put_on_mask"}},false)
+			Wait(600)
 			ClearPedTasks(ped)
-			SetPedPropIndex(ped, 1, parseInt(index), parseInt(color), 2)
+			SetPedPropIndex(ped,1,parseInt(modelo),parseInt(cor),2)
 		end
 	end
-)
+end)
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- /TOW
 -----------------------------------------------------------------------------------------------------------------------------------------

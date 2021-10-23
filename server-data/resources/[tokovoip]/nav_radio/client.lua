@@ -147,7 +147,7 @@ RegisterCommand("radiof",function(source,args)
             if emP.checkRadio() then
                 outServers()
                     exports.tokovoip_script:addPlayerToRadio(radio)
-                    TriggerEvent("Notify","sucesso","Você entrou na Frequência <b>"..radio.."</b> do rádio.",8000)
+                    TriggerEvent("Notify","sucesso","Você entrou na frequência <b>"..radio.."</b> do rádio.",8000)
             end
         else
             TriggerEvent("Notify","negado","Você não tem permissão.")

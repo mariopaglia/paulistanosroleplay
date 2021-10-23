@@ -26,7 +26,7 @@ function addPlayerToRadio(channelId, playerServerId)
 
 	channels[channelId].subscribers[playerServerId] = playerServerId;
 	--print("Added [" .. playerServerId .. "] " .. (GetPlayerName(playerServerId) or "") .. " to channel " .. channelId);
-
+	TriggerClientEvent("nation_hud:updateRadio", playerServerId, channelId) -- HUD NATION
 	for _, subscriberServerId in pairs(channels[channelId].subscribers) do
 		if (subscriberServerId ~= playerServerId) then
 			TriggerClientEvent("TokoVoip:onPlayerJoinChannel", subscriberServerId, channelId, playerServerId);
@@ -51,6 +51,7 @@ function removePlayerFromRadio(channelId, playerServerId)
 
 		-- Tell unsubscribed player he's left the channel as well
 		TriggerClientEvent("TokoVoip:onPlayerLeaveChannel", playerServerId, channelId, playerServerId);
+		TriggerClientEvent("nation_hud:updateRadio", playerServerId, 0) -- HUD NATION
 
 		-- Channel does not exist, no need to update anyone else
 		if (not channels[channelId]) then return end

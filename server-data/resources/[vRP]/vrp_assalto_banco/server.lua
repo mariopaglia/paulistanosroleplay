@@ -89,7 +89,8 @@ AddEventHandler('loffe_heist:getCops', function()
 	local src = source
     local cops = vRP.getUsersByPermission(Config.PermCops)
     if #cops >= Config.Cops then
-        TriggerClientEvent('chatMessage',-1,"190",{65,130,255},"O roubo começou no ^1Banco Central^0")
+        TriggerClientEvent("Notify", player, "policia", "O roubo começou no <b>Banco Central</b>", 20000)
+        TriggerClientEvent('chatMessage',-1,"CENTRAL:",{65,130,255},"O roubo começou no ^1Banco Central^0")
         vRPclient.playSound(source,"Oneshot_Final","MP_MISSION_COUNTDOWN_SOUNDSET")
         TriggerClientEvent("vrp_sound:fixed",-1,source,256.59338378906,225.37237548828,107.77225494385,100,'alarm',0.7)
         TriggerClientEvent('loffe_heist:getCops', src, true)

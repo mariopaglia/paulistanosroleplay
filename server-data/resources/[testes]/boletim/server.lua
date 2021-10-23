@@ -39,7 +39,8 @@ function emP.Boletim()
         if player then
             async(function()
                 vRPclient.playSound(player, "Oneshot_Final", "MP_MISSION_COUNTDOWN_SOUNDSET")
-                TriggerClientEvent('chatMessage', player, "190", {65, 130, 255}, "Atenção: Novo Boletim de Ocorrência registrado na DP. Verifique no aplicativo na polícia.")
+                TriggerClientEvent("Notify", player, "policia", "Novo <b>Boletim de Ocorrência</b> registrado na DP. Verifique no aplicativo na polícia.", 20000)
+                TriggerClientEvent('chatMessage', player, "CENTRAL:",{65,130,255}, "Novo Boletim de Ocorrência registrado na DP. Verifique no aplicativo na polícia.")
             end)
         end
     end

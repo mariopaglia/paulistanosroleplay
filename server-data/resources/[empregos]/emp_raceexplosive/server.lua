@@ -66,7 +66,7 @@ function emP.startBombRace()
 		if player then
 			async(function()
 				vRPclient.playSound(player,"Oneshot_Final","MP_MISSION_COUNTDOWN_SOUNDSET")
-				TriggerClientEvent('chatMessage',player,"190",{64,64,255},"Encontramos um corredor ilegal na cidade, intercepte-o.")
+				TriggerClientEvent('chatMessage',player,"CENTRAL:",{65,130,255},"Encontramos um corredor ilegal na cidade, intercepte-o.")
 			end)
 		end
 	end

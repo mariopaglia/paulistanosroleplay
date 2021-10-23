@@ -112,7 +112,8 @@ function rob.IniciandoRoubo1(id,x,y,z,head)
 							TriggerClientEvent('criarblip',player,x,y,z)
 							vRPclient.playSound(player,"HUD_MINI_GAME_SOUNDSET","CHECKPOINT_AHEAD")
 							vRPclient.playSound(player,"Oneshot_Final","MP_MISSION_COUNTDOWN_SOUNDSET")
-							TriggerClientEvent('chatMessage',player,"190",{65,130,255},"O roubo começou no(a) ^1"..item.nome.."^0, dirija-se até o local e intercepte os assaltantes.")
+							TriggerClientEvent("Notify", player, "policia", "O roubo começou no(a) <b>"..item.nome.."</b>, dirija-se até o local e intercepte os assaltantes.", 20000)
+							TriggerClientEvent('chatMessage',player,"CENTRAL:",{65,130,255},"O roubo começou no(a) ^1"..item.nome.."^0, dirija-se até o local e intercepte os assaltantes.")
 						end)
 					end
 				end
@@ -122,14 +123,15 @@ function rob.IniciandoRoubo1(id,x,y,z,head)
 							local player = vRP.getUserSource(parseInt(w))
 							if player then
 								async(function()
-									TriggerClientEvent('chatMessage',player,"190",{65,130,255},"O roubo terminou, os assaltantes estão correndo antes que vocês cheguem.")
+									TriggerClientEvent("Notify", player, "policia", "O roubo terminou, os assaltantes estão correndo antes que vocês cheguem.", 20000)
+									TriggerClientEvent('chatMessage',player,"CENTRAL:",{65,130,255},"O roubo terminou, os assaltantes estão correndo antes que vocês cheguem.")
 								end)
 							end
 						end
 						TriggerClientEvent('removerblip',-1)
 						vRP.antiflood(source,"roubos",3)
 						vRP.giveInventoryItem(user_id,"dinheirosujo",item.recompensa,false)
-						vRP.giveInventoryItem(user_id,"ticketpvp",20)
+						vRP.giveInventoryItem(user_id,"ticketpvp",2)
 						assaltante1 = false
 					end
 				end)
@@ -168,7 +170,8 @@ function rob.IniciandoRoubo2(id,x,y,z,head)
 							TriggerClientEvent('criarblip',player,x,y,z)
 							vRPclient.playSound(player,"HUD_MINI_GAME_SOUNDSET","CHECKPOINT_AHEAD")
 							vRPclient.playSound(player,"Oneshot_Final","MP_MISSION_COUNTDOWN_SOUNDSET")
-							TriggerClientEvent('chatMessage',player,"190",{65,130,255},"O roubo começou no(a) ^1"..item.nome.."^0, dirija-se até o local e intercepte os assaltantes.")
+							TriggerClientEvent("Notify", player, "policia", "O roubo começou no(a) <b>"..item.nome.."</b>, dirija-se até o local e intercepte os assaltantes.", 20000)
+							TriggerClientEvent('chatMessage',player,"CENTRAL:",{65,130,255},"O roubo começou no(a) ^1"..item.nome.."^0, dirija-se até o local e intercepte os assaltantes.")
 						end)
 					end
 				end
@@ -178,14 +181,15 @@ function rob.IniciandoRoubo2(id,x,y,z,head)
 							local player = vRP.getUserSource(parseInt(w))
 							if player then
 								async(function()
-									TriggerClientEvent('chatMessage',player,"190",{65,130,255},"O roubo terminou, os assaltantes estão correndo antes que vocês cheguem.")
+									TriggerClientEvent("Notify", player, "policia", "O roubo terminou, os assaltantes estão correndo antes que vocês cheguem.", 20000)
+									TriggerClientEvent('chatMessage',player,"CENTRAL:",{65,130,255},"O roubo terminou, os assaltantes estão correndo antes que vocês cheguem.")
 								end)
 							end
 						end
 						TriggerClientEvent('removerblip',-1)
 						vRP.antiflood(source,"roubos",3)
 						vRP.giveInventoryItem(user_id,"dinheirosujo",item.recompensa,false)
-						vRP.giveInventoryItem(user_id,"ticketpvp",8)
+						vRP.giveInventoryItem(user_id,"ticketpvp",2)
 						assaltante2 = false
 					end
 				end)
@@ -224,7 +228,8 @@ function rob.IniciandoRoubo3(id,x,y,z,head)
 							TriggerClientEvent('criarblip',player,x,y,z)
 							vRPclient.playSound(player,"HUD_MINI_GAME_SOUNDSET","CHECKPOINT_AHEAD")
 							vRPclient.playSound(player,"Oneshot_Final","MP_MISSION_COUNTDOWN_SOUNDSET")
-							TriggerClientEvent('chatMessage',player,"190",{65,130,255},"O roubo começou no(a) ^1"..item.nome.."^0, dirija-se até o local e intercepte os assaltantes.")
+							TriggerClientEvent("Notify", player, "policia", "O roubo começou no(a) <b>"..item.nome.."</b>, dirija-se até o local e intercepte os assaltantes.", 20000)
+							TriggerClientEvent('chatMessage',player,"CENTRAL:",{65,130,255},"O roubo começou no(a) ^1"..item.nome.."^0, dirija-se até o local e intercepte os assaltantes.")
 						end)
 					end
 				end
@@ -234,14 +239,15 @@ function rob.IniciandoRoubo3(id,x,y,z,head)
 							local player = vRP.getUserSource(parseInt(w))
 							if player then
 								async(function()
-									TriggerClientEvent('chatMessage',player,"190",{65,130,255},"O roubo terminou, os assaltantes estão correndo antes que vocês cheguem.")
+									TriggerClientEvent("Notify", player, "policia", "O roubo terminou, os assaltantes estão correndo antes que vocês cheguem.", 20000)
+									TriggerClientEvent('chatMessage',player,"CENTRAL:",{65,130,255},"O roubo terminou, os assaltantes estão correndo antes que vocês cheguem.")
 								end)
 							end
 						end
 						TriggerClientEvent('removerblip',-1)
 						vRP.antiflood(source,"roubos",3)
 						vRP.giveInventoryItem(user_id,"dinheirosujo",item.recompensa,false)
-						vRP.giveInventoryItem(user_id,"ticketpvp",10)
+						vRP.giveInventoryItem(user_id,"ticketpvp",2)
 						assaltante3 = false
 					end
 				end)
@@ -280,7 +286,8 @@ function rob.IniciandoRoubo4(id,x,y,z,head)
 							TriggerClientEvent('criarblip',player,x,y,z)
 							vRPclient.playSound(player,"HUD_MINI_GAME_SOUNDSET","CHECKPOINT_AHEAD")
 							vRPclient.playSound(player,"Oneshot_Final","MP_MISSION_COUNTDOWN_SOUNDSET")
-							TriggerClientEvent('chatMessage',player,"190",{65,130,255},"O roubo começou na ^1"..item.nome.."^0, dirija-se até o local e intercepte os assaltantes.")
+							TriggerClientEvent("Notify", player, "policia", "O roubo começou no(a) <b>"..item.nome.."</b>, dirija-se até o local e intercepte os assaltantes.", 20000)
+							TriggerClientEvent('chatMessage',player,"CENTRAL:",{65,130,255},"O roubo começou na ^1"..item.nome.."^0, dirija-se até o local e intercepte os assaltantes.")
 						end)
 					end
 				end
@@ -290,14 +297,15 @@ function rob.IniciandoRoubo4(id,x,y,z,head)
 							local player = vRP.getUserSource(parseInt(w))
 							if player then
 								async(function()
-									TriggerClientEvent('chatMessage',player,"190",{65,130,255},"O roubo terminou, os assaltantes estão correndo antes que vocês cheguem.")
+									TriggerClientEvent("Notify", player, "policia", "O roubo terminou, os assaltantes estão correndo antes que vocês cheguem.", 20000)
+									TriggerClientEvent('chatMessage',player,"CENTRAL:",{65,130,255},"O roubo terminou, os assaltantes estão correndo antes que vocês cheguem.")
 								end)
 							end
 						end
 						TriggerClientEvent('removerblip',-1)
 						vRP.antiflood(source,"roubos",3)
 						vRP.giveInventoryItem(user_id,"dinheirosujo",item.recompensa,false)
-						vRP.giveInventoryItem(user_id,"ticketpvp",3)
+						vRP.giveInventoryItem(user_id,"ticketpvp",2)
 						vRP.giveInventoryItem(user_id,"adrenalina",1)
 						assaltante4 = false
 					end
@@ -314,7 +322,8 @@ function rob.CancelandoRoubo1()
 			local player = vRP.getUserSource(parseInt(w))
 			if player then
 				async(function()
-					TriggerClientEvent('chatMessage',player,"190",{65,130,255},"O assaltante saiu correndo e deixou tudo para trás.")
+					TriggerClientEvent("Notify", player, "policia", "O assaltante saiu correndo e deixou tudo para trás.", 20000)
+					TriggerClientEvent('chatMessage',player,"CENTRAL:",{65,130,255},"O assaltante saiu correndo e deixou tudo para trás.")
 				end)
 			end
 		end
@@ -330,7 +339,8 @@ function rob.CancelandoRoubo2()
 			local player = vRP.getUserSource(parseInt(w))
 			if player then
 				async(function()
-					TriggerClientEvent('chatMessage',player,"190",{65,130,255},"O assaltante saiu correndo e deixou tudo para trás.")
+					TriggerClientEvent("Notify", player, "policia", "O assaltante saiu correndo e deixou tudo para trás.", 20000)
+					TriggerClientEvent('chatMessage',player,"CENTRAL:",{65,130,255},"O assaltante saiu correndo e deixou tudo para trás.")
 				end)
 			end
 		end
@@ -346,7 +356,8 @@ function rob.CancelandoRoubo3()
 			local player = vRP.getUserSource(parseInt(w))
 			if player then
 				async(function()
-					TriggerClientEvent('chatMessage',player,"190",{65,130,255},"O assaltante saiu correndo e deixou tudo para trás.")
+					TriggerClientEvent("Notify", player, "policia", "O assaltante saiu correndo e deixou tudo para trás.", 20000)
+					TriggerClientEvent('chatMessage',player,"CENTRAL:",{65,130,255},"O assaltante saiu correndo e deixou tudo para trás.")
 				end)
 			end
 		end
@@ -362,7 +373,8 @@ function rob.CancelandoRoubo4()
 			local player = vRP.getUserSource(parseInt(w))
 			if player then
 				async(function()
-					TriggerClientEvent('chatMessage',player,"190",{65,130,255},"O assaltante saiu correndo e deixou tudo para trás.")
+					TriggerClientEvent("Notify", player, "policia", "O assaltante saiu correndo e deixou tudo para trás.", 20000)
+					TriggerClientEvent('chatMessage',player,"CENTRAL:",{65,130,255},"O assaltante saiu correndo e deixou tudo para trás.")
 				end)
 			end
 		end

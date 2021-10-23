@@ -134,6 +134,7 @@ function TokoVoip.initialize(self)
 				if (self.mode > 3) then
 					self.mode = 1;
 				end
+				TriggerEvent("nation_hud:setVoipMode", self.mode) -- HUD NATION
 				setPlayerData(self.serverId, "voip:mode", self.mode, true);
 				self:updateTokoVoipInfo();
 			end

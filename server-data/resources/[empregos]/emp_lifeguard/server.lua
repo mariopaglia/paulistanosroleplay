@@ -15,7 +15,7 @@ function emP.checkPayment()
     local source = source
     local user_id = vRP.getUserId(source)
     if user_id then
-        randmoney = math.random(120,150)
+        randmoney = math.random(150,180)
         vRP.giveMoney(user_id,parseInt(randmoney))
         TriggerClientEvent("Notify",source,"sucesso","Você recebeu <b>$"..parseInt(randmoney).." reais</b>.")
     end

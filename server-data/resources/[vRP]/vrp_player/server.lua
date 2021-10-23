@@ -39,7 +39,8 @@ local itemlist = {
 	["garrafavazia"] = { index = "garrafavazia", nome = "Garrafa Vazia" },
 	["garrafadeleite"] = { index = "garrafadeleite", nome = "Garrafa de Leite" },
 	["roupas"] = { index = "roupas", nome = "Roupas" },
-	["alianca"] = { index = "alianca", nome = "Aliança" },
+	["alianca"] = { index = "alianca", nome = "Aliança de Casamento" },
+	["alianca2"] = { index = "alianca2", nome = "Aliança de Namoro" },
 	["bandagem"] = { index = "bandagem", nome = "Bandagem" },
 	["dinheirosujo"] = { index = "dinheirosujo", nome = "Dinheiro Sujo" },
 	["repairkit"] = { index = "repairkit", nome = "Kit de Reparos" },
@@ -70,10 +71,31 @@ local itemlist = {
 	["gopro"] = { index = "gopro", nome = "GoPro Hero 9" },
 	["gravadordevoz"] = { index = "gravadordevoz", nome = "Gravador de Voz" },
 	["ticketpvp"] = { index = "ticketpvp", nome = "Ticket PVP" },
+	["raspadinha"] = { index = "raspadinha", nome = "Raspadinha" },
+	["casino_token"] = { index = "casino_token", nome = "Ficha Casino" },
+	["casino_ticket"] = { index = "casino_ticket", nome = "Ticket Roleta" },
+
+	-- Sistema de PET
+	["wammo|WEAPON_BALL"] = { index = "bolinha", nome = "Bolinha de PET" },
+	["comidapet"] = { index = "comidapet", nome = "Comida de PET" },
 
 	-- Fome e Sede
-	["agua"] = { index = "agua", nome = "Água" },
 	["hamburguer"] = { index = "hamburguer", nome = "Hamburguer" },
+	["sanduiche"] = { index = "sanduiche", nome = "Sanduiche" },
+	["frangofrito"] = { index = "frangofrito", nome = "Frango Frito" },
+	["batatafrita"] = { index = "batatafrita", nome = "Batata Frita" },
+	["cachorroquente"] = { index = "cachorroquente", nome = "Cachorro Quente" },
+	["pizza"] = { index = "pizza", nome = "Pizza" },
+	["rosquinha"] = { index = "rosquinha", nome = "Rosquinha" },
+	-- Bebidas
+	["agua"] = { index = "agua", nome = "Água" },
+	["mamadeira"] = { index = "mamadeira", nome = "Mamadeira" },
+	["cafe"] = { index = "cafe", nome = "Café" },
+	["cappuccino"] = { index = "cappuccino", nome = "Cappuccino" },
+	["leite"] = { index = "leite", nome = "Leite" },
+	["suco"] = { index = "suco", nome = "Suco" },
+	["cocacola"] = { index = "cocacola", nome = "Cocacola" },
+	["sprite"] = { index = "sprite", nome = "Sprite" },
 
 	-- Farm Contrabando
 	["componentemetal"] = { index = "componentemetal", nome = "Componentes de Metais" },
@@ -296,13 +318,170 @@ function emP.checkPermission()
 end
 
 -----------------------------------------------------------------------------------------------------------------------------------------
--- CHECAR PERMISSÃO DO COMANDO /SILENCIADOR
+-- /mascara
 -----------------------------------------------------------------------------------------------------------------------------------------
-function emP.checkPermissionSilenciador()
-	local source = source
+RegisterCommand('mascara',function(source,args,rawCommand)
 	local user_id = vRP.getUserId(source)
-	return vRP.hasPermission(user_id,'silenciador.permissao')
-end
+	if vRPclient.getHealth(source) > 101 then
+		if not vRPclient.isHandcuffed(source) then
+			if not vRP.searchReturn(source,user_id) then
+				if user_id then
+					TriggerClientEvent("setmascara",source,args[1],args[2])
+				end
+			end
+		end
+	end
+end)
+-----------------------------------------------------------------------------------------------------------------------------------------
+-- /blusa
+-----------------------------------------------------------------------------------------------------------------------------------------
+RegisterCommand('blusa',function(source,args,rawCommand)
+	local user_id = vRP.getUserId(source)
+	if vRPclient.getHealth(source) > 101 then
+		if not vRPclient.isHandcuffed(source) then
+			if not vRP.searchReturn(source,user_id) then
+				if user_id then
+					TriggerClientEvent("setblusa",source,args[1],args[2])
+				end
+			end
+		end
+	end
+end)
+-----------------------------------------------------------------------------------------------------------------------------------------
+-- /colete
+-----------------------------------------------------------------------------------------------------------------------------------------
+RegisterCommand('colete',function(source,args,rawCommand)
+	local user_id = vRP.getUserId(source)
+	if vRPclient.getHealth(source) > 101 then
+		if not vRPclient.isHandcuffed(source) then
+			if not vRP.searchReturn(source,user_id) then
+				if user_id then
+					TriggerClientEvent("setcolete",source,args[1],args[2])
+				end
+			end
+		end
+	end
+end)
+-----------------------------------------------------------------------------------------------------------------------------------------
+-- /jaqueta
+-----------------------------------------------------------------------------------------------------------------------------------------
+RegisterCommand('jaqueta',function(source,args,rawCommand)
+	local user_id = vRP.getUserId(source)
+	if vRPclient.getHealth(source) > 101 then
+		if not vRPclient.isHandcuffed(source) then
+			if not vRP.searchReturn(source,user_id) then
+				if user_id then
+					TriggerClientEvent("setjaqueta",source,args[1],args[2])
+				end
+			end
+		end
+	end
+end)
+-----------------------------------------------------------------------------------------------------------------------------------------
+-- /maos
+-----------------------------------------------------------------------------------------------------------------------------------------
+RegisterCommand('maos',function(source,args,rawCommand)
+	local user_id = vRP.getUserId(source)
+	if vRPclient.getHealth(source) > 101 then
+		if not vRPclient.isHandcuffed(source) then
+			if not vRP.searchReturn(source,user_id) then
+				if user_id then
+					TriggerClientEvent("setmaos",source,args[1],args[2])
+				end
+			end
+		end
+	end
+end)
+-----------------------------------------------------------------------------------------------------------------------------------------
+-- /calca
+-----------------------------------------------------------------------------------------------------------------------------------------
+RegisterCommand('calca',function(source,args,rawCommand)
+	local user_id = vRP.getUserId(source)
+	if vRPclient.getHealth(source) > 101 then
+		if not vRPclient.isHandcuffed(source) then
+			if not vRP.searchReturn(source,user_id) then
+				if user_id then
+					TriggerClientEvent("setcalca",source,args[1],args[2])
+				end
+			end
+		end
+	end
+end)
+-----------------------------------------------------------------------------------------------------------------------------------------
+-- /acessorios
+-----------------------------------------------------------------------------------------------------------------------------------------
+RegisterCommand('acessorios',function(source,args,rawCommand)
+	local user_id = vRP.getUserId(source)
+	if vRPclient.getHealth(source) > 101 then
+		if not vRPclient.isHandcuffed(source) then
+			if not vRP.searchReturn(source,user_id) then
+				if user_id then
+					TriggerClientEvent("setacessorios",source,args[1],args[2])
+				end
+			end
+		end
+	end
+end)
+-----------------------------------------------------------------------------------------------------------------------------------------
+-- /sapatos
+-----------------------------------------------------------------------------------------------------------------------------------------
+RegisterCommand('sapatos',function(source,args,rawCommand)
+	local user_id = vRP.getUserId(source)
+	if vRPclient.getHealth(source) > 101 then
+		if not vRPclient.isHandcuffed(source) then
+			if not vRP.searchReturn(source,user_id) then
+				if user_id then
+					TriggerClientEvent("setsapatos",source,args[1],args[2])
+				end
+			end
+		end
+	end
+end)
+-----------------------------------------------------------------------------------------------------------------------------------------
+-- /chapeu
+-----------------------------------------------------------------------------------------------------------------------------------------
+RegisterCommand('chapeu',function(source,args,rawCommand)
+	local user_id = vRP.getUserId(source)
+	if vRPclient.getHealth(source) > 101 then
+		if not vRPclient.isHandcuffed(source) then
+			if not vRP.searchReturn(source,user_id) then
+				if user_id then
+					TriggerClientEvent("setchapeu",source,args[1],args[2])
+				end
+			end
+		end
+	end
+end)
+-----------------------------------------------------------------------------------------------------------------------------------------
+-- /oculos
+-----------------------------------------------------------------------------------------------------------------------------------------
+RegisterCommand('oculos',function(source,args,rawCommand)
+	local user_id = vRP.getUserId(source)
+	if vRPclient.getHealth(source) > 101 then
+		if not vRPclient.isHandcuffed(source) then
+			if not vRP.searchReturn(source,user_id) then
+				if user_id then
+					TriggerClientEvent("setoculos",source,args[1],args[2])
+				end
+			end
+		end
+	end
+end)
+-----------------------------------------------------------------------------------------------------------------------------------------
+-- /mochila
+-----------------------------------------------------------------------------------------------------------------------------------------
+RegisterCommand('mochila',function(source,args,rawCommand)
+	local user_id = vRP.getUserId(source)
+	if vRPclient.getHealth(source) > 101 then
+		if not vRPclient.isHandcuffed(source) then
+			if not vRP.searchReturn(source,user_id) then
+				if user_id then
+					TriggerClientEvent("setmochila",source,args[1],args[2])
+				end
+			end
+		end
+	end
+end)
 
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- CHECAR PERMISSÃO ANIMAÇÕES (CAVALINHO/CARREGAR)
@@ -392,128 +571,35 @@ Citizen.CreateThread(function()
 end)
 
 -----------------------------------------------------------------------------------------------------------------------------------------
--- /sapatos
+-- CHECK ROUPAS
 -----------------------------------------------------------------------------------------------------------------------------------------
-RegisterCommand('sapatos',function(source,args,rawCommand)
+function emP.checkRoupas()
+	local source = source
 	local user_id = vRP.getUserId(source)
-	if vRP.getInventoryItemAmount(user_id,"roupas") >= 1 or vRP.hasPermission(user_id,'roupavip.permissao') then
-		TriggerClientEvent('setsapatos',source,args[1],args[2])
-	else
-		TriggerClientEvent("Notify",source,"negado","Você precisa de <b>Roupas</b> para mudar de sapatos")
+	if user_id then
+		if vRP.getInventoryItemAmount(user_id,"roupas") >= 1 or vRP.hasPermission(user_id,"roupavip.permissao") then
+			return true 
+		else
+			TriggerClientEvent("Notify",source,"negado","Você não possui <b>Roupas</b> na mochila.") 
+			return false
+		end
 	end
-end)
------------------------------------------------------------------------------------------------------------------------------------------
--- MASCARA
------------------------------------------------------------------------------------------------------------------------------------------
-RegisterCommand('mascara',function(source,args,rawCommand)
+end
+
+function emP.checkPermVip()
+	local source = source
 	local user_id = vRP.getUserId(source)
-	if vRP.getInventoryItemAmount(user_id,"roupas") >= 1 or vRP.hasPermission(user_id,'roupavip.permissao') then
-		TriggerClientEvent('mascara',source,args[1],args[2])
-	else
-		TriggerClientEvent("Notify",source,"negado","Você precisa de <b>Roupas</b> para mudar de mascara")
-		-- TriggerClientEvent('chatMessage',source,"ALERTA",{255,70,50},"Você precisa de ^1Roupas ^0para mudar de máscara.")
+	if user_id then
+		if vRP.getInventoryItemAmount(user_id,"roupas") >= 1 or vRP.hasPermission(user_id,"roupavip.permissao") then
+			return true 
+		else
+			TriggerClientEvent("Notify",source,"negado","Você não possui o item <b>Roupas</b> ou então um <b>Plano VIP</b> compatível.") 
+			return false
+		end
 	end
-end)
------------------------------------------------------------------------------------------------------------------------------------------
--- BLUSA
------------------------------------------------------------------------------------------------------------------------------------------
-RegisterCommand('blusa',function(source,args,rawCommand)
-	local user_id = vRP.getUserId(source)
-	if vRP.getInventoryItemAmount(user_id,"roupas") >= 1 or vRP.hasPermission(user_id,'roupavip.permissao') then
-		TriggerClientEvent('blusa',source,args[1],args[2])
-	else
-		TriggerClientEvent("Notify",source,"negado","Você precisa de <b>Roupas</b> para mudar de blusa")
-		-- TriggerClientEvent('chatMessage',source,"ALERTA",{255,70,50},"Você precisa de ^1Roupas ^0para mudar de blusa.")
-	end
-end)
------------------------------------------------------------------------------------------------------------------------------------------
--- JAQUETA
------------------------------------------------------------------------------------------------------------------------------------------
-RegisterCommand('jaqueta',function(source,args,rawCommand)
-	local user_id = vRP.getUserId(source)
-	if vRP.getInventoryItemAmount(user_id,"roupas") >= 1 or vRP.hasPermission(user_id,'roupavip.permissao') then
-		TriggerClientEvent('jaqueta',source,args[1],args[2])
-	else
-		TriggerClientEvent("Notify",source,"negado","Você precisa de <b>Roupas</b> para mudar de jaqueta")
-	end
-end)
--------------------------------------------------------------------------------------------------------------------------------------------
----- CALCA
--------------------------------------------------------------------------------------------------------------------------------------------
-RegisterCommand('calca',function(source,args,rawCommand)
-	local user_id = vRP.getUserId(source)
-	if vRP.getInventoryItemAmount(user_id,"roupas") >= 1 or vRP.hasPermission(user_id,'roupavip.permissao') then
-		TriggerClientEvent('calca',source,args[1],args[2])
-	else
-		TriggerClientEvent("Notify",source,"negado","Você precisa de <b>Roupas</b> para mudar de calça")
-	end
-end)
------------------------------------------------------------------------------------------------------------------------------------------
--- MAOS
------------------------------------------------------------------------------------------------------------------------------------------
-RegisterCommand('maos',function(source,args,rawCommand)
-	local user_id = vRP.getUserId(source)
-	if vRP.getInventoryItemAmount(user_id,"roupas") >= 1 or vRP.hasPermission(user_id,'roupavip.permissao') then
-		TriggerClientEvent('maos',source,args[1],args[2])
-	else
-		TriggerClientEvent("Notify",source,"negado","Você precisa de <b>Roupas</b> para mudar de mãos")
-	end
-end)
------------------------------------------------------------------------------------------------------------------------------------------
--- ACESSORIO
------------------------------------------------------------------------------------------------------------------------------------------
-RegisterCommand('acessorios',function(source,args,rawCommand)
-	local user_id = vRP.getUserId(source)
-	if vRP.getInventoryItemAmount(user_id,"roupas") >= 1 or vRP.hasPermission(user_id,'roupavip.permissao') then
-		TriggerClientEvent('acessorios',source,args[1],args[2])
-	else
-		TriggerClientEvent("Notify",source,"negado","Você precisa de <b>Roupas</b> para mudar de acessórios")
-	end
-end)
--------------------------------------------------------------------------------------------------------------------------------------------
----- COLETE
--------------------------------------------------------------------------------------------------------------------------------------------
-RegisterCommand('colete',function(source,args,rawCommand)
-	local user_id = vRP.getUserId(source)
-	if vRP.getInventoryItemAmount(user_id,"roupas") >= 1 or vRP.hasPermission(user_id,'roupavip.permissao') then
-		TriggerClientEvent('colete',source,args[1],args[2])
-	else
-		TriggerClientEvent("Notify",source,"negado","Você precisa de <b>Roupas</b> para mudar de colete")
-	end
-end)
------------------------------------------------------------------------------------------------------------------------------------------
--- CHAPEU
------------------------------------------------------------------------------------------------------------------------------------------
-RegisterCommand('chapeu',function(source,args,rawCommand)
-	local user_id = vRP.getUserId(source)
-	if vRP.getInventoryItemAmount(user_id,"roupas") >= 1 or vRP.hasPermission(user_id,'roupavip.permissao') then
-		TriggerClientEvent('chapeu',source,args[1],args[2])
-	else
-		TriggerClientEvent("Notify",source,"negado","Você precisa de <b>Roupas</b> para mudar de chapéu")
-	end
-end)
------------------------------------------------------------------------------------------------------------------------------------------
--- OCULOS
------------------------------------------------------------------------------------------------------------------------------------------
-RegisterCommand('oculos',function(source,args,rawCommand)
-	local user_id = vRP.getUserId(source)
-	if vRP.getInventoryItemAmount(user_id,"roupas") >= 1 or vRP.hasPermission(user_id,'roupavip.permissao') then
-		TriggerClientEvent('oculos',source,args[1],args[2])
-	else
-		TriggerClientEvent("Notify",source,"negado","Você precisa de <b>Roupas</b> para mudar de oculos")
-	end
-end)
------------------------------------------------------------------------------------------------------------------------------------------
--- SAPATOS
------------------------------------------------------------------------------------------------------------------------------------------
-RegisterCommand('sapatos',function(source,args,rawCommand)
-	local user_id = vRP.getUserId(source)
-	if vRP.getInventoryItemAmount(user_id,"roupas") >= 1 or vRP.hasPermission(user_id,'roupavip.permissao') then
-		TriggerClientEvent('sapatos',source,args[1],args[2])
-	else
-		TriggerClientEvent("Notify",source,"negado","Você precisa de <b>Roupas</b> para mudar de sapatos")
-	end
-end)
+end
+
+
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- /REVISTAR
 -----------------------------------------------------------------------------------------------------------------------------------------

@@ -51,7 +51,8 @@ local nomes = {
 	Specialcarbine_mk2 = "G36C",
 	Smg_mk2 = "MP5-MK2",
 	Minismg = "CZ Scorpion",
-	Carbinerifle_mk2 = "M4A1"
+	Carbinerifle_mk2 = "M4A1",
+	Ball = "Bolinha de PET"
 }
 
 local get_wname = function(weapon_id)

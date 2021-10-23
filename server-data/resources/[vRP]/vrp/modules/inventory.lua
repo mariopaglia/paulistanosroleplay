@@ -5,7 +5,8 @@ local itemlist = {
 	["sacodelixo"] = { index = "sacodelixo", nome = "Saco de Lixo", type = "usar" },
 	["garrafavazia"] = { index = "garrafavazia", nome = "Garrafa Vazia", type = "usar" },
 	["garrafadeleite"] = { index = "garrafadeleite", nome = "Garrafa de Leite", type = "usar" },
-	["alianca"] = { index = "alianca", nome = "Aliança", type = "usar" },
+	["alianca"] = { index = "alianca", nome = "Aliança de Casamento", type = "usar" },
+	["alianca2"] = { index = "alianca2", nome = "Aliança de Namoro", type = "usar" },
 	["celular"] = { index = "celular", nome = "Celular", type = "usar" },
 	["bandagem"] = { index = "bandagem", nome = "Bandagem", type = "usar" },
 	["dinheirosujo"] = { index = "dinheirosujo", nome = "Dinheiro Sujo", type = "usar" },
@@ -38,10 +39,31 @@ local itemlist = {
 	["gopro"] = { index = "gopro", nome = "GoPro Hero 9", type = "usar" },
 	["gravadordevoz"] = { index = "gravadordevoz", nome = "Gravador de Voz", type = "usar" },
 	["ticketpvp"] = { index = "ticketpvp", nome = "Ticket PVP", type = "usar" },
+	["raspadinha"] = { index = "raspadinha", nome = "Raspadinha", type = "usar" },
+	["casino_token"] = { index = "casino_token", nome = "Ficha Casino", type = "usar" },
+	["casino_ticket"] = { index = "casino_ticket", nome = "Ticket Roleta", type = "usar" },
+	
+	-- Sistema de PETS
+	["wammo|WEAPON_BALL"] = { index = "bolinha", nome = "Bolinha de PET", type = "recarregar" },
+	["comidapet"] = { index = "comidapet", nome = "Comida de PET", type = "usar" },
 	
 	-- Fome e Sede
-	["agua"] = { index = "agua", nome = "Água", type = "usar" },
 	["hamburguer"] = { index = "hamburguer", nome = "Hamburguer", type = "usar" },
+	["sanduiche"] = { index = "sanduiche", nome = "Sanduiche", type = "usar" },
+	["frangofrito"] = { index = "frangofrito", nome = "Frango Frito", type = "usar" },
+	["batatafrita"] = { index = "batatafrita", nome = "Batata Frita", type = "usar" },
+	["cachorroquente"] = { index = "cachorroquente", nome = "Cachorro Quente", type = "usar" },
+	["pizza"] = { index = "pizza", nome = "Pizza", type = "usar" },
+	["rosquinha"] = { index = "rosquinha", nome = "Rosquinha", type = "usar" },
+	--Bebidas
+	["agua"] = { index = "agua", nome = "Água", type = "usar" },
+	["mamadeira"] = { index = "mamadeira", nome = "Mamadeira", type = "usar" },
+	["cafe"] = { index = "cafe", nome = "Café", type = "usar" },
+	["cappuccino"] = { index = "cappuccino", nome = "Cappuccino", type = "usar" },
+	["leite"] = { index = "leite", nome = "Leite", type = "usar" },
+	["suco"] = { index = "suco", nome = "Suco", type = "usar" },
+	["cocacola"] = { index = "cocacola", nome = "Cocacola", type = "usar" },
+	["sprite"] = { index = "sprite", nome = "Sprite", type = "usar" },
 
 	-- Farm Contrabandop
 	["componentemetal"] = { index = "componentemetal", nome = "Componentes de Metais", type = "usar" },
@@ -423,7 +445,6 @@ AddEventHandler("clearInventory",function()
         vRP.setMoney(user_id,0)
         vRPclient._clearWeapons(source)
         vRPclient._setHandcuffed(source,false)
-		TriggerEvent("srkfive:killregisterclear",user_id)
 
         if not vRP.hasPermission(user_id,"mochila.permissao") then
             vRP.setExp(user_id,"physical","strength",20)
@@ -863,6 +884,19 @@ local vehglobal = {
 	["blazer4"] = { ['name'] = "Blazer4", ['price'] = 370000, ['tipo'] = "motos" },
 	["daemon2"]  = { ['name'] = "Daemon2", ['price'] = 310000, ['tipo'] = "motos" },
 	
+	-- VEÍCULOS VIP novos
+	["africat"] = { ['name'] = "Honda Africa Twin", ['price'] = 1000000, ['tipo'] = "vip" },
+	["m4lb"] = { ['name'] = "BMW M4 Libert Walk", ['price'] = 1000000, ['tipo'] = "vip" },
+	["c7"] = { ['name'] = "Corvette C7", ['price'] = 1000000, ['tipo'] = "vip" },
+	["r35"] = { ['name'] = "Nissan GT-R 35 Japan", ['price'] = 1000000, ['tipo'] = "vip" },
+	["lwgtr"] = { ['name'] = "Nissan GT-R 35 Libert Walk", ['price'] = 1000000, ['tipo'] = "vip" },
+	["golf75r"] = { ['name'] = "VW Golf R", ['price'] = 1000000, ['tipo'] = "vip" },
+	["718b"] = { ['name'] = "Porsche 718 Boxster", ['price'] = 1000000, ['tipo'] = "vip" },
+	["vwstance"] = { ['name'] = "VW Passati", ['price'] = 1000000, ['tipo'] = "vip" },
+	["r820"] = { ['name'] = "Audi R8 2020", ['price'] = 1000000, ['tipo'] = "vip" },
+	["urus2018"] = { ['name'] = "Lamborghini Urus", ['price'] = 1000000, ['tipo'] = "vip" },
+	["ram2500"] = { ['name'] = "Dodge Ram 2500", ['price'] = 1000000, ['tipo'] = "vip" },
+
 	-- VEÍCULOS VIP
 	["q820"] = { ['name'] = "Audi Q8 50TDI 2020", ['price'] = 1000000, ['tipo'] = "vip" },
 	["bmci"] = { ['name'] = "BMW M5", ['price'] = 1000000, ['tipo'] = "vip" },
@@ -948,6 +982,7 @@ local vehglobal = {
 	["chevette"] = { ['name'] = "Chevette", ['price'] = 85000, ['tipo'] = "carros" },
 	
 	-- POLICIA
+	["r820p"] = { ['name'] = "Audi R8", ['price'] = 1000, ['tipo'] = "work" },
 	["VRa3"] = { ['name'] = "Audi A3", ['price'] = 1000, ['tipo'] = "work" },
 	["VRa4"] = { ['name'] = "Audi A4", ['price'] = 1000, ['tipo'] = "work" },
 	["VRq8"] = { ['name'] = "Audi Q8", ['price'] = 1000, ['tipo'] = "work" },

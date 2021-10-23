@@ -505,11 +505,13 @@ local garages = {
     [676] = {['name'] = "Bicicletario", ['payment'] = false, ['public'] = true}, -- Heliponto DP VINEWOOD
     [677] = {['name'] = "Tecidos", ['payment'] = false, ['public'] = true}, -- Emprego de tecidos
     [678] = {['name'] = "Salvavidas", ['payment'] = false, ['public'] = true}, -- Emprego de Salva-vidas
+    [679] = {['name'] = "Cacador", ['payment'] = false, ['public'] = true}, -- Emprego de Cacador
 }
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- GARAGEMS
 -----------------------------------------------------------------------------------------------------------------------------------------
 local workgarage = {
+    ["Cacador"] = {"bodhi2"},
     ["Salvavidas"] = {"blazer"},
     ["Tecidos"] = {"speedo"},
     ["Cosanostra"] = {"burrito3", "komoda"},
@@ -529,7 +531,7 @@ local workgarage = {
     ["SportRace"] = {"flatbed", "slamvan3", "brawler"},
     ["DIC"] = {"dicgt63", "cls63s"},
     ["PRF"] = {"cruzeprf2", "l200prf", "trailprf", "ec130PRF"},
-    ["Policia"] = {"riot", "pbus", "ghispo2", "porschespeed", "VRa3", "VRa4", "VRrs5", "VRrs6", "VRrs6av", "VRraptor", "VRtahoe", "VRdm1200", "VRq8", "flatbed", "av-amarok"},
+    ["Policia"] = {"riot", "VRa4", "VRraptor", "VRrs6av", "VRdm1200", "r820p"},
     ["PoliciaHeli"] = {"polmav"},
     ["ROTA"] = {"sw4revrota1", "trailrota2"},
     ["PMESP"] = {"pbus", "riot", "20blazer2", "police3", "spacepm1", "trailcfp", "trailpm1", "av-gt63", "av-m8", "policeb"},
@@ -980,7 +982,8 @@ function src.policeAlert()
                     if player then
                         async(function()
                             local id = idgens:gen()
-                            TriggerClientEvent('chatMessage', player, "190", {64, 64, 255}, "Roubo na ^1" .. street .. "^0 do veículo ^1" .. model .. "^0 de placa ^1" .. placa .. "^0 verifique o ocorrido.")
+                            TriggerClientEvent("Notify", player, "policia", "Roubo na <b>" .. street .. "</b> do veículo <b>" .. model .. "</b> de placa <b>" .. placa .. "</b> verifique o ocorrido.", 20000)
+                            TriggerClientEvent('chatMessage', player, "CENTRAL:",{65,130,255}, "Roubo na ^1" .. street .. "^0 do veículo ^1" .. model .. "^0 de placa ^1" .. placa .. "^0 verifique o ocorrido.")
                             police[id] = vRPclient.addBlip(player, x, y, z, 304, 3, "Ocorrência", 0.6, false)
                             SetTimeout(60000, function()
                                 vRPclient.removeBlip(player, police[id])

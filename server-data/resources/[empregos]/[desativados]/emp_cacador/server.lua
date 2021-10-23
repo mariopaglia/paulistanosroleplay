@@ -14,7 +14,7 @@ function emP.checkPayment(item,quantidade)
 			vRP.giveInventoryItem(user_id,item,quantidade)
 			random = math.random(100)
 			if random >= 98 then
-				vRP.giveInventoryItem(user_id,"etiqueta",1)
+				vRP.giveInventoryItem(user_id,"vibradorroubado",1)
 			end
 			return true
 		end

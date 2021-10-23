@@ -112,6 +112,8 @@ RegisterCommand('kill', function(source, args, rawCommand)
             vRPclient.killGod(source)
             vRPclient.setHealth(source, 0)
             vRPclient.setArmour(source, 0)
+            vRP.varyHunger(user_id,100)
+            vRP.varyThirst(user_id,100)
         end
     end
 end)
@@ -175,6 +177,14 @@ RegisterCommand('limparinv', function(source, args, rawCommand)
         TriggerClientEvent("Notify", source, "importante", "Seu <b>inventario</b> foi limpo.")
     end
 end)
+-----------------------------------------------------------------------------------------------------------------------------------------
+-- CHECAR PERMISSÃO DO COMANDO /SILENCIADOR
+-----------------------------------------------------------------------------------------------------------------------------------------
+function crz.checkPermissionSilenciador()
+	local source = source
+	local user_id = vRP.getUserId(source)
+	return vRP.hasPermission(user_id,'silenciador.permissao')
+end
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- REVIVER TODOS
 -----------------------------------------------------------------------------------------------------------------------------------------
@@ -240,6 +250,7 @@ end)
 RegisterCommand('god', function(source, args, rawCommand)
     local user_id = vRP.getUserId(source)
     local nplayer = vRP.getUserSource(parseInt(args[1]))
+    local nuser_id = vRP.getUserId(nplayer)
     local identity = vRP.getUserIdentity(user_id)
     local crds = GetEntityCoords(GetPlayerPed(source))
     if vRP.hasPermission(user_id, "god.permissao") then
@@ -256,7 +267,12 @@ RegisterCommand('god', function(source, args, rawCommand)
                 vRPclient.killGod(nplayer)
                 vRPclient._stopAnim(nplayer, false)
                 vRPclient.setHealth(nplayer, 400)
-                TriggerEvent("srkfive:killregisterclear", nuser_id)
+                if vRP.getHunger(nuser_id) > 80 then
+                vRP.varyHunger(nuser_id,-20)
+                end
+                if vRP.getThirst(nuser_id) > 80 then
+                    vRP.varyThirst(nuser_id,-20)
+                end
                 vRP.Log("```prolog\n[ID]: " .. user_id .. " " .. identity.name .. " " .. identity.firstname .. " \n[GOD EM]: " .. nuser_id .. " " .. identitynu.name .. " " .. identitynu.firstname .. "\n[COORDENADA]: " .. crds.x .. "," .. crds.y .. "," .. crds.z .. "" .. os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S") .. " \r```", "CMD_GOD")
             end
         else
@@ -267,9 +283,10 @@ RegisterCommand('god', function(source, args, rawCommand)
             vADMC._showGodHeart(source, source)
             vRPclient._stopAnim(source, false)
             vRPclient.killGod(source)
+            vRP.varyHunger(user_id,-100)
+            vRP.varyThirst(user_id,-100)
             vRPclient.setHealth(source, 400) -- Vida
             -- vRPclient.setArmour(source,100) -- Colete
-            TriggerEvent("srkfive:killregisterclear", user_id)
             vRP.Log("```prolog\n[GOD PROPRIO]: " .. user_id .. " " .. identity.name .. " " .. identity.firstname .. "\n[COORDENADA]: " .. crds.x .. "," .. crds.y .. "," .. crds.z .. "" .. os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S") .. " \r```", "CMD_GOD")
         end
     end
@@ -1092,7 +1109,7 @@ end)
 -----------------------------------------------------------------------------------------------------------------------------------------
 RegisterCommand('evento', function(source, args, rawCommand)
     local user_id = vRP.getUserId(source)
-    if vRP.hasPermission(user_id, "promoter.permissao") then
+    if vRP.hasPermission(user_id, "promoter.permissao") or vRP.hasPermission(user_id, "kick.permissao") then
         local identity = vRP.getUserIdentity(user_id)
         local mensagem = vRP.prompt(source, "Mensagem:", "")
         if mensagem == "" then
@@ -1390,13 +1407,13 @@ RegisterCommand('status',function(source,args,rawCommand)
     	local mec2 = vRP.getUsersByPermission("mecanico.permissao")
     	local staff2 = vRP.getUsersByPermission("staff.permissao")
 		local taxista2 = vRP.getUsersByPermission("taxista.permissao")
-		TriggerClientEvent("Notify",source,"importante","<b>Jogadores:</b> "..onlinePlayers2.."<br><b>Staff:</b> "..#staff2.."<br><b>Policiais:</b> "..#policia2.."<br><b>Advogados:</b> "..#advogados2.."<br><b>Taxistas:</b> "..#taxista2.."<br><b>Paramédicos:</b> "..#paramedico2.."<br><b>Mecânicos:</b> "..#mec2.."",9000)
+		TriggerClientEvent("Notify",source,"importante","Jogadores: <b>"..onlinePlayers2.."</b><br>Staff: <b>"..#staff2.."</b><br>Policiais: <b>"..#policia2.."</b><br>Advogados: <b>"..#advogados2.."</b><br>Taxistas: <b>"..#taxista2.."</b><br>Paramédicos: <b>"..#paramedico2.."</b><br>Mecânicos: <b>"..#mec2.."</b>",9000)
 	else
     	local advogados = vRP.getUsersByPermission("judiciario.permissao")
     	local paramedico = vRP.getUsersByPermission("paramedico.permissao")
     	local mec = vRP.getUsersByPermission("mecanico.permissao")
     	local taxista = vRP.getUsersByPermission("taxista.permissao")
-		TriggerClientEvent("Notify",source,"importante","<b>Advogados:</b> "..#advogados.."<br><b>Taxistas:</b> "..#taxista.."<br><b>Paramédicos:</b> "..#paramedico.."<br><b>Mecânicos:</b> "..#mec.."",9000)
+		TriggerClientEvent("Notify",source,"importante","Advogados: <b>"..#advogados.."</b><br>Taxistas: <b>"..#taxista.."</b><br>Paramédicos: <b>"..#paramedico.."</b><br>Mecânicos: <b>"..#mec.."</b>",9000)
 	end
 end)
 
@@ -1773,6 +1790,126 @@ local roupas = {
 -- [9] = { -1,0 }, -- colete
 -- [10] = { -1,0 }, -- adesivo
 -- [11] = { 86,1 }, -- jaqueta
+	["cacador"] = {
+		[1885233650] = {                                      
+            [1] = {0,0,2},
+            [2] = {21,0,0},
+            [3] = {99,9,1},
+            [4] = {129,5,1},
+            [5] = {-1,0,2},
+            [6] = {25,0,1},
+            [7] = {0,0,2},
+            [8] = {171,0,1},
+            [9] = {44,0,2},
+            [10] = {-1,0,2},
+            [11] = {97,1,1},
+            ["p0"] = {11,0},
+            ["p2"] = {-1,0},
+            ["p1"] = {0,0},
+            [0] = {0,0,0},
+            ["p6"] = {-1,0},
+            ["p7"] = {-1,0},          
+		},
+		[-1667301416] = {
+            [1] = {0,0,2},
+            [2] = {74,0,0},
+            [3] = {57,0,1},
+            [4] = {135,5,1},
+            [5] = {0,0,0},
+            [6] = {25,0,1},
+            [7] = {15,5,2},
+            [8] = {208,0,1},
+            [9] = {0,0,0},
+            [10] = {0,0,0},
+            [11] = {88,1,1},
+            [0] = {0,0,0},
+            ["p2"] = {-1,0},
+            ["p1"] = {-1,0},
+            ["p7"] = {-1,0},
+            ["p0"] = {-1,0},
+            ["p6"] = {-1,0},
+		}
+	},
+	["entregaroupas"] = {
+		[1885233650] = {                                      
+            [1] = {-1,0,2},
+            [2] = {21,0,0},
+            [3] = {12,0,1},
+            [4] = {4,0,1},
+            [5] = {82,0,1},
+            [6] = {24,0,1},
+            [7] = {-1,0,2},
+            [8] = {15,0,2},
+            [9] = {0,0,1},
+            [10] = {-1,0,2},
+            [11] = {85,0,1},
+            [0] = {0,0,0},
+            ["p1"] = {-1,0},
+            ["p0"] = {-1,0},
+            ["p2"] = {-1,0},
+            ["p7"] = {-1,0},
+            ["p6"] = {-1,0},            
+		},
+		[-1667301416] = {
+            [1] = {0,0,2},
+            [2] = {74,0,0},
+            [3] = {7,0,1},
+            [4] = {0,1,1},
+            [5] = {82,0,1},
+            [6] = {24,0,1},
+            [7] = {0,0,2},
+            [8] = {6,0,2},
+            [9] = {-1,0,2},
+            [10] = {-1,0,2},
+            [11] = {77,0,1},
+            [0] = {0,0,0},
+            ["p1"] = {-1,0},
+            ["p0"] = {-1,0},
+            ["p2"] = {-1,0},
+            ["p7"] = {-1,0},
+            ["p6"] = {-1,0},
+		}
+	},
+	["salvavidas"] = {
+		[1885233650] = {                                      
+            [1] = {-1,0,2},
+            [2] = {21,0,0},
+            [3] = {5,0,1},
+            [4] = {18,3,1},
+            [5] = {-1,0,2},
+            [6] = {16,10,1},
+            [7] = {0,0,1},
+            [8] = {19,1,1},
+            [9] = {0,0,1},
+            [10] = {-1,0,2},
+            [11] = {5,7,1},
+            ["p7"] = {-1,0},
+            ["p6"] = {-1,0},
+            [0] = {0,0,0},
+            ["p0"] = {-1,0},
+            ["p1"] = {-1,0},
+            ["p2"] = {-1,0},
+		},
+		[-1667301416] = {
+            [1] = {0,0,2},
+            [2] = {74,0,0},
+            [3] = {4,0,1},
+            [4] = {27,4,1},
+            [5] = {0,0,1},
+            [6] = {16,1,1},
+            [7] = {0,0,2},
+            [8] = {18,1,1},
+            [9] = {-1,0,2},
+            [10] = {-1,0,2},
+            [11] = {74,0,1},
+            ["p7"] = {-1,0},
+            ["p6"] = {-1,0},
+            [0] = {0,0,0},
+            ["p0"] = {-1,0},
+            ["p1"] = {5,0},
+            ["p2"] = {-1,0},
+		}
+	},
 	["minerador"] = {
 		[1885233650] = {                                      
 			[1] = { -1,0 },
@@ -2210,4 +2347,158 @@ end)
 RegisterServerEvent('Tackle:Server:TacklePlayer')
 AddEventHandler('Tackle:Server:TacklePlayer', function(Tackled, ForwardVector, Tackler)
 	TriggerClientEvent("Tackle:Client:TacklePlayer", Tackled, ForwardVector, Tackler)
+end)
+
+-----------------------------------------------------------------------------------------------------------------------------------------
+-- VERIFICAR FOME E SEDE
+-----------------------------------------------------------------------------------------------------------------------------------------
+RegisterCommand('fs',function(source,args,rawCommand)
+    local source = source
+    local user_id = vRP.getUserId(source)
+    TriggerClientEvent("Notify", source, "aviso", "<b>Fome:</b> "..parseInt(vRP.getHunger(user_id)).."%<br><b>Sede:</b> "..parseInt(vRP.getThirst(user_id)).."%")
+end)
+
+RegisterCommand('cfs',function(source,args,rawCommand)
+    local source = source
+    local user_id = vRP.getUserId(source)
+    vRP.varyHunger(user_id,-10)
+    -- vRP.varyThirst(user_id,-10)
+end)
+
+RegisterCommand('rfs',function(source,args,rawCommand)
+    local source = source
+    local user_id = vRP.getUserId(source)
+    vRP.varyHunger(user_id,100)
+    -- vRP.varyThirst(user_id,100)
+end)
+
+RegisterCommand('vida',function(source,args,rawCommand)
+    local source = source
+    local user_id = vRP.getUserId(source)
+    local vida = vRPclient.getHealth(source)
+    TriggerClientEvent("Notify", source, "aviso", "<b>Vida:</b> "..vRPclient.getHealth(source).."")
+end)
+
+RegisterCommand('notify',function(source,args,rawCommand)
+    local source = source
+    local user_id = vRP.getUserId(source)
+    TriggerClientEvent("Notify", source, "sucesso", "Notificação de <b>Sucesso</b>, acesse a <b>Fenix Store</b> e garanta a sua!", 20000)
+    TriggerClientEvent("Notify", source, "aviso", "Notificação de <b>Aviso</b>, acesse a <b>Fenix Store</b> e garanta a sua!", 20000)
+    TriggerClientEvent("Notify", source, "negado", "Notificação de <b>Negado</b>, acesse a <b>Fenix Store</b> e garanta a sua!", 20000)
+    TriggerClientEvent("Notify", source, "info", "Notificação de <b>Informação</b>, acesse a <b>Fenix Store</b> e garanta a sua!", 20000)
+    TriggerClientEvent("Notify", source, "policia", "Notificação da <b>Polícia</b>, acesse a <b>Fenix Store</b> e garanta a sua!", 20000)
+end)
+
+---------------------------------------------------------------
+-- CONGELAR
+---------------------------------------------------------------
+RegisterCommand('cold',function(source,args,rawCommand)
+    local user_id = vRP.getUserId(source)
+    if vRP.hasPermission(user_id,"kick.permissao") then
+        if args[1] then
+            local nplayer = vRP.getUserSource(parseInt(args[1]))
+            if nplayer then
+                TriggerClientEvent('Congelar', nplayer, source)
+                TriggerClientEvent("Notify",source,"sucesso","Você congelou o id <b>" ..args[1].. "<b>.") 
+            end
+        else
+            TriggerClientEvent('Congelar', source)
+            TriggerClientEvent("Notify",source,"sucesso","Você se congelou")
+        end
+    end
+end) 
+---------------------------------------------------------------
+-- CONGELAR
+---------------------------------------------------------------
+RegisterCommand('fire',function(source,args,rawCommand)
+    local user_id = vRP.getUserId(source)
+    if vRP.hasPermission(user_id,"kick.permissao") then
+        if args[1] then
+            local nplayer = vRP.getUserSource(parseInt(args[1]))
+            if nplayer then
+                TriggerClientEvent('FOGO', nplayer, source)
+                TriggerClientEvent("Notify",source,"sucesso","Você queimou o id <b>" ..args[1].. "<b>.") 
+            end
+        else
+            TriggerClientEvent('FOGO', source)
+            TriggerClientEvent("Notify",source,"sucesso","Você se queimou")
+        end
+    end
+end) 
+
+-----------------------------------------------------------------------------------------------------------------------------------------
+-- ITEMALL
+-----------------------------------------------------------------------------------------------------------------------------------------
+RegisterCommand("giveitemall",function(source,args,rawCommand)
+	local user_id = vRP.getUserId(source)
+	if user_id then
+		if vRP.hasPermission(user_id,"founder.permissao") then
+			local users = vRP.getUsers()
+			for k,v in pairs(users) do
+				vRP.giveInventoryItem(parseInt(k),tostring(args[1]),parseInt(args[2]),true)
+			end
+		end
+	end
+end)
+
+----------------------------------------------------------------------------------------------------------------
+-- RENAME
+----------------------------------------------------------------------------------------------------------------
+RegisterCommand('rename',function(source,args,rawCommand)
+    local user_id = vRP.getUserId(source)
+    if vRP.hasPermission(user_id, "kick.permissao") then
+        local idjogador = vRP.prompt(source, "Passaporte: ", "")
+        local nome = vRP.prompt(source, "Nome: ", "")
+        local firstname = vRP.prompt(source, "Sobrenome: ", "")
+        local idade = vRP.prompt(source, "Idade: ", "")
+        local nplayer = vRP.getUserSource(parseInt(idjogador))
+
+        if nplayer then
+
+            local identity = vRP.getUserIdentity(parseInt(idjogador))
+            if idjogador == "" or nome == "" or firstname == "" or idade == "" then
+                   return
+               else
+                vRP.execute("vRP/update_user_identity",{ user_id = idjogador, firstname = firstname, name = nome, age = idade, registration = identity.registration, phone = identity.phone })
+                TriggerClientEvent("Notify",nplayer,"sucesso","Identidade atualizada!")
+                TriggerClientEvent("Notify",source,"sucesso","Identidade do ID: <b>"..parseInt(idjogador).."</b> alterada com sucesso!")
+            end
+
+        else
+            TriggerClientEvent("Notify",source,"negado","O ID: <b>"..parseInt(idjogador).."</b> não está na cidade!")
+        end    
+    end
+end)
+
+-----------------------------------------------------------------------------------------------------------------------------------------
+-- LIMPARINV
+-----------------------------------------------------------------------------------------------------------------------------------------
+RegisterCommand('limpar',function(source,args,rawCommand)
+    local user_id = vRP.getUserId(source)
+	local player = vRP.getUserSource(user_id)
+	if vRP.hasPermission(user_id,"founder.permissao") or vRP.hasPermission(user_id,"admin.permissao") or vRP.hasPermission(user_id,"mod.permissao") then
+		local tuser_id = tonumber(args[1])
+		local tplayer = vRP.getUserSource(tonumber(tuser_id))
+		local tplayerID = vRP.getUserId (tonumber(tplayer))
+			if tplayerID ~= nil then
+			local identity = vRP.getUserIdentity(user_id)
+			vRP.clearInventory(tplayerID)
+				TriggerClientEvent("Notify",source,"sucesso","Limpou inventario do ID <b>"..args[1].."</b>.")
+			else
+				TriggerClientEvent("Notify",source,"negado","O usuário não foi encontrado ou está offline.")
+        end
+	end
+end)
+
+---------------------------------------------------------------------------------------------
+-- REMOVER ARMAS PLAYER
+---------------------------------------------------------------------------------------------
+RegisterCommand('armalimpar', function(source,args,rawCommand)
+    local user_id = vRP.getUserId(source)
+    local identity = vRP.getUserIdentity(source)
+    if user_id then
+        if vRP.hasPermission(user_id,"founder.permissao") or vRP.hasPermission(user_id,"admin.permissao") or vRP.hasPermission(user_id,"mod.permissao") then
+            vRPclient.giveWeapons(source,{},true)
+        end
+    end
 end)

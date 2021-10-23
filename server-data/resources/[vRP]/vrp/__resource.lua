@@ -14,7 +14,6 @@ server_scripts {
 	"modules/money.lua",
 	"modules/inventory.lua",
 	"modules/identity.lua",
-	"modules/survival.lua",
 	"modules/AntiFlood.lua",
 	"modules/log.lua",
 --	"modules/home.lua",

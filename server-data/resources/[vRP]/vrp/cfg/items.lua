@@ -5,7 +5,8 @@ cfg.items = {
 	["sacodelixo"] = { "Saco de Lixo",0.5 },
 	["garrafavazia"] = { "Garrafa Vazia",0.2 },
 	["garrafadeleite"] = { "Garrafa de Leite",0.5 },
-	["alianca"] = { "Aliança",0.5 },
+	["alianca"] = { "Aliança de Casamento",0.5 },
+	["alianca2"] = { "Aliança de Namoro",0.5 },
 	["bandagem"] = { "Bandagem",0.7 },
 	["roupas"] = { "Roupas",8.0 },
 	["dinheirosujo"] = { "Dinheiro Sujo",0.0 },
@@ -37,12 +38,32 @@ cfg.items = {
 	["adrenalina"] = { "adrenalina",1.0 },
 	["gopro"] = { "gopro",1.0 },
 	["gravadordevoz"] = { "gravadordevoz",1.0 },
-	["ticketpvp"] = { "ticketpvp",0.1 },
+	["ticketpvp"] = { "ticketpvp",0.5 },
+	["raspadinha"] = { "raspadinha",0.5 },
+	-- ["casino_token"] = { "casino_token",0.001 },
+	["casino_ticket"] = { "casino_ticket",0.5 },
+
+	-- Sistema de PET
+	["comidapet"] = { "comidapet",0.5 },
 	
 	-- Fome e Sede
-	["agua"] = { "agua",0.2 },
-	["hamburguer"] = { "hamburguer",0.2 },
-
+	-- Comidas
+	["hamburguer"] = { "hamburguer",0.5 },
+	["sanduiche"] = { "sanduiche",0.5 },
+	["frangofrito"] = { "frangofrito",0.5 },
+	["batatafrita"] = { "batatafrita",0.5 },
+	["cachorroquente"] = { "cachorroquente",0.5 },
+	["pizza"] = { "pizza",0.5 },
+	["rosquinha"] = { "rosquinha",0.5 },
+	-- Bebidas
+	["agua"] = { "agua",0.5 },
+	["mamadeira"] = { "mamadeira",0.5 },
+	["cafe"] = { "cafe",0.5 },
+	["cappuccino"] = { "cappuccino",0.5 },
+	["leite"] = { "leite",0.5 },
+	["suco"] = { "suco",0.5 },
+	["cocacola"] = { "cocacola",0.5 },
+	["sprite"] = { "sprite",0.5 },
 
 	-- Farm Contrabando
 	["componentemetal"] = { "Componentes de Metais",0.5 },

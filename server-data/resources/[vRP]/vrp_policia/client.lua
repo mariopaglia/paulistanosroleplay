@@ -227,7 +227,8 @@ AddEventHandler('notificacao',function(x,y,z,user_id)
 	if distance <= 210000 then
 		if not DoesBlipExist(blips[user_id]) then
 			PlaySoundFrontend(-1,"Enter_1st","GTAO_FM_Events_Soundset",false)
-			TriggerEvent('chatMessage',"190",{65,130,255},"Disparos de arma de fogo aconteceram, verifique o ocorrido.")
+			TriggerEvent("Notify", "policia", "Disparos de <b>Arma de Fogo</b> aconteceram, verifique o ocorrido.", 20000)
+			TriggerEvent('chatMessage',"CENTRAL:",{65,130,255},"Disparos de arma de fogo aconteceram, verifique o ocorrido.")
 			blips[user_id] = AddBlipForCoord(x,y,z)
 			SetBlipScale(blips[user_id],0.5)
 			SetBlipSprite(blips[user_id],10)

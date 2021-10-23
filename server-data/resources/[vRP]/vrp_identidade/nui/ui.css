@@ -4,6 +4,7 @@
 	margin: 0;
 	padding: 0;
 	box-sizing: border-box;
+	z-index: -999 !important;
 }
 
 html,
@@ -20,16 +21,16 @@ body {
 #roxId {
 	display: none;
 	position: absolute;
-	right: 30px;
-	bottom: 200px;
+	right: 15px;
+	bottom: 400px;
 	width: 250px;
 	height: 400px;
 	width: 250px;
 	height: 400px;
 	border-radius: 10px;
-	border: 0.2px solid rgba(255, 0, 0, 50);
+	border: 2px solid #c0392b;
 	box-shadow: 0 10px 25px 5px rgba(0, 0, 0, 0.2);
-	background: #151515;
+	background: rgba(19, 28, 33, 1);
 	overflow: hidden;
 }
 
@@ -41,7 +42,7 @@ body {
 	left: 0;
 	width: 300px;
 	height: 80px;
-	background: rgb(255, 0, 0);
+	background: #c0392b;
 	animation: dsTop 1.5s;
 }
 
@@ -148,7 +149,7 @@ body {
 #roxId .ds-info .coins h6,
 #roxId .ds-info .vip h6 {
 	text-transform: uppercase;
-	color: rgb(255, 0, 0);
+	color: #c0392b;
 }
 
 #roxId .ds-info .carteira p,
@@ -194,7 +195,7 @@ body {
 #roxId .ds-info2 .telefone h6,
 #roxId .ds-info2 .multas h6 {
 	text-transform: uppercase;
-	color: rgb(255, 0, 0);
+	color: #c0392b;
 }
 
 #roxId .ds-info2 .banco p,
@@ -210,8 +211,6 @@ body {
 #roxId .ds-info2 .ds:nth-of-type(1) {
 	animation-delay: 1s;
 }
-
-
 
 #roxId .ds-doc {
 	position: absolute;
@@ -241,7 +240,7 @@ body {
 .ds-doc .documento h6,
 #roxId .ds-doc .idade h6 {
 	text-transform: uppercase;
-	color: rgb(255, 0, 0);
+	color: #c0392b;
 }
 
 #roxId .ds-doc .identidade p,
@@ -324,5 +323,5 @@ body {
 
 .following {
 	color: white;
-	background: crimson;
+	background: #c0392b;
 }

@@ -20,7 +20,13 @@ $(document).ready(function() {
 			iziToast.error({
 				title: false,
 				message: event.data.mensagem,
-				icon: 'fas fa-ban'
+				icon: 'fas fa-exclamation-circle'
+			});
+		} else if (event.data.css == "policia") {
+			iziToast.policia({
+				title: false,
+				message: event.data.mensagem,
+				icon: 'fas fa-bullhorn'
 			});
 		} else if (event.data.css == "aviso") {
 			iziToast.warning({
@@ -32,7 +38,7 @@ $(document).ready(function() {
 			iziToast.info({
 				title: false,
 				message: event.data.mensagem,
-				icon: 'fas fa-exclamation-triangle'
+				icon: 'fas fa-info-circle'
 			});
 		}
 	});

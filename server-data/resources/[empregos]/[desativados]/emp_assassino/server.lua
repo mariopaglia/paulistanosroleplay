@@ -36,7 +36,7 @@ function emP.MarcarOcorrencia()
 					local id = idgens:gen()
 					blips[id] = vRPclient.addBlip(player,x,y,z,153,84,"Ocorrência",0.5,false)
 					vRPclient._playSound(player,"CONFIRM_BEEP","HUD_MINI_GAME_SOUNDSET")
-					TriggerClientEvent('chatMessage',player,"190",{65,130,255},"Recebemos a denuncia de um assassinato, verifique o ocorrido.")
+					TriggerClientEvent('chatMessage',player,"CENTRAL:",{65,130,255},"Recebemos a denuncia de um assassinato, verifique o ocorrido.")
 					SetTimeout(15000,function() vRPclient.removeBlip(player,blips[id]) idgens:free(id) end)
 				end)
 			end

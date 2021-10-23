@@ -72,7 +72,8 @@ function func.checkRobbery(id,x,y,z,head)
 					async(function()
 						TriggerClientEvent('blip:criar:caixaeletronico',player,x,y,z)
 						vRPclient.playSound(player,"Oneshot_Final","MP_MISSION_COUNTDOWN_SOUNDSET")
-						TriggerClientEvent('chatMessage',player,"190",{65,130,255},"O roubo começou no ^1Caixa Eletrônico^0, dirija-se até o local e intercepte os assaltantes.")
+						TriggerClientEvent("Notify", player, "policia", "O roubo começou no <b>Caixa Eletrônico</b>, dirija-se até o local e intercepte os assaltantes.", 20000)
+						TriggerClientEvent('chatMessage',player,"CENTRAL:",{65,130,255},"O roubo começou no ^1Caixa Eletrônico^0, dirija-se até o local e intercepte os assaltantes.")
 					end)
 				end
 			end
@@ -84,7 +85,8 @@ function func.checkRobbery(id,x,y,z,head)
 						if player then
 							async(function()
 								TriggerClientEvent('blip:remover:caixaeletronico',player)
-								TriggerClientEvent('chatMessage',player,"190",{65,130,255},"O roubo terminou, os assaltantes estão correndo antes que vocês cheguem.")
+								TriggerClientEvent("Notify", player, "policia", "O roubo terminou, os assaltantes estão correndo antes que vocês cheguem.", 20000)
+								TriggerClientEvent('chatMessage',player,"CENTRAL:",{65,130,255},"O roubo terminou, os assaltantes estão correndo antes que vocês cheguem.")
 							end)
 						end
 					end
@@ -105,7 +107,8 @@ function func.cancelRobbery()
 			if player then
 				async(function()
 					TriggerClientEvent('blip:remover:caixaeletronico',player)
-					TriggerClientEvent('chatMessage',player,"190",{65,130,255},"O assaltante saiu correndo e deixou tudo para trás.")
+					TriggerClientEvent("Notify", player, "policia", "O assaltante saiu correndo e deixou tudo para trás.", 20000)
+					TriggerClientEvent('chatMessage',player,"CENTRAL:",{65,130,255},"O assaltante saiu correndo e deixou tudo para trás.")
 				end)
 			end
 		end

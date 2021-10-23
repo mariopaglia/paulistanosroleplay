@@ -55,5 +55,5 @@ end)
 
 function doSpawnPlayer(source,user_id,firstspawn)
 	TriggerClientEvent("b2k-character:normalSpawn",source,firstspawn)
-	TriggerEvent("creative-barbershop:init",user_id)
+	TriggerEvent("vrp_barbershop:init",user_id)
 end

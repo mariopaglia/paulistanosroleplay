@@ -663,6 +663,20 @@ local vehList = {
 	{ ['name'] = "traildesc", ['hash'] = 334584363, ['banned'] = false },
 	{ ['name'] = "frogger2", ['hash'] = 1949211328, ['banned'] = false },
 	{ ['name'] = "ambulance", ['hash'] = 1171614426, ['banned'] = false },
+
+	-- VEÍCULOS VIP novos
+	{ ['name'] = "africat", ['hash'] = 1047274985, ['banned'] = false },
+	{ ['name'] = "m4lb", ['hash'] = 1867789750, ['banned'] = false },
+	{ ['name'] = "c7", ['hash'] = 874739883, ['banned'] = false },
+	{ ['name'] = "r35", ['hash'] = -980169995, ['banned'] = false },
+	{ ['name'] = "lwgtr", ['hash'] = 590709306, ['banned'] = false },
+	{ ['name'] = "golf75r", ['hash'] = 406183167, ['banned'] = false },
+	{ ['name'] = "718b", ['hash'] = -1528734685, ['banned'] = false },
+	{ ['name'] = "vwstance", ['hash'] = 192820287, ['banned'] = false },
+	{ ['name'] = "r820", ['hash'] = -143695728, ['banned'] = false },
+	{ ['name'] = "urus2018", ['hash'] = 1094481404, ['banned'] = false },
+	{ ['name'] = "ram2500", ['hash'] = -301519603, ['banned'] = false },
+
 	-- Importados
 	{ ['name'] = "q820", ['hash'] = -2006731729, ['banned'] = false },
 	{ ['name'] = "bmci", ['hash'] = 1093697054, ['banned'] = false },
@@ -809,6 +823,7 @@ local vehList = {
 	{ ['name'] = "amaroktuning", ['hash'] = 522112651, ['banned'] = false },
 
 	-- POLICIA 
+	{ ['name'] = "r820p", ['hash'] = -1799742390, ['banned'] = false },
 	{ ['name'] = "corleo", ['hash'] = 562121842, ['banned'] = false },
 	{ ['name'] = "pmfcevo9", ['hash'] = 239962922, ['banned'] = false },
 	{ ['name'] = "a45policia", ['hash'] = 1372921020, ['banned'] = false },

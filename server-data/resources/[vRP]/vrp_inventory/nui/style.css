@@ -6,6 +6,20 @@ body {
   background: transparent;
 }
 
+::-webkit-scrollbar {
+    width: 0px;
+    background: transparent; /* make scrollbar transparent */
+}
+
+.debug {
+  border: 7px solid #fffb00 !important;
+}
+
+.workspace {
+  align-items: center;
+  height: 82vh;
+}
+
 .blur-mask {
   position: absolute;
   width: 100%;
@@ -34,7 +48,10 @@ body {
 }
 
 .inventory-content {
-  max-width: 1000px;
+  border-bottom: 7px solid #2ecc71 !important;
+  background: rgba(19, 28, 33, 0.9) !important;
+  border-radius: 20px;
+  max-width: 1200px;
   height: 500px;
   width: 100%;
   -moz-transform: translate(-50%, -50%);
@@ -45,11 +62,19 @@ body {
   left: 50%;
   top: 50%;
   z-index: 999;
+  overflow: hidden;
+  overflow-y: scroll;
+}
+
+.inventory-title {
+  text-align: center;
 }
 
 .title-section {
+  margin-top: 15px;
+  margin-bottom: 15px;
   font-weight: 500;
-  font-size: 16px;
+  font-size: 18px;
   opacity: 0.85;
   text-shadow: 2px 2px 3px rgba(0, 0, 0, 1);
 }
@@ -62,13 +87,13 @@ body {
   width: 100%;
   height: auto;
   max-height: 400px;
-  padding-bottom: 25px;
-  overflow: auto;
+  /* padding-bottom: 25px; */
+  /* overflow: auto; */
 }
 
 .dropped .cell {
   padding: 5px !important;
-  margin: 5px 0px !important;
+  /* margin: 5px 0px !important; */
   background-color: rgba(0, 0, 0, 0.6);
   -webkit-border-radius: 5px;
   -moz-border-radius: 5px;
@@ -97,12 +122,13 @@ body {
 }
 
 .objects {
+  margin-left: 20px !important;
   padding-bottom: 25px;
   height: auto;
   max-height: 500px;
   margin: 0px;
-  overflow: visible;
-  overflow-y: auto;
+  /* overflow: visible;
+  overflow-y: scroll; */
 }
 
 .objects .cell {
@@ -110,8 +136,9 @@ body {
   max-width: 16%;*/
   flex: 0 0 11.3%;
   max-width: 11.3%;
-  margin: 0.3%;
-  background-color: rgba(0, 0, 0, 0.3);
+  margin: 0.5%;
+  background: rgba(5, 97, 98, 0.7);
+  border-bottom: 5px solid #2ecc71 !important;
   padding: 5px 0px;
   padding-bottom: 50px;
   -webkit-border-radius: 10px;
@@ -125,7 +152,7 @@ body {
 }
 
 .objects .cell:hover {
-  background-color: rgba(0, 0, 0, 0.5);
+  background: rgba(5, 97, 98, 0.95);
 }
 
 .objects .cell .row {
@@ -232,10 +259,10 @@ body {
   color: rgba(0, 0, 0, 0.7) !important;
 }
 
-::-webkit-scrollbar
+/* ::-webkit-scrollbar
 {
-    width: 3px;   /*for vertical scrollbars*/ 
-    height: 12px;  /*for horizontal scrollbars*/ 
+    width: 3px; 
+    height: 12px;
 }
 
 ::-webkit-scrollbar-track
@@ -256,4 +283,4 @@ body {
     -moz-background-clip: content-box;
     -webkit-background-clip: content-box;
     background-clip: content-box;
-}
+} */

@@ -1,0 +1,322 @@
+div { border: 0; outline: 0; vertical-align: baseline; background: transparent; margin: 0; padding: 0; }
+:focus { outline: 0; }
+::selection { background: transparent; }
+
+.body{
+  background: none;
+}
+
+.actionmenu {
+  background: linear-gradient(to right, #e342ff 40%, #2206ff);
+  position: fixed;
+  top: 10%;
+  orientation: center;
+  right: 15%;
+  width: 70%;
+  height: 70%;
+}
+.name{
+  /* font-family: Front Page Neue; */
+  color: white;
+  font-size: 60px;
+  position: absolute;
+  left: 5%;
+  top: 3%;
+}
+.investimentos{
+  font-family: Front Page Neue;
+  text-align: center;
+  color: white;
+  font-size: 20px;
+  position: absolute;
+  right: 20%;
+  top: 5%;
+}
+.total{
+  /* font-family: Front Page Neue; */
+  color: rgb(58, 250, 0);
+  font-size: 20px;
+  position: absolute;
+  right: 9%;
+  top: 5%;
+}
+.divisor{
+  width: 100%;
+  height: 3%;
+  background-color: white;
+  top: 17%;
+  position: absolute;
+}
+.divisor2{
+  width: 2%;
+  height: 63%;
+  background-color: white;
+  top: 30%;
+  position: absolute;
+  left: 37%;
+}
+.vender{
+  width: 20%;
+  height: 15%;
+  background-color: #ae1010;
+  top: 75%;
+  position: absolute;
+  left: 75%;
+  border-width: 5px;
+  border-style: solid;
+  border-color: rgb(255, 255, 255);
+  box-shadow: 10px 5px 5px black;
+  
+}
+
+.comprar{
+  width: 20%;
+  height: 15%;
+  background-color: #3ab510;
+  top: 55%;
+  position: absolute;
+  left: 75%;
+  border-width: 5px;
+  border-style: solid;
+  border-color: rgb(255, 255, 255);
+  box-shadow: 10px 5px 5px black;
+  
+}
+
+.st{
+  width: 20%;
+  height: 15%;
+  background-color: #3ab510;
+  top: 55%;
+  position: absolute;
+  left: 75%;
+  border-width: 5px;
+  border-style: solid;
+  border-color: rgb(255, 255, 255);
+  box-shadow: 10px 5px 5px black;
+  transition: all .2s ease-in-out;
+}
+
+.st1{
+  width: 20%;
+  height: 15%;
+  background-color: #ae1010;
+  top: 75%;
+  position: absolute;
+  left: 75%;
+  border-width: 5px;
+  border-style: solid;
+  border-color: rgb(255, 255, 255);
+  box-shadow: 10px 5px 5px black;
+  transition: all .2s ease-in-out;
+}
+
+.st2{
+  color: white;
+  /* font-family: Front Page Neue; */
+  font-size: 50px;
+  left: 11%;
+  top: 15%;
+  position: absolute;
+}
+
+.chart_div{
+  position: absolute;
+  width: 65%;
+  height: 75%;
+  right: 30%;
+  top: 20%;
+  background-color: transparent;
+}
+.back1{
+  width: 20%;
+  left: 75%;
+  height: 10%;
+  background-color: rgba(0, 0, 0, 0.52);
+  top: 40%;
+  position: absolute;
+
+}
+.back2{
+  width: 20%;
+  left: 75%;
+  height: 10%;
+  background-color: rgba(0, 0, 0, 0.52);
+  top: 25%;
+  position: absolute;
+
+}
+.font{
+  color: white;
+  /* font-family: Front Page Neue; */
+  text-align: center;
+  right: 40%;
+}
+.font2{
+  color: white;
+  /* font-family: Front Page Neue; */
+  text-align: center;
+  left: 40%;
+}
+
+.balance{
+  color: rgb(49, 173, 18);
+  /* font-family: Front Page Neue; */
+  right: 15%;
+  position: absolute;
+}
+
+.balance1{
+  color: rgb(49, 173, 18);
+  /* font-family: Front Page Neue; */
+  right: 11%;
+  position: absolute;
+  top: 43%;
+  font-size: 40px;
+}
+
+.saldo1{
+  /* font-family: Front Page Neue; */
+  color: rgb(251, 255, 0);
+  font-size: 20px;
+  position: absolute;
+  right: 15%;
+  top: 5%;
+
+}
+
+.botao {
+  width: 20%;
+  height: 15%;
+  top: 64%;
+  position: absolute;
+  left: 75%;
+}
+
+.button {
+  min-width: 300px;
+  min-height: 60px;
+  font-family: 'Nunito', sans-serif;
+  font-size: 22px;
+  text-transform: uppercase;
+  letter-spacing: 1.3px;
+  font-weight: 700;
+  color: #ffffff;
+  background: rgb(0, 255, 34);
+  border: none;
+  border-radius: 1000px;
+  box-shadow: 12px 12px 24px rgba(79,209,197,.64);
+  transition: all 0.3s ease-in-out 0s;
+  cursor: pointer;
+  outline: none;
+  position: relative;
+  padding: 10px;
+  }
+
+button::before {
+content: '';
+  border-radius: 1000px;
+  min-width: calc(300px + 12px);
+  min-height: calc(60px + 12px);
+  border: 6px solid #fffb00;
+  box-shadow: 0 0 60px rgba(252, 235, 0, 0.64);
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  opacity: 0;
+  transition: all .3s ease-in-out 0s;
+}
+
+.button:hover, .button:focus {
+  color: #ffffff;
+  transform: translateY(-6px);
+}
+
+button:hover::before, button:focus::before {
+  opacity: 1;
+}
+
+
+button:hover::after, button:focus::after {
+  animation: none;
+  display: none;
+}
+
+.rendimento {
+  right: 40%;
+  color: #3ab510;
+  position: absolute;
+  top: 40%;
+}
+
+.botao2 {
+  width: 20%;
+  height: 15%;
+  top: 75%;
+  position: absolute;
+  left: 75%;
+}
+
+.button2 {
+  min-width: 300px;
+  min-height: 60px;
+  font-family: 'Nunito', sans-serif;
+  font-size: 22px;
+  text-transform: uppercase;
+  letter-spacing: 1.3px;
+  font-weight: 700;
+  color: #ffffff;
+  background: rgb(226, 23, 8);
+  border: none;
+  border-radius: 1000px;
+  box-shadow: 12px 12px 24px rgba(79,209,197,.64);
+  transition: all 0.3s ease-in-out 0s;
+  cursor: pointer;
+  outline: none;
+  position: relative;
+  padding: 10px;
+  }
+
+button2::before {
+content: '';
+  border-radius: 1000px;
+  min-width: calc(300px + 12px);
+  min-height: calc(60px + 12px);
+  border: 6px solid #ff2600;
+  box-shadow: 0 0 60px rgba(241, 4, 4, 0.64);
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  opacity: 0;
+  transition: all .3s ease-in-out 0s;
+}
+
+.button2:hover, .button:focus {
+  color: #ffffff;
+  transform: translateY(-6px);
+}
+
+button2:hover::before, button2:focus::before {
+  opacity: 1;
+}
+
+
+button2:hover::after, button2:focus::after {
+  animation: none;
+  display: none;
+}
+
+@keyframes ring {
+  0% {
+    width: 30px;
+    height: 30px;
+    opacity: 1;
+  }
+  100% {
+    width: 300px;
+    height: 300px;
+    opacity: 0;
+  }
+}

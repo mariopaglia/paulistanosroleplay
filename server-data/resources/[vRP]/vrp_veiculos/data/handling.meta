@@ -7247,14 +7247,14 @@
 		</Item>
 		<Item type="CHandlingData">
 			<handlingName>amarok</handlingName>
-			<fMass value="2400.000000" />
+			<fMass value="2000.000000" />
 			<fInitialDragCoeff value="8.500000" />
 			<fPercentSubmerged value="85.000000" />
 			<vecCentreOfMassOffset x="0.000000" y="0.050000" z="-0.050000" />
 			<vecInertiaMultiplier x="1.000000" y="1.000000" z="1.000000" />
 			<fDriveBiasFront value="0.500000" />
 			<nInitialDriveGears value="6" />
-			<fInitialDriveForce value="0.390000" />
+			<fInitialDriveForce value="0.280000" />
 			<fDriveInertia value="1.000000" />
 			<fClutchChangeRateScaleUpShift value="12.800000" />
 			<fClutchChangeRateScaleDownShift value="12.800000" />

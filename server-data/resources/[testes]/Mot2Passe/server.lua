@@ -8,16 +8,20 @@ Config.CleverMode   = true                         -- Use clever mode? If this i
 Config.DiscordLink  = 'https://discord.gg/F3Jp5J2' -- Your Discord server invite link.
 Config.Whitelist    = {                            -- You normally only need one identifier per person.
     'discord:289036328136474624', -- Porcão
-    'discord:310595405979058176', -- Wally
-    'discord:223642833817567233', -- Chloe
+    'steam:11000010b5d5948', -- Wally
+    'license2:d0a1415b364b5c13cced1ebf2b9a482bd1028778', -- Wally
+    'license:d0a1415b364b5c13cced1ebf2b9a482bd1028778', -- Wally
+    'steam:11000011789f9c2', -- Chloe
     'steam:110000106bf62a9', -- Berti
-    'discord:377834240936771585', -- Kappa
+    'fivem:2181940', -- Berti
+    'steam:110000104dcdf67', -- Kappa
     'discord:475152638460297226', -- Dudu
     'discord:149192965363859456', -- Mike
     'discord:423268235732058113', -- Coruja
     'discord:191353472220790785', -- Jhon
     'discord:856013474257698827', -- Dayanne
-    'discord:326059070018682883', -- Cortez
+    'steam:1100001095d6051', -- Cortez
+    'steam:11000010aa4054a', -- Diego
 }
 
 

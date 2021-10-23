@@ -8,9 +8,9 @@ Tunnel.bindInterface("nav_mecanica",emP)
 -- ARRAY
 -----------------------------------------------------------------------------------------------------------------------------------------
 local valores = {
-	{ item = "militec", quantidade = 1, compra = 500, venda = 50 },
-	{ item = "repairkit", quantidade = 1, compra = 1000, venda = 50 },
-	{ item = "pneu", quantidade = 1, compra = 100, venda = 50 },
+	{ item = "militec", quantidade = 1, compra = 5000, venda = 1 },
+	{ item = "repairkit", quantidade = 1, compra = 8000, venda = 1 },
+	{ item = "pneu", quantidade = 1, compra = 1000, venda = 1 },
 }
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- COMPRAR
@@ -23,9 +23,43 @@ AddEventHandler("mecanica-comprar",function(item)
 		for k,v in pairs(valores) do
 			if item == v.item then
 				if vRP.getInventoryWeight(user_id)+vRP.getItemWeight(v.item)*v.quantidade <= vRP.getInventoryMaxWeight(user_id) then
+					
+					-- COMPRA DE MECANICO COM DESCONTO
+					if item == "militec" and vRP.hasPermission(user_id, "mecanico.permissao") then
+						if vRP.tryFullPayment(user_id,parseInt(500)) then
+							vRP.giveInventoryItem(user_id,v.item,parseInt(v.quantidade))
+							TriggerClientEvent("Notify",source,"sucesso","Comprou <b>"..vRP.itemNameList(item).."</b> e pagou <b>R$ 500</b>")
+							return true
+						else
+							TriggerClientEvent("Notify",source,"negado","Dinheiro insuficiente.")
+							return false
+						end
+					end
+					if item == "repairkit" and vRP.hasPermission(user_id, "mecanico.permissao") then
+						if vRP.tryFullPayment(user_id,parseInt(1000)) then
+							vRP.giveInventoryItem(user_id,v.item,parseInt(v.quantidade))
+							TriggerClientEvent("Notify",source,"sucesso","Comprou <b>"..vRP.itemNameList(item).."</b> e pagou <b>R$ 1.000</b>")
+							return true
+						else
+							TriggerClientEvent("Notify",source,"negado","Dinheiro insuficiente.")
+							return false
+						end
+					end
+					if item == "pneu" and vRP.hasPermission(user_id, "mecanico.permissao") then
+						if vRP.tryFullPayment(user_id,parseInt(100)) then
+							vRP.giveInventoryItem(user_id,v.item,parseInt(v.quantidade))
+							TriggerClientEvent("Notify",source,"sucesso","Comprou <b>"..vRP.itemNameList(item).."</b> e pagou <b>R$ 100</b>")
+							return true
+						else
+							TriggerClientEvent("Notify",source,"negado","Dinheiro insuficiente.")
+							return false
+						end
+					end
+					
+					-- COMPRA DE CÍVIL
 					if vRP.tryFullPayment(user_id,parseInt(v.compra)) then
 						vRP.giveInventoryItem(user_id,v.item,parseInt(v.quantidade))
-						TriggerClientEvent("Notify",source,"sucesso","Compra efetuada com sucesso!</b>")
+						TriggerClientEvent("Notify",source,"sucesso","Comprou <b>"..vRP.itemNameList(item).."</b> e pagou <b>R$ "..vRP.format(parseInt(v.compra)).."</b>")
 					else
 						TriggerClientEvent("Notify",source,"negado","Dinheiro insuficiente.")
 					end

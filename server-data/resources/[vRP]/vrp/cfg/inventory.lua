@@ -30,6 +30,7 @@ cfg.chestweight = {
 	["VRraptor"] = 50,
 	["VRtahoe"] = 50,
 	["VRdm1200"] = 50,
+	["r820p"] = 50,
 	
 	-- HELICOPTEROS
 	["buzzard2"] = 1000,
@@ -108,7 +109,7 @@ cfg.chestweight = {
 	["yosemite"] = 100,
 	["bfinjection"] = 20,
 	["bifta"] = 20,
-	["bodhi2"] = 90,
+	["bodhi2"] = 0,
 	["dubsta3"] = 70,
 	["mesa3"] = 60,
 	["rancherxl"] = 70,
@@ -268,7 +269,7 @@ cfg.chestweight = {
 	["terbyte"] = 500,
 	["mule3"] = 500,
 	["benson"] = 750,
-	["speedo"] = 100,
+	["speedo"] = 0,
 	["surfer"] = 80,
 	["surfer2"] = 70,
 	["youga"] = 100,
@@ -391,6 +392,19 @@ cfg.chestweight = {
 	["vstr"] = 40,
 	["furia"] = 10,
 	["jugular"] = 40,
+
+	-- VEÍCULOS VIP novos
+	["africat"] = 100,
+	["m4lb"] = 100,
+	["c7"] = 100,
+	["r35"] = 100,
+	["lwgtr"] = 100,
+	["golf75r"] = 100,
+	["718b"] = 100,
+	["vwstance"] = 100,
+	["r820"] = 100,
+	["urus2018"] = 100,
+	["ram2500"] = 100,
 
 	-- RMOD
 	["rmodbolide"] = 150,

@@ -1302,6 +1302,9 @@ local spawn = {
 	},	
 	[678] = { ['x'] = -1474.18, ['y'] = -1016.79, ['z'] = 6.3, ['name'] = "Salvavidas", -- EMPREGO DE SALVA VIDAS
 	[1] = { ['x'] = -1474.21, ['y'] = -1012.5, ['z'] = 5.84, ['h'] = 230.57 },
+	},
+	[679] = { ['x'] = -673.84, ['y'] = 5828.23, ['z'] = 17.34, ['name'] = "Cacador", -- EMPREGO DE CACADOR
+	[1] = { ['x'] = -678.15, ['y'] = 5826.13, ['z'] = 17.29, ['h'] = 135.23 },
 	},	
 }
 -----------------------------------------------------------------------------------------------------------------------------------------
@@ -1334,9 +1337,15 @@ end
 function src.vehicleMods(veh,custom)
 	if custom and veh then
 		SetVehicleModKit(veh,0)
-		if custom.color then
-			SetVehicleColours(veh,tonumber(custom.color[1]),tonumber(custom.color[2]))
-			SetVehicleExtraColours(veh,tonumber(custom.extracolor[1]),tonumber(custom.extracolor[2]))
+
+		if not custom.customcolor1 and not custom.customcolor2 then
+			if custom.color then
+				SetVehicleColours(veh,tonumber(custom.color[1]),tonumber(custom.color[2]))
+				SetVehicleExtraColours(veh,tonumber(custom.extracolor[1]),tonumber(custom.extracolor[2]))
+			end
+		else
+			SetVehicleCustomPrimaryColour(veh,tonumber(custom.customcolor1[1]),tonumber(custom.customcolor1[2]),tonumber(custom.customcolor1[3]))
+			SetVehicleCustomSecondaryColour(veh,tonumber(custom.customcolor2[1]),tonumber(custom.customcolor2[2]),tonumber(custom.customcolor2[3]))
 		end
 
 		if custom.smokecolor then
@@ -1424,6 +1433,9 @@ function src.vehicleMods(veh,custom)
 			ToggleVehicleMod(veh,22,tonumber(custom.headlights))
 			ToggleVehicleMod(veh,18,tonumber(custom.turbo))
 		end
+		if tonumber(custom.headlights) == 1 then
+            SetVehicleHeadlightsColour(veh,tonumber(custom.xenoncolor))
+        end
 	end
 end
 -----------------------------------------------------------------------------------------------------------------------------------------
@@ -1468,8 +1480,8 @@ function src.spawnVehicle(vehname,vehengine,vehbody,vehfuel,custom)
 				SetVehicleEngineHealth(nveh,vehengine+0.0)
 				SetVehicleBodyHealth(nveh,vehbody+0.0)
 				SetVehicleFuelLevel(nveh,vehfuel+0.0)
-
-				src.vehicleMods(nveh,custom)
+				TriggerEvent("nation:applymods",nveh,vehname)
+				--src.vehicleMods(nveh,custom)
 				src.syncBlips(nveh,vehname)
 
 				vehicle[vehname] = true
@@ -1740,6 +1752,11 @@ end)
 function src.syncVehiclesEveryone(veh,status)
 	SetVehicleDoorsLocked(veh,status)
 end
+
+RegisterNetEvent('vrp_garages:mods')
+AddEventHandler('vrp_garages:mods',function(vnet,custom)
+  src.vehicleMods(NetToVeh(vnet),custom)
+end)
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- REPARAR
 -----------------------------------------------------------------------------------------------------------------------------------------

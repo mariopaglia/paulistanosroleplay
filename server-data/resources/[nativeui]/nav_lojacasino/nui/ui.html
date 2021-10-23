@@ -1,0 +1,81 @@
+<html>
+
+<head>
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+    <link href="ui.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+    <div class="actionmenu" style="display: none;">
+        <div class="container">
+            <div class="containerInline">
+                <section class="left">
+                    <div class="centerDiv">
+                        <img class="category_arma" category="all" src="http://189.127.164.170:8080/serverlogo.png">
+                    </div>
+                    <div class="sectionItem item-category category_arma" category="utilidades">
+                        <p>Todos</p>
+                    </div>
+                    <!-- <div class="sectionItem item-category category_arma" category="comidas">
+                        <p>Comidas</p>
+                    </div>
+                    <div class="sectionItem item-category category_arma" category="bebidas">
+                        <p>Bebidas</p>
+                    </div> -->
+                    <!-- <div class="sectionItem item-category category_arma" category="armas">
+                    <p>departamento</p>
+                </div> -->
+                    <!-- <div class="sectionItem item-category category_arma" category="municoes">
+                    <p>Munições</p>
+                </div> -->
+                </section>
+
+                <section class="right">
+                    <div class="sectionContent">
+                        <!--UTILIDADES-->
+
+                        <div class="sectionItem arma-item" category="utilidades">
+                            <p>Ficha Casino (x1)</p>
+                            <div class="imgIcon">
+                                <img src="http://189.127.164.170:8080/imagens/casino_token.png">
+                            </div>
+                            <div class="overlayItem">
+                                <button data-action="casino-comprar-casino_token" class="menuoption">Comprar</button>
+                                <button data-action="casino-vender-casino_token" class="menuoption">Vender</button>
+                            </div>
+                            <p class="priceItem">R$ 1</p>
+                        </div>
+
+                        <div class="sectionItem arma-item" category="utilidades">
+                            <p>Ticket Roleta (x1)</p>
+                            <div class="imgIcon">
+                                <img src="http://189.127.164.170:8080/imagens/casino_ticket.png">
+                            </div>
+                            <div class="overlayItem">
+                                <button data-action="casino-comprar-casino_ticket" class="menuoption">Comprar</button>
+                                <!-- <button data-action="casino-vender-casino_ticket" class="menuoption">Vender</button> -->
+                            </div>
+                            <p class="priceItem">R$ 10.000</p>
+                        </div>
+
+                        <div class="sectionItem arma-item" category="utilidades">
+                            <p>Raspadinha (x1)</p>
+                            <div class="imgIcon">
+                                <img src="http://189.127.164.170:8080/imagens/raspadinha.png">
+                            </div>
+                            <div class="overlayItem">
+                                <button data-action="casino-comprar-raspadinha" class="menuoption">Comprar</button>
+                                <!-- <button data-action="casino-vender-raspadinha" class="menuoption">Vender</button> -->
+                            </div>
+                            <p class="priceItem">R$ 5.000</p>
+                        </div>
+
+                    </div>
+                </section>
+            </div>
+        </div>
+    </div>
+    <script src="ui.js" type="text/javascript"></script>
+</body>
+
+</html>

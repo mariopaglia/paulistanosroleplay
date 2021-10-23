@@ -196,9 +196,9 @@ function checkPluginStatus() {
 
 function checkPluginVersion() {
 	if (isPluginVersionCorrect()) {
-		document.getElementById('pluginVersion').innerHTML = `Versão do Plugin: <font color="green">${voip.pluginVersion}</font> (up-to-date)`;
+		document.getElementById('pluginVersion').innerHTML = `Versão do Plugin: <font color="#2ecc71">${voip.pluginVersion}</font>`;
 	} else {
-		document.getElementById('pluginVersion').innerHTML = `Versão do Plugin: <font color="red">${voip.pluginVersion}</font> (Required: ${voip.minVersion})`;
+		document.getElementById('pluginVersion').innerHTML = `Versão do Plugin: <font color="red">${voip.pluginVersion}</font> (Requer: ${voip.minVersion})`;
 		voipStatus = INCORRECT_VERSION;
 	}
 }
@@ -225,26 +225,26 @@ function updateTokovoipInfo(msg) {
 	switch (voipStatus) {
 		case NOT_CONNECTED:
 			msg = 'OFFLINE';
-			color = 'red';
+			color = '#2ecc71';
 			break;
 		case PLUGIN_INITIALIZING:
 			msg = 'INICIANDO';
-			color = 'red';
+			color = '#2ecc71';
 			break;
 		case WRONG_SERVER:
 			msg = `Voz <b>desativada</b>. Conecte-se ao <b>TeamSpeak</b>.</font>`;
 			screenMessage = 'TeamSpeak desconectado';
-			color = 'red';
+			color = '#2ecc71';
 			break;
 		case WRONG_CHANNEL:
 			msg = `Voz <b>desativada</b>. Conecte-se ao <b>TeamSpeak</b>.</font>`;
 			screenMessage = 'TeamSpeak desconectado';
-			color = 'red';
+			color = '#2ecc71';
 			break;
 		case INCORRECT_VERSION:
 			msg = 'Using incorrect plugin version';
 			screenMessage = 'Versão incorreta do plugin';
-			color = 'red';
+			color = '#2ecc71';
 			break;
 		case OK:
 			color = 'rgba(255,255,255,0.5)';
@@ -259,8 +259,8 @@ function updateTokovoipInfo(msg) {
 
 function updateConfig(payload) {
 	voip = payload;
-	document.getElementById('TSServer').innerHTML = `TeamSpeak IP: <font color="yellow">${voip.plugin_data.TSServer}</font>`;
-	document.getElementById('TSChannel').innerHTML = `TeamSpeak Canal: <font color="yellow">${(voip.plugin_data.TSChannelWait) ? voip.plugin_data.TSChannelWait : voip.plugin_data.TSChannel}</font>`;
+	document.getElementById('TSServer').innerHTML = `TeamSpeak IP: <font color="#c0392b">${voip.plugin_data.TSServer}</font>`;
+	document.getElementById('TSChannel').innerHTML = `TeamSpeak Canal: <font color="#c0392b">${(voip.plugin_data.TSChannelWait) ? voip.plugin_data.TSChannelWait : voip.plugin_data.TSChannel}</font>`;
 	document.getElementById('TSDownload').innerHTML = voip.plugin_data.TSDownload;
 	document.getElementById('TSChannelSupport').innerHTML = voip.plugin_data.TSChannelSupport;
 }

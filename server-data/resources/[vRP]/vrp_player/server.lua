@@ -8,8 +8,8 @@ vRPclient = Tunnel.getInterface("vRP")
 local idgens = Tools.newIDGenerator()
 
 vRPN = {}
-Tunnel.bindInterface("vrp_inventory",vRPN)
-Proxy.addInterface("vrp_inventory",vRPN)
+Tunnel.bindInterface("vrp_inventorynovo",vRPN)
+Proxy.addInterface("vrp_inventorynovo",vRPN)
 vRPNclient = Tunnel.getInterface("vrp_player","vrp_player")
 
 emP = {}
@@ -78,6 +78,9 @@ local itemlist = {
 	-- Sistema de PET
 	["wammo|WEAPON_BALL"] = { index = "bolinha", nome = "Bolinha de PET" },
 	["comidapet"] = { index = "comidapet", nome = "Comida de PET" },
+	
+	-- Evento
+	["roupaevento"] = { index = "roupaevento", nome = "Roupa Evento" },
 
 	-- Fome e Sede
 	["hamburguer"] = { index = "hamburguer", nome = "Hamburguer" },
@@ -158,6 +161,8 @@ local itemlist = {
 	["corpodehkp7m10"] = { index = "corpodehkp7m10", nome = "Corpo de HK P7M10" },
 	["corpodeg36"] = { index = "corpodeg36", nome = "Corpo de G36" },
 	["corpodemp5"] = { index = "corpodemp5", nome = "Corpo de MP5" },
+	["corpodescorpion"] = { index = "corpodescorpion", nome = "Corpo de Scorpion" },
+	["corpodeshotgun"] = { index = "corpodeshotgun", nome = "Corpo de Shotgun" },
 	["gatilho"] = { index = "gatilho", nome = "Gatilho" },
 	["mola"] = { index = "mola", nome = "Mola" },
 	-- metal de alta
@@ -1264,27 +1269,27 @@ end)
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- AVISO DE SERVIDOR ONLINE
 -----------------------------------------------------------------------------------------------------------------------------------------
--- Citizen.CreateThread(function()
---     PerformHttpRequest("https://discord.com/api/webhooks/881267755339350058/GXZaLxLl490YXq01HNCB1Sw-hlDHtcuwgng-2vI5Zizgz9TwrBUv4f3uU9_rUnBM7iXk", function(err, text, headers) end, 'POST', json.encode({
---         username = "Fênix City",
---         avatar_url = "https://cdn.discordapp.com/attachments/795675862350430288/844269660882862101/v2.gif",
---         content = '||<@&748524310939041808>||',
---         embeds = {
---             {
---                 title = "SERVIDOR ONLINE, BOM RP À TODOS!",
---                 color = 65280,
---                 description = "**Para entrar na cidade, utilize um dos métodos abaixo:**\n\n**Método 1:**\nAbra o FiveM > Aperte F8 > Cole: **connect cfx.re/join/mpmeq9**\n\n**Método 2:**\nAbra o FiveM > Pesquise por **Fenix City** > **Connect**\n\nLembrando que para jogar é necessário estar conectado em nosso <#756544512691667035>",
---                 image = {
---                     url = "https://cdn.discordapp.com/attachments/863117377558675516/893272997622865970/FiveM_b2189_GTAProcess_QZrMcghnb5.jpg"
---                 },
---                 thumbnail = {
---                     url = "https://cdn.discordapp.com/attachments/795675862350430288/844269660882862101/v2.gif"
---                 },
---                 footer = {
---                     text = "Equipe Fênix City",
---                     icon_url = "https://cdn.discordapp.com/attachments/795675862350430288/844269660882862101/v2.gif"
---                 },
---             }
---         },
---     }), { ['Content-Type'] = 'application/json' })
--- end)
+Citizen.CreateThread(function()
+    PerformHttpRequest("https://discord.com/api/webhooks/902558413479899206/fDB3QD4sxTqpy59FNTWGVcFbCGcyvx5qxbKcgP2Dt_YQHuVRQ5ATP4COfrztiubo1BSo", function(err, text, headers) end, 'POST', json.encode({
+        username = "Fênix City",
+        avatar_url = "https://cdn.discordapp.com/attachments/795675862350430288/844269660882862101/v2.gif",
+        content = '||<@&748524310939041808>||',
+        embeds = {
+            {
+                title = "SERVIDOR ONLINE, BOM RP À TODOS!",
+                color = 65280,
+                description = "**Para entrar na cidade, utilize um dos métodos abaixo:**\n\n**Método 1:**\nAbra o FiveM > Aperte F8 > Cole: **connect cfx.re/join/mpmeq9**\n\n**Método 2:**\nAbra o FiveM > Pesquise por **Fenix City** > **Connect**\n\nLembrando que para jogar é necessário estar conectado em nosso <#756544512691667035>",
+                image = {
+                    url = "https://cdn.discordapp.com/attachments/863117377558675516/893272997622865970/FiveM_b2189_GTAProcess_QZrMcghnb5.jpg"
+                },
+                thumbnail = {
+                    url = "https://cdn.discordapp.com/attachments/795675862350430288/844269660882862101/v2.gif"
+                },
+                footer = {
+                    text = "Equipe Fênix City",
+                    icon_url = "https://cdn.discordapp.com/attachments/795675862350430288/844269660882862101/v2.gif"
+                },
+            }
+        },
+    }), { ['Content-Type'] = 'application/json' })
+end)

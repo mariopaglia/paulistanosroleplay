@@ -1,13 +1,12 @@
 client_script "@vrp/lib/lib.lua" --Para remover esta pendencia de todos scripts, execute no console o comando "uninstall"
 
-resource_manifest_version '77731fab-63ca-442c-a67b-abc70f28dfa5'
 files {
-    'background.jpg',
-	'css.css',
-	'index.html',
-	'musi.mp3',
-	'script.js'
+    'index.html',
+    'style.css',
+    'video.mp4',
+    -- 'audio.mp3'
 }
 
 loadscreen 'index.html'
-              
+
+resource_manifest_version '44febabe-d386-4d18-afbe-5e627f4af937'              

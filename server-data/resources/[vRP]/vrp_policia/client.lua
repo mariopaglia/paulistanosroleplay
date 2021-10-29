@@ -189,6 +189,7 @@ local blacklistedWeapons = {
 	"WEAPON_FIREEXTINGUISHER",
 	"WEAPON_RAYPISTOL",
 	"WEAPON_PETROLCAN",
+	"WEAPON_MUSKET",
 }
 
 local delay = {}

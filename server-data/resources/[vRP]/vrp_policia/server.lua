@@ -112,6 +112,7 @@ RegisterCommand('toogle', function(source, args, rawCommand)
     if vRP.hasPermission(user_id, "pmfci.permissao") then
         TriggerEvent('eblips:remove', source)
         vRP.addUserGroup(user_id, "PMFCIP")
+        vRPclient.replaceWeapons(source,{})
         TriggerClientEvent("Notify", source, "sucesso", "Você saiu de serviço.")
         vRP.Log("```prolog\n[POLICIAL]: " .. user_id .. " " .. identity.name .. " " .. identity.firstname .. " \n[===========SAIU DE SERVICO==========] " .. os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S") .. " \r```", "TOOGLE_POLICIA")
         TriggerClientEvent('desligarRadios', source)
@@ -126,6 +127,7 @@ RegisterCommand('toogle', function(source, args, rawCommand)
     elseif vRP.hasPermission(user_id, "pmfcii.permissao") then
         TriggerEvent('eblips:remove', source)
         vRP.addUserGroup(user_id, "PMFCIIP")
+        vRPclient.replaceWeapons(source,{})
         TriggerClientEvent("Notify", source, "sucesso", "Você saiu de serviço.")
         vRP.Log("```prolog\n[POLICIAL]: " .. user_id .. " " .. identity.name .. " " .. identity.firstname .. " \n[===========SAIU DE SERVICO==========] " .. os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S") .. " \r```", "TOOGLE_POLICIA")
         TriggerClientEvent('desligarRadios', source)
@@ -140,6 +142,7 @@ RegisterCommand('toogle', function(source, args, rawCommand)
     elseif vRP.hasPermission(user_id, "pmfciii.permissao") then
         TriggerEvent('eblips:remove', source)
         vRP.addUserGroup(user_id, "PMFCIIIP")
+        vRPclient.replaceWeapons(source,{})
         TriggerClientEvent("Notify", source, "sucesso", "Você saiu de serviço.")
         vRP.Log("```prolog\n[POLICIAL]: " .. user_id .. " " .. identity.name .. " " .. identity.firstname .. " \n[===========SAIU DE SERVICO==========] " .. os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S") .. " \r```", "TOOGLE_POLICIA")
         TriggerClientEvent('desligarRadios', source)
@@ -154,6 +157,7 @@ RegisterCommand('toogle', function(source, args, rawCommand)
     elseif vRP.hasPermission(user_id, "pmfciv.permissao") then
         TriggerEvent('eblips:remove', source)
         vRP.addUserGroup(user_id, "PMFCIVP")
+        vRPclient.replaceWeapons(source,{})
         TriggerClientEvent("Notify", source, "sucesso", "Você saiu de serviço.")
         vRP.Log("```prolog\n[POLICIAL]: " .. user_id .. " " .. identity.name .. " " .. identity.firstname .. " \n[===========SAIU DE SERVICO==========] " .. os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S") .. " \r```", "TOOGLE_POLICIA")
         TriggerClientEvent('desligarRadios', source)
@@ -173,6 +177,7 @@ RegisterCommand('toogle', function(source, args, rawCommand)
     elseif vRP.hasPermission(user_id, "dici.permissao") then
         -- TriggerEvent('eblips:remove',source)
         vRP.addUserGroup(user_id, "DICIP")
+        vRPclient.replaceWeapons(source,{})
         TriggerClientEvent("Notify", source, "sucesso", "Você saiu de serviço.")
         vRP.Log("```prolog\n[POLICIAL]: " .. user_id .. " " .. identity.name .. " " .. identity.firstname .. " \n[===========SAIU DE SERVICO==========] " .. os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S") .. " \r```", "TOOGLE_DIC")
         TriggerClientEvent('desligarRadios', source)
@@ -187,6 +192,7 @@ RegisterCommand('toogle', function(source, args, rawCommand)
     elseif vRP.hasPermission(user_id, "dicii.permissao") then
         -- TriggerEvent('eblips:remove',source)
         vRP.addUserGroup(user_id, "DICIIP")
+        vRPclient.replaceWeapons(source,{})
         TriggerClientEvent("Notify", source, "sucesso", "Você saiu de serviço.")
         vRP.Log("```prolog\n[POLICIAL]: " .. user_id .. " " .. identity.name .. " " .. identity.firstname .. " \n[===========SAIU DE SERVICO==========] " .. os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S") .. " \r```", "TOOGLE_DIC")
         TriggerClientEvent('desligarRadios', source)
@@ -201,6 +207,7 @@ RegisterCommand('toogle', function(source, args, rawCommand)
     elseif vRP.hasPermission(user_id, "diciii.permissao") then
         -- TriggerEvent('eblips:remove',source)
         vRP.addUserGroup(user_id, "DICIIIP")
+        vRPclient.replaceWeapons(source,{})
         TriggerClientEvent("Notify", source, "sucesso", "Você saiu de serviço.")
         vRP.Log("```prolog\n[POLICIAL]: " .. user_id .. " " .. identity.name .. " " .. identity.firstname .. " \n[===========SAIU DE SERVICO==========] " .. os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S") .. " \r```", "TOOGLE_DIC")
         TriggerClientEvent('desligarRadios', source)
@@ -215,6 +222,7 @@ RegisterCommand('toogle', function(source, args, rawCommand)
     elseif vRP.hasPermission(user_id, "diciv.permissao") then
         -- TriggerEvent('eblips:remove',source)
         vRP.addUserGroup(user_id, "DICIVP")
+        vRPclient.replaceWeapons(source,{})
         TriggerClientEvent("Notify", source, "sucesso", "Você saiu de serviço.")
         vRP.Log("```prolog\n[POLICIAL]: " .. user_id .. " " .. identity.name .. " " .. identity.firstname .. " \n[===========SAIU DE SERVICO==========] " .. os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S") .. " \r```", "TOOGLE_DIC")
         -- TriggerClientEvent('desligarRadios',source)
@@ -906,198 +914,6 @@ RegisterCommand('rv', function(source, args, rawCommand)
         local nplayer = vRPclient.getNearestPlayer(source, 10)
         if nplayer then
             vRPclient.ejectVehicle(nplayer)
-        end
-    end
-end)
------------------------------------------------------------------------------------------------------------------------------------------
--- APREENDER
------------------------------------------------------------------------------------------------------------------------------------------
-local itemlist = {
-    "dinheirosujo",
-    "algemas",
-    "capuz",
-    "lockpick",
-    "papouladeopio",
-    "frascodeplastico",
-    "masterpick",
-    "maconha",
-    "cocaina",
-    "heroina",
-    "metanfetamina",
-    "placa",
-    "pendrive",
-    "radio",
-    "c4",
-    "cartaoinvasao",
-    "pendrivedeep",
-    "placacircuito",
-    "chipset",
-    "pastadecoca",
-    "pino",
-    "anfetamina",
-    "embalagem",
-    "frasco",
-    "adubo",
-    "ferramenta",
-    "serra",
-    "macarico",
-	"listadesmanche",
-    "placademetal",
-    "mola",
-    "capsula",
-    "polvora",
-    "corpodeak",
-    "corpodefiveseven",
-    "corpodeg36",
-    "corpodemp5",
-    "gatilho",
-    "tecido",
-    "malha",
-    "linha",
-    "gps",
-    "colete",
-    "ticketpvp",
-    "wbody|WEAPON_DAGGER",
-    "wbody|WEAPON_BAT",
-    "wbody|WEAPON_BOTTLE",
-    "wbody|WEAPON_CROWBAR",
-    "wbody|WEAPON_FLASHLIGHT",
-    "wbody|WEAPON_GOLFCLUB",
-    "wbody|WEAPON_HAMMER",
-    "wbody|WEAPON_HATCHET",
-    "wbody|WEAPON_KNUCKLE",
-    "wbody|WEAPON_KNIFE",
-    "wbody|WEAPON_MACHETE",
-    "wbody|WEAPON_SWITCHBLADE",
-    "wbody|WEAPON_NIGHTSTICK",
-    "wbody|WEAPON_WRENCH",
-    "wbody|WEAPON_BATTLEAXE",
-    "wbody|WEAPON_POOLCUE",
-    "wbody|WEAPON_STONE_HATCHET",
-    "wbody|WEAPON_PISTOL",
-    "wbody|WEAPON_STUNGUN",
-    "wbody|WEAPON_SNSPISTOL",
-    "wbody|WEAPON_VINTAGEPISTOL",
-    "wbody|WEAPON_REVOLVER",
-    "wbody|WEAPON_REVOLVER_MK2",
-    "wbody|WEAPON_MUSKET",
-    "wbody|GADGET_PARACHUTE",
-    "wbody|WEAPON_FIREEXTINGUISHER",
-    "wbody|WEAPON_MICROSMG",
-    "wbody|WEAPON_ASSAULTSMG",
-    "wbody|WEAPON_PUMPSHOTGUN_MK2",
-    "wbody|WEAPON_SPECIALCARBINE",
-    "wbody|WEAPON_ASSAULTRIFLE",
-    "wbody|WEAPON_BULLPUPRIFLE_MK2",
-    "wbody|WEAPON_GUSENBERG",
-    "wbody|WEAPON_MACHINEPISTOL",
-    "wbody|WEAPON_COMPACTRIFLE",
-    "wbody|WEAPON_BULLPUPRIFLE_MK2",
-    "wbody|WEAPON_RAYPISTOL",
-    "wammo|WEAPON_BULLPUPRIFLE_MK2",
-    "wammo|WEAPON_PISTOL",
-    "wammo|WEAPON_STUNGUN",
-    "wammo|WEAPON_SNSPISTOL",
-    "wammo|WEAPON_VINTAGEPISTOL",
-    "wammo|WEAPON_MUSKET",
-    "wammo|WEAPON_FLARE",
-    "wammo|GADGET_PARACHUTE",
-    "wammo|WEAPON_FIREEXTINGUISHER",
-    "wammo|WEAPON_PUMPSHOTGUN",
-    "wammo|WEAPON_PUMPSHOTGUN_MK2",
-    "wammo|WEAPON_SPECIALCARBINE",
-    "wammo|WEAPON_ASSAULTRIFLE",
-    "wammo|WEAPON_GUSENBERG",
-    "wammo|WEAPON_MACHINEPISTOL",
-    "wammo|WEAPON_COMPACTRIFLE",
-    "wammo|WEAPON_REVOLVER",
-    "wammo|WEAPON_MICROSMG",
-    "wammo|WEAPON_REVOLVER_MK2",
-    "wammo|WEAPON_ASSAULTSMG",
-    "wammo|WEAPON_BULLPUPRIFLE_MK2",
-    "wbody|WEAPON_CARBINERIFLE_MK2",
-    "wbody|WEAPON_CARBINERIFLE",
-    "wbody|WEAPON_COMBATPDW",
-    "wbody|WEAPON_COMBATPISTOL",
-    "wammo|WEAPON_CARBINERIFLE_MK2",
-    "wammo|WEAPON_CARBINERIFLE",
-    "wammo|WEAPON_COMBATPDW",
-    "wammo|WEAPON_COMBATPISTOL",
-    "wbody|WEAPON_ASSAULTRIFLE_MK2",
-    "wbody|WEAPON_SPECIALCARBINE_MK2",
-    "wbody|WEAPON_SMG_MK2",
-    "wbody|WEAPON_PISTOL_MK2",
-    "wammo|WEAPON_ASSAULTRIFLE_MK2",
-    "wammo|WEAPON_SPECIALCARBINE_MK2",
-    "wammo|WEAPON_SMG_MK2",
-    "wammo|WEAPON_PISTOL_MK2",
-    "wbody|WEAPON_MUSKET",
-    "wbody|WEAPON_SAWNOFFSHOTGUN",
-    "wbody|WEAPON_MINISMG",
-    "wbody|WEAPON_SNSPISTOL",
-    "wbody|WEAPON_PUMPSHOTGUN_MK2",
-    "wammo|WEAPON_MUSKET",
-    "wammo|WEAPON_SAWNOFFSHOTGUN",
-    "wammo|WEAPON_MINISMG",
-    "wammo|WEAPON_SNSPISTOL",
-    "wammo|WEAPON_PUMPSHOTGUN_MK2",
-}
-
-RegisterCommand('apreender', function(source, args, rawCommand)
-    local user_id = vRP.getUserId(source)
-    if vRP.hasPermission(user_id, "policia.permissao") or vRP.hasPermission(user_id, "kick.permissao") then
-        local user_id = vRP.getUserId(source)
-        local nplayer = vRPclient.getNearestPlayer(source, 2)
-        if nplayer then
-            local identity = vRP.getUserIdentity(user_id)
-            local nuser_id = vRP.getUserId(nplayer)
-            local nidentity = vRP.getUserIdentity(nuser_id)
-            if vRP.hasPermission(nuser_id, "policia.permissao") or vRP.hasPermission(nuser_id, "nogarmas.permissao") then
-                vRP.Log("```prolog\n[ID]: " .. user_id .. " " .. identity.name .. " " .. identity.firstname .. " \n[TENTOU APREENDER DE]: " .. nuser_id .. " " .. nidentity.name .. " " .. nidentity.firstname .. "" .. os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S") .. " \r```", "CMD_APREENDER")
-                return TriggerClientEvent("Notify", source, "negado", "Policiais não podem apreender itens/armamentos de outros policiais")
-            end
-            if nuser_id then
-                local nidentity = vRP.getUserIdentity(nuser_id)
-                local itens_apreendidos = {}
-                local weapons = vRPclient.replaceWeapons(nplayer, {})
-                for k, v in pairs(weapons) do
-                    vRP.giveInventoryItem(nuser_id, "wbody|" .. k, 1)
-                    if v.ammo > 0 then
-                        vRP.giveInventoryItem(nuser_id, "wammo|" .. k, v.ammo)
-                    end
-                end
-
-                local inv = vRP.getInventory(nuser_id)
-                for k, v in pairs(itemlist) do
-                    local sub_items = {v}
-                    if string.sub(v, 1, 1) == "*" then
-                        local idname = string.sub(v, 2)
-                        sub_items = {}
-                        for fidname, _ in pairs(inv) do
-                            if splitString(fidname, "|")[1] == idname then
-                                table.insert(sub_items, fidname)
-                            end
-                        end
-                    end
-
-                    for _, idname in pairs(sub_items) do
-                        local amount = vRP.getInventoryItemAmount(nuser_id, idname)
-                        if amount > 0 then
-                            local item_name, item_weight = vRP.getItemDefinition(idname)
-                            if item_name then
-                                if vRP.tryGetInventoryItem(nuser_id, idname, amount, true) then
-                                    vRP.giveInventoryItem(user_id, idname, amount)
-                                    table.insert(itens_apreendidos, "[ITEM]: " .. vRP.itemNameList(idname) .. " [QUANTIDADE]: " .. amount)
-                                end
-                            end
-                        end
-                    end
-                end
-                local apreendidos = table.concat(itens_apreendidos, "\n")
-                vRP.Log("```prolog\n[ID]: " .. user_id .. " " .. identity.name .. " " .. identity.firstname .. " \n[APREENDEU DE]:  " .. nuser_id .. " " .. nidentity.name .. " " .. nidentity.firstname .. "\n" .. apreendidos .. os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S") .. " \r```", "CMD_APREENDER")
-                TriggerClientEvent("Notify", nplayer, "importante", "Todos os seus pertences foram apreendidos.")
-                TriggerClientEvent("Notify", source, "importante", "Apreendeu todos os pertences da pessoa.")
-            end
         end
     end
 end)

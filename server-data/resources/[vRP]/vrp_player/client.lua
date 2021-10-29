@@ -1235,18 +1235,6 @@ function setNotHurt()
     ResetPedWeaponMovementClipset(GetPlayerPed(-1))
     ResetPedStrafeClipset(GetPlayerPed(-1))
 end
------------------------------------------------------------------------------------------------------------------------------------------
--- BOOST DE FPS
------------------------------------------------------------------------------------------------------------------------------------------
-RegisterCommand('fps',function(source,args)
-    if args[1] == 'on' then
-        SetTimecycleModifier('cinema')
-        TriggerEvent('Notify','sucesso','Boost de FPS ligado!')
-    elseif args[1] == 'off' then
-        SetTimecycleModifier('default')
-        TriggerEvent('Notify','sucesso','Boost de FPS desligado!')
-    end
-end)
 
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- RECUO DAS ARMAS
@@ -1875,5 +1863,21 @@ Citizen.CreateThread( function()
         if veh ~= 0 then 
             SetPedConfigFlag(PlayerPedId(),35,false) 
         end
+    end
+end)
+
+-----------------------------------------------------------------------------------------------------------------------------------------
+------------------ REMOVER ASSISTÊNCIA DE MIRA DO CONTROLE   ------------------
+-----------------------------------------------------------------------------------------------------------------------------------------
+Citizen.CreateThread(function()
+    while true do
+        local isweapon,hash = GetCurrentPedWeapon(PlayerPedId(),1)
+        local weapongroup = GetWeapontypeGroup(hash)
+        if isweapon and weapongroup ~= -728555052 then
+            SetPlayerLockon(PlayerId(), false)
+        else 
+            SetPlayerLockon(PlayerId(), true)
+        end
+        Citizen.Wait(1)
     end
 end)

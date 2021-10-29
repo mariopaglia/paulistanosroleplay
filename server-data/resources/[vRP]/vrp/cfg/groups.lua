@@ -669,14 +669,14 @@ cfg.groups = {
 	},
 
 	---------------------------------------------------
-	-- HENHOUSE
+	-- Bean Machine
 	---------------------------------------------------
-	["Henhouse"] = {
+	["Beanmachine"] = {
 		_config = {
-			title = "Hen House",
+			title = "Bean Machine",
 			gtype = "promoter"
 		},
-		"henhouse.permissao",
+		"beanmachine.permissao",
 		"lojinha.permissao",
 	},
 

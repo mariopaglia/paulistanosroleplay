@@ -1,89 +1,36 @@
 <!DOCTYPE html>
-<html lang=”pt-br”>
-<title>cidaderara</title>
+<html lang="pt-BR">
+
 <head>
-	<link rel="stylesheet" type="text/css" href="css.css"/>
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-</head><body>
+	<title>FENIX CITY SEASON 2</title>
+	<link href="style.css" rel="stylesheet" type="text/css" />
+</head>
 
-	<canvas id="canvas"></canvas>
-	<audio id="loading-music" autoplay="autoplay">
-		<source hidden="true" autostart="true" loop="true" src="musi.mp3" />
-	</audio>
+<body>
 
-	<script type="text/javascript">
-		$(document).ready(function() {
-			var canvas = $('#canvas')[0];
-			canvas.width = window.innerWidth;
-			canvas.height = window.innerHeight;
+	<!-- <div class="video-background">
+		<iframe src="https://player.vimeo.com/video/637949270?h=feec5026bf&autoplay=1&loop=1&title=0&byline=0&portrait=0&title=0&controls=0&sidedock=0#t=0m15s" width="1920" height="1080" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>
+		<h1 class="loading">CARREGANDO CIDADE</h1>
+	</div> -->
 
-			if (canvas.getContext) {
-				var ctx = canvas.getContext('2d');
-				var w = canvas.width;
-				var h = canvas.height;
-				ctx.strokeStyle = 'rgba(255,255,255,0.2)';
-				ctx.lineWidth = 1;
-				ctx.lineCap = 'round';
+	<!-- <div class="video-background">
+		<iframe src="video.mp4" width="1920" height="1080" controls="0" frameborder="0" loop="1" allow="autoplay; loop; fullscreen; picture-in-picture" allowfullscreen></iframe>
+		<h1 class="loading">CARREGANDO CIDADE</h1>
+	</div> -->
 
-				var init = [];
-				var maxParts = 200;
-				for (var a = 0; a < maxParts; a++) {
-					init.push({
-						x: Math.random() * w,
-						y: Math.random() * h,
-						l: Math.random() * 1,
-						xs: -4 + Math.random() * 4 + 2,
-						ys: Math.random() * 10 + 10
-					})
-				}
+	<div class="video-background">
+		<video autoplay loop id="myVideo">
+			<source src="video.mp4" type="video/mp4">
+		</video>
+		<h1 class="loading">CARREGANDO CIDADE</h1>
+	</div>
 
-				var particles = [];
-				for (var b = 0; b < maxParts; b++) {
-					particles[b] = init[b];
-				}
 
-				function draw() {
-					ctx.clearRect(0, 0, w, h);
-					for (var c = 0; c < particles.length; c++) {
-						var p = particles[c];
-						ctx.beginPath();
-						ctx.moveTo(p.x, p.y);
-						ctx.lineTo(p.x + p.l * p.xs, p.y + p.l * p.ys);
-						ctx.stroke();
-					}
-					move();
-				}
+	<!-- <video autoplay loop id="myVideo">
+		<source src="video.mp4" type="video/mp4">
+	</video> -->
 
-				function move() {
-					for (var b = 0; b < particles.length; b++) {
-						var p = particles[b];
-						p.x += p.xs;
-						p.y += p.ys;
-						if (p.x > w || p.y > h) {
-							p.x = Math.random() * w;
-							p.y = -20;
-						}
-					}
-				}
-				setInterval(draw,30);
-			}
-		});
+	<!-- <script src="https://player.vimeo.com/api/player.js"></script> -->
+</body>
 
-		var music = document.getElementById("loading-music");
-music.volume = 0.1;
-document.addEventListener('keypress', (event) => {
-  if(event.key == "p" || event.key == "P") {
-      if(music.paused) {
-          music.play();
-      }else{
-          music.pause();
-      }
-  }else if(event.key == "s" || event.key == "S") {
-      music.volume = music.volume-0.05;
-  }else if(event.key == "w" || event.key == "W") {
-      music.volume = music.volume+0.05;
-  }
-});	
-	</script>
-
-</body></html>
+</html>

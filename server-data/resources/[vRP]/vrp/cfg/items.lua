@@ -45,7 +45,9 @@ cfg.items = {
 
 	-- Sistema de PET
 	["comidapet"] = { "comidapet",0.5 },
-	
+	-- Evento
+	["roupaevento"] = { "roupaevento",0.2 },
+
 	-- Fome e Sede
 	-- Comidas
 	["hamburguer"] = { "hamburguer",0.5 },
@@ -105,6 +107,8 @@ cfg.items = {
 	["corpodehkp7m10"] = { "Corpo de HK P7M10",0.5 },
 	["corpodeg36"] = { "Corpo de G36",0.5 },
 	["corpodemp5"] = { "Corpo de MP5",0.5 },
+	["corpodescorpion"] = { "Corpo de Scorpion",0.5 },
+	["corpodeshotgun"] = { "Corpo de Shotgun",0.5 },
 	["gatilho"] = { "Gatilho",0.5 },
 	["mola"] = { "Mola",0.2 },
 	--====== dominas

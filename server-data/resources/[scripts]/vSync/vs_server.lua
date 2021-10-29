@@ -368,12 +368,12 @@ Citizen.CreateThread(function()
 			vRPclient.setDiv(-1,"anuncio",".div_anuncio { background: rgba(255,40,40,0.8); font-size: 11px; font-family: arial; color: #fff; padding: 20px; bottom: 13%; right: 5%; max-width: 500px; position: absolute; -webkit-border-radius: 5px; } bold { font-size: 15px; }","<bold>DEFESA CIVIL INFORMA:<br>Uma tempestade está se aproximando em 1 minuto!<br>Procurem abrigo e protejam-se!</bold><br><br>Fenix City")
 			Citizen.Wait(20000)
 			local users = vRP.getUsers()
-			-- for k,v in pairs(users) do
-			-- 	local id = vRP.getUserSource(parseInt(k))
-			-- 	if id then
-			-- 		vRP.kick(id,"Você foi vitima de uma tempestade!")
-			-- 	end
-			-- end
+			for k,v in pairs(users) do
+				local id = vRP.getUserSource(parseInt(k))
+				if id then
+					vRP.kick(id,"O servidor foi reiniciado, aguarde a notificação em nosso Discord!")
+				end
+			end
         end
     end
 end)

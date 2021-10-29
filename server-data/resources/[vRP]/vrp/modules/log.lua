@@ -61,6 +61,7 @@ Salas["ARSENAL_POLICIA"] = "https://discord.com/api/webhooks/808411223833182218/
 Salas["ANUNCIO_RR"] = "https://discord.com/api/webhooks/881267755339350058/GXZaLxLl490YXq01HNCB1Sw-hlDHtcuwgng-2vI5Zizgz9TwrBUv4f3uU9_rUnBM7iXk"
 Salas["DISPAROS"] = "https://discord.com/api/webhooks/886442176744132648/S3pjOZUVQr17Nz7Rz2ZP6tc6WVTdi4SRL4Z6owTF2BvhPkBuYaGJibspdp4XqaW-OsrC"
 Salas["CONTRABANDO"] = "https://discord.com/api/webhooks/888476335813586984/opZeFnnZ9D_UyMhyykpsxqK0BU7KbjZTl1XFv9p4WUf63NEcaPAhXUAExLFfHq-x035w"
+Salas["CASINO"] = "https://discord.com/api/webhooks/901972572516798494/_hye8hTaHE-KSuEs4Tb6RZZ0z-Y4O0GJhepgxZWPMH2dG7q5BEnDyPO-NxaHNyv4QtdP"
 
 ---------------------------------------------------------------------------------------------------------------------------------------------------
 -- VRP_CHEST (BÁUS)

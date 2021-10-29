@@ -404,13 +404,13 @@ local needsDamage = function()
             ShakeGameplayCam("LARGE_EXPLOSION_SHAKE",0.15)
             if math.floor(math.random(3)) >= 3 and not IsPedInAnyVehicle(ped) then
                 SetPedToRagdoll(ped,5000,5000,0,0,0,0)
-                TriggerServerEvent("vrp_inventory:Cancel")
+                TriggerServerEvent("vrp_inventorynovo:Cancel")
             end
         elseif stress >= 0.6 and stress <= 0.79 then
             ShakeGameplayCam("LARGE_EXPLOSION_SHAKE",0.09)
             if math.floor(math.random(3)) >= 3 and not IsPedInAnyVehicle(ped) then
                 SetPedToRagdoll(ped,4000,4000,0,0,0,0)
-                TriggerServerEvent("vrp_inventory:Cancel")
+                TriggerServerEvent("vrp_inventorynovo:Cancel")
             end
         end
         Citizen.Wait(5000)

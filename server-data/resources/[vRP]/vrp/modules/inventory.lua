@@ -47,6 +47,9 @@ local itemlist = {
 	["wammo|WEAPON_BALL"] = { index = "bolinha", nome = "Bolinha de PET", type = "recarregar" },
 	["comidapet"] = { index = "comidapet", nome = "Comida de PET", type = "usar" },
 	
+	-- Evento
+	["roupaevento"] = { index = "roupaevento", nome = "Roupa Evento", type = "usar" },
+
 	-- Fome e Sede
 	["hamburguer"] = { index = "hamburguer", nome = "Hamburguer", type = "usar" },
 	["sanduiche"] = { index = "sanduiche", nome = "Sanduiche", type = "usar" },
@@ -129,6 +132,8 @@ local itemlist = {
 	["corpodehkp7m10"] = { index = "corpodehkp7m10", nome = "Corpo de HK P7M10", type = "usar" },
 	["corpodeg36"] = { index = "corpodeg36", nome = "Corpo de G36", type = "usar" },
 	["corpodemp5"] = { index = "corpodemp5", nome = "Corpo de MP5", type = "usar" },
+	["corpodescorpion"] = { index = "corpodescorpion", nome = "Corpo de Scorpion", type = "usar" },
+	["corpodeshotgun"] = { index = "corpodeshotgun", nome = "Corpo de Shotgun", type = "usar" },
 	["gatilho"] = { index = "gatilho", nome = "Gatilho", type = "usar" },
 	["metaldealta"] = { index = "metaldealta", nome = "Metal de Alta", type = "usar" },
 
@@ -445,6 +450,8 @@ AddEventHandler("clearInventory",function()
         vRP.setMoney(user_id,0)
         vRPclient._clearWeapons(source)
         vRPclient._setHandcuffed(source,false)
+		vRP.varyHunger(user_id,-100)
+        vRP.varyThirst(user_id,-100)
 
         if not vRP.hasPermission(user_id,"mochila.permissao") then
             vRP.setExp(user_id,"physical","strength",20)

@@ -506,7 +506,7 @@ RegisterCommand('money', function(source, args, rawCommand)
     local identity = vRP.getUserIdentity(user_id)
     if vRP.hasPermission(user_id, "founder.permissao") then
         if args[1] then
-            vRP.giveMoney(user_id, parseInt(args[1]))
+            vRP.giveMoney(user_id,parseInt(args[1]))
             vRP.Log("```prolog\n[ID]: " .. user_id .. " " .. identity.name .. " " .. identity.firstname .. " \n[FEZ]: R$ " .. vRP.format(parseInt(args[1])) .. " " .. os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S") .. " \r```", "CMD_MONEY")
         end
     end
@@ -520,7 +520,7 @@ RegisterCommand('getmoney', function(source, args, rawCommand)
     if vRP.hasPermission(user_id, "founder.permissao") then
         if args[1] then
             -- local bankMoney = vRP.getBankMoney(user_id)
-            vRP.tryPayment(user_id, parseInt(args[1]))
+            vRP.tryFullPayment(user_id, parseInt(args[1]))
             -- vRP.setBankMoney(user_id, bankMoney-parseInt(args[1]))
             vRP.Log("```prolog\n[ID]: " .. user_id .. " " .. identity.name .. " " .. identity.firstname .. " \n[DESTRUIU]: R$ " .. vRP.format(parseInt(args[1])) .. " " .. os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S") .. " \r```", "CMD_MONEY")
         end
@@ -622,6 +622,7 @@ end)
 -----------------------------------------------------------------------------------------------------------------------------------------
 RegisterCommand('tptome', function(source, args, rawCommand)
     local user_id = vRP.getUserId(source)
+    xb,yb,zb = vRPclient.getPosition(source)
     if vRP.hasPermission(user_id, "tp.permissao") then
         if args[1] then
             local tplayer = vRP.getUserSource(parseInt(args[1]))
@@ -637,7 +638,23 @@ end)
 -----------------------------------------------------------------------------------------------------------------------------------------
 RegisterCommand('tpto', function(source, args, rawCommand)
     local user_id = vRP.getUserId(source)
+    local identity = vRP.getUserIdentity(user_id)
+    local nplayer = vRP.getUserSource(parseInt(args[1]))
+    local nuser_id = vRP.getUserId(nplayer)
+    xb,yb,zb = vRPclient.getPosition(source)
     if vRP.hasPermission(user_id, "tp.permissao") then
+        -- ENVIAR SOLICITAÇÃO PARA QUANDO FOR TELEPORTAR EM OUTRO STAFF
+        if user_id > 2 then
+            if vRP.hasPermission(nuser_id, "kick.permissao") or vRP.hasPermission(nuser_id, "staff.permissao") then
+                if vRP.request(nplayer, "<b>"..identity.name.." "..identity.firstname.." ["..user_id.."]</b> quer dar teleportar até você, deseja permitir?", 30) then
+                    vRPclient.teleport(source, vRPclient.getPosition(nplayer))
+                else
+                    TriggerClientEvent("Notify", source, "negado", "O Staff <b>não permitiu</b> o teleporte!")
+                    return
+                end
+            end
+        end
+        -- TELEPORTAR PARA PLAYERS NORMAIS
         if args[1] then
             local tplayer = vRP.getUserSource(parseInt(args[1]))
             if tplayer then
@@ -651,8 +668,16 @@ end)
 -----------------------------------------------------------------------------------------------------------------------------------------
 RegisterCommand('tpway', function(source, args, rawCommand)
     local user_id = vRP.getUserId(source)
+    xb,yb,zb = vRPclient.getPosition(source)
     if vRP.hasPermission(user_id, "tp.permissao") then
         TriggerClientEvent('tptoway', source)
+    end
+end)
+
+RegisterCommand('tpb',function(source,args,rawCommand)
+    local user_id = vRP.getUserId(source)
+    if vRP.hasPermission(user_id,"tp.permissao") then
+        vRPclient.teleport(source,xb,yb,zb)
     end
 end)
 -----------------------------------------------------------------------------------------------------------------------------------------
@@ -1004,6 +1029,48 @@ local presets = {
         ["p7"] = {-1,0},
         }
     },
+    ["red"] = {
+        [1885233650] = {
+        [1] = {52,0,1},
+        [2] = {57,0,0},
+        [3] = {146,0,2},
+        [4] = {122,0,1},
+        [5] = {0,0,0},
+        [6] = {46,0,1},
+        [7] = {0,0,0},
+        [8] = {62,0,1},
+        [9] = {0,0,0},
+        [10] = {0,0,0},
+        [11] = {62,0,1},
+        ["p6"] = {-1,0},
+        ["p0"] = {-1,0},
+        ["p2"] = {-1,0},
+        ["p1"] = {-1,0},
+        ["p7"] = {-1,0},
+        [0] = {0,0,0},
+        }
+    },
+    ["redf"] = {
+        [-1667301416] = {
+        [1] = {52,0,2},
+        [2] = {74,0,0},
+        [3] = {177,0,2},
+        [4] = {128,0,2},
+        [5] = {-1,0,2},
+        [6] = {47,0,2},
+        [7] = {-1,0,2},
+        [8] = {39,0,2},
+        [9] = {-1,0,2},
+        [10] = {-1,0,2},
+        [11] = {58,0,2},
+        [0] = {0,0,0},
+        ["p7"] = {-1,0},
+        ["p6"] = {-1,0},
+        ["p2"] = {-1,0},
+        ["p1"] = {-1,0},
+        ["p0"] = {-1,0},
+        }
+    },
     ["dudu"] = {[1885233650] = {[1] = {20, 0, 1}, [2] = {14, 0, 0}, [3] = {138, 1, 1}, [4] = {87, 11, 1}, [5] = {0, 0, 1}, [6] = {9, 3, 1}, [7] = {149, 1, 1}, [8] = {14, 0, 1}, [9] = {-1, 0, 0}, [10] = {-1, 0, 0}, [11] = {208, 18, 1}, ["p7"] = {8, 1}, ["p6"] = {40, 1}, ["p2"] = {-1, 0}, ["p1"] = {-1, 0}, [0] = {0, 0, 0}, ["p0"] = {-1, 0}}},
     ["wally"] = {[1885233650] = {[1] = {26, 1, 2}, [3] = {52, 0, 2}, [4] = {87, 11, 1}, [6] = {6, 6, 2}, [8] = {15, 0, 2}, [11] = {208, 18, 1}, ["p0"] = {-1, 0}}},
     ["berti"] = {[1885233650] = {[1] = {100, 1, 2}, [2] = {57, 0, 0}, [3] = {138, 1, 2}, [4] = {87, 11, 1}, [5] = {0, 0, 1}, [6] = {9, 12, 1}, [7] = {2, 0, 2}, [8] = {15, 0, 2}, [9] = {0, 0, 1}, [10] = {-1, 0, 2}, [11] = {208, 18, 1}, [0] = {0, 0, 0}, ["p1"] = {-1, 0}, ["p2"] = {-1, 0}, ["p7"] = {-1, 0}, ["p6"] = {-1, 0}, ["p0"] = {-1, 0}}},
@@ -1279,6 +1346,10 @@ RegisterCommand('r', function(source, args, rawCommand)
                 local tempoPreso = json.decode(value2) or 0
                 local banco = vRP.getBankMoney(nuser_id)
                 local seminfo = "-"
+                local fome = parseInt(vRP.getHunger(nuser_id) - 100)
+                local totalFome = 0 - fome
+                local sede = parseInt(vRP.getThirst(nuser_id) - 100)
+                local totalSede = 0 - sede
 
                 if tempoPreso == -1 or tempoPreso == nil or tempoPreso == 0 then
                     tempoPreso = "-"
@@ -1316,7 +1387,7 @@ RegisterCommand('r', function(source, args, rawCommand)
                     ".div_completerg { background-color: rgba(0,0,0,0.60); font-size: 13px; font-family: arial; color: #fff; width: 420px; padding: 20px 20px 5px; bottom: 25%; right: 20px; position: absolute; border: 1px solid rgba(255,255,255,0.2); letter-spacing: 0.5px; } .local { width: 220px; padding-bottom: 15px; float: left; } .local2 { width: 200px; padding-bottom: 15px; float: left; } .local b, .local2 b { color: #00BFFF; }",
                     "<div class=\"local\"><b>Nome:</b> " .. identity.name .. " " .. identity.firstname .. " ( " .. vRP.format(identity.user_id) .. " )</div><div class=\"local2\"><b>Identidade:</b> " .. identity.registration .. "</div><div class=\"local\"><b>Idade:</b> " .. identity.age .. " Anos</div><div class=\"local2\"><b>Telefone:</b> " .. identity.phone ..
                         "</div><div class=\"local\"><b>Multas pendentes:</b> R$ " .. vRP.format(parseInt(valormultas)) .. "</div><div class=\"local2\"><b>Carteira:</b> R$ " .. vRP.format(parseInt(carteira)) .. "</div> <div class=\"local\"><b>Promoter: </b> " .. promoter .. "</div> <div class=\"local2\"><b>Banco:</b> R$ " .. vRP.format(parseInt(banco)) ..
-                        "</div> <div class=\"local\"><b>Setagem:</b> " .. job .. "</div></div><div class=\"local2\"><b>Prisão:</b> " .. tempoPreso .. "</div></div> <div class=\"local\"><b>VIP:</b> " .. vip .. "</div> <div class=\"local2\"><b>Boost:</b> " .. boost .. "</div>")
+                        "</div> <div class=\"local\"><b>Setagem:</b> " .. job .. "</div></div><div class=\"local2\"><b>Prisão:</b> " .. tempoPreso .. "</div></div> <div class=\"local\"><b>VIP:</b> " .. vip .. "</div> <div class=\"local2\"><b>Boost:</b> " .. boost .. "</div> <div class=\"local\"><b>Fome:</b> " .. totalFome .. "%</div> <div class=\"local2\"><b>Sede:</b> " .. totalSede .. "%</div>")
                 vRP.request(source, "Você deseja fechar o registro geral?", 1000)
                 vRPclient.removeDiv(source, "completerg")
             end
@@ -1420,106 +1491,106 @@ end)
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- ROUBAR
 -----------------------------------------------------------------------------------------------------------------------------------------
--- RegisterCommand('roubar', function(source, args, rawCommand)
---     local user_id = vRP.getUserId(source)
---     -- BLOQUEAR PARA NÃO PODER ROUBAR EM OUTRAS DIMENSÕES (ARENA PVP)
---     if GetPlayerRoutingBucket(source) ~= 0 then
---         return TriggerClientEvent("Notify", source, "negado", "Não é possível roubar em outras dimensões")
---     end
---     -- BLOQUEAR PARA POLICIAIS NÃO PODEREM USAR O COMANDO
---     if vRP.hasPermission(user_id, "nogarmas.permissao") or vRP.hasPermission(user_id, "policia.permissao") then
---         return TriggerClientEvent("Notify", source, "negado", "Policiais não podem utilizar o comando /roubar")
---     end
---     local nplayer = vRPclient.getNearestPlayer(source, 2)
---     if nplayer then
---         local nuser_id = vRP.getUserId(nplayer)
---         local policia = vRP.getUsersByPermission("policia.permissao")
---         local identity = vRP.getUserIdentity(user_id)
---         local identityu = vRP.getUserIdentity(nuser_id)
---         local crds = GetEntityCoords(GetPlayerPed(source))
---         local itens_roubo = {}
---         if #policia >= 2 then
---             if vRP.request(nplayer, "Você está sendo roubado, deseja passar tudo?", 30) then
---                 local ndata = vRP.getUserDataTable(nuser_id)
---                 local weapons = vRPclient.replaceWeapons(nplayer, {})
---                 local data = vRP.getUserDataTable(vRP.getUserId(nplayer))
---                 if data then
---                     data.weapons = {}
---                 end
---                 if ndata ~= nil then
---                     if ndata.inventory ~= nil then
---                         -- for qnt, item in pairs(whitelistRoubo) do
---                         --     -- print(item)
---                         -- end
---                         for k, v in pairs(ndata.inventory) do
---                             if vRP.getInventoryWeight(user_id) + vRP.getItemWeight(k) * v.amount <= vRP.getInventoryMaxWeight(user_id) then
---                                 if k ~= 'sacodelixo' and k ~= 'garrafavazia' and k ~= 'garrafadeleite' and k ~= 'celular' and k ~= 'roupas' and k ~= 'mochila' and k ~= 'radio' and k ~= 'isca' and k ~= 'dourado' and k ~= 'corvina' and k ~= 'salmao' and k ~= 'pacu' and k ~= 'pintado' and k ~= 'pirarucu' and k ~= 'tilapia' and k ~= 'tucunare' and k ~= 'lambari' and k ~= 'ametista2' and k ~= 'bronze2' and k ~= 'diamante2' and k ~= 'esmeralda2' and k ~= 'ferro2' and k ~= 'ouro2' and k ~= 'rubi2' and k ~= 'safira2' and k ~= 'topazio2' and k ~= 'ametista' and k ~= 'bronze' and k ~= 'diamante' and k ~= 'esmeralda' and k ~= 'ferro' and k ~= 'ouro' and k ~= 'rubi' and k ~= 'safira' and k ~= 'topazio' and k ~= 'alianca' then
---                                     if vRP.tryGetInventoryItem(nuser_id, k, v.amount) then
---                                         vRP.giveInventoryItem(user_id, k, v.amount)
---                                         table.insert(itens_roubo, "[ITEM]: " .. vRP.itemNameList(k) .. " [QUANTIDADE]: " .. v.amount)
---                                     end
---                                 else
---                                     TriggerClientEvent("Notify", source, "aviso", "<b>" .. vRP.format(parseInt(v.amount)) .. "x " .. vRP.itemNameList(k) .. "</b> são proíbidos de serem roubados.")
---                                 end
---                             else
---                                 TriggerClientEvent("Notify", source, "negado", "Mochila não suporta <b>" .. vRP.format(parseInt(v.amount)) .. "x " .. vRP.itemNameList(k) .. "</b> por causa do peso.")
---                             end
---                         end
---                     end
---                 end
---                 for k, v in pairs(weapons) do
---                     vRP.giveInventoryItem(nuser_id, "wbody|" .. k, 1)
---                     if vRP.getInventoryWeight(user_id) + vRP.getItemWeight("wbody|" .. k) <= vRP.getInventoryMaxWeight(user_id) then
---                         if vRP.tryGetInventoryItem(nuser_id, "wbody|" .. k, 1) then
---                             vRP.giveInventoryItem(user_id, "wbody|" .. k, 1)
---                             table.insert(itens_roubo, "[ITEM]: " .. vRP.itemNameList("wbody|" .. k) .. " [QUANTIDADE]: " .. 1)
---                         end
---                     else
---                         TriggerClientEvent("Notify", source, "negado", "Mochila não suporta <b>1x " .. vRP.itemNameList(k) .. "</b> por causa do peso.")
---                     end
---                     if v.ammo > 0 then
---                         vRP.giveInventoryItem(nuser_id, "wammo|" .. k, v.ammo)
---                         if vRP.getInventoryWeight(user_id) + vRP.getItemWeight("wammo|" .. k) * v.ammo <= vRP.getInventoryMaxWeight(user_id) then
---                             if vRP.tryGetInventoryItem(nuser_id, "wammo|" .. k, v.ammo) then
---                                 vRP.giveInventoryItem(user_id, "wammo|" .. k, v.ammo)
---                                 table.insert(itens_roubo, "[ITEM]: " .. vRP.itemNameList("wammo|" .. k) .. " [QTD]: " .. v.ammo)
---                             end
---                         else
---                             TriggerClientEvent("Notify", source, "negado", "Mochila não suporta <b>" .. vRP.format(parseInt(v.ammo)) .. "x " .. vRP.itemNameList(k) .. "</b> por causa do peso.")
---                         end
---                     end
---                 end
---                 local nmoney = vRP.getMoney(nuser_id)
---                 if vRP.tryPayment(nuser_id, nmoney) then
---                     vRP.giveMoney(user_id, nmoney)
---                 end
---                 -- ACIONAR A POLICIA
---                 for l, w in pairs(policia) do
---                     local player = vRP.getUserSource(parseInt(w))
---                     if player then
---                         async(function()
---                             TriggerClientEvent('blipassalto:criar:assalto', player, crds.x, crds.y, crds.z)
---                             vRPclient.playSound(player, "Oneshot_Final", "MP_MISSION_COUNTDOWN_SOUNDSET")
---                             TriggerClientEvent('chatMessage', player, "190", {65, 130, 255}, "Assalto de Rua em andamento, dirija-se até o local e intercepte o assaltante.")
---                             SetTimeout(20000, function()
---                                 TriggerClientEvent('blipassalto:remover:assalto', player)
---                             end)
---                         end)
---                     end
---                 end
---                 vRPclient.setStandBY(source, parseInt(600))
---                 local itensroubados = table.concat(itens_roubo, "\n")
---                 TriggerClientEvent("Notify", source, "importante", "Roubo concluido com sucesso, corra, a polícia foi acionada")
---                 vRP.Log("```prolog\n[ASSALTANTE]: " .. user_id .. " " .. identity.name .. " " .. identity.firstname .. " \n[ASSALTADO]: " .. nuser_id .. " " .. identityu.name .. " " .. identityu.firstname .. "\n"..itensroubados.."\n[COORDENADA]: " .. crds.x .. "," .. crds.y .. "," .. crds.z .. "" .. os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S") .. " \r```", "CMD_ROUBAR")
---             else
---                 TriggerClientEvent("Notify", source, "importante", "A pessoa está resistindo ao roubo.")
---                 vRP.Log("```prolog\n[ASSALTANTE]: " .. user_id .. " " .. identity.name .. " " .. identity.firstname .. " \n[ASSALTADO]: " .. nuser_id .. " " .. identityu.name .. " " .. identityu.firstname .. "\n[A PESSOA RESISTIU AO ROUBO]\n[COORDENADA]: " .. crds.x .. "," .. crds.y .. "," .. crds.z .. "" .. os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S") .. " \r```", "CMD_ROUBAR")
---             end
---         else
---             TriggerClientEvent("Notify", source, "negado", "Número insuficiente de policiais no momento.")
---         end
---     end
--- end)
+RegisterCommand('roubar', function(source, args, rawCommand)
+    local user_id = vRP.getUserId(source)
+    -- BLOQUEAR PARA NÃO PODER ROUBAR EM OUTRAS DIMENSÕES (ARENA PVP)
+    if GetPlayerRoutingBucket(source) ~= 0 then
+        return TriggerClientEvent("Notify", source, "negado", "Não é possível roubar em outras dimensões")
+    end
+    -- BLOQUEAR PARA POLICIAIS NÃO PODEREM USAR O COMANDO
+    if vRP.hasPermission(user_id, "nogarmas.permissao") or vRP.hasPermission(user_id, "policia.permissao") then
+        return TriggerClientEvent("Notify", source, "negado", "Policiais não podem utilizar o comando /roubar")
+    end
+    local nplayer = vRPclient.getNearestPlayer(source, 2)
+    if nplayer then
+        local nuser_id = vRP.getUserId(nplayer)
+        local policia = vRP.getUsersByPermission("policia.permissao")
+        local identity = vRP.getUserIdentity(user_id)
+        local identityu = vRP.getUserIdentity(nuser_id)
+        local crds = GetEntityCoords(GetPlayerPed(source))
+        local itens_roubo = {}
+        if #policia >= 2 then
+            if vRP.request(nplayer, "Você está sendo roubado, deseja passar tudo?", 30) then
+                local ndata = vRP.getUserDataTable(nuser_id)
+                local weapons = vRPclient.replaceWeapons(nplayer, {})
+                local data = vRP.getUserDataTable(vRP.getUserId(nplayer))
+                if data then
+                    data.weapons = {}
+                end
+                if ndata ~= nil then
+                    if ndata.inventory ~= nil then
+                        -- for qnt, item in pairs(whitelistRoubo) do
+                        --     -- print(item)
+                        -- end
+                        for k, v in pairs(ndata.inventory) do
+                            if vRP.getInventoryWeight(user_id) + vRP.getItemWeight(k) * v.amount <= vRP.getInventoryMaxWeight(user_id) then
+                                if k ~= 'sacodelixo' and k ~= 'garrafavazia' and k ~= 'garrafadeleite' and k ~= 'celular' and k ~= 'roupas' and k ~= 'mochila' and k ~= 'radio' and k ~= 'isca' and k ~= 'dourado' and k ~= 'corvina' and k ~= 'salmao' and k ~= 'pacu' and k ~= 'pintado' and k ~= 'pirarucu' and k ~= 'tilapia' and k ~= 'tucunare' and k ~= 'lambari' and k ~= 'ametista2' and k ~= 'bronze2' and k ~= 'diamante2' and k ~= 'esmeralda2' and k ~= 'ferro2' and k ~= 'ouro2' and k ~= 'rubi2' and k ~= 'safira2' and k ~= 'topazio2' and k ~= 'ametista' and k ~= 'bronze' and k ~= 'diamante' and k ~= 'esmeralda' and k ~= 'ferro' and k ~= 'ouro' and k ~= 'rubi' and k ~= 'safira' and k ~= 'topazio' and k ~= 'alianca' then
+                                    if vRP.tryGetInventoryItem(nuser_id, k, v.amount) then
+                                        vRP.giveInventoryItem(user_id, k, v.amount)
+                                        table.insert(itens_roubo, "[ITEM]: " .. vRP.itemNameList(k) .. " [QUANTIDADE]: " .. v.amount)
+                                    end
+                                else
+                                    TriggerClientEvent("Notify", source, "aviso", "<b>" .. vRP.format(parseInt(v.amount)) .. "x " .. vRP.itemNameList(k) .. "</b> são proíbidos de serem roubados.")
+                                end
+                            else
+                                TriggerClientEvent("Notify", source, "negado", "Mochila não suporta <b>" .. vRP.format(parseInt(v.amount)) .. "x " .. vRP.itemNameList(k) .. "</b> por causa do peso.")
+                            end
+                        end
+                    end
+                end
+                for k, v in pairs(weapons) do
+                    vRP.giveInventoryItem(nuser_id, "wbody|" .. k, 1)
+                    if vRP.getInventoryWeight(user_id) + vRP.getItemWeight("wbody|" .. k) <= vRP.getInventoryMaxWeight(user_id) then
+                        if vRP.tryGetInventoryItem(nuser_id, "wbody|" .. k, 1) then
+                            vRP.giveInventoryItem(user_id, "wbody|" .. k, 1)
+                            table.insert(itens_roubo, "[ITEM]: " .. vRP.itemNameList("wbody|" .. k) .. " [QUANTIDADE]: " .. 1)
+                        end
+                    else
+                        TriggerClientEvent("Notify", source, "negado", "Mochila não suporta <b>1x " .. vRP.itemNameList(k) .. "</b> por causa do peso.")
+                    end
+                    if v.ammo > 0 then
+                        vRP.giveInventoryItem(nuser_id, "wammo|" .. k, v.ammo)
+                        if vRP.getInventoryWeight(user_id) + vRP.getItemWeight("wammo|" .. k) * v.ammo <= vRP.getInventoryMaxWeight(user_id) then
+                            if vRP.tryGetInventoryItem(nuser_id, "wammo|" .. k, v.ammo) then
+                                vRP.giveInventoryItem(user_id, "wammo|" .. k, v.ammo)
+                                table.insert(itens_roubo, "[ITEM]: " .. vRP.itemNameList("wammo|" .. k) .. " [QTD]: " .. v.ammo)
+                            end
+                        else
+                            TriggerClientEvent("Notify", source, "negado", "Mochila não suporta <b>" .. vRP.format(parseInt(v.ammo)) .. "x " .. vRP.itemNameList(k) .. "</b> por causa do peso.")
+                        end
+                    end
+                end
+                local nmoney = vRP.getMoney(nuser_id)
+                if vRP.tryPayment(nuser_id, nmoney) then
+                    vRP.giveMoney(user_id, nmoney)
+                end
+                -- ACIONAR A POLICIA
+                for l, w in pairs(policia) do
+                    local player = vRP.getUserSource(parseInt(w))
+                    if player then
+                        async(function()
+                            TriggerClientEvent('blipassalto:criar:assalto', player, crds.x, crds.y, crds.z)
+                            vRPclient.playSound(player, "Oneshot_Final", "MP_MISSION_COUNTDOWN_SOUNDSET")
+                            TriggerClientEvent('chatMessage', player, "190", {65, 130, 255}, "Assalto de Rua em andamento, dirija-se até o local e intercepte o assaltante.")
+                            SetTimeout(20000, function()
+                                TriggerClientEvent('blipassalto:remover:assalto', player)
+                            end)
+                        end)
+                    end
+                end
+                vRPclient.setStandBY(source, parseInt(600))
+                local itensroubados = table.concat(itens_roubo, "\n")
+                TriggerClientEvent("Notify", source, "importante", "Roubo concluido com sucesso, corra, a polícia foi acionada")
+                vRP.Log("```prolog\n[ASSALTANTE]: " .. user_id .. " " .. identity.name .. " " .. identity.firstname .. " \n[ASSALTADO]: " .. nuser_id .. " " .. identityu.name .. " " .. identityu.firstname .. "\n"..itensroubados.."\n[COORDENADA]: " .. crds.x .. "," .. crds.y .. "," .. crds.z .. "" .. os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S") .. " \r```", "CMD_ROUBAR")
+            else
+                TriggerClientEvent("Notify", source, "importante", "A pessoa está resistindo ao roubo.")
+                vRP.Log("```prolog\n[ASSALTANTE]: " .. user_id .. " " .. identity.name .. " " .. identity.firstname .. " \n[ASSALTADO]: " .. nuser_id .. " " .. identityu.name .. " " .. identityu.firstname .. "\n[A PESSOA RESISTIU AO ROUBO]\n[COORDENADA]: " .. crds.x .. "," .. crds.y .. "," .. crds.z .. "" .. os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S") .. " \r```", "CMD_ROUBAR")
+            end
+        else
+            TriggerClientEvent("Notify", source, "negado", "Número insuficiente de policiais no momento.")
+        end
+    end
+end)
 
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- JOB
@@ -1690,7 +1761,7 @@ RegisterCommand('call',function(source,args,rawCommand)
 							vRPclient.playSound(source,"Event_Message_Purple","GTAO_FM_Events_Soundset")
 							vRPclient._setGPS(player,x,y)
 						else
-							TriggerClientEvent("Notify",player,"negado","Chamado ja foi atendido por outra pessoa.")
+							TriggerClientEvent("Notify",player,"negado","Chamado já foi atendido por outra pessoa.")
 							vRPclient.playSound(player,"CHECKPOINT_MISSED","HUD_MINI_GAME_SOUNDSET")
 						end
 					end
@@ -1790,6 +1861,46 @@ local roupas = {
 -- [9] = { -1,0 }, -- colete
 -- [10] = { -1,0 }, -- adesivo
 -- [11] = { 86,1 }, -- jaqueta
+	["evento"] = {
+		[1885233650] = {                                      
+            [1] = {0,0,2},
+            [2] = {57,0,0},
+            [3] = {6,0,1},
+            [4] = {64,0,1},
+            [5] = {0,0,0},
+            [6] = {4,2,1},
+            [7] = {0,0,0},
+            [8] = {15,0,2},
+            [9] = {0,0,0},
+            [10] = {0,0,0},
+            [11] = {257,0,1},
+            [0] = {0,0,0},
+            ["p7"] = {-1,0},
+            ["p2"] = {-1,0},
+            ["p0"] = {-1,0},
+            ["p1"] = {-1,0},
+            ["p6"] = {-1,0},                      
+		},
+		[-1667301416] = {
+            [1] = {0,0,0},
+            [2] = {57,0,0},
+            [3] = {7,0,1},
+            [4] = {66,0,1},
+            [5] = {0,0,0},
+            [6] = {3,2,1},
+            [7] = {0,0,0},
+            [8] = {15,0,2},
+            [9] = {0,0,0},
+            [10] = {0,0,0},
+            [11] = {266,0,1},
+            [0] = {0,0,0},
+            ["p7"] = {-1,0},
+            ["p2"] = {-1,0},
+            ["p0"] = {-1,0},
+            ["p1"] = {-1,0},
+            ["p6"] = {-1,0},            
+		}
+	},
 	["cacador"] = {
 		[1885233650] = {                                      
             [1] = {0,0,2},
@@ -2502,3 +2613,16 @@ RegisterCommand('armalimpar', function(source,args,rawCommand)
         end
     end
 end)
+
+-----------------------------------------------------------------------------------------------------------------------------------------
+-- BOOST DE FPS
+-----------------------------------------------------------------------------------------------------------------------------------------
+-- RegisterCommand('fps',function(source,args)
+--     if args[1] == 'on' then
+--         SetTimecycleModifier('cinema')
+--         TriggerEvent('Notify','sucesso','Boost de FPS ligado!')
+--     elseif args[1] == 'off' then
+--         SetTimecycleModifier('default')
+--         TriggerEvent('Notify','sucesso','Boost de FPS desligado!')
+--     end
+-- end)

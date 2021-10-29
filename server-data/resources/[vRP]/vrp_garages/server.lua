@@ -506,6 +506,11 @@ local garages = {
     [677] = {['name'] = "Tecidos", ['payment'] = false, ['public'] = true}, -- Emprego de tecidos
     [678] = {['name'] = "Salvavidas", ['payment'] = false, ['public'] = true}, -- Emprego de Salva-vidas
     [679] = {['name'] = "Cacador", ['payment'] = false, ['public'] = true}, -- Emprego de Cacador
+    [680] = {['name'] = "Garagem", ['payment'] = false, ['public'] = true}, -- Garagem do Casino
+    [681] = {['name'] = "Policia", ['payment'] = false, ['perm'] = "policia.permissao"}, -- POLICIA DP NOVA (JOALHERIA)
+    [682] = {['name'] = "Garagem", ['payment'] = false, ['public'] = true}, -- Garagem do Casino
+    [683] = {['name'] = "Garagem", ['payment'] = false, ['public'] = true}, -- FAC Vermelhos
+    [684] = {['name'] = "Garagem", ['payment'] = false, ['public'] = true}, -- FAC Laranjas
 }
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- GARAGEMS
@@ -531,7 +536,7 @@ local workgarage = {
     ["SportRace"] = {"flatbed", "slamvan3", "brawler"},
     ["DIC"] = {"dicgt63", "cls63s"},
     ["PRF"] = {"cruzeprf2", "l200prf", "trailprf", "ec130PRF"},
-    ["Policia"] = {"riot", "VRa4", "VRraptor", "VRrs6av", "VRdm1200", "r820p"},
+    ["Policia"] = {"riot", "VRa4", "VRraptor", "VRrs6av", "VRdm1200", "r820p", "porschespeed"},
     ["PoliciaHeli"] = {"polmav"},
     ["ROTA"] = {"sw4revrota1", "trailrota2"},
     ["PMESP"] = {"pbus", "riot", "20blazer2", "police3", "spacepm1", "trailcfp", "trailpm1", "av-gt63", "av-m8", "policeb"},

@@ -14,11 +14,14 @@ window.addEventListener('message', (event) => {
 		const telefone = data.telefone;
 		const multas = data.multas;
 		const avatar = data.avatar;
-		const avatarURL = JSON.stringify(avatar[0]['avatarURL']).replace('"', ' ').replace('"', ' ');
 
-		if (avatarURL.length > 5) {
-			$('.avatar-holder img').attr('src', "" + avatarURL + "");
-		}
+		// if (avatar != null) {
+		// 	const avatarURL = JSON.stringify(avatar[0]['avatarURL']).replace('"', ' ').replace('"', ' ');
+		// 	if (avatarURL.length > 5) {
+		// 		$('.avatar-holder img').attr('src', "" + avatarURL + "");
+		// 	}
+		// }
+
 		$('.name p').text(nome);
 		$('.name h6 span').text(emprego);
 		$('.cargo').hide();

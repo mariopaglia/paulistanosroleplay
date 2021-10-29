@@ -80,6 +80,8 @@ end)
 AddEventHandler("vRP:playerJoin",function(user_id,source,name)
 	if not vRP.getUserIdentity(user_id) then
 		vRP.giveInventoryItem(user_id,"celular",1)
+		vRP.giveInventoryItem(user_id,"hamburguer",5)
+		vRP.giveInventoryItem(user_id,"agua",5)
 	end
 end)
 

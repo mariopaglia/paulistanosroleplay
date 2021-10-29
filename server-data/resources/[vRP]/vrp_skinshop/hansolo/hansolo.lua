@@ -24,7 +24,7 @@ local lojaderoupa = {
     { x = 1695.82, y = 4829.31, z = 42.07, provador = { x = 1695.82, y = 4829.31, z = 42.07, heading = 99.29 } },
     { x = 11.13, y = 6514.7, z = 31.88, provador = { x = 11.13, y = 6514.7, z = 31.88, heading = 48.03 } },
     { x=-1096.5, y=-834.64, z=14.29, provador = { x=-1096.5, y=-834.64, z=14.29, heading = 302.45 } },
-    { x=297.53, y=-594.33, z=43.29, provador = { x=297.53, y=-594.33, z=43.29, heading = 156.37 } },
+    { x=327.17, y=-581.58, z=43.32, provador = { x=327.17, y=-581.58, z=43.32, heading = 339.87 } }, -- Hospital
     { x=450.96, y=-992.0, z=30.69, provador = { x=450.96, y=-992.0, z=30.69, heading = 275.29 } },
     { x=1395.34, y=1148.85, z=114.34, provador = { x=1395.34, y=1148.85, z=114.34, heading = 266.09 } }, -- Cosanostra
     { x=-100.45, y=990.95, z=235.78, provador = { x=-100.45, y=990.95, z=235.78, heading = 26.46 } }, -- Bratva
@@ -48,12 +48,12 @@ local lojaderoupa = {
     { x=4489.09, y=-4452.21, z=4.37, provador = { x=4489.09, y=-4452.21, z=4.37, heading = 198.51 } }, -- LOJA ILHA
     { x=-2584.42, y=1885.9, z=140.87, provador = { x=-2584.42, y=1885.9, z=140.87, heading = 189.69 } }, -- MANSAO MONTANHA
     { x=-56.41, y=-1289.5, z=30.91, provador = { x=-56.41, y=-1289.5, z=30.91, heading = 183.18 } }, -- ACADEMIA ['x'] = -56.41, ['y'] = -1289.5, ['z'] = 30.91, ['h'] = 183.18
-    { x=-932.49, y=-177.13, z=46.29, provador = { x=-932.49, y=-177.13, z=46.29, heading = 28.19 } }, -- Fenix Plaza
     { x=2512.9, y=-344.37, z=101.9, provador = { x=2512.9, y=-344.37, z=101.9, heading = 318.13 } }, -- DIC 
     { x=835.7, y=-981.18, z=32.08, provador = { x=835.7, y=-981.18, z=32.08, heading = 181.46 } }, -- ROUPAS FÊNIX CUSTOMS 
     { x=-826.26, y=-1233.11, z=7.34, provador = { x=-826.26, y=-1233.11, z=7.34, heading = 140.44 } }, -- HOSPITAL NOVO (VICEROY)
     { x=-1105.71, y=-1640.51, z=4.65, provador = { x=-1105.71, y=-1640.51, z=4.65, heading = 64.08 } }, -- Laranjas
     { x=619.68, y=14.38, z=82.78, provador = { x=619.68, y=14.38, z=82.78, heading = 159.91 } }, -- DP Vinewood
+    { x=1104.04, y=195.71, z=-49.44, provador = { x=1104.04, y=195.71, z=-49.44, heading = 42.13 } }, -- Casino
 }
 
 local parts = {

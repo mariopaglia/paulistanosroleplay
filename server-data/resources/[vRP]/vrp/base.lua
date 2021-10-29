@@ -132,36 +132,41 @@ function vRP.isBanned(user_id)
     end
 end
 
-function vRP.setBanned(user_id, banned)
-    local wh = "https://discord.com/api/webhooks/812889505056423956/9W2wwQ5vf-R4Xv5tvAgm4ipk-J9L9Qbsh7mLIV95T25RmRAXn5yKAuK8kZZRGMDSynCe"
-    local message = ""
-    if vRP.getUserSource(user_id) then
-        local ids = GetPlayerIdentifiers(vRP.getUserSource(user_id))
-        local did
-        for l, w in pairs(ids) do
-            if string.find(w, "discord:") then
-                local u, d = w:find("discord:")
-                message = w:sub(d + 1)
-            end
-        end
-
-        DropPlayer(vRP.getUserSource(user_id), "Você foi banido da cidade!")
-    else
-        local rows = vRP.query("vRP/identifier_byuserid", {user_id = user_id})
-        print("Ban: " .. json.encode(rows))
-        if #rows > 0 then
-            local id = rows[1].identifier
-            local u, d = id:find("discord:")
-            message = id:sub(d + 1)
-        end
-    end
-
-    if message ~= "" and banned == true then
-        PerformHttpRequest(wh, function(err, text, headers)
-        end, 'POST', json.encode({content = message}), {['Content-Type'] = 'application/json'})
-    end
-    vRP.execute("vRP/set_banned", {user_id = user_id, banned = banned})
+function vRP.setBanned(user_id,banned)
+    DropPlayer(vRP.getUserSource(user_id), "Você foi banido da cidade!")
+	vRP.execute("vRP/set_banned",{ user_id = user_id, banned = banned })
 end
+
+-- function vRP.setBanned(user_id, banned)
+--     local wh = "https://discord.com/api/webhooks/812889505056423956/9W2wwQ5vf-R4Xv5tvAgm4ipk-J9L9Qbsh7mLIV95T25RmRAXn5yKAuK8kZZRGMDSynCe"
+--     local message = ""
+--     if vRP.getUserSource(user_id) then
+--         local ids = GetPlayerIdentifiers(vRP.getUserSource(user_id))
+--         local did
+--         for l, w in pairs(ids) do
+--             if string.find(w, "discord:") then
+--                 local u, d = w:find("discord:")
+--                 message = w:sub(d + 1)
+--             end
+--         end
+
+--         DropPlayer(vRP.getUserSource(user_id), "Você foi banido da cidade!")
+--     else
+--         local rows = vRP.query("vRP/identifier_byuserid", {user_id = user_id})
+--         print("Ban: " .. json.encode(rows))
+--         if #rows > 0 then
+--             local id = rows[1].identifier
+--             local u, d = id:find("discord:")
+--             message = id:sub(d + 1)
+--         end
+--     end
+
+--     if message ~= "" and banned == true then
+--         PerformHttpRequest(wh, function(err, text, headers)
+--         end, 'POST', json.encode({content = message}), {['Content-Type'] = 'application/json'})
+--     end
+--     vRP.execute("vRP/set_banned", {user_id = user_id, banned = banned})
+-- end
 
 function vRP.isWhitelisted(user_id)
     local rows = vRP.query("vRP/get_whitelisted", {user_id = user_id})
@@ -269,6 +274,7 @@ function vRP.dropPlayer(source)
 
             elseif vRP.hasGroup(user_id, "PMFCIV") then
                 vRP.addUserGroup(user_id, "PMFCIVP")
+                vRPclient.replaceWeapons(source,{})
                 vRP.Log("```prolog\n[POLICIAL]: " .. user_id .. " " .. identity.name .. " " .. identity.firstname .. " \n[===========SAIU DE SERVICO==========] " .. os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S") .. " \r```", "TOOGLE_POLICIA")
 
                 ---------------------------------------------------

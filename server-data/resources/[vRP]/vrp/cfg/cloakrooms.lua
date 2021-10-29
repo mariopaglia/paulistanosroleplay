@@ -906,7 +906,7 @@ cfg.cloakroom_types = {
 cfg.cloakrooms = {
 	{"PMFC Masculinas", -568.53,-112.45,33.88}, -- 458.65, -992.93, 30.68
 	{"PMFC Femininas", -569.98,-110.05,33.88}, -- 456.51, -988.77, 30.69
-	{"Fardamento SAMU", 301.56,-598.88,43.29}, -- 301.32, -599.16, 43.28 (HP PRACA)
+	{"Fardamento SAMU", 324.11,-580.33,43.32}, -- 301.32, -599.16, 43.28 (HP PRACA)
 	{"Uniforme Bennys", -203.66,-1339.09,34.9}, -- Bennys -16.55,-1051.47,32.4
 	{"Uniforme Fenix Customs", 831.88,-980.59,32.08}, -- SportRace
 }

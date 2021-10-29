@@ -1096,3 +1096,54 @@ AddEventHandler('FOGO',function(source)
         StopEntityFire(ped);
     end
 end)
+
+-----------------------------------------------------------------------------------------------------------------------------------------
+-- BOOST DE FPS
+-----------------------------------------------------------------------------------------------------------------------------------------
+RegisterCommand("fps",function(source,args)
+    if args[1] == nil or args[1] == "on" then
+        TriggerEvent("Notify","info","<b>ESCOLHA O NÍVEL DE BOOST DE FPS:</b><br><b>/fps alto</b> - Maior ganho de FPS<br><b>/fps baixo</b> - Menor ganho de FPS<br><b>/fps off</b> - Desliga o boost de FPS")
+    elseif args[1] == "alto" or args[1] == "Alto" or args[1] == "ALTO" then
+        SetTimecycleModifier("cinema")
+        RopeDrawShadowEnabled(false)
+        CascadeShadowsClearShadowSampleType()
+        CascadeShadowsSetAircraftMode(false)
+        CascadeShadowsEnableEntityTracker(true)
+        CascadeShadowsSetDynamicDepthMode(false)
+        CascadeShadowsSetEntityTrackerScale(0.0)
+        CascadeShadowsSetDynamicDepthValue(0.0)
+        CascadeShadowsSetCascadeBoundsScale(0.0)
+        SetFlashLightFadeDistance(0.0)
+        SetLightsCutoffDistanceTweak(0.0)
+        DistantCopCarSirens(false)
+        TriggerEvent("Notify","sucesso","Boost de <b>FPS Alto</b> ligado!")    
+    elseif args[1] == "baixo" or args[1] == "Baixo" or args[1] == "BAIXO" then
+        RopeDrawShadowEnabled(true)
+        CascadeShadowsClearShadowSampleType()
+        CascadeShadowsSetAircraftMode(false)
+        CascadeShadowsEnableEntityTracker(true)
+        CascadeShadowsSetDynamicDepthMode(false)
+        CascadeShadowsSetEntityTrackerScale(5.0)
+        CascadeShadowsSetDynamicDepthValue(3.0)
+        CascadeShadowsSetCascadeBoundsScale(3.0)
+        SetFlashLightFadeDistance(3.0)
+        SetLightsCutoffDistanceTweak(3.0)
+        DistantCopCarSirens(false)
+        SetArtificialLightsState(false)
+        TriggerEvent("Notify","sucesso","Boost de <b>FPS Baixo</b> ligado!")    
+    elseif args[1] == "off" or args[1] == "Off" or args[1] == "OFF" then
+        SetTimecycleModifier("default")
+        RopeDrawShadowEnabled(true)
+        CascadeShadowsSetAircraftMode(true)
+        CascadeShadowsEnableEntityTracker(false)
+        CascadeShadowsSetDynamicDepthMode(true)
+        CascadeShadowsSetEntityTrackerScale(5.0)
+        CascadeShadowsSetDynamicDepthValue(5.0)
+        CascadeShadowsSetCascadeBoundsScale(5.0)
+        SetFlashLightFadeDistance(10.0)
+        SetLightsCutoffDistanceTweak(10.0)
+        DistantCopCarSirens(true)
+        SetArtificialLightsState(false)
+        TriggerEvent("Notify","sucesso","Boost de <b>FPS Desligado</b>!")
+    end
+end)

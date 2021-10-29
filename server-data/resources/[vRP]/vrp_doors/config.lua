@@ -261,6 +261,8 @@ cfg.list = {
 	[209] = { text = true, hash = 1286535678, ['x'] = -2599.44, ['y'] = 1672.52, ['z'] = 141.87, lock = true, perm = "midnight.permissao" },
 	[210] = { text = true, hash = -951412226, ['x'] = -2603.72, ['y'] = 1686.88, ['z'] = 142.68, lock = true, perm = "midnight.permissao" },
 	[211] = { text = true, hash = 1629676881, ['x'] = -2608.76, ['y'] = 1689.1, ['z'] = 142.67, lock = true, perm = "midnight.permissao" },
+	[212] = { text = true, hash = 1417577297, ['x'] = -627.01, ['y'] = 238.61, ['z'] = 81.89, lock = true, perm = "beanmachine.permissao", other = 213 },
+	[213] = { text = true, hash = 2059227086, ['x'] = -627.23, ['y'] = 239.51, ['z'] = 81.89, lock = true, perm = "beanmachine.permissao", other = 212 },
 }
 
 return cfg

@@ -325,7 +325,7 @@ function playerPairPlusWon(source, tableId, pairMultiplier)
         local user_id = vRP.getUserId(source)
             local plusChips = math.floor(betAmount * pairMultiplier)
             if plusChips > 0 then
-                r_showNotification(source, _('pair_won', plusChips, pairMultiplier))
+                r_showNotification(source, translate('pair_won', plusChips, pairMultiplier))
                 giveChips(source, plusChips)
             end
     end
@@ -340,9 +340,9 @@ function playerWon(source, tableId, handValue)
             local AnteMultiplier = Config.GetAnteMultiplier(handValue)
             if AnteMultiplier > 0 then
                 plusChips = math.floor(plusChips + (AnteMultiplier * betAmount))
-                r_showNotification(source, _('player_won_ante', plusChips, AnteMultiplier))
+                r_showNotification(source, translate('player_won_ante', plusChips, AnteMultiplier))
             else
-                r_showNotification(source, _('player_won', plusChips))
+                r_showNotification(source, translate('player_won', plusChips))
             end
 
             giveChips(source, plusChips)
@@ -362,9 +362,9 @@ function playerDraw(source, tableId, handValue)
             local AnteMultiplier = Config.GetAnteMultiplier(handValue)
             if AnteMultiplier > 0 then
                 plusChips = math.floor(plusChips + ((betAmount / 2) * AnteMultiplier))
-                r_showNotification(source, _('dealer_not_qual_ante', plusChips, AnteMultiplier))
+                r_showNotification(source, translate('dealer_not_qual_ante', plusChips, AnteMultiplier))
             else
-                r_showNotification(source, _('dealer_not_qual', plusChips))
+                r_showNotification(source, translate('dealer_not_qual', plusChips))
             end
 
         giveChips(source, plusChips)

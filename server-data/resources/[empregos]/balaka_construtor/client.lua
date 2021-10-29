@@ -110,7 +110,7 @@ Citizen.CreateThread(function()
 			local x,y,z = table.unpack(GetEntityCoords(ped))  
 			local bowz,cdz = GetGroundZFor_3dCoord(construtor[locais].x,construtor[locais].y,construtor[locais].z)
 			local distance = GetDistanceBetweenCoords(construtor[locais].x,construtor[locais].y,cdz,x,y,z,true)
-			if distance < 200 then
+			if distance < 200 and not IsPedInAnyVehicle(ped) then
 				DrawText3D(construtor[locais].x,construtor[locais].y,construtor[locais].z + 0.5,"~r~E ~w~   CONSERTAR")
 				balaka = 1
 				if distance < 5 then

@@ -21,7 +21,7 @@ local nomesnui = "fechar-nui"
 -----------------------------------------------------------------------------------------------------------------------------------
 -- [ ARRAY ]-----------------------------------------------------------------------------------------------------------------------
 -----------------------------------------------------------------------------------------------------------------------------------
-local armas = {{item = "ak47"}, {item = "g36"}, {item = "mp5"}, {item = "fiveseven"}, {item = "hkp7m10"}, {item = "m-ak47"}, {item = "m-g36"}, {item = "m-mp5"}, {item = "m-fiveseven"}, {item = "m-hkp7m10"}}
+local armas = {{item = "ak47"}, {item = "g36"}, {item = "mp5"}, {item = "scorpion"}, {item = "shotgun"}, {item = "fiveseven"}, {item = "hkp7m10"}, {item = "m-ak47"}, {item = "m-g36"}, {item = "m-mp5"}, {item = "m-scorpion"}, {item = "m-shotgun"}, {item = "m-fiveseven"}, {item = "m-hkp7m10"}}
 -----------------------------------------------------------------------------------------------------------------------------------
 -- [ EVENTOS ]---------------------------------------------------------------------------------------------------------------------
 -----------------------------------------------------------------------------------------------------------------------------------
@@ -108,6 +108,56 @@ AddEventHandler("produzir-arma", function(item)
                     else
                         TriggerClientEvent("Notify", source, "negado", "Espaço insuficiente na mochila.")
                     end
+
+                    ---------------------------
+                    -- PRODUÇÃO DA SCORPION
+                    ---------------------------
+                elseif item == "scorpion" then
+                    if vRP.getInventoryWeight(user_id) + vRP.getItemWeight("wbody|WEAPON_MINISMG") <= vRP.getInventoryMaxWeight(user_id) then
+                        if vRP.getInventoryItemAmount(user_id, "corpodescorpion") >= 1 and vRP.getInventoryItemAmount(user_id, "placademetal") >= 70 and vRP.getInventoryItemAmount(user_id, "mola") >= 10 and vRP.getInventoryItemAmount(user_id, "gatilho") >= 1 then
+                            if vRP.tryGetInventoryItem(user_id, "corpodescorpion", 1) and vRP.tryGetInventoryItem(user_id, "placademetal", 70) and vRP.tryGetInventoryItem(user_id, "mola", 10) and vRP.tryGetInventoryItem(user_id, "gatilho", 1) then
+                                TriggerClientEvent(nomesnui, source) --------- trocar quando duplicar
+                                TriggerClientEvent("progress", source, 10000, "Montando " .. itemupper .. "")
+                                vRPclient._playAnim(source, false, {{"amb@prop_human_parking_meter@female@idle_a", "idle_a_female"}}, true)
+                                SetTimeout(10000, function()
+                                    vRPclient._stopAnim(source, false)
+                                    vRP.giveInventoryItem(user_id, "wbody|WEAPON_MINISMG", 1)
+                                    local itemupper = string.upper(item)
+                                    TriggerClientEvent("Notify", source, "sucesso", "Você montou uma <b>" .. itemupper .. "</b>.")
+                                    vRP.Log("```prolog\n[ID]: " .. user_id .. " " .. identity.name .. " " .. identity.firstname .. " \n[PRODUZIU]: " .. itemupper .. "\n[COORDENADA]: " .. crds.x .. "," .. crds.y .. "," .. crds.z .. "" .. os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S") .. "```", "PRODUCAO_ARMA")
+                                end)
+                            end
+                        else
+                            TriggerClientEvent("Notify", source, "negado", "Materiais insuficientes!")
+                        end
+                    else
+                        TriggerClientEvent("Notify", source, "negado", "Espaço insuficiente na mochila.")
+                    end                   
+                    
+                    ---------------------------
+                    -- PRODUÇÃO DA SCORPION
+                    ---------------------------
+                elseif item == "shotgun" then
+                    if vRP.getInventoryWeight(user_id) + vRP.getItemWeight("wbody|WEAPON_SAWNOFFSHOTGUN") <= vRP.getInventoryMaxWeight(user_id) then
+                        if vRP.getInventoryItemAmount(user_id, "corpodeshotgun") >= 1 and vRP.getInventoryItemAmount(user_id, "placademetal") >= 100 and vRP.getInventoryItemAmount(user_id, "mola") >= 15 and vRP.getInventoryItemAmount(user_id, "gatilho") >= 1 then
+                            if vRP.tryGetInventoryItem(user_id, "corpodeshotgun", 1) and vRP.tryGetInventoryItem(user_id, "placademetal", 100) and vRP.tryGetInventoryItem(user_id, "mola", 15) and vRP.tryGetInventoryItem(user_id, "gatilho", 1) then
+                                TriggerClientEvent(nomesnui, source) --------- trocar quando duplicar
+                                TriggerClientEvent("progress", source, 10000, "Montando " .. itemupper .. "")
+                                vRPclient._playAnim(source, false, {{"amb@prop_human_parking_meter@female@idle_a", "idle_a_female"}}, true)
+                                SetTimeout(10000, function()
+                                    vRPclient._stopAnim(source, false)
+                                    vRP.giveInventoryItem(user_id, "wbody|WEAPON_SAWNOFFSHOTGUN", 1)
+                                    local itemupper = string.upper(item)
+                                    TriggerClientEvent("Notify", source, "sucesso", "Você montou uma <b>" .. itemupper .. "</b>.")
+                                    vRP.Log("```prolog\n[ID]: " .. user_id .. " " .. identity.name .. " " .. identity.firstname .. " \n[PRODUZIU]: " .. itemupper .. "\n[COORDENADA]: " .. crds.x .. "," .. crds.y .. "," .. crds.z .. "" .. os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S") .. "```", "PRODUCAO_ARMA")
+                                end)
+                            end
+                        else
+                            TriggerClientEvent("Notify", source, "negado", "Materiais insuficientes!")
+                        end
+                    else
+                        TriggerClientEvent("Notify", source, "negado", "Espaço insuficiente na mochila.")
+                    end                    
 
                     ---------------------------
                     -- PRODUÇÃO DA FIVE SEVEN
@@ -220,6 +270,56 @@ AddEventHandler("produzir-arma", function(item)
                                 SetTimeout(10000, function()
                                     vRPclient._stopAnim(source, false)
                                     vRP.giveInventoryItem(user_id, "wammo|WEAPON_SMG_MK2", 50)
+                                    local itemupper = string.upper(item)
+                                    TriggerClientEvent("Notify", source, "sucesso", "Você produziu <b>" .. itemupper .. "</b>")
+                                    vRP.Log("```prolog\n[ID]: " .. user_id .. " " .. identity.name .. " " .. identity.firstname .. " \n[PRODUZIU]: 50x " .. itemupper .. "\n[COORDENADA]: " .. crds.x .. "," .. crds.y .. "," .. crds.z .. "" .. os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S") .. "```", "PRODUCAO_ARMA")
+                                end)
+                            end
+                        else
+                            TriggerClientEvent("Notify", source, "negado", "Materiais insuficientes!")
+                        end
+                    else
+                        TriggerClientEvent("Notify", source, "negado", "Espaço insuficiente na mochila.")
+                    end
+                    
+                    ---------------------------
+                    -- PRODUÇÃO MUNIÇÃO SCORPION
+                    ---------------------------
+                elseif item == "m-scorpion" then
+                    if vRP.getInventoryWeight(user_id) + vRP.getItemWeight("wammo|WEAPON_MINISMG") <= vRP.getInventoryMaxWeight(user_id) then
+                        if vRP.getInventoryItemAmount(user_id, "capsula") >= 50 and vRP.getInventoryItemAmount(user_id, "polvora") >= 50 then
+                            if vRP.tryGetInventoryItem(user_id, "capsula", 50) and vRP.tryGetInventoryItem(user_id, "polvora", 50) then
+                                TriggerClientEvent(nomesnui, source) --------- trocar quando duplicar
+                                TriggerClientEvent("progress", source, 10000, "Montando " .. itemupper .. "")
+                                vRPclient._playAnim(source, false, {{"amb@prop_human_parking_meter@female@idle_a", "idle_a_female"}}, true)
+                                SetTimeout(10000, function()
+                                    vRPclient._stopAnim(source, false)
+                                    vRP.giveInventoryItem(user_id, "wammo|WEAPON_MINISMG", 50)
+                                    local itemupper = string.upper(item)
+                                    TriggerClientEvent("Notify", source, "sucesso", "Você produziu <b>" .. itemupper .. "</b>")
+                                    vRP.Log("```prolog\n[ID]: " .. user_id .. " " .. identity.name .. " " .. identity.firstname .. " \n[PRODUZIU]: 50x " .. itemupper .. "\n[COORDENADA]: " .. crds.x .. "," .. crds.y .. "," .. crds.z .. "" .. os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S") .. "```", "PRODUCAO_ARMA")
+                                end)
+                            end
+                        else
+                            TriggerClientEvent("Notify", source, "negado", "Materiais insuficientes!")
+                        end
+                    else
+                        TriggerClientEvent("Notify", source, "negado", "Espaço insuficiente na mochila.")
+                    end
+                    
+                    ---------------------------
+                    -- PRODUÇÃO MUNIÇÃO SCORPION
+                    ---------------------------
+                elseif item == "m-shotgun" then
+                    if vRP.getInventoryWeight(user_id) + vRP.getItemWeight("wammo|WEAPON_SAWNOFFSHOTGUN") <= vRP.getInventoryMaxWeight(user_id) then
+                        if vRP.getInventoryItemAmount(user_id, "capsula") >= 50 and vRP.getInventoryItemAmount(user_id, "polvora") >= 50 then
+                            if vRP.tryGetInventoryItem(user_id, "capsula", 50) and vRP.tryGetInventoryItem(user_id, "polvora", 50) then
+                                TriggerClientEvent(nomesnui, source) --------- trocar quando duplicar
+                                TriggerClientEvent("progress", source, 10000, "Montando " .. itemupper .. "")
+                                vRPclient._playAnim(source, false, {{"amb@prop_human_parking_meter@female@idle_a", "idle_a_female"}}, true)
+                                SetTimeout(10000, function()
+                                    vRPclient._stopAnim(source, false)
+                                    vRP.giveInventoryItem(user_id, "wammo|WEAPON_SAWNOFFSHOTGUN", 50)
                                     local itemupper = string.upper(item)
                                     TriggerClientEvent("Notify", source, "sucesso", "Você produziu <b>" .. itemupper .. "</b>")
                                     vRP.Log("```prolog\n[ID]: " .. user_id .. " " .. identity.name .. " " .. identity.firstname .. " \n[PRODUZIU]: 50x " .. itemupper .. "\n[COORDENADA]: " .. crds.x .. "," .. crds.y .. "," .. crds.z .. "" .. os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S") .. "```", "PRODUCAO_ARMA")

@@ -31,7 +31,16 @@ RegisterNUICallback("ButtonClick",function(data,cb)
 
 	elseif data == "mecanica-comprar-pneu" then
 		TriggerServerEvent("mecanica-comprar","pneu")
-		
+
+	elseif data == "mecanica-vender-militec" then
+		TriggerServerEvent("mecanica-vender","militec")
+
+	elseif data == "mecanica-vender-repairkit" then
+		TriggerServerEvent("mecanica-vender","repairkit")
+
+	elseif data == "mecanica-vender-pneu" then
+		TriggerServerEvent("mecanica-vender","pneu")
+
 	elseif data == "fechar" then
 		ToggleActionMenu()
 	end
@@ -40,7 +49,7 @@ end)
 -- LOCAIS
 -----------------------------------------------------------------------------------------------------------------------------------------
 local marcacoes = {
-	{ 805.75,-974.26,26.09 }, -- Fênix Customs
+	{ 803.18,-963.03,25.98 }, -- Sport Race
 }
 
 Citizen.CreateThread(function()
@@ -58,7 +67,11 @@ Citizen.CreateThread(function()
 						DrawText3Ds(x,y,z+0.20,"~r~[E] ~w~Para Acessar a Loja")
 					end
 					if IsControlJustPressed(0,38) then
-						ToggleActionMenu()
+						if emP.checkPermission1() then
+							ToggleActionMenu()
+						elseif emP.checkPermission2() then
+							ToggleActionMenu()
+						end
 					end
 				end
 			end

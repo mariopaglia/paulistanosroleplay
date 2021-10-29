@@ -118,16 +118,7 @@ end)
 local marcacoes = {
 	{ -778.74,332.21,196.09 }, -- casa wally 
 	{ -782.18,325.59,187.32 }, -- casa porcao
-	{ -561.86,289.34,82.18 }, -- Tequila
-	{ -448.84,285.41,78.53 }, -- Split
-	{ 351.54,288.26,91.2 }, -- Galaxy em baixo
-	{ 356.7,282.63,94.2 }, -- Galaxy em cima
-	{ 131.1,-1284.17,29.28 }, -- Vanilla
-	{ -296.16,6262.69,31.49 }, -- Hen House
-	{ -1375.82,-628.93,30.82 }, -- Bahamas
-	{ 415.57,-1499.47,30.16 }, -- Salieris
-	{ 958.27,69.57,112.56 }, -- Cassino
-	-- { -2107.18,-544.53,6.47 }, -- Casamento/Praia
+	{ -635.23,235.58,81.89 }, -- Cafeteria
 }
 
 Citizen.CreateThread(function()
@@ -145,7 +136,7 @@ Citizen.CreateThread(function()
 						DrawText3Ds(x,y,z+0.10,"~p~[E] ~w~Para Acessar o bar")
 					end
 					if IsControlJustPressed(0,38) then
-						if not emP.checkPermission1() then
+						if emP.checkPermission1() then
 							ToggleActionMenu()
 						end
 					end

@@ -266,7 +266,7 @@ function giveWinningChips(source, amount, szorzo)
     amount = math.floor(amount * szorzo)
 
     if amount > 0 then
-        r_showNotification(source, _('won_chips', amount, szorzo))
+        r_showNotification(source, translate('won_chips', amount, szorzo))
         giveChips(source, amount)
     end
 end
@@ -285,7 +285,7 @@ AddEventHandler(
             local chipsAmount = getPlayerChips(source)
             if chipsAmount >= betAmount then
                 removeChips(source, betAmount)
-                r_showNotification(source, _('placed_bet', betAmount))
+                r_showNotification(source, translate('placed_bet', betAmount))
                 TriggerClientEvent('casino:nui:updateChips', source, getPlayerChips(source))
 
                 Config.DebugMsg(string.format('player %s betted %s chips on betId: %s', GetPlayerName(source), betAmount, betId))

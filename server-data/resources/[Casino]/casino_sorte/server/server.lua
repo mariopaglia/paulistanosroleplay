@@ -14,6 +14,7 @@ RegisterServerEvent('casino_luckywheel:getLucky')
 AddEventHandler('casino_luckywheel:getLucky', function()
     local source = source
     local user_id = vRP.getUserId(source)
+    local identity = vRP.getUserIdentity(user_id)
     local player = vRP.getUserSource(user_id)
     local ticket = vRP.getInventoryItemAmount(user_id, "casino_ticket")
     TriggerClientEvent("invarte", player)
@@ -30,7 +31,6 @@ AddEventHandler('casino_luckywheel:getLucky', function()
                     local _subRan = math.random(1, 2)
                     if _subRan == 1 then
                         _priceIndex = 1 -- win car
-                        print("Ganhou: 1 - 1%")
                     else
                         _priceIndex = 11 -- loose
                     end
@@ -38,7 +38,6 @@ AddEventHandler('casino_luckywheel:getLucky', function()
                 elseif _randomPrice > 1 and _randomPrice <= 6 then
                     local _subRan = math.random(1, 2)
                     if _subRan == 1 then
-                        print("Ganhou: 2 - 4%")
                         _priceIndex = 2 -- win
                     else
                         _priceIndex = 11 -- loose
@@ -47,7 +46,6 @@ AddEventHandler('casino_luckywheel:getLucky', function()
                 elseif _randomPrice > 6 and _randomPrice <= 15 then
                     local _subRan = math.random(1, 3)
                     if _subRan == 1 then
-                        print("Ganhou: 3 - 8%")
                         _priceIndex = 3 -- win
                     else
                         _priceIndex = 11 -- loose
@@ -56,7 +54,6 @@ AddEventHandler('casino_luckywheel:getLucky', function()
                 elseif _randomPrice > 15 and _randomPrice <= 25 then
                     local _subRan = math.random(1, 3)
                     if _subRan == 1 then
-                        print("Ganhou: 4 - 9%")
                         _priceIndex = 4 -- win
                     else
                         _priceIndex = 11 -- loose
@@ -65,7 +62,6 @@ AddEventHandler('casino_luckywheel:getLucky', function()
                 elseif _randomPrice > 25 and _randomPrice <= 40 then
                     local _subRan = math.random(1, 3)
                     if _subRan == 1 then
-                        print("Ganhou: 5 - 14%")
                         _priceIndex = 5 -- win
                     else
                         _priceIndex = 11 -- loose
@@ -74,7 +70,6 @@ AddEventHandler('casino_luckywheel:getLucky', function()
                 elseif _randomPrice > 40 and _randomPrice <= 60 then
                     local _subRan = math.random(1, 3)
                     if _subRan == 1 then
-                        print("Ganhou: 6 - 19%")
                         _priceIndex = 6 -- win
                     else
                         _priceIndex = 11 -- loose
@@ -83,7 +78,6 @@ AddEventHandler('casino_luckywheel:getLucky', function()
                 elseif _randomPrice > 60 and _randomPrice <= 100 then
                     local _subRan = math.random(1, 3)
                     if _subRan == 1 then
-                        print("Ganhou: 7 - 39%")
                         _priceIndex = 7 -- win
                     else
                         _priceIndex = 11 -- loose
@@ -92,7 +86,6 @@ AddEventHandler('casino_luckywheel:getLucky', function()
                 elseif _randomPrice > 60 and _randomPrice <= 100 then
                     local _subRan = math.random(1, 3)
                     if _subRan == 1 then
-                        print("Ganhou: 8 - 39%")
                         _priceIndex = 8 -- win
                     else
                         _priceIndex = 11 -- loose
@@ -101,7 +94,6 @@ AddEventHandler('casino_luckywheel:getLucky', function()
                 elseif _randomPrice > 60 and _randomPrice <= 100 then
                     local _subRan = math.random(1, 3)
                     if _subRan == 1 then
-                        print("Ganhou: 9 - 39%")
                         _priceIndex = 9 -- win
                     else
                         _priceIndex = 11 -- loose
@@ -110,7 +102,6 @@ AddEventHandler('casino_luckywheel:getLucky', function()
                 elseif _randomPrice > 60 and _randomPrice <= 100 then
                     local _subRan = math.random(1, 3)
                     if _subRan == 1 then
-                        print("Ganhou: 10 - 39%")
                         _priceIndex = 10 -- win
                     else
                         _priceIndex = 11 -- loose
@@ -118,15 +109,15 @@ AddEventHandler('casino_luckywheel:getLucky', function()
                 end
 
                 -- prize index
-                SetTimeout(2000, function()
+                SetTimeout(4000, function()
                     isRoll = false
                     if _priceIndex == 1 then
                         local source = source
                         local user_id = vRP.getUserId(source)
-                        local vehicle = "adder"
-                        local sql = [[INSERT IGNORE INTO vrp_user_vehicles(user_id,vehicle,ipva) VALUES(@user_id,@vehicle,@ipva)]]
-                        MySQL.Sync.execute(sql, {['@user_id'] = user_id, ['vehicle'] = vehicle, ['ipva'] = parseInt(os.time())});
+                        vRP.execute("creative/add_vehicle", {user_id = parseInt(user_id), vehicle = "ferrariitalia", ipva = parseInt(os.time())})
+                        vRP.execute("creative/set_ipva", {user_id = parseInt(user_id), vehicle = "ferrariitalia", ipva = parseInt(os.time())})
                         r_showNotification(source, 'Você ganhou: Parabéns você ganhou um CARRO!')
+                        vRP.Log("```prolog\n[ID]: "..user_id.." "..identity.name.." "..identity.firstname.."\n[GANHOU]: ferrariitalia\n[MAQUINA]: Roleta da Sorte\n"..os.date("[Data]: %d/%m/%Y [Hora]: %H:%M:%S").."\r```",CASINO)
                         TriggerClientEvent('InteractSound_CL:PlayOnOne', source, 'LUCKY_WHEEL_WIN_WIN_CAR', 0.1)
                     elseif _priceIndex == 2 then
                         vRP.giveInventoryItem(user_id, "casino_token", 70000)

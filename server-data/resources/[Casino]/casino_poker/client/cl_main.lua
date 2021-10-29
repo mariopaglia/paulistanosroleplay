@@ -440,7 +440,8 @@ AquiverPoker = function(index, data)
         while not HasAnimDictLoaded(Config.PlayerAnimDictShared) do
             Citizen.Wait(1)
         end
-        SetPlayerControl(PlayerPedId(), 0, 0)
+        --SetPlayerControl(PlayerPedId(), 0, 0)
+		SetNuiFocus(true,false)
         local sitScene = NetworkCreateSynchronisedScene(chairCoords, chairRotation, 2, true, false, 1.0, 0.0, 1.0)
         local sitAnim = ({'sit_enter_left_side', 'sit_enter_right_side'})[math.random(1, 2)]
         NetworkAddPedToSynchronisedScene(PlayerPedId(), sitScene, Config.PlayerAnimDictShared, sitAnim, 2.0, -2.0, 13, 16, 2.0, 0)
@@ -452,7 +453,8 @@ AquiverPoker = function(index, data)
         NetworkStartSynchronisedScene(mainScene)
 
         self.EnableRender(true)
-        SetPlayerControl(PlayerPedId(), 1, 0)
+        --SetPlayerControl(PlayerPedId(), 1, 0)
+		SetNuiFocus(false,false)
 
         Citizen.Wait(500)
     end

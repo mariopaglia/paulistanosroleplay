@@ -23,6 +23,8 @@ local valores = {
 	{ item = "sprite", quantidade = 1, compra = 350, venda = 0 },
 	{ item = "leite", quantidade = 1, compra = 350, venda = 0 },
 	{ item = "mamadeira", quantidade = 1, compra = 400, venda = 0 },
+	{ item = "rosa", quantidade = 1, compra = 1000, venda = 0 },
+	{ item = "comidapet", quantidade = 1, compra = 100, venda = 0 },
 }
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- COMPRAR

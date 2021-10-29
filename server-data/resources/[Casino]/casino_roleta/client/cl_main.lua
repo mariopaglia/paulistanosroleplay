@@ -224,9 +224,11 @@ createRulettAsztal = function(index, data)
             end
 
             TaskPlayAnim(PlayerPedId(), endingDict, whichAnim, 1.0, 1.0, 2500, 0)
-            SetPlayerControl(PlayerId(), 0, 0)
+            --SetPlayerControl(PlayerId(), 0, 0)
+			SetNuiFocus(true,false)
             Citizen.Wait(3600)
-            SetPlayerControl(PlayerId(), 1, 0)
+            --SetPlayerControl(PlayerId(), 1, 0)
+			SetNuiFocus(false,false)
 
             DisplayRadar(true)
             TriggerEvent('ShowPlayerHud', true)
@@ -861,10 +863,12 @@ AddEventHandler(
         local randomSit = ({'sit_enter_left', 'sit_enter_right'})[math.random(1, 2)]
         NetworkAddPedToSynchronisedScene(PlayerPedId(), SITTING_SCENE, 'anim_casino_b@amb@casino@games@shared@player@', randomSit, 2.0, -2.0, 13, 16, 2.0, 0)
         NetworkStartSynchronisedScene(SITTING_SCENE)
-        SetPlayerControl(PlayerId(), 0, 0)
+        --SetPlayerControl(PlayerId(), 0, 0)
+		SetNuiFocus(true,false)
         startRulett(rulettIndex, chairData.chairId)
         Citizen.Wait(4000)
-        SetPlayerControl(PlayerId(), 1, 0)
+        --SetPlayerControl(PlayerId(), 1, 0)
+		SetNuiFocus(false,false)
     end
 )
 

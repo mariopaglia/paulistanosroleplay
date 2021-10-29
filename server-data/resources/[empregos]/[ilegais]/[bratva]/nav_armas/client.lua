@@ -25,10 +25,14 @@ end
 RegisterNUICallback("ButtonClick",function(data,cb)
 	if data == "armas-comprar-corpodeak" then
 		TriggerServerEvent("armas-comprar","corpodeak")
+	elseif data == "armas-comprar-corpodeshotgun" then
+		TriggerServerEvent("armas-comprar","corpodeshotgun")
 	elseif data == "armas-comprar-corpodeg36" then
 		TriggerServerEvent("armas-comprar","corpodeg36")
 	elseif data == "armas-comprar-corpodemp5" then
 		TriggerServerEvent("armas-comprar","corpodemp5")
+	elseif data == "armas-comprar-corpodescorpion" then
+		TriggerServerEvent("armas-comprar","corpodescorpion")
 	elseif data == "armas-comprar-corpodefiveseven" then
 		TriggerServerEvent("armas-comprar","corpodefiveseven")
 	elseif data == "armas-comprar-corpodehkp7m10" then

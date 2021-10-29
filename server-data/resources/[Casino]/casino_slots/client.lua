@@ -48,7 +48,8 @@ Citizen.CreateThread(function()
 end)
 
 Citizen.CreateThread(function()
-	SetPlayerControl(PlayerId(), 1, 0)
+	--SetPlayerControl(PlayerId(), 1, 0)
+	SetNuiFocus(false,false)
 end)
 
 Citizen.CreateThread(function()

@@ -38,9 +38,15 @@ RegisterNUICallback("ButtonClick",function(data,cb)
 
 	elseif data == "produzir-g36" then
 		TriggerServerEvent("produzir-arma","g36")
+		
+	elseif data == "produzir-shotgun" then
+		TriggerServerEvent("produzir-arma","shotgun")
 
 	elseif data == "produzir-mp5" then
 		TriggerServerEvent("produzir-arma","mp5")
+		
+	elseif data == "produzir-scorpion" then
+		TriggerServerEvent("produzir-arma","scorpion")
 
 	elseif data == "produzir-fiveseven" then
 		TriggerServerEvent("produzir-arma","fiveseven")
@@ -56,6 +62,12 @@ RegisterNUICallback("ButtonClick",function(data,cb)
 
 	elseif data == "produzir-m-mp5" then
 		TriggerServerEvent("produzir-arma","m-mp5")
+		
+	elseif data == "produzir-m-scorpion" then
+		TriggerServerEvent("produzir-arma","m-scorpion")
+		
+	elseif data == "produzir-m-shotgun" then
+		TriggerServerEvent("produzir-arma","m-shotgun")
 
 	elseif data == "produzir-m-fiveseven" then
 		TriggerServerEvent("produzir-arma","m-fiveseven")

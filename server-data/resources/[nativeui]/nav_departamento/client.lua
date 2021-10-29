@@ -52,21 +52,11 @@ RegisterNUICallback("ButtonClick",function(data,cb)
 		TriggerServerEvent("departamento-comprar","leite")
 	elseif data == "utilidades-comprar-mamadeira" then
 		TriggerServerEvent("departamento-comprar","mamadeira")
+	elseif data == "utilidades-comprar-rosa" then
+		TriggerServerEvent("departamento-comprar","rosa")
+	elseif data == "utilidades-comprar-comidapet" then
+		TriggerServerEvent("departamento-comprar","comidapet")
 
-	elseif data == "utilidades-vender-roupas" then
-		TriggerServerEvent("departamento-vender","roupas")	
-	elseif data == "utilidades-vender-mochila" then
-		TriggerServerEvent("departamento-vender","mochila")
-	elseif data == "utilidades-vender-alianca" then
-		TriggerServerEvent("departamento-vender","alianca")	
-	elseif data == "bebidas-vender-energetico" then
-		TriggerServerEvent("departamento-vender","energetico")
-	elseif data == "utilidades-vender-celular" then
-		TriggerServerEvent("departamento-vender","celular")
-	elseif data == "utilidades-vender-radio" then
-		TriggerServerEvent("departamento-vender","radio")
-	elseif data == "utilidades-vender-militec" then
-		TriggerServerEvent("departamento-vender","militec")
 	elseif data == "fechar" then
 		ToggleActionMenu()
 	end
@@ -98,7 +88,7 @@ local marcacoes = {
 	--{ -1095.4796142578,-2594.6533203125,13.925128936768 },
 	{ -1222.78,-907.22,12.32 },
 	{ 4467.48,-4464.91,4.25 }, -- LOJINHA ILHA
-	{ -949.4,-169.81,46.27 }, -- Fenix Plaza
+	{ 1108.63,209.5,-49.44 }, -- Casino
 }
 
 Citizen.CreateThread(function()
@@ -110,11 +100,11 @@ Citizen.CreateThread(function()
 			local x,y,z = table.unpack(mark)
 			local distance = GetDistanceBetweenCoords(GetEntityCoords(ped),x,y,z,true)
 			if distance <= 5.0 then
+				if not menuactive then
+					DrawText3Ds(x,y,z+0.20,"~r~[E] ~w~Para Acessar a Loja de Departamento")
+				end
 				TaylinSleep = 5
 				if distance <= 2.0 then
-					if not menuactive then
-						DrawText3Ds(x,y,z+0.20,"~r~[E] ~w~Para Acessar a Loja de Departamento")
-					end
 					if IsControlJustPressed(0,38) then
 						ToggleActionMenu()
 					end

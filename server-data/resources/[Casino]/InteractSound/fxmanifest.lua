@@ -1,3 +1,5 @@
+client_script "@vrp/lib/lib.lua" --Para remover esta pendencia de todos scripts, execute no console o comando "uninstall"
+
 fx_version 'cerulean'
 game 'gta5'
 
@@ -23,3 +25,4 @@ files({
 	'client/html/sounds/LUCKY_WHEEL_WIN_STEREO_WIN_STINGER_GENERAL.ogg',
 	'client/html/sounds/TD_WIN_JACKPOT.ogg'
 })
+              

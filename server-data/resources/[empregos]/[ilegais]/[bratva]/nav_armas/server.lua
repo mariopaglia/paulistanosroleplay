@@ -10,7 +10,9 @@ Tunnel.bindInterface("nav_armas",emP)
 local valores = {
 	{ item = "corpodeg36", quantidade = 1, compra = 40000, venda = 10 },
 	{ item = "corpodeak", quantidade = 1, compra = 30000, venda = 10 },
+	{ item = "corpodeshotgun", quantidade = 1, compra = 20000, venda = 10 },
 	{ item = "corpodemp5", quantidade = 1, compra = 25000, venda = 10 },
+	{ item = "corpodescorpion", quantidade = 1, compra = 15000, venda = 10 },
 	{ item = "corpodefiveseven", quantidade = 1, compra = 10000, venda = 10 }, -- Antigo valor R$ 83000
 	{ item = "corpodehkp7m10", quantidade = 1, compra = 8000, venda = 10 },
 	{ item = "mola", quantidade = 10, compra = 10000, venda = 10 },

@@ -1,3 +1,5 @@
+client_script "@vrp/lib/lib.lua" --Para remover esta pendencia de todos scripts, execute no console o comando "uninstall"
+
 fx_version 'adamant'
 game "gta5"
 
@@ -56,3 +58,4 @@ data_file 'AUDIO_DYNAMIXDATA' 'audio/dlcvinewood_mix.dat'
 data_file 'AUDIO_SYNTHDATA' 'audio/dlcVinewood_amp.dat'
 data_file 'AUDIO_SPEECHDATA' 'audio/dlcvinewood_speech.dat'
 data_file 'AUDIO_WAVEPACK' 'audio/sfx/dlc_vinewood'
+              

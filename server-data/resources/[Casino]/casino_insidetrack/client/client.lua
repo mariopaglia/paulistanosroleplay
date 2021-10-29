@@ -26,7 +26,8 @@ local function OpenInsideTrack()
     end
 
     DisplayHud(false)
-    SetPlayerControl(PlayerId(), false, 0)
+    --SetPlayerControl(PlayerId(), false, 0)
+	SetNuiFocus(true,false)
     ReleaseNamedRendertarget("casinoscreen_02")
 
     while not RequestScriptAudioBank('DLC_VINEWOOD/CASINO_GENERAL') do
@@ -47,7 +48,8 @@ local function LeaveInsideTrack()
     insideTrackActive = false
 
     DisplayHud(true)
-    SetPlayerControl(PlayerId(), true, 0)
+    --SetPlayerControl(PlayerId(), true, 0)
+	SetNuiFocus(false,false)
     SetScaleformMovieAsNoLongerNeeded(Utils.Scaleform)
 
     Utils.Scaleform = -1

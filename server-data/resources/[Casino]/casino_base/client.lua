@@ -1,7 +1,7 @@
 local inCasino = false
 local spinningObject = nil
 local spinningCar = nil
-local carOnShow = GetHashKey('rmodskyline34')
+local carOnShow = GetHashKey('ferrariitalia')
 
 function IsTable(T)
 	return type(T) == 'table'
@@ -210,6 +210,9 @@ function drawCarForWins()
 	spinningCar = CreateVehicle(carOnShow, 1100.0, 220.0, -51.0 + 0.05, 0.0, 0, 0)
 	Wait(0)
 	SetVehicleDirtLevel(spinningCar, 0.0)
+	SetVehicleNumberPlateText(spinningCar, "ROLETA")
+	SetVehicleMod(spinningCar, 15, GetNumVehicleMods(spinningCar, 15) - 2, false)
+	SetVehicleColours(spinningCar,28,28)
 	SetVehicleOnGroundProperly(spinningCar)
 	Wait(0)
 	FreezeEntityPosition(spinningCar, 1)

@@ -1,6 +1,6 @@
 Translations = {}
 
-function _(str, ...) -- Translate string
+function translate(str, ...) -- Translate string
     if Translations[Config.TranslationSelected] ~= nil then
         if Translations[Config.TranslationSelected][str] ~= nil then
             return string.format(Translations[Config.TranslationSelected][str], ...)
@@ -13,7 +13,7 @@ function _(str, ...) -- Translate string
 end
 
 function _U(str, ...) -- Translate string first char uppercase
-    return tostring(_(str, ...):gsub('^%l', string.upper))
+    return tostring(translate(str, ...):gsub('^%l', string.upper))
 end
 
 Translations['en'] = {

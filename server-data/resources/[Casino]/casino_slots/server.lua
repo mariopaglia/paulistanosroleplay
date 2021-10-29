@@ -138,7 +138,7 @@ function CheckForWin(w, data)
 	elseif c == '6' then
 		total = data.bet*2
 	end
-	if total > 0 then
+	if total >= 100000 then
 					r_showNotification(source, 'Você ganhou'..' '..total..' '..'fichas')
 					TriggerClientEvent('InteractSound_CL:PlayOnOne', source, 'TD_BIG_WIN_01', 0.1)
 		            vRP.giveInventoryItem(user_id,"casino_token",total,false)

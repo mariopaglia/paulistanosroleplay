@@ -12,6 +12,7 @@ vRP = Proxy.getInterface("vRP")
 src = {}
 Tunnel.bindInterface("vrp_chest",src)
 vCLIENT = Tunnel.getInterface("vrp_chest")
+vRPclient = Tunnel.getInterface("vRP")
 
 local oinv = {}
 local uinv = {}
@@ -21,7 +22,7 @@ local uinv = {}
 -----------------------------------------------------------------------------------------------------------------------------------------
 local chest = {
 	["policiamilitar"] = { 100000,"policia.permissao", ['webhook'] = "BAU_POLICIA" },
-	["policiacivil"] = { 100000,"policia.permissao", ['webhook'] = "" },
+	["policiacivil"] = { 100000,"policia.permissao", ['webhook'] = "BAU_POLICIA" },
 	["cosanostra"] = { 10000,"cn.permissao", ['webhook'] = "BAU_COSANOSTRA" },
 	["yakuza"] = { 10000,"yakuza.permissao", ['webhook'] = "BAU_YAKUZA" },
 	["verdes"] = { 10000,"verdes.permissao", ['webhook'] = "BAU_VERDES" },
@@ -272,7 +273,6 @@ local itemlist = {
     "metanfetamina",
     "placa",
     "pendrive",
-    "radio",
     "c4",
     "cartaoinvasao",
     "pendrivedeep",

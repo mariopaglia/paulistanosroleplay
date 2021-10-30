@@ -343,6 +343,7 @@ const app = new Vue({
 			if (checkName(this.characterNome.trim())) return;
 			if (checkName(this.characterSobrenome.trim())) return;
 
+			this.changeAppearance();
 			$.post('http://character-creator/cDone');
 		}
 	}
@@ -499,6 +500,7 @@ const app3 = new Vue({
 		back: function() {
 			$.post('http://character-creator/BackPart2');
 		},
+		
 		exit: function() {
 			$.post('http://character-creator/cDoneSave');
 		}

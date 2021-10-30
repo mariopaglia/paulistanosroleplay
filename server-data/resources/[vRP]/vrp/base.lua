@@ -133,8 +133,10 @@ function vRP.isBanned(user_id)
 end
 
 function vRP.setBanned(user_id,banned)
-    DropPlayer(vRP.getUserSource(user_id), "Você foi banido da cidade!")
 	vRP.execute("vRP/set_banned",{ user_id = user_id, banned = banned })
+    if vRP.getUserSource(user_id) then
+        DropPlayer(vRP.getUserSource(user_id), "Você foi banido da cidade!")
+    end
 end
 
 -- function vRP.setBanned(user_id, banned)

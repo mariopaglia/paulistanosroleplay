@@ -112,6 +112,22 @@ game 'gta5'
     data_file 'VEHICLE_LAYOUTS_FILE' 'data/porschespeed/vehiclelayouts.meta'
     
     --\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+    --\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+    files {
+        'data/explorermedico/vehicles.meta',
+        'data/explorermedico/carvariations.meta',
+        'data/explorermedico/carcols.meta',
+        'data/explorermedico/handling.meta',
+        'data/explorermedico/vehiclelayouts.meta',
+    }
+    
+    data_file 'HANDLING_FILE' 'data/explorermedico/handling.meta'
+    data_file 'VEHICLE_METADATA_FILE' 'data/explorermedico/vehicles.meta'
+    data_file 'CARCOLS_FILE' 'data/explorermedico/carcols.meta'
+    data_file 'VEHICLE_VARIATION_FILE' 'data/explorermedico/carvariations.meta'
+    data_file 'VEHICLE_LAYOUTS_FILE' 'data/explorermedico/vehiclelayouts.meta'
+    
+    --\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 -- files  {
 -- 	'data/**/vehicles.meta',
 -- 	'data/**/carvariations.meta',

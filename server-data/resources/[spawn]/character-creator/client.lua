@@ -284,7 +284,7 @@ RegisterNUICallback('cDoneSave',function(data,cb)
 		SetPedComponentVariation(PlayerPedId(),10,0,0,0)
 	end
 
-	SetEntityCoordsNoOffset(PlayerPedId(),-502.81,-675.1,20.04,true,true,true)
+	SetEntityCoordsNoOffset(PlayerPedId(),-855.82,-127.47,37.77,true,true,true)
 	SetEntityHeading(PlayerPedId(),177.30)
 	continuousFadeOutNetwork = false
 
@@ -324,6 +324,7 @@ RegisterNUICallback('UpdateSkinOptions',function(data,cb)
 	characterNome = data.characterNome
 	characterSobrenome = data.characterSobrenome
 	characterAge = data.characterAge
+
 	TaskUpdateSkinOptions()
 	cb('ok')
 end)

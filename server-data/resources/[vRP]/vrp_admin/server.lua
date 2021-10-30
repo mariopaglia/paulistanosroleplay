@@ -945,6 +945,69 @@ local presets = {
         ["p0"] = {-1, 0}
         }
     },
+    ["porcaop"] = {
+        [1885233650] = {
+        [1] = {0,0,2},
+        [2] = {21,0,0},
+        [3] = {0,0,2},
+        [4] = {87,2,2},
+        [5] = {0,0,0},
+        [6] = {46,0,2},
+        [7] = {4,0,2},
+        [8] = {40,0,2},
+        [9] = {0,0,0},
+        [10] = {0,0,0},
+        [11] = {256,0,2},
+        [0] = {0,0,0},
+        ["p7"] = {-1,0},
+        ["p2"] = {-1,0},
+        ["p0"] = {-1,0},
+        ["p1"] = {7,0},
+        ["p6"] = {-1,0},
+        }
+    },
+    ["bertip"] = {
+        [1885233650] = {
+        [1] = {0,0,1},
+        [2] = {21,0,0},
+        [3] = {146,4,2},
+        [4] = {87,2,1},
+        [5] = {0,0,2},
+        [6] = {46,0,1},
+        [7] = {125,0,1},
+        [8] = {14,4,1},
+        [9] = {-1,0,2},
+        [10] = {-1,0,2},
+        [11] = {146,3,1},
+        [0] = {0,0,0},
+        ["p7"] = {-1,0},
+        ["p6"] = {3,1},
+        ["p1"] = {15,0},
+        ["p2"] = {-1,0},
+        ["p0"] = {-1,0},
+        }
+    },
+    ["jpupu"] = { -- Jhon Policia (Alce)
+        [1885233650] = {
+        [1] = {169,0,2},
+        [2] = {21,0,0},
+        [3] = {144,0,2},
+        [4] = {87,2,2},
+        [5] = {0,0,0},
+        [6] = {46,0,2},
+        [7] = {2,0,2},
+        [8] = {15,0,2},
+        [9] = {1,1,1},
+        [10] = {0,0,0},
+        [11] = {220,5,2},
+        [0] = {0,0,0},
+        ["p1"] = {19,9},
+        ["p2"] = {-1,0},
+        ["p0"] = {106,18},
+        ["p6"] = {-1,0},
+        ["p7"] = {-1,0},
+        }
+    },
     ["mike"] = {
         [1885233650] = {
         [1] = {3,0,2},
@@ -2466,38 +2529,12 @@ end)
 RegisterCommand('fs',function(source,args,rawCommand)
     local source = source
     local user_id = vRP.getUserId(source)
-    TriggerClientEvent("Notify", source, "aviso", "<b>Fome:</b> "..parseInt(vRP.getHunger(user_id)).."%<br><b>Sede:</b> "..parseInt(vRP.getThirst(user_id)).."%")
-end)
-
-RegisterCommand('cfs',function(source,args,rawCommand)
-    local source = source
-    local user_id = vRP.getUserId(source)
-    vRP.varyHunger(user_id,-10)
-    -- vRP.varyThirst(user_id,-10)
-end)
-
-RegisterCommand('rfs',function(source,args,rawCommand)
-    local source = source
-    local user_id = vRP.getUserId(source)
-    vRP.varyHunger(user_id,100)
-    -- vRP.varyThirst(user_id,100)
-end)
-
-RegisterCommand('vida',function(source,args,rawCommand)
-    local source = source
-    local user_id = vRP.getUserId(source)
+    local fome = parseInt(vRP.getHunger(user_id) - 100)
+    local totalFome = 0 - fome
+    local sede = parseInt(vRP.getThirst(user_id) - 100)
+    local totalSede = 0 - sede
     local vida = vRPclient.getHealth(source)
-    TriggerClientEvent("Notify", source, "aviso", "<b>Vida:</b> "..vRPclient.getHealth(source).."")
-end)
-
-RegisterCommand('notify',function(source,args,rawCommand)
-    local source = source
-    local user_id = vRP.getUserId(source)
-    TriggerClientEvent("Notify", source, "sucesso", "Notificação de <b>Sucesso</b>, acesse a <b>Fenix Store</b> e garanta a sua!", 20000)
-    TriggerClientEvent("Notify", source, "aviso", "Notificação de <b>Aviso</b>, acesse a <b>Fenix Store</b> e garanta a sua!", 20000)
-    TriggerClientEvent("Notify", source, "negado", "Notificação de <b>Negado</b>, acesse a <b>Fenix Store</b> e garanta a sua!", 20000)
-    TriggerClientEvent("Notify", source, "info", "Notificação de <b>Informação</b>, acesse a <b>Fenix Store</b> e garanta a sua!", 20000)
-    TriggerClientEvent("Notify", source, "policia", "Notificação da <b>Polícia</b>, acesse a <b>Fenix Store</b> e garanta a sua!", 20000)
+    TriggerClientEvent("Notify", source, "aviso", "<b>Vida:</b> "..vida.." (100 = desmaiado)<br><b>Fome:</b> "..totalFome.."%<br><b>Sede:</b> "..totalSede.."%")
 end)
 
 ---------------------------------------------------------------

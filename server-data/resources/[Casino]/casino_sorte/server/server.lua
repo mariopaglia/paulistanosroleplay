@@ -28,7 +28,7 @@ AddEventHandler('casino_luckywheel:getLucky', function()
 
                 -- 1% de chance
                 if _randomPrice == 1 then
-                    local _subRan = math.random(1, 2)
+                    local _subRan = math.random(1, 4)
                     if _subRan == 1 then
                         _priceIndex = 1 -- win car
                     else

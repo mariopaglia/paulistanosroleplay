@@ -18,7 +18,7 @@ local Teleport = {
 	-- },
 	["HOSPITALHELI"] = {
 		positionFrom = { ['x'] = 338.53, ['y'] = -583.77, ['z'] = 74.17 },
-		positionTo = { ['x'] = 332.43, ['y'] = -595.65, ['z'] = 43.29 }
+		positionTo = { ['x'] = 298.58, ['y'] = -599.73, ['z'] = 43.3 }
 	},
 	["MOTELVANILLA"] = {
 		positionFrom = { ['x'] = 106.36, ['y'] = -1281.0, ['z'] = 29.27 },

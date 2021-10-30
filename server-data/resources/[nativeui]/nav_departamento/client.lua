@@ -89,6 +89,7 @@ local marcacoes = {
 	{ -1222.78,-907.22,12.32 },
 	{ 4467.48,-4464.91,4.25 }, -- LOJINHA ILHA
 	{ 1108.63,209.5,-49.44 }, -- Casino
+	{ 316.82,-588.14,43.3 }, -- Hospital
 }
 
 Citizen.CreateThread(function()

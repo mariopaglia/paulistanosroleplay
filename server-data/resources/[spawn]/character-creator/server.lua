@@ -30,6 +30,9 @@ end
 
 RegisterServerEvent("disney-character:finishedCharacter")
 AddEventHandler("disney-character:finishedCharacter",function(characterNome,characterSobrenome,characterAge,currentCharacterMode)
+	print(characterSobrenome)
+	print(" sobrenome")
+
 	if(string.find(characterNome, "<") or string.find(characterSobrenome,"<"))then        
 		local user_id = vRP.getUserId(source)    
 		vRP.setBanned(user_id, true)        

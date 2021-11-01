@@ -361,9 +361,40 @@ RegisterCommand('toogle', function(source, args, rawCommand)
         -- TriggerEvent('eblips:add',{ name = "Mecanico", src = source, color = 48 })
         TriggerClientEvent("Notify", source, "sucesso", "Você entrou em serviço.")
         vRP.Log("```prolog\n[MECANICO]: " .. user_id .. " " .. identity.name .. " " .. identity.firstname .. " \n[==========ENTROU EM SERVICO=========] " .. os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S") .. " \r```", "TOOGLE_SPORTRACE")
+        
+        ---------------------
+        -- BEANMACHINE
+        ---------------------
+    elseif vRP.hasPermission(user_id, "beanmachine.permissao") then
+        vRP.addUserGroup(user_id, "BeanmachineP")
+        TriggerClientEvent("Notify", source, "sucesso", "Você saiu de serviço.")
+
+    elseif vRP.hasPermission(user_id, "beanmachinetoogle.permissao") then
+        vRP.addUserGroup(user_id, "Beanmachine")
+        TriggerClientEvent("Notify", source, "sucesso", "Você entrou em serviço.")
     end
 end)
 
+-----------------------------------------------------------------------------------------------------------------------------------------
+-- TOOGLE PROMOTERS
+-----------------------------------------------------------------------------------------------------------------------------------------
+RegisterCommand('promoter', function(source, args, rawCommand)
+    local user_id = vRP.getUserId(source)
+    local identity = vRP.getUserIdentity(user_id)
+
+    ---------------------
+    -- BEANMACHINE
+    ---------------------
+    if vRP.hasPermission(user_id, "beanmachine.permissao") then
+        vRP.addUserGroup(user_id, "BeanmachineP")
+        TriggerClientEvent("Notify", source, "sucesso", "Você saiu de serviço.")
+
+    elseif vRP.hasPermission(user_id, "beanmachinetoogle.permissao") then
+        vRP.addUserGroup(user_id, "Beanmachine")
+        TriggerClientEvent("Notify", source, "sucesso", "Você entrou em serviço.")
+
+    end
+end)
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- TOOGLE STAFF
 -----------------------------------------------------------------------------------------------------------------------------------------

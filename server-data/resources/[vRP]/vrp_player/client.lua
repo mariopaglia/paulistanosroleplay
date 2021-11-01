@@ -1881,3 +1881,17 @@ Citizen.CreateThread(function()
         Citizen.Wait(1)
     end
 end)
+
+-----------------------------------------------------------------------------------------------------------------------------------------
+-- RECUO DE MIRA DENTRO DO CARRO
+-----------------------------------------------------------------------------------------------------------------------------------------
+ Citizen.CreateThread(function()
+     while true do
+         Citizen.Wait(1)
+         local ped = PlayerPedId()
+        local shot = IsPedShooting(ped)
+         if shot == 1 and IsPedInAnyVehicle(ped) then
+             ShakeGameplayCam('SMALL_EXPLOSION_SHAKE', 0.10) -- só alterar o valor --
+         end
+     end
+ end)

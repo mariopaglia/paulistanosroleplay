@@ -679,6 +679,13 @@ cfg.groups = {
 		"beanmachine.permissao",
 		"lojinha.permissao",
 	},
+	["BeanmachineP"] = {
+		_config = {
+			title = "Paisana",
+			gtype = "promoter"
+		},
+		"beanmachinetoogle.permissao"
+	},
 
 	---------------------------------------------------
 	-- JUIZ

@@ -339,6 +339,12 @@ function vRP.dropPlayer(source)
                 vRP.addUserGroup(user_id, "Civil")
 
                 ---------------------------------------------------
+                -- BEANMACHINE
+                ---------------------------------------------------			
+            elseif vRP.hasGroup(user_id, "Beanmachine") then
+                vRP.addUserGroup(user_id, "BeanmachineP")
+
+                ---------------------------------------------------
                 -- DESMANCHE
                 ---------------------------------------------------			
             elseif vRP.hasGroup(user_id, "Desmanche") then

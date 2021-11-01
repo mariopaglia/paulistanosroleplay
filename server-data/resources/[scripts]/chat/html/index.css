@@ -25,6 +25,7 @@ em {
 }
 
 .chat-window {
+  background-color: rgba(16, 33, 43, 0.9) !important;
   position: absolute;
   margin: 40px 0 0 10px;
   width: 40%;
@@ -48,23 +49,29 @@ em {
 }
 
 .prefix {
+  margin-top: 7px !important;
+  /* margin-left: 5px !important; */
   color: #fff;
   /* text-shadow: 2px 1px rgba(255, 255, 255, 0.5); */
   position: absolute;
   margin-top: 5px;
   font-weight: 400;
-  background-color: rgba(0, 0, 70, 0.201);
+  background-color: rgba(39, 174, 96,0.5);
   padding: 5px;
   border-radius: 5px;
 }
 
 textarea {
+  margin-left: -5px;
+  background-color: rgba(16, 33, 43, 0.9) !important;
   background: transparent;
   display: block;
   box-sizing: border-box;
   padding: 13px 0 0 95px;
   color: #fff;
-  width: 100%;
+  width: 89%;
+  height: 40px !important;
+  border-radius: 10px;
   border: 0;
   overflow: hidden;
 }
@@ -83,4 +90,18 @@ input:focus {
 
 .multiline {
   white-space: pre-line;
+}
+
+.suggestions-wrap {
+  margin-top: 2px;
+  margin-left: -5px;
+  border-radius: 10px;
+  padding: 15px;
+  background-color: rgba(16, 33, 43, 0.9);
+  width: 200px;
+  list-style-type: none;
+}
+
+.suggestion {
+  list-style-type: none;
 }

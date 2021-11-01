@@ -316,7 +316,7 @@ Citizen.CreateThread(function()
     while true do
         Citizen.Wait(55000)
         hora = os.date("%H:%M")
-		if hora == "5:49" or hora == "16:49" then
+		if hora == "5:49" or hora == "14:49" then
 			TriggerClientEvent("cloud:raios",-1,30)
 			-- PerformHttpRequest(salarr, function(err, text, headers) end, 'POST', json.encode({
 			-- 	embeds = {
@@ -338,7 +338,7 @@ Citizen.CreateThread(function()
 			-- }), { ['Content-Type'] = 'application/json' })
 			-- vRP.Log("@everyone","ANUNCIO_RR")
         end
-		if hora == "5:50" or hora == "16:50" then
+		if hora == "5:50" or hora == "14:50" then
 			CurrentWeather = "THUNDER"
 			TriggerEvent("vSync:requestSync")
 			vRPclient.setDiv(-1,"anuncio",".div_anuncio { background: rgba(255,40,40,0.8); font-size: 11px; font-family: arial; color: #fff; padding: 20px; bottom: 13%; right: 5%; max-width: 500px; position: absolute; -webkit-border-radius: 5px; } bold { font-size: 15px; }","<bold>DEFESA CIVIL INFORMA:<br>Uma tempestade está se aproximando em 10 minutos!<br>Procurem abrigo e protejam-se!</bold><br><br>Fenix City")
@@ -346,25 +346,25 @@ Citizen.CreateThread(function()
 				vRPclient.removeDiv(-1,"anuncio")
 			end)
         end
-		if hora == "5:55" or hora == "16:55" then
+		if hora == "5:55" or hora == "14:55" then
 			vRPclient.setDiv(-1,"anuncio",".div_anuncio { background: rgba(255,40,40,0.8); font-size: 11px; font-family: arial; color: #fff; padding: 20px; bottom: 13%; right: 5%; max-width: 500px; position: absolute; -webkit-border-radius: 5px; } bold { font-size: 15px; }","<bold>DEFESA CIVIL INFORMA:<br>Uma tempestade está se aproximando em 5 minutos!<br>Procurem abrigo e protejam-se!</bold><br><br>Fenix City")
 			SetTimeout(240000,function()
 				vRPclient.removeDiv(-1,"anuncio")
 			end)
         end
-		if hora == "5:57" or hora == "16:57" then
+		if hora == "5:57" or hora == "14:57" then
 			vRPclient.setDiv(-1,"anuncio",".div_anuncio { background: rgba(255,40,40,0.8); font-size: 11px; font-family: arial; color: #fff; padding: 20px; bottom: 13%; right: 5%; max-width: 500px; position: absolute; -webkit-border-radius: 5px; } bold { font-size: 15px; }","<bold>DEFESA CIVIL INFORMA:<br>Uma tempestade está se aproximando em 3 minutos!<br>Procurem abrigo e protejam-se!</bold><br><br>Fenix City")
 			SetTimeout(240000,function()
 				vRPclient.removeDiv(-1,"anuncio")
 			end)
         end
-		if hora == "5:58" or hora == "16:58" then
+		if hora == "5:58" or hora == "14:58" then
 			vRPclient.setDiv(-1,"anuncio",".div_anuncio { background: rgba(255,40,40,0.8); font-size: 11px; font-family: arial; color: #fff; padding: 20px; bottom: 13%; right: 5%; max-width: 500px; position: absolute; -webkit-border-radius: 5px; } bold { font-size: 15px; }","<bold>DEFESA CIVIL INFORMA:<br>Uma tempestade está se aproximando em 2 minutos!<br>Procurem abrigo e protejam-se!</bold><br><br>Fenix City")
 			SetTimeout(240000,function()
 				vRPclient.removeDiv(-1,"anuncio")
 			end)
         end
-		if hora == "5:59" or hora == "16:59" then
+		if hora == "5:59" or hora == "14:59" then
 			vRPclient.setDiv(-1,"anuncio",".div_anuncio { background: rgba(255,40,40,0.8); font-size: 11px; font-family: arial; color: #fff; padding: 20px; bottom: 13%; right: 5%; max-width: 500px; position: absolute; -webkit-border-radius: 5px; } bold { font-size: 15px; }","<bold>DEFESA CIVIL INFORMA:<br>Uma tempestade está se aproximando em 1 minuto!<br>Procurem abrigo e protejam-se!</bold><br><br>Fenix City")
 			Citizen.Wait(20000)
 			local users = vRP.getUsers()

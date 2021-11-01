@@ -32,7 +32,7 @@ echo [%TIME:~-0,8% - %DATE%] - Iniciando o sistema...
 
 TITLE [NAO FECHAR] - RR AUTO - [NAO FECHAR] - SISTEMA DE AUTO RR - [NAO FECHAR]
 set reboot=6:00
-set reboot2=17:00
+set reboot2=15:00
 set reboot_done=0
 set reboot_done2=0
 

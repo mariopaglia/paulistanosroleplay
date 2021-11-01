@@ -968,10 +968,10 @@ local vehglobal = {
 	-- CARROS QUE CARREGAM O PAREDÃO DE SOM
 	["paredao"] = { ['name'] = "Paredão Pequeno", ['price'] = 100, ['tipo'] = "vip" },
 	["SomMarqCULuz"] = { ['name'] = "Paredão Grande", ['price'] = 100, ['tipo'] = "vip" },
-	["amarok"] = { ['name'] = "Amarok", ['price'] = 2100000, ['tipo'] = "carros" },
-	["s10"] = { ['name'] = "S10", ['price'] = 2100000, ['tipo'] = "carros" },
-	["19ram"] = { ['name'] = "Dodge RAM", ['price'] = 2100000, ['tipo'] = "carros" },
-	["F250Deboxe"] = { ['name'] = "F250 Deboxe", ['price'] = 2100000, ['tipo'] = "carros" },
+	["amarok"] = { ['name'] = "Amarok", ['price'] = 2100000, ['tipo'] = "vip" },
+	["s10"] = { ['name'] = "S10", ['price'] = 1000000, ['tipo'] = "vip" },
+	["19ram"] = { ['name'] = "Dodge RAM", ['price'] = 1000000, ['tipo'] = "vip" },
+	["F250Deboxe"] = { ['name'] = "F250 Deboxe", ['price'] = 1000000, ['tipo'] = "vip" },
 
 	-- BRASILEIROS
 	["blista"] = { ['name'] = "GOL S 86", ['price'] = 130000, ['tipo'] = "carros" },

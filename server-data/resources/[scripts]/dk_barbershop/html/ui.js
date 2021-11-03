@@ -11,25 +11,25 @@ $(document).ready(function() {
             $(".loja-de-roupa").fadeOut();
             $('#total').html('0'); 
             change = {};
-            $.post('http://xd_barbershop/reset', JSON.stringify({}))
+            $.post('http://dk_barbershop/reset', JSON.stringify({}))
             $.post('http://ph-hud/fechar', JSON.stringify({ id: false }))
         }
     }
     document.onkeyup = function(data){
         if(data.which == 65){ //a
-            $.post('http://xd_barbershop/leftHeading', JSON.stringify({ value: 10 }));
+            $.post('http://dk_barbershop/leftHeading', JSON.stringify({ value: 10 }));
         }
         if(data.which == 68) { //d
-            $.post('http://xd_barbershop/rightHeading', JSON.stringify({ value: 10 }));
+            $.post('http://dk_barbershop/rightHeading', JSON.stringify({ value: 10 }));
         }
         if(data.which == 88) { //levantar
-            $.post('http://xd_barbershop/handsUp', JSON.stringify({}));
+            $.post('http://dk_barbershop/handsUp', JSON.stringify({}));
         }
         if(data.which == 39) { //right
-            $.post('http://xd_barbershop/changeColor', JSON.stringify({ type: dataPart, id: roupaID, action: "mais" }));
+            $.post('http://dk_barbershop/changeColor', JSON.stringify({ type: dataPart, id: roupaID, action: "mais" }));
         }
         if(data.which == 37) { //left
-            $.post('http://xd_barbershop/changeColor', JSON.stringify({ type: dataPart, id: roupaID, action: "menos" }));
+            $.post('http://dk_barbershop/changeColor', JSON.stringify({ type: dataPart, id: roupaID, action: "menos" }));
         }
     }
 
@@ -37,7 +37,7 @@ $(document).ready(function() {
     $("#payament").click(function() {
         $(".loja-de-roupa").fadeOut()
         $.post('http://ph-hud/fechar', JSON.stringify({ id: false }));
-        $.post('http://xd_barbershop/payament', JSON.stringify({ price: $('#total').text() }));
+        $.post('http://dk_barbershop/payament', JSON.stringify({ price: $('#total').text() }));
         $('#total').html('0');
         change = {};
     })
@@ -81,7 +81,7 @@ $(document).ready(function() {
                 if (!item.toRemove[item.prefix][dataPart][i]) {
                     $("footer").append(`
                     <div class="item-clothe" data-id="${i}" data-def="${item.def}" onclick="select(this)">
-                    <div class="img-clothe" style="background-image: url('http://189.127.164.170:8080/barbershop/${item.category}/${item.sexo}/${item.prefix}/${i}.png')">  
+                    <div class="img-clothe" style="background-image: url('http://${item.imgsIp}/images/vrp_barbershop3/${item.category}/${item.sexo}/${item.prefix}/${i}.jpg')">  
                     <div class="overlay">
                                 <span>${i}</span>
                             </div>
@@ -100,7 +100,7 @@ $(document).ready(function() {
                 if (!item.toRemove[item.prefix][dataPart][i]) {
                     $("footer").append(`
                     <div class="item-clothe ${item.category}${i}" data-id="${i}" data-def="${item.def}" onclick="select(this)">
-                        <div class="img-clothe" style="background-image: url('http://189.127.164.170:8080/barbershop/${item.category}/${item.sexo}/${item.prefix}/${i}.png')">  
+                        <div class="img-clothe" style="background-image: url('http://${item.imgsIp}/images/vrp_barbershop3/${item.category}/${item.sexo}/${item.prefix}/${i}.jpg')">  
                             <div class="overlay">
                                 <span>${i}</span>
                             </div>
@@ -151,18 +151,18 @@ function selectPart(element) {
     $(`.${dataPart}`).find('img').css('filter', 'invert(100%)')
     $('.submenu-item').removeClass('subActive')
     $(element).addClass('subActive')
-    $.post('http://xd_barbershop/changePart', JSON.stringify({ part: dataPart }))
+    $.post('http://dk_barbershop/changePart', JSON.stringify({ part: dataPart }))
     $(`.${dataOld}`).find('img').css('filter', 'invert(0%)')
     dataOld = dataPart
 }
 
 function changeColor(element) {
     colorID = element.dataset.id;
-    $.post('http://xd_barbershop/changeColor', JSON.stringify({ type: dataPart, id: roupaID, color: colorID}));
+    $.post('http://dk_barbershop/changeColor', JSON.stringify({ type: dataPart, id: roupaID, color: colorID}));
 }
 function changeSecColor(element) {
     colorID = element.dataset.id;
-    $.post('http://xd_barbershop/changeSecColor', JSON.stringify({ type: dataPart, id: roupaID, color: colorID}));
+    $.post('http://dk_barbershop/changeSecColor', JSON.stringify({ type: dataPart, id: roupaID, color: colorID}));
 }
 function select(element) {
     $("footer div").find('.overlay').css("background-color", "transparent");
@@ -173,12 +173,12 @@ function select(element) {
     
     $(element).css("border", "1px solid #ff7b00");
     $(element).find('.overlay').css("background-color", "#ff7b00");
-    $.post('http://xd_barbershop/changeCustom', JSON.stringify({ type: dataPart, id: roupaID, def: definition }));
+    $.post('http://dk_barbershop/changeCustom', JSON.stringify({ type: dataPart, id: roupaID, def: definition }));
 }
 
 function sendOpacity() {
     let amount = Number($(".slider").val())
-    $.post('http://xd_barbershop/changeOpacity', JSON.stringify({ opacity: amount.toFixed(2) }));
+    $.post('http://dk_barbershop/changeOpacity', JSON.stringify({ opacity: amount.toFixed(2) }));
 }
 
 

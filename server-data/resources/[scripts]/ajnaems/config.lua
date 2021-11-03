@@ -21,7 +21,7 @@ Config.StopControl = 'F6'
 
 -- Set this to true if you want to enable the defibrillator sound (requires xSound - https://github.com/Xogy/xsound)
 -- Altere para true se você quiser ativar o som do desfibrilador (requer o xSound - https://github.com/Xogy/xsound)
-Config.UseXSound = false
+Config.UseXSound = true
 
 -- Only change this if you want to use another defibrillator sound (Config.UseXSound must be true)
 -- Altere o link apenas se você quiser usar outro som para o desfibrilador (Config.UseXSound deve estar como true)

@@ -98,283 +98,400 @@ end)
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- TOOGLE
 -----------------------------------------------------------------------------------------------------------------------------------------
+local toogleTimer = {}
+
 RegisterCommand('toogle', function(source, args, rawCommand)
     local user_id = vRP.getUserId(source)
-    local identity = vRP.getUserIdentity(user_id)
-
-    -----------------------------------------------------------------------------------------------------------------------------------------
-    -- POLICIA MILITAR (PMESP)
-    -----------------------------------------------------------------------------------------------------------------------------------------
-
-    ---------------------
-    -- PMFC I
-    ---------------------
-    if vRP.hasPermission(user_id, "pmfci.permissao") then
-        TriggerEvent('eblips:remove', source)
-        vRP.addUserGroup(user_id, "PMFCIP")
-        vRPclient.replaceWeapons(source,{})
-        TriggerClientEvent("Notify", source, "sucesso", "Você saiu de serviço.")
-        vRP.Log("```prolog\n[POLICIAL]: " .. user_id .. " " .. identity.name .. " " .. identity.firstname .. " \n[===========SAIU DE SERVICO==========] " .. os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S") .. " \r```", "TOOGLE_POLICIA")
-        TriggerClientEvent('desligarRadios', source)
-    elseif vRP.hasPermission(user_id, "pmfcip.permissao") then
-        TriggerEvent('eblips:add', {name = "Policial", src = source, color = 47})
-        vRP.addUserGroup(user_id, "PMFCI")
-        TriggerClientEvent("Notify", source, "sucesso", "Você entrou de serviço.")
-        vRP.Log("```prolog\n[POLICIAL]: " .. user_id .. " " .. identity.name .. " " .. identity.firstname .. " \n[==========ENTROU EM SERVICO=========] " .. os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S") .. " \r```", "TOOGLE_POLICIA")
-        ---------------------
-        -- PMFC II
-        ---------------------
-    elseif vRP.hasPermission(user_id, "pmfcii.permissao") then
-        TriggerEvent('eblips:remove', source)
-        vRP.addUserGroup(user_id, "PMFCIIP")
-        vRPclient.replaceWeapons(source,{})
-        TriggerClientEvent("Notify", source, "sucesso", "Você saiu de serviço.")
-        vRP.Log("```prolog\n[POLICIAL]: " .. user_id .. " " .. identity.name .. " " .. identity.firstname .. " \n[===========SAIU DE SERVICO==========] " .. os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S") .. " \r```", "TOOGLE_POLICIA")
-        TriggerClientEvent('desligarRadios', source)
-    elseif vRP.hasPermission(user_id, "pmfciip.permissao") then
-        TriggerEvent('eblips:add', {name = "Policial", src = source, color = 47})
-        vRP.addUserGroup(user_id, "PMFCII")
-        TriggerClientEvent("Notify", source, "sucesso", "Você entrou de serviço.")
-        vRP.Log("```prolog\n[POLICIAL]: " .. user_id .. " " .. identity.name .. " " .. identity.firstname .. " \n[==========ENTROU EM SERVICO=========] " .. os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S") .. " \r```", "TOOGLE_POLICIA")
-        ---------------------
-        -- PMFC III
-        ---------------------
-    elseif vRP.hasPermission(user_id, "pmfciii.permissao") then
-        TriggerEvent('eblips:remove', source)
-        vRP.addUserGroup(user_id, "PMFCIIIP")
-        vRPclient.replaceWeapons(source,{})
-        TriggerClientEvent("Notify", source, "sucesso", "Você saiu de serviço.")
-        vRP.Log("```prolog\n[POLICIAL]: " .. user_id .. " " .. identity.name .. " " .. identity.firstname .. " \n[===========SAIU DE SERVICO==========] " .. os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S") .. " \r```", "TOOGLE_POLICIA")
-        TriggerClientEvent('desligarRadios', source)
-    elseif vRP.hasPermission(user_id, "pmfciiip.permissao") then
-        TriggerEvent('eblips:add', {name = "Policial", src = source, color = 47})
-        vRP.addUserGroup(user_id, "PMFCIII")
-        TriggerClientEvent("Notify", source, "sucesso", "Você entrou de serviço.")
-        vRP.Log("```prolog\n[POLICIAL]: " .. user_id .. " " .. identity.name .. " " .. identity.firstname .. " \n[==========ENTROU EM SERVICO=========] " .. os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S") .. " \r```", "TOOGLE_POLICIA")
-        ---------------------
-        -- PMFC Comando
-        ---------------------
-    elseif vRP.hasPermission(user_id, "pmfciv.permissao") then
-        TriggerEvent('eblips:remove', source)
-        vRP.addUserGroup(user_id, "PMFCIVP")
-        vRPclient.replaceWeapons(source,{})
-        TriggerClientEvent("Notify", source, "sucesso", "Você saiu de serviço.")
-        vRP.Log("```prolog\n[POLICIAL]: " .. user_id .. " " .. identity.name .. " " .. identity.firstname .. " \n[===========SAIU DE SERVICO==========] " .. os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S") .. " \r```", "TOOGLE_POLICIA")
-        TriggerClientEvent('desligarRadios', source)
-    elseif vRP.hasPermission(user_id, "pmfcivp.permissao") then
-        TriggerEvent('eblips:add', {name = "Policial", src = source, color = 47})
-        vRP.addUserGroup(user_id, "PMFCIV")
-        TriggerClientEvent("Notify", source, "sucesso", "Você entrou de serviço.")
-        vRP.Log("```prolog\n[POLICIAL]: " .. user_id .. " " .. identity.name .. " " .. identity.firstname .. " \n[==========ENTROU EM SERVICO=========] " .. os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S") .. " \r```", "TOOGLE_POLICIA")
-
-        -----------------------------------------------------------------------------------------------------------------------------------------
-        -- DIC - POLICIA INVESTIGATIVA
-        -----------------------------------------------------------------------------------------------------------------------------------------
-
-        ---------------------
-        -- DIC I
-        ---------------------
-    elseif vRP.hasPermission(user_id, "dici.permissao") then
-        -- TriggerEvent('eblips:remove',source)
-        vRP.addUserGroup(user_id, "DICIP")
-        vRPclient.replaceWeapons(source,{})
-        TriggerClientEvent("Notify", source, "sucesso", "Você saiu de serviço.")
-        vRP.Log("```prolog\n[POLICIAL]: " .. user_id .. " " .. identity.name .. " " .. identity.firstname .. " \n[===========SAIU DE SERVICO==========] " .. os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S") .. " \r```", "TOOGLE_DIC")
-        TriggerClientEvent('desligarRadios', source)
-    elseif vRP.hasPermission(user_id, "dicip.permissao") then
-        -- TriggerEvent('eblips:add',{ name = "Policial", src = source, color = 47 })
-        vRP.addUserGroup(user_id, "DICI")
-        TriggerClientEvent("Notify", source, "sucesso", "Você entrou de serviço.")
-        vRP.Log("```prolog\n[POLICIAL]: " .. user_id .. " " .. identity.name .. " " .. identity.firstname .. " \n[==========ENTROU EM SERVICO=========] " .. os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S") .. " \r```", "TOOGLE_DIC")
-        ---------------------
-        -- DIC II
-        ---------------------
-    elseif vRP.hasPermission(user_id, "dicii.permissao") then
-        -- TriggerEvent('eblips:remove',source)
-        vRP.addUserGroup(user_id, "DICIIP")
-        vRPclient.replaceWeapons(source,{})
-        TriggerClientEvent("Notify", source, "sucesso", "Você saiu de serviço.")
-        vRP.Log("```prolog\n[POLICIAL]: " .. user_id .. " " .. identity.name .. " " .. identity.firstname .. " \n[===========SAIU DE SERVICO==========] " .. os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S") .. " \r```", "TOOGLE_DIC")
-        TriggerClientEvent('desligarRadios', source)
-    elseif vRP.hasPermission(user_id, "diciip.permissao") then
-        -- TriggerEvent('eblips:add',{ name = "Policial", src = source, color = 47 })
-        vRP.addUserGroup(user_id, "DICII")
-        TriggerClientEvent("Notify", source, "sucesso", "Você entrou de serviço.")
-        vRP.Log("```prolog\n[POLICIAL]: " .. user_id .. " " .. identity.name .. " " .. identity.firstname .. " \n[==========ENTROU EM SERVICO=========] " .. os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S") .. " \r```", "TOOGLE_DIC")
-        ---------------------
-        -- DIC III
-        ---------------------
-    elseif vRP.hasPermission(user_id, "diciii.permissao") then
-        -- TriggerEvent('eblips:remove',source)
-        vRP.addUserGroup(user_id, "DICIIIP")
-        vRPclient.replaceWeapons(source,{})
-        TriggerClientEvent("Notify", source, "sucesso", "Você saiu de serviço.")
-        vRP.Log("```prolog\n[POLICIAL]: " .. user_id .. " " .. identity.name .. " " .. identity.firstname .. " \n[===========SAIU DE SERVICO==========] " .. os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S") .. " \r```", "TOOGLE_DIC")
-        TriggerClientEvent('desligarRadios', source)
-    elseif vRP.hasPermission(user_id, "diciiip.permissao") then
-        -- TriggerEvent('eblips:add',{ name = "Policial", src = source, color = 47 })
-        vRP.addUserGroup(user_id, "DICIII")
-        TriggerClientEvent("Notify", source, "sucesso", "Você entrou de serviço.")
-        vRP.Log("```prolog\n[POLICIAL]: " .. user_id .. " " .. identity.name .. " " .. identity.firstname .. " \n[==========ENTROU EM SERVICO=========] " .. os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S") .. " \r```", "TOOGLE_DIC")
-        ---------------------
-        -- DIC IV (Diretor)
-        ---------------------
-    elseif vRP.hasPermission(user_id, "diciv.permissao") then
-        -- TriggerEvent('eblips:remove',source)
-        vRP.addUserGroup(user_id, "DICIVP")
-        vRPclient.replaceWeapons(source,{})
-        TriggerClientEvent("Notify", source, "sucesso", "Você saiu de serviço.")
-        vRP.Log("```prolog\n[POLICIAL]: " .. user_id .. " " .. identity.name .. " " .. identity.firstname .. " \n[===========SAIU DE SERVICO==========] " .. os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S") .. " \r```", "TOOGLE_DIC")
-        -- TriggerClientEvent('desligarRadios',source)
-    elseif vRP.hasPermission(user_id, "dicivp.permissao") then
-        -- TriggerEvent('eblips:add',{ name = "Policial", src = source, color = 47 })
-        vRP.addUserGroup(user_id, "DICIV")
-        TriggerClientEvent("Notify", source, "sucesso", "Você entrou de serviço.")
-        vRP.Log("```prolog\n[POLICIAL]: " .. user_id .. " " .. identity.name .. " " .. identity.firstname .. " \n[==========ENTROU EM SERVICO=========] " .. os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S") .. " \r```", "TOOGLE_DIC")
-
-        -----------------------------------------------------------------------------------------------------------------------------------------
-        -- HOSPITAL
-        -----------------------------------------------------------------------------------------------------------------------------------------
-        ---------------------
-        -- SAMU I
-        ---------------------
-    elseif vRP.hasPermission(user_id, "samui.permissao") then
-        TriggerEvent('eblips:remove', source)
-        vRP.addUserGroup(user_id, "SAMUIP")
-        TriggerClientEvent("Notify", source, "sucesso", "Você saiu de serviço.")
-        vRP.Log("```prolog\n[SAMU]: " .. user_id .. " " .. identity.name .. " " .. identity.firstname .. " \n[===========SAIU DE SERVICO==========] " .. os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S") .. " \r```", "TOOGLE_HOSPITAL")
-        TriggerClientEvent('desligarRadios', source)
-    elseif vRP.hasPermission(user_id, "samuip.permissao") then
-        TriggerEvent('eblips:add', {name = "SAMU", src = source, color = 48})
-        vRP.addUserGroup(user_id, "SAMUI")
-        TriggerClientEvent("Notify", source, "sucesso", "Você entrou em serviço.")
-        vRP.Log("```prolog\n[SAMU]: " .. user_id .. " " .. identity.name .. " " .. identity.firstname .. " \n[==========ENTROU EM SERVICO=========] " .. os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S") .. " \r```", "TOOGLE_HOSPITAL")
-        ---------------------
-        -- SAMU II
-        ---------------------
-    elseif vRP.hasPermission(user_id, "samuii.permissao") then
-        TriggerEvent('eblips:remove', source)
-        vRP.addUserGroup(user_id, "SAMUIIP")
-        TriggerClientEvent("Notify", source, "sucesso", "Você saiu de serviço.")
-        vRP.Log("```prolog\n[SAMU]: " .. user_id .. " " .. identity.name .. " " .. identity.firstname .. " \n[===========SAIU DE SERVICO==========] " .. os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S") .. " \r```", "TOOGLE_HOSPITAL")
-        TriggerClientEvent('desligarRadios', source)
-    elseif vRP.hasPermission(user_id, "samuiip.permissao") then
-        TriggerEvent('eblips:add', {name = "SAMU", src = source, color = 48})
-        vRP.addUserGroup(user_id, "SAMUII")
-        TriggerClientEvent("Notify", source, "sucesso", "Você entrou em serviço.")
-        vRP.Log("```prolog\n[SAMU]: " .. user_id .. " " .. identity.name .. " " .. identity.firstname .. " \n[==========ENTROU EM SERVICO=========] " .. os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S") .. " \r```", "TOOGLE_HOSPITAL")
-        ---------------------
-        -- SAMU III
-        ---------------------
-    elseif vRP.hasPermission(user_id, "samuiii.permissao") then
-        TriggerEvent('eblips:remove', source)
-        vRP.addUserGroup(user_id, "SAMUIIIP")
-        TriggerClientEvent("Notify", source, "sucesso", "Você saiu de serviço.")
-        vRP.Log("```prolog\n[SAMU]: " .. user_id .. " " .. identity.name .. " " .. identity.firstname .. " \n[===========SAIU DE SERVICO==========] " .. os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S") .. " \r```", "TOOGLE_HOSPITAL")
-        TriggerClientEvent('desligarRadios', source)
-    elseif vRP.hasPermission(user_id, "samuiiip.permissao") then
-        TriggerEvent('eblips:add', {name = "SAMU", src = source, color = 48})
-        vRP.addUserGroup(user_id, "SAMUIII")
-        TriggerClientEvent("Notify", source, "sucesso", "Você entrou em serviço.")
-        vRP.Log("```prolog\n[SAMU]: " .. user_id .. " " .. identity.name .. " " .. identity.firstname .. " \n[==========ENTROU EM SERVICO=========] " .. os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S") .. " \r```", "TOOGLE_HOSPITAL")
-        ---------------------
-        -- SAMU Diretor(a)
-        ---------------------
-    elseif vRP.hasPermission(user_id, "samuiv.permissao") then
-        TriggerEvent('eblips:remove', source)
-        vRP.addUserGroup(user_id, "SAMUIVP")
-        TriggerClientEvent("Notify", source, "sucesso", "Você saiu de serviço.")
-        vRP.Log("```prolog\n[SAMU]: " .. user_id .. " " .. identity.name .. " " .. identity.firstname .. " \n[===========SAIU DE SERVICO==========] " .. os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S") .. " \r```", "TOOGLE_HOSPITAL")
-        TriggerClientEvent('desligarRadios', source)
-    elseif vRP.hasPermission(user_id, "samuivp.permissao") then
-        TriggerEvent('eblips:add', {name = "SAMU", src = source, color = 48})
-        vRP.addUserGroup(user_id, "SAMUIV")
-        TriggerClientEvent("Notify", source, "sucesso", "Você entrou em serviço.")
-        vRP.Log("```prolog\n[SAMU]: " .. user_id .. " " .. identity.name .. " " .. identity.firstname .. " \n[==========ENTROU EM SERVICO=========] " .. os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S") .. " \r```", "TOOGLE_HOSPITAL")
-
-        -----------------------------------------------------------------------------------------------------------------------------------------
-        -- CONCESSIONÁRIA
-        -----------------------------------------------------------------------------------------------------------------------------------------
-        ---------------------
-        -- VENDEDOR CONCESSIONÁRIA
-        ---------------------
-    elseif vRP.hasPermission(user_id, "concessionaria.permissao") then
-        TriggerEvent('eblips:remove', source)
-        vRP.addUserGroup(user_id, "CONCEP")
-        TriggerClientEvent("Notify", source, "sucesso", "Você saiu de serviço.")
-        vRP.Log("```prolog\n[VENDEDOR]: " .. user_id .. " " .. identity.name .. " " .. identity.firstname .. " \n[===========SAIU DE SERVICO==========] " .. os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S") .. " \r```", "TOOGLE_CONCE")
-        TriggerClientEvent('desligarRadios', source)
-    elseif vRP.hasPermission(user_id, "vendedorpaisana.permissao") then
-        vRP.addUserGroup(user_id, "CONCE")
-        TriggerClientEvent("Notify", source, "sucesso", "Você entrou em serviço.")
-        vRP.Log("```prolog\n[VENDEDOR]: " .. user_id .. " " .. identity.name .. " " .. identity.firstname .. " \n[==========ENTROU EM SERVICO=========] " .. os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S") .. " \r```", "TOOGLE_CONCE")
-
-        -----------------------------------------------------------------------------------------------------------------------------------------
-        -- BENNYS
-        -----------------------------------------------------------------------------------------------------------------------------------------
-        ---------------------
-        -- MECANICO
-        ---------------------
-    elseif vRP.hasPermission(user_id, "bennys.permissao") then
-        -- TriggerEvent('eblips:remove',source)
-        vRP.addUserGroup(user_id, "BennysP")
-        TriggerClientEvent("Notify", source, "sucesso", "Você saiu de serviço.")
-        vRP.Log("```prolog\n[MECANICO]: " .. user_id .. " " .. identity.name .. " " .. identity.firstname .. " \n[===========SAIU DE SERVICO==========] " .. os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S") .. " \r```", "TOOGLE_BENNYS")
-        TriggerClientEvent('desligarRadios', source)
-    elseif vRP.hasPermission(user_id, "paisanabennys.permissao") then
-        vRP.addUserGroup(user_id, "Bennys")
-        -- TriggerEvent('eblips:add',{ name = "Mecanico", src = source, color = 48 })
-        TriggerClientEvent("Notify", source, "sucesso", "Você entrou em serviço.")
-        vRP.Log("```prolog\n[MECANICO]: " .. user_id .. " " .. identity.name .. " " .. identity.firstname .. " \n[==========ENTROU EM SERVICO=========] " .. os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S") .. " \r```", "TOOGLE_BENNYS")
-
-        -----------------------------------------------------------------------------------------------------------------------------------------
-        -- SPORTRACE
-        -----------------------------------------------------------------------------------------------------------------------------------------
-        ---------------------
-        -- LÍDER FÊNIX CUSTOMS
-        ---------------------
-    elseif vRP.hasPermission(user_id, "sportracel.permissao") then
-        -- TriggerEvent('eblips:remove',source)
-        vRP.addUserGroup(user_id, "SportRaceLP")
-        TriggerClientEvent("Notify", source, "sucesso", "Você saiu de serviço.")
-        vRP.Log("```prolog\n[MECANICO]: " .. user_id .. " " .. identity.name .. " " .. identity.firstname .. " \n[===========SAIU DE SERVICO==========] " .. os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S") .. " \r```", "TOOGLE_SPORTRACE")
-        TriggerClientEvent('desligarRadios', source)
-
-    elseif vRP.hasPermission(user_id, "sportracelp.permissao") then
-        vRP.addUserGroup(user_id, "SportRaceL")
-        -- TriggerEvent('eblips:add',{ name = "Mecanico", src = source, color = 48 })
-        TriggerClientEvent("Notify", source, "sucesso", "Você entrou em serviço.")
-        vRP.Log("```prolog\n[MECANICO]: " .. user_id .. " " .. identity.name .. " " .. identity.firstname .. " \n[==========ENTROU EM SERVICO=========] " .. os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S") .. " \r```", "TOOGLE_SPORTRACE")
-
-        ---------------------
-        -- MECANICO
-        ---------------------
-    elseif vRP.hasPermission(user_id, "sportrace.permissao") then
-        -- TriggerEvent('eblips:remove',source)
-        vRP.addUserGroup(user_id, "SportRaceP")
-        TriggerClientEvent("Notify", source, "sucesso", "Você saiu de serviço.")
-        vRP.Log("```prolog\n[MECANICO]: " .. user_id .. " " .. identity.name .. " " .. identity.firstname .. " \n[===========SAIU DE SERVICO==========] " .. os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S") .. " \r```", "TOOGLE_SPORTRACE")
-        TriggerClientEvent('desligarRadios', source)
-
-    elseif vRP.hasPermission(user_id, "paisanasportrace.permissao") then
-        vRP.addUserGroup(user_id, "SportRace")
-        -- TriggerEvent('eblips:add',{ name = "Mecanico", src = source, color = 48 })
-        TriggerClientEvent("Notify", source, "sucesso", "Você entrou em serviço.")
-        vRP.Log("```prolog\n[MECANICO]: " .. user_id .. " " .. identity.name .. " " .. identity.firstname .. " \n[==========ENTROU EM SERVICO=========] " .. os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S") .. " \r```", "TOOGLE_SPORTRACE")
-        
-        ---------------------
-        -- BEANMACHINE
-        ---------------------
-    elseif vRP.hasPermission(user_id, "beanmachine.permissao") then
-        vRP.addUserGroup(user_id, "BeanmachineP")
-        TriggerClientEvent("Notify", source, "sucesso", "Você saiu de serviço.")
-
-    elseif vRP.hasPermission(user_id, "beanmachinetoogle.permissao") then
-        vRP.addUserGroup(user_id, "Beanmachine")
-        TriggerClientEvent("Notify", source, "sucesso", "Você entrou em serviço.")
-    end
+	TriggerEvent("toogleWork",user_id,true)
 end)
 
+local permissions = {
+	---------------------
+    -- PMFC I
+    ---------------------
+	{
+		['workOn'] = {
+			['hasPermission'] = "pmfci.permissao",
+			['toAdd'] = "PMFCIP",
+		},
+		['workOff'] = {
+			['hasPermission'] = "pmfcip.permissao",
+			['toAdd'] = "PMFCI",
+		},
+		['replaceWeapons'] = true,
+		['eblips'] = {['color'] = 47,['name'] = "Policial"},
+		['webhook'] = "TOOGLE_POLICIA",
+	},
+	---------------------
+    -- PMFC II
+    ---------------------
+	{
+		['workOn'] = {
+			['hasPermission'] = "pmfcii.permissao",
+			['toAdd'] = "PMFCIIP",
+		},
+		['workOff'] = {
+			['hasPermission'] = "pmfciip.permissao",
+			['toAdd'] = "PMFCII",
+		},
+		['replaceWeapons'] = true,
+		['eblips'] = {['color'] = 47,['name'] = "Policial"},
+		['webhook'] = "TOOGLE_POLICIA",
+	},
+	---------------------
+    -- PMFC III
+    ---------------------
+	{
+		['workOn'] = {
+			['hasPermission'] = "pmfciii.permissao",
+			['toAdd'] = "PMFCIIIP",
+		},
+		['workOff'] = {
+			['hasPermission'] = "pmfciiip.permissao",
+			['toAdd'] = "PMFCIII",
+		},
+		['replaceWeapons'] = true,
+		['eblips'] = {['color'] = 47,['name'] = "Policial"},
+		['webhook'] = "TOOGLE_POLICIA",
+	},
+	---------------------
+    -- PMFC IV
+    ---------------------
+	{
+		['workOn'] = {
+			['hasPermission'] = "pmfciv.permissao",
+			['toAdd'] = "PMFCIVP",
+		},
+		['workOff'] = {
+			['hasPermission'] = "pmfcivp.permissao",
+			['toAdd'] = "PMFCIV",
+		},
+		['replaceWeapons'] = true,
+		['eblips'] = {['color'] = 47,['name'] = "Policial"},
+		['webhook'] = "TOOGLE_POLICIA",
+	},
+	---------------------
+    -- DIC I
+    ---------------------
+	{
+		['workOn'] = {
+			['hasPermission'] = "dici.permissao",
+			['toAdd'] = "DICIP",
+		},
+		['workOff'] = {
+			['hasPermission'] = "dicip.permissao",
+			['toAdd'] = "DICI",
+		},
+		['replaceWeapons'] = true,
+		['eblips'] = {['color'] = 47,['name'] = "Policial"},
+		['webhook'] = "TOOGLE_DIC",
+	},
+	---------------------
+    -- DIC II
+    ---------------------
+	{
+		['workOn'] = {
+			['hasPermission'] = "dicii.permissao",
+			['toAdd'] = "DICIIP",
+		},
+		['workOff'] = {
+			['hasPermission'] = "diciip.permissao",
+			['toAdd'] = "DICII",
+		},
+		['replaceWeapons'] = true,
+		['eblips'] = {['color'] = 47,['name'] = "Policial"},
+		['webhook'] = "TOOGLE_DIC",
+	},
+	---------------------
+    -- DIC III
+    ---------------------
+	{
+		['workOn'] = {
+			['hasPermission'] = "diciii.permissao",
+			['toAdd'] = "DICIIIP",
+		},
+		['workOff'] = {
+			['hasPermission'] = "diciiip.permissao",
+			['toAdd'] = "DICIII",
+		},
+		['replaceWeapons'] = true,
+		['eblips'] = {['color'] = 47,['name'] = "Policial"},
+		['webhook'] = "TOOGLE_DIC",
+	},
+	---------------------
+    -- DIC IV
+    ---------------------
+	{
+		['workOn'] = {
+			['hasPermission'] = "diciv.permissao",
+			['toAdd'] = "DICIVP",
+		},
+		['workOff'] = {
+			['hasPermission'] = "dicivp.permissao",
+			['toAdd'] = "DICIV",
+		},
+		['replaceWeapons'] = true,
+		['eblips'] = {['color'] = 47,['name'] = "Policial"},
+		['webhook'] = "TOOGLE_DIC",
+	},
+	---------------------
+    -- SAMU I
+    ---------------------
+	{
+		['workOn'] = {
+			['hasPermission'] = "samui.permissao",
+			['toAdd'] = "SAMUIP",
+		},
+		['workOff'] = {
+			['hasPermission'] = "samuip.permissao",
+			['toAdd'] = "SAMUI",
+		},
+		['eblips'] = {['color'] = 48,['name'] = "SAMU"},
+		['webhook'] = "TOOGLE_HOSPITAL",
+	},
+	---------------------
+    -- SAMU II
+    ---------------------
+	{
+		['workOn'] = {
+			['hasPermission'] = "samuii.permissao",
+			['toAdd'] = "SAMUIIP",
+		},
+		['workOff'] = {
+			['hasPermission'] = "samuiip.permissao",
+			['toAdd'] = "SAMUII",
+		},
+		['eblips'] = {['color'] = 48,['name'] = "SAMU"},
+		['webhook'] = "TOOGLE_HOSPITAL",
+	},
+	---------------------
+    -- SAMU III
+    ---------------------
+	{
+		['workOn'] = {
+			['hasPermission'] = "samuiii.permissao",
+			['toAdd'] = "SAMUIIIP",
+		},
+		['workOff'] = {
+			['hasPermission'] = "samuiiip.permissao",
+			['toAdd'] = "SAMUIII",
+		},
+		['eblips'] = {['color'] = 48,['name'] = "SAMU"},
+		['webhook'] = "TOOGLE_HOSPITAL",
+	},
+	---------------------
+    -- SAMU IV
+    ---------------------
+	{
+		['workOn'] = {
+			['hasPermission'] = "samuiv.permissao",
+			['toAdd'] = "SAMUIVP",
+		},
+		['workOff'] = {
+			['hasPermission'] = "samuivp.permissao",
+			['toAdd'] = "SAMUIV",
+		},
+		['eblips'] = {['color'] = 48,['name'] = "SAMU"},
+		['webhook'] = "TOOGLE_HOSPITAL",
+	},
+	---------------------
+    -- VENDEDOR CONCESSIONÁRIA
+    ---------------------
+	{
+		['workOn'] = {
+			['hasPermission'] = "concessionaria.permissao",
+			['toAdd'] = "CONCEP",
+		},
+		['workOff'] = {
+			['hasPermission'] = "vendedorpaisana.permissao",
+			['toAdd'] = "CONCE",
+		},
+		['webhook'] = "TOOGLE_CONCE",
+	},
+	---------------------
+    -- MECANICO
+    ---------------------
+	{
+		['workOn'] = {
+			['hasPermission'] = "bennys.permissao",
+			['toAdd'] = "BennysP",
+		},
+		['workOff'] = {
+			['hasPermission'] = "paisanabennys.permissao",
+			['toAdd'] = "Bennys",
+		},
+		['webhook'] = "TOOGLE_BENNYS",
+	},
+	---------------------
+    -- SPORTRACEL
+    ---------------------
+	{
+		['workOn'] = {
+			['hasPermission'] = "sportracel.permissao",
+			['toAdd'] = "SportRaceLP",
+		},
+		['workOff'] = {
+			['hasPermission'] = "sportracelp.permissao",
+			['toAdd'] = "SportRaceL",
+		},
+		['webhook'] = "TOOGLE_SPORTRACE",
+	},
+	---------------------
+    -- SPORTRACE
+    ---------------------
+	{
+		['workOn'] = {
+			['hasPermission'] = "sportrace.permissao",
+			['toAdd'] = "SportRaceP",
+		},
+		['workOff'] = {
+			['hasPermission'] = "paisanasportrace.permissao",
+			['toAdd'] = "SportRace",
+		},
+		['webhook'] = "TOOGLE_SPORTRACE",
+	},
+	---------------------
+    -- BEANMACHINE
+    ---------------------
+	{
+		['workOn'] = {
+			['hasPermission'] = "beanmachine.permissao",
+			['toAdd'] = "BeanmachineP",
+		},
+		['workOff'] = {
+			['hasPermission'] = "beanmachinetoogle.permissao",
+			['toAdd'] = "Beanmachine",
+		},
+	},
+    {
+		['workOn'] = {
+			['hasPermission'] = "taxista.permissao",
+			['toRemove'] = "Taxista",
+		},
+	},
+    {
+		['workOn'] = {
+			['hasPermission'] = "pvp.permissao",
+			['toAdd'] = "Civil",
+		},
+	},
+    {
+		['workOn'] = {
+			['hasPermission'] = "founder.permissao",
+			['toAdd'] = "foundertoogle",
+		},
+        ['webhook'] = "TOOGLE_STAFF",
+	},
+    {
+		['workOn'] = {
+			['hasPermission'] = "admin.permissao",
+			['toAdd'] = "admintoogle",
+		},
+        ['webhook'] = "TOOGLE_STAFF",
+	},
+    {
+		['workOn'] = {
+			['hasPermission'] = "mod.permissao",
+			['toAdd'] = "modtoogle",
+		},
+        ['webhook'] = "TOOGLE_STAFF",
+	},
+    {
+		['workOn'] = {
+			['hasPermission'] = "sup.permissao",
+			['toAdd'] = "suptoogle",
+		},
+        ['webhook'] = "TOOGLE_STAFF",
+	},
+    {
+		['workOn'] = {
+			['hasPermission'] = "conce.permissao",
+			['toAdd'] = "CONCEP",
+		},
+        ['webhook'] = "TOOGLE_CONCE",
+	},
+}
+RegisterServerEvent("toogleWork")
+AddEventHandler("toogleWork",function(user_id,status)
+	local source = vRP.getUserSource(user_id)
+	local identity = vRP.getUserIdentity(user_id)
+	if status then
+		for k,v in pairs(permissions) do
+            if v['workOn'] and v['workOff'] then
+                if vRP.hasPermission(user_id,v['workOn']['hasPermission']) then
+                    if not toogleTimer[user_id] then
+                        toogleTimer[user_id] = os.time()
+                    end
+                    local totalTime = (convertTime(os.time() - toogleTimer[user_id]) or "00:00:00")
+
+                    if v['eblips'] then TriggerEvent('eblips:remove', source) end
+                    if v['replaceWeapons'] then vRPclient.replaceWeapons(source,{}) end
+                    if v['workOn']['toAdd'] then vRP.addUserGroup(user_id,v['workOn']['toAdd']) end
+
+                    TriggerClientEvent("Notify", source, "sucesso", "Você saiu de serviço.")
+                    if v['webhook'] then
+                        vRP.Log("```prolog\n[FUNCIONARIO]: " .. user_id .. " " .. identity.name .. " " .. identity.firstname .. " \n[===========SAIU DE SERVICO==========] \n[TEMPO TOTAL EM SERVICO]: "..totalTime..""..os.date("\n[ENTRADA]: %H:%M:%S %d/%m/%Y",toogleTimer[user_id]).." "..os.date("\n[SAIDA]: %H:%M:%S %d/%m/%Y").." \r```", v['webhook'])
+                    end
+                    toogleTimer[user_id] = nil
+                    TriggerClientEvent('desligarRadios', source)
+                    return
+                elseif vRP.hasPermission(user_id,v['workOff']['hasPermission']) then
+                    if v['eblips'] then
+                        TriggerEvent('eblips:add', {name = v['eblips']['name'], src = source, color = v['eblips']['color']})
+                    end
+                    if v['webhook'] then
+                        vRP.Log("```prolog\n[FUNCIONARIO]: " .. user_id .. " " .. identity.name .. " " .. identity.firstname .. " \n[===========ENTROU EM SERVICO==========]  "..os.date("\n[ENTRADA]: %H:%M:%S %d/%m/%Y").." \r```", v['webhook'])
+                    end
+                    TriggerClientEvent("Notify", source, "sucesso", "Você entrou em serviço.")
+                    vRP.addUserGroup(user_id,v['workOff']['toAdd'])
+                    toogleTimer[user_id] = os.time()
+                    return
+                end
+            end
+		end
+	else
+		for k,v in pairs(permissions) do
+			if vRP.hasPermission(user_id,v['workOn']['hasPermission']) then
+                if not toogleTimer[user_id] then
+                    toogleTimer[user_id] = os.time()
+                end
+				local totalTime = (convertTime(os.time() - toogleTimer[user_id]) or "00:00:00")
+                if v['workOn']['toAdd'] then vRP.addUserGroup(user_id,v['workOn']['toAdd']) end
+                if v['workOn']['toRemove'] then vRP.removeUserGroup(user_id,v['workOn']['toRemove']) end
+				if v['webhook'] then
+					vRP.Log("```prolog\n[FUNCIONARIO]: " .. user_id .. " " .. identity.name .. " " .. identity.firstname .. " \n[===========SAIU DE SERVICO==========] \n[TEMPO TOTAL EM SERVICO]: "..totalTime..""..os.date("\n[ENTRADA]: %H:%M:%S %d/%m/%Y",toogleTimer[user_id]).." "..os.date("\n[SAIDA]: %H:%M:%S %d/%m/%Y").." \r```", v['webhook'])
+				end
+				toogleTimer[user_id] = nil
+			end
+		end
+        TriggerEvent("setNil",user_id)
+	end
+end)
+
+function convertTime(seconds)
+    local hours = math.floor(seconds/3600)
+    seconds = seconds - hours * 3600
+    local minutes = math.floor(seconds/60)
+    seconds = seconds - minutes * 60
+
+	if hours < 10 then
+		hours = "0"..hours
+	end
+	if minutes < 10 then
+		minutes = "0"..minutes
+	end
+	if seconds < 10 then
+		seconds = "0"..seconds
+	end
+
+    if parseInt(hours) > 0 then
+        return ""..hours..":"..minutes..":"..seconds..""
+    elseif parseInt(minutes) > 0 then
+        return "00:"..minutes..":"..seconds..""
+    elseif parseInt(seconds) > 0 then
+        return "00:00:"..seconds..""
+    end
+end
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- TOOGLE PROMOTERS
 -----------------------------------------------------------------------------------------------------------------------------------------

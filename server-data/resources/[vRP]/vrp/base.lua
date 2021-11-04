@@ -251,144 +251,8 @@ function vRP.dropPlayer(source)
         if user_id and source then
             TriggerEvent("vRP:playerLeave", user_id, source)
             -- Forçar para ficar à paisana quando sair
-            local identity = vRP.getUserIdentity(user_id)
-
-            ---------------------------------------------------
-            -- TAXISTA
-            ---------------------------------------------------
-            if vRP.hasGroup(user_id, "Taxista") then
-                vRP.removeUserGroup(user_id, "Taxista")
-
-                ---------------------------------------------------
-                -- POLICIA MILITAR
-                ---------------------------------------------------
-            elseif vRP.hasGroup(user_id, "PMFCI") then
-                vRP.addUserGroup(user_id, "PMFCIP")
-                vRP.Log("```prolog\n[POLICIAL]: " .. user_id .. " " .. identity.name .. " " .. identity.firstname .. " \n[===========SAIU DE SERVICO==========] " .. os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S") .. " \r```", "TOOGLE_POLICIA")
-
-            elseif vRP.hasGroup(user_id, "PMFCII") then
-                vRP.addUserGroup(user_id, "PMFCIIP")
-                vRP.Log("```prolog\n[POLICIAL]: " .. user_id .. " " .. identity.name .. " " .. identity.firstname .. " \n[===========SAIU DE SERVICO==========] " .. os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S") .. " \r```", "TOOGLE_POLICIA")
-
-            elseif vRP.hasGroup(user_id, "PMFCIII") then
-                vRP.addUserGroup(user_id, "PMFCIIIP")
-                vRP.Log("```prolog\n[POLICIAL]: " .. user_id .. " " .. identity.name .. " " .. identity.firstname .. " \n[===========SAIU DE SERVICO==========] " .. os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S") .. " \r```", "TOOGLE_POLICIA")
-
-            elseif vRP.hasGroup(user_id, "PMFCIV") then
-                vRP.addUserGroup(user_id, "PMFCIVP")
-                vRPclient.replaceWeapons(source,{})
-                vRP.Log("```prolog\n[POLICIAL]: " .. user_id .. " " .. identity.name .. " " .. identity.firstname .. " \n[===========SAIU DE SERVICO==========] " .. os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S") .. " \r```", "TOOGLE_POLICIA")
-
-                ---------------------------------------------------
-                -- DIC - POLICIA INVESTIGATIVA
-                ---------------------------------------------------
-            elseif vRP.hasGroup(user_id, "DICI") then
-                vRP.addUserGroup(user_id, "DICIP")
-                vRP.Log("```prolog\n[POLICIAL]: " .. user_id .. " " .. identity.name .. " " .. identity.firstname .. " \n[===========SAIU DE SERVICO==========] " .. os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S") .. " \r```", "TOOGLE_DIC")
-
-            elseif vRP.hasGroup(user_id, "DICII") then
-                vRP.addUserGroup(user_id, "DICIIP")
-                vRP.Log("```prolog\n[POLICIAL]: " .. user_id .. " " .. identity.name .. " " .. identity.firstname .. " \n[===========SAIU DE SERVICO==========] " .. os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S") .. " \r```", "TOOGLE_DIC")
-
-            elseif vRP.hasGroup(user_id, "DICIII") then
-                vRP.addUserGroup(user_id, "DICIIIP")
-                vRP.Log("```prolog\n[POLICIAL]: " .. user_id .. " " .. identity.name .. " " .. identity.firstname .. " \n[===========SAIU DE SERVICO==========] " .. os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S") .. " \r```", "TOOGLE_DIC")
-
-            elseif vRP.hasGroup(user_id, "DICIV") then
-                vRP.addUserGroup(user_id, "DICIVP")
-                vRP.Log("```prolog\n[POLICIAL]: " .. user_id .. " " .. identity.name .. " " .. identity.firstname .. " \n[===========SAIU DE SERVICO==========] " .. os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S") .. " \r```", "TOOGLE_DIC")
-
-                ---------------------------------------------------
-                -- HOSPITAL
-                ---------------------------------------------------
-            elseif vRP.hasGroup(user_id, "SAMUI") then
-                vRP.addUserGroup(user_id, "SAMUIP")
-                vRP.Log("```prolog\n[PARAMEDICO]: " .. user_id .. " " .. identity.name .. " " .. identity.firstname .. " \n[===========SAIU DE SERVICO==========] " .. os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S") .. " \r```", "TOOGLE_HOSPITAL")
-
-            elseif vRP.hasGroup(user_id, "SAMUII") then
-                vRP.addUserGroup(user_id, "SAMUIIP")
-                vRP.Log("```prolog\n[PARAMEDICO]: " .. user_id .. " " .. identity.name .. " " .. identity.firstname .. " \n[===========SAIU DE SERVICO==========] " .. os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S") .. " \r```", "TOOGLE_HOSPITAL")
-
-            elseif vRP.hasGroup(user_id, "SAMUIII") then
-                vRP.addUserGroup(user_id, "SAMUIIIP")
-                vRP.Log("```prolog\n[PARAMEDICO]: " .. user_id .. " " .. identity.name .. " " .. identity.firstname .. " \n[===========SAIU DE SERVICO==========] " .. os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S") .. " \r```", "TOOGLE_HOSPITAL")
-
-            elseif vRP.hasGroup(user_id, "SAMUIV") then
-                vRP.addUserGroup(user_id, "SAMUIVP")
-                vRP.Log("```prolog\n[PARAMEDICO]: " .. user_id .. " " .. identity.name .. " " .. identity.firstname .. " \n[===========SAIU DE SERVICO==========] " .. os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S") .. " \r```", "TOOGLE_HOSPITAL")
-
-                ---------------------------------------------------
-                -- MECANICAS
-                ---------------------------------------------------			
-            elseif vRP.hasGroup(user_id, "Bennys") then
-                vRP.addUserGroup(user_id, "BennysP")
-                vRP.Log("```prolog\n[MECANICO]: " .. user_id .. " " .. identity.name .. " " .. identity.firstname .. " \n[===========SAIU DE SERVICO==========] " .. os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S") .. " \r```", "TOOGLE_BENNYS")
-
-            elseif vRP.hasGroup(user_id, "SportRace") then
-                vRP.addUserGroup(user_id, "SportRaceP")
-                vRP.Log("```prolog\n[MECANICO]: " .. user_id .. " " .. identity.name .. " " .. identity.firstname .. " \n[===========SAIU DE SERVICO==========] " .. os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S") .. " \r```", "TOOGLE_SPORTRACE")
-
-            elseif vRP.hasGroup(user_id, "SportRaceL") then
-                vRP.addUserGroup(user_id, "SportRaceLP")
-                vRP.Log("```prolog\n[MECANICO]: " .. user_id .. " " .. identity.name .. " " .. identity.firstname .. " \n[===========SAIU DE SERVICO==========] " .. os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S") .. " \r```", "TOOGLE_SPORTRACE")
-
-                ---------------------------------------------------
-                -- PVP
-                ---------------------------------------------------			
-            elseif vRP.hasGroup(user_id, "PVP") then
-                vRP.addUserGroup(user_id, "Civil")
-
-                ---------------------------------------------------
-                -- BEANMACHINE
-                ---------------------------------------------------			
-            elseif vRP.hasGroup(user_id, "Beanmachine") then
-                vRP.addUserGroup(user_id, "BeanmachineP")
-
-                ---------------------------------------------------
-                -- DESMANCHE
-                ---------------------------------------------------			
-            elseif vRP.hasGroup(user_id, "Desmanche") then
-                vRP.addUserGroup(user_id, "Desmanche")
-
-                ---------------------------------------------------
-                -- FOUNDER
-                ---------------------------------------------------			
-            elseif vRP.hasGroup(user_id, "founder") then
-                vRP.addUserGroup(user_id, "foundertoogle")
-                vRP.Log("```prolog\n[STAFF]: " .. user_id .. " " .. identity.name .. " " .. identity.firstname .. " \n[===========SAIU DE SERVICO==========] " .. os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S") .. " \r```", "TOOGLE_STAFF")
-
-                ---------------------------------------------------
-                -- ADMINISTRADOR
-                ---------------------------------------------------			
-            elseif vRP.hasGroup(user_id, "admin") then
-                vRP.addUserGroup(user_id, "admintoogle")
-                vRP.Log("```prolog\n[STAFF]: " .. user_id .. " " .. identity.name .. " " .. identity.firstname .. " \n[===========SAIU DE SERVICO==========] " .. os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S") .. " \r```", "TOOGLE_STAFF")
-
-                ---------------------------------------------------
-                -- MODERADOR
-                ---------------------------------------------------			
-            elseif vRP.hasGroup(user_id, "mod") then
-                vRP.addUserGroup(user_id, "modtoogle")
-                vRP.Log("```prolog\n[STAFF]: " .. user_id .. " " .. identity.name .. " " .. identity.firstname .. " \n[===========SAIU DE SERVICO==========] " .. os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S") .. " \r```", "TOOGLE_STAFF")
-
-                ---------------------------------------------------
-                -- SUPORTE
-                ---------------------------------------------------			
-            elseif vRP.hasGroup(user_id, "sup") then
-                vRP.addUserGroup(user_id, "suptoogle")
-                vRP.Log("```prolog\n[STAFF]: " .. user_id .. " " .. identity.name .. " " .. identity.firstname .. " \n[===========SAIU DE SERVICO==========] " .. os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S") .. " \r```", "TOOGLE_STAFF")
-
-                ---------------------------------------------------
-                -- CONCESSIONÁRIA
-                ---------------------------------------------------
-            elseif vRP.hasGroup(user_id, "CONCE") then
-                vRP.addUserGroup(user_id, "CONCEP")
-                vRP.Log("```prolog\n[VENDEDOR]: " .. user_id .. " " .. identity.name .. " " .. identity.firstname .. " \n[===========SAIU DE SERVICO==========] " .. os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S") .. " \r```", "TOOGLE_CONCE")
-
-                ---------------------------------------------------
-                -- VERDES
-                ---------------------------------------------------
-            elseif vRP.hasGroup(user_id, "Verdes") or vRP.hasGroup(user_id, "VerdesL") then
+            TriggerEvent("toogleWork",user_id)
+            if vRP.hasGroup(user_id, "Verdes") or vRP.hasGroup(user_id, "VerdesL") then
                 vRP.Log("```prolog\n[MEMBRO]: " .. user_id .. " " .. identity.name .. " " .. identity.firstname .. " \n[===========SAIU DA CIDADE==========] " .. os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S") .. " \r```", "HORARIO_VERDES")
 
                 ---------------------------------------------------
@@ -448,14 +312,18 @@ function vRP.dropPlayer(source)
             end
         end
 
-        vRP.setUData(user_id, "vRP:datatable", json.encode(vRP.getUserDataTable(user_id)))
-        vRP.users[vRP.rusers[user_id]] = nil
-        vRP.rusers[user_id] = nil
-        vRP.user_tables[user_id] = nil
-        vRP.user_tmp_tables[user_id] = nil
-        vRP.user_sources[user_id] = nil
     end
 end
+RegisterServerEvent("setNil")
+AddEventHandler("setNil",function(user_id)
+	vRP.setUData(user_id, "vRP:datatable", json.encode(vRP.getUserDataTable(user_id)))
+    vRP.users[vRP.rusers[user_id]] = nil
+    vRP.rusers[user_id] = nil
+    vRP.user_tables[user_id] = nil
+    vRP.user_tmp_tables[user_id] = nil
+    vRP.user_sources[user_id] = nil
+end)
+
 
 function task_save_datatables()
     SetTimeout(10000, task_save_datatables)

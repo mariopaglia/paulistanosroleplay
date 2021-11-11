@@ -691,20 +691,24 @@ RegisterCommand('prenderadv', function(source, args, rawCommand)
     local user_id = vRP.getUserId(source)
     if vRP.hasPermission(user_id, "kick.permissao") then
         local player = vRP.getUserSource(parseInt(args[1]))
-        vRP.setUData(parseInt(args[1]), "vRP:prisao", json.encode(parseInt(args[2])))
-        vRPclient.setHandcuffed(player, false)
-        local crimes = vRP.prompt(source, "Crimes:", "")
-        if crimes == "" then
-            return
+        if player then
+            vRP.setUData(parseInt(args[1]), "vRP:prisao", json.encode(parseInt(args[2])))
+            vRPclient.setHandcuffed(player, false)
+            local crimes = vRP.prompt(source, "Crimes:", "")
+            if crimes == "" then
+                return
+            end
+            TriggerClientEvent('prisioneiro', player, true)
+            vRPclient._playSound(source, "Hack_Success", "DLC_HEIST_BIOLAB_PREP_HACKING_SOUNDS")
+            TriggerClientEvent("vrp_sound:source", player, 'jaildoor', 1)
+            vRPclient.teleport(player, 712.08, 111.49, 80.76)
+            TriggerClientEvent("Notify", source, "sucesso", "Prisão efetuada com sucesso!")
+            TriggerClientEvent("Notify", player, "importante", "Você foi preso pelos seguintes crimes: <b>" .. crimes .. "</b>")
+            prison_lock(parseInt(args[1]))
+        else
+            vRP.setUData(parseInt(args[1]), "vRP:prisao", json.encode(parseInt(args[2])))
+            TriggerClientEvent("Notify", source, "sucesso", "O player <b>não está online</b> porém foi <b>preso com sucesso</b>!")
         end
-        TriggerClientEvent('prisioneiro', player, true)
-        vRPclient._playSound(source, "Hack_Success", "DLC_HEIST_BIOLAB_PREP_HACKING_SOUNDS")
-        TriggerClientEvent("vrp_sound:source", player, 'jaildoor', 1)
-        vRPclient.teleport(player, 712.08, 111.49, 80.76)
-
-        TriggerClientEvent("Notify", source, "sucesso", "Prisão efetuada com sucesso!")
-        TriggerClientEvent("Notify", player, "importante", "Você foi preso pelos seguintes crimes: <b>" .. crimes .. "</b>")
-        prison_lock(parseInt(args[1]))
     end
 end)
 -----------------------------------------------------------------------------------------------------------------------------------------

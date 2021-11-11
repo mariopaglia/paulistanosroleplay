@@ -267,12 +267,8 @@ RegisterCommand('god', function(source, args, rawCommand)
                 vRPclient.killGod(nplayer)
                 vRPclient._stopAnim(nplayer, false)
                 vRPclient.setHealth(nplayer, 400)
-                if vRP.getHunger(nuser_id) > 80 then
-                vRP.varyHunger(nuser_id,-20)
-                end
-                if vRP.getThirst(nuser_id) > 80 then
-                    vRP.varyThirst(nuser_id,-20)
-                end
+                vRP.varyHunger(nuser_id,-100)
+                vRP.varyThirst(nuser_id,-100)
                 vRP.Log("```prolog\n[ID]: " .. user_id .. " " .. identity.name .. " " .. identity.firstname .. " \n[GOD EM]: " .. nuser_id .. " " .. identitynu.name .. " " .. identitynu.firstname .. "\n[COORDENADA]: " .. crds.x .. "," .. crds.y .. "," .. crds.z .. "" .. os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S") .. " \r```", "CMD_GOD")
             end
         else
@@ -430,6 +426,9 @@ RegisterCommand('ban', function(source, args, rawCommand)
             local id = vRP.getUserSource(parseInt(args[1]))
             vRP.setBanned(parseInt(args[1]), true)
             vRP.setWhitelisted(parseInt(args[1]), false)
+            TriggerClientEvent("Notify", source, "sucesso", "O ID <b>"..args[1].."</b> foi <b>banido com sucesso</b>!")
+        else
+            TriggerClientEvent("Notify", source, "negado", "Favor <b>informar o ID</b> de quem você deseja banir")
         end
     end
 end)
@@ -2650,16 +2649,3 @@ RegisterCommand('armalimpar', function(source,args,rawCommand)
         end
     end
 end)
-
------------------------------------------------------------------------------------------------------------------------------------------
--- BOOST DE FPS
------------------------------------------------------------------------------------------------------------------------------------------
--- RegisterCommand('fps',function(source,args)
---     if args[1] == 'on' then
---         SetTimecycleModifier('cinema')
---         TriggerEvent('Notify','sucesso','Boost de FPS ligado!')
---     elseif args[1] == 'off' then
---         SetTimecycleModifier('default')
---         TriggerEvent('Notify','sucesso','Boost de FPS desligado!')
---     end
--- end)

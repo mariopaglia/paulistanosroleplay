@@ -4097,7 +4097,6 @@ function mergeProps (to, from) {
 
 /*  */
 
-// https://github.com/Hanks10100/weex-native-directive/tree/master/component
 
 // listening on native callback
 
@@ -4277,7 +4276,6 @@ function createComponent (
 
   // Weex specific: invoke recycle-list optimized @render function for
   // extracting cell-slot template.
-  // https://github.com/Hanks10100/weex-native-directive/tree/master/component
   /* istanbul ignore if */
   return vnode
 }
@@ -5417,7 +5415,6 @@ function registerRef (vnode, isRemoval) {
  * Virtual DOM patching algorithm based on Snabbdom by
  * Simon Friis Vindum (@paldepind)
  * Licensed under the MIT License
- * https://github.com/paldepind/snabbdom/blob/master/LICENSE
  *
  * modified by Evan You (@yyx990803)
  *
@@ -6763,7 +6760,6 @@ var expressionEndPos;
 
 
 function parseModel (val) {
-  // Fix https://github.com/vuejs/vue/pull/7730
   // allow v-model="obj.val " (trailing whitespace)
   val = val.trim();
   len = val.length;

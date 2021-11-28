@@ -4,7 +4,7 @@ Config.PrintClient = false -- Print on client's console the spins in case of obj
 Config.Offset = true -- Add 70% propability to stop the spins in wrong position
 Config.OffsetNum = 30		-- 30% the sipns will stop offset. Bigger number = less wins
 Config.slotsLoss = ""
-Config.slotsGain = "https://discord.com/api/webhooks/901972572516798494/_hye8hTaHE-KSuEs4Tb6RZZ0z-Y4O0GJhepgxZWPMH2dG7q5BEnDyPO-NxaHNyv4QtdP"
+Config.slotsGain = ""
 
 Config.HideUI = true
 Config.HideUIEvent = ''

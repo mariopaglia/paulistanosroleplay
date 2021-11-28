@@ -1,13 +1,3 @@
-
-------
--- InteractionSound by Scott
--- Version: v0.0.1
--- Path: client/main.lua
---
--- Allows sounds to be played on single clients, all clients, or all clients within
--- a specific range from the entity to which the sound has been created.
-------
-
 local standardVolumeOutput = 1.0;
 
 ------

@@ -124,7 +124,6 @@ end
 
 ---RenderText
 ---
---- Reference : https://github.com/iTexZoz/NativeUILua_Reloaded/blob/master/UIElements/UIResText.lua#L189
 ---
 ---@param Text string
 ---@param X number
